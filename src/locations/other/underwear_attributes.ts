@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bras', 'reset_BraVars');
   qspCall(s, 'panties', 'reset_PanVars');
-  if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 0;
+  ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 0;
   if (hasLocation('$attributes_' + ((s as any).locArgs?.[0] ?? 0))) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>', ARGS[1]
   }
@@ -20,9 +20,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).BraMaxStrength = ((s as any).BraStrength ?? 0);
   if ((0 as any) === 1) {
     // TODO-QSP: dynamic "
-    (s as any).PanDirt = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_dirt[qspUntranslated(s, \"ARGS[1]\", { location: \"underwear_attributes\" })]", { location: "underwear_attributes" });
+    (s as any).PanDirt = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_dirt[((s as any).locArgs?.[1] ?? 0)]", { location: "underwear_attributes" });
     (s as any).BraDirt = ((s as any).PanDirt ?? 0);
-    (s as any).PanStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_h[qspUntranslated(s, \"ARGS[1]\", { location: \"underwear_attributes\" })]", { location: "underwear_attributes" });
+    (s as any).PanStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_h[((s as any).locArgs?.[1] ?? 0)]", { location: "underwear_attributes" });
     (s as any).BraStrength = ((s as any).PanStrength ?? 0);
     // TODO-QSP: "
   }

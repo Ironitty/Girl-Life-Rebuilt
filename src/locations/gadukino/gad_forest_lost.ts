@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_forest_lost', 'forest_outskirts');
+  (s as any).location_type = 'secluded';
+  (s as any).forest_args1 = 'forest_outskirts';
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGadForestLostPicture(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -25,7 +27,7 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', 'forest_outskirts'
   }
   if (((s as any).foresteventrand ?? 0) <= (8-(((s as any).bonfire ?? 0)*5))  &&  (((s as any).hour ?? 0) < 6  ||  ((s as any).hour ?? 0) > 22)) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', '\'forest_outskirts\''] }]);
+    qspGoto(s, 'gad_forest_lost', 'wolves', 'forest_outskirts');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWander(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPicking(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -37,6 +39,12 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterForestCenter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gad_forest_lost';
+  (s as any).loc_arg = 'forest_center';
+  (s as any).location_type = 'secluded';
+  (s as any).menu_loc = 'gad_forest_lost';
+  (s as any).menu_arg = 'forest_center';
+  (s as any).forest_args1 = 'forest_center';
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGadForestLostPicture(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -48,7 +56,7 @@ function enterForestCenter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', 'forest_center'
   }
   if (((s as any).foresteventrand ?? 0) <= (8-(((s as any).bonfire ?? 0)*2))  &&  (((s as any).hour ?? 0) < 6  ||  ((s as any).hour ?? 0) > 22)) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', '\'forest_center\''] }]);
+    qspGoto(s, 'gad_forest_lost', 'wolves', 'forest_center');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWander(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPicking(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -131,6 +139,7 @@ function enterWander(s: GameState, scene: SceneBuilder): void {
 
 function enterRelax(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_forest_lost', 'relax');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
   if (((s as any).forest_args1 ?? 0) === 'forest_outskirts') {
@@ -455,14 +464,14 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).foresteventrand ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (15);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_edge'] }]);
+      qspGoto(s, 'gad_forest', 'forest_edge');
     }
     if (((s as any).foresteventrand ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_outskirts'] }]);
+      qspGoto(s, 'gad_forest', 'forest_outskirts');
     }
     if (((s as any).foresteventrand ?? 0) === 3) {
       (s as any).minut = ((s as any).minut ?? 0) + (35);
-      scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'start'] }]);
+      qspGoto(s, 'gad_meadow', 'start');
     }
   } },
       ]);
@@ -481,22 +490,22 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).foresteventrand ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (30);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_edge'] }]);
+      qspGoto(s, 'gad_forest', 'forest_edge');
     }
     if (((s as any).foresteventrand ?? 0) === 2) {
       (s as any).minut = ((s as any).minut ?? 0) + (15);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_outskirts'] }]);
+      qspGoto(s, 'gad_forest', 'forest_outskirts');
     }
     if (((s as any).foresteventrand ?? 0) === 3) {
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_center'] }]);
+      qspGoto(s, 'gad_forest', 'forest_center');
     }
     if (((s as any).foresteventrand ?? 0) === 4) {
       (s as any).minut = ((s as any).minut ?? 0) + (50);
-      scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'start'] }]);
+      qspGoto(s, 'gad_meadow', 'start');
     }
     if (((s as any).foresteventrand ?? 0) === 5) {
       (s as any).minut = ((s as any).minut ?? 0) + (30);
-      scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
+      qspGoto(s, 'gad_swamp_yard', 'start');
     }
   } },
         ]);
@@ -513,26 +522,26 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).foresteventrand ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (15);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_edge'] }]);
+      qspGoto(s, 'gad_forest', 'forest_edge');
     }
     if (((s as any).foresteventrand ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_outskirts'] }]);
+      qspGoto(s, 'gad_forest', 'forest_outskirts');
     }
     if (((s as any).foresteventrand ?? 0) === 3) {
       (s as any).minut = ((s as any).minut ?? 0) + (40);
-      scene.actions([{ label: 'Continue', goto: ['gad_field', 'field'] }]);
+      qspGoto(s, 'gad_field', 'field');
     }
     if (((s as any).foresteventrand ?? 0) === 4) {
       (s as any).minut = ((s as any).minut ?? 0) + (30);
-      scene.actions([{ label: 'Continue', goto: ['gad_road', 'start'] }]);
+      qspGoto(s, 'gad_road', 'start');
     }
     if (((s as any).foresteventrand ?? 0) === 5) {
       (s as any).minut = ((s as any).minut ?? 0) + (40);
-      scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
+      qspGoto(s, 'gad_river', 'start');
     }
     if (((s as any).foresteventrand ?? 0) === 6) {
       (s as any).minut = ((s as any).minut ?? 0) + (35);
-      scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'start'] }]);
+      qspGoto(s, 'gad_meadow', 'start');
     }
   } },
       ]);
@@ -551,34 +560,34 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).foresteventrand ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (30);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_edge'] }]);
+      qspGoto(s, 'gad_forest', 'forest_edge');
     }
     if (((s as any).foresteventrand ?? 0) === 2) {
       (s as any).minut = ((s as any).minut ?? 0) + (15);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_outskirts'] }]);
+      qspGoto(s, 'gad_forest', 'forest_outskirts');
     }
     if (((s as any).foresteventrand ?? 0) === 3) {
-      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_center'] }]);
+      qspGoto(s, 'gad_forest', 'forest_center');
     }
     if (((s as any).foresteventrand ?? 0) === 4) {
       (s as any).minut = ((s as any).minut ?? 0) + (55);
-      scene.actions([{ label: 'Continue', goto: ['gad_field', 'field'] }]);
+      qspGoto(s, 'gad_field', 'field');
     }
     if (((s as any).foresteventrand ?? 0) === 5) {
       (s as any).minut = ((s as any).minut ?? 0) + (45);
-      scene.actions([{ label: 'Continue', goto: ['gad_road', 'start'] }]);
+      qspGoto(s, 'gad_road', 'start');
     }
     if (((s as any).foresteventrand ?? 0) === 6) {
       (s as any).minut = ((s as any).minut ?? 0) + (55);
-      scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
+      qspGoto(s, 'gad_river', 'start');
     }
     if (((s as any).foresteventrand ?? 0) === 7) {
       (s as any).minut = ((s as any).minut ?? 0) + (50);
-      scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'start'] }]);
+      qspGoto(s, 'gad_meadow', 'start');
     }
     if (((s as any).foresteventrand ?? 0) === 8) {
       (s as any).minut = ((s as any).minut ?? 0) + (30);
-      scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
+      qspGoto(s, 'gad_swamp_yard', 'start');
     }
   } },
         ]);
@@ -871,21 +880,21 @@ function enterWolves(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     if ((!((s as any).foresteventrand ?? 0))) {
       qspCall(s, 'gameover', 'check', 11);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_edge'] }]);
+      qspGoto(s, 'gad_forest_lost', 'forest_edge');
     } else {
       if (((s as any).foresteventrand ?? 0) <= 10) {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_edge'] }]);
+        qspGoto(s, 'gad_forest_lost', 'forest_edge');
       } else {
         if (((s as any).foresteventrand ?? 0) <= 13) {
-          scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_edge'] }]);
+          qspGoto(s, 'gad_forest_lost', 'forest_edge');
         } else {
           if (((s as any).foresteventrand ?? 0) <= 15) {
-            scene.actions([{ label: 'Continue', goto: ['gad_field', 'field'] }]);
+            qspGoto(s, 'gad_field', 'field');
           } else {
             if (((s as any).foresteventrand ?? 0) <= 17) {
-              scene.actions([{ label: 'Continue', goto: ['gad_road', 'start'] }]);
+              qspGoto(s, 'gad_road', 'start');
             } else {
-              scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
+              qspGoto(s, 'gad_river', 'start');
             }
           }
         }
@@ -922,27 +931,27 @@ function enterWolves(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', handler: (st: GameState) => {
     if ((!((s as any).foresteventrand ?? 0))) {
       qspCall(s, 'gameover', 'check', 11);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_outskirts'] }]);
+      qspGoto(s, 'gad_forest_lost', 'forest_outskirts');
     } else {
       if (((s as any).foresteventrand ?? 0) <= 9) {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_outskirts'] }]);
+        qspGoto(s, 'gad_forest_lost', 'forest_outskirts');
       } else {
         if (((s as any).foresteventrand ?? 0) <= 14) {
-          scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_edge'] }]);
+          qspGoto(s, 'gad_forest_lost', 'forest_edge');
         } else {
           if (((s as any).foresteventrand ?? 0) === 15) {
-            scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_outskirts'] }]);
+            qspGoto(s, 'gad_forest', 'forest_outskirts');
           } else {
             if (((s as any).foresteventrand ?? 0) === 16) {
-              scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_edge'] }]);
+              qspGoto(s, 'gad_forest', 'forest_edge');
             } else {
               if (((s as any).foresteventrand ?? 0) === 17) {
-                scene.actions([{ label: 'Continue', goto: ['gad_field', 'field'] }]);
+                qspGoto(s, 'gad_field', 'field');
               } else {
                 if (((s as any).foresteventrand ?? 0) === 18) {
-                  scene.actions([{ label: 'Continue', goto: ['gad_road', 'start'] }]);
+                  qspGoto(s, 'gad_road', 'start');
                 } else {
-                  scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
+                  qspGoto(s, 'gad_river', 'start');
                 }
               }
             }
@@ -981,33 +990,33 @@ function enterWolves(s: GameState, scene: SceneBuilder): void {
             { label: 'Continue', handler: (st: GameState) => {
     if ((!((s as any).foresteventrand ?? 0))) {
       qspCall(s, 'gameover', 'check', 11);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_center'] }]);
+      qspGoto(s, 'gad_forest_lost', 'forest_center');
     } else {
       if (((s as any).foresteventrand ?? 0) <= 8) {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_center'] }]);
+        qspGoto(s, 'gad_forest_lost', 'forest_center');
       } else {
         if (((s as any).foresteventrand ?? 0) <= 11) {
-          scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_outskirts'] }]);
+          qspGoto(s, 'gad_forest_lost', 'forest_outskirts');
         } else {
           if (((s as any).foresteventrand ?? 0) <= 13) {
-            scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_edge'] }]);
+            qspGoto(s, 'gad_forest_lost', 'forest_edge');
           } else {
             if (((s as any).foresteventrand ?? 0) === 14) {
-              scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_center'] }]);
+              qspGoto(s, 'gad_forest', 'forest_center');
             } else {
               if (((s as any).foresteventrand ?? 0) === 15) {
-                scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_outskirts'] }]);
+                qspGoto(s, 'gad_forest', 'forest_outskirts');
               } else {
                 if (((s as any).foresteventrand ?? 0) === 16) {
-                  scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_edge'] }]);
+                  qspGoto(s, 'gad_forest', 'forest_edge');
                 } else {
                   if (((s as any).foresteventrand ?? 0) === 17) {
-                    scene.actions([{ label: 'Continue', goto: ['gad_field', 'field'] }]);
+                    qspGoto(s, 'gad_field', 'field');
                   } else {
                     if (((s as any).foresteventrand ?? 0) === 18) {
-                      scene.actions([{ label: 'Continue', goto: ['gad_road', 'start'] }]);
+                      qspGoto(s, 'gad_road', 'start');
                     } else {
-                      scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
+                      qspGoto(s, 'gad_river', 'start');
                     }
                   }
                 }
@@ -1048,45 +1057,45 @@ function enterWolves(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue', handler: (st: GameState) => {
     if ((!((s as any).foresteventrand ?? 0))) {
       qspCall(s, 'gameover', 'check', 11);
-      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'swamp'] }]);
+      qspGoto(s, 'gad_forest_lost', 'swamp');
     } else {
       if (((s as any).foresteventrand ?? 0) <= 4) {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'swamp'] }]);
+        qspGoto(s, 'gad_forest_lost', 'swamp');
       } else {
         if (((s as any).foresteventrand ?? 0) <= 6) {
-          scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_center'] }]);
+          qspGoto(s, 'gad_forest_lost', 'forest_center');
         } else {
           if (((s as any).foresteventrand ?? 0) <= 8) {
-            scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_outskirts'] }]);
+            qspGoto(s, 'gad_forest_lost', 'forest_outskirts');
           } else {
             if (((s as any).foresteventrand ?? 0) <= 10) {
-              scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'forest_edge'] }]);
+              qspGoto(s, 'gad_forest_lost', 'forest_edge');
             } else {
               if (((s as any).foresteventrand ?? 0) === 11) {
-                scene.actions([{ label: 'Continue', goto: ['gad_forest', 'swamp'] }]);
+                qspGoto(s, 'gad_forest', 'swamp');
               } else {
                 if (((s as any).foresteventrand ?? 0) === 12) {
-                  scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_center'] }]);
+                  qspGoto(s, 'gad_forest', 'forest_center');
                 } else {
                   if (((s as any).foresteventrand ?? 0) === 13) {
-                    scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_outskirts'] }]);
+                    qspGoto(s, 'gad_forest', 'forest_outskirts');
                   } else {
                     if (((s as any).foresteventrand ?? 0) === 14) {
-                      scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_edge'] }]);
+                      qspGoto(s, 'gad_forest', 'forest_edge');
                     } else {
                       if (((s as any).foresteventrand ?? 0) === 15) {
-                        scene.actions([{ label: 'Continue', goto: ['gad_field', 'field'] }]);
+                        qspGoto(s, 'gad_field', 'field');
                       } else {
                         if (((s as any).foresteventrand ?? 0) === 16) {
-                          scene.actions([{ label: 'Continue', goto: ['gad_road', 'start'] }]);
+                          qspGoto(s, 'gad_road', 'start');
                         } else {
                           if (((s as any).foresteventrand ?? 0) === 17) {
-                            scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
+                            qspGoto(s, 'gad_river', 'start');
                           } else {
                             if (((s as any).foresteventrand ?? 0) === 18) {
-                              scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
+                              qspGoto(s, 'gad_swamp_yard', 'start');
                             } else {
-                              scene.actions([{ label: 'Continue', goto: ['gad_swamp_woods', 'start'] }]);
+                              qspGoto(s, 'gad_swamp_woods', 'start');
                             }
                           }
                         }
@@ -1179,7 +1188,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const gad_forest_lost: LocationDef = {
   name: 'gad_forest_lost',
-  title: 'You should build a bonfire to increase the chance of being rescued and decrease the chance of being attacked by wolves.',
+  title: 'You should build a bonfire to increase the chance of being r',
   region: 'gadukino',
   locationType: 'secluded',
   enter: enter,

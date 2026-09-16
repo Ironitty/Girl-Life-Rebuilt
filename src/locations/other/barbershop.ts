@@ -5,6 +5,8 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'barbershop';
+  (s as any).menu_arg = 'start';
   scene.build();
 }
 
@@ -83,7 +85,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).job_status ?? 0)?.['pav_barbershop_cleaner'] === 'employed') {
       if (qspFunc(s, 'jobs', 'is_arrival_time', 'pav_barbershop_cleaner') === 1  &&  ((s as any).job_last_work_day ?? 0)?.['pav_barbershop_cleaner'] !== ((s as any).daystart ?? 0)) {
         scene.actions([
-          { label: 'Clean the shop for <<$func(\'money\', \'string_profit\', 125)>> (1:00)', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Clean the shop for ' + String(qspFunc(s, 'money', 'string_profit', 125) ?? '') + ' (1:00)', handler: (st: GameState) => {
     qspCall(s, 'jobs', 'clock', 'pav_barbershop_cleaner');
     qspCall(s, 'mood', 'lower', 'small');
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -109,7 +111,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 60);
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) + (10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) + (10);
       scene.text('You pay Mr. Syomin and buy the small box.');
       scene.actions([
         { label: 'Move away', goto: ['barbershop', 'start'] },
@@ -121,7 +123,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 80);
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['kirbygrips'] = ((s as any).mc_inventory['kirbygrips'] ?? 0) + (10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['kirbygrips'] = ((s as any).mc_inventory['kirbygrips'] ?? 0) + (10);
       scene.text('You pay Mr. Syomin and buy the small box.');
       scene.actions([
         { label: 'Move away', goto: ['barbershop', 'start'] },

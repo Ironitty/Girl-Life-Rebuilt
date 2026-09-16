@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,9 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'masharoom';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) < 7  ||  ((s as any).hour ?? 0) > 20) {
-    scene.actions([{ label: 'Continue', goto: ['masharoom', 'masha'] }]);
+    qspGoto(s, 'masharoom', 'masha');
   }
   scene.img('images/characters/city/masha/r1.jpg');
   scene.text('This is Masha\'s room. It is a huge room with many kinds of sex toys and accessories.');
@@ -20,7 +22,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Wait an hour', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-  }, goto: ['masharoom', 'start'] },
+    qspGoto(s, 'masharoom', 'start');
+  } },
     { label: 'Trying on outfits', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     scene.img('images/characters/city/masha/sex/r2.jpg');
@@ -31,17 +34,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Wear the latex corset, stockings, leather collar and bondage cuffs.', goto: ['masharoom', '2'] },
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['shop_erotomaniac', 'podval'] },
+    qspGoto(s, 'shop_erotomaniac', 'podval');
+  } },
     ]);
   } },
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['shop_erotomaniac', 'podval'] },
+    qspGoto(s, 'shop_erotomaniac', 'podval');
+  } },
   ]);
   scene.build();
 }
 
 function enterMasha(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'masharoom';
+  (s as any).menu_arg = 'masha';
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/masha/r0.jpg');
   scene.text('This is Masha\'s room. It is a huge room with many kinds of sex toys and accessories.');
@@ -109,6 +116,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
       { label: 'Give her to lick', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r38.jpg');
     scene.text('You took off the makeshift strapon and moved so you were straddling her face in a 69 position. Masha immediately went into motion with her tongue on your pussy. It didn\'t take her long, you were so excited and with in a few seconds an orgasm rocked your body and you covered her face in your pussy juices.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom');
     qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian', 'dom');
     qspCall(s, 'arousal', 'end');
@@ -119,6 +127,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
       { label: 'Meet each other', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r39.jpg');
     scene.text('You took off the makeshift strapon and moved so you were straddling her face in a 69 position. Masha immediately went into motion with her tongue on your pussy. You returned the favor and went to work on her pussy, both of you where so excited that with in a few seconds you both orgasmed hard.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom');
     qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian', 'dom');
     qspCall(s, 'arousal', 'end');
@@ -157,6 +166,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r29.jpg');
     scene.text('You get up and stand on the sofa, with your legs spread. You pull on her leash and guide her face back to your crotch, her tongue immediately seeks out your pussy and she goes back to work. Just a few deft movements of the tongue and you orgasm, your juices flowing into her mouth.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -166,6 +176,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
       { label: 'Ordered to lick ass', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r28.jpg');
     scene.text('You turn over and get up on all fours, letting the leash go you reach back and spread your ass cheeks. You feel her face pressed against your ass almost at once, her tongue licking your ass hole and quickly you feel her tongue slide inside your ass. After a couple of minutes of such manipulations you orgasm.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -196,6 +207,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r64.jpg');
     scene.text('You lay down and she knows what to do, she keeps up and works on you with her tongue until you orgasm as well.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -216,11 +228,13 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = Math.floor(Math.random() * 3) + 46;
     scene.img(`images/characters/city/masha/sex/r${((s as any).picrand || '')}.jpg`);
     scene.text('You order Masha to lick your pussy and she puts her tongue to work on your pussy, her nimble tongue nearly brings you to orgasm with in a few minutes.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Let continues', handler: (st: GameState) => {
     scene.text('You did not stop her and a few seconds an orgasm rocks your body, leaving you quivering.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -268,6 +282,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let continues', handler: (st: GameState) => {
     scene.text('You did not stop it, and a few seconds later your body shudders from an orgasm.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 10, 'lesbian', 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -277,6 +292,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
       { label: 'Order to take a dildo', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r52.jpg');
     scene.text('You tell Masha to use a dildo. She takes it and slips it into your pussy. You do not require a lot of time, a few minutes later came. When you are finished, Masha took the dildo from you and started to suck your pussy juices from it, while her other hand masturbated her pussy until she orgasmed.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'lesbian', 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -289,12 +305,15 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['shop_erotomaniac', 'podval'] },
+    qspGoto(s, 'shop_erotomaniac', 'podval');
+  } },
   ]);
   scene.build();
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'masharoom';
+  (s as any).menu_arg = '1';
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/masha/sex/r3.jpg');
   scene.text('Wearing some latex lingerie, you feel someone watching you. Carefully turning your head, you see that the door is not completely closed, and through the crack a man is watching you.');
@@ -310,7 +329,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       { label: 'Close the door', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['masharoom', 'start'] },
+    qspGoto(s, 'masharoom', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -323,6 +343,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('You continue to massage your clitoris, fingering your pussy, and the realization that someone is watching you only strengthens your arousal leading to rapid orgasm. When you have finished, you hear a grunt and see a spurt of liquid, you can only assume is cum hit the floor.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'clit_finger', 10, 'exhibitionism', 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -370,6 +391,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       { label: 'Sit on face', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r7.jpg');
     scene.text('When you are tired of his inept actions and decided to take matters into your own hands, so to speak and commanded the guy to lay down. He quickly lays down on his back, obviously expecting your to please him, but you sit on his face and began grind your pussy against his face. The guy is trying to help you with his tongue, but could not get into a rhythm, finally you grab his hair and keep him from trying to move his head around and you rub yourself off on his face. After a few minutes you manage to cum, getting off him you see his face is drip drops of your juice.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'dom');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -448,7 +470,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'You keep asking for release.', handler: (st: GameState) => {
     (s as any).pcs_makeup = 0;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     scene.img('images/characters/city/masha/sex/r21.jpg');
     scene.text('You don\'t move and shake your head. "Look this is a mistake, just please take these off me." He gives you a glare. "Oh, you unruly bitch. Now I\'ll teach you to obey, your master." With these words he grabs you and flings you onto the couch. You start to get up but he pushes you back down on all fours, he slips a blindfold on you. He brings the paddle down on your ass with a loud smack. Causing you to yelp and jump, but he holds onto leash keeping your from getting away.');
     scene.text('"Now I can beat you until you obey and then do what I want, or you can be a good little slave and do as your told. I am good either way." he says as he smacks your ass with the paddle again.');
@@ -501,6 +523,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/masha/sex/r25.jpg');
     scene.text('You wait on your side, then you feel his fingers rubbing your asshole. They have a bit of lube on them, not as much as you would like but better than nothing. He rubs the lube against your asshole and slips his fingers into your ass. Then he pulls them out and you feel his cock pressed against your ass. He puts a hand on your hip and none to gentle shoves his dick into your ass. He jerks back on you by the hip and thrusts forward, driving himself balls deep on the first thrust. YOu cry out in pain, but you also kinda like it.');
     scene.text('He starts hammering your ass balls deep, your moans of pain and pleasure get louder and louder. You don\'t know which is the more powerful feeling the pain of him hammering your ass or the pleasure. After a bit the pain starts to subside and then all that is left is the pleasure, the thought of being used like this makes it all the more pleasurable. He hammers away at your ass for a long time, you have several orgasms and have completely lost track of time. Finally he starts cumming, you can feel his hot sperm shooting into your ass. Then pulls his dick out of you and gets up. "Quickly now, get up and open your mouth!" he commands.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal_finger', 5, 'sub');
     qspCall(s, 'arousal', 'anal', (-5), 'sub', 'rough');
     qspCall(s, 'stat', '');

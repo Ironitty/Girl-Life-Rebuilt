@@ -1,10 +1,13 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gas_station_gp_117';
+  (s as any).locM = 'gas_station_gp_117';
+  (s as any).menu_loc = 'gas_station_gp_117';
   scene.build();
 }
 
@@ -14,6 +17,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'outside');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/gas_station_gp_117/gas_\'+iif(month > 10 or month < 4, \'winter\', \')+iif(daystage = 5, \'night\', \'day\')+\'.jpg');
   scene.text('The gas station is modern and clean in comparison to other gas stations in the area. To the south of the station is the highway M-10 that goes from St. Petersburg to Moscow. To the north there are small villages and towns similar to Pavlovsk which is even further south than the highway.');
@@ -28,11 +32,11 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'prostitution_functions', 'work_clothes');
     if (((s as any).prostitute ?? 0)?.['work_clothes']  &&  ((s as any).prostitute ?? 0)?.['changed_for_work']) {
       // TODO-QSP: dynamic text: You are wearing the right outfit to work as a prostitute at the gas station. You...
-      scene.text('You are wearing the right outfit to work as a prostitute at the gas station. You can \' + iif(func(\'car_funcs\', \'is_here\'), \'<a href="exec: gt \'prostitution_functions\', \'change_back\' ">change back into your regular clothes</a> in your car or\', \'change back into your regular clothes\') + \' in a restroom.');
+      scene.text('You are wearing the right outfit to work as a prostitute at the gas station. You can \' + iif(func(\'car_funcs\', \'is_here\'), \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027prostitution_functions\\u0027, \\u0027change_back\\u0027); return false;">change back into your regular clothes</a> in your car or\', \'change back into your regular clothes\') + \' in a restroom.');
     } else {
       if (((s as any).dressed_as_a_prostitute ?? 0) === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
         // TODO-QSP: dynamic text: You could work as a prostitute, but first you have to ' + iif(func('car_funcs', ...
-        scene.text('You could work as a prostitute, but first you have to \' + iif(func(\'car_funcs\', \'is_here\'), \'<a href="exec: gt \'prostitution_functions\', \'change\' ">change into a more appropriate outfit</a> in your car or \', \'change into a more appropriate outfit \') + \'in a restroom.');
+        scene.text('You could work as a prostitute, but first you have to \' + iif(func(\'car_funcs\', \'is_here\'), \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027prostitution_functions\\u0027, \\u0027change\\u0027); return false;">change into a more appropriate outfit</a> in your car or \', \'change into a more appropriate outfit \') + \'in a restroom.');
       } else {
         scene.text('You are wearing the right outfit to work as a prostitute at the gas station.');
       }
@@ -63,6 +67,10 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'shop');
+  (s as any).loc_s = 'gas_station_gp_117';
+  (s as any).args_s = 'shop';
+  (s as any).location_type = 'public_indoors';
+  (s as any).gas_shop_inside = 'yes';
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/gas_station_gp_117/gas_interior.jpg');
   scene.text('The shop is stacked with some magazines, cigarettes, different things to eat and drink.');
@@ -139,9 +147,10 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'restroom');
+  (s as any).location_type = 'public_outdoors';
   scene.img('images/locations/highway/gas_station_gp_117/restroom_\'+iif(daystage = 5, \'night\', \'day\')+\'.jpg');
   // TODO-QSP: dynamic text: The gas station has a public bathroom. '+iif(prostitute_status['restroom_chip'] ...
-  scene.text(`The gas station has a public bathroom. '+iif(prostitute_status['restroom_chip'] = 0, 'It costs ${qspFunc(s, 'money', 'string_price', 10)} to use it.', 'You have an employee chip and can use it for free.')+' On the right side of the restroom is a <a href="exec: minut += 1 & gt 'gas_station_gp_117','condom_dispenser'">condom dispenser</a>.`);
+  scene.text(`The gas station has a public bathroom. '+iif(prostitute_status['restroom_chip'] = 0, 'It costs ${qspFunc(s, 'money', 'string_price', 10)} to use it.', 'You have an employee chip and can use it for free.')+' On the right side of the restroom is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027gas_station_gp_117\\u0027, \\u0027condom_dispenser\\u0027); return false;">condom dispenser</a>.`);
   qspCall(s, 'stat', '');
   if (((s as any).prostitute_status ?? 0)?.['restroom_chip'] === 1) {
     scene.actions([
@@ -160,7 +169,7 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 10, 'cash');
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'restroom_women'] }]);
+      qspGoto(s, 'gas_station_gp_117', 'restroom_women');
     }
   } },
       { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
@@ -169,7 +178,7 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 10, 'cash');
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'restroom_men'] }]);
+      qspGoto(s, 'gas_station_gp_117', 'restroom_men');
     }
   } },
     ]);
@@ -216,13 +225,13 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'money', 'pay', 60);
       if ((!((s as any).preziktype ?? 0))) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (1);
       } else {
         if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (1);
+          ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (1);
         }
       }
-      scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'condom_dispenser'] }]);
+      qspGoto(s, 'gas_station_gp_117', 'condom_dispenser');
     }
   } },
     { label: 'Buy five condoms', handler: (st: GameState) => {
@@ -232,13 +241,13 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'money', 'pay', 300);
       if ((!((s as any).preziktype ?? 0))) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (5);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (5);
       } else {
         if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (5);
+          ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (5);
         }
       }
-      scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'condom_dispenser'] }]);
+      qspGoto(s, 'gas_station_gp_117', 'condom_dispenser');
     }
   } },
     { label: 'Buy ten condoms', handler: (st: GameState) => {
@@ -248,13 +257,13 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'money', 'pay', 600);
       if ((!((s as any).preziktype ?? 0))) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (10);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (10);
       } else {
         if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (10);
+          ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (10);
         }
       }
-      scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'condom_dispenser'] }]);
+      qspGoto(s, 'gas_station_gp_117', 'condom_dispenser');
     }
   } },
   ]);
@@ -265,11 +274,12 @@ function enterRestroomWomen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'restroom_women');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/gas_station_gp_117/restroom_women.jpg');
   scene.text('The women\'s restroom is relatively clean. It has has three bathroom stalls which over only a little privacy.');
   // TODO-QSP: dynamic text: A <a href="exec:gt 'mirror','start'">mirror</a>, where you can ' + iif(pcs_hairb...
-  scene.text('A <a href="exec:gt \'mirror\',\'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec: gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair hangs over each sink.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair hangs over each sink.');
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Do a line of cocaine (0:05)', handler: (st: GameState) => {
@@ -301,11 +311,12 @@ function enterRestroomMen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'restroom_men');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/gas_station_gp_117/restroom_men.jpg');
   scene.text('The men\'s restroom is dirty and smells like urine. It has has three bathroom stalls which over only a little privacy.');
   // TODO-QSP: dynamic text: A <a href="exec:gt 'mirror','start'">mirror</a>, where you can ' + iif(pcs_hairb...
-  scene.text('A <a href="exec:gt \'mirror\',\'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec: gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair hangs over each sink.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair hangs over each sink.');
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Do a line of cocaine (0:05)', handler: (st: GameState) => {
@@ -335,12 +346,12 @@ function enterRestroomMen(s: GameState, scene: SceneBuilder): void {
 
 function enterGas(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your <a href="exec: gs 'carF', 'start'"><<$car['name']>></a> is parked here.
-  scene.text(`Your <a href="exec: gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked here.`);
+  scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked here.`);
   // TODO-QSP: dynamic text: You can buy petrol for your car, the price is <<$func('money', 'string_price', 3...
   scene.text(`You can buy petrol for your car, the price is ${qspFunc(s, 'money', 'string_price', 30)} per liter.`);
   if (((s as any).kanistra ?? 0) < 5) {
     scene.actions([
-      { label: 'Buy a canister and fill it with 5 liters of gasoline for <<$func(\'money\', \'string_price\', 150)>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Buy a canister and fill it with 5 liters of gasoline for ' + String(qspFunc(s, 'money', 'string_price', 150) ?? ''), handler: (st: GameState) => {
     (s as any).kanistra = ((s as any).kanistra ?? 0) + (1);
     qspCall(s, 'money', 'pay', 150);
     scene.text('You buy a canister of gasoline. (It will automatically be put in the trunk of your car)');
@@ -359,7 +370,7 @@ function enterGas(s: GameState, scene: SceneBuilder): void {
         { label: 'Fill the tank with petrol', handler: (st: GameState) => {
     (s as any).zprbenz = (((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0);
     (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car ?? 0)?.['tank'];
+    ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
     qspCall(s, 'money', 'pay', ((s as any).zprpay ?? 0));
     scene.img('images/locations/shared/gas/zapr1.jpg');
     // TODO-QSP: dynamic text: You fill the tank and pay <<$func('money', 'string_price', zprpay)>>.
@@ -379,13 +390,14 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'work');
+  (s as any).prostitution_location = 'gas_station';
   qspCall(s, 'stat', '');
   qspCall(s, 'prostitution_functions', 'parameters');
   if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
     scene.text('If you want, you can tell your clients a different name.');
     // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
-      if (!(s as any).prostitute_names) (s as any).prostitute_names = {}; (s as any).prostitute_names[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
+      ((s as any).prostitute_names = (s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
@@ -416,7 +428,8 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Look for a client (0:30)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['prostitution_car_negotiation', 'look_client'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'look_client');
+  } },
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] === 0) {
@@ -426,9 +439,10 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Remove the cum from your body (0:02)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
     qspCall(s, 'cum_cleanup', '', 20);
-  }, goto: ['gas_station_gp_117', 'work'] },
+    qspGoto(s, 'gas_station_gp_117', 'work');
+  } },
       ]);
     }
   }
@@ -448,9 +462,9 @@ function enterEventCheck(s: GameState, scene: SceneBuilder): void {
 function enterBusEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 87;
   qspCall(s, 'money', 'pay', 75);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['earnings_day'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['customer_day'] = 0;
-  scene.actions([{ label: 'Continue', goto: ['pav_market', ''] }]);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['customer_day'] = 0;
+  qspGoto(s, 'pav_market', '');
   // TODO-QSP: end
   scene.build();
 }

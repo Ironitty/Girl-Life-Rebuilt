@@ -1,12 +1,13 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'start');
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['underwearShop'] = 0;
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['underwearShop'] = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'outfit', 'backup', 'fashionista');
@@ -28,7 +29,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'outfit', 'remove_backup', 'fashionista');
-  }, goto: ['city_mall', ''] },
+    qspGoto(s, 'city_mall', '');
+  } },
     { label: 'View purses', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['shop_fashionista', 'purses'] },
@@ -44,6 +46,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'changingroom');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.text('As you walk through the store, you notice that there\'s nobody in the changing rooms. Feeling a bit bored, you look at some clothes and grab several items to try on before heading into one of the changing rooms.');
@@ -52,8 +55,8 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
     scene.text('You are in the changing rooms in Fashionista with several outfits available to try on.');
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).rimma ?? 0)?.['photo'] === 0) {
-    if (!(s as any).rimma) (s as any).rimma = {}; (s as any).rimma['photo'] = 1;
-    if (!(s as any).rimma) (s as any).rimma = {}; (s as any).rimma['day'] = ((s as any).daystart ?? 0);
+    ((s as any).rimma = (s as any).rimma ?? {})['photo'] = 1;
+    ((s as any).rimma = (s as any).rimma ?? {})['day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/city/rimma/photo.jpg');
     scene.text('While in the changing room, you get a strange feeling, like you\'re being watched, but think nothing of it and start posing like a model.');
     scene.text('You\'re startled when you think you hear what sounds like a camera clicking, but you can\'t see anyone and you\'re not going to run out and check while naked.');
@@ -67,14 +70,16 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Put on underwear', handler: (st: GameState) => {
     qspCall(s, 'underwear', 'wear');
-  }, goto: ['shop_fashionista', 'changingroom'] },
+    qspGoto(s, 'shop_fashionista', 'changingroom');
+  } },
     ]);
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     scene.actions([
       { label: 'Get naked', handler: (st: GameState) => {
     qspCall(s, 'underwear', 'strip');
-  }, goto: ['shop_fashionista', 'changingroom'] },
+    qspGoto(s, 'shop_fashionista', 'changingroom');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -87,10 +92,11 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   }, goto: ['shop_fashionista', 'dressingoutfit'] },
     { label: 'Try on bra', handler: (st: GameState) => {
     if (((s as any).NatbelQW ?? 0)?.['seethrough'] === 0  &&  ((s as any).NatbelQW ?? 0)?.['underwearShop'] === 0  &&  ((s as any).NatbelQW ?? 0)?.['QWstage'] > 5) {
-      scene.actions([{ label: 'Continue', goto: ['shop_fashionista', 'natbel_bra_event'] }]);
+      qspGoto(s, 'shop_fashionista', 'natbel_bra_event');
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['shop_fashionista', 'dressingbra'] },
+    qspGoto(s, 'shop_fashionista', 'dressingbra');
+  } },
     { label: 'Try on panties', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['shop_fashionista', 'dressingpanties'] },
@@ -101,6 +107,7 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
 
 function enterDressingclothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'dressingclothes');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Fashionista clothing</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -115,13 +122,15 @@ function enterDressingclothes(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_fashionista', 'changingroom'] },
+    qspGoto(s, 'shop_fashionista', 'changingroom');
+  } },
   ]);
   scene.build();
 }
 
 function enterDressingoutfit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'dressingoutfit');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Fashionista clothing</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -135,13 +144,15 @@ function enterDressingoutfit(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_fashionista', 'changingroom'] },
+    qspGoto(s, 'shop_fashionista', 'changingroom');
+  } },
   ]);
   scene.build();
 }
 
 function enterDressingbra(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'dressingbra');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Fashionista bras</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -155,13 +166,15 @@ function enterDressingbra(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_fashionista', 'changingroom'] },
+    qspGoto(s, 'shop_fashionista', 'changingroom');
+  } },
   ]);
   scene.build();
 }
 
 function enterDressingpanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'dressingpanties');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Fashionista panties</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -175,20 +188,22 @@ function enterDressingpanties(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_fashionista', 'changingroom'] },
+    qspGoto(s, 'shop_fashionista', 'changingroom');
+  } },
   ]);
   scene.build();
 }
 
 function enterChangingend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'restore', 'fashionista');
-  scene.actions([{ label: 'Continue', goto: ['shop_fashionista', 'start'] }]);
+  qspGoto(s, 'shop_fashionista', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPurses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'purses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Fashionista purses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -221,7 +236,7 @@ function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
       scene.text('You put the underwear aside for now so that you can take it to the register with you.');
       qspCall(s, 'money', 'pay', 750);
-      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['seethrough'] = 1;
+      ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['seethrough'] = 1;
       scene.actions([
         { label: 'Stay in the changing room', goto: ['shop_fashionista', 'changingroom'] },
         { label: 'Get dressed and go back to the store', goto: ['shop_fashionista', 'changingend'] },
@@ -231,7 +246,7 @@ function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
     { label: 'Don\'t buy it', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
     scene.text('Deciding against it, you look through the rest of the underwear for something that would fit you better.');
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['underwearShop'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['underwearShop'] = 1;
     scene.actions([
       { label: 'Stay in the changing room', goto: ['shop_fashionista', 'changingroom'] },
       { label: 'Get dressed and go back to the store', goto: ['shop_fashionista', 'changingend'] },
@@ -243,6 +258,7 @@ function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterRima(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   scene.text('Turning your head, you think nobody noticed, but your actions have attracted the saleswoman. The seller is a young girl in a little-too-narrow shirt with the logo of the Boutique, it\'s not enough that her shirt was so tight, but she had to unbutton the top button as well (You think if it was a woman\'s shirt it would be okay, but since it\'s a man you wonder what the administration must be thinking.) she came up to you a little bit uncomfortably and quickly asked:');
   scene.text('"Can I help you with anything?" the seller asks.');
@@ -355,6 +371,8 @@ function enterRima(s: GameState, scene: SceneBuilder): void {
     scene.text('You smell of sex, Rimma looks up at you from between your legs for a second');
     scene.text('After putting her right palm gently on the pubis, Rimma fingers spread your wet lips, poking out her tongue and running it inside.');
     scene.text('The soft reciprocating action of the tongue on the clitoris excits you and causes a mild spasm. Rimma suddenly begins to press her tongue on your clitoris. Your body is already weak and no longer obeys your brain, only trying not moan load enough to alert the whole store.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'Suddenly, Your body begins to shake and is covered in a soft wave of spasms, with the last spasm you cum. You let out a loud moan while falling to your knees.';
     scene.text('You collapse to the floor, exhausted with pleasure.');
     qspCall(s, 'arousal', 'cuni', 10, 'dom', 'lesbian');
     qspCall(s, 'arousal', 'vaginal_finger', (-10), 'dom', 'lesbian');

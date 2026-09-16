@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,81 +9,81 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAfricanStudies101(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'African Studies 101'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'African Studies 101');
   scene.build();
 }
 
 function enterAfricanStudies102(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'African Studies 102'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'African Studies 102');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterArt101(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'Art 101'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'Art 101');
   scene.build();
 }
 
 function enterArt102(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'Art 102'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'Art 102');
   scene.build();
 }
 
 function enterArt_101Model(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_art1', 'art_101_model'] }]);
+  qspGoto(s, 'uni_lessons_electives_art1', 'art_101_model');
   scene.build();
 }
 
 function enterArt_101ModelIgor(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_art1', 'art_101_model_igor'] }]);
+  qspGoto(s, 'uni_lessons_electives_art1', 'art_101_model_igor');
   scene.build();
 }
 
 function enterArt_101ModelFeofan(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_art1', 'art_101_model_feofan'] }]);
+  qspGoto(s, 'uni_lessons_electives_art1', 'art_101_model_feofan');
   scene.build();
 }
 
 function enterArt_101ModelNatasha(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_art1', 'art_101_model_natasha'] }]);
+  qspGoto(s, 'uni_lessons_electives_art1', 'art_101_model_natasha');
   scene.build();
 }
 
 function enterArt_101ModelErmias(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_art1', 'art_101_model_ermias'] }]);
+  qspGoto(s, 'uni_lessons_electives_art1', 'art_101_model_ermias');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterAsianStudies101(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'Asian Studies 101'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'Asian Studies 101');
   scene.build();
 }
 
 function enterAsianStudies102(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'Asian Studies 102'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'Asian Studies 102');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterComputers101(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'Computers 101'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'Computers 101');
   scene.build();
 }
 
 function enterComputers102(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'Computers 102'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'Computers 102');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPsychology101(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'Psychology 101'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'Psychology 101');
   scene.build();
 }
 
 function enterPsychology102(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'Psychology 102'] }]);
+  qspGoto(s, 'uni_lessons_electives', 'Psychology 102');
   // TODO-QSP: end
   scene.build();
 }

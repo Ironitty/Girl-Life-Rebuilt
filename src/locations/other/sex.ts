@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You kiss for a while. It feels nice, but you want more!');
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
-  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  qspGoto(s, 'sex', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -104,13 +104,13 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) <= 0) {
     (s as any).sexvar = 0;
-    scene.actions([{ label: 'Continue', goto: ['sex', 'end'] }]);
+    qspGoto(s, 'sex', 'end');
   } else {
     if (((s as any).sexvar ?? 0) === 1) {
       scene.text('<br>The man groans that he will cum soon.');
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  qspGoto(s, 'sex', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -143,13 +143,13 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) <= 0) {
     (s as any).sexvar = 0;
-    scene.actions([{ label: 'Continue', goto: ['sex', 'end'] }]);
+    qspGoto(s, 'sex', 'end');
   } else {
     if (((s as any).sexvar ?? 0) === 1) {
       scene.text('<br>The man groans that he will cum soon.');
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  qspGoto(s, 'sex', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -186,7 +186,7 @@ function enterVag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) <= 0) {
     (s as any).sexvar = 0;
-    scene.actions([{ label: 'Continue', goto: ['sex', 'end'] }]);
+    qspGoto(s, 'sex', 'end');
   } else {
     if (((s as any).sexvar ?? 0) === 1) {
       scene.text('<br>The man groans that he will cum soon.');
@@ -194,7 +194,7 @@ function enterVag(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '');
-  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  qspGoto(s, 'sex', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -231,13 +231,13 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) <= 0) {
     (s as any).sexvar = 0;
-    scene.actions([{ label: 'Continue', goto: ['sex', 'end'] }]);
+    qspGoto(s, 'sex', 'end');
   } else {
     if (((s as any).sexvar ?? 0) === 1) {
       scene.text('<br>The man groans that he will cum soon.');
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  qspGoto(s, 'sex', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -267,27 +267,27 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).picrand ?? 0) >= 54  &&  ((s as any).picrand ?? 0) <= 73) {
       // TODO-QSP: killvar 'picrand'
-      scene.actions([{ label: 'Continue', goto: ['office', 'work'] }]);
+      qspGoto(s, 'office', 'work');
     }
     if (((s as any).picrand ?? 0) >= 74  &&  ((s as any).picrand ?? 0) <= 76) {
       // TODO-QSP: killvar 'picrand'
-      scene.actions([{ label: 'Continue', goto: ['vann', 'start'] }]);
+      qspGoto(s, 'vann', 'start');
     }
     if (((s as any).picrand ?? 0) >= 77  &&  ((s as any).picrand ?? 0) <= 80) {
       // TODO-QSP: killvar 'picrand'
-      scene.actions([{ label: 'Continue', goto: ['nichApartment', ''] }]);
+      qspGoto(s, 'nichApartment', '');
     }
     if (((s as any).picrand ?? 0) >= 81  &&  ((s as any).picrand ?? 0) <= 82) {
       // TODO-QSP: killvar 'picrand'
-      scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+      qspGoto(s, 'city_center', '');
     }
     if (((s as any).picrand ?? 0) >= 83  &&  ((s as any).picrand ?? 0) <= 84) {
       // TODO-QSP: killvar 'picrand'
-      scene.actions([{ label: 'Continue', goto: ['dina', 'brodila'] }]);
+      qspGoto(s, 'dina', 'brodila');
     }
     if (((s as any).picrand ?? 0) >= 85  &&  ((s as any).picrand ?? 0) <= 86) {
       // TODO-QSP: killvar 'picrand'
-      scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+      qspGoto(s, 'city_center', '');
     }
     if (((s as any).picrand ?? 0) === 87  ||  ((s as any).picrand ?? 0) === 90) {
       // TODO-QSP: killvar 'picrand'
@@ -299,18 +299,18 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).picrand ?? 0) === 89) {
       // TODO-QSP: killvar 'picrand'
-      scene.actions([{ label: 'Continue', goto: ['bed', 'start'] }]);
+      qspGoto(s, 'bed', 'start');
     }
     if (((s as any).svidboysex ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg'); } }]);
+      dynamicGoto(s, 'svidboy_home', 'svidboy_home_arg');
     }
     if (((s as any).sexloc ?? 0) === 'uni_dorm') {
-      scene.actions([{ label: 'Continue', goto: ['uni_dorm', 'dorm_room'] }]);
+      qspGoto(s, 'uni_dorm', 'dorm_room');
     }
     if (((s as any).sexloc ?? 0) === 'city_nightclub') {
-      scene.actions([{ label: 'Continue', goto: ['city_nightclub', 'private_rooms'] }]);
+      qspGoto(s, 'city_nightclub', 'private_rooms');
     }
-    dynamicGoto(st, 'sexloc');
+    dynamicGoto(s, 'sexloc');
   } },
   ]);
   scene.build();

@@ -7,30 +7,37 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGm(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/gm/bras/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterLusso(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/lusso/bras/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterSalacious(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/salacious/bras/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterFashionista(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/fashionista/bras/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterCats(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/cats/bras/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterEroto(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/eroto/bras/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterDanilovich(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/danilovich/bras/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   // TODO-QSP: end
   scene.build();
 }

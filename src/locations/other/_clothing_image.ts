@@ -7,166 +7,207 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGmOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/gm/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterGmDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/gm/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterMiscOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/misc/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterCatsDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/cats/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterCatsOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/cats/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterFlamingosOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/flamingos/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterFlamingosDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/flamingos/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterCocoOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/coco/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterCocoDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/coco/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterFashionistaDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/fashionista/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterFashionistaOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/fashionista/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterMoncheriGown(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/moncheri/gown/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterMoncheriDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/moncheri/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterGmOffice(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/gm/office/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterGmSchool(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/gm/school/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterDanilovichOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/danilovich/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterErotoDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/eroto/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterErotoOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/eroto/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterErotoStrip(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/eroto/strip/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterSalaciousOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/salacious/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterSalaciousDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/salacious/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterGmMaid(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/gm/maid/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterGmServer(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/gm/server/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterAllureSwimsuit(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/allure/one/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterAllureBikinis(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/allure/two/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterFancyBurlesque(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/fancy/burlesque/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterDollsDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/dolls/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterDollsOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/dolls/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterBombaDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/bomba/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterBombaOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/bomba/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterScandaliciousDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/scandalicious/dress/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterScandaliciousOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/scandalicious/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterScandaliciousSwimsuit(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/scandalicious/swim/one/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterScandaliciousBikinis(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/scandalicious/swim/two/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterDanilovichSwimsuit(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/danilovich/swimwear/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterMarketOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/market/clothes/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterMaterinstvoDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/mommy/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterNerdvanaCosplay(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/nerdvana/cosplay/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterNerdvanaOutfits(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/nerdvana/outfits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterNerdvanaBikinis(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/nerdvana/swim/two/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterNerdvanaSwimsuit(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/nerdvana/swim/one/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   // TODO-QSP: end
   scene.build();
 }

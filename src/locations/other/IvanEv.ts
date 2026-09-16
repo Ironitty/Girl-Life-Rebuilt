@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -169,7 +169,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
 function enterBoxingLessons(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A3', 'like');
   if (((s as any).ivanQW ?? 0)?.['boxing_lessons'] <= 3) {
-    if (!(s as any).ivanQW) (s as any).ivanQW = {}; (s as any).ivanQW['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
+    ((s as any).ivanQW = (s as any).ivanQW ?? {})['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
     qspCall(s, 'exercise', 'tier2', 30, 'stren', 'jab', 'punch', 'def');
     scene.img('images/characters/pavlovsk/school/boy/ivan/training/train3.jpg');
     scene.text('He finds a pair of boxing gloves that\'ll fit you, then helps you put them on. After that, he has you start punching the heavy bag while he gives you pointers on how you\'re swinging and standing, among other things.');
@@ -190,7 +190,7 @@ function enterBoxingLessons(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).ivanQW ?? 0)?.['boxing_lessons'] < 8) {
-      if (!(s as any).ivanQW) (s as any).ivanQW = {}; (s as any).ivanQW['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
+      ((s as any).ivanQW = (s as any).ivanQW ?? {})['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
       qspCall(s, 'exercise', 'tier2', 30, 'stren', 'jab', 'punch', 'def');
       scene.img('images/characters/pavlovsk/school/boy/ivan/training/train3.jpg');
       scene.text('He finds a pair of boxing gloves that\'ll fit you, then helps you put them on. After that, he has you start punching the heavy bag while he gives you pointers on how you\'re swinging and standing, among other things.');
@@ -209,7 +209,7 @@ function enterBoxingLessons(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (!(s as any).ivanQW) (s as any).ivanQW = {}; (s as any).ivanQW['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
+      ((s as any).ivanQW = (s as any).ivanQW ?? {})['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
       qspCall(s, 'exercise', 'tier3', 30, 'stren', 'jab', 'punch', 'def');
       scene.img('images/characters/pavlovsk/school/boy/ivan/training/train3.jpg');
       scene.text('He finds a pair of boxing gloves that\'ll fit you, then helps you put them on. After that, he has you start punching the heavy bag while he gives you pointers on how you\'re swinging and standing, among other things.');
@@ -356,7 +356,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['IvanEv', 'locker_room_dressed'] }]);
+      qspGoto(s, 'IvanEv', 'locker_room_dressed');
     }
   } },
   ]);
@@ -488,7 +488,8 @@ function enterIvanBored(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'anal', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['gschool_lessons', 'short_break'] },
+    qspGoto(s, 'gschool_lessons', 'short_break');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -496,7 +497,7 @@ function enterIvanBored(s: GameState, scene: SceneBuilder): void {
     { label: 'Go into the bathroom', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
     qspCall(s, 'boyStat', 'A3');
-    if (!(s as any).ivanQW) (s as any).ivanQW = {}; (s as any).ivanQW['sex'] = ((s as any).ivanQW['sex'] ?? 0) + (1);
+    ((s as any).ivanQW = (s as any).ivanQW ?? {})['sex'] = ((s as any).ivanQW['sex'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A3', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/bbivanbj.jpg');
@@ -589,7 +590,7 @@ function enterIvanBored(s: GameState, scene: SceneBuilder): void {
 function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A3'] = ((s as any).daystart ?? 0);
+  ((s as any).discobloc = (s as any).discobloc ?? {})['A3'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A3', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/disco1.jpg');
@@ -609,7 +610,7 @@ function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A3');
-    if (!(s as any).ivanQW) (s as any).ivanQW = {}; (s as any).ivanQW['sex'] = ((s as any).ivanQW['sex'] ?? 0) + (1);
+    ((s as any).ivanQW = (s as any).ivanQW ?? {})['sex'] = ((s as any).ivanQW['sex'] ?? 0) + (1);
     qspCall(s, 'arousal', 'bj', 2, 'sub');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discobj1.jpg');
@@ -788,6 +789,8 @@ function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLockerRoomDressed(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'IvanEv';
+  (s as any).loc_arg = 'locker_room_dressed';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/get_dressed.jpg');
   scene.text('You open your locker and pick out an outfit to wear.');
@@ -846,7 +849,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const IvanEv: LocationDef = {
   name: 'IvanEv',
-  title: '<<$npc_firstname[\'A3\']>> <<$npc_lastname[\'A3\']>>',
   region: 'other',
   enter: enter,
 };

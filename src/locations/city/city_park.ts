@@ -1,17 +1,20 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_park', 'start');
+  (s as any).region = 'city';
+  (s as any).locclass = 'city_park';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     if (((s as any).month ?? 0) >= 11  &&  ((s as any).month ?? 0) <= 12  ||  ((s as any).month ?? 0) >= 1  &&  ((s as any).month ?? 0) <= 3) {
       if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
@@ -25,6 +28,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).sexloc = 'city_park';
   qspCall(s, 'music_actions', 'clear_restrictions');
   if ((!((s as any).WalkInsidePark ?? 0))) {
     (s as any).WalkInsidePark = 1;
@@ -41,17 +45,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The small café in the park is open. You could sit there and have some food.');
   }
   if (((s as any).drugVars ?? 0)?.['city_drugden'] === 0) {
-    scene.text('The <a href="exec: gt \'city_park\', \'junkies\'">junkies</a> hang out near the cafe.');
+    scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_park\\u0027, \\u0027junkies\\u0027); return false;">junkies</a> hang out near the cafe.');
   }
   if (((s as any).hour ?? 0) >= 9  ||  ((s as any).hour ?? 0) <= 20) {
-    scene.text('There is an all year <a href="exec:gt \'city_park\', \'luna\'">fair</a> at the park which you can visit.');
+    scene.text('There is an all year <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_park\\u0027, \\u0027luna\\u0027); return false;">fair</a> at the park which you can visit.');
   } else {
     // TODO-QSP: dynamic text: There is an all year fair at the park, but it's currently closed. Opening hours ...
     scene.text('There is an all year fair at the park, but it\'s currently closed. Opening hours are from 9:00 to 21:00.');
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is parked nearby.
-    scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked nearby.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked nearby.`);
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 2  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 20  &&  (Math.floor(Math.random() * 101) + 0) >= 80) {
     qspCall(s, 'arousal', 'flash', (-5));
@@ -95,7 +99,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Smoke a joint', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'joint');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -112,7 +116,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('"Either tell me how many you want to buy or get lost!"');
       } else {
         // TODO-QSP: gs 'money', 'pay', temp_doses * 360
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (((s as any).temp_doses ?? 0));
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (((s as any).temp_doses ?? 0));
         scene.text('You quickly pull your purse out and pay him, hoping nobody saw you giving him money, and he passes you the doses you\'ve paid for. You can safely sniff the stuff at home.');
       }
       scene.actions([
@@ -164,7 +168,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if ((Math.floor(Math.random() * 8) + 0) - ((s as any).succublvl ?? 0) < 2) {
       (s as any).suchunt = 1;
-      scene.actions([{ label: 'Continue', goto: ['park_walkevents', '1'] }]);
+      qspGoto(s, 'park_walkevents', '1');
     } else {
       qspCall(s, 'mood', 'lower', 'tiny');
       scene.text('No luck! After searching for half an hour, you find no one. For such a large city, you would have thought there would be more suitable prey around. Your needs remain, so maybe another search will be required?');
@@ -205,6 +209,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterLuna(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_park', 'luna');
+  (s as any).locclass = 'city_park';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>The Funfair</b></center>');
@@ -213,7 +218,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Opening hours are '+func('time', 'get_time_string', 9, 0)+' to '+func('time', 'g...
   scene.text('Opening hours are 9:00 to 21:00');
   if (((s as any).vladimirQW ?? 0)?.['stage'] === 0  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
-    scene.text('<a href="exec:gt \'vladimirQW_loc\'">A strong looking man is staring at you from the fences.</a>.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vladimirQW_loc\\u0027, \\u0027\\u0027); return false;">A strong looking man is staring at you from the fences.</a>.');
   }
   if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) >= 21) {
     // TODO-QSP: dynamic text: The fair is now closed. It will reopen at '+func('time', 'get_time_string', 9, 0...
@@ -392,6 +397,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAvtomat(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/centralpark/avtomat.jpg');
   // TODO-QSP: dynamic text: The rules of the game are very simple: throw ' + $func('money', 'string_price', ...
@@ -402,7 +408,7 @@ function enterAvtomat(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_park', 'avtomat2'] }]);
+      qspGoto(s, 'city_park', 'avtomat2');
     }
   } },
     ]);
@@ -415,6 +421,7 @@ function enterAvtomat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAvtomat2(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 5);
   qspCall(s, 'stat', '');
@@ -453,11 +460,13 @@ function enterAvtomat2(s: GameState, scene: SceneBuilder): void {
 
 function enterWhore(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_park', 'whore');
+  (s as any).location_type = 'event_outdoors';
+  (s as any).locclass = 'city_park';
   qspCall(s, 'stat', '');
   scene.text('<center><b>The road near the park</b></center>');
   if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 23) {
     scene.img('images/locations/city/centralpark/park1.jpg');
-    scene.text('A number of <a href="exec:gt \'prostitute\', \'start\'">prostitutes</a> are standing along the roadside. Some are picked up by passing cars.');
+    scene.text('A number of <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027prostitute\\u0027, \\u0027start\\u0027); return false;">prostitutes</a> are standing along the roadside. Some are picked up by passing cars.');
   } else {
     if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 16) {
       scene.img('images/locations/city/centralpark/glpark.jpg');
@@ -519,7 +528,8 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'prostitute');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
       ]);
     }
   }
@@ -548,12 +558,13 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'bandit');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
       ]);
     } else {
       if (((s as any).whrand ?? 0) > 5  &&  ((s as any).whrand ?? 0) <= 60) {
         (s as any).minut = ((s as any).minut ?? 0) + 15;
-        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+        ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
         (s as any).guy = ((s as any).guy ?? 0) + (1);
         qspCall(s, 'money', 'earn', 500);
         qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
@@ -597,7 +608,8 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'prostitute');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
           ]);
         }
       }
@@ -613,7 +625,8 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRape1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  (s as any).location_type = 'event_outdoors';
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 23) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   scene.img('images/locations/city/centralpark/sex/rape.jpg');
@@ -634,7 +647,7 @@ function enterRape1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Just let it happen', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
     scene.img('images/locations/city/centralpark/sex/rapean.jpg');
     scene.text('It doesn\'t take long for the rapist to realize you\'re not resisting.');
     scene.text('"Good girl!" he says as he pushes you onto all fours so that he can take you doggy-style.');
@@ -668,7 +681,7 @@ function enterRape1(s: GameState, scene: SceneBuilder): void {
 
 function enterJunkies(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['city_drugden'] = 1;
+  ((s as any).drugVars = (s as any).drugVars ?? {})['city_drugden'] = 1;
   scene.text('The junkies look at you with an apprehensive gaze. They probably think you\'re a police officer.');
   scene.text('"We don\'t sell no drugs! Go to the Drug House, ye can get some there!"');
   // TODO-QSP: end
@@ -704,7 +717,8 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
         { label: 'Fight', handler: (st: GameState) => {
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'rapist');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
       ]);
     }
   }

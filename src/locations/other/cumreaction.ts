@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -35,7 +35,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }

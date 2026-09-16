@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,9 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 1;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).succubusQW ?? 0) === 2) {
       // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''suc_event'' '
     }
@@ -31,16 +31,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).daystart ?? 0) > ((s as any).sleepVars ?? 0)?.['sleep_reflection_day']) {
       qspCall(s, 'sleep_reflections', 'event_check');
     }
-    scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'mod_sleepevents'] }]);
+    qspGoto(s, 'pre_sleep_events', 'mod_sleepevents');
   }
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'continue'] }]);
+  qspGoto(s, 'pre_sleep_events', 'continue');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'pre_sleep_events', 'mod_sleepevents');
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler'] }]);
+  qspGoto(s, 'pre_sleep_events', 'event_handler');
   // TODO-QSP: end
   scene.build();
 }
@@ -48,71 +48,73 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 1) {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
-      scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler2', '\'priority\''] }]);
+      qspGoto(s, 'pre_sleep_events', 'event_handler2', 'priority');
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
-        scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler2'] }]);
+        qspGoto(s, 'pre_sleep_events', 'event_handler2');
       }
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'continue'] }]);
+  qspGoto(s, 'pre_sleep_events', 'continue');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
+    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
+    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   }
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_end'] }]);
+  qspGoto(s, 'pre_sleep_events', 'event_end');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler'] }]);
+  qspGoto(s, 'pre_sleep_events', 'event_handler');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'pre_sleep2'] }]);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
+  qspGoto(s, 'pre_sleep', 'pre_sleep2');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSucEvent(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'succhoice'] }]);
+  qspGoto(s, 'pre_sleep_events', 'succhoice');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterMagbEvent(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'magbstchoice'] }]);
+  qspGoto(s, 'pre_sleep_events', 'magbstchoice');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterNichServentSleepEventsHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'sleepEvents', '100'] }]);
+    qspGoto(s, 'nichBedroomServant', 'sleepEvents', '100');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 2) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-      scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'sleepEvents', '1000'] }]);
+      qspGoto(s, 'nichBedroomServant', 'sleepEvents', '1000');
     }
   }
   // TODO-QSP: end
@@ -200,8 +202,9 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
   (s as any).suclezsnapshot = ((s as any).stat ?? 0)?.['lesbian_count'];
   (s as any).succhungry = (-2);
   (s as any).sucwalkday = ((s as any).daystart ?? 0) + 2 + (Math.floor(Math.random() * 6) + 0);
-  (s as any).pcs_horny = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['slept_in'] = 0;
+  (s as any).sucself1 = 'that feeling';
+  (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['slept_in'] = 0;
   (s as any).strip_here = 0;
   scene.img('images/pc/body/succubusself.jpg');
   scene.text('You feel the power flowing around your body for several minutes, leaking through your skin and making changes all throughout you, before fading to a presence deep in your core leaving you looking the same as before… but feeling so different! ');

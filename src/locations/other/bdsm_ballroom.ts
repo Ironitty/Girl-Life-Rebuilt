@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBallroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_ballroom', 'ballroom');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/ballroom.jpg');
   scene.text('Ballroom');
@@ -23,6 +24,7 @@ function enterBallroom(s: GameState, scene: SceneBuilder): void {
 
 function enterAtrium(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_ballroom', 'atrium');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/atrium.jpg');
   scene.text('Atrium');

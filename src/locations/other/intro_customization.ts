@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,92 +9,92 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'start'] }]);
+  qspGoto(s, 'intro_character_custom', 'start');
   scene.build();
 }
 
 function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_menu'] }]);
+  qspGoto(s, 'intro_character_custom', 'modclo_menu');
   scene.build();
 }
 
 function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+  qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
   scene.build();
 }
 
 function enterModclo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo'] }]);
+  qspGoto(s, 'intro_character_custom', 'modclo');
   scene.build();
 }
 
 function enterModapp(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modapp'] }]);
+  qspGoto(s, 'intro_character_custom', 'modapp');
   scene.build();
 }
 
 function enterModite(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite'] }]);
+  qspGoto(s, 'intro_character_custom', 'modite');
   scene.build();
 }
 
 function enterModiteCos(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_cos'] }]);
+  qspGoto(s, 'intro_character_custom', 'modite_cos');
   scene.build();
 }
 
 function enterModitePha(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_pha'] }]);
+  qspGoto(s, 'intro_character_custom', 'modite_pha');
   scene.build();
 }
 
 function enterModiteMis(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_mis'] }]);
+  qspGoto(s, 'intro_character_custom', 'modite_mis');
   scene.build();
 }
 
 function enterModatt(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modatt'] }]);
+  qspGoto(s, 'intro_character_custom', 'modatt');
   scene.build();
 }
 
 function enterModskl(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl'] }]);
+  qspGoto(s, 'intro_character_custom', 'modskl');
   scene.build();
 }
 
 function enterModsklMen(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_men'] }]);
+  qspGoto(s, 'intro_character_custom', 'modskl_men');
   scene.build();
 }
 
 function enterModsklSpo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_spo'] }]);
+  qspGoto(s, 'intro_character_custom', 'modskl_spo');
   scene.build();
 }
 
 function enterModsklCom(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_com'] }]);
+  qspGoto(s, 'intro_character_custom', 'modskl_com');
   scene.build();
 }
 
 function enterModsklBea(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_bea'] }]);
+  qspGoto(s, 'intro_character_custom', 'modskl_bea');
   scene.build();
 }
 
 function enterModsklArt(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_art'] }]);
+  qspGoto(s, 'intro_character_custom', 'modskl_art');
   scene.build();
 }
 
 function enterModsklJob(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_job'] }]);
+  qspGoto(s, 'intro_character_custom', 'modskl_job');
   scene.build();
 }
 
 function enterBirthday(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'birthday'] }]);
+  qspGoto(s, 'intro_character_custom', 'birthday');
   scene.build();
 }
 

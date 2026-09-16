@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -7,12 +7,13 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'Terminal', '');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Storage terminal</b></center>');
   scene.img('images/locations/city/industrial/terminal/terminal0.jpg');
   scene.text('A large shipping center with many on and off load truck ports.');
   if (((s as any).trfatherQW ?? 0) === 4  &&  ((s as any).trfatherQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
-    scene.text('Near one of the dirty trucks is your <a href="exec:trfatherQW[\'day\'] = daystart & gt \'trFatherMisha\'">father</a>.');
+    scene.text('Near one of the dirty trucks is your <a href="#" onclick="window.__gameStore.setState((s) => { (s.trfatherQW ??= {})\\u0027day\\u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(\\u0027trFatherMisha\\u0027, \\u0027\\u0027); return false;">father</a>.');
   }
   if (((s as any).trfatherQW ?? 0) === 2) {
     scene.actions([
@@ -21,7 +22,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((((s as any).trfatherQW ?? 0) >= 3  ||  ((s as any).trfatherQW ?? 0) < 0)  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) === 12) {
       // TODO-QSP: act iif(trfatherQW = 3, 'Search for father', 'Approach the men'):
-      scene.actions([{ label: 'Continue', goto: ['Terminal', 'search_approach_men'] }]);
+      qspGoto(s, 'Terminal', 'search_approach_men');
     }
   }
   // TODO-QSP: end
@@ -37,7 +38,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).AboutDocsManager = 0;
     (s as any).YouNotOpenDoorDir = 0;
     (s as any).YouNotOpenDoorBuh = 0;
-  }, goto: ['TerminalOffice', '00'] },
+    qspGoto(s, 'TerminalOffice', '00');
+  } },
   ]);
   scene.build();
 }
@@ -110,7 +112,7 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get a kebab', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).trfatherQW) (s as any).trfatherQW = {}; (s as any).trfatherQW['day'] = ((s as any).daystart ?? 0);
+    ((s as any).trfatherQW = (s as any).trfatherQW ?? {})['day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_17.jpg');
     scene.text('Sitting at the table, you order food and drinks, and dad starts asking you about everything.');

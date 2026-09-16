@@ -42,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).sashaclubsex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     (s as any).alexgangbang = ((s as any).alexgangbang ?? 0) + (1);
     (s as any).pose = 1;
     scene.img(`images/shared/sex/group/gang${Math.floor(Math.random() * 10) + 16}.jpg`);

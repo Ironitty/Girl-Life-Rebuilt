@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,17 +9,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['ticket_cost'] = 100;
+  ((s as any).date_ev = (s as any).date_ev ?? {})['ticket_cost'] = 100;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).region ?? 0) === 'pav') {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['loc'] = 'pav_cinema';
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cinema_pic'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "date_movie" }) + ' src="images/locations/pavlovsk/park/theater/kinoteatr.jpg"></center>';
-    scene.actions([{ label: 'Continue', goto: ['date_movie', 'pav_cinema'] }]);
+    ((s as any).date_ev = (s as any).date_ev ?? {})['loc'] = 'pav_cinema';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['cinema_pic'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/park/theater/kinoteatr.jpg"></center>';
+    qspGoto(s, 'date_movie', 'pav_cinema');
   } else {
     if (((s as any).region ?? 0) === 'city') {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['loc'] = 'city_cinema';
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cinema_pic'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "date_movie" }) + ' src="images/locations/shared/cinema/theaterbuy.jpg"></center>';
-      scene.actions([{ label: 'Continue', goto: ['date_movie', 'city_cinema'] }]);
+      ((s as any).date_ev = (s as any).date_ev ?? {})['loc'] = 'city_cinema';
+      ((s as any).date_ev = (s as any).date_ev ?? {})['cinema_pic'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/shared/cinema/theaterbuy.jpg"></center>';
+      qspGoto(s, 'date_movie', 'city_cinema');
     }
   }
   // TODO-QSP: end
@@ -29,10 +27,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['at_home'] = 0;
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['type'] = 'cinema_date';
+  ((s as any).date_ev = (s as any).date_ev ?? {})['at_home'] = 0;
+  ((s as any).date_ev = (s as any).date_ev ?? {})['type'] = 'cinema_date';
   // TODO-QSP: $date_ev[''] = 'cinema_date'
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['activity_count'] = ((s as any).date_ev['activity_count'] ?? 0) + (1);
+  ((s as any).date_ev = (s as any).date_ev ?? {})['activity_count'] = ((s as any).date_ev['activity_count'] ?? 0) + (1);
   qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
   // TODO-QSP: end
   scene.build();
@@ -44,30 +42,30 @@ function enterPavCinema(s: GameState, scene: SceneBuilder): void {
   scene.text(`You walk with ${((s as any).npcdesc || '')} to the cinema in the park to see what's playing.`);
   (s as any).temp_rand = Math.floor(Math.random() * 20) + 0;
   if (((s as any).temp_rand ?? 0) < 10) {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'superhero';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'superhero';
     scene.text('It\'s so small that there\'s only one screen showing the same movie all day. In this case, the latest generic superhero movie.');
   } else {
     if (((s as any).temp_rand ?? 0) < 15) {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'action';
+      ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'action';
       scene.text('It\'s so small that there\'s only one screen showing the same movie all day. In this case, the latest blockbuster action flick.');
     } else {
       if (((s as any).temp_rand ?? 0) === 15) {
-        if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'comedy';
+        ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'comedy';
         scene.text('It\'s so small that there\'s only one screen showing the same movie all day. Surprisingly, it seems to be playing a comedy today.');
       } else {
         if (((s as any).temp_rand ?? 0) === 16) {
-          if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'raunchy_comedy';
+          ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'raunchy_comedy';
           scene.text('It\'s so small that there\'s only one screen showing the same movie all day. Surprisingly, it seems to be playing a comedy today. Looks raunchy and vulgar though, the kind of movie with lots of nudity and crude sex jokes.');
         } else {
           if (((s as any).temp_rand ?? 0) === 17) {
-            if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'horror';
+            ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'horror';
             scene.text('It\'s so small that there\'s only one screen showing the same movie all day. But instead of the usual superhero movie, it looks like there\'s a horror film on today.');
           } else {
             if (((s as any).temp_rand ?? 0) === 18) {
-              if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'drama';
+              ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'drama';
               scene.text('It\'s so small that there\'s only one screen showing the same movie all day. It looks like there\'s an award winning drama playing today.');
             } else {
-              if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'romance';
+              ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'romance';
               scene.text('It\'s so small that there\'s only one screen showing the same movie all day. It looks like there\'s a romance movie on today.');
             }
           }
@@ -75,7 +73,7 @@ function enterPavCinema(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['date_movie', 'what_to_watch_pav'] }]);
+  qspGoto(s, 'date_movie', 'what_to_watch_pav');
   // TODO-QSP: end
   scene.build();
 }
@@ -83,7 +81,7 @@ function enterPavCinema(s: GameState, scene: SceneBuilder): void {
 function enterWhatToWatchPav(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
-    { label: 'Ask <<$npcdesc>> what he thinks', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Ask ' + String(((s as any).npcdesc || '') ?? '') + ' what he thinks', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Well?" you ask, turning to look at <<$npcdesc>>. "Feel like watching that?"
     scene.text(`"Well?" you ask, turning to look at ${((s as any).npcdesc || '')}. "Feel like watching that?"`);
     if (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] === 'movie_date') {
@@ -250,31 +248,31 @@ function enterCityCinema(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuggestFilm1(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Ask <<$npcdesc>> what he wants', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Ask ' + String(((s as any).npcdesc || '') ?? '') + ' what he wants', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Well?" you ask, turning to look at <<$npcdesc>>. "What do you think we should w...
     scene.text(`"Well?" you ask, turning to look at ${((s as any).npcdesc || '')}. "What do you think we should watch?"`);
     if (((s as any).npc_fav_genre ?? 0)?.[String((s as any).npcID ?? 0)] === 'action'  ||  (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] !== 'movie_date'  &&  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  (Math.floor(Math.random() * 6) + 1) === 1)) {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'action';
+      ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'action';
       scene.text('"Let\'s watch the action movie."');
     } else {
       if (((s as any).npc_fav_genre ?? 0)?.[String((s as any).npcID ?? 0)] === 'horror'  ||  (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] !== 'movie_date'  &&  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  (Math.floor(Math.random() * 5) + 1) === 1)) {
-        if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'horror';
+        ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'horror';
         scene.text('"Let\'s watch the horror movie."');
       } else {
         if (((s as any).npc_fav_genre ?? 0)?.[String((s as any).npcID ?? 0)] === 'raunchy_comedy'  ||  (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] !== 'movie_date'  &&  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  (Math.floor(Math.random() * 4) + 1) === 1)) {
-          if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'raunchy_comedy';
+          ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'raunchy_comedy';
           scene.text('"Let\'s watch the comedy movie."');
         } else {
           if (((s as any).npc_fav_genre ?? 0)?.[String((s as any).npcID ?? 0)] === 'comedy'  ||  (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] !== 'movie_date'  &&  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  (Math.floor(Math.random() * 3) + 1) === 1)) {
-            if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'comedy';
+            ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'comedy';
             scene.text('"Let\'s watch the comedy movie."');
           } else {
             if (((s as any).npc_fav_genre ?? 0)?.[String((s as any).npcID ?? 0)] === 'drama'  ||  (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] !== 'movie_date'  &&  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  (Math.floor(Math.random() * 2) + 1) === 1)) {
-              if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'drama';
+              ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'drama';
               scene.text('"Let\'s watch the drama."');
             } else {
               if (((s as any).npc_fav_genre ?? 0)?.[String((s as any).npcID ?? 0)] === 'romance'  ||  (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] !== 'movie_date'  &&  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] > 0)) {
-                if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'romance';
+                ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'romance';
                 scene.text('"Let\'s watch the romance."');
               } else {
                 if (((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -296,7 +294,7 @@ function enterCityCinema(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['film_suggest'] !== 'action') {
       scene.actions([
         { label: 'Let\'s watch the action film', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest2'] = 'action_movie';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest2'] = 'action_movie';
     scene.text('"How about that one instead?" you say, pointing at the action movie.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuggestFilm3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -305,7 +303,7 @@ function enterCityCinema(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['film_suggest'] !== 'horror') {
       scene.actions([
         { label: 'Horror', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest2'] = 'horror_movie';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest2'] = 'horror_movie';
     scene.text('"How about that one instead?" you say, pointing at the horror movie.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuggestFilm3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -314,7 +312,7 @@ function enterCityCinema(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['film_suggest'] !== 'comedy') {
       scene.actions([
         { label: 'Comedy', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest2'] = 'comedy_movie';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest2'] = 'comedy_movie';
     scene.text('"How about that one instead?" you say, pointing at the comedy.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuggestFilm3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -323,7 +321,7 @@ function enterCityCinema(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['film_suggest'] !== 'raunchy_comedy') {
       scene.actions([
         { label: 'Raunchy comedy', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest2'] = 'raunchy_movie';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest2'] = 'raunchy_movie';
     scene.text('"How about that one instead?" you say, pointing at the raunchy looking comedy.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuggestFilm3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -332,7 +330,7 @@ function enterCityCinema(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['film_suggest'] !== 'drama') {
       scene.actions([
         { label: 'Drama', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest2'] = 'drama_movie';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest2'] = 'drama_movie';
     scene.text('"How about that one instead?" you say, pointing at the drama.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuggestFilm3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -341,7 +339,7 @@ function enterCityCinema(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['film_suggest'] !== 'romance') {
       scene.actions([
         { label: 'Romance', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest2'] = 'romance_movie';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest2'] = 'romance_movie';
     scene.text('"How about that one instead?" you say, pointing at the romance.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuggestFilm3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -366,35 +364,41 @@ function enterSuggestFilm1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let\'s watch the action film', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'action';
-  }, goto: ['date_movie', 'suggest_film2'] },
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'action';
+    qspGoto(s, 'date_movie', 'suggest_film2');
+  } },
     { label: 'Horror', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'horror';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'horror';
     scene.text('"Let\'s watch the horror movie."');
-  }, goto: ['date_movie', 'suggest_film2'] },
+    qspGoto(s, 'date_movie', 'suggest_film2');
+  } },
     { label: 'Comedy', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'comedy';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'comedy';
     scene.text('"Let\'s watch the comedy movie."');
-  }, goto: ['date_movie', 'suggest_film2'] },
+    qspGoto(s, 'date_movie', 'suggest_film2');
+  } },
     { label: 'Raunchy comedy', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'raunchy_comedy';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'raunchy_comedy';
     scene.text('"Let\'s watch the comedy movie."');
-  }, goto: ['date_movie', 'suggest_film2'] },
+    qspGoto(s, 'date_movie', 'suggest_film2');
+  } },
     { label: 'Drama', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'drama';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'drama';
     scene.text('"Let\'s watch the drama."');
-  }, goto: ['date_movie', 'suggest_film2'] },
+    qspGoto(s, 'date_movie', 'suggest_film2');
+  } },
     { label: 'Romance', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_suggest'] = 'romance';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_suggest'] = 'romance';
     scene.text('"Let\'s watch the romance."');
-  }, goto: ['date_movie', 'suggest_film2'] },
+    qspGoto(s, 'date_movie', 'suggest_film2');
+  } },
   ]);
   scene.build();
 }
 
 function enterSuggestFilm2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_fav_genre ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).date_var ?? 0)?.['film_suggest']) {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest'];
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest'];
     scene.text('The type of movie playing is the type he likes');
     scene.text('"Let\'s watch it."');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTicketMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -427,7 +431,7 @@ function enterSuggestFilm2(s: GameState, scene: SceneBuilder): void {
       }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoyFilmSuggestReact(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest'];
+      ((s as any).date_ev = (s as any).date_ev ?? {})['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest'];
       scene.text('He\'s fine with whatever you want.');
       scene.text('"Let\'s watch it."');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTicketMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -445,7 +449,7 @@ function enterSuggestFilm3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Sure, that sounds good too," he says and the two of you get in line together.');
   }
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest2'];
+  ((s as any).date_ev = (s as any).date_ev ?? {})['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest2'];
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTicketMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -460,7 +464,7 @@ function enterBoyFilmSuggestReact(s: GameState, scene: SceneBuilder): void {
       scene.text('He argues with you.');
       scene.actions([
         { label: 'Fight about it', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_fight'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_fight'] = 1;
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
     // TODO-QSP: $date_ev['cinema_pic']
     scene.text('You fight about it.');
@@ -486,15 +490,15 @@ function enterBoyFilmSuggestReact(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest'];
+    ((s as any).date_ev = (s as any).date_ev ?? {})['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest'];
     scene.text('"Okay, let\'s watch that."');
     if (((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_ticket_buy'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['npc_ticket_buy'] = 1;
       scene.text('"I\'ll go buy the tickets," he smiles.');
       scene.actions([
         { label: 'Go with him', goto: ['date_movie', 'buy_tickets'] },
         { label: 'I\'ll buy the snacks', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_snack_buy'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pc_snack_buy'] = 1;
     scene.text('"Then I\'ll get the popcorn," you smile back.');
     scene.actions([
       { label: 'Go to the snack counter', goto: ['date_movie', 'snack_counter'] },
@@ -513,7 +517,7 @@ function enterBoyFilmSuggestReact(s: GameState, scene: SceneBuilder): void {
 
 function enterTicketMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['split_ticket'] === 1  ||  ((s as any).date_ev ?? 0)?.['npc_ticket_buy'] === 1  ||  ((s as any).date_ev ?? 0)?.['pc_ticket_buy'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_tickets'] }]);
+    qspGoto(s, 'date_movie', 'buy_tickets');
   } else {
     if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAskedToPayStart(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -524,13 +528,13 @@ function enterTicketMenu(s: GameState, scene: SceneBuilder): void {
         { label: 'Ask him to buy the tickets', handler: (st: GameState) => {
     scene.text('"Can you buy the tickets?" you ask.');
     if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  (!(Math.floor(Math.random() * 2) + 0))) {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['split_ticket'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['split_ticket'] = 1;
       scene.text('"No way, pay for yourself."');
       scene.actions([
         { label: 'Buy your ticket', goto: ['date_movie', 'buy_tickets'] },
       ]);
     } else {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_ticket_buy'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['npc_ticket_buy'] = 1;
       scene.text('"Sure."');
       scene.actions([
         { label: 'Go to the ticket counter', goto: ['date_movie', 'buy_tickets'] },
@@ -548,7 +552,7 @@ function enterSplitCost(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['cinema_pic']
   scene.text('"Wanna split it?" you ask.');
   scene.text('"Sure."');
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['split_ticket'] = 1;
+  ((s as any).date_ev = (s as any).date_ev ?? {})['split_ticket'] = 1;
   // TODO-QSP: end
   scene.actions([
     { label: 'Buy tickets', goto: ['date_movie', 'buy_tickets'] },
@@ -560,10 +564,10 @@ function enterOfferToPay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['cinema_pic']
   scene.text('"I\'ll pay for it," you smile.');
   if (((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_ticket_buy'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['npc_ticket_buy'] = 1;
     scene.text('"No, let me," he insists.');
   } else {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_ticket_buy'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pc_ticket_buy'] = 1;
     scene.text('"Wow, that\'s so nice of you," he says.');
   }
   // TODO-QSP: end
@@ -601,12 +605,12 @@ function enterAskedToPayStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAskedToPay(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['wants_pc_pay'] = 1;
+  ((s as any).date_ev = (s as any).date_ev ?? {})['wants_pc_pay'] = 1;
   if (qspFunc(s, 'money', 'can_afford', ((s as any).date_ev ?? 0)?.['ticket_cost']) === 1) {
     if (((s as any).date_ev ?? 0)?.['wants_pc_pay'] === 1) {
       scene.actions([
         { label: 'Your treat', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_ticket_buy'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pc_ticket_buy'] = 1;
     scene.text('"You don\'t have to pay me back for anything," you smile. "It\'s my treat."');
     scene.actions([
       { label: 'Buy the tickets', goto: ['date_movie', 'buy_tickets'] },
@@ -616,9 +620,9 @@ function enterAskedToPay(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Pay for both', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_ticket_buy'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pc_ticket_buy'] = 1;
     if (((s as any).date_ev ?? 0)?.['wants_pc_pay'] === 1) {
-      if (!(s as any).npc_money_owed) (s as any).npc_money_owed = {}; (s as any).npc_money_owed[String((s as any).npcID ?? 0)] = ((s as any).npc_money_owed[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).date_ev ?? 0)?.['ticket_cost']);
+      ((s as any).npc_money_owed = (s as any).npc_money_owed ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_money_owed[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).date_ev ?? 0)?.['ticket_cost']);
     }
     scene.text('"Okay," you smirk. "I\'ll get you this time."');
     scene.actions([
@@ -626,9 +630,9 @@ function enterAskedToPay(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Pay for both (exasperated)', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_ticket_buy'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pc_ticket_buy'] = 1;
     if (((s as any).date_ev ?? 0)?.['wants_pc_pay'] === 1) {
-      if (!(s as any).npc_money_owed) (s as any).npc_money_owed = {}; (s as any).npc_money_owed[String((s as any).npcID ?? 0)] = ((s as any).npc_money_owed[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).date_ev ?? 0)?.['ticket_cost']);
+      ((s as any).npc_money_owed = (s as any).npc_money_owed ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_money_owed[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).date_ev ?? 0)?.['ticket_cost']);
     }
     scene.text('"Ugh, fine."');
     scene.actions([
@@ -636,7 +640,7 @@ function enterAskedToPay(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'No money (lie)', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['no_money'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['no_money'] = 1;
     scene.text('"Can\'t. Don\'t have any money," you say.');
     scene.actions([
       { label: 'Buy the tickets', goto: ['date_movie', 'buy_tickets'] },
@@ -646,7 +650,7 @@ function enterAskedToPay(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'No money', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['no_money'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['no_money'] = 1;
     if (((s as any).date_ev ?? 0)?.['wants_pc_pay'] === 1  &&  ((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       scene.text('"Well, I don\'t have any money either," you say awkwardly.');
       scene.text('"So… what should we do…?"');
@@ -654,7 +658,7 @@ function enterAskedToPay(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Can\'t. Don\'t have any money," you say.');
       scene.text('He complains and agrees to buy the tickets.');
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_ticket_buy'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['npc_ticket_buy'] = 1;
     }
   } },
     ]);
@@ -665,30 +669,30 @@ function enterAskedToPay(s: GameState, scene: SceneBuilder): void {
 
 function enterBuyTickets(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['cinema_pic']
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest'];
+  ((s as any).date_ev = (s as any).date_ev ?? {})['film_decide'] = ((s as any).date_ev ?? 0)?.['film_suggest'];
   if (((s as any).date_ev ?? 0)?.['split_ticket'] === 1) {
     // TODO-QSP: dynamic text: You get in line with <<$npcdesc>> and buy tickets.
     scene.text(`You get in line with ${((s as any).npcdesc || '')} and buy tickets.`);
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pay_cost'] = ((s as any).date_ev ?? 0)?.['ticket_cost'];
-    scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_tickets_payment'] }]);
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pay_cost'] = ((s as any).date_ev ?? 0)?.['ticket_cost'];
+    qspGoto(s, 'date_movie', 'buy_tickets_payment');
   } else {
     if (((s as any).date_ev ?? 0)?.['npc_ticket_buy'] === 1) {
       // TODO-QSP: dynamic text: You get in line with <<$npcdesc>> as he buys tickets for both of you.
       scene.text(`You get in line with ${((s as any).npcdesc || '')} as he buys tickets for both of you.`);
-      scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_tickets_end'] }]);
+      qspGoto(s, 'date_movie', 'buy_tickets_end');
     } else {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).date_ev ?? 0)?.['ticket_cost'] * 2) === 1) {
-        if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_ticket_buy'] = 1;
+        ((s as any).date_ev = (s as any).date_ev ?? {})['pc_ticket_buy'] = 1;
         scene.text('You buy tickets for the movie.');
-        if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pay_cost'] = (((s as any).date_ev ?? {})?.['ticket_cost'] ?? 0) * 2;
-        scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_tickets_payment'] }]);
+        ((s as any).date_ev = (s as any).date_ev ?? {})['pay_cost'] = (((s as any).date_ev ?? {})?.['ticket_cost'] ?? 0) * 2;
+        qspGoto(s, 'date_movie', 'buy_tickets_payment');
       } else {
         scene.text('You buy tickets for the movie.');
         scene.text('Sorry I can`t, I only have money for my ticket.');
         // TODO-QSP: dynamic text: You get in line with <<$npcdesc>> and buy tickets.
         scene.text(`You get in line with ${((s as any).npcdesc || '')} and buy tickets.`);
-        if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pay_cost'] = ((s as any).date_ev ?? 0)?.['ticket_cost'];
-        scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_tickets_payment'] }]);
+        ((s as any).date_ev = (s as any).date_ev ?? {})['pay_cost'] = ((s as any).date_ev ?? 0)?.['ticket_cost'];
+        qspGoto(s, 'date_movie', 'buy_tickets_payment');
       }
     }
   }
@@ -709,10 +713,10 @@ function enterBuyTicketsPayment(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: gs 'money', 'pay', date_ev['pay_cost']
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['total_cost'] = ((s as any).date_ev['total_cost'] ?? 0) + (((s as any).date_ev ?? 0)?.['pay_cost']);
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pay_cost'] = 0;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['total_cost'] = ((s as any).date_ev['total_cost'] ?? 0) + (((s as any).date_ev ?? 0)?.['pay_cost']);
+      ((s as any).date_ev = (s as any).date_ev ?? {})['pay_cost'] = 0;
       scene.text('You pay for the tickets.');
-      scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_tickets_end'] }]);
+      qspGoto(s, 'date_movie', 'buy_tickets_end');
     }
   } },
   ]);
@@ -746,7 +750,8 @@ function enterNoMoneyTickets(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
     scene.text('"Could you pay for it?" you ask, batting your eyelashes at him. "Please please pretty please?"');
     scene.text('"I can\'t believe you right now," he grumbles but pays anyways.');
-  }, goto: ['date_movie', 'no_money_tickets_selfish'] },
+    qspGoto(s, 'date_movie', 'no_money_tickets_selfish');
+  } },
         ]);
       } else {
         if (((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -770,7 +775,8 @@ function enterNoMoneyTicketsBoyPay(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You grab onto his arm and hug it tight as you move off from the counter.');
     }
-  }, goto: ['date_movie', 'buy_tickets_end'] },
+    qspGoto(s, 'date_movie', 'buy_tickets_end');
+  } },
     { label: 'You\'ll make it up to him', handler: (st: GameState) => {
     if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       scene.text('"You\'re so sweet!" Ignoring his grousing, you grab onto his arm and hug it tight as you move off from the counter, chirping happily, "I\'ll make it up to you, I promise."');
@@ -801,20 +807,23 @@ function enterNoMoneyTicketsBoyPay(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Oh. Well, I\'m sure we can think of something…"');
     }
-  }, goto: ['date_movie', 'buy_tickets_end'] },
+    qspGoto(s, 'date_movie', 'buy_tickets_end');
+  } },
         { label: 'Sure thing', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     // TODO-QSP: $date_ev['cinema_pic']
     scene.text('"Sure thing," you smile at him. "Anything to make my guy happy."');
     scene.text('"Now this is the kind of repayment I could enjoy," he grins back, putting his arm around you.');
-  }, goto: ['date_movie', 'buy_tickets_end'] },
+    qspGoto(s, 'date_movie', 'buy_tickets_end');
+  } },
         { label: 'Lead him on', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     // TODO-QSP: $date_ev['cinema_pic']
     scene.text('"Sure thing," you smile at him. "Anything to make my guy happy."');
     scene.text('"Now this is the kind of repayment I could enjoy," he grins back, putting his arm around you.');
     scene.text('<i>Boys are so easy to deal with,</i> you think, mentally rolling your eyes.');
-  }, goto: ['date_movie', 'buy_tickets_end'] },
+    qspGoto(s, 'date_movie', 'buy_tickets_end');
+  } },
       ]);
     } else {
       if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -826,7 +835,7 @@ function enterNoMoneyTicketsBoyPay(s: GameState, scene: SceneBuilder): void {
           scene.text('"Maybe you can pay for the next one," he replies pleasantly.');
         }
       }
-      scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_tickets_end'] }]);
+      qspGoto(s, 'date_movie', 'buy_tickets_end');
     }
   } },
     { label: 'You\'ll make it up to him (sex)', handler: (st: GameState) => {
@@ -837,12 +846,14 @@ function enterNoMoneyTicketsBoyPay(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     scene.text('"I\'ll give you the best blowjob of your life later," you whisper in his ear.');
     scene.text('"Now this is the kind of repayment I could enjoy," he grins back, putting his arm around you.');
-  }, goto: ['date_movie', 'buy_tickets_end'] },
+    qspGoto(s, 'date_movie', 'buy_tickets_end');
+  } },
       { label: 'With sex', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     scene.text('"I\'ll let you do whatever you want to me later," you whisper in his ear.');
     scene.text('"<i>Whatever</i> I want?" he grins back, putting his arm around you.');
-  }, goto: ['date_movie', 'buy_tickets_end'] },
+    qspGoto(s, 'date_movie', 'buy_tickets_end');
+  } },
     ]);
   } },
   ]);
@@ -901,7 +912,7 @@ function enterBuyTicketsEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSnackCounter(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cinema_snacks'] = 1;
+  ((s as any).date_ev = (s as any).date_ev ?? {})['cinema_snacks'] = 1;
   scene.img('images/locations/shared/cinema/snack_bar.jpg');
   scene.text('It\'s the place you buy popcorn and sweets.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -917,8 +928,8 @@ function enterSnackMenu(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).date_ev ?? 0)?.['snack_cost'] + 200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['popcorn_buy'] = 1;
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['snack_cost'] = ((s as any).date_ev['snack_cost'] ?? 0) + (200);
+      ((s as any).date_ev = (s as any).date_ev ?? {})['popcorn_buy'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['snack_cost'] = ((s as any).date_ev['snack_cost'] ?? 0) + (200);
       scene.text('You ask for popcorn.');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
@@ -931,8 +942,8 @@ function enterSnackMenu(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).date_ev ?? 0)?.['snack_cost'] + 200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['soda_buy'] = 1;
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['snack_cost'] = ((s as any).date_ev['snack_cost'] ?? 0) + (200);
+      ((s as any).date_ev = (s as any).date_ev ?? {})['soda_buy'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['snack_cost'] = ((s as any).date_ev['snack_cost'] ?? 0) + (200);
       scene.text('You ask for soda.');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
@@ -945,8 +956,8 @@ function enterSnackMenu(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).date_ev ?? 0)?.['snack_cost'] + 200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['candy_buy'] = 1;
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['snack_cost'] = ((s as any).date_ev['snack_cost'] ?? 0) + (200);
+      ((s as any).date_ev = (s as any).date_ev ?? {})['candy_buy'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['snack_cost'] = ((s as any).date_ev['snack_cost'] ?? 0) + (200);
       scene.text('You ask for candy.');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
@@ -995,26 +1006,28 @@ function enterBuySnacks(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: date_ev['snack_cost'] /= 2
     scene.img('images/locations/shared/cinema/snack_bar.jpg');
     scene.text('You split the cost of the snacks.');
-  }, goto: ['date_movie', 'buy_snacks_payment'] },
+    qspGoto(s, 'date_movie', 'buy_snacks_payment');
+  } },
           ]);
         }
         scene.actions([
           { label: 'Insist you pay', handler: (st: GameState) => {
     scene.img('images/locations/shared/cinema/snack_bar.jpg');
     // TODO-QSP: 'You insist and pay for the food' + iif(date_ev['soda_buy'] > 0, ' and drinks.', '.')
-  }, goto: ['date_movie', 'buy_snacks_payment'] },
+    qspGoto(s, 'date_movie', 'buy_snacks_payment');
+  } },
         ]);
       } else {
         scene.text('"Okay," he says.');
         scene.text('He lets you pay.');
-        scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_snacks_payment'] }]);
+        qspGoto(s, 'date_movie', 'buy_snacks_payment');
       }
     }
   } },
         { label: 'Split the cost', handler: (st: GameState) => {
     scene.text('"Let\'s both pay half," you suggest.');
     if (((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] <= 0  &&  (!(Math.floor(Math.random() * 2) + 0))) {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_snack_buy'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['npc_snack_buy'] = 1;
       scene.text('He says no and insists he pays for it instead.');
       scene.actions([
         { label: 'Let him pay', handler: (st: GameState) => {
@@ -1045,13 +1058,14 @@ function enterBuySnacks(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: date_ev['snack_cost'] /= 2
         scene.text('"Okay, that sounds fine," he says.');
         scene.text('You split the cost of the snacks.');
-        scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_snacks_payment'] }]);
+        qspGoto(s, 'date_movie', 'buy_snacks_payment');
       }
       scene.actions([
         { label: 'Insist you pay', handler: (st: GameState) => {
     scene.img('images/locations/shared/cinema/snack_bar.jpg');
     // TODO-QSP: 'You insist and pay for the food' + iif(date_ev['soda_buy'] > 0, ' and drinks.', '.')
-  }, goto: ['date_movie', 'buy_snacks_payment'] },
+    qspGoto(s, 'date_movie', 'buy_snacks_payment');
+  } },
       ]);
     }
   } },
@@ -1062,7 +1076,7 @@ function enterBuySnacks(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/cinema/snack_bar.jpg');
     scene.text('"Can you pay?" you ask.');
     if (((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  (Math.floor(Math.random() * 2) + 1) === 1)) {
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_snack_buy'] = 1;
+      ((s as any).date_ev = (s as any).date_ev ?? {})['npc_snack_buy'] = 1;
       scene.text('"Sure," he says.');
       scene.text('He pays for it.');
       scene.actions([
@@ -1072,7 +1086,7 @@ function enterBuySnacks(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-        if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_snack_buy'] = 1;
+        ((s as any).date_ev = (s as any).date_ev ?? {})['npc_snack_buy'] = 1;
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
         scene.text('He complains and pays for it.');
         scene.actions([
@@ -1082,7 +1096,7 @@ function enterBuySnacks(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-          if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_snack_buy'] = 1;
+          ((s as any).date_ev = (s as any).date_ev ?? {})['npc_snack_buy'] = 1;
           scene.text('"Sure," he says and pays for it.');
           scene.actions([
             { label: 'Go see the movie', handler: (st: GameState) => {
@@ -1094,13 +1108,13 @@ function enterBuySnacks(s: GameState, scene: SceneBuilder): void {
           if ((!((s as any).temp_rand ?? 0))) {
             // TODO-QSP: date_ev['snack_cost'] /= 2
             scene.text('"Can we split it?" he asks. "I\'m a little light on cash."');
-            scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_snacks_payment'] }]);
+            qspGoto(s, 'date_movie', 'buy_snacks_payment');
           } else {
             if (((s as any).temp_rand ?? 0) === 1) {
               scene.text('"I\'m a little light on cash," he says sheepishly.');
-              scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_snacks_payment'] }]);
+              qspGoto(s, 'date_movie', 'buy_snacks_payment');
             } else {
-              if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_snack_buy'] = 1;
+              ((s as any).date_ev = (s as any).date_ev ?? {})['npc_snack_buy'] = 1;
               scene.text('"Okay," he says.');
               scene.actions([
                 { label: 'Go see the movie', handler: (st: GameState) => {
@@ -1112,7 +1126,7 @@ function enterBuySnacks(s: GameState, scene: SceneBuilder): void {
         }
         scene.text('"Okay," he says.');
         scene.text('He lets you pay.');
-        scene.actions([{ label: 'Continue', goto: ['date_movie', 'buy_snacks_payment'] }]);
+        qspGoto(s, 'date_movie', 'buy_snacks_payment');
       }
     }
   } },
@@ -1130,7 +1144,7 @@ function enterBuySnacksPayment(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: gs 'money', 'pay', date_ev['snack_cost']
-      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['total_cost'] = ((s as any).date_ev['total_cost'] ?? 0) + (((s as any).date_ev ?? 0)?.['snack_cost']);
+      ((s as any).date_ev = (s as any).date_ev ?? {})['total_cost'] = ((s as any).date_ev['total_cost'] ?? 0) + (((s as any).date_ev ?? 0)?.['snack_cost']);
       scene.text('You pay for the snacks.');
       scene.actions([
         { label: 'Go see the movie', handler: (st: GameState) => {
@@ -1146,7 +1160,7 @@ function enterBuySnacksPayment(s: GameState, scene: SceneBuilder): void {
 function enterWatchActionMovie1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/cinema/theater_hall.jpg');
   scene.text('Action film begins.');
-  scene.actions([{ label: 'Continue', goto: ['date_movie', 'movie_interlude'] }]);
+  qspGoto(s, 'date_movie', 'movie_interlude');
   // TODO-QSP: end
   scene.build();
 }
@@ -1154,7 +1168,7 @@ function enterWatchActionMovie1(s: GameState, scene: SceneBuilder): void {
 function enterWatchSuperheroMovie1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/cinema/theater_hall.jpg');
   scene.text('Superhero film begins.');
-  scene.actions([{ label: 'Continue', goto: ['date_movie', 'movie_interlude'] }]);
+  qspGoto(s, 'date_movie', 'movie_interlude');
   // TODO-QSP: end
   scene.build();
 }
@@ -1168,12 +1182,14 @@ function enterWatchHorrorMovie1(s: GameState, scene: SceneBuilder): void {
     { label: 'Scream', handler: (st: GameState) => {
     scene.img('images/locations/shared/cinema/theater_hall.jpg');
     scene.text('You scream.');
-  }, goto: ['date_movie', 'movie_interlude'] },
-    { label: 'Grab <<$npcdesc>>', handler: (st: GameState) => {
+    qspGoto(s, 'date_movie', 'movie_interlude');
+  } },
+    { label: '', labelFn: (s: GameState) => 'Grab ' + String(((s as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
     scene.img('images/locations/shared/cinema/theater_hall.jpg');
     // TODO-QSP: dynamic text: You scream and grab <<$npcdesc>>'s arm.
     scene.text(`You scream and grab ${((s as any).npcdesc || '')}'s arm.`);
-  }, goto: ['date_movie', 'movie_interlude'] },
+    qspGoto(s, 'date_movie', 'movie_interlude');
+  } },
   ]);
   scene.build();
 }
@@ -1181,7 +1197,7 @@ function enterWatchHorrorMovie1(s: GameState, scene: SceneBuilder): void {
 function enterWatchRaunchyComedyMovie1(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/romance/dates/cinema/enjoy${Math.floor(Math.random() * 2) + 1}.jpg`);
   scene.text('Raunchy comedy film begins.');
-  scene.actions([{ label: 'Continue', goto: ['date_movie', 'movie_interlude'] }]);
+  qspGoto(s, 'date_movie', 'movie_interlude');
   // TODO-QSP: end
   scene.build();
 }
@@ -1189,7 +1205,7 @@ function enterWatchRaunchyComedyMovie1(s: GameState, scene: SceneBuilder): void 
 function enterWatchComedyMovie1(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/romance/dates/cinema/enjoy${Math.floor(Math.random() * 2) + 1}.jpg`);
   scene.text('Comedy film begins.');
-  scene.actions([{ label: 'Continue', goto: ['date_movie', 'movie_interlude'] }]);
+  qspGoto(s, 'date_movie', 'movie_interlude');
   // TODO-QSP: end
   scene.build();
 }
@@ -1197,7 +1213,7 @@ function enterWatchComedyMovie1(s: GameState, scene: SceneBuilder): void {
 function enterWatchDramaMovie1(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/romance/dates/cinema/enjoy${Math.floor(Math.random() * 2) + 1}.jpg`);
   scene.text('Drama film begins.');
-  scene.actions([{ label: 'Continue', goto: ['date_movie', 'movie_interlude'] }]);
+  qspGoto(s, 'date_movie', 'movie_interlude');
   // TODO-QSP: end
   scene.build();
 }
@@ -1205,7 +1221,7 @@ function enterWatchDramaMovie1(s: GameState, scene: SceneBuilder): void {
 function enterWatchRomanceMovie1(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/romance/dates/cinema/enjoy${Math.floor(Math.random() * 2) + 1}.jpg`);
   scene.text('Romance film begins.');
-  scene.actions([{ label: 'Continue', goto: ['date_movie', 'movie_interlude'] }]);
+  qspGoto(s, 'date_movie', 'movie_interlude');
   // TODO-QSP: end
   scene.build();
 }
@@ -1238,7 +1254,7 @@ function enterMovieInterlude(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Acquiesce', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['theater_frisky'] = 'reluctant';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['theater_frisky'] = 'reluctant';
     scene.text('"Ugh, fine," you sigh, rolling your eyes and bend over to wrap your lips around his cock.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTheaterBjMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -1248,7 +1264,7 @@ function enterMovieInterlude(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: end !}
       scene.actions([
         { label: 'Acquiesce', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['theater_frisky'] = 'reluctant';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['theater_frisky'] = 'reluctant';
     scene.text('"Ugh, fine," you sigh, rolling your eyes and bend over to wrap your lips around his cock.');
     qspCall(s, 'date_movie', 'theater_hj1');
   } },
@@ -1272,11 +1288,13 @@ function enterMovieInterlude(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Great idea', handler: (st: GameState) => {
     scene.text('You grin in the dark and eagerly bend over to wrap your lips around his cock.');
-  }, goto: ['date_movie', 'theater_bj_menu'] },
+    qspGoto(s, 'date_movie', 'theater_bj_menu');
+  } },
     { label: 'Sigh and comply', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['theater_frisky'] = 'reluctant';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['theater_frisky'] = 'reluctant';
     scene.text('You don\'t quite manage to stifle the sigh that rises up from inside you, but you don\'t want to make a fuss out of this. Without a word, you bend over to suck his dick like he wants.');
-  }, goto: ['date_movie', 'theater_bj_menu'] },
+    qspGoto(s, 'date_movie', 'theater_bj_menu');
+  } },
   ]);
   scene.build();
 }
@@ -1300,7 +1318,7 @@ function enterBoredWatching(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'You\'re bored', handler: (st: GameState) => {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['movie_bored'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['movie_bored'] = 1;
     scene.img('images/shared/romance/dates/cinema/bored1.jpg');
     scene.text('Sigh. So boring.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReachCock(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1360,7 +1378,7 @@ function enterTheaterBjDistracted(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Distracted by movie', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', (-10));
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cinema_bj'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['cinema_bj'] = 1;
     scene.img('images/shared/sex/public/theater_bj2.mp4');
     if (((s as any).date_ev ?? 0)?.['theater_frisky'] === 'reluctant') {
       // TODO-QSP: dynamic text: Whatever <<$npcdesc>> wants, you still want to see the movie too. You end up gla...
@@ -1381,12 +1399,14 @@ function enterTheaterBjDistracted(s: GameState, scene: SceneBuilder): void {
       scene.text(`With an internal grumble, you turn your attention away from the screen and towards blowing ${((s as any).npcdesc || '')}. You put effort into sucking, keeping your lips fastened around his shaft, going as deep as you can, and making sure to include plenty of tongue.`);
       scene.text('<i>Maybe he\'ll cum faster and I can get back to the movie,</i> you sigh.');
     }
-  }, goto: ['date_movie', 'theater_bj_cum_pre'] },
+    qspGoto(s, 'date_movie', 'theater_bj_cum_pre');
+  } },
         { label: 'Fuck that\'s hot', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', (-10), 'sub');
     scene.text('Heat blossoms between your legs as you choke on his cock, heart fluttering inside your chest from the rough and demeaning treatment, and your mouth starts to salivate almost as much as your pussy.');
     scene.text('<i>Fuck this is so hot,</i> you think as your eyes roll back in your head and his cock pokes the back of your throat.');
-  }, goto: ['date_movie', 'theater_bj_cum_pre'] },
+    qspGoto(s, 'date_movie', 'theater_bj_cum_pre');
+  } },
       ]);
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTheaterBjCumPre(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1401,7 +1421,7 @@ function enterTheaterBjEnjoy(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Enjoy yourself', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', (-10));
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cinema_bj'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['cinema_bj'] = 1;
     scene.img('images/shared/sex/public/theater_bj1.mp4');
     if (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] === 'movie_date') {
       // TODO-QSP: dynamic text: <<$npcdesc>> keeps watching the film while you suck his cock.
@@ -1428,7 +1448,7 @@ function enterTheaterBjCumPre(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}-! I'm gonna cum-!"`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTheaterBjCumMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['surprise_throatpie'] = 1;
+    ((s as any).date_ev = (s as any).date_ev ?? {})['surprise_throatpie'] = 1;
     scene.text('He starts panting and writhing between your lips. You keep it up for a few more minutes when his cock pulses and something spurts into your mouth without warning.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTheaterBjCumMouthMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -1514,7 +1534,8 @@ function enterMovieInterludeEnd(s: GameState, scene: SceneBuilder): void {
         { label: 'Go back to his place', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['sex_ev_start', 'npc_home_start'] },
+    qspGoto(s, 'sex_ev_start', 'npc_home_start');
+  } },
       ]);
     }
     if (((s as any).region ?? 0) === 'Sveta_home_region') {
@@ -1522,7 +1543,8 @@ function enterMovieInterludeEnd(s: GameState, scene: SceneBuilder): void {
         { label: 'Go back to your place', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['sex_ev_start', 'pc_home_start'] },
+    qspGoto(s, 'sex_ev_start', 'pc_home_start');
+  } },
       ]);
     }
   } },
@@ -1624,17 +1646,17 @@ function enterFilmTalkPc(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'That was nice', handler: (st: GameState) => {
     scene.text('"That was nice."');
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_opinion'] = 'nice';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pc_opinion'] = 'nice';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFilmTalkBoy(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'That was okay', handler: (st: GameState) => {
     scene.text('"That was okay."');
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_opinion'] = 'okay';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pc_opinion'] = 'okay';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFilmTalkBoy(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'That was boring', handler: (st: GameState) => {
     scene.text('"That was kinda boring."');
-    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_opinion'] = 'boring';
+    ((s as any).date_ev = (s as any).date_ev ?? {})['pc_opinion'] = 'boring';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFilmTalkBoy(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -1650,7 +1672,7 @@ function enterFilmTalkBoy(s: GameState, scene: SceneBuilder): void {
       if (((s as any).date_ev ?? 0)?.['pc_opinion'] === 'nice') {
         scene.text('He agrees with you and goes on about what he liked and didn\'t like in detail.');
       } else {
-        if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_opinion'] = 'fun';
+        ((s as any).date_ev = (s as any).date_ev ?? {})['npc_opinion'] = 'fun';
         scene.text('He goes on about what he liked and didn\'t like in detail.');
       }
       scene.actions([
@@ -1670,14 +1692,14 @@ function enterFilmTalkBoy(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((Math.floor(Math.random() * 3) + 1) === 1) {
-        if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_opinion'] = 'fun';
+        ((s as any).date_ev = (s as any).date_ev ?? {})['npc_opinion'] = 'fun';
         scene.text('"It was fun."');
       } else {
         if ((Math.floor(Math.random() * 2) + 1) === 1) {
-          if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_opinion'] = 'okay';
+          ((s as any).date_ev = (s as any).date_ev ?? {})['npc_opinion'] = 'okay';
           scene.text('"It was okay."');
         } else {
-          if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_opinion'] = 'boring';
+          ((s as any).date_ev = (s as any).date_ev ?? {})['npc_opinion'] = 'boring';
           scene.text('"It was boring."');
         }
       }
@@ -1693,18 +1715,19 @@ function enterDateEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDateEndStats(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['date_after', 'after_date'] },
+    qspGoto(s, 'date_after', 'after_date');
+  } },
   ]);
   scene.build();
 }
 
 function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).date_count_cinema) (s as any).date_count_cinema = {}; (s as any).date_count_cinema[String((s as any).npcID ?? 0)] = ((s as any).date_count_cinema[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  ((s as any).date_count_cinema = (s as any).date_count_cinema ?? {})[String((s as any).npcID ?? 0)] = ((s as any).date_count_cinema[String((s as any).npcID ?? 0)] ?? 0) + (1);
   if (((s as any).date_ev ?? 0)?.['cinema_bj'] === 1) {
-    if (!(s as any).cinema_bj) (s as any).cinema_bj = {}; (s as any).cinema_bj[String((s as any).npcID ?? 0)] = ((s as any).cinema_bj[String((s as any).npcID ?? 0)] ?? 0) + (1);
-    if (!(s as any).cinema_bj_last_time) (s as any).cinema_bj_last_time = {}; (s as any).cinema_bj_last_time[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).cinema_bj = (s as any).cinema_bj ?? {})[String((s as any).npcID ?? 0)] = ((s as any).cinema_bj[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    ((s as any).cinema_bj_last_time = (s as any).cinema_bj_last_time ?? {})[String((s as any).npcID ?? 0)] = 1;
   } else {
-    if (!(s as any).cinema_bj_last_time) (s as any).cinema_bj_last_time = {}; (s as any).cinema_bj_last_time[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).cinema_bj_last_time = (s as any).cinema_bj_last_time ?? {})[String((s as any).npcID ?? 0)] = 0;
   }
   // TODO-QSP: end
   scene.build();

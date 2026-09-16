@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -120,10 +120,10 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['threaten'] = 1;
-    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['homework'] = 1;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (3);
+    ((s as any).petkaQW = (s as any).petkaQW ?? {})['threaten'] = 1;
+    ((s as any).petkaQW = (s as any).petkaQW ?? {})['homework'] = 1;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (3);
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'loathe');
     qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworksuccess.jpg');
@@ -154,11 +154,11 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['threaten'] = 1;
-    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['homework'] = 1;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).petkaQW = (s as any).petkaQW ?? {})['threaten'] = 1;
+    ((s as any).petkaQW = (s as any).petkaQW ?? {})['homework'] = 1;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'hate');
     qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
@@ -202,8 +202,9 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
             { label: 'Bribe him with sex', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['bribe'] = 1;
-  }, goto: ['petkaev', 'homework_sex_bribe'] },
+    ((s as any).petkaQW = (s as any).petkaQW ?? {})['bribe'] = 1;
+    qspGoto(s, 'petkaev', 'homework_sex_bribe');
+  } },
           ]);
         }
         scene.actions([
@@ -223,12 +224,12 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
 
 function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (4);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (3);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (4);
   qspCall(s, 'npc_relationship', 'modify', 'A6', 'love');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A6'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A6'] = 1;
   qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
   qspCall(s, 'fame', 'pav', 'sex', 5);
   qspCall(s, 'npcStat', 'A6');
@@ -368,7 +369,8 @@ function enterPetraHomeworkFacial(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (5);
     }
     qspCall(s, 'stat', '');
-  }, goto: ['gschool_events', 'leave_break_events2'] },
+    qspGoto(s, 'gschool_events', 'leave_break_events2');
+  } },
     ]);
   } },
   ]);
@@ -411,8 +413,8 @@ function enterSchoolRestroomStrap(s: GameState, scene: SceneBuilder): void {
     { label: 'Get ready to fuck him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging1.jpg');
     scene.text('You check the straps to make sure they\'re good and tight.');
-    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['restroom_strapon'] = ((s as any).petkaQW['restroom_strapon'] ?? 0) + (1);
-    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['pegged'] = ((s as any).petkaQW['pegged'] ?? 0) + (1);
+    ((s as any).petkaQW = (s as any).petkaQW ?? {})['restroom_strapon'] = ((s as any).petkaQW['restroom_strapon'] ?? 0) + (1);
+    ((s as any).petkaQW = (s as any).petkaQW ?? {})['pegged'] = ((s as any).petkaQW['pegged'] ?? 0) + (1);
     if (((s as any).penisEnvyVariable ?? 0) === 1) {
       scene.actions([
         { label: 'Fuck him with your magic dick', goto: ['petkaev', 'school_restroom_pegging_magic'] },
@@ -447,7 +449,7 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.actions([
       { label: 'Use lube', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
     scene.text('You walk up behind him and lube up the dildo, then his ass as well. You slap the dildo against his ass before lining it up against his asshole.');
     if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
@@ -534,8 +536,8 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['sub'] = ((s as any).petkaQW['sub'] ?? 0) + (1);
-  qspCall(s, 'npcStat', 'D<<strapNumber>>');
+  ((s as any).petkaQW = (s as any).petkaQW ?? {})['sub'] = ((s as any).petkaQW['sub'] ?? 0) + (1);
+  qspCall(s, 'npcStat', 'D' + ((s as any).strapNumber ?? 0) + '');
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging3.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
     // TODO-QSP: dynamic text: As you slide your <<dick>>cm <<$dick_girth>> dildo deeper into his asshole, he g...
@@ -656,7 +658,7 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.actions([
       { label: 'Use lube', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
     scene.text('Having cast the spell, you watch as the harness melds with your skin and feel the dildo twitching as it makes contact with your flesh. Once completed, you walk up to Petka and lube up your member and his asshole with your lubricant before you start pushing yourself into his rear entrance.');
     if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] === 0) {
@@ -743,8 +745,8 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
 }
 
 function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['sub'] = ((s as any).petkaQW['sub'] ?? 0) + (1);
-  qspCall(s, 'npcStat', 'D<<strapNumber>>');
+  ((s as any).petkaQW = (s as any).petkaQW ?? {})['sub'] = ((s as any).petkaQW['sub'] ?? 0) + (1);
+  qspCall(s, 'npcStat', 'D' + ((s as any).strapNumber ?? 0) + '');
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging3.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
     // TODO-QSP: dynamic text: He groans and grunts in pain as you slide your <<dick>>cm <<$dick_girth>> dick d...
@@ -832,6 +834,8 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
 function enterFemdomPetkaPulloutMagic(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/magic/penis_envy/guy_butt_cum\' + rand(1, 2) + \'.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'You pull out and feel the sudden release as cum starts shooting out of your dick. You moan loudly as you shoot several loads over his ass, stroking your dick as you milk every last drop out of it. You find yourself panting as the feeling of release makes for an amazing afterglow.';
     qspCall(s, 'arousal', 'magicd_anal', 3, 'dom');
     scene.text('Once you finish, he looks back at you.');
     scene.text('"What was that?" he asks as he reaches back to feel your wet cum on his ass.');
@@ -855,6 +859,8 @@ function enterFemdomPetkaPulloutMagic(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('As you keep fucking his ass hard and fast with your cock, he starts to tense up and his moans start getting louder.');
     scene.text('"I\'m cumming!" he grunts loudly.');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'Feeling his asshole tense up around your shaft as he cums almost makes you cum as well, but you manage to pull out just as you feel the sudden release of cum shooting out of your dick. You moan loudly as you shoot several ropes over his ass, stroking your dick as you milk every last drop out of it. You find yourself panting as the feeling of release makes for an amazing afterglow.';
     qspCall(s, 'arousal', 'magicd_anal', 3, 'dom');
     scene.text('Once you finish, he looks back at you.');
     scene.text('"That still feels weird," he remarks, reaching back to feel the wet cum on his ass.');
@@ -882,6 +888,8 @@ function enterFemdomPetkaPulloutMagic(s: GameState, scene: SceneBuilder): void {
 function enterFemdomPetkaCuminsideMagic(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/magic/penis_envy/guy_internal_butt_cum1.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'You keep fucking his ass before you bury your dick deep into his ass and moan loudly, your dick twitching as you fill his ass with your cum. You milk the last drop of cum out of you as you feel some of it leaking out of him.';
     qspCall(s, 'arousal', 'magicd_anal', 3, 'dom');
     scene.text('Once you pull your dick out and step back, you can see the cum leaking out of his gaping asshole. You find yourself panting as the feeling of release makes for an amazing afterglow.');
     scene.text('Once you finish, he looks back at you.');
@@ -906,6 +914,8 @@ function enterFemdomPetkaCuminsideMagic(s: GameState, scene: SceneBuilder): void
   } else {
     scene.text('As you keep fucking his ass hard and fast with your cock, he starts to tense up and his moans start getting louder.');
     scene.text('"I\'m cumming!" he grunts loudly.');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'Feeling his asshole tense up around your shaft as he cums almost makes you cum as well, but you keep fucking his ass before you bury your dick deep inside him. You moan loudly and feel your dick twitching as you fill his ass with your cum. You milk the last drop of cum out of you as you feel some of it leaking out of him.';
     qspCall(s, 'arousal', 'magicd_anal', 3, 'dom');
     scene.text('You pull your dick out and step back, you can see the cum leaking out of his gaping asshole. You find yourself panting as the feeling of release makes for an amazing afterglow.');
     scene.text('"That still feels weird," he says as he reaches back to feel your cum leaking out of him.');

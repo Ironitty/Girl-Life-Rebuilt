@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -9,7 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRelationship(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_npc_rel = qspUntranslated(s, "ARGS[1]", { location: "journal_NPC_information" });
+  (s as any).temp_npc_rel = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).locArgs?.[2] ?? 0) === 'm') {
     if (((s as any).temp_npc_rel ?? 0) >= 80) {
       scene.text('He really likes you and considers you one of his best friends.');
@@ -60,7 +58,7 @@ function enterRelationship(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPast_Relationship(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_npc_rel = qspUntranslated(s, "ARGS[1]", { location: "journal_NPC_information" });
+  (s as any).temp_npc_rel = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).locArgs?.[2] ?? 0) === 'm') {
     if (((s as any).temp_npc_rel ?? 0) >= 80) {
       scene.text('He really liked you and considered you one of his best friends.');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -49,12 +49,12 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
     return;
     scene.actions([
       { label: 'Yes, I live in apartment 69', handler: (st: GameState) => {
-    if (!(s as any).neighborQW) (s as any).neighborQW = {}; (s as any).neighborQW['stage'] = 1;
+    ((s as any).neighborQW = (s as any).neighborQW ?? {})['stage'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.text('You nod, confirming that you live in apartment 69. The guy looks visibly delighted and says, <font color="#1589FF">"Wonderful. I lived there before Petrovich. He tormented the whole building. By the way, I\'m Timofei, and you are?"</font> ');
     scene.actions([
-      { label: '<<$pcs_nickname>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname || '') ?? ''), handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <font color="magenta">"My name is <<$pcs_nickname>>,"</font> you say. He nods an...
     scene.text(`<font color="magenta">"My name is ${((s as any).pcs_nickname || '')},"</font> you say. He nods and begins to retrieve the key to open apartment 68. The curious face of an elderly woman appears in the doorway. She points her sharp nose at you and stares curiously. Timofei enters the apartment and says irritably, "Mother, stop hanging around the front door!" before closing the door.`);
@@ -67,7 +67,7 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).neighborQW ?? 0)?.['stage'] > 0  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).neighborQW ?? 0)?.['last_day'] !== ((s as any).daystart ?? 0)) {
-      if (!(s as any).neighborQW) (s as any).neighborQW = {}; (s as any).neighborQW['rand'] = Math.floor(Math.random() * 101) + 0;
+      ((s as any).neighborQW = (s as any).neighborQW ?? {})['rand'] = Math.floor(Math.random() * 101) + 0;
       if (((s as any).neighborQW ?? 0)?.['rand'] >= 70) {
         scene.text('Your neighbor, Timofei, is in the hallway. He\'s smoking a cigarette, flicking the ashes into a jar.');
       }
@@ -78,14 +78,14 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave the building', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed.</b></center>');
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
+      dynamicGoto(s, 'curloc');
     } else {
       if (((s as any).sick ?? 0) > 72) {
         scene.text('<center><b>You are too ill to go outside.</b></center>');
-        scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
+        dynamicGoto(s, 'curloc');
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 1;
-        scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+        qspGoto(s, 'city_residential', '');
       }
     }
   } },
@@ -102,7 +102,7 @@ function enterAttic(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/cherdak.jpg');
   scene.text('A flight of stairs leads to the roof through the attic. It\'s dark and scary. This is clearly no place for a decent girl.');
   if ((Math.floor(Math.random() * 100) + 1) > 90) {
-    scene.text('In the depths of the attic, you hear a group of <a href="exec:gt \'ETO_building\', \'attic_teens\'">teens</a> talking. It seems they don\'t notice you.');
+    scene.text('In the depths of the attic, you hear a group of <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ETO_building\\u0027, \\u0027attic_teens\\u0027); return false;">teens</a> talking. It seems they don\'t notice you.');
   }
   // TODO-QSP: end
   scene.actions([
@@ -114,6 +114,7 @@ function enterAttic(s: GameState, scene: SceneBuilder): void {
 
 function enterRoof(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'secluded';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/roof.jpg');
@@ -123,7 +124,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       { label: 'Smoke a joint', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'joint');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -134,7 +135,8 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
-  }, goto: ['ETO_building', 'roof'] },
+    qspGoto(s, 'ETO_building', 'roof');
+  } },
     ]);
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
@@ -160,7 +162,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You apply sunblock to your body and lie down on the roof to sunbathe.');
       }
@@ -176,10 +178,10 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go down to the attic', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['ETO_building', 'roof'] }]);
+      qspGoto(s, 'ETO_building', 'roof');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['ETO_building', 'attic'] }]);
+      qspGoto(s, 'ETO_building', 'attic');
     }
   } },
   ]);

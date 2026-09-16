@@ -27,7 +27,7 @@ function enterEventCheck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['sleep_reflection_day'] = ((s as any).daystart ?? 0);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['sleep_reflection_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'pre_sleep_events', 'event_end');
   // TODO-QSP: end
   scene.build();
@@ -75,13 +75,13 @@ function enterAnushkaLove(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: gt 'sleep_reflections', $ARGS[0], 1
   }
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sleep_reflection_day'] = ((s as any).daystart ?? 0);
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['sleep_reflection_day'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/set1/pose4.jpg');
   scene.text('As you drift off to sleep, you start thinking about the time you\'ve been spending with Anushka and how you feel around her. She\'s one of your best friends, but something tugs at you that it might be something more… Perhaps you\'re falling in love with her?');
   // TODO-QSP: end
   scene.actions([
     { label: 'You love her', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sveta_love'] = ((s as any).anushkaQW['sveta_love'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['sveta_love'] = ((s as any).anushkaQW['sveta_love'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('The more you think about it, the more you think about how her hair smells, how soft her skin feels under your touch, the sound of her soft laugh and how cute she looks when she has that trouble making smirk on her lips…');
@@ -94,7 +94,7 @@ function enterAnushkaLove(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'You\'re just friends', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sveta_love'] = (-20);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['sveta_love'] = (-20);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You\'re not in love with her. You love spending time with her, but she\'s nothing more than a friend.');
@@ -115,13 +115,13 @@ function enterArtemLove(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: gt 'sleep_reflections', $ARGS[0], 1
   }
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['sleep_reflection_day'] = ((s as any).daystart ?? 0);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['sleep_reflection_day'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('As you drift off to sleep, you start thinking about the time you\'ve been spending with Artem and how you agreed to be his girlfriend. You have no doubt that he\'s in love with you, but you\'re not sure how you feel about him. You like and care about him, but do you love him?');
   // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['love'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['love'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
     scene.text('The more you think about it, the more you realize you\'ve fallen in love with him. You finally drift off to sleep imagining your life with Artem.');
@@ -132,7 +132,7 @@ function enterArtemLove(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'No', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['love'] = (-1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['love'] = (-1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
     scene.text('You love spending time with him and think he\'s a great guy, but you don\'t love him. You finally drift off to sleep wondering what the future will hold for you and Artem.');

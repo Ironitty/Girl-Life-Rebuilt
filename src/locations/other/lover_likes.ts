@@ -71,6 +71,7 @@ function enterClotQualPrefTmp(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: $temp_text[0] = 'cheap'
     }
+    (s as any).meetQualPref = '' + ((s as any).npcdesc ?? 0) + ' says ' + ((s as any).Xe ?? 0) + ' loves the quality of your clothes and ' + ((s as any).Xe ?? 0) + ' is glad you don\'t wear \' + $temp_text[0] + \' clothing."';
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -89,6 +90,7 @@ function enterClotQualPrefTmp(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $temp_text[0] = 'low'
         // TODO-QSP: $temp_text[1] = 'cheap'
       }
+      (s as any).meetQualPref = '' + ((s as any).npcdesc ?? 0) + ' says that ' + ((s as any).Xe ?? 0) + ' thinks your clothing quality is way too \' + $temp_text[0] + \' and ' + ((s as any).Xe ?? 0) + ' likes girls that wear clothing that is \' + $temp_text[1] + \'."';
     }
   }
   // TODO-QSP: end
@@ -731,20 +733,26 @@ function enterMakePrefTmp(s: GameState, scene: SceneBuilder): void {
 function enterHairPref(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'hair_color');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
+    (s as any).temp_pref = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
+      (s as any).temp_pref = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
     }
   }
   if (((s as any).temp_pref ?? 0) === 'hair_color_black') {
+    (s as any).temp_pref_haircol = 'black';
     (s as any).temp_haircol = 0;
   } else {
     if (((s as any).temp_pref ?? 0) === 'hair_color_brown') {
+      (s as any).temp_pref_haircol = 'brown';
       (s as any).temp_haircol = 1;
     } else {
       if (((s as any).temp_pref ?? 0) === 'hair_color_red') {
+        (s as any).temp_pref_haircol = 'red';
         (s as any).temp_haircol = 2;
       } else {
         if (((s as any).temp_pref ?? 0) === 'hair_color_blonde') {
+          (s as any).temp_pref_haircol = 'blonde';
           (s as any).temp_haircol = 3;
         }
       }

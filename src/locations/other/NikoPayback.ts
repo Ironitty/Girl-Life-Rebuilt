@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -763,7 +761,7 @@ function enterIvanHelp2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNushHelp(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['vs_niko'] = 2;
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['vs_niko'] = 2;
   (s as any).NikoPayback = 3;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile2.jpg');
@@ -809,7 +807,7 @@ function enterVitekHelp(s: GameState, scene: SceneBuilder): void {
     { label: 'Shout out', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoPayback" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     scene.text('"NIKO RAPED ME!!!" you scream and the guys freeze as Niko suddenly stands up and starts sprinting toward the door when Vasily shoulder tackles him into the wall. Roman tries to help Niko but Dan stands in front of him, blocking him from interfering. Roman punches Dan in the face, but Vasily returns the punch, staggering Roman before Dan tackles him to the ground.');
     scene.actions([
       { label: 'Turn to Vitek', handler: (st: GameState) => {
@@ -893,7 +891,7 @@ function enterVitekHelp2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbinaHelp(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['niko_help'] = 2;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['niko_help'] = 2;
   (s as any).NikoPayback = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');

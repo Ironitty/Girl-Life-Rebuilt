@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'start');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Nerdvana</b></center>');
@@ -50,6 +51,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
 
 function enterBrowse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'browse');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nerdvana</b></center>');
   scene.img('images/locations/city/island/nerdvana/shop.jpg');
@@ -78,6 +80,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
 
 function enterCosplay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'cosplay');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Nerdvana Cosplay Outfits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -92,13 +95,15 @@ function enterCosplay(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_nerdvana', 'browse'] },
+    qspGoto(s, 'shop_nerdvana', 'browse');
+  } },
   ]);
   scene.build();
 }
 
 function enterOutfits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'outfits');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Nerdvana outfits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -113,13 +118,15 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_nerdvana', 'browse'] },
+    qspGoto(s, 'shop_nerdvana', 'browse');
+  } },
   ]);
   scene.build();
 }
 
 function enterSwim(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'swim');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Nerdvana swimsuits - one size fits all</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -133,13 +140,15 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_nerdvana', 'browse'] },
+    qspGoto(s, 'shop_nerdvana', 'browse');
+  } },
   ]);
   scene.build();
 }
 
 function enterBikinis(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'bikinis');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Nerdvana bikinis - one size fits all</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -153,13 +162,15 @@ function enterBikinis(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_nerdvana', 'browse'] },
+    qspGoto(s, 'shop_nerdvana', 'browse');
+  } },
   ]);
   scene.build();
 }
 
 function enterPurses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'purses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Nerdvana purses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -174,7 +185,8 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_nerdvana', 'browse'] },
+    qspGoto(s, 'shop_nerdvana', 'browse');
+  } },
   ]);
   scene.build();
 }

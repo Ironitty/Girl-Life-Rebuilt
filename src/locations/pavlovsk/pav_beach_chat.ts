@@ -1,4 +1,6 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,10 +11,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'beach_hangout';
+  (s as any).loc = 'pav_beach_chat';
+  (s as any).location_type = 'public_outdoors';
+  (s as any).menu_loc = 'pav_beach_chat';
+  (s as any).menu_arg = 'beach_hangout';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).hour ?? 0) < 15  &&  ((s as any).sunWeather ?? 0) === 1) {
     scene.text('<center><b>Beach</b></center>');
     scene.text('Some of the cool kids and jocks are lounging around tanning and chatting while others are wading and swimming out in the lake.');
+    (s as any).table_beach = '<center><table><tr>';
     (s as any).i = 1;
     (s as any).i2 = 0;
     // TODO-QSP: :beachcool_loop
@@ -75,12 +83,16 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJocksList(s: GameState, scene: SceneBuilder): void {
+  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = qspUntranslated(s, "lcase(listname)", { location: "pav_beach_chat" });
   // TODO-QSP: gt 'pav_beach_chat', $listname
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCoolList(s: GameState, scene: SceneBuilder): void {
+  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = qspUntranslated(s, "lcase(listname)", { location: "pav_beach_chat" });
   // TODO-QSP: gt 'pav_beach_chat', $listname
   // TODO-QSP: end
   scene.build();
@@ -384,7 +396,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/beach_chat.jpg');
   if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 1) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Friends'] = 2;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Friends'] = 2;
     qspCall(s, 'npc_relationship', 'set', 'A23', 100);
     // TODO-QSP: dynamic text: Albina is relaxing in the sun and working on her tan as you approach. She lifts ...
     scene.text(`Albina is relaxing in the sun and working on her tan as you approach. She lifts her sunglasses and smiles gratefully when she notices you. "I just wanted to thank you again, ${((s as any).pcs_nickname || '')}. There's some stupid shit about 'a friend in need' or something. I'm letting you know that I'm disbanding the Starlets as well. Too many bad memories you know?"`);
@@ -790,7 +802,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Thank her for taking you home', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['drunk_help'] = 0;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['drunk_help'] = 0;
     qspCall(s, 'stat', '');
     scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -806,7 +818,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grupTipe ?? 0) === 1) {
     if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
       if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  &&  (((s as any).month ?? 0) > 6  ||  (((s as any).month ?? 0) === 6  &&  ((s as any).day ?? 0) > 15))) {
-        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'katja_uni_tell'] }]);
+        qspGoto(s, 'KatjaHomeTalk', 'katja_uni_tell');
       }
       scene.text('You spend some time lying next to Katja, laughing and joking as she tells you some personal stories about Vicky. "She had been drinking all night and had to go, but all the stalls were full, so she drags me out behind the community center to go pee behind a bush." She breaks out into a fit of giggles.');
       scene.text('"She was so drunk, as she was squatting, she stumbled and fell into her own pee!"');
@@ -827,7 +839,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
     if (((s as any).grupTipe ?? 0) === 2) {
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
         if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  &&  (((s as any).month ?? 0) > 6  ||  (((s as any).month ?? 0) === 6  &&  ((s as any).day ?? 0) > 15))) {
-          scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'katja_uni_tell'] }]);
+          qspGoto(s, 'KatjaHomeTalk', 'katja_uni_tell');
         }
         scene.text('Lying next to Katja, you have a lively conversation where you exchange funny stories about Vanya. "And that\'s how my sister fell in love with the biggest clown in school!" she laughs with a snort.');
         scene.text('"And I wouldn\'t change him for the world!" Vicky adds with a smile.');
@@ -847,7 +859,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
       if (((s as any).grupTipe ?? 0) === 3) {
         if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
           if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  &&  (((s as any).month ?? 0) > 6  ||  (((s as any).month ?? 0) === 6  &&  ((s as any).day ?? 0) > 15))) {
-            scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'katja_uni_tell'] }]);
+            qspGoto(s, 'KatjaHomeTalk', 'katja_uni_tell');
           }
           if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) {
             scene.text('Katja smiles as you approach and you have a lively conversation about your favorite subjects and her plans for going to university after school. "I want to become a teacher. Helping others achieve their potential just sounds like the perfect job!" she gleefully states.');
@@ -870,7 +882,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
           if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  &&  (((s as any).month ?? 0) > 6  ||  (((s as any).month ?? 0) === 6  &&  ((s as any).day ?? 0) > 15))) {
-            scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'katja_uni_tell'] }]);
+            qspGoto(s, 'KatjaHomeTalk', 'katja_uni_tell');
           }
           scene.text('Katja takes a surprising interest in what you and your fellow gopniks get up to outside of school and listens carefully when you answer her numerous questions.');
           if (((s as any).university ?? 0)?.['student'] === 1  &&  ((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0  &&  ((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
@@ -1067,7 +1079,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMarcus_KatjaTalk(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['marcus_asked'] = 1;
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['marcus_asked'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/marcus/beach_chat.jpg');
   scene.text('"So you know how we sometimes have fun together?" you ask him.');
   // TODO-QSP: dynamic text: "Yeah?" he answers and you smile. "Well, I have this friend who's ' + iif(katjaQ...

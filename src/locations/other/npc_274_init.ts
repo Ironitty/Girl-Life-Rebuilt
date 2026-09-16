@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -11,31 +9,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = '';
+  ((s as any).locat = (s as any).locat ?? {})['maya'] = '';
   if (((s as any).ballet_first_visit ?? 0) === 1) {
     if (((s as any).hour ?? 0) === 6) {
-      if (!(s as any).maya) (s as any).maya = {}; (s as any).maya['home'] = 1;
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'bedroom';
+      ((s as any).maya = (s as any).maya ?? {})['home'] = 1;
+      ((s as any).locat = (s as any).locat ?? {})['maya'] = 'bedroom';
     } else {
       if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16) {
-        if (!(s as any).maya) (s as any).maya = {}; (s as any).maya['home'] = 0;
+        ((s as any).maya = (s as any).maya ?? {})['home'] = 0;
         if (((s as any).hour ?? 0) === 12) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'living_room';
+          ((s as any).locat = (s as any).locat ?? {})['maya'] = 'living_room';
         } else {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya_room'] = 'shops';
+          ((s as any).locat = (s as any).locat ?? {})['maya_room'] = 'shops';
         }
       } else {
         if (((s as any).hour ?? 0)=== 17  &&  ((s as any).hour ?? 0) < 18) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'kitchen';
+          ((s as any).locat = (s as any).locat ?? {})['maya'] = 'kitchen';
         } else {
           if (((s as any).hour ?? 0) === 18  &&  ((s as any).hour ?? 0) < 22) {
             (s as any).temp_locat_maya_roll = Math.floor(Math.random() * 2) + 1;
             if (((s as any).temp_locat_maya_roll ?? 0) === 1) {
-              if (!(s as any).maya) (s as any).maya = {}; (s as any).maya['home'] = 1;
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'living_room';
+              ((s as any).maya = (s as any).maya ?? {})['home'] = 1;
+              ((s as any).locat = (s as any).locat ?? {})['maya'] = 'living_room';
             } else {
-              if (!(s as any).maya) (s as any).maya = {}; (s as any).maya['home'] = 0;
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'dance_school';
+              ((s as any).maya = (s as any).maya ?? {})['home'] = 0;
+              ((s as any).locat = (s as any).locat ?? {})['maya'] = 'dance_school';
             }
           }
         }
@@ -72,8 +70,8 @@ function enterGrave(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Pushkin Graveyard';
-  scene.img('images/' + '' + qspUntranslated(s, "setloc['imagepath']>", { location: "npc_274_init" }) + 'ballet_events/graveyard.jpg');
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Pushkin Graveyard';
+  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_events/graveyard.jpg');
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
@@ -101,15 +99,15 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Hug <<$npc_firstname[\'A274\']>>', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Hug ' + String(((s as any).npc_firstname ?? 0)?.['A274'] ?? '' ?? ''), handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A274', 'like');
-    if (!(s as any).npc_trust) (s as any).npc_trust = {}; (s as any).npc_trust['A274'] = ((s as any).npc_trust['A274'] ?? 0) + (5);
+    ((s as any).npc_trust = (s as any).npc_trust ?? {})['A274'] = ((s as any).npc_trust['A274'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You step in, pulling her close to you. You smell the soft, floral fragrance she ...
     scene.text(`You step in, pulling her close to you. You smell the soft, floral fragrance she wears, and she starts to cry. You just hold her waiting for the storm of tears to pass. You reach into your purse to take out a tissue and hand it to ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}.`);
     scene.actions([
-      { label: 'Talk to <<$npc_firstname[\'A274\']>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Talk to ' + String(((s as any).npc_firstname ?? 0)?.['A274'] ?? '' ?? ''), handler: (st: GameState) => {
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: <<$npc_firstname['A274']>> gives you a warm smile as she takes the tissue. "Sorr...
     scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} gives you a warm smile as she takes the tissue. "Sorry for being such a mess, ${((s as any).pcs_nickname || '')}. This is why I dance. I owe it to my mum. She was a ballet dancer herself, and I inherited her talent."`);
@@ -120,12 +118,12 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Sure, <<$npc_firstname['A274']>>. I'll be beside those trees."
     scene.text(`"Sure, ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}. I'll be beside those trees."`);
     scene.actions([
-      { label: 'Wait', goto: ['npc_274_init', 'graveyard_memorial', '\'graveyard_wait\''] },
+      { label: 'Wait', goto: ['npc_274_init', 'graveyard_memorial', 'graveyard_wait'] },
     ]);
   } },
     ]);
   } },
-    { label: 'Talk to <<$npc_firstname[\'A274\']>>', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Talk to ' + String(((s as any).npc_firstname ?? 0)?.['A274'] ?? '' ?? ''), handler: (st: GameState) => {
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: <<$npc_firstname['A274']>> gives you a warm smile as she takes the tissue. "Sorr...
     scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} gives you a warm smile as she takes the tissue. "Sorry for being such a mess, ${((s as any).pcs_nickname || '')}. This is why I dance. I owe it to my mum. She was a ballet dancer herself, and I inherited her talent."`);

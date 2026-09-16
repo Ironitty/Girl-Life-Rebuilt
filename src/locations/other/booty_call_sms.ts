@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -37,41 +35,41 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStdFree_Tree(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['0'] = 'hey ' + qspUntranslated(s, "pcs_nickname>", { location: "booty_call_sms" }) + '';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['1'] = 'hey ' + qspUntranslated(s, "npc_nickname[ARGS[1]]>", { location: "booty_call_sms" }) + '';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['2'] = 'got some good news';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a3'] = 'oh?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a4'] = 'my std test came back clean. why dont we celebrate tog';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'hey ' + ((s as any).pcs_nickname ?? 0) + '';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'hey ' + ((s as any).npc_nickname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] + '';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'got some good news';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a3'] = 'oh?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a4'] = 'my std test came back clean. why dont we celebrate tog';
   if (((s as any).hour ?? 0) < 21) {
-    if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['aa5'] = 'sorry, I cant. I have stuff to do';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['aa5'] = 'sorry, I cant. I have stuff to do';
   } else {
-    if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['aa5'] = 'its late. text me sooner if you want me to come over.';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['aa5'] = 'its late. text me sooner if you want me to come over.';
   }
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['aa6'] = 'shit, maybe next time then';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ab5'] = 'ill come right now ;)';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['aa6'] = 'shit, maybe next time then';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab5'] = 'ill come right now ;)';
   if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'perverted'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ab6'] = 'in the street?? damn! keep it in your pants till you get here!';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab6'] = 'in the street?? damn! keep it in your pants till you get here!';
     } else {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ab6'] = 'as long as you make me cum later';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab6'] = 'as long as you make me cum later';
     }
   } else {
     if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'intellectual'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ab6'] = 'phrasing';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab6'] = 'phrasing';
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ab6'] = 'im already hard';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab6'] = 'im already hard';
       } else {
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ab6'] = 'cant wait';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab6'] = 'cant wait';
       }
     }
   }
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b3'] = 'what is it?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b4'] = 'my std test came back clean';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ba5'] = ((s as any).SMSTree ?? 0)?.['aa5'];
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ba6'] = ((s as any).SMSTree ?? 0)?.['aa6'];
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb5'] = ((s as any).SMSTree ?? 0)?.['ab5'];
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb6'] = ((s as any).SMSTree ?? 0)?.['ab6'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b3'] = 'what is it?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b4'] = 'my std test came back clean';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba5'] = ((s as any).SMSTree ?? 0)?.['aa5'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba6'] = ((s as any).SMSTree ?? 0)?.['aa6'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb5'] = ((s as any).SMSTree ?? 0)?.['ab5'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb6'] = ((s as any).SMSTree ?? 0)?.['ab6'];
   // TODO-QSP: end
   scene.build();
 }
@@ -128,37 +126,37 @@ function enterBcChoice2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrePlannedBootyCall_Tree(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['0'] = 'hey ' + qspUntranslated(s, "pcs_nickname>", { location: "booty_call_sms" }) + ', you coming over?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a1'] = 'sorry, something came up';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b1'] = 'on my way now';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'hey ' + ((s as any).pcs_nickname ?? 0) + ', you coming over?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a1'] = 'sorry, something came up';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b1'] = 'on my way now';
   (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
-    if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b2'] = 'come over to my place lets fuck like bunnies';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['b2'] = 'come over to my place lets fuck like bunnies';
   } else {
     if (((s as any).temp_rand ?? 0) === 1) {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b2'] = 'come over to my place I want to hear you screaming my name';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['b2'] = 'come over to my place I want to hear you screaming my name';
     } else {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b2'] = 'come over to my place lets have some fun today';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['b2'] = 'come over to my place lets have some fun today';
     }
   }
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ba3'] = 'sorry, I cant. I have stuff to do';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ba4'] = 'shit, maybe next time then';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb3'] = 'ill come right now ;)';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba3'] = 'sorry, I cant. I have stuff to do';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba4'] = 'shit, maybe next time then';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb3'] = 'ill come right now ;)';
   if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'perverted') {
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb4'] = 'in the street?? damn! keep it in your pants till you get here!';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb4'] = 'in the street?? damn! keep it in your pants till you get here!';
     } else {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb4'] = 'as long as you make me cum later';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb4'] = 'as long as you make me cum later';
     }
   } else {
     if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'intellectual') {
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb4'] = 'phrasing';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb4'] = 'phrasing';
       } else {
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb4'] = 'as long as you make me cum later';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb4'] = 'as long as you make me cum later';
       }
     } else {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb4'] = 'im already hard';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb4'] = 'im already hard';
     }
   }
   // TODO-QSP: end
@@ -222,22 +220,22 @@ function enterNewBootyCall_Tree(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNewBootyCall_Tree1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['0'] = 'hey ' + qspUntranslated(s, "pcs_nickname>", { location: "booty_call_sms" }) + '';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['1'] = 'hey ' + qspUntranslated(s, "npc_nickname[ARGS[1]]>", { location: "booty_call_sms" }) + '';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a2'] = 'what\'s up?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b2'] = 'hey sexy';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c2'] = 'its late. but ive always got time for you :)';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['d2'] = 'its late. what do you want?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['e2'] = 'its late. text me earlier next time.';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['f2'] = 'sorry';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['fa3'] = 'didn\'t see your message until now';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['fa4'] = 'whatsup?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['fb3'] = 'I was doing something';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['fb4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['fc3'] = 'I was at the gym';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['fc4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['fd3'] = 'I was in class';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['fd4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'hey ' + ((s as any).pcs_nickname ?? 0) + '';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'hey ' + ((s as any).npc_nickname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] + '';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a2'] = 'what\'s up?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b2'] = 'hey sexy';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['c2'] = 'its late. but ive always got time for you :)';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['d2'] = 'its late. what do you want?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['e2'] = 'its late. text me earlier next time.';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['f2'] = 'sorry';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fa3'] = 'didn\'t see your message until now';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fa4'] = 'whatsup?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fb3'] = 'I was doing something';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fb4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fc3'] = 'I was at the gym';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fc4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fd3'] = 'I was in class';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fd4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
   // TODO-QSP: end
   scene.build();
 }
@@ -246,44 +244,44 @@ function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
   if (0) {
   } else {
     if (((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'sugar_daddy') {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = 'I want to see you';
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'ive booked a hotel room';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'I want to see you';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'ive booked a hotel room';
     } else {
       if (((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'casual_date'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'fuckbuddy') {
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = 'ive been thinking about you';
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a11'] = 'what were you thinking about?';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'ive been thinking about you';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['a11'] = 'what were you thinking about?';
         if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2  &&  qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']) !== 'city'  &&  (String(((s as any).npc_residence ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))) === 'city') {
-          if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'I booked a hotel room in Pav. why dont you come by?';
+          ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'I booked a hotel room in Pav. why dont you come by?';
         } else {
           if (((s as any).npc_fav_pos ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'blowjob'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-            if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'your mouth around my cock';
+            ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'your mouth around my cock';
           } else {
             if (((s as any).npc_know_virgin ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 1) {
               if (((s as any).npc_cum_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'creampie'  &&  (((s as any).npc_condom_conscious ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_bareback ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'never_use')  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'your pussy filled with my cum';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'your pussy filled with my cum';
               } else {
                 if (((s as any).npc_sex_speed ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 3  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'fucking you bowlegged';
+                  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'fucking you bowlegged';
                 } else {
                   if (((s as any).npc_cum_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'facial'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                    if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'your pretty face covered in my cum';
+                    ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'your pretty face covered in my cum';
                   } else {
                     if (((s as any).npc_cum_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'mouth'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'watching you swallow my cum';
+                      ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'watching you swallow my cum';
                     } else {
                       if (((s as any).npc_cum_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'tits'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'my cum all over your tits';
+                        ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'my cum all over your tits';
                       } else {
                         if (((s as any).npc_fav_pos ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'doggy'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                          if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'pounding you on all fours';
+                          ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'pounding you on all fours';
                         } else {
                           if (((s as any).npc_fav_pos ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'cowgirl'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                            if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'you riding my cock like crazy';
+                            ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'you riding my cock like crazy';
                           } else {
                             if ((!(Math.floor(Math.random() * 2) + 0))) {
-                              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'you naked on my bed';
+                              ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'you naked on my bed';
                             } else {
-                              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'want to come over and have some fun?';
+                              ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'want to come over and have some fun?';
                             }
                           }
                         }
@@ -293,43 +291,43 @@ function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
                 }
               }
             } else {
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a12'] = 'PLACEHOLDER 1';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'PLACEHOLDER 1';
             }
           }
         }
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b11'] = 'me too';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['b11'] = 'me too';
         if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2  &&  qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']) !== 'city'  &&  (String(((s as any).npc_residence ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))) === 'city') {
-          if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'I booked a hotel room in Pav. why dont you come by?';
+          ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I booked a hotel room in Pav. why dont you come by?';
         } else {
           if (((s as any).npc_fav_pos ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'blowjob'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-            if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'I want to feel your mouth around my cock';
+            ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to feel your mouth around my cock';
           } else {
             if (((s as any).npc_know_virgin ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 1) {
               if (((s as any).npc_cum_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'creampie'  &&  (((s as any).npc_condom_conscious ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_bareback ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'never_use')  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'I want to pump you full of cum';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to pump you full of cum';
               } else {
                 if (((s as any).npc_sex_speed ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 3  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'come over I want to hear you screaming my name';
+                  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'come over I want to hear you screaming my name';
                 } else {
                   if (((s as any).npc_cum_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'facial'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                    if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'I want to cum all over your face';
+                    ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to cum all over your face';
                   } else {
                     if (((s as any).npc_cum_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'mouth'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'I want to watch you swallow my cum';
+                      ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to watch you swallow my cum';
                     } else {
                       if (((s as any).npc_cum_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'tits'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'let me glaze your tits with my cum';
+                        ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'let me glaze your tits with my cum';
                       } else {
                         if (((s as any).npc_fav_pos ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'doggy'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                          if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'I want to pound you on all fours';
+                          ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to pound you on all fours';
                         } else {
                           if (((s as any).npc_fav_pos ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'cowgirl'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
-                            if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'I want you to ride my cock like there\'s no tomorrow';
+                            ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want you to ride my cock like there\'s no tomorrow';
                           } else {
                             if ((!(Math.floor(Math.random() * 2) + 0))) {
-                              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'lets fuck like bunnies today';
+                              ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'lets fuck like bunnies today';
                             } else {
-                              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'come over lets have some fun today';
+                              ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'come over lets have some fun today';
                             }
                           }
                         }
@@ -339,50 +337,50 @@ function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
                 }
               }
             } else {
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b12'] = 'PLACEHOLDER 2';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'PLACEHOLDER 2';
             }
           }
         }
       } else {
-        if ((String('boyfriend;girlfriend;husband;wife').indexOf(String(((s as any).npc_rel_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]))) + 1 > 0) {
+        if (((String('boyfriend;girlfriend;husband;wife').indexOf(String(((s as any).npc_rel_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]))) + 1) > 0) {
           if (0) {
             if (((s as any).npc_dirty_lover ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = 'come home';
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'I want to fuck you senseless';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'come home';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'I want to fuck you senseless';
             } else {
               if (((s as any).npc_sensual_lover ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = 'are you coming home soon';
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'lets make love';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'are you coming home soon';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'lets make love';
               } else {
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = 'are you coming home soon';
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'lets get naughty';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'are you coming home soon';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'lets get naughty';
               }
             }
           } else {
             if (((s as any).npc_dirty_lover ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = 'come over';
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'I want to fuck you senseless';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'come over';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'I want to fuck you senseless';
             } else {
               if (((s as any).npc_sensual_lover ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = 'I want to see you';
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'lets make love';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'I want to see you';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'lets make love';
               } else {
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = 'you should come over';
-                if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'lets get naughty';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'you should come over';
+                ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'lets get naughty';
               }
             }
           }
         } else {
           if (((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'boyfriend') {
-            if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = '$npc_rel_type = boyfriend!!';
-            if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'PLACEHOLDER3';
+            ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = '$npc_rel_type = boyfriend!!';
+            ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'PLACEHOLDER3';
           } else {
             if (((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'girlfriend') {
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = '$npc_rel_type = \'girlfriend\'!!';
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'PLACEHOLDER4';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = '$npc_rel_type = \'girlfriend\'!!';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'PLACEHOLDER4';
             } else {
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['10'] = '$npc_rel_type = \'' + qspUntranslated(s, "npc_rel_type[ARGS[1]]>", { location: "booty_call_sms" }) + '\'!!';
-              if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['11'] = 'PLACEHOLDER5';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = '$npc_rel_type = \'' + ((s as any).npc_rel_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] + '\'!!';
+              ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'PLACEHOLDER5';
             }
           }
         }
@@ -395,32 +393,32 @@ function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
 
 function enterNewBootyCall_Tree3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 21) {
-    if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a20'] = 'sorry, I cant. I have stuff to do';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['a20'] = 'sorry, I cant. I have stuff to do';
   } else {
-    if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a20'] = 'its late. text me sooner if you want me to come over.';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['a20'] = 'its late. text me sooner if you want me to come over.';
   }
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a21'] = 'shit, maybe next time then';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b20'] = 'ill come right now ;)';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a21'] = 'shit, maybe next time then';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b20'] = 'ill come right now ;)';
   if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'perverted'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b21'] = 'in the street?? damn! keep it in your pants till you get here!';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['b21'] = 'in the street?? damn! keep it in your pants till you get here!';
     } else {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b21'] = 'as long as you make me cum later';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['b21'] = 'as long as you make me cum later';
     }
   } else {
     if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'intellectual'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b21'] = 'phrasing';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['b21'] = 'phrasing';
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b21'] = 'im already hard';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['b21'] = 'im already hard';
       } else {
-        if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b21'] = 'cant wait';
+        ((s as any).SMSTree = (s as any).SMSTree ?? {})['b21'] = 'cant wait';
       }
     }
   }
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c20'] = 'its kind of late';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c21'] = 'sorry';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c22'] = 'maybe another time?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['c20'] = 'its kind of late';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['c21'] = 'sorry';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['c22'] = 'maybe another time?';
   // TODO-QSP: end
   scene.build();
 }
@@ -441,7 +439,7 @@ function enterNewRouting1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['1']
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[3]
-  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "booty_call_sms" }))) {
+  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))) {
     qspCall(s, 'SMStext_builder', 'end');
     return;
   }
@@ -468,7 +466,7 @@ function enterNewDelayed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   if (((s as any).locArgs?.[1] ?? 0) === '1') {
     // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['f2']
-    if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), qspUntranslated(s, "ARGS[4]", { location: "booty_call_sms" }))) {
+    if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0))) {
       qspCall(s, 'SMStext_builder', 'end');
       return;
     }
@@ -480,7 +478,7 @@ function enterNewDelayed(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['f<<$ARGS[1]>>3']
-    if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), qspUntranslated(s, "ARGS[4]", { location: "booty_call_sms" }))) {
+    if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0))) {
       qspCall(s, 'SMStext_builder', 'end');
       return;
     }
@@ -497,7 +495,7 @@ function enterNewRouting2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree[$ARGS[3]]
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[5]
-  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[5]", { location: "booty_call_sms" }))) {
+  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[5] ?? 0))) {
     qspCall(s, 'SMStext_builder', 'end');
     return;
   }
@@ -533,7 +531,7 @@ function enterNewBootycall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree[$ARGS[3] + '11']
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[4]
-  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[4]", { location: "booty_call_sms" }))) {
+  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[4] ?? 0))) {
     qspCall(s, 'SMStext_builder', 'end');
     return;
   }
@@ -550,7 +548,7 @@ function enterLateApology(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterNewBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree[$ARGS[4]]
-  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), qspUntranslated(s, "ARGS[5]", { location: "booty_call_sms" }))) {
+  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[5] ?? 0))) {
     qspCall(s, 'SMStext_builder', 'end');
     return;
   }
@@ -572,7 +570,7 @@ function enterNewRouting3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree[$ARGS[3] + '20']
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[6]
-  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[6]", { location: "booty_call_sms" }))) {
+  if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[6] ?? 0))) {
     qspCall(s, 'SMStext_builder', 'end');
     return;
   }
@@ -598,6 +596,7 @@ function enterNewEnd(s: GameState, scene: SceneBuilder): void {
 function enterAcceptBootyCall(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: booty_call_invite[$ARGS[1]] = daystart
   // TODO-QSP: $booty_call_hotel[$ARGS[1]] = ''
+  (s as any).temp_town = qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']);
   if (((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'sugar_daddy') {
     if (((s as any).temp_town ?? 0) === 'city') {
       // TODO-QSP: $booty_call_hotel[$ARGS[1]] = 'city'
@@ -638,7 +637,7 @@ function enterDeclineBootyCallCore(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNewExpiredBootyCall(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['0'] = 'sorry, I cant anymore. maybe we can try another time';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'sorry, I cant anymore. maybe we can try another time';
   // TODO-QSP: end
   scene.build();
 }
@@ -660,22 +659,22 @@ function enterCheckLate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNewSexting_Tree(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a0'] = 'send me a pic then?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b0'] = 'but I wouldn\'t say no to a selfie';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a1'] = 'refuse';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a2'] = 'no';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b1'] = 'next time tiger';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c1'] = 'im not at home!';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a0'] = 'send me a pic then?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b0'] = 'but I wouldn\'t say no to a selfie';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a1'] = 'refuse';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a2'] = 'no';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b1'] = 'next time tiger';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['c1'] = 'im not at home!';
   if (((s as any).npc_dirty_lover ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c2'] = 'hot';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['c2'] = 'hot';
     } else {
-      if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c2'] = 'so?';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['c2'] = 'so?';
     }
   } else {
-    if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c2'] = 'ill use my imagination then';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['c2'] = 'ill use my imagination then';
   }
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['s1'] = 'Send a selfie from your gallery';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['s1'] = 'Send a selfie from your gallery';
   // TODO-QSP: end
   scene.build();
 }
@@ -686,7 +685,7 @@ function enterSexting1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree[$ARGS[1] + '0']
   // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a1'], 'booty_call_sms', 'sexting_refuse', $ARGS[2], 're...
   // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['b1'], 'booty_call_sms', 'sexting_refuse', $ARGS[2], 'ne...
-  if ((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1 > 0  ||  (String(((s as any).location_type ?? 0)).indexOf(String('public'))) + 1 > 0) {
+  if (((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1) > 0  ||  ((String(((s as any).location_type ?? 0)).indexOf(String('public'))) + 1) > 0) {
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['c1'], 'booty_call_sms', 'sexting_public', $ARGS[2]
   }
   // TODO-QSP: gs 'SMStext_builder', 'send_selfie', $SMSTree['s1'], 'n|b|sh|ft|fa|fp', 'booty_call_sms', 'sexting_s...
@@ -744,23 +743,23 @@ function enterSextingSend(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDelayedBootyCall_Tree(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['0'] = 'hey';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['1'] = 'hey';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['2'] = 'you busy today?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a3'] = 'no';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b3'] = 'depends';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c3'] = 'maybe';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['d3'] = 'yes';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['4'] = 'why?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['5'] = 'want to spend some time';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a6'] = 'you could come over to my place';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b6'] = 'i could get a hotel room';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a7'] = 'sorry, not today';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b7'] = 'when?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b8'] = 'how about \' + func(\'time\', \'get_time_string\', npc_start_free_time[$ARGS[1]], 0) + \'?';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['ba9'] = 'sorry, busy';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb9'] = 'that sounds fun';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['bb10'] = 'okay, see you then';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'hey';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'hey';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'you busy today?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a3'] = 'no';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b3'] = 'depends';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['c3'] = 'maybe';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['d3'] = 'yes';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['4'] = 'why?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['5'] = 'want to spend some time';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a6'] = 'you could come over to my place';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b6'] = 'i could get a hotel room';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a7'] = 'sorry, not today';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b7'] = 'when?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b8'] = 'how about ' + qspFunc(s, 'time', 'get_time_string', ((s as any).npc_start_free_time ?? 0)?.[((s as any).locArgs?.[1] ?? 0)], 0) + '?';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba9'] = 'sorry, busy';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb9'] = 'that sounds fun';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb10'] = 'okay, see you then';
   // TODO-QSP: end
   scene.build();
 }

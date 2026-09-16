@@ -40,6 +40,9 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
     scene.text('He moves up close and you feel the tip of his cock rubbing against your pussy lips. Once your pussy starts to get wet and lubricates the tip of his dick, he slides it inside you.');
     scene.text('He is slow and gentle at first, but quickly starts to pick up speed, pounding you hard and deep while periodically slapping your ass cheeks in turn.');
     if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
+      (s as any).orgasm_or = 'no';
+    } else {
+      (s as any).orgasm_or = 'yes';
     }
     qspCall(s, 'arousal', 'vaginal', 20, 'sub', 'rough');
     qspCall(s, 'stat', '');
@@ -134,10 +137,12 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You kneel down in front of Arthur as he takes his <<dick>>cm <<$dick_girth>> coc...
     scene.text(`You kneel down in front of Arthur as he takes his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock out. You take it into your mouth and start sucking it, Arthur letting you guide the action and do all the work, only occasionally thrusting himself down your throat and making you gag.`);
     if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
+      (s as any).orgasm_or = 'no';
       qspCall(s, 'arousal', 'bj', 10, 'sub', 'rough', 'deepthroat');
       qspCall(s, 'stat', '');
     }
     if (((s as any).horand ?? 0) <= ((s as any).pcs_horny ?? 0)) {
+      (s as any).orgasm_or = 'yes';
       qspCall(s, 'arousal', 'bj', 10, 'sub', 'rough', 'deepthroat');
       qspCall(s, 'stat', '');
     }
@@ -245,6 +250,9 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
     scene.text(`You feel his ${((s as any).dick1 || '')}cm ${((s as any).dick_girth1 || '')} cock stretching your ass. The three men then all start fucking you in tandem. This goes on for some time, occasionally stopping so they can switch positions. They eventually stop and get you back on your knees, pushing your head back and telling you to open your mouth. They all jerk off on your face and into your mouth.`);
     (s as any).horand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
+      (s as any).orgasm_or = 'no';
+    } else {
+      (s as any).orgasm_or = 'yes';
     }
     qspCall(s, 'arousal', 'bj', 20, ((s as any).npcID2 ?? 0), 'sub', 'rough', 'group');
     qspCall(s, 'arousal', 'vaginal', 20, ((s as any).npcID ?? 0), 'sub', 'rough', 'group');

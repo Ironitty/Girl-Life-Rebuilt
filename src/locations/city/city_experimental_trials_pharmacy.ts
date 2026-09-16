@@ -34,6 +34,8 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_s = 'city_experimental_trials_pharmacy';
+  (s as any).args_s = 'cart';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'experimental_trials');
   qspCall(s, 'stat', '');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'hookahlounge';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'hookahlounge';
+  (s as any).menu_arg = 'start';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hookah Lounge</b></center>');
@@ -46,7 +51,7 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
       scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${((s as any).npc_firstname ?? 0)?.['A262'] ?? ''}!"`);
       qspCall(s, 'money', 'pay', 100, 'cash');
       (s as any).smoketab = 1;
-      scene.actions([{ label: 'Continue', goto: ['hookahlounge', 'start'] }]);
+      qspGoto(s, 'hookahlounge', 'start');
     }
   } },
     ]);

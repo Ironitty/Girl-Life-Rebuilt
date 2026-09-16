@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_sq', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).region = 'pushkin';
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Okhlopkov Square</b></center>');
@@ -13,34 +15,34 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('Okhlopkov Square serves as the main intersection of several smaller streets.');
   scene.text('There are many small cafes and shops also a flourishing nightlife and entertainment activities.');
   // TODO-QSP: dynamic text: Another street runs straight back to the <a href="exec:minut += 5 & gt 'pushkin'...
-  scene.text('Another street runs straight back to the <a href="exec:minut += 5 & gt \'pushkin\'">Pushkin Town Center</a>.');
+  scene.text('Another street runs straight back to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027pushkin\\u0027, \\u0027\\u0027); return false;">Pushkin Town Center</a>.');
   // TODO-QSP: dynamic text: Okhlopkov Square itself leads to the <a href="exec:minut += 5 & gt 'pushkin_park...
-  scene.text('Okhlopkov Square itself leads to the <a href="exec:minut += 5 & gt \'pushkin_parks\',\'start\'">Pushkin Park</a>.');
+  scene.text('Okhlopkov Square itself leads to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027pushkin_parks\\u0027, \\u0027start\\u0027); return false;">Pushkin Park</a>.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
-    scene.text('A small <a href="exec:gt \'larek\',\'start\'">grocery store</a> is currently open.');
+    scene.text('A small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027larek\\u0027, \\u0027start\\u0027); return false;">grocery store</a> is currently open.');
   } else {
     // TODO-QSP: dynamic text: There is a small whole foods store that is open from 8:00 - '+func('time', 'get_...
     scene.text('There is a small whole foods store that is open from 8:00 - 20:00 everyday. It is currently closed.');
   }
   if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 22) {
-    scene.text('A quaint little restaurant has put a sign outside of its door, reading, "<a href="exec:gt \'pushkin_cafe\',\'start\'">Liamel Cafe</a>."');
+    scene.text('A quaint little restaurant has put a sign outside of its door, reading, "<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pushkin_cafe\\u0027, \\u0027start\\u0027); return false;">Liamel Cafe</a>."');
   } else {
     // TODO-QSP: dynamic text: Liamel Cafe is current closed, it is open every day '+func('time', 'get_time_str...
     scene.text('Liamel Cafe is current closed, it is open every day 10:00 - 22:00');
   }
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 17) {
-    scene.text('The long standing alternative clothing shop <a href="exec:gt \'shop_tsar_bomba\',\'start\'">Tsar Bomba</a> is unmistakable amongst the tourist shops on the main square.');
-    scene.text('Clothing for younger women is catered for in <a href="exec:gt \'shop_flamingos\',\'start\'">Flamingos</a>.');
-    scene.text('Catering for the burlesque club here there is the <a href="exec:gt \'shop_fancy_pancy\',\'start\'">Fancy Pancy</a> boutique clothing store.');
+    scene.text('The long standing alternative clothing shop <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027shop_tsar_bomba\\u0027, \\u0027start\\u0027); return false;">Tsar Bomba</a> is unmistakable amongst the tourist shops on the main square.');
+    scene.text('Clothing for younger women is catered for in <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027shop_flamingos\\u0027, \\u0027start\\u0027); return false;">Flamingos</a>.');
+    scene.text('Catering for the burlesque club here there is the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027shop_fancy_pancy\\u0027, \\u0027start\\u0027); return false;">Fancy Pancy</a> boutique clothing store.');
   } else {
     // TODO-QSP: dynamic text: Tsar Bomba, Flamingos and Fansy Pansy, are all current closed, they are open ope...
     scene.text('Tsar Bomba, Flamingos and Fansy Pansy, are all current closed, they are open open Mon - Sat day 9:00 - 18:00');
   }
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18) {
-    scene.text('<a href="exec:gt \'pushkin_ballet_secrets\',\'init\'">Ballet Secrets</a> is located at the end of a well maintained alleyway with a flamboyant ballet shop display and despite it\'s name the premises offers a wide range of services for dancers and athletes. ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pushkin_ballet_secrets\\u0027, \\u0027init\\u0027); return false;">Ballet Secrets</a> is located at the end of a well maintained alleyway with a flamboyant ballet shop display and despite it\'s name the premises offers a wide range of services for dancers and athletes. ');
   } else {
     if (((s as any).week ?? 0) === 7  &&  (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 17)) {
-      scene.text('The dance shop is closed, but you can still access the <a href="exec:gt \'pushkin_ballet_secrets\',\'init\'">Members Area</a> with your card.');
+      scene.text('The dance shop is closed, but you can still access the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pushkin_ballet_secrets\\u0027, \\u0027init\\u0027); return false;">Members Area</a> with your card.');
     } else {
       // TODO-QSP: dynamic text: Ballet Secrets is currently closed. The shop opens '+func('time', 'get_time_stri...
       scene.text('Ballet Secrets is currently closed. The shop opens 9:00-17:00 Monday to Saturday, and members only access for class is open on Sunday from 10:00 - 17:00.');
@@ -48,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).exhibitionQW ?? 0) > 3) {
     if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
-      scene.text('<a href="exec:gt \'shop_exhibitionist\',\'start\'">Simply Salacious</a> is just down a small side street from here.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027shop_exhibitionist\\u0027, \\u0027start\\u0027); return false;">Simply Salacious</a> is just down a small side street from here.');
     } else {
       // TODO-QSP: dynamic text: <b>Simply Salacious,</b> is open Mon - Sat, 8:00 - '+func('time', 'get_time_stri...
       scene.text('<b>Simply Salacious,</b> is open Mon - Sat, 8:00 - 18:00');
@@ -56,7 +58,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 12  ||  ((s as any).hour ?? 0) < 2) {
     if (((s as any).pcs_inhib ?? 0) > 30) {
-      scene.text('Club <a href="exec:gt \'Rasputin_entrance\'">Rasputin</a> provides both burlesque and exotic variety shows every evening except on Mondays.');
+      scene.text('Club <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Rasputin_entrance\\u0027, \\u0027\\u0027); return false;">Rasputin</a> provides both burlesque and exotic variety shows every evening except on Mondays.');
       scene.text('The new members of the Pushkin Burlesque Troupe also perform there to hone their skills.');
     } else {
       scene.text('There is a burlesque club in an old theatre here. Such perversion is unhealthy and you cannot bring yourself to go there.');
@@ -169,7 +171,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Hold it', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).stallionQ = 1;
-  }, goto: ['pushkin_sq', ''] },
+    qspGoto(s, 'pushkin_sq', '');
+  } },
       ]);
     }
     scene.actions([

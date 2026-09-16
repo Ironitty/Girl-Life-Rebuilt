@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'artem_events_uni';
+  (s as any).loc_arg = 'inner';
+  (s as any).menu_loc = 'artem_events_uni';
+  (s as any).menu_arg = 'inner';
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'anushka_konstantinov_schedule', '');
   qspCall(s, 'schedule', 'A23');
@@ -52,11 +56,11 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
     (s as any).temprand = Math.floor(Math.random() * 4) + 1;
     if (((s as any).temprand ?? 0) === 1) {
       if (((s as any).kendraslave ?? 0) >= 1) {
-        if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['coffee_hole'] = 1;
+        ((s as any).kendraQW = (s as any).kendraQW ?? {})['coffee_hole'] = 1;
         scene.text('You see a familiar face sitting at one of the tables; your mistress Kendra.');
       } else {
         if (((s as any).meet_kendra ?? 0) === 1) {
-          if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['coffee_hole'] = 1;
+          ((s as any).kendraQW = (s as any).kendraQW ?? {})['coffee_hole'] = 1;
           scene.text('You see a familiar face sitting at one of the tables; Kendra.');
         } else {
           scene.text('As you look around, you see a beautiful young black woman sitting at one of the tables. She notices you and gives you a quick once-over before returning to what she was doing.');
@@ -77,6 +81,8 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'artem_events_uni';
+  (s as any).menu_arg = 'coffee_hole_sit';
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
@@ -90,7 +96,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
         scene.text('Anushka just smirks at the comment before turning to you. "You like it big and black that much, huh? Artem not doing it for you as much anymore?"');
         scene.text('His face drops as she turns his comment around on him. He starts to say something, but you interrupt them before they can get going. "Okay you two, play nice! And stop being so bad, Nush."');
         if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 0) {
-          if (!(s as any).anushkaCityQW) (s as any).anushkaCityQW = {}; (s as any).anushkaCityQW['first_visit'] = 1;
+          ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
           scene.text('"Which dorm are you in by the way? Maybe I can stop by and visit some time?" you ask.');
           scene.text('"I\'m not," she replies. "I\'ve got an apartment with the boys." She then shrugs. "Yeah, it\'s as bad as you think, but you can stop by sometime if you want."');
           scene.text('She gives you her address and you chat about the university before she asks what you want.');
@@ -117,7 +123,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
           scene.text('He frowns a little, not liking her messing with him. "Just out with MY girl."');
           scene.text('Anushka rolls her eyes at his comment, but you change the direction of the discussion before she can say anything.');
           if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 0) {
-            if (!(s as any).anushkaCityQW) (s as any).anushkaCityQW = {}; (s as any).anushkaCityQW['first_visit'] = 1;
+            ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
             scene.text('"You\'re so bad! Which dorm are you in by the way? Maybe I can stop by and visit some time?" you ask.');
             scene.text('"I\'m not," she replies. "I\'ve got an apartment with the boys." She then shrugs. "Yeah, it\'s as bad as you think, but you can stop by sometime if you want."');
             scene.text('She gives you her address and you chat about the university before she asks what you want.');
@@ -167,7 +173,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['coffee_hole'] = 1;
+      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['coffee_hole'] = 1;
       if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
         scene.text('As she stops at your table, she gives you a friendly smile. "Welcome to the Coffee Hole, where we can fill your holes with something hot and black, but maybe not in the way you would like…" she says with a wink, even making ordering coffee sound dirty.');
         scene.text('Artem responds before you can. "As much you need your holes filled by a nerd." His tone is confident and a bit smug.');
@@ -175,7 +181,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
         scene.text('His face drops as she turns around his comment on him. He starts to say more but you interrupt before they can get going. "Ok you two, play nice and stop being so bad Nush. I didn\'t know you worked here."');
         scene.text('She shrugs. "I need some extra money coming in to help pay for stuff. This is pretty easy, close to my place, and I can study when it\'s slow."');
         if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 0) {
-          if (!(s as any).anushkaCityQW) (s as any).anushkaCityQW = {}; (s as any).anushkaCityQW['first_visit'] = 1;
+          ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
           scene.text('"Nice. Which dorm are you in by the way? Maybe I can stop by and visit some time?" you ask.');
           scene.text('"I\'m not," she replies. "I\'ve got an apartment with the boys." She then shrugs. "Yeah, it\'s as bad as you think, but you can stop by sometime if you want."');
           scene.text('She gives you her address and you chat about the university before you notice the line forming behind you and start looking at the menu on the wall to see if you want to order something.');
@@ -228,6 +234,9 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAfterOrdering(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'inner';
+  (s as any).menu_loc = 'artem_events_uni';
+  (s as any).menu_arg = 'inner';
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/artem/uni/event/coffee_hole/hangout.jpg');
   scene.text('Artem pays for your drink and snack and orders a coffee and muffin for himself');
@@ -285,7 +294,7 @@ function enterAfterOrdering(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Yes', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'like', 1, 'coffee_hole');
-    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['atrem_inv'] = 1;
+    ((s as any).kendraQW = (s as any).kendraQW ?? {})['atrem_inv'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big84.jpg');
     scene.text('You look down a little to show your submission to her. "Yes, Mistress Kendra…"');
@@ -306,7 +315,7 @@ function enterAfterOrdering(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).kendraslave ?? 0) >= 1) {
-          if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['atrem_inv'] = 1;
+          ((s as any).kendraQW = (s as any).kendraQW ?? {})['atrem_inv'] = 1;
           qspCall(s, 'npc_relationship', 'modify', 'A84', 'like', 1, 'coffee_hole');
           scene.text('She looks down at you. "Who do we have here? My favorite little white bitch. Who\'s your cute little friend?"');
           scene.text('You look down a little to show your submission to her. "This is my boyfriend, Artem…"');
@@ -336,6 +345,9 @@ function enterAfterOrdering(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNush1(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'inner';
+  (s as any).menu_loc = 'artem_events_uni';
+  (s as any).menu_arg = 'inner';
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/artem/uni/event/coffee_hole/hangout.jpg');
   scene.text('Artem pays for your drink and snack and orders a coffee and muffin for himself. A few minutes later, she returns with your food and the two of you sit, talk, drink your drinks and eat your snacks.');
@@ -376,6 +388,9 @@ function enterNush1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNush2(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'inner';
+  (s as any).menu_loc = 'artem_events_uni';
+  (s as any).menu_arg = 'inner';
   scene.img('images/characters/pavlovsk/school/boy/artem/uni/event/coffee_hole/hangout.jpg');
   scene.text('Artem pays for your drink and snack that you order and orders a coffee and muffin for himself. A few minutes later, she returns with your food and the two of you sit, talk, drink your drinks and eat your snacks.');
   scene.text('The two of you sit in the cafe talking for about an hour about a variety of subjects, such as what\'s going on with your families, friends and how things are going in general, just to name a few.');
@@ -392,13 +407,13 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/panty_quest/coffee_hole_talking.jpg');
   if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_katja_uni'] = 1;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['know_katja_uni'] = 1;
     if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 0) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_artem_is_boyfreind'] = 1;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['knows_artem_is_boyfreind'] = 1;
       if (((s as any).katjaQW ?? 0)?.['QWstage'] === 5) {
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['QWstage'] = 4;
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['QWstage'] = 4;
       }
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['boy_block'] = 1;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['boy_block'] = 1;
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A14'] >= 40) {
         // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, so good to see you," she says.
         scene.text(`"Hi ${((s as any).pcs_nickname || '')}, so good to see you," she says.`);
@@ -408,7 +423,7 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Are you also studying at the university, ${((s as any).pcs_nickname || '')}?" she asks.`);
         if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
           if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
-            if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
+            ((s as any).katjaQW = (s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
           }
           scene.text('"I\'m going to study to become a teacher," you tell her.');
           scene.text('"Me too. We\'re going to have so much fun together," she says, looking happy.');
@@ -436,7 +451,7 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
           scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname || '')}! How have you been? Still getting used to our shared floor, Artem? And how about you, ${((s as any).pcs_nickname || '')}? Are you also studying at the university?" she asks as you walk over to her table.`);
           if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
             if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
-              if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
+              ((s as any).katjaQW = (s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
             }
             scene.text('"I\'m going to study to become a teacher," you tell her.');
             scene.text('"Me too. We\'re going to have so much fun together," she says, looking happy.');
@@ -464,7 +479,7 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Are you also studying at the university, ${((s as any).pcs_nickname || '')}?" she asks.`);
         if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
           if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
-            if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
+            ((s as any).katjaQW = (s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
           }
           scene.text('"I\'m going to study to become a teacher," you reply.');
           scene.text('"Me too. We\'re going to have so much fun together," she says, looking happy.');
@@ -488,7 +503,7 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
           scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname || '')}! How have you been? Still getting used to our shared floor, Artem? And how about you ${((s as any).pcs_nickname || '')}? Are you also studying at the university?" she asks as you walk over to her table.`);
           if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
             if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
-              if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
+              ((s as any).katjaQW = (s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
             }
             scene.text('"I\'m going to study to become a teacher," you tell her.');
             scene.text('"Me too. We\'re going to have so much fun together!" she says, looking happy.');
@@ -506,11 +521,11 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 0) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_artem_is_boyfreind'] = 1;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['knows_artem_is_boyfreind'] = 1;
       if (((s as any).katjaQW ?? 0)?.['QWstage'] === 5) {
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['QWstage'] = 4;
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['QWstage'] = 4;
       }
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['boy_block'] = 1;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['boy_block'] = 1;
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A14'] >= 40) {
         // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, nice to see you here," she says.
         scene.text(`"Hi ${((s as any).pcs_nickname || '')}, nice to see you here," she says.`);
@@ -579,12 +594,16 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Choose another table', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
-  }, goto: ['artem_events_uni', 'coffee_hole_sit'] },
+    qspGoto(s, 'artem_events_uni', 'coffee_hole_sit');
+  } },
   ]);
   scene.build();
 }
 
 function enterCoffeeHoleKatjaDrink(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'inner';
+  (s as any).menu_loc = 'artem_events_uni';
+  (s as any).menu_arg = 'inner';
   scene.img('images/characters/pavlovsk/school/girl/katja/panty_quest/artem_katja_coffee_hole.jpg');
   scene.text('Artem pays for your drink and snack and orders a coffee and muffin for himself.');
   scene.text('Katja orders another cappuccino and a few minutes later, the girl returns with your order.');
@@ -660,7 +679,7 @@ function enterCoffeeHoleKatjaDrink(s: GameState, scene: SceneBuilder): void {
                     scene.text('"I heard something…" he mumbles as he looks down at his coffee. "I wasn\'t sure if it was sex…"');
                     scene.text('He doesn\'t look Katja in the eyes, so you quickly switch the conversation so your boyfriend doesn\'t feel uncomfortable.');
                   } else {
-                    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
+                    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
                     scene.text('"Yes, they were really going at it," Artem says and the three of you discuss how often you hear loud sex in the dorms.');
                   }
                 } else {
@@ -673,7 +692,7 @@ function enterCoffeeHoleKatjaDrink(s: GameState, scene: SceneBuilder): void {
                     scene.text('She can\'t keep up her level of cool and start laughing. You know it\'s mostly at herself for being so direct about sex, but you quickly switch the conversation so your boyfriend can save face.');
                   } else {
                     if (((s as any).artemQW ?? 0)?.['katja_threesome'] === 2) {
-                      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+                      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
                       scene.text('"Considering how I remember making you scream, I\'m not so sure you don\'t wanna do that," Artem answers.');
                       scene.text('Katja just laughs and the conversation continues to be rowdy with a lot of innuendo.');
                     } else {
@@ -822,7 +841,8 @@ function enterCoffeeHoleAlbinaSit(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Sit somewhere else', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A23', 'dislike');
-  }, goto: ['artem_events_uni', 'coffee_hole_sit'] },
+    qspGoto(s, 'artem_events_uni', 'coffee_hole_sit');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -830,6 +850,9 @@ function enterCoffeeHoleAlbinaSit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCoffeeHoleAlbinaDrink(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'inner';
+  (s as any).menu_loc = 'artem_events_uni';
+  (s as any).menu_arg = 'inner';
   scene.img('images/characters/pavlovsk/school/girl/albina/uni/artem_albina_coffee_hole.jpg');
   scene.text('Artem pays for your drink and snack and orders a coffee and muffin for himself.');
   scene.text('Albina orders another coffee and a few minutes later, the girl returns with your order.');

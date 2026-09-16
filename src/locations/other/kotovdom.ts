@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,8 +9,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'kotovdom';
+  (s as any).menu_arg = 'home';
+  (s as any).track_loop = '';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
+  (s as any).locM_arg = 'home';
+  (s as any).locM = 'kotovdom';
+  (s as any).loc_arg = 'home';
+  (s as any).loc = 'kotovdom';
+  (s as any).location_type = 'private';
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -61,6 +69,10 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKor(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'kor';
+  (s as any).locM = 'kotovdom';
+  (s as any).location_type = 'private';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hallway</b></center>');
@@ -76,6 +88,8 @@ function enterKor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVann(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'bathroom';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
@@ -113,14 +127,18 @@ function enterVann(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKotovkom(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'kotovkom';
+  (s as any).locM = 'kotovdom';
+  (s as any).locclass = 'bedr';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vitek\'s bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/vitekhome/kotovkom.jpg');
   scene.text('His bedroom doesn\'t look like it has been cleaned in weeks or maybe ever; dirty clothes lie on the floor, cleaner looking clothes are scattered around. Several empty beer bottles and other alcohol bottles are scattered around, a full ashtray rests on a wooden box he is using as a night stand next to the bed. The only thing in decent shape in the whole room is a newer looking TV.');
-  scene.text('<a href="exec:gt \'kotovdom\', \'vitek_chat\'">Vitek</a> is lying on his bed, relaxing and watching TV.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kotovdom\\u0027, \\u0027vitek_chat\\u0027); return false;">Vitek</a> is lying on his bed, relaxing and watching TV.');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    scene.actions([{ label: 'Continue', goto: ['kotovdom', 'kotovkom'] }]);
+    qspGoto(s, 'kotovdom', 'kotovkom');
     scene.actions([
       { label: 'Dress yourself', handler: (st: GameState) => {
     qspCall(st, 'shortgs', 'dress');
@@ -135,6 +153,9 @@ function enterKotovkom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKuh(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'kuh';
+  (s as any).locM = 'kotovdom';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kitchen</b></center>');
@@ -159,12 +180,24 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).kotovlefto_count ?? 0) >= 1) {
+    (s as any).kotov_lefto = ' some left overs';
+  } else {
+    (s as any).kotov_lefto = '';
   }
   if (((s as any).kotovsup_count ?? 0) >= 1) {
+    (s as any).kotov_sup = ' some soup';
+  } else {
+    (s as any).kotov_sup = '';
   }
   if (((s as any).kotovwater_count ?? 0) >= 1) {
+    (s as any).kotov_water = ' some bottled water';
+  } else {
+    (s as any).kotov_water = '';
   }
   if (((s as any).kotovsanw_count ?? 0) >= 1) {
+    (s as any).kotov_sanw = ' some stuff to make a sandwich';
+  } else {
+    (s as any).kotov_sanw = '';
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$artem_tea>><<$artem_water>><<$artem_sup>><<$artem...
@@ -297,7 +330,7 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Break up with him', handler: (st: GameState) => {
     (s as any).kotovLoveQW = (-1);
     qspCall(s, 'npc_relationship', 'set', 'A9', 0);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (50);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (50);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
@@ -361,6 +394,7 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAfterSex(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'arousal', 'end');
   scene.text('<center><b>Vitek\'s bedroom</b></center>');
@@ -369,7 +403,7 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'after_anal', 'no_plug\' else gs \'dinsex', 'after_anal', 'boy', ((s as any).boydesc ?? 0));
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    scene.actions([{ label: 'Continue', goto: ['kotovdom', 'after_sex'] }]);
+    qspGoto(s, 'kotovdom', 'after_sex');
     scene.actions([
       { label: 'Dress yourself', handler: (st: GameState) => {
     qspCall(st, 'shortgs', 'dress');
@@ -395,6 +429,7 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWalk(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).kotov_bj_times = 0;
   (s as any).anal_no = 0;

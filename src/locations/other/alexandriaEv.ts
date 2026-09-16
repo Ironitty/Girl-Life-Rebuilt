@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -415,6 +415,7 @@ function enterInterview4(s: GameState, scene: SceneBuilder): void {
 
 function enterFilipp(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 16) + 5);
+  (s as any).location_type = 'public_indoors';
   (s as any).music_loop = 0;
   qspCall(s, 'stat', '');
   scene.text('<center><b>????</b></center>');
@@ -468,7 +469,7 @@ function enterFilipp(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'contribution'] }]);
+      qspGoto(s, 'alexandriaEv', 'contribution');
     }
   } },
     ]);
@@ -609,7 +610,8 @@ function enterPersufilipp(s: GameState, scene: SceneBuilder): void {
       { label: 'A call?', handler: (st: GameState) => {
     (s as any).AlexandriaMissionQW = 2;
     qspCall(s, 'exp_gain', 'persuas', 1);
-  }, goto: ['alexandriaEv', 'anacall'] },
+    qspGoto(s, 'alexandriaEv', 'anacall');
+  } },
     ]);
   } else {
     scene.text('Filipp Kudashov tilts his head and looks at you with smugness "Ms. Assistant, I don\'t know what are you insinuating but…" You cut him before he can continue.');
@@ -629,7 +631,7 @@ function enterPersufilipp(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'contribution'] }]);
+      qspGoto(s, 'alexandriaEv', 'contribution');
     }
   } },
     ]);
@@ -730,9 +732,9 @@ function enterAnachase2(s: GameState, scene: SceneBuilder): void {
     (s as any).dummy = Math.floor(Math.random() * 100) + 1;
     qspCall(s, 'stat', '');
     if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase3'] }]);
+      qspGoto(s, 'alexandriaEv', 'anachase3');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase4'] }]);
+      qspGoto(s, 'alexandriaEv', 'anachase4');
     }
   } },
     ]);
@@ -763,12 +765,12 @@ function enterAnachase2(s: GameState, scene: SceneBuilder): void {
     (s as any).dummy = Math.floor(Math.random() * 100) + 1;
     qspCall(s, 'stat', '');
     if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase3'] }]);
+      qspGoto(s, 'alexandriaEv', 'anachase3');
     } else {
       if (((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).dummy ?? 0) >= 90) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anacrash1'] }]);
+        qspGoto(s, 'alexandriaEv', 'anacrash1');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase4'] }]);
+        qspGoto(s, 'alexandriaEv', 'anachase4');
       }
     }
   } },
@@ -892,34 +894,34 @@ function enterAnachase4(s: GameState, scene: SceneBuilder): void {
 
 function enterAnacrash1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_health ?? 0)/(Math.floor(Math.random() * 9) + 2);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['feet'] = ((s as any).pain['feet'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cheeks'] = ((s as any).pain['cheeks'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['hands'] = ((s as any).pain['hands'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['jaw'] = ((s as any).pain['jaw'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['thighs'] = ((s as any).pain['thighs'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['toes'] = ((s as any).pain['toes'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['fingers'] = ((s as any).pain['fingers'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nose'] = ((s as any).pain['nose'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ribs'] = ((s as any).pain['ribs'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['hips'] = ((s as any).pain['hips'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ears'] = ((s as any).pain['ears'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['eyebrows'] = ((s as any).pain['eyebrows'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['neck'] = ((s as any).pain['neck'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['chest'] = ((s as any).pain['chest'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (0);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['feet'] = ((s as any).pain['feet'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['cheeks'] = ((s as any).pain['cheeks'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['hands'] = ((s as any).pain['hands'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['jaw'] = ((s as any).pain['jaw'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['thighs'] = ((s as any).pain['thighs'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['toes'] = ((s as any).pain['toes'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['fingers'] = ((s as any).pain['fingers'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['nose'] = ((s as any).pain['nose'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['back'] = ((s as any).pain['back'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['ribs'] = ((s as any).pain['ribs'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['hips'] = ((s as any).pain['hips'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['head'] = ((s as any).pain['head'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['ears'] = ((s as any).pain['ears'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['eyebrows'] = ((s as any).pain['eyebrows'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['lips'] = ((s as any).pain['lips'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['tummy'] = ((s as any).pain['tummy'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['neck'] = ((s as any).pain['neck'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['chest'] = ((s as any).pain['chest'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (0);
+  ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) + (0);
   (s as any).minut = ((s as any).minut ?? 0) + 7;
   (s as any).fat = ((s as any).fat ?? 0) - (2);
   qspCall(s, 'mood', 'lower', 'huge');
@@ -952,7 +954,8 @@ function enterAnacrash1(s: GameState, scene: SceneBuilder): void {
         { label: 'Will you to cast Heal.', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['alexandriaEv', 'heal1'] },
+    qspGoto(s, 'alexandriaEv', 'heal1');
+  } },
       ]);
     }
   }
@@ -967,6 +970,7 @@ function enterHospital(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   (s as any).AlexandriaMissionQW = ((s as any).AlexandriaMissionQW ?? 0) + (1);
   (s as any).AlexandriaQW = 17;
+  (s as any).location_type = 'public_indoors';
   (s as any).music_loop = 0;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/alexandria/alexandria2.jpg');
@@ -1092,15 +1096,18 @@ function enterAnafight1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'FIGHT!', handler: (st: GameState) => {
+    (s as any).boydesc = 'Ana';
     scene.img('images/characters/city/ana/action.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'sandbaggingana');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterJail(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   (s as any).music_loop = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 1440;
   (s as any).pcs_sleep = 90;
@@ -1145,6 +1152,7 @@ function enterAnabribe1(s: GameState, scene: SceneBuilder): void {
 function enterAnachase5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).AlexandriaMissionQW = ((s as any).AlexandriaMissionQW ?? 0) + (1);
+  (s as any).location_type = 'public_indoors';
   (s as any).music_loop = 0;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/ana/tv.jpg');
@@ -1197,10 +1205,12 @@ function enterAnachase5(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Go through them… violently!', handler: (st: GameState) => {
+    (s as any).boydesc = 'Pissed Gopniks';
     scene.img('images/characters/city/ana/gopniks.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'anagopniks');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
     { label: 'Talk calmly and try to retreat through the window.', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_persuas ?? 0)) {
       if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1230,10 +1240,12 @@ function enterAnachase5(s: GameState, scene: SceneBuilder): void {
       scene.text('"Shit! That was probably one of the worst things to say. The Zenith has a traditional rivalry with Moscow-based teams, Spartak being one of them, and these guys seem like hardcore Zenith fans." With murder in their eyes, they throw themselves at you.');
       scene.actions([
         { label: 'BRAWL!', handler: (st: GameState) => {
+    (s as any).boydesc = 'Pissed Gopniks';
     scene.img('images/characters/city/ana/gopniks.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'anagopniks');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
       ]);
     }
   } },
@@ -1302,34 +1314,34 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).dummy ?? 0) >= 90  &&  ((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).pcs_stren ?? 0) >= 50  &&  ((s as any).pcs_agil ?? 0) >= 50  &&  ((s as any).pcs_vital ?? 0) >= 50  &&  ((s as any).pcs_react ?? 0) >=50) {
       (s as any).pcs_health = ((s as any).pcs_health ?? 0)/(Math.floor(Math.random() * 9) + 2);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['feet'] = ((s as any).pain['feet'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cheeks'] = ((s as any).pain['cheeks'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['hands'] = ((s as any).pain['hands'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['jaw'] = ((s as any).pain['jaw'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['thighs'] = ((s as any).pain['thighs'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['toes'] = ((s as any).pain['toes'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['fingers'] = ((s as any).pain['fingers'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nose'] = ((s as any).pain['nose'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ribs'] = ((s as any).pain['ribs'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['hips'] = ((s as any).pain['hips'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ears'] = ((s as any).pain['ears'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['eyebrows'] = ((s as any).pain['eyebrows'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['neck'] = ((s as any).pain['neck'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['chest'] = ((s as any).pain['chest'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (0);
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['feet'] = ((s as any).pain['feet'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['cheeks'] = ((s as any).pain['cheeks'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['hands'] = ((s as any).pain['hands'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['jaw'] = ((s as any).pain['jaw'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['thighs'] = ((s as any).pain['thighs'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['toes'] = ((s as any).pain['toes'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['fingers'] = ((s as any).pain['fingers'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['nose'] = ((s as any).pain['nose'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['back'] = ((s as any).pain['back'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['ribs'] = ((s as any).pain['ribs'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['hips'] = ((s as any).pain['hips'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['head'] = ((s as any).pain['head'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['ears'] = ((s as any).pain['ears'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['eyebrows'] = ((s as any).pain['eyebrows'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['lips'] = ((s as any).pain['lips'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['tummy'] = ((s as any).pain['tummy'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['neck'] = ((s as any).pain['neck'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['chest'] = ((s as any).pain['chest'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) + (0);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       (s as any).fat = ((s as any).fat ?? 0) - (5);
       qspCall(s, 'mood', 'lower', 'huge');
@@ -1367,7 +1379,8 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
             { label: 'Will you to cast Heal.', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['alexandriaEv', 'heal3'] },
+    qspGoto(s, 'alexandriaEv', 'heal3');
+  } },
           ]);
         }
       }
@@ -1377,7 +1390,7 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'mood', 'lower', 'small');
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
+      ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
       qspCall(s, 'stat', '');
       scene.text('<center><b>Ana</b></center>');
       scene.img('images/characters/city/ana/ana4.jpg');
@@ -1453,6 +1466,7 @@ function enterAnachase7(s: GameState, scene: SceneBuilder): void {
       { label: 'Enter after her.', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).AlexandriaMissionQW = ((s as any).AlexandriaMissionQW ?? 0) + (3);
+    (s as any).location_type = 'public_indoors';
     (s as any).music_loop = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><b>WTF?</b></center>');
@@ -1473,8 +1487,8 @@ function enterAnachase7(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     (s as any).pcs_mana = 0;
     qspCall(s, 'exp_gain', 'splcstng', Math.floor(Math.random() * 5) + 0);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['fingers'] = ((s as any).pain['fingers'] ?? 0) + (0);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['hands'] = ((s as any).pain['hands'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).pain = (s as any).pain ?? {})['fingers'] = ((s as any).pain['fingers'] ?? 0) + (0);
+    ((s as any).pain = (s as any).pain ?? {})['hands'] = ((s as any).pain['hands'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/ana/zap.jpg');
     scene.text('For what you understand, <i>magical</i> electricity, don\'t necessarily work like the <i>natural</i> one. At the same time, Electrical Shock your only spell of the Electrical School, isn\'t really that powerful to push enough charge through the stairs to affect Ana.');
@@ -1504,6 +1518,7 @@ function enterAnachase7(s: GameState, scene: SceneBuilder): void {
 
 function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).location_type = 'public_indoors';
   (s as any).music_loop = 0;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Ana</b></center>');
@@ -1553,7 +1568,8 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
         { label: '"You know that I am not going to stop."', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['alexandriaEv', 'anascore'] },
+    qspGoto(s, 'alexandriaEv', 'anascore');
+  } },
       ]);
     }
   }
@@ -1570,7 +1586,8 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
         { label: '"Or you can kindly give me the key."', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['alexandriaEv', 'anaryan'] },
+    qspGoto(s, 'alexandriaEv', 'anaryan');
+  } },
       ]);
     }
   }
@@ -1581,10 +1598,12 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
     (st as any).AlexandriaQW = 17;
   }, goto: ['city_center', ''] },
     { label: 'Boss fight!', handler: (st: GameState) => {
+    (s as any).boydesc = 'Ana';
     scene.img('images/characters/city/ana/boss.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'bossana');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -1655,6 +1674,7 @@ function enterAnaryan(s: GameState, scene: SceneBuilder): void {
 
 function enterAnamotel(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Ana</b></center>');
   scene.img('images/characters/city/ana/ana5.jpg');
@@ -1741,7 +1761,7 @@ function enterAnamotel(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_breath = 1;
     (s as any).pcs_hairbsh = 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['female_sexual_times'] = ((s as any).stat['female_sexual_times'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['female_sexual_times'] = ((s as any).stat['female_sexual_times'] ?? 0) + (1);
     (s as any).cumspclnt = 20;
     qspCall(s, 'cum_cleanup', '');
     qspCall(s, 'sweat', 'remove_deo');

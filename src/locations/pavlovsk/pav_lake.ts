@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,9 +8,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'pav_lake', '');
+  (s as any).region = 'pav';
+  (s as any).locclass = 'beach';
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).temper ?? 0) >= 5  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 10  &&  ((s as any).hour ?? 0) < 20  &&  ((((s as any).hour ?? 0) >= 10  &&  ((s as any).week ?? 0) >= 6)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).week ?? 0) < 6))  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 18  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 20  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['mey_vika_events', 'beach_event1'] }]);
+    qspGoto(s, 'mey_vika_events', 'beach_event1');
   }
   scene.text('<center><h4>Lake</h4></center>');
   if (((s as any).season ?? 0) === 'winter') {
@@ -53,7 +56,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).season ?? 0) === 'winter') {
     if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12) {
-      scene.text('Looking out over the frozen lake, you see a figure in the distance figure skating and doing all types of crazy moves. Stepping onto the ice and skating out, you notice that it\'s <a href="exec:gt \'gschool_socialchg1\', \'tVeronika\'">Veronika</a>.');
+      scene.text('Looking out over the frozen lake, you see a figure in the distance figure skating and doing all types of crazy moves. Stepping onto the ice and skating out, you notice that it\'s <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_socialchg1\\u0027, \\u0027tVeronika\\u0027); return false;">Veronika</a>.');
     }
   }
   if (((s as any).konki_cloth ?? 0) === 1  ||  (!((s as any).pcs_ski_worn ?? 0))) {
@@ -75,7 +78,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (((s as any).season ?? 0) === 'spring'  ||  ((s as any).season ?? 0) === 'fall')  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).christinaQW ?? 0)?.['subpath'] === 1  &&  ((s as any).socialchg ?? 0)?.['tChristina_day'] !== ((s as any).daystart ?? 0)) {
-        scene.text('<a href="exec:gt \'Zvereva_sub_1\', \'chris_sub\'">Christina</a> is standing by the beach looking out over the lake as Lina stands next to her, breathing heavily.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Zvereva_sub_1\\u0027, \\u0027chris_sub\\u0027); return false;">Christina</a> is standing by the beach looking out over the lake as Lina stands next to her, breathing heavily.');
       }
     }
     qspCall(s, 'camera', 'check_location');
@@ -129,7 +132,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
       if (((s as any).pcs_stam ?? 0) >= (10 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
         scene.actions([
-          { label: 'Go for a swim in the lake', goto: ['pav_lake', 'swimming'] },
+          { label: 'Go for a swim in the lake', handler: (st: GameState) => {
+    qspGoto(s, 'pav_lake', 'swimming');
+  } },
         ]);
       }
       if (((s as any).sunWeather ?? 0) === 1) {
@@ -139,7 +144,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).KsenyaQW ?? 0) === 1  &&  (Math.floor(Math.random() * 3) + 1) === 1  &&  ((s as any).sunWeather ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pav_lake', 'klake'] }]);
+      qspGoto(s, 'pav_lake', 'klake');
     }
     scene.actions([
       { label: 'Take a walk along the beach', handler: (st: GameState) => {
@@ -271,7 +276,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             (s as any).minut = ((s as any).minut ?? 0) + 5;
-            scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+            qspGoto(s, 'pav_residential', '');
           }
         }
       }
@@ -349,7 +354,8 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Refuse and run home naked', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['home_events', 'go_home_naked_pre'] },
+    qspGoto(s, 'home_events', 'go_home_naked_pre');
+  } },
       ]);
     }
     scene.actions([
@@ -422,7 +428,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
     scene.text('You lie down on your towel and enjoy the warm rays of the sun on your body.');
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + 1;
   } else {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
     scene.text('You apply sunscreen to yourself and lie down on the towel to work on your tan. You enjoy the warm rays of the sun on your body.');
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + 3;
   }
@@ -440,6 +446,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).tipelakeboyrand ?? 0) < 80) {
         qspCall(s, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * (((s as any).age ?? 0) + 5 - Math.max(((s as any).age ?? 0) - 5, 16) + 1)) + (Math.max(((s as any).age ?? 0) - 5, 16))));
+        (s as any).lbz_npc = ((s as any).npclastgenerated ?? 0);
         qspCall(s, 'npcStat', '', ((s as any).lbz_npc ?? 0));
         scene.text('A rather cute looking guy sits down next to you as you sunbathe.');
         // TODO-QSP: dynamic text: "Hey there beautiful, I'm <<$boydesc>>. What's your name?" he asks in an attempt...
@@ -464,7 +471,8 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'outfit', 'restore', 'swim');
       }
     }
-  }, goto: ['LakeBoyDy', 'ride'] },
+    qspGoto(s, 'LakeBoyDy', 'ride');
+  } },
           ]);
         } else {
           qspCall(s, 'stat', '');
@@ -568,6 +576,7 @@ function enterSwimming(s: GameState, scene: SceneBuilder): void {
 
 function enterSki(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/lake/skiing_2.jpg');
@@ -703,27 +712,27 @@ function enterSchoolMates(s: GameState, scene: SceneBuilder): void {
 function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).PCloQuality ?? 0) < 3) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
   } else {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   }
   if (((s as any).PCloInhibit ?? 0) <= 10) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
   } else {
     if (((s as any).PCloInhibit ?? 0) < 20) {
     } else {
       if (((s as any).PCloInhibit ?? 0) < 35) {
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
       } else {
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       }
     }
   }
   if (((s as any).PSwim ?? 0) === 1  &&  ((s as any).PCloOnePiece ?? 0) === 1) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/lake/beach_hangout/hangout.jpg');

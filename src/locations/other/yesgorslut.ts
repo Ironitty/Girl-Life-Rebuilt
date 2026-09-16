@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).bonusotnG ?? 0) <= 0) {
         (s as any).bonusotnG = 1;
       }
-      qspCall(s, 'npc_relationship', 'modify_exact', 'A' + qspUntranslated(s, "numnpc>", { location: "yesgorslut" }) + '', ((s as any).bonusotnG ?? 0));
+      qspCall(s, 'npc_relationship', 'modify_exact', 'A' + ((s as any).numnpc ?? 0) + '', ((s as any).bonusotnG ?? 0));
       // TODO-QSP: dynamic text: You have a chat with <<$npc_firstname['A<<numnpc>>']>>, who happily listens to w...
       scene.text(`You have a chat with ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "yesgorslut" })}']>>, who happily listens to what you have to say.`);
     } else {

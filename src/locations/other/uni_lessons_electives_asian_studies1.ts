@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -17,7 +17,7 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk into the classroom and take a seat as the rest of your classmates walk in one-by-one before Professor Da enters the room and closes the door.');
     scene.text('She turns to the class and begins today\'s lecture.');
   } else {
-    if (!(s as any).university) (s as any).university = {}; (s as any).university['first_visit_asian_studies_101'] = 1;
+    ((s as any).university = (s as any).university ?? {})['first_visit_asian_studies_101'] = 1;
     scene.text('You walk into the classroom and take a seat. The rest of your classmates walk in one-by-one, the majority of them female Asian students.');
     scene.text('An older Asian lady, likely in her forties you would guess, then walks in and closes the door before she stops at the front of the class.');
     scene.text('"My name is Hou Da, but you may call me Professor Da. I\'m going to teach you about the various Asian cultures and history."');
@@ -43,7 +43,8 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-  }, goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_listen'] },
+    qspGoto(s, 'uni_lessons_electives_asian_studies1', 'asian_studies_101_listen');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -60,7 +61,7 @@ function enterAsianStudies_101Listen(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 0);
   }
-  if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+  ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Da for the duration of the class. She manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
@@ -112,7 +113,7 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk into the classroom and take a seat as the rest of your classmates walk in one-by-one before Professor Da enters the room and closes the door.');
     scene.text('She turns to the class and begins today\'s lecture.');
   } else {
-    if (!(s as any).university) (s as any).university = {}; (s as any).university['first_visit_asian_studies_102'] = 1;
+    ((s as any).university = (s as any).university ?? {})['first_visit_asian_studies_102'] = 1;
     scene.text('You walk into the classroom and take a seat. The rest of your classmates walk in one-by-one, the majority of them female Asian students.');
     scene.text('An older Asian lady, likely in her forties you would guess, then walks in and closes the door before she stops at the front of the class.');
     scene.text('"My name is Hou Da, but you may call me Professor Da. I\'m going to teach you about the various Asian cultures and history."');
@@ -138,7 +139,8 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-  }, goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_102_listen'] },
+    qspGoto(s, 'uni_lessons_electives_asian_studies1', 'asian_studies_102_listen');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -151,7 +153,7 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
 
 function enterAsianStudies_102Listen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'compskl', Math.floor(Math.random() * 2) + 0);
-  if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+  ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Da for the duration of the class. She manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
@@ -616,7 +618,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const uni_lessons_electives_asian_studies1: LocationDef = {
   name: 'uni_lessons_electives_asian_studies1',
-  title: '<br>Note: She doesn\'t have a dorm room yet, but will in the future.',
+  title: '<br>Note: She doesn\'t have a dorm room yet, but will in the ',
   region: 'other',
   enter: enter,
 };

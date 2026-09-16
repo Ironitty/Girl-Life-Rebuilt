@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,6 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   (s as any).phone_off = 0;
   qspCall(s, 'core_library', 'setloc', 'city_sauna', '');
+  (s as any).location_type = 'public_outdoors';
   (s as any).sauna = ((s as any).sauna ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Sauna</b></center>');
@@ -51,6 +52,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSauna2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_sauna', 'sauna2');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Sauna</b></center>');
@@ -102,17 +104,20 @@ function enterSauna2(s: GameState, scene: SceneBuilder): void {
 function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
   (s as any).phone_off = 1;
   qspCall(s, 'core_library', 'setloc', 'city_sauna', 'saunaroom');
+  (s as any).locBroom = 'city_sauna';
+  (s as any).metkaBroom = 'saunaroom';
+  (s as any).location_type = 'private';
   (s as any).saunaYouRoom = 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'kit_din', '');
   scene.text('<center><b>Room</b></center>');
   scene.img('images/locations/city/residential/sauna/saunaroom.jpg');
   // TODO-QSP: dynamic text: <br>The room has a thread bare <a href="exec:minut += 1 & gt 'bed2'">bed</a> and...
-  scene.text('<br>The room has a thread bare <a href="exec:minut += 1 & gt \'bed2\'">bed</a> and a cheap <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a> where you can choose outfits and organize your clothing.');
+  scene.text('<br>The room has a thread bare <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027bed2\\u0027, \\u0027\\u0027); return false;">bed</a> and a cheap <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a> where you can choose outfits and organize your clothing.');
   if (((s as any).pcs_energy ?? 0) >= 10) {
-    scene.text('<br>Hanging on the wall is a dirty <a href="exec:gt \'mirror\', \'start\'">mirror</a>. The floor is littered with dozens of porn magazines and a selection of sex toys are scattered throughout the room. There\'s so much stuff lying around, there\'s barely enough space to do some basic <a href="exec:gt \'city_sauna\', \'saunafitness\'">exercise</a>.');
+    scene.text('<br>Hanging on the wall is a dirty <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>. The floor is littered with dozens of porn magazines and a selection of sex toys are scattered throughout the room. There\'s so much stuff lying around, there\'s barely enough space to do some basic <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_sauna\\u0027, \\u0027saunafitness\\u0027); return false;">exercise</a>.');
   } else {
-    scene.text('<br>Hanging on the wall is a dirty <a href="exec:gt \'mirror\', \'start\'">mirror</a>. The floor is littered with dozens of porn magazines and a selection of sex toys are scattered throughout the room. There\'s so much stuff lying around, there\'s barely enough space for some basic exercises but you feel too hungry to any.');
+    scene.text('<br>Hanging on the wall is a dirty <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>. The floor is littered with dozens of porn magazines and a selection of sex toys are scattered throughout the room. There\'s so much stuff lying around, there\'s barely enough space for some basic exercises but you feel too hungry to any.');
   }
   // TODO-QSP: $func('alarmclock', 'base_alarmclock_text')
   scene.text('If you run out of personal hygiene or beauty products, you can ask for more at a cost.');
@@ -126,54 +131,60 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).workDolg ?? 0) > 0) {
     if (((s as any).mc_inventory ?? 0)?.['cosmetics'] === 0) {
       scene.actions([
-        { label: 'Ask for some cosmetics (Add <<$func(\'money\', \'string_debt\', 1200)>> to debt)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Ask for some cosmetics (Add ' + String(qspFunc(s, 'money', 'string_debt', 1200) ?? '') + ' to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 1200);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (20);
-  }, goto: ['city_sauna', 'saunaroom'] },
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (20);
+    qspGoto(s, 'city_sauna', 'saunaroom');
+  } },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] === 0) {
       scene.actions([
-        { label: 'Ask for some shampoo (Add <<$func(\'money\', \'string_debt\', 400)>> to debt)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Ask for some shampoo (Add ' + String(qspFunc(s, 'money', 'string_debt', 400) ?? '') + ' to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 400);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (20);
-  }, goto: ['city_sauna', 'saunaroom'] },
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (20);
+    qspGoto(s, 'city_sauna', 'saunaroom');
+  } },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['razor'] === 0) {
       scene.actions([
-        { label: 'Ask for some razors (Add <<$func(\'money\', \'string_debt\', 700)>> to debt)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Ask for some razors (Add ' + String(qspFunc(s, 'money', 'string_debt', 700) ?? '') + ' to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 700);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) + (20);
-  }, goto: ['city_sauna', 'saunaroom'] },
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['razor'] = ((s as any).mc_inventory['razor'] ?? 0) + (20);
+    qspGoto(s, 'city_sauna', 'saunaroom');
+  } },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['tampons'] === 0) {
       scene.actions([
-        { label: 'Ask for some tampons (Add <<$func(\'money\', \'string_debt\', 400)>> to debt)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Ask for some tampons (Add ' + String(qspFunc(s, 'money', 'string_debt', 400) ?? '') + ' to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 400);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = ((s as any).mc_inventory['tampons'] ?? 0) + (20);
-  }, goto: ['city_sauna', 'saunaroom'] },
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tampons'] = ((s as any).mc_inventory['tampons'] ?? 0) + (20);
+    qspGoto(s, 'city_sauna', 'saunaroom');
+  } },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['deodorant'] === 0) {
       scene.actions([
-        { label: 'Ask for some deodorant (Add <<$func(\'money\', \'string_debt\', 200)>> to debt)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Ask for some deodorant (Add ' + String(qspFunc(s, 'money', 'string_debt', 200) ?? '') + ' to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 200);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) + (20);
-  }, goto: ['city_sauna', 'saunaroom'] },
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) + (20);
+    qspGoto(s, 'city_sauna', 'saunaroom');
+  } },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['vitamins'] === 0) {
       scene.actions([
-        { label: 'Ask for some vitamins (Add <<$func(\'money\', \'string_debt\', 150)>> to debt)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Ask for some vitamins (Add ' + String(qspFunc(s, 'money', 'string_debt', 150) ?? '') + ' to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 150);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (30);
-  }, goto: ['city_sauna', 'saunaroom'] },
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (30);
+    qspGoto(s, 'city_sauna', 'saunaroom');
+  } },
       ]);
     }
     scene.actions([
-      { label: 'Have some food (0:30) (Add <<$func(\'money\', \'string_debt\', 200)>> to debt)', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Have some food (0:30) (Add ' + String(qspFunc(s, 'money', 'string_debt', 200) ?? '') + ' to debt)', handler: (st: GameState) => {
     qspCall(s, 'food', 'medium_meal');
     qspCall(s, 'money', 'debt_add', 'workDolg', 200);
   } },
@@ -204,24 +215,30 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_sleep ?? 0) <= 80) {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
+      (s as any).sleep_txt = 'Go to sleep';
+    } else {
+      (s as any).sleep_txt = 'Undress and go to sleep';
     }
     if (((s as any).succubusQW ?? 0) === 2) {
       scene.actions([
-        { label: '<<$sleep_txt>>', goto: ['pre_sleep', 'start'] },
+        { label: '', labelFn: (s: GameState) => String(((s as any).sleep_txt || '') ?? ''), handler: (st: GameState) => {
+    qspGoto(s, 'pre_sleep', 'start');
+  } },
       ]);
     } else {
       if (((s as any).workDolg ?? 0) <= 0  &&  qspFunc(s, 'money', 'can_afford', 850) === 0) {
         scene.text('<br>You don\'t have enough money to sleep here tonight.');
       } else {
         scene.actions([
-          { label: '<<$sleep_txt>>', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String(((s as any).sleep_txt || '') ?? ''), handler: (st: GameState) => {
     qspCall(s, 'shortgs', 'autosave');
     if (((s as any).workDolg ?? 0) > 0) {
       qspCall(s, 'money', 'debt_add', 'workDolg', 850);
     } else {
       qspCall(s, 'money', 'pay', 850);
     }
-  }, goto: ['pre_sleep', 'start'] },
+    qspGoto(s, 'pre_sleep', 'start');
+  } },
         ]);
       }
     }
@@ -242,7 +259,7 @@ function enterSaunafitness(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

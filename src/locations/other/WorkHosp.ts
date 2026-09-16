@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'WorkHosp', 'start');
+  (s as any).sexloc = 'WorkHosp';
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Clinic</b></center>');
   scene.img('images/locations/city/residential/clinic/hospital.jpg');
@@ -29,7 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
     if ((!((s as any).jobhosprand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['WorkHosp', '2'] }]);
+      qspGoto(s, 'WorkHosp', '2');
     }
     scene.text('You work as part of the operating team, helping the doctors with whatever tasks they request of you.');
     scene.actions([
@@ -40,7 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
     if ((!((s as any).jobhosprand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['WorkHosp', '3'] }]);
+      qspGoto(s, 'WorkHosp', '3');
     }
     scene.text('You spend a frenzied hour helping patients that come into the emergency room.');
     scene.actions([
@@ -56,11 +58,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Masturbate (0:15)', handler: (st: GameState) => {
     (s as any).mastrrand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).mastrrand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['WorkHosp', '1'] }]);
+      qspGoto(s, 'WorkHosp', '1');
     } else {
       (s as any).picrand = 11;
       scene.img('images/locations/shared/apartment/event/sick/mastr11.jpg');
       scene.text('You secretly masturbate whenever nobody is watching.');
+      (s as any).orgasm_or = 'yes';
+      (s as any).orgasm_txt = 'Gradually, a pleasant warmth and sensation radiates from your needy pussy, culminating in a powerful orgasm that sends waves of pleasure through your entire body.';
       qspCall(s, 'arousal', 'clit_finger', 15, 'masturbate');
       qspCall(s, 'stat', '');
     }
@@ -81,7 +85,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).kat = ((s as any).kat ?? 0) + (1);
     if (((s as any).npc_rel ?? 0)?.['A219'] > 60  &&  (!((s as any).military ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['WorkHosp', 'milit'] }]);
+      qspGoto(s, 'WorkHosp', 'milit');
     }
     scene.text('You spend some time chatting with Kat.');
     if (((s as any).npc_rel ?? 0)?.['A219'] > 50) {
@@ -110,11 +114,12 @@ function enterMilit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter0(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).katprorand = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).katprorand ?? 0))) {
     (s as any).girl = ((s as any).girl ?? 0) + (1);
     (s as any).picrand = 11;
-    scene.actions([{ label: 'Continue', goto: ['lezbsex', 'var'] }]);
+    qspGoto(s, 'lezbsex', 'var');
   } else {
     if (((s as any).katprorand ?? 0) === 1) {
       scene.img('images/locations/city/residential/clinic/sex/hospsex7.jpg');
@@ -133,7 +138,8 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
     qspCall(s, 'arousal', 'vaginal', (-10), 'unknown');
-  }, goto: ['podrsex', 'suck'] },
+    qspGoto(s, 'podrsex', 'suck');
+  } },
       ]);
     } else {
       if (((s as any).katprorand ?? 0) === 2) {
@@ -141,7 +147,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
         scene.text('While you and Kat are in full swing, two doctors enter the room. You are both so engrossed with each other that you don\'t even notice them until they start caressing you. You both spread your legs wider, inviting them to join the fun.');
         scene.actions([
           { label: 'Entertain them', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     (s as any).picrand = 11;
     (s as any).sexpartkno = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRanddoc(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -153,7 +159,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :docloop
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRanddoc(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).boydesc ?? 0) === ((s as any).boydesc ?? 0)[1]) {
-      if (!(s as any).docfuck) (s as any).docfuck = {}; (s as any).docfuck[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) - (1);
+      ((s as any).docfuck = (s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) - (1);
       // TODO-QSP: jump 'docloop'
     }
     if (((s as any).docfuck ?? 0)?.[String((s as any).randdoc ?? 0)] === 1) {
@@ -162,7 +168,8 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 10, 'group');
     qspCall(s, 'arousal', 'vaginal', (-10), 'group');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['sexdvanadva', 'var'] },
+    qspGoto(s, 'sexdvanadva', 'var');
+  } },
         ]);
       }
     }
@@ -190,7 +197,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
         { label: 'Break and run', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['WorkHosp', 'start'] },
+    qspGoto(s, 'WorkHosp', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -201,7 +209,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).docfuck ?? 0)?.[String((s as any).randdoc ?? 0)] === 1) {
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-  }, goto: ['sex', 'minet'] },
+    qspGoto(s, 'sex', 'minet');
+  } },
     ]);
   } else {
     (s as any).picrand = Math.floor(Math.random() * 2) + 12;
@@ -229,7 +238,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :docloop2
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRanddoc(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).boydesc ?? 0) === ((s as any).boydesc ?? 0)[1]) {
-      if (!(s as any).docfuck) (s as any).docfuck = {}; (s as any).docfuck[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) - (1);
+      ((s as any).docfuck = (s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) - (1);
       // TODO-QSP: jump 'docloop2'
     }
     if (((s as any).docfuck ?? 0)?.[String((s as any).randdoc ?? 0)] === 1) {
@@ -239,13 +248,15 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', (-10), 'group');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
       ]);
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['WorkHosp', 'start'] },
+    qspGoto(s, 'WorkHosp', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -268,14 +279,16 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Give him what he wants', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['sex', 'minet'] },
+    qspGoto(s, 'sex', 'minet');
+  } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Oust him', handler: (st: GameState) => {
     // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 1)
-  }, goto: ['WorkHosp', 'start'] },
+    qspGoto(s, 'WorkHosp', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -297,7 +310,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
     (s as any).picrand = 13;
     (s as any).sexpartkno = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRanddoc(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -307,7 +320,8 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'cuni_give', 10, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'arousal', 'vaginal', (-10), 'group');
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['podrsex', 'suck'] },
+    qspGoto(s, 'podrsex', 'suck');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -461,7 +475,7 @@ function enterRanddoc(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'boyStat', '', ((s as any).npclastsaved ?? 0));
-  if (!(s as any).docfuck) (s as any).docfuck = {}; (s as any).docfuck[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) + (1);
+  ((s as any).docfuck = (s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) + (1);
   // TODO-QSP: end
   scene.build();
 }

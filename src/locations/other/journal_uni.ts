@@ -137,7 +137,7 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
     (s as any).jclose = 1;
-    dynamicGoto(st, 'menu_loc', 'menu_arg');
+    dynamicGoto(s, 'menu_loc', 'menu_arg');
   } },
   ]);
   scene.build();

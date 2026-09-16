@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -29,8 +29,8 @@ function enterZoyaSmallTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterZoyaMeet(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['visiting'] = 1;
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['meet_zoya'] = 1;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['visiting'] = 1;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['meet_zoya'] = 1;
   scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
   scene.text('You notice a sleek and expensive looking Audi you\'ve never seen before parked in the drive before the door opens to reveal a beautiful, well-dressed woman you estimate to be in her late 30s. She\'s wearing high heels, a pencil skirt, and a partially unbuttoned blouse that gives you a view of her substantial cleavage that bulges against the fabric.');
   // TODO-QSP: dynamic text: "You must be <<$pcs_firstname>>," she smiles. "Albina has told me quite a bit ab...
@@ -70,11 +70,11 @@ function enterZoyaSunbathingSolo1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Hello ${((s as any).pcs_firstname || '')}," she says, carefully sitting up on her elbows, the floatie wobbling beneath her.`);
     scene.text('"I hope I\'m not intruding?" you reply politely.');
     scene.text('"No no, not at all. Were you looking for Albina? I think she\'s out right now, but you\'re welcome to make yourself at home until she comes back."');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['pool'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['pool'] = 1;
     scene.actions([
       { label: 'Check her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
     scene.text('"Okay. Thanks, Zoya."');
     scene.text('Your gaze wanders up and down her body. Zoya looks incredible for her age, especially given that she wasn\'t a teen parent like your own mother.');
     scene.text('Her skin is wonderfully tanned, unmarred by any white lines, clearly due to her topless sunbathing habits. Her breasts are exceptionally full, large and with a beautiful symmetrical roundness to them. Not to mention her flat, toned stomach and long shapely legs. Though mostly obscured by the floatie, her thick thighs give you a pretty good idea of where Albina got her ass from.');
@@ -164,11 +164,11 @@ function enterZoyaSunbathingSolo2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Hello ${((s as any).pcs_firstname || '')}," she smiles, carefully sitting up on her elbows, the floatie wobbling beneath her.`);
     scene.text('"I hope I\'m not intruding?" you reply politely.');
     scene.text('She waves her hand. "No no, not at all!"');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['pool'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['pool'] = 1;
     scene.actions([
       { label: 'Check her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
     scene.text('Your gaze wanders up and down her body. Zoya looks incredible for her age, especially given that she wasn\'t a teen parent like your own mother.');
     scene.text('Her skin is wonderfully tanned, unmarred by any white lines, clearly due to her topless sunbathing habits. Her breasts are exceptionally full, large and with a beautiful symmetrical roundness to them. Not to mention her flat, toned stomach and long shapely legs. Though mostly obscured by the floatie, her thick thighs give you a pretty good idea of where Albina got her ass from.');
     scene.text('"<i>Ahem</i>."');
@@ -214,7 +214,7 @@ function enterZoyaSunbathingSolo2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yeahhhh… I\'ll go do that…"');
       scene.text('Awkwardly walking away, you head back inside, taking one last glance back at Zoya to see her lay her head back on the floatie and close her eyes again.');
     }
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.actions([
@@ -246,7 +246,7 @@ function enterZoyaSunbathingSolo2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterZoyaSunbathingAlbina(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['mother_daughter_sunbathe'] = ((s as any).daystart ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['mother_daughter_sunbathe'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/home/pool/alb_zoya1.jpg');
@@ -363,7 +363,8 @@ function enterZoyaWorkoutSolo(s: GameState, scene: SceneBuilder): void {
     { label: 'Wait for Albina', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
     qspCall(s, 'stat', '');
-  }, goto: ['albinahome', 'hallway'] },
+    qspGoto(s, 'albinahome', 'hallway');
+  } },
     { label: 'Follow her', goto: ['albina_mother_events', 'peep1'] },
   ]);
   scene.build();

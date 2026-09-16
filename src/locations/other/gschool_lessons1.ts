@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -35,11 +35,11 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'rus', ((s as any).pcs_intel ?? 0));
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/attention.jpg');
     scene.text('You listen attentively to Mr. Yenotin for the duration of the class. He manages to make today\'s lesson very interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
@@ -267,6 +267,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', (-5));
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
     // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
@@ -283,6 +284,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', (-5), 'exhibitionism');
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'pussy');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You can feel the excitement in your pussy as you imagine yourself baring it in class to take a selfie of it. Maybe you\'ll share it, maybe not, but either way it should be fun and could be fun to send to someone later to tease them with it. You glance around and when everyone is busy, you pull up your skirt and pull your panties aside until your pussy is exposed.');
@@ -301,6 +303,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Regular selfie', handler: (st: GameState) => {
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Mr. Yenotin even noticing.');
     scene.actions([
@@ -504,9 +507,9 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/sleeping.jpg');
     scene.text('"I\'ll try, but can you be less boring? If you keep droning on like that, I think I\'ll literally die of boredom!" you answer boldly.');
     scene.text('The whole class bursts into loud laughter and Mr. Yenotin tries his hardest to quieten everyone down.');
@@ -522,8 +525,8 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
         { label: 'Keep going', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/sleeping.jpg');
     scene.text('"It\'s not like I\'m the one interrupting the lesson. That would be you," you answer brashly, feeling pretty confident.');
     // TODO-QSP: dynamic text: Mr. Yenotin walks back to the front of the class, but your smug smile drops when...
@@ -636,8 +639,8 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
           { label: 'Keep using your phone', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
     scene.text('You ignore him and keep using your phone as he starts walking over to your desk.');
@@ -706,8 +709,8 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/takephone.jpg');
     scene.text('You decide it\'s not worth it and silently hand your phone over to him.');
     // TODO-QSP: dynamic text: He walks back to the front of the class and tosses your phone in a drawer in his...
@@ -724,8 +727,8 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Put your phone away', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide not to aggravate the situation and put your phone away. Mr. Yenotin then continues the lesson.');
     scene.actions([
@@ -773,11 +776,11 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'geo', ((s as any).pcs_intel ?? 0));
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/attention.jpg');
     scene.text('You listen attentively to Mrs. Sokoloff for the duration of the class. Today\'s lesson was interesting and informative, and you feel you learned something from taking part.');
@@ -1006,6 +1009,7 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', (-5), 'exhibitionism');
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
     // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
@@ -1022,6 +1026,7 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', (-5), 'exhibitionism');
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'pussy');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You can feel the excitement in your pussy as you imagine yourself baring it in class to take a selfie of it. Maybe you\'ll share it, maybe not, but either way it should be fun and could be fun to send to someone later to tease them with it. You glance around and when everyone is busy, you pull up your skirt and pull your panties aside until your pussy is exposed.');
@@ -1040,6 +1045,7 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Regular selfie', handler: (st: GameState) => {
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Mrs. Sokoloff even noticing.');
     scene.actions([
@@ -1222,9 +1228,9 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('"Please continue your super-fascinating lesson. Just keep it a bit up-beat please. If you talk any slower, I might fall asleep!" you answer boldly.');
     scene.text('The whole class is stunned into silence as an unimpressed Mrs. Sokoloff crosses her arms.');
@@ -1320,8 +1326,8 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Keep using your phone', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
     scene.text('You ignore her and continue using your phone as she walks over to your desk.');
@@ -1390,8 +1396,8 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide it\'s not worth it and silently hand your phone to Mrs. Sokoloff.');
     // TODO-QSP: dynamic text: "You can have it back after class Miss <<$pcs_lastname>>. Now pay attention!" sh...
@@ -1408,8 +1414,8 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Put your phone away', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide not to aggravate the situation and put your phone away. Mrs. Sokoloff shakes her head disapprovingly and continues the lesson.');
     scene.actions([
@@ -1457,11 +1463,11 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'his', ((s as any).pcs_intel ?? 0));
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/attention.jpg');
     scene.text('You listen attentively to Mrs. Sokoloff for the duration of the class. Today\'s lesson was interesting and informative, and you feel you learned something from taking part.');
@@ -1689,6 +1695,7 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', (-5), 'exhibitionism');
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
     // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
@@ -1705,6 +1712,7 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', (-5), 'exhibitionism');
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'pussy');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You can feel the excitement in your pussy as you imagine yourself baring it in class to take a selfie of it. Maybe you\'ll share it, maybe not, but either way it should be fun and could be fun to send to someone later. You glance around and when everyone is busy, you pull up your skirt and pull your panties aside until your pussy is exposed.');
@@ -1723,6 +1731,7 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Regular selfie', handler: (st: GameState) => {
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom');
     scene.img(`${((s as any).temp_phone_img || '')}`);
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Mrs. Sokoloff even noticing.');
     scene.actions([
@@ -1905,9 +1914,9 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('"Please continue your super-fascinating lesson. Just keep it a bit up-beat please. If you talk any slower, I might fall asleep!" you answer boldly.');
     scene.text('The whole class is stunned into silence as an unimpressed Mrs. Sokoloff crosses her arms.');
@@ -2006,8 +2015,8 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Keep using your phone', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
     scene.text('You ignore her and continue using your phone as she walks over to your desk.');
@@ -2076,8 +2085,8 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide it\'s not worth it and silently hand your phone to Mrs. Sokoloff.');
     // TODO-QSP: dynamic text: "You can have it back after class Miss <<$pcs_lastname>>. Now pay attention!" sh...
@@ -2094,8 +2103,8 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Put your phone away', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide not to aggravate the situation and put your phone away. Mrs. Sokoloff shakes her head disapprovingly and continues the lesson.');
     scene.actions([

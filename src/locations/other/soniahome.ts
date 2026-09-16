@@ -9,9 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/resident/soniaHome/house_front.jpg');
@@ -33,7 +35,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       if (((s as any).soniaQW ?? 0)?.['hate'] === 1) {
         scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
         if (((s as any).soniaQW ?? 0)?.['tkachenko'] === 0) {
-          if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['tkachenko'] = 1;
+          ((s as any).soniaQW = (s as any).soniaQW ?? {})['tkachenko'] = 1;
           scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face. "Hello. Can I help you?" she asks.');
           // TODO-QSP: dynamic text: You smile at her. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
           scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
@@ -53,7 +55,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
           if (((s as any).daystart ?? 0) <= ((s as any).soniaQW ?? 0)?.['fallday'] + 7) {
             scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
             if (((s as any).soniaQW ?? 0)?.['tkachenko'] === 0) {
-              if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['tkachenko'] = 1;
+              ((s as any).soniaQW = (s as any).soniaQW ?? {})['tkachenko'] = 1;
               scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face. "Hello. Can I help you?" she asks.');
               // TODO-QSP: dynamic text: You smile at her. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
               scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
@@ -143,7 +145,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).temprand ?? 0) === 5) {
                               scene.img('images/locations/pavlovsk/resident/soniaHome/shulyov.jpg');
                               if (((s as any).soniaQW ?? 0)?.['shulyov'] === 0) {
-                                if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['shulyov'] = 1;
+                                ((s as any).soniaQW = (s as any).soniaQW ?? {})['shulyov'] = 1;
                                 if (((s as any).pcs_hotcat ?? 0) >= 6) {
                                   scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by a young, good-looking man about your sister\'s age who has a friendly smile. "Hello. Can I help you?" he asks as he looks you over with hungry eyes.');
                                   // TODO-QSP: dynamic text: You smile at him. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
@@ -282,7 +284,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
             (s as any).SoniaLoc = 0;
             if (((s as any).soniaQW ?? 0)?.['tkachenko'] === 0) {
-              if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['tkachenko'] = 1;
+              ((s as any).soniaQW = (s as any).soniaQW ?? {})['tkachenko'] = 1;
               scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face. "Hello. Can I help you?" she asks.');
               // TODO-QSP: dynamic text: You smile at her. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
               scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
@@ -303,7 +305,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
             if (((s as any).temprand ?? 0) <= 2) {
               scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
               if (((s as any).soniaQW ?? 0)?.['tkachenko'] === 0) {
-                if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['tkachenko'] = 1;
+                ((s as any).soniaQW = (s as any).soniaQW ?? {})['tkachenko'] = 1;
                 scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face. "Hello. Can I help you?" she asks.');
                 // TODO-QSP: dynamic text: You smile at her. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
                 scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
@@ -324,7 +326,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               if (((s as any).temprand ?? 0) <= 4) {
                 scene.img('images/locations/pavlovsk/resident/soniaHome/shulyov.jpg');
                 if (((s as any).soniaQW ?? 0)?.['shulyov'] === 0) {
-                  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['shulyov'] = 1;
+                  ((s as any).soniaQW = (s as any).soniaQW ?? {})['shulyov'] = 1;
                   if (((s as any).pcs_hotcat ?? 0) >= 6) {
                     scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by a young, good-looking man about your sister\'s age who has a friendly smile. "Hello. Can I help you?" he asks as he looks you over with hungry eyes.');
                     // TODO-QSP: dynamic text: You smile at him. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
@@ -410,6 +412,8 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
 
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'private';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hallway</b></center>');
@@ -430,6 +434,8 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterBackyard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'outdoor';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'outdoors');
@@ -445,6 +451,8 @@ function enterBackyard(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'bathroom';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
@@ -513,7 +521,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/pavlovsk/resident/soniaHome/Bathroom/bathroom.jpg');
     scene.text('You enter the bathroom, which is fully tiled with a grey-and-white colour scheme. Whilst reasonably small, it\'s very tastefully decorated. It\'s a fairly typical bathroom, but this might be the cleanest one you\'ve ever been in. It looks practically brand new and smells lovely.');
-    scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
+    scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
     qspCall(s, 'piercing_management', 'set_manage_string');
     qspCall(s, 'din_van', 'bath');
     qspCall(s, 'din_van', 'bteeth');
@@ -544,11 +552,13 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterSoniaShower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'bathroom';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/soniaHome/Bathroom/sonia_showering4.jpg');
   if (((s as any).soniaQW ?? 0)?.['shower_stay'] === 1) {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['shower_stay'] = 0;
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['shower_stay'] = 0;
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
     scene.text('You decide to stay and watch her shower, without asking her if she is ok with it. After all, she was the one to fling the shower curtain wide open, giving you a full view of her naked body. "Sure, take all the time you need."');
     scene.text('She grins at your comment, you are sure she has noticed how you are checking out her naked body. "Liking what you are seeing?"');
@@ -701,22 +711,23 @@ function enterSoniaShower(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kitchen</b></center>');
   scene.img('images/locations/pavlovsk/resident/soniaHome/kitchen.jpg');
   if (((s as any).SoniaLoc ?? 0) === 4) {
     if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 1  &&  ((s as any).soniaQW ?? 0)?.['fallenangel'] <= 3) {
-      scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard. <a href="exec:gt \'soniachat\', \'sonia_chat_special1\'">Sonia</a> is sitting at the kitchen table. She looks up at you with red, puffy eyes.');
+      scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat_special1\\u0027); return false;">Sonia</a> is sitting at the kitchen table. She looks up at you with red, puffy eyes.');
     } else {
       if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 4  &&  ((s as any).soniaQW ?? 0)?.['fallenangel'] <= 6) {
-        scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard. <a href="exec:gt \'soniachat\', \'sonia_chat_special2\'">Sonia</a> is sitting at the kitchen table, staring at nothing in particular.');
+        scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat_special2\\u0027); return false;">Sonia</a> is sitting at the kitchen table, staring at nothing in particular.');
       } else {
         if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 7  &&  ((s as any).soniaQW ?? 0)?.['fallenangel'] <= 9) {
-          scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard. <a href="exec:gt \'soniachat\', \'sonia_chat_special3\'">Sonia</a> is sitting at the kitchen table. She gives you a tired smile.');
+          scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat_special3\\u0027); return false;">Sonia</a> is sitting at the kitchen table. She gives you a tired smile.');
         } else {
           if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 10) {
-            scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard. <a href="exec:gt \'soniachat\', \'sonia_chat_happyslut\'">Sonia</a> is sitting at the kitchen table, snacking on something, and looks up with a smile as you walk in.');
+            scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat_happyslut\\u0027); return false;">Sonia</a> is sitting at the kitchen table, snacking on something, and looks up with a smile as you walk in.');
           }
         }
       }
@@ -736,31 +747,31 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 function enterFridge(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   if (((s as any).ivanko ?? 0)?.['food_day'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['soup'] = 1;
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['leftovers'] = 1;
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['water'] = 1;
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['sandwich'] = 1;
+    ((s as any).ivanko = (s as any).ivanko ?? {})['soup'] = 1;
+    ((s as any).ivanko = (s as any).ivanko ?? {})['leftovers'] = 1;
+    ((s as any).ivanko = (s as any).ivanko ?? {})['water'] = 1;
+    ((s as any).ivanko = (s as any).ivanko ?? {})['sandwich'] = 1;
   }
   qspCall(s, 'stat', '');
   if (((s as any).ivanko ?? 0)?.['leftovers'] >= 1) {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['leftover_txt'] = ' some leftovers';
+    ((s as any).ivanko = (s as any).ivanko ?? {})['leftover_txt'] = ' some leftovers';
   } else {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['leftover_txt'] = '';
+    ((s as any).ivanko = (s as any).ivanko ?? {})['leftover_txt'] = '';
   }
   if (((s as any).ivanko ?? 0)?.['soup'] >= 1) {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['soup_txt'] = ' some soup';
+    ((s as any).ivanko = (s as any).ivanko ?? {})['soup_txt'] = ' some soup';
   } else {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['soup_txt'] = '';
+    ((s as any).ivanko = (s as any).ivanko ?? {})['soup_txt'] = '';
   }
   if (((s as any).ivanko ?? 0)?.['water'] >= 1) {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['water_txt'] = ' some bottled water';
+    ((s as any).ivanko = (s as any).ivanko ?? {})['water_txt'] = ' some bottled water';
   } else {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['water_txt'] = '';
+    ((s as any).ivanko = (s as any).ivanko ?? {})['water_txt'] = '';
   }
   if (((s as any).ivanko ?? 0)?.['sandwich'] >= 1) {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['sandwich_txt'] = ' some stuff to make a sandwich';
+    ((s as any).ivanko = (s as any).ivanko ?? {})['sandwich_txt'] = ' some stuff to make a sandwich';
   } else {
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['sandwich_txt'] = '';
+    ((s as any).ivanko = (s as any).ivanko ?? {})['sandwich_txt'] = '';
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$ivanko['water_txt']>><<$ivanko['soup_txt']>><<$iv...
@@ -769,8 +780,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Eat some leftovers', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['leftovers'] = ((s as any).ivanko['leftovers'] ?? 0) - (1);
+    ((s as any).ivanko = (s as any).ivanko ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).ivanko = (s as any).ivanko ?? {})['leftovers'] = ((s as any).ivanko['leftovers'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/leftovers.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -796,8 +807,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Have some water', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['water'] = ((s as any).ivanko['water'] ?? 0) - (1);
+    ((s as any).ivanko = (s as any).ivanko ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).ivanko = (s as any).ivanko ?? {})['water'] = ((s as any).ivanko['water'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/waterbottle1.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -823,8 +834,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Have some soup', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['soup'] = ((s as any).ivanko['soup'] ?? 0) - (1);
+    ((s as any).ivanko = (s as any).ivanko ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).ivanko = (s as any).ivanko ?? {})['soup'] = ((s as any).ivanko['soup'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/soup.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -850,8 +861,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Make a sandwich', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).ivanko) (s as any).ivanko = {}; (s as any).ivanko['sandwich'] = ((s as any).ivanko['sandwich'] ?? 0) - (1);
+    ((s as any).ivanko = (s as any).ivanko ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).ivanko = (s as any).ivanko ?? {})['sandwich'] = ((s as any).ivanko['sandwich'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/reuben.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -882,6 +893,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).locclass = 'livingr';
   if (((s as any).livingev_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).livingev = 0;
   }
@@ -891,7 +903,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/soniaHome/living_room.jpg');
   if (((s as any).SoniaLoc ?? 0) === 5) {
     scene.text('You walk into a small but comfortable lounge which is very clean and tidy. You see the TV in the corner and a cozy family settee on the opposite wall facing a fireplace, giving the room a warm and comfortable look.');
-    scene.text('<a href="exec:gt \'soniachat\', \'livingroom\'">Sonia</a> is lying on the couch reading a book.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027livingroom\\u0027); return false;">Sonia</a> is lying on the couch reading a book.');
   } else {
     scene.text('You walk into a small but comfortable lounge which is very clean and tidy. You see the TV in the corner and a cozy family settee on the opposite wall facing a fireplace, giving the room a warm and comfortable look.');
   }
@@ -949,28 +961,29 @@ function enterSoniabrother(s: GameState, scene: SceneBuilder): void {
 
 function enterSoniaRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Sonia\'s bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_room.jpg');
   if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 1  &&  ((s as any).soniaQW ?? 0)?.['fallenangel'] <= 3) {
-    scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="exec:gt \'soniahome\',\'night_stand\'">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
-    scene.text('<a href="exec:gt \'soniachat\', \'sonia_chat_special1\'">Sonia</a> is lying on her bed crying.');
+    scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniahome\\u0027, \\u0027night_stand\\u0027); return false;">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat_special1\\u0027); return false;">Sonia</a> is lying on her bed crying.');
   } else {
     if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 4  &&  ((s as any).soniaQW ?? 0)?.['fallenangel'] <= 6) {
-      scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="exec:gt \'soniahome\',\'night_stand\'">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
-      scene.text('<a href="exec:gt \'soniachat\', \'sonia_chat_special2\'">Sonia</a> is lying on her bed under her covers, with the covers pulled all the way up until most of her face is hidden, looking depressed and miserable, but at least she\'s not crying.');
+      scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniahome\\u0027, \\u0027night_stand\\u0027); return false;">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat_special2\\u0027); return false;">Sonia</a> is lying on her bed under her covers, with the covers pulled all the way up until most of her face is hidden, looking depressed and miserable, but at least she\'s not crying.');
     } else {
       if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 7  &&  ((s as any).soniaQW ?? 0)?.['fallenangel'] <= 9) {
-        scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="exec:gt \'soniahome\',\'night_stand\'">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
-        scene.text('<a href="exec:gt \'soniachat\', \'sonia_chat_special3\'">Sonia</a> is sitting on her bed relaxing. She doesn\'t look happy like she used to, but she doesn\'t look miserable or on the verge of tears like she has of late either. You think she might finally be coming to terms with her new reality.');
+        scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniahome\\u0027, \\u0027night_stand\\u0027); return false;">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat_special3\\u0027); return false;">Sonia</a> is sitting on her bed relaxing. She doesn\'t look happy like she used to, but she doesn\'t look miserable or on the verge of tears like she has of late either. You think she might finally be coming to terms with her new reality.');
       } else {
         if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 10) {
-          scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="exec:gt \'soniahome\',\'night_stand\'">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
-          scene.text('<a href="exec:gt \'soniachat\', \'sonia_chat_happyslut\'">Sonia</a> is lying on her bed on her stomach, wearing some very short shorts. She looks at you and grins for the first time in a long time that you have seen. Her legs slide forward, giving you a somewhat suggestive view, with her shorts riding up the crack of her ass a bit.');
+          scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniahome\\u0027, \\u0027night_stand\\u0027); return false;">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat_happyslut\\u0027); return false;">Sonia</a> is lying on her bed on her stomach, wearing some very short shorts. She looks at you and grins for the first time in a long time that you have seen. Her legs slide forward, giving you a somewhat suggestive view, with her shorts riding up the crack of her ass a bit.');
         } else {
-          scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="exec:gt \'soniahome\',\'night_stand\'">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
-          scene.text('<a href="exec:gt \'soniachat\', \'sonia_chat\'">Sonia</a> is sitting on her bed relaxing.');
+          scene.text('The first thing you notice about her room is that it\'s spotless and orderly, with nothing out of place. There is a dresser against one wall with several things neatly placed on it, with pictures on the wall above it. The bed is near the center of the room against one wall, and is made with a body pillow leaning against the other pillows, with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniahome\\u0027, \\u0027night_stand\\u0027); return false;">nightstand</a> beside it. Above the bed is a short string of lights, while a small makeup table with all the makeup lined up in a very orderly fashion sits against another wall.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027soniachat\\u0027, \\u0027sonia_chat\\u0027); return false;">Sonia</a> is sitting on her bed relaxing.');
         }
       }
     }

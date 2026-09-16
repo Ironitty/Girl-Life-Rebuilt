@@ -8,8 +8,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: showobjs max(1 - debug_warning_closed, cfg_vars['debug'])
   qspCall(s, 'addbuilddate', '');
   qspCall(s, 'saveupdater', '');
-  if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_shown'] = 0;
-  if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_loc_change'] = 0;
+  ((s as any).debug = (s as any).debug ?? {})['trace_shown'] = 0;
+  ((s as any).debug = (s as any).debug ?? {})['trace_loc_change'] = 0;
   scene.build();
 }
 

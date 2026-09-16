@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,12 +9,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vacant House</b></center>');
   scene.img('images/locations/pushkin/dvor1.jpg');
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pavserhom ?? 0) === 0  &&  ((s as any).koncepo ?? 0) === 0  ||  ((s as any).mesec ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['koncepod', 'read_notice_board_leave'] }]);
+    qspGoto(s, 'koncepod', 'read_notice_board_leave');
   }
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pavserhom ?? 0) === 0  &&  ((s as any).koncepo ?? 0) === 1  ||  ((s as any).psiha ?? 0) === 1  ||  ((s as any).pavserhom ?? 0) === 3) {
     scene.actions([
@@ -22,7 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pavserhom ?? 0) === 1  &&  ((s as any).psiho ?? 0) === 0  &&  (!((s as any).psiha ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['koncepod', 'read_notice_board'] }]);
+    qspGoto(s, 'koncepod', 'read_notice_board');
   }
   if (((s as any).pavserhom ?? 0) === 1  &&  ((s as any).psiho ?? 0) === 1  &&  ((s as any).psiha ?? 0) === 0  &&  ((s as any).mesec ?? 0) === 0  &&  ((s as any).pavserpsiday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
@@ -143,11 +144,11 @@ function enterKrr2x(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<b><font color = maroon>OUTSIDE</font></b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['koncepod', 'start'] }]);
+      qspGoto(s, 'koncepod', 'start');
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         scene.text('<b><font color = red>You need to get dressed.</font></b>');
-        scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
+        dynamicGoto(s, 'curloc');
       }
     }
   } },
@@ -164,6 +165,7 @@ function enterKrr2x(s: GameState, scene: SceneBuilder): void {
 
 function enterStr2x(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).locclass = 'livingr';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living Room</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/hall.jpg');
@@ -253,6 +255,7 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
 
 function enterKhr2x(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kitchen</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/kitchen.jpg');
@@ -301,11 +304,15 @@ function enterKhr2x(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVnr2x(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'vnr2x';
+  (s as any).locM = 'koncepod';
+  (s as any).loc_arg = 'vnr2x';
+  (s as any).loc = 'koncepod';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/bathroom.jpg');
-  scene.text('Above the washbasin hangs an <a href="exec:gt \'mirror\',\'start\'">oval mirror</a>.');
+  scene.text('Above the washbasin hangs an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">oval mirror</a>.');
   if (((s as any).psiho ?? 0) === 2  &&  ((s as any).psihb ?? 0) === 1  &&  ((s as any).psihc ?? 0) === 0  &&  (!((s as any).psi1day ?? 0))) {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + 60;
     (s as any).piss = ((s as any).piss ?? 0) + 1;
@@ -330,6 +337,8 @@ function enterVnr2x(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pushkin/vacanthouse/11684312.mp4');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'Suddenly it\'s as if you\'ve been struck by lightning. Pleasant spasms ripple through your abdomen, and you squirm, biting your lip to keep from crying out in pleasure.';
     qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -359,6 +368,8 @@ function enterVnr2x(s: GameState, scene: SceneBuilder): void {
 
 function enterBdr2x(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bedroom</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/bedroom.jpg');
@@ -381,12 +392,14 @@ function enterBdr2x(s: GameState, scene: SceneBuilder): void {
     (s as any).psiho = 2;
     (s as any).psihb = 0;
     (s as any).psihc = 0;
-  }, goto: ['koncepod', 'khr2x'] },
+    qspGoto(s, 'koncepod', 'khr2x');
+  } },
       { label: 'Go into the corridor', handler: (st: GameState) => {
     (s as any).psiho = 2;
     (s as any).psihb = 0;
     (s as any).psihc = 0;
-  }, goto: ['koncepod', 'krr2x'] },
+    qspGoto(s, 'koncepod', 'krr2x');
+  } },
     ]);
   } },
     ]);
@@ -522,6 +535,7 @@ function enterPavser9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/vacanthouse/sex/06.jpg');
     scene.text('Passion rolls over you like waves on a sandy shore, lifting you to new levels of bliss. You no longer question what\'s happening or why—only the sensations matter now.');
     scene.text('And the result proves to be his firm, strong, rough fingers on your clitoris…');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -542,6 +556,7 @@ function enterPavser9(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pushkin/vacanthouse/sex/08.jpg');
     scene.text('…');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -555,6 +570,7 @@ function enterPavser9(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pushkin/vacanthouse/sex/10.jpg');
     scene.text('He turns you to your side and switches back to your pussy, your pleasure builds further, you are close now…');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -612,7 +628,8 @@ function enterPavser10(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'underwear', 'wear');
-  }, goto: ['koncepod', 'str2x'] },
+    qspGoto(s, 'koncepod', 'str2x');
+  } },
   ]);
   scene.build();
 }

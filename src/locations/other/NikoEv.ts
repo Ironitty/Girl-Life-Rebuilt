@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -26,7 +26,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('As you\'re walking out of school, you bump into one of your schoolmates, Niko Volkov, who immediately gives you a warm smile. "Hello there, I\'m Niko. May I ask you your name?"');
     scene.actions([
-      { label: '<<$pcs_firstname>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).pcs_firstname || '') ?? ''), handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A189'] < 50) {
       qspCall(s, 'npc_relationship', 'set', 'A189', 50);
     }
@@ -45,7 +45,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Beat it!', handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A189'] > 25) {
-      if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A189'] = 25;
+      ((s as any).npc_rel = (s as any).npc_rel ?? {})['A189'] = 25;
     }
     (s as any).NikoLuv = ((s as any).NikoLuv ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -72,7 +72,7 @@ function enterLunchIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach Niko, who turns to you with a warm smile on his face. "Hello there. I\'ve never seen such a beautiful creature in all my life. My name is Nikolai Volkov, may I ask you yours?');
   // TODO-QSP: end
   scene.actions([
-    { label: '<<$pcs_firstname>>', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String(((s as any).pcs_firstname || '') ?? ''), handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A189'] < 50) {
       qspCall(s, 'npc_relationship', 'set', 'A189', 50);
     }
@@ -99,7 +99,7 @@ function enterLunchIntro(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Beat it!', handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A189'] > 25) {
-      if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A189'] = 25;
+      ((s as any).npc_rel = (s as any).npc_rel ?? {})['A189'] = 25;
     }
     (s as any).NikoLuv = ((s as any).NikoLuv ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -283,9 +283,9 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go with him', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 4) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['NikoDates', 'teacher_block'] }]);
+      qspGoto(s, 'NikoDates', 'teacher_block');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['NikoWhore', 'Locker Room'] }]);
+      qspGoto(s, 'NikoWhore', 'Locker Room');
     }
   } },
       { label: 'Maybe later', goto: ['NikoEv', 'Lunch Chat'] },
@@ -404,28 +404,28 @@ function enterDateIntro(s: GameState, scene: SceneBuilder): void {
 
 function enterNikoDates(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  (!((s as any).NikoVsFedor ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['NikoEv', 'fedor'] }]);
+    qspGoto(s, 'NikoEv', 'fedor');
   } else {
     if (((s as any).kotovLoveQW ?? 0) >= 10  &&  (!((s as any).NikoVsVitek ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['NikoEv', 'vitek'] }]);
+      qspGoto(s, 'NikoEv', 'vitek');
     } else {
       if (((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).DimaRudeBlock ?? 0) === 0  &&  (!((s as any).NikoVsDimka ?? 0))) {
-        scene.actions([{ label: 'Continue', goto: ['NikoEv', 'dimka'] }]);
+        qspGoto(s, 'NikoEv', 'dimka');
       } else {
         if (((s as any).NikoEv ?? 0) === 1) {
-          scene.actions([{ label: 'Continue', goto: ['NikoEv', 'date1'] }]);
+          qspGoto(s, 'NikoEv', 'date1');
         } else {
           if (((s as any).NikoEv ?? 0) === 2) {
-            scene.actions([{ label: 'Continue', goto: ['NikoEv', 'date2'] }]);
+            qspGoto(s, 'NikoEv', 'date2');
           } else {
             if (((s as any).NikoEv ?? 0) === 3) {
-              scene.actions([{ label: 'Continue', goto: ['NikoEv', 'date3'] }]);
+              qspGoto(s, 'NikoEv', 'date3');
             } else {
               if (((s as any).NikoEv ?? 0) === 4) {
-                scene.actions([{ label: 'Continue', goto: ['NikoEv', 'date4'] }]);
+                qspGoto(s, 'NikoEv', 'date4');
               } else {
                 if (((s as any).NikoEv ?? 0) === 11) {
-                  scene.actions([{ label: 'Continue', goto: ['NikoEv', 'new_life'] }]);
+                  qspGoto(s, 'NikoEv', 'new_life');
                 }
               }
             }

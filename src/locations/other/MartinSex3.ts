@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterMartinBlowTease(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A216');
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+    (s as any).martinpos = 'MartinBlowjob_undressed';
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/undresssub_bjtease.mp4');
     if (((s as any).MartinPussyLick ?? 0) === 1) {
       scene.text('After Martin has pleased you so diligently, it\'s only fair that you do the same for him.');
@@ -31,7 +32,9 @@ function enterMartinBlowTease(s: GameState, scene: SceneBuilder): void {
     scene.text(`How long you lose yourself in this task, how long he withstands the temptation of fucking your mouth you don't know. What you <b>do</b> know is that, suddenly, his grip on your ${((s as any).pc_desc ?? 0)?.['hair length'] ?? ''} ${((s as any).pcs_haircolor || '')} hair tightens.`);
     // TODO-QSP: dynamic text: "Go on. Suck it like you mean it, <<$pcs_firstname>>," he commands.
     scene.text(`"Go on. Suck it like you mean it, ${((s as any).pcs_firstname || '')}," he commands.`);
+    (s as any).orgasm_txt = 'This sense of complete obedience fans the flames your striptease has lighted. The familiar heat of lust spreads inside your belly, building up like a wave and then washing over you. You cum without ever laying a hand on yourself, your moans muffled by Martin\'s cock in your mouth.';
   } else {
+    (s as any).martinpos = 'MartinBlowjob_dressed';
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/dresssub_bjtease.mp4');
     scene.text('Sure, you and Martin could talk and explore this strange relationship on an intellectual level and all that, but if you\'re honest with yourself, you\'d rather suck his dick right now, and the look in Martin\'s eyes tells you that he feels the same way.');
     scene.text('You approach Martin for a \'chaste little kiss\' that quickly ends up in a chaste little French kissing and groping, but after only a few seconds of that, you can feel his hand on your shoulder, pushing you down on your knees. And you know exactly what he\'s trying to tell you.');
@@ -41,8 +44,10 @@ function enterMartinBlowTease(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Sensing no pressure from Martin, you conclude that he wants you to surprise and ...
     scene.text(`Sensing no pressure from Martin, you conclude that he wants you to surprise and tease him, so rather than crudely plunging him into your ${((s as any).pc_desc ?? 0)?.['throat'] ?? ''} throat, you take it slow, give his cock lingering strokes and tasting the underside of the tip, then teasingly moving the your tongue around the head.`);
     scene.text('You look up at Martin and find him watching you intently, a shiver running through him when your eyes meet - it must be turning him on immensely to have a girl submissively look up at him while she\'s licking his cock.');
+    (s as any).orgasm_txt = 'Maybe it\'s the sense of submission you have right now, maybe you were just really horny to begin with; whatever the reason, you find that familiar heat in your lower abdomen rising and spilling over, causing you to cum without ever laying a hand on yourself, your moans muffled by his cock in your mouth.';
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub');
+  (s as any).orgasm_txt = '';
   qspCall(s, 'stat', '');
   if (((s as any).cycle ?? 0) === 0  &&  ((s as any).anal ?? 0) > 0) {
     scene.actions([
@@ -82,6 +87,7 @@ function enterMartinBlowTease(s: GameState, scene: SceneBuilder): void {
 function enterMartinBlowjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A216');
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+    (s as any).martinpos = 'MartinBlowjob_undressed';
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/undresssub_bj.mp4');
     if (((s as any).MartinSexStop ?? 0) === 1) {
       scene.text('Instead of plunging Martin\'s dick inside you as you originally wanted (and as your wet pussy demands), you scramble to get on your knees. His confusion at this change of heart only lasts for about two seconds - coincidentally the time you needed to take his cock into your mouth.');
@@ -92,6 +98,7 @@ function enterMartinBlowjob(s: GameState, scene: SceneBuilder): void {
       scene.text('Well… There is something.');
       scene.text('One of your hands inadvertently makes its way down south, following the heat you feel in your groin, and finds your pussy dripping wet. Being used by Martin, reduced to an object for him to satisfy himself with, is arousing in ways that even you yourself have trouble understanding.');
       scene.text('But you don\'t have to understand. All you have to do is leave your fingers to themselves and reap the rewards, moaning softly as you let your lover fuck your mouth.');
+      (s as any).orgasm_txt = 'Your brain seems to have no issue channeling your own frustration and complete sense of surrender to Martin into unbridled lust, fanned by Martin\'s facefuck and you playing with yourself. The familiar heat spreads inside your belly, building up like a wave and then washing over you. You cum, your fingers busy on your clit, your moans muffled by Martin\'s cock in your mouth and feeling at least a little compensated for what you missed out on.';
     } else {
       // TODO-QSP: dynamic text: You take the tip of his <<$dick_girth>> cock into your mouth, pausing to savour ...
       scene.text(`You take the tip of his ${((s as any).dick_girth || '')} cock into your mouth, pausing to savour its size and texture and exploring its details with your ${((s as any).pc_desc ?? 0)?.['lip size'] ?? ''} lips and ${((s as any).pc_desc ?? 0)?.['tongue'] ?? ''} tongue, intent on giving Martin a slow and sensual blowjob.`);
@@ -101,8 +108,10 @@ function enterMartinBlowjob(s: GameState, scene: SceneBuilder): void {
       scene.text('Well… There is something.');
       scene.text('One of your hands inadvertently makes its way down south, following the heat you feel in your groin, and finds your pussy dripping wet. Being used by Martin, reduced to an object for him to satisfy himself with, is arousing in ways that even you yourself have trouble understanding.');
       scene.text('But you don\'t have to understand. All you have to do is leave your fingers to themselves and reap the rewards, moaning softly as you let your lover fuck your mouth.');
+      (s as any).orgasm_txt = 'This sense of complete obedience fans the flames your striptease has lighted. The familiar heat of lust spreads inside your belly, building up like a wave and then washing over you. You cum, your fingers busy on your clit, your moans muffled by Martin\'s cock in your mouth.';
     }
   } else {
+    (s as any).martinpos = 'MartinBlowjob_dressed';
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/dresssub_bj.mp4');
     scene.text('But you want to please him more, and he\'s not leaving any doubt that he wants more from you, too - a soft nudge at the back of your head is all the encouragement you need.');
     // TODO-QSP: dynamic text: You sensually slide your <<$pc_descWordy['lips']>> lips over the head of Martin'...
@@ -111,6 +120,7 @@ function enterMartinBlowjob(s: GameState, scene: SceneBuilder): void {
     scene.text(`You move back and forth, never taking him too deep - all your attention is focused on his crown, your ${((s as any).pc_desc ?? 0)?.['tongue'] ?? ''} tongue circling around the head, teasing that sensitive little spot on its underside.`);
     scene.text('The faint taste of precum is the only sign of pleasure you are getting from him at the moment. He seems so focused on what you are doing to him that he is not making a sound. Or is he? Are you just too engrossed in your task to hear him?');
     scene.text('No matter which it is, you couldn\'t bring yourself to stop. You close your lips even tighter around his dick, suck stronger than before, move your tongue with even greater purpose, determined to get him off.');
+    (s as any).orgasm_txt = 'Maybe it\'s the sense of submission you have right now, maybe you were just really horny to begin with; whatever the reason, you find that familiar heat in your lower abdomen rising and spilling over, causing you to cum without ever laying a hand on yourself, your moans muffled by his cock in your mouth.';
   }
   if (qspFunc(s, 'fetish', 'get_pref', 'deepthroat') > 50) {
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
@@ -125,6 +135,7 @@ function enterMartinBlowjob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 2, 'deepthroat', 'sub');
   }
   scene.text('Your dedication pays off: Before long, his dick seems to swell and you can hear him say your name. Martin is about to cum.');
+  (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'clit_finger', (-4), 'masturbate', 'sub');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -153,7 +164,9 @@ function enterMartinPussyLick(s: GameState, scene: SceneBuilder): void {
   scene.text('You chuckle softly and that chuckle turns into a moan as he flicks the tip of his tongue across your swollen nub.');
   // TODO-QSP: dynamic text: You watch him, somewhat amazed at how hot it is to watch a man go down on you. E...
   scene.text(`You watch him, somewhat amazed at how hot it is to watch a man go down on you. Even if it didn't feel as good as it does, that alone might explain why men like getting blowjobs so much. You barely even notice how minutes pass as Martin licks your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy like an ice cream in summer.`);
+  (s as any).orgasm_txt = 'Strange how, despite having the \'superior\' position, you are feeling like a toy, like a leaf in the wind. Martin is eating you out because he wanted to. He has buried his face between your legs because he willed it, and even though you are looking down at him, he has full control over the situation, over you, over your body, and he knows exactly what he\'s doing. You don\'t know whether it\'s his wonderful tongue or your sense of submission that sets you off, but he has you cumming all over his tongue in no time.';
   qspCall(s, 'arousal', 'cuni', 5, 'sub');
+  (s as any).orgasm_txt = '';
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([

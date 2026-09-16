@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -43,7 +43,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'Break it off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['Nudelake', ''] },
+    qspGoto(s, 'Nudelake', '');
+  } },
       ]);
     }
     scene.actions([
@@ -60,6 +61,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/sex/kwlake1/kwlake5.jpg');
     scene.text('After you masturbate yourself to an orgasm, you can\'t help but get very aroused again by watching Kat get pounded by this total stranger. You pull the stone cock out of your wet cunt and order Kat: "Lick my juices off it!"');
     scene.text('Kat doesn\'t need any more encouragement and closes her lips around the rock, moaning: "Mmmm… delicious!"');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {

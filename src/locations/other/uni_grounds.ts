@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -7,14 +7,15 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'uni_grounds', '');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['campus_event_time'] > ((s as any).totminut ?? 0)) {
-    if (!(s as any).university) (s as any).university = {}; (s as any).university['campus_event_time'] = ((s as any).totminut ?? 0);
+    ((s as any).university = (s as any).university ?? {})['campus_event_time'] = ((s as any).totminut ?? 0);
   }
   if (((s as any).totminut ?? 0) > ((s as any).university ?? 0)?.['campus_event_time'] + 60  &&  ((s as any).sunWeather ?? 0) === 1  &&  (((s as any).hour ?? 0) !== 8  ||  ((s as any).minut ?? 0) <= 50)  &&  (((s as any).hour ?? 0) !== 9  ||  ((s as any).minut ?? 0) <= 20)  &&  (((s as any).hour ?? 0) !== 13  ||  ((s as any).minut ?? 0) <= 5)  &&  (((s as any).university ?? 0)?.['semester_week'] + ((s as any).university ?? 0)?.['exam_week']) > 0) {
-    if (!(s as any).university) (s as any).university = {}; (s as any).university['campus_event_time'] = ((s as any).totminut ?? 0);
+    ((s as any).university = (s as any).university ?? {})['campus_event_time'] = ((s as any).totminut ?? 0);
     if (((s as any).hour ?? 0) > 7  &&  (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3)) {
       if ((((s as any).hotornot_uni ?? 0) === 0  ||  ((s as any).fuckornot_uni ?? 0) === 0)  &&  ((s as any).yearstart ?? 0) === 2  &&  ((s as any).month ?? 0) >= 9  &&  ((s as any).day ?? 0) >= 11) {
         (s as any).fuckornot_uni = 1;
@@ -22,13 +23,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('As you head to class, you overhear many of your fellow students talking. It seems someone has made websites ranking both the male and female students on how bangable they are. You overhear someone mention the links and make a note of them to check when you get a chance.');
       } else {
         if (((s as any).temper ?? 0) >= 12  &&  (!(Math.floor(Math.random() * 4) + 0))) {
-          scene.actions([{ label: 'Continue', goto: ['uni_grounds', 'day_warm'] }]);
+          qspGoto(s, 'uni_grounds', 'day_warm');
         } else {
           if (((s as any).temper ?? 0) >= 8  &&  (!(Math.floor(Math.random() * 10) + 0))) {
-            scene.actions([{ label: 'Continue', goto: ['uni_grounds', 'day_warm'] }]);
+            qspGoto(s, 'uni_grounds', 'day_warm');
           } else {
             if ((!(Math.floor(Math.random() * 10) + 0))) {
-              scene.actions([{ label: 'Continue', goto: ['uni_grounds', 'day_cold'] }]);
+              qspGoto(s, 'uni_grounds', 'day_cold');
             }
           }
         }
@@ -36,7 +37,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if ((((s as any).hour ?? 0) > 15  ||  ((s as any).hour ?? 0) === 1)  &&  (((s as any).daystage ?? 0) === 4  ||  ((s as any).daystage ?? 0) === 5)) {
         if (((s as any).temper ?? 0) >= 12  &&  (!(Math.floor(Math.random() * 5) + 0))) {
-          scene.actions([{ label: 'Continue', goto: ['uni_grounds', 'night_warm'] }]);
+          qspGoto(s, 'uni_grounds', 'night_warm');
         }
       }
     }
@@ -59,7 +60,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).hotcat ?? 0) >= 6  &&  ((s as any).hour ?? 0) > 15  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).porn_studio ?? 0)?.['pickup_porn'] === 0  &&  ((s as any).film ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['pickup_porn', 'start'] }]);
+    qspGoto(s, 'pickup_porn', 'start');
   }
   scene.text('<center><b>University Campus</b></center>');
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
@@ -105,11 +106,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['katja'] === 25) {
     // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
-    scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a redheaded girl\', \'<a href="exec:gt \'katja_chat\', \'start\'">Katja</a>\')+\' sitting while talking on her phone.');
+    scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a redheaded girl\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027katja_chat\\u0027, \\u0027start\\u0027); return false;">Katja</a>\')+\' sitting while talking on her phone.');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 17) {
     // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
-    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="exec:gt \'albina_events\', \'albina_jogging_uni\'">Albina</a>\')+\' jogging around the quad.');
+    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027albina_events\\u0027, \\u0027albina_jogging_uni\\u0027); return false;">Albina</a>\')+\' jogging around the quad.');
     scene.text('Her well-toned physique and tight fitting yoga pants are drawing the attention of multiple boys and even some girls around her, but she appears to have earbuds in and doesn\'t pay much attention to them.');
   }
   if (((s as any).university ?? 0)?.['semester_week'] > 0  &&  ((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
@@ -132,28 +133,32 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the library', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-  }, goto: ['uni_library', 'start'] },
+    qspGoto(s, 'uni_library', 'start');
+  } },
     ]);
   }
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 17) {
     scene.actions([
       { label: 'Go to the administration building', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-  }, goto: ['uni_admin', 'start'] },
+    qspGoto(s, 'uni_admin', 'start');
+  } },
     ]);
   }
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) < 17) {
     scene.actions([
       { label: 'Go to the university cafe', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-  }, goto: ['uni_cafe', ''] },
+    qspGoto(s, 'uni_cafe', '');
+  } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_island', ''] },
+    qspGoto(s, 'city_island', '');
+  } },
     { label: 'Go to the dorms', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
   }, goto: ['uni_dorm', ''] },

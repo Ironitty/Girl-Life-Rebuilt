@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).tempcclean = ((s as any).locArgs?.[0] ?? 0);
   if ((String((String(((s as any).tempcclean ?? 0)).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) === 'C') {
     qspCall(s, 'array', 'remove_element', '$npc_index', ((s as any).tempcclean ?? 0));
     qspCall(s, 'array', 'remove_element', 'npc_dob', ((s as any).tempcclean ?? 0));

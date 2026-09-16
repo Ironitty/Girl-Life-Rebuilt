@@ -14,9 +14,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).PurseQuality ?? 0))) {
     // TODO-QSP: exit
   }
-  if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[0] ?? 0), qspUntranslated(s, "ARGS[1]", { location: "purse_attributes" }))) {
+  if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: dynamic "
-    (s as any).PurseStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_purses_h[qspUntranslated(s, \"ARGS[1]\", { location: \"purse_attributes\" })]", { location: "purse_attributes" });
+    (s as any).PurseStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_purses_h[((s as any).locArgs?.[1] ?? 0)]", { location: "purse_attributes" });
     // TODO-QSP: "
   }
   scene.build();

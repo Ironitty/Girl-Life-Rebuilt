@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -82,7 +82,8 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_park', 'start'] },
+    qspGoto(s, 'city_park', 'start');
+  } },
     ]);
   } },
     { label: 'Remove from your mouth.', handler: (st: GameState) => {
@@ -115,7 +116,8 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_park', 'start'] },
+    qspGoto(s, 'city_park', 'start');
+  } },
     ]);
   } },
   ]);
@@ -174,7 +176,8 @@ function enterDima(s: GameState, scene: SceneBuilder): void {
         { label: 'Make excuses and go', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     scene.actions([
@@ -305,6 +308,7 @@ function enterDima7(s: GameState, scene: SceneBuilder): void {
   scene.text('"Of course. I\'ll have to properly spank her to keep her obedient."');
   scene.text('Dima says, "Do what you want, I need to go to work in the morning, I\'m going to bed."');
   scene.text('Alex picks up a belt, grabs you by your hand and leads you into the hall. Dima went to bed.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
   qspCall(s, 'arousal', 'anal', (-10), ((s as any).npcID ?? 0), 'sub', 'group', 'rough');
   qspCall(s, 'cum_call', 'vagina', ((s as any).npcID ?? 0), 1);
@@ -358,7 +362,8 @@ function enterDima10(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Struggle free and escape', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     { label: 'Fall asleep', goto: ['event', 'dima11'] },
   ]);
   scene.build();
@@ -434,10 +439,10 @@ function enterDima15(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Try to escape', handler: (st: GameState) => {
     if (((s as any).runrnd ?? 0) < 9) {
-      scene.actions([{ label: 'Continue', goto: ['event', 'dima18'] }]);
+      qspGoto(s, 'event', 'dima18');
     } else {
       qspCall(s, 'arousal', 'end');
-      scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+      qspGoto(s, 'city_residential', '');
     }
   } },
     { label: 'Go to the bathroom', goto: ['event', 'dima16'] },
@@ -470,9 +475,9 @@ function enterDima17(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'See Alex in the hall', handler: (st: GameState) => {
     if (((s as any).runrnd ?? 0) < 9) {
-      scene.actions([{ label: 'Continue', goto: ['event', 'dima18'] }]);
+      qspGoto(s, 'event', 'dima18');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['event', 'dima21'] }]);
+      qspGoto(s, 'event', 'dima21');
     }
   } },
   ]);
@@ -516,6 +521,7 @@ function enterDima21(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima3.jpg');
   scene.text('They fuck you for a long time in various poses, some of which would be the envy of the most perverted sexual deviants. After this, they let you go');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'bj', 20, ((s as any).npcID ?? 0), 'sub', 'group', 'deepthroat', 'rough');
   qspCall(s, 'arousal', 'bj', 20, ((s as any).npcID1 ?? 0), 'sub', 'group', 'deepthroat', 'rough');
   qspCall(s, 'arousal', 'vaginal', (-20), ((s as any).npcID ?? 0), 'sub', 'group', 'rough');
@@ -579,7 +585,8 @@ function enterDima32(s: GameState, scene: SceneBuilder): void {
       { label: 'Kick', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['event', 'dima37'] },
+    qspGoto(s, 'event', 'dima37');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -623,7 +630,7 @@ function enterDima34(s: GameState, scene: SceneBuilder): void {
 
 function enterDima35(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).spafinloc = 11;
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
@@ -633,6 +640,7 @@ function enterDima35(s: GameState, scene: SceneBuilder): void {
   scene.text('"Much like this morning, only this time no bitting!" Says Alex, further increasing the tempo.');
   scene.text('Suddenly he stops, you are turned around and pushed to your knees. You hit the marble floor hard, and feel something warm hit and then run down your face.');
   scene.text('"Your Stuff is in that box. Hope, you enjoyed the lesson." With these words Alex loosens the straps on your hands, and you hear him walking away.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).npcID1 ?? 0), 'sub', 'rough', 'bound');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -812,7 +820,7 @@ function enterDima46(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
   qspCall(s, 'npcgeneratec', '', 0, 'gloryhole stranger', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_447.jpg');
   scene.text('When you\'re downstairs, the girl moves you into a dark room with a round hole in one wall. Almost immediately, a cock appears from the hole.');
@@ -840,7 +848,7 @@ function enterDima47(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID ?? 0), 'sub', 'prostitution', 'unknown');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID2 ?? 0));
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
   (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
   if (((s as any).dimagh_counter ?? 0) < 9) {
     // TODO-QSP: jump 'gloryhole1'
@@ -861,6 +869,7 @@ function enterDima47(s: GameState, scene: SceneBuilder): void {
   scene.text('It is now a reflex action for you to help him to finish. After you cleaned his cock, he leaves the booth.');
   scene.text('After a few minutes the girl you met at the door comes in, removes your gag and takes you to the lavatory, where you wash your face and rinse your mouth.');
   scene.text('When you are done, she hands you your things, and some cash, adding, "From your friend, for a job well done." You dress.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'sub', 'rough');
   qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'sub', 'rough');
   qspCall(s, 'cum_call', 'vagina', ((s as any).npcID1 ?? 0), 1);
@@ -880,7 +889,7 @@ function enterDima48(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID2 ?? 0), 'sub', 'prostitution', 'rough', 'deepthroat');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
   (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
   if (((s as any).dimagh_counter ?? 0) < 9) {
     // TODO-QSP: jump 'gloryhole2'

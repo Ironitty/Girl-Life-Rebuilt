@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Have another drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'drugs', 'alcohol', 'vodka');
-    dynamicGoto(st, 'curloc');
+    dynamicGoto(s, 'curloc');
   } },
     ]);
   } else {

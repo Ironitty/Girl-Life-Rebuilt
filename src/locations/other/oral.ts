@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -11,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).tmpl = (((!((s as any).locArgs?.[1] ?? 0))) ? (10) : (qspUntranslated(s, "ARGS[1]", { location: "oral" })));
+  (s as any).tmpl = (((!((s as any).locArgs?.[1] ?? 0))) ? (10) : (((s as any).locArgs?.[1] ?? 0)));
   (s as any).frost = 0;
   // TODO-QSP: dynamic text: Your one hand caress his <<dick>> cm cock, while the other cups his balls as you...
   scene.text(`Your one hand caress his ${((s as any).dick || '')} cm cock, while the other cups his balls as you lick his cock.`);
@@ -42,6 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter0(s: GameState, scene: SceneBuilder): void {
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'bj', 10, 'sub');
   // TODO-QSP: end
   scene.build();

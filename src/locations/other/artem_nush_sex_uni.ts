@@ -11,11 +11,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterAnushka_3some1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A2');
   qspCall(s, 'npcStat', 'A144', 'a');
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nushart_oral'] = 0;
+  ((s as any).artemQW = (s as any).artemQW ?? {})['nushart_oral'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some1.jpg');
   scene.text('He just nods and you talk about how things will go before you hear a knock at the door. Artem gets up and answers it, and you see Anushka standing in the hallway. He stands aside to let her in, slapping her hard on the ass as he does, causing her to jump and yelp slightly in surprise. "Someone\'s feeling feisty today I see," she says aa she looks back at him, then looks at you with a grin as she moves over to sit next to you. Artem closes the door and locks it.');
   if (((s as any).anushkaQW ?? 0)?.['artem_dom'] === 1) {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
     scene.text('As he turns around, he nods and gives her a confident smile. "Why wouldn\'t I be? I owned your ass and we all know it. Now the bad girl is back for more nerd dick."');
     scene.text('She looks up at him and bites her lower lip. "You think so?" While her tone has a bit of a bite to it, you don\'t buy it. Artem is right and you can see by the look on his face that he knows it too.');
     scene.text('He grins. "I know so. Deep down, we both know you like being treated like a dirty slut and the thought of some nerd you used to bully treating you like his little cum slut has you all wet. You can\'t wait to be humiliated by a nerd while he fucks you. Tell me I\'m wrong."');
@@ -259,7 +259,7 @@ function enterAnushka_3some1Doggy(s: GameState, scene: SceneBuilder): void {
       scene.text('"Look at you cumming again just thinking about being fucked by other nerds!" Artem boasts as he keeps fucking her until she rides out her second orgasm. He then pulls out of Anushka and starts stroking his dick while pulling her off you.');
     } else {
       if (((s as any).artemQW ?? 0)?.['rough_anal_nush'] <= 1) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['rough_anal_nush'] = 2;
+        ((s as any).artemQW = (s as any).artemQW ?? {})['rough_anal_nush'] = 2;
         scene.text('Despite grunting like he\'s about to cum, he manages to control himself and starts smacking her ass as he continues fucking her. "OHHH… YES… YES… YES…" she cries out as she has another orgasm, coating your face with her juices again. He keeps fucking her until she rides out her second orgasm. He then pulls out of Anushka and starts stroking his dick while pulling her off you.');
       } else {
         scene.text('It doesn\'t take much longer before he starts to grunt, and you can tell he\'s about to cum, yet he manages to control himself. "OHHH… YES… YES… YES…" she cries out as she has another orgasm, coating your face with her juices again. He keeps fucking her until she rides out her second orgasm. He then pulls out of Anushka and starts stroking his dick while pulling her off you.');
@@ -311,13 +311,13 @@ function enterAnushka_3some1Cleanup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'stat', '');
   if (((s as any).artemQW ?? 0)?.['nush3some_again'] === 3) {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 4;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some_again'] = 4;
   }
   if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
   } else {
     if (((s as any).artemQW ?? 0)?.['confidence'] < 20) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
     }
   }
   scene.img('images/pc/activities/misc/dress_1.mp4');
@@ -390,7 +390,7 @@ function enterNush3some1HowHeFeels(s: GameState, scene: SceneBuilder): void {
     scene.text('He nods at once. "Yeah, yeah I really would. I mean not all the time but sometimes, yeah. If you\'re okay with it, that is…" he says while looking at you, worried he might be coming across as too eager.');
     scene.actions([
       { label: 'We\'ll see', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['artem_dom'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['artem_dom'] = 1;
     scene.img('images/characters/shared/headshots_main/big2.jpg');
     scene.text('You smile at him. "We\'ll see. Maybe I\'ll save it for special rewards for you."');
     scene.text('You talk for a few minutes before you tell him you need to get going. He kisses you before walking you to the door. As you leave, you think about what just happened. You\'ve set it up so your boyfriend and best friend are interested in having more threesomes. As you head out the door and Artem closes it behind you, you wonder if this was a mistake or the smartest thing you\'ve ever done. You suppose only time will tell…');
@@ -405,7 +405,7 @@ function enterNush3some1HowHeFeels(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnushka_3some2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some1.jpg');
   scene.text('As the two of you talk about last time and what he\'s expecting this time, there\'s a knock on the door. Artem gets up and answers it, and you see Anushka standing in the hallway. He stands aside to let her in, slapping her hard on the ass as he does. "Yeah baby, smack my ass…" she says teasingly as he locks the door before quickly catching up to smack her again.');
   scene.text('"I\'m going to do a lot more than smack it!" he replies with a grin.');
@@ -499,13 +499,13 @@ function enterAnushka_3some2DomBj(s: GameState, scene: SceneBuilder): void {
       { label: 'Clean up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).artemQW ?? 0)?.['nush3some_again'] === 5) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 6;
+      ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some_again'] = 6;
     }
     if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
     } else {
       if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+        ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
       }
     }
     scene.img('images/pc/activities/misc/dress_1.mp4');
@@ -719,10 +719,10 @@ function enterAnushka_3some2Cleanup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'stat', '');
   if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
   } else {
     if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
     }
   }
   scene.img('images/pc/activities/misc/dress_1.mp4');
@@ -753,7 +753,7 @@ function enterAnushka_3some2Cleanup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnushka_3some2DomStrapon(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'boyStat', 'D<<strapNumber>>');
+  qspCall(s, 'boyStat', 'D' + ((s as any).strapNumber ?? 0) + '');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_dom_strap1.jpg');
   scene.text('While Artem fucks Anushka doggy style, you grab your purse and pull out your strapon harness. You slip into it and buckle it in place before taking the dildo out and attaching it to the harness. Artem glances over at you once you have the strapon firmly attached and pulls out of Anushka before standing aside. You walk up and give her ass a hard slap. "Roll over. I want you to watch me while I fuck you with my big dick!"');
   // TODO-QSP: dynamic text: Anushka rolls over onto her back and spreads her legs before you scoot up on you...
@@ -802,13 +802,13 @@ function enterAnushka_3some2DomStrapon(s: GameState, scene: SceneBuilder): void 
       { label: 'Clean up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).artemQW ?? 0)?.['nush3some_again'] === 5) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 6;
+      ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some_again'] = 6;
     }
     if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
     } else {
       if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+        ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
       }
     }
     scene.img('images/pc/activities/misc/dress_1.mp4');
@@ -848,8 +848,8 @@ function enterAnushka_3some2DomStrapon(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterAnushka_3some2DomStraponAnal(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
-  qspCall(s, 'boyStat', 'D<<strapNumber>>');
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
+  qspCall(s, 'boyStat', 'D' + ((s as any).strapNumber ?? 0) + '');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_dom_strap_anal1.jpg');
   scene.text('You stand next to him and watch as he fucks her ass. "Babe, I want to fuck her too," you tell him.');
   scene.text('He looks over at you and grins, then pulls out of her asshole, leaving it gaping and waiting for you. You grab her ass cheeks with your hands and spread them wide, making her hole gape a bit wider as you position yourself and line the tip of the dildo up with her hole before you push it in.');
@@ -888,13 +888,13 @@ function enterAnushka_3some2DomStraponAnal(s: GameState, scene: SceneBuilder): v
       { label: 'Clean up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).artemQW ?? 0)?.['nush3some_again'] === 5) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 6;
+      ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some_again'] = 6;
     }
     if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
     } else {
       if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+        ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
       }
     }
     scene.img('images/pc/activities/misc/dress_1.mp4');
@@ -975,7 +975,7 @@ function enterArtemNush(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Push her head down', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_bj2.jpg');
     scene.text('As Anushka continues sucking Artem\'s cock, you reach over and push her head down to force her to take more of it into her mouth.');
     scene.text('"Oh yeah babe! Just like that…" Artem moans as he looks at you.');
@@ -1052,7 +1052,7 @@ function enterArtemNushStrip(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Hold her in place', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_anal1.jpg');
     scene.text('After spending a few more minutes fucking her pussy, he pulls his hips back. "Tell me you want this nerd dick in your ass."');
     scene.text('"Yes… I want you to fuck my ass with your big nerd dick," she says, sounding rather desperate, yet also aroused.');
@@ -1071,10 +1071,10 @@ function enterArtemNushStrip(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch him cum', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
     } else {
       if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+        ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
       }
     }
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_facial.jpg');
@@ -1167,10 +1167,10 @@ function enterArtemSveta(s: GameState, scene: SceneBuilder): void {
       { label: 'Just suck him off', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
     } else {
       if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+        ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
       }
     }
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_facial.jpg');
@@ -1252,10 +1252,10 @@ function enterArtemSvetaVag(s: GameState, scene: SceneBuilder): void {
       { label: 'Artem blows his load', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
     } else {
       if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+        ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
       }
     }
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_facial.jpg');
@@ -1319,10 +1319,10 @@ function enterArtemSvetaAnal(s: GameState, scene: SceneBuilder): void {
       { label: 'Artem blows his load', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).artemQW ?? 0)?.['confidence'] < 9) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (2);
     } else {
       if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
+        ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
       }
     }
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_facial.jpg');
@@ -1399,9 +1399,9 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).artemQW ?? 0)?.['nush_bully_payback_uni'] === 0) {
       scene.actions([
         { label: 'Just watch', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush_bully_payback_uni'] = ((s as any).artemQW['nush_bully_payback_uni'] ?? 0) + (1);
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['artem_dom'] = ((s as any).anushkaQW['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush_bully_payback_uni'] = ((s as any).artemQW['nush_bully_payback_uni'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['artem_dom'] = ((s as any).anushkaQW['artem_dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback2.jpg');
     scene.text('Artem moans as he looks down at her. "Oh yeah, that\'s it… Now stick my cock in your mouth and suck it!"');
     // TODO-QSP: dynamic text: While stroking his <<dick>>cm <<$dick_girth>> dick with one hand, she starts to ...
@@ -1488,8 +1488,8 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Just watch', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['artem_dom'] = ((s as any).anushkaQW['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['artem_dom'] = ((s as any).anushkaQW['artem_dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback21.jpg');
     // TODO-QSP: dynamic text: Artem roughly grabs her by the hair and forces his dick into her mouth. She's on...
     scene.text(`Artem roughly grabs her by the hair and forces his dick into her mouth. She's only too happy to oblige him and you watch as he forces her head to bob back and forth as she sucks his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick, his hand firmly gripping her by the hair and guiding her head.`);
@@ -1525,7 +1525,7 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).artemQW ?? 0)?.['nush_bully_payback_uni'] >= 2) {
       scene.actions([
         { label: 'Watch what happens next', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush_bully_payback_uni'] = ((s as any).artemQW['nush_bully_payback_uni'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush_bully_payback_uni'] = ((s as any).artemQW['nush_bully_payback_uni'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback31.jpg');
     scene.text('Artem smacks her thighs, making her spread her legs wider and lifting them up at the same time. "Spread your legs wider. I know a slut like you knows how to spread her legs."');
     scene.text('Once he\'s happy with the placement of her legs, he slides one hand down to her pussy and rubs her clit before sliding his fingers further down to her slit.');
@@ -1613,7 +1613,7 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Watch Anushka suck your BF\'s cock', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush_bully_payback_uni'] = ((s as any).artemQW['nush_bully_payback_uni'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush_bully_payback_uni'] = ((s as any).artemQW['nush_bully_payback_uni'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback24.jpg');
     scene.text('Anushka\'s eyes flicker over to you as your boyfriend fucks her mouth, periodically shoving it balls deep down her throat. Artem moans before he seems to notice she\'s no longer looking up at him.');
     scene.text('He reaches down with his other hand and lightly smacks her face. "Look at me when you suck my dick!"');
@@ -1680,8 +1680,8 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
 function enterNerdGameOrcBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A2');
   qspCall(s, 'npcStat', 'A144', 'a');
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['artem_dom'] = ((s as any).anushkaQW['artem_dom'] ?? 0) + (1);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['artem_dom'] = ((s as any).anushkaQW['artem_dom'] ?? 0) + (1);
   scene.img('images/locations/city/island/coffe_hole/npcs/nush_counter.jpg');
   scene.text('As you walk up to the counter, Anushka glances to the others from your little group heading out. "You guys done for the night?"');
   scene.text('Artem smiles to her. "More or less." Then he makes a little small talk with her, you are kinda amazed how much better he has gotten at just making small talk with a girl from when you first started dating him.');

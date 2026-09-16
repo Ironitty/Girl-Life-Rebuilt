@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,11 +10,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBuildBp(s: GameState, scene: SceneBuilder): void {
   (s as any).bp_i = 0;
-  if (!(s as any).bpID_arr) (s as any).bpID_arr = {}; (s as any).bpID_arr[String((s as any).bp_i ?? 0)] = ((s as any).bp_i ?? 0);
-  if (!(s as any).bpType_arr) (s as any).bpType_arr = {}; (s as any).bpType_arr[String((s as any).bp_i ?? 0)] = qspUntranslated(s, "ARGS[1]", { location: "lact_bp" });
-  if (!(s as any).bpLocID_arr) (s as any).bpLocID_arr = {}; (s as any).bpLocID_arr[String((s as any).bp_i ?? 0)] = qspUntranslated(s, "ARGS[2]", { location: "lact_bp" });
-  if (!(s as any).bpbID1_arr) (s as any).bpbID1_arr = {}; (s as any).bpbID1_arr[String((s as any).bp_i ?? 0)] = (-1);
-  if (!(s as any).bpbID2_arr) (s as any).bpbID2_arr = {}; (s as any).bpbID2_arr[String((s as any).bp_i ?? 0)] = (-1);
+  ((s as any).bpID_arr = (s as any).bpID_arr ?? {})[String((s as any).bp_i ?? 0)] = ((s as any).bp_i ?? 0);
+  ((s as any).bpType_arr = (s as any).bpType_arr ?? {})[String((s as any).bp_i ?? 0)] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).bpLocID_arr = (s as any).bpLocID_arr ?? {})[String((s as any).bp_i ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).bpbID1_arr = (s as any).bpbID1_arr ?? {})[String((s as any).bp_i ?? 0)] = (-1);
+  ((s as any).bpbID2_arr = (s as any).bpbID2_arr ?? {})[String((s as any).bp_i ?? 0)] = (-1);
   (s as any).result = ((s as any).bp_i ?? 0);
   // TODO-QSP: end
   scene.build();
@@ -33,7 +31,7 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mbarrloca ?? 0)?.[String((s as any).vmb_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).vmb_i ?? 0)]; enterUpdateMbottle(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] <=0) {
-        if (!(s as any).mbarrfill) (s as any).mbarrfill = {}; (s as any).mbarrfill[String((s as any).vmb_i ?? 0)] = 0;
+        ((s as any).mbarrfill = (s as any).mbarrfill ?? {})[String((s as any).vmb_i ?? 0)] = 0;
         // TODO-QSP: dynamic text: <br><<vmb_i + 1>>. - An empty <<mbarrtype[vmb_i]/10>>ml bottle. You can use it t...
         scene.text(`<br>${((s as any).vmb_i ?? '') + 1}. - An empty ${((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)]/10}ml bottle. You can use it to store your breast milk.`);
       } else {
@@ -45,7 +43,7 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'vmbloop'
   }
   if (((s as any).milkedvolume ?? 0) > 0) {
-    scene.text('<br><a href="exec:gt\'lact_bp\',\'empty_all_milk_bottles\'">Pour the milk into the sink</a>');
+    scene.text('<br><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027empty_all_milk_bottles\\u0027); return false;">Pour the milk into the sink</a>');
   }
   // TODO-QSP: end
   scene.actions([
@@ -63,10 +61,10 @@ function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mbarrtemp ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'warm') {
     scene.text('<center>The milk is still warm from your breasts.</center>');
   }
-  (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).ARGS ?? 0)[1]]/400);
-  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).ARGS ?? 0)[1]]/500);
-  (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).ARGS ?? 0)[1]] / ((((s as any).pcs_hydra ?? 0)>=100) ? (200) : (100)));
-  (s as any).minut = ((s as any).minut ?? 0) + (Math.max(1, (((s as any).mbarrfill ?? 0)[((s as any).ARGS ?? 0)[1]]/1000) + 3));
+  (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).locArgs?.[1] ?? 0)]/400);
+  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).locArgs?.[1] ?? 0)]/500);
+  (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).locArgs?.[1] ?? 0)] / ((((s as any).pcs_hydra ?? 0)>=100) ? (200) : (100)));
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.max(1, (((s as any).mbarrfill ?? 0)[((s as any).locArgs?.[1] ?? 0)]/1000) + 3));
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
@@ -107,7 +105,7 @@ function enterEmptyAllMilkBottles(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -285,7 +283,7 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -294,12 +292,12 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
       if (((s as any).bp_unbox ?? 0) === 1  &&  (((s as any).location_type ?? 0) === 'bathroom'  ||  ((s as any).location_type ?? 0) === 'private')) {
-        scene.actions([{ label: 'Continue', goto: ['lact_bp', 'bp_unbox_event'] }]);
+        qspGoto(s, 'lact_bp', 'bp_unbox_event');
       } else {
         scene.img('images/pc/body/tits/breast_pump.jpg');
         scene.text('How long do you want to pump your breasts with the manual breast pump?');
@@ -315,20 +313,20 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
               scene.text('You currently use a 150ml bottle on your breast pump.');
             } else {
               if (((s as any).pump_bottletype ?? 0) === 1500) {
-                scene.text('Current bottle size in use: &gt;150ml | <a href="exec:pump_bottletype = 2500 & gt \'lact_bp\', \'bp_milking\'">250ml</a>');
+                scene.text('Current bottle size in use: &gt;150ml | <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = s.2500; return s; }); window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027bp_milking\\u0027); return false;">250ml</a>');
               } else {
                 (s as any).pump_bottletype = 2500;
-                scene.text('Current bottle size in use <a href="exec:pump_bottletype = 1500 & gt \'lact_bp\', \'bp_milking\'">150ml</a> | &gt;250ml');
+                scene.text('Current bottle size in use <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = s.1500; return s; }); window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027bp_milking\\u0027); return false;">150ml</a> | &gt;250ml');
               }
             }
           }
         }
         if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s']) === 1) {
-          scene.text('You have one bottle. You can check it <a href="exec:gs \'lact_bp\',\'view_milk_bottles\', 1">here</a>');
+          scene.text('You have one bottle. You can check it <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027view_milk_bottles\\u0027, String(window.__gameStore.getState().1 ?? \\u0027\\u0027)); return false;">here</a>');
         } else {
           if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s']) > 1) {
             // TODO-QSP: dynamic text: You have <<mc_inventory['bottle_m'] + mc_inventory['bottle_s']>> bottles. You ca...
-            scene.text(`You have ${(((s as any).mc_inventory ?? {})?.['bottle_m'] ?? 0) + (((s as any).mc_inventory ?? {})?.['bottle_s'] ?? 0)} bottles. You can check them <a href="exec:gs 'lact_bp','view_milk_bottles', 1">here</a>`);
+            scene.text(`You have ${(((s as any).mc_inventory ?? {})?.['bottle_m'] ?? 0) + (((s as any).mc_inventory ?? {})?.['bottle_s'] ?? 0)} bottles. You can check them <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027view_milk_bottles\\u0027, String(window.__gameStore.getState().1 ?? \\u0027\\u0027)); return false;">here</a>`);
           }
         }
         if (((s as any).lactation ?? 0)?.['breastmv'] > 0  &&  (qspFunc(s, 'lact_bp', 'useable_sbottle_count') > 0  ||  qspFunc(s, 'lact_bp', 'useable_mbottle_count') > 0)) {
@@ -341,7 +339,7 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
     scene.text('As you prepare for pumping you weight your breasts in your hands. Your breasts feel really empty. There is no need to pump now.');
     scene.actions([
       { label: 'Don\'t pump', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'back', goto: ['lact_bp', 'bp_milking'] },
     ]);
@@ -350,7 +348,9 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).pumptime ?? 0) <= 60) {
               scene.actions([
-                { label: 'Pump until breasts are empty', goto: ['lact_bp', 'milking'] },
+                { label: 'Pump until breasts are empty', handler: (st: GameState) => {
+    qspGoto(s, 'lact_bp', 'milking');
+  } },
               ]);
             } else {
               scene.actions([
@@ -368,9 +368,11 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
     scene.text('Do you want to continue?');
     scene.actions([
       { label: 'Don\'t pump', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-      { label: 'Continue', goto: ['lact_bp', 'milking'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    qspGoto(s, 'lact_bp', 'milking');
+  } },
     ]);
   } },
               ]);
@@ -381,10 +383,12 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: '15 Minutes', handler: (st: GameState) => {
     (s as any).pumptime = 15;
-  }, goto: ['lact_bp', 'milking'] },
+    qspGoto(s, 'lact_bp', 'milking');
+  } },
             { label: '30 Minutes', handler: (st: GameState) => {
     (s as any).pumptime = 30;
-  }, goto: ['lact_bp', 'milking'] },
+    qspGoto(s, 'lact_bp', 'milking');
+  } },
             { label: 'Custom', handler: (st: GameState) => {
     (s as any).pumptime = 0;
     if (((s as any).pumptime ?? 0) <= 0  ||  ((s as any).pumptime ?? 0) > 60) {
@@ -392,13 +396,13 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Don\'t pump', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         { label: 'back', goto: ['lact_bp', 'bp_milking'] },
       ]);
     } else {
       if (((s as any).pumptime ?? 0) > 0  &&  ((s as any).pumptime ?? 0) <= 60) {
-        scene.actions([{ label: 'Continue', goto: ['lact_bp', 'milking'] }]);
+        qspGoto(s, 'lact_bp', 'milking');
       }
     }
   } },
@@ -415,7 +419,7 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Don\'t pump', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -490,9 +494,11 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Don\'t express', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-      { label: 'Express your milk', goto: ['lact_bp', 'hand_milking'] },
+      { label: 'Express your milk', handler: (st: GameState) => {
+    qspGoto(s, 'lact_bp', 'hand_milking');
+  } },
     ]);
   } },
       ]);
@@ -505,7 +511,7 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Don\'t express milk', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'back', goto: ['lact_bp', 'man_milking'] },
     ]);
@@ -515,7 +521,8 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Express until breasts are empty', handler: (st: GameState) => {
     (s as any).pumptime = qspFunc(s, 'lact_lib', '$get_breastmilk_time', 5, ((((s as any).lactation ?? {})?.['breastmv'] ?? 0)/1000));
-  }, goto: ['lact_bp', 'hand_milking'] },
+    qspGoto(s, 'lact_bp', 'hand_milking');
+  } },
         ]);
       }
     }
@@ -523,13 +530,13 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
     scene.actions([
       { label: 'Don\'t express', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Don\'t massage', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -537,10 +544,12 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '5 Minutes', handler: (st: GameState) => {
     (s as any).pumptime = 5;
-  }, goto: ['lact_bp', 'hand_milking'] },
+    qspGoto(s, 'lact_bp', 'hand_milking');
+  } },
     { label: '10 Minutes', handler: (st: GameState) => {
     (s as any).pumptime = 10;
-  }, goto: ['lact_bp', 'hand_milking'] },
+    qspGoto(s, 'lact_bp', 'hand_milking');
+  } },
     { label: 'Custom', handler: (st: GameState) => {
     if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
       (s as any).pumptime = 0;
@@ -552,13 +561,13 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
       if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
         scene.actions([
           { label: 'Don\'t express', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
         scene.actions([
           { label: 'Don\'t massage', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -567,7 +576,7 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).pumptime ?? 0) > 0  &&  ((s as any).pumptime ?? 0) <= 60) {
-        scene.actions([{ label: 'Continue', goto: ['lact_bp', 'hand_milking'] }]);
+        qspGoto(s, 'lact_bp', 'hand_milking');
       }
     }
   } },
@@ -607,7 +616,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
         scene.img('images/pc/body/tits/pump_unboxing_bath.jpg');
       }
     }
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['bottle_s'] = ((s as any).mc_inventory['bottle_s'] ?? 0) + (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['bottle_s'] = ((s as any).mc_inventory['bottle_s'] ?? 0) + (1);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRegBottleCount(s, scene); (s as any).locArgs = __savedLocArgs; }
     if ((((s as any).pcs_inhib ?? 0) > 40  &&  ((s as any).location_type ?? 0) === 'private')  ||  ((s as any).location_type ?? 0) === 'bathroom') {
       scene.actions([
@@ -655,9 +664,9 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).pain ?? 0)?.['nipples'] < 60  &&  ((s as any).lactation ?? 0)?.['pc_aware'] <= 0) {
-      if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
+      ((s as any).lactation = (s as any).lactation ?? {})['pc_aware'] = 1;
       if (((s as any).pcs_usedbreastpumponherself ?? 0) > 0) {
-        if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
+        ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 1;
         if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
           scene.text('All that pumping and massaging your breasts probably caused you to lactate!<br>');
         } else {
@@ -667,10 +676,10 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
-          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
+          ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 1;
           scene.text('Regularly massaging your breasts probably made you lactate!<br>');
         } else {
-          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 0;
+          ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 0;
           scene.text('To your surprise it is milk. You started lactating!<br>');
           if (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1) {
             scene.text('This is probably happening because you are pregnant.');
@@ -699,7 +708,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -707,7 +716,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -723,7 +732,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -735,7 +744,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -801,7 +810,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -812,7 +821,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
         scene.text('You unboxed your breast pump already.');
         scene.actions([
           { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -835,17 +844,17 @@ function enterRegBottleCount(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).mc_inventory ?? 0)?.['bottle_s'] - ((s as any).reg_bottles_count ?? 0)) > 0) {
       (s as any).reg_bottles_count = ((s as any).reg_bottles_count ?? 0) + (1);
       (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
-      if (!(s as any).mbarrtype) (s as any).mbarrtype = {}; (s as any).mbarrtype[String((s as any).rbc_index ?? 0)] = 1500;
+      ((s as any).mbarrtype = (s as any).mbarrtype ?? {})[String((s as any).rbc_index ?? 0)] = 1500;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).rbc_index ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-      if (!(s as any).mbarrloca) (s as any).mbarrloca = {}; (s as any).mbarrloca[String((s as any).rbc_index ?? 0)] = 1;
+      ((s as any).mbarrloca = (s as any).mbarrloca ?? {})[String((s as any).rbc_index ?? 0)] = 1;
       // TODO-QSP: jump 'rbc_loop'
     }
     if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] - ((s as any).reg_bottlem_count ?? 0)) > 0) {
       (s as any).reg_bottlem_count = ((s as any).reg_bottlem_count ?? 0) + (1);
       (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
-      if (!(s as any).mbarrtype) (s as any).mbarrtype = {}; (s as any).mbarrtype[String((s as any).rbc_index ?? 0)] = 2500;
+      ((s as any).mbarrtype = (s as any).mbarrtype ?? {})[String((s as any).rbc_index ?? 0)] = 2500;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).rbc_index ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-      if (!(s as any).mbarrloca) (s as any).mbarrloca = {}; (s as any).mbarrloca[String((s as any).rbc_index ?? 0)] = 1;
+      ((s as any).mbarrloca = (s as any).mbarrloca ?? {})[String((s as any).rbc_index ?? 0)] = 1;
       // TODO-QSP: jump 'rbc_loop'
     }
   }
@@ -889,10 +898,10 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).lactation ?? 0)?.['pc_aware'] <= 0) {
-        if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
+        ((s as any).lactation = (s as any).lactation ?? {})['pc_aware'] = 1;
         scene.img('images/pc/body/tits/pump_milkdrops.jpg');
         if (((s as any).pcs_usedbreastpumponherself ?? 0) > 0) {
-          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
+          ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 1;
           if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
             scene.text('You attach the pump but after a few pumps white liquid suddenly comes from your nipples. All that pumping and massaging your breasts probably caused you to lactate!<br>');
           } else {
@@ -900,10 +909,10 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
-            if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
+            ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 1;
             scene.text('You attach the pump but after a few pumps white liquid suddenly comes from your nipples. Regularly massaging your breasts probably made you lactate!<br>');
           } else {
-            if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 0;
+            ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 0;
             scene.text('You attach the pump and give it a few pumps. To your surprise white liquid suddenly comes from your nipples. You started lactating!<br>');
             if (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1) {
               scene.text('This is probably happening because you are pregnant.');
@@ -1217,7 +1226,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
   if (((s as any).milkedvolume ?? 0) <= 0) {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -1225,7 +1234,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     (s as any).lactatemess = 0;
     if (((s as any).pcs_hydra ?? 0) < 100) {
       scene.actions([
-        { label: 'Drink it (<<3 + milkedvolume/1500>> minutes)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Drink it (' + String(3 + ((s as any).milkedvolume ?? '')/1500 ?? '') + ' minutes)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (3 + ((s as any).milkedvolume ?? 0) / 1000);
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).milkedvolume ?? 0) / 400);
     (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (((s as any).milkedvolume ?? 0) / 500);
@@ -1250,14 +1259,14 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (s as any).milkedvolume = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
       ]);
     }
     scene.actions([
-      { label: 'Pour it into the sink (<<3 + milkedvolume/1500>> minutes)', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Pour it into the sink (' + String(3 + ((s as any).milkedvolume ?? '')/1500 ?? '') + ' minutes)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (3 + ((s as any).milkedvolume ?? 0) / 1500);
     qspCall(s, 'stat', '');
     (s as any).piits_i = 0;
@@ -1280,7 +1289,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (s as any).milkedvolume = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1289,7 +1298,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (s as any).milkedvolume = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1321,10 +1330,10 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
         scene.img('images/pc/body/tits/bathroom_milking.mp4');
       } else {
         if (((s as any).lactation ?? 0)?.['pc_aware'] <= 0) {
-          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
+          ((s as any).lactation = (s as any).lactation ?? {})['pc_aware'] = 1;
           scene.img('images/pc/body/tits/lactate_start.jpg');
           if (((s as any).pcs_usedbreastpumponherself ?? 0) > 0) {
-            if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
+            ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 1;
             if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
               scene.text('You start to massage your breasts, your fingers gliding down your breasts skin, over the areolas. Your fingers pressing down into the areola, stretching it forwards to your nipple. After a few squeezes white liquid suddenly starts flowing from your nipples. All that pumping and massaging your breasts probably caused you to lactate!<br>');
             } else {
@@ -1332,10 +1341,10 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
-              if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
+              ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 1;
               scene.text('You start to massage your breasts, your fingers gliding down your breasts skin, over the areolas. Your fingers pressing down into the areola, stretching it forwards to your nipple. After a few squeezes white liquid suddenly starts flowing from your nipples. Regularly massaging your breasts probably made you lactate!<br>');
             } else {
-              if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 0;
+              ((s as any).lactation = (s as any).lactation ?? {})['induced'] = 0;
               scene.text('You start to massage your breasts, your fingers gliding down your breasts skin, over the areolas. Your fingers pressing down into the areola, stretching it forwards to your nipple. To your surprise white liquid suddenly starts flowing from your nipples. You started lactating!<br>');
               if (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1) {
                 scene.text('This is probably happening because you are pregnant.');
@@ -1354,7 +1363,7 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

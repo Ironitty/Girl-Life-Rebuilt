@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -31,7 +31,7 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7)  &&  ((s as any).locat ?? 0)?.['A23'] === 1  &&  ((s as any).AlbinaQW ?? 0)?.['meet_zoya'] === 0) {
-        scene.actions([{ label: 'Continue', goto: ['albina_mother_events', 'zoya_meet'] }]);
+        qspGoto(s, 'albina_mother_events', 'zoya_meet');
       } else {
         if (((s as any).locat ?? 0)?.['zoya'] === 8  ||  ((s as any).locat ?? 0)?.['zoya'] === 9) {
           scene.text('You hear the latch unlocking before the door is opened by the maid.');
@@ -54,18 +54,18 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Please follow me, Miss <<$pcs_firstname>>."
     scene.text(`"Please follow me, Miss ${((s as any).pcs_firstname || '')}."`);
     if (((s as any).locat ?? 0)?.['zoya'] === 8) {
-      scene.actions([{ label: 'Continue', goto: ['albina_mother_events', 'zoya_sunbathing_solo1'] }]);
+      qspGoto(s, 'albina_mother_events', 'zoya_sunbathing_solo1');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['albina_mother_events', 'zoya_workout_solo'] }]);
+      qspGoto(s, 'albina_mother_events', 'zoya_workout_solo');
     }
   } },
           ]);
         } else {
           if (((s as any).locat ?? 0)?.['zoya'] === 10) {
-            scene.actions([{ label: 'Continue', goto: ['albina_mother_events', 'zoya_sunbathing_albina'] }]);
+            qspGoto(s, 'albina_mother_events', 'zoya_sunbathing_albina');
           } else {
             if (((s as any).locat ?? 0)?.['zoya'] === 11) {
-              scene.actions([{ label: 'Continue', goto: ['albina_mother_events', 'zoya_yoga_albina'] }]);
+              qspGoto(s, 'albina_mother_events', 'zoya_yoga_albina');
             } else {
               scene.text('A few seconds later, you hear the click of the latch unlocking before the door opens to reveal the maid.');
               // TODO-QSP: dynamic text: "Hello Miss <<$pcs_firstname>>," she says with a polite smile.
@@ -112,19 +112,19 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
 
 function enterMaidGreet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) <= ((s as any).AlbinaQW ?? 0)?.['visiting']) {
-    scene.actions([{ label: 'Continue', goto: ['albinahome', 'hallway'] }]);
+    qspGoto(s, 'albinahome', 'hallway');
   }
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['visiting'] = ((s as any).daystart ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['visiting'] = ((s as any).daystart ?? 0);
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['albina_house_events', 'alb_yoga_start'] }]);
+    qspGoto(s, 'albina_house_events', 'alb_yoga_start');
   } else {
     if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).daystart ?? 0) > ((s as any).AlbinaQW ?? 0)?.['daily_event']) {
-      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['daily_event'] = ((s as any).daystart ?? 0);
-      scene.actions([{ label: 'Continue', goto: ['albina_sex_scenes', 'lazar_start'] }]);
+      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['daily_event'] = ((s as any).daystart ?? 0);
+      qspGoto(s, 'albina_sex_scenes', 'lazar_start');
     } else {
       if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['albina_house_events', 'albina_sunbathe_solo'] }]);
+        qspGoto(s, 'albina_house_events', 'albina_sunbathe_solo');
       } else {
         scene.img('images/locations/pavlovsk/resident/albinahome/maid.jpg');
         // TODO-QSP: dynamic text: "Please make yourself at home, Miss <<$pcs_firstname>>. I will let Miss Albina k...
@@ -161,7 +161,8 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-  }, goto: ['pav_residential', ''] },
+    qspGoto(s, 'pav_residential', '');
+  } },
       { label: 'Go to Albina\'s bedroom', goto: ['albinahome', 'bedroom'] },
       { label: 'Go to Zoya\'s bedroom', goto: ['albinahome', 'zoya_room'] },
       { label: 'Go to the living room', goto: ['albinahome', 'living_room'] },
@@ -176,13 +177,14 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterDownstairsBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'albinahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/resident/albinahome/bathroom.jpg');
   scene.text('The bathroom is just as well appointed as the rest of the house, with polished marble used throughout its furnishings.');
   // TODO-QSP: dynamic text: There is a shower, toilet, sink, <a href="exec:gt 'mirror', 'start'">mirror</a>,...
-  scene.text('There is a shower, toilet, sink, <a href="exec:gt \'mirror\', \'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\', \'brush\'">brush</a>\', \'brush\') + \' your hair, and even a separate bathtub.');
+  scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair, and even a separate bathtub.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
@@ -195,7 +197,7 @@ function enterDownstairsBathroom(s: GameState, scene: SceneBuilder): void {
       scene.text('You take a painkiller and gulp it down with a glass of water.');
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -212,22 +214,22 @@ function enterDownstairsBathroom(s: GameState, scene: SceneBuilder): void {
 function enterBedroomEventRandom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 7) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['albina_sex_scenes', 'lazar_start'] }]);
+    qspGoto(s, 'albina_sex_scenes', 'lazar_start');
   } else {
     if (((s as any).temp_rand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['albina_house_events', 'hot_tub1'] }]);
+      qspGoto(s, 'albina_house_events', 'hot_tub1');
     } else {
       if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).temper ?? 0) < 10) {
-        scene.actions([{ label: 'Continue', goto: ['albina_house_events', 'swim_winter1'] }]);
+        qspGoto(s, 'albina_house_events', 'swim_winter1');
       } else {
         if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).AlbinaQW ?? 0)?.['studylock'] === 0  &&  ((s as any).AlbinaQW ?? 0)?.['flashdrive'] === 0) {
-          scene.actions([{ label: 'Continue', goto: ['albina_events', 'study_door'] }]);
+          qspGoto(s, 'albina_events', 'study_door');
         } else {
           if (((s as any).temp_rand ?? 0) === 4) {
-            scene.actions([{ label: 'Continue', goto: ['albina_house_events', 'alb_bedroom_shower'] }]);
+            qspGoto(s, 'albina_house_events', 'alb_bedroom_shower');
           } else {
             if (((s as any).temp_rand ?? 0) === 5) {
-              scene.actions([{ label: 'Continue', goto: ['albinahome', 'dancing'] }]);
+              qspGoto(s, 'albinahome', 'dancing');
             }
           }
         }
@@ -241,11 +243,11 @@ function enterBedroomEventRandom(s: GameState, scene: SceneBuilder): void {
 function enterBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'albinahome', ((s as any).locArgs?.[0] ?? 0));
   if (((s as any).daystart ?? 0) > ((s as any).AlbinaQW ?? 0)?.['daily_event']) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['daily_event'] = ((s as any).daystart ?? 0);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['daily_event'] = ((s as any).daystart ?? 0);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBedroomEventRandom(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).daystart ?? 0) !== ((s as any).AlbinaQW ?? 0)?.['extra_event']) {
-      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['extra_event'] = ((s as any).daystart ?? 0);
+      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['extra_event'] = ((s as any).daystart ?? 0);
       (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
       if ((!((s as any).temp_rand ?? 0))) {
         qspCall(s, 'albina_house_events', 'dancing');
@@ -260,12 +262,12 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   if (((s as any).AlbinaQW ?? 0)?.['albride'] === 3) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['albride'] = 4;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['albride'] = 4;
     scene.img('images/characters/shared/headshots_main/big23.jpg');
     scene.text('You head up to Albina\'s room, and she smiles at you when you walk in. "So you met my mother then? Don\'t worry. She\'s <i>mostly</i> harmless and actually likes you. So what do you want to do?"');
     scene.actions([
       { label: 'Hang out', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -307,8 +309,8 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        scene.text('Albina\'s bedroom is, in a word, <i>extravagant</i>. The centrepiece is a large double bed covered in soft pillows and a door at the back of the room leads to her en-suite <a href="exec:gt \'albinahome\', \'albina_bathroom\'">bathroom</a>. There\'s even a sliding door leading to a balcony that overlooks the pool. A closet full of expensive-looking clothes is built into one of the walls.');
-        scene.text('Her <a href="exec:gt \'albina_house_events\', \'computer\'">laptop</a> is sitting on the nearby desk.');
+        scene.text('Albina\'s bedroom is, in a word, <i>extravagant</i>. The centrepiece is a large double bed covered in soft pillows and a door at the back of the room leads to her en-suite <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027albinahome\\u0027, \\u0027albina_bathroom\\u0027); return false;">bathroom</a>. There\'s even a sliding door leading to a balcony that overlooks the pool. A closet full of expensive-looking clothes is built into one of the walls.');
+        scene.text('Her <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027albina_house_events\\u0027, \\u0027computer\\u0027); return false;">laptop</a> is sitting on the nearby desk.');
         if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).hour ?? 0) < 19) {
           scene.actions([
             { label: 'Ask if she wants to swim in the pool', goto: ['albina_house_events', 'naked_swim'] },
@@ -343,13 +345,14 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
 
 function enterAlbinaBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'albinahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/resident/albinahome/bathroom.jpg');
   scene.text('Much like the other bathrooms in the house, Albina\'s en-suite is extravagantly decorated with polished marble and glossy tiles.');
   // TODO-QSP: dynamic text: There is a large shower, toilet, sink, <a href="exec:gt 'mirror', 'start'">mirro...
-  scene.text('There is a large shower, toilet, sink, <a href="exec:gt \'mirror\', \'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\', \'brush\'">brush</a>\', \'brush\') + \' your hair, and a huge marble bathtub that looks big enough to fit two people.');
+  scene.text('There is a large shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair, and a huge marble bathtub that looks big enough to fit two people.');
   if ((!(Math.floor(Math.random() * 3) + 0))) {
     scene.text('As you glance around the room, you notice the large suction dildo stuck to the edge of the bathtub. Albina could have absent-mindedly left it here by mistake, but knowing your friend, it\'s also likely that she done it deliberately.');
     scene.actions([
@@ -368,7 +371,7 @@ function enterAlbinaBathroom(s: GameState, scene: SceneBuilder): void {
       scene.text('You take a painkiller and gulp it down with a glass of water.');
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -384,6 +387,7 @@ function enterAlbinaBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'albinahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterZoyaSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
@@ -392,7 +396,7 @@ function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('Your attention is drawn to some sort of decortative fixture made of glass and metal that\'s probably worth more than your entire apartment.');
   if (((s as any).locat ?? 0)?.['zoya'] === 5) {
     // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt 'zoya_chat', 'lounge_chat'">Zoya</a> is here, rela...
-    scene.text('<a href="exec:minut += 1 & gt \'zoya_chat\', \'lounge_chat\'">Zoya</a> is here, relaxing on the sofa with a glass of wine while looking over what appears to be various work related papers.');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027zoya_chat\\u0027, \\u0027lounge_chat\\u0027); return false;">Zoya</a> is here, relaxing on the sofa with a glass of wine while looking over what appears to be various work related papers.');
     scene.text('You could sit and chat with her.');
   } else {
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).hour ?? 0) < 17) {
@@ -415,6 +419,8 @@ function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'albinahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'public_indoors';
+  (s as any).locclass = 'kitr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterZoyaSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
@@ -433,7 +439,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['zoya'] === 3) {
       if (((s as any).hour ?? 0) < 7) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt 'zoya_chat', 'breakfast_chat'">Zoya</a> is here, e...
-        scene.text('<a href="exec:minut += 1 & gt \'zoya_chat\', \'breakfast_chat\'">Zoya</a> is here, eating her breakfast at the table.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027zoya_chat\\u0027, \\u0027breakfast_chat\\u0027); return false;">Zoya</a> is here, eating her breakfast at the table.');
         scene.text('You could sit and chat with her.');
       } else {
         scene.text('Zoya is here, eating her dinner at the table while looking over what appears to be various work related papers. You probably shouldn\'t disturb her.');
@@ -476,7 +482,7 @@ function enterPoolSide(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['zoya'] === 8) {
     // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt 'albina_mother_events', 'zoya_sunbathing_solo2'">Z...
-    scene.text('<a href="exec:minut += 1 & gt \'albina_mother_events\', \'zoya_sunbathing_solo2\'">Zoya</a> is sunbathing topless on a floatie in the middle of the pool.');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027albina_mother_events\\u0027, \\u0027zoya_sunbathing_solo2\\u0027); return false;">Zoya</a> is sunbathing topless on a floatie in the middle of the pool.');
     scene.text('You wonder if you should disturb her. She looks rather relaxed right now and might not be looking for company.');
   } else {
     if (((s as any).hour ?? 0) >= 21) {
@@ -521,7 +527,7 @@ function enterZoyaRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).locat ?? 0)?.['zoya'] === 2) {
-      scene.actions([{ label: 'Continue', goto: ['albina_mother_events', 'peep2'] }]);
+      qspGoto(s, 'albina_mother_events', 'peep2');
     } else {
       scene.img('images/locations/pavlovsk/resident/albinahome/zoyaroom.jpg');
       scene.text('You walk down the hallway until you reach Zoya\'s bedroom. Reaching for the handle, you crack the door open and take a peek inside.');
@@ -548,14 +554,14 @@ function enterDancing(s: GameState, scene: SceneBuilder): void {
     scene.text(`Oh hey ${((s as any).pcs_nickname || '')}!" she says with a smile when she sees you.`);
     scene.actions([
       { label: 'Ask why she doesn\'t train at a gym', handler: (st: GameState) => {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['SportHome'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['SportHome'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big23.jpg');
     scene.text('"Why would I waste time going to a gym when I have one in my own house?" she says and you blush slightly at what you realize was a dumb question.');
     scene.text('"I was about to go down there and do some dancing exercises. I could teach you some things about stripping and pole dancing if you want?"');
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['SportDay'] = ((s as any).daystart ?? 0);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['SportDay'] = ((s as any).daystart ?? 0);
     scene.text('"No thanks," you reply. "I\'m good."');
     scene.text('"Okay, just give me a minute to finish up here and freshen up."');
     scene.text('She finishes her exercises before heading into her en-suite to shower. She returns a few minutes later and gets dressed before sitting on the bed.');
@@ -576,7 +582,7 @@ function enterDancing(s: GameState, scene: SceneBuilder): void {
     scene.text(`She smiles at you. "Hey ${((s as any).pcs_nickname || '')}! I was just about to head down to the gym to do my dancing exercises. Want me to teach you some things?"`);
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['SportDay'] = ((s as any).daystart ?? 0);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['SportDay'] = ((s as any).daystart ?? 0);
     scene.text('"No thanks," you reply. "I\'m good."');
     scene.text('"Okay, just give me a minute to finish up here and freshen up."');
     scene.text('She finishes her exercises before heading into her en-suite to shower. She returns a few minutes later and gets dressed before sitting on the bed.');
@@ -607,7 +613,7 @@ function enterDancing1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripping(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['SportDay'] = ((s as any).daystart ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['SportDay'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A23', 1);
   scene.img('images/locations/pavlovsk/resident/albinahome/stripdance.jpg');
   if (((s as any).pcs_inhib ?? 0) < 60) {
@@ -635,7 +641,7 @@ function enterStripping(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPoledancing(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['SportDay'] = ((s as any).daystart ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['SportDay'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A23', 1);
   if (((s as any).pcs_stren ?? 0) >= 40  &&  ((s as any).pcs_dancero ?? 0) >= 40) {
     if (((s as any).pcs_inhib ?? 0) < 60) {
@@ -730,30 +736,30 @@ function enterDressing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterZoyaSchedule(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 0;
+  ((s as any).locat = (s as any).locat ?? {})['zoya'] = 0;
   if (((s as any).week ?? 0) < 5) {
     if (((s as any).hour ?? 0) < 6) {
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 1;
+      ((s as any).locat = (s as any).locat ?? {})['zoya'] = 1;
     } else {
       if (((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) < 30) {
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 2;
+        ((s as any).locat = (s as any).locat ?? {})['zoya'] = 2;
       } else {
         if (((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) > 30) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 3;
+          ((s as any).locat = (s as any).locat ?? {})['zoya'] = 3;
         } else {
           if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 19) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 4;
+            ((s as any).locat = (s as any).locat ?? {})['zoya'] = 4;
           } else {
             if (((s as any).hour ?? 0) === 19) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 3;
+              ((s as any).locat = (s as any).locat ?? {})['zoya'] = 3;
             } else {
               if (((s as any).hour ?? 0) === 20) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 5;
+                ((s as any).locat = (s as any).locat ?? {})['zoya'] = 5;
               } else {
                 if (((s as any).hour ?? 0) === 21  &&  ((s as any).minut ?? 0) < 30) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 2;
+                  ((s as any).locat = (s as any).locat ?? {})['zoya'] = 2;
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 1;
+                  ((s as any).locat = (s as any).locat ?? {})['zoya'] = 1;
                 }
               }
             }
@@ -764,30 +770,30 @@ function enterZoyaSchedule(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).week ?? 0) === 5) {
       if (((s as any).hour ?? 0) < 6) {
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 1;
+        ((s as any).locat = (s as any).locat ?? {})['zoya'] = 1;
       } else {
         if (((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) < 30) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 2;
+          ((s as any).locat = (s as any).locat ?? {})['zoya'] = 2;
         } else {
           if (((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) > 30) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 3;
+            ((s as any).locat = (s as any).locat ?? {})['zoya'] = 3;
           } else {
             if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 18) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 4;
+              ((s as any).locat = (s as any).locat ?? {})['zoya'] = 4;
             } else {
               if (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) < 30) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 6;
+                ((s as any).locat = (s as any).locat ?? {})['zoya'] = 6;
               } else {
                 if (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) > 30) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 3;
+                  ((s as any).locat = (s as any).locat ?? {})['zoya'] = 3;
                 } else {
                   if (((s as any).hour ?? 0) === 19) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 2;
+                    ((s as any).locat = (s as any).locat ?? {})['zoya'] = 2;
                   } else {
                     if (((s as any).hour ?? 0) === 20  ||  ((s as any).hour ?? 0) === 21) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 5;
+                      ((s as any).locat = (s as any).locat ?? {})['zoya'] = 5;
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 1;
+                      ((s as any).locat = (s as any).locat ?? {})['zoya'] = 1;
                     }
                   }
                 }
@@ -798,41 +804,41 @@ function enterZoyaSchedule(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).hour ?? 0) < 8) {
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 1;
+        ((s as any).locat = (s as any).locat ?? {})['zoya'] = 1;
       } else {
         if (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) < 30) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 2;
+          ((s as any).locat = (s as any).locat ?? {})['zoya'] = 2;
         } else {
           if (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) > 30) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 3;
+            ((s as any).locat = (s as any).locat ?? {})['zoya'] = 3;
           } else {
             if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 16) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 7;
+              ((s as any).locat = (s as any).locat ?? {})['zoya'] = 7;
             } else {
               if (((s as any).hour ?? 0) === 16) {
                 if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 8;
+                  ((s as any).locat = (s as any).locat ?? {})['zoya'] = 8;
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 9;
+                  ((s as any).locat = (s as any).locat ?? {})['zoya'] = 9;
                 }
               } else {
                 if (((s as any).hour ?? 0) === 17) {
                   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 10;
+                    ((s as any).locat = (s as any).locat ?? {})['zoya'] = 10;
                   } else {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 11;
+                    ((s as any).locat = (s as any).locat ?? {})['zoya'] = 11;
                   }
                 } else {
                   if (((s as any).hour ?? 0) === 18) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 3;
+                    ((s as any).locat = (s as any).locat ?? {})['zoya'] = 3;
                   } else {
                     if (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) < 30) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 2;
+                      ((s as any).locat = (s as any).locat ?? {})['zoya'] = 2;
                     } else {
                       if ((((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) > 30)  &&  ((s as any).hour ?? 0) < 22) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 5;
+                        ((s as any).locat = (s as any).locat ?? {})['zoya'] = 5;
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['zoya'] = 1;
+                        ((s as any).locat = (s as any).locat ?? {})['zoya'] = 1;
                       }
                     }
                   }

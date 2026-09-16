@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,9 +12,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).region ?? 0) === 'city') {
-    scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+    qspGoto(s, 'city_center', '');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['pav_commercial', ''] }]);
+    qspGoto(s, 'pav_commercial', '');
   }
   // TODO-QSP: end
   scene.build();
@@ -38,12 +38,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Wait in line (0:30)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-  }, goto: ['post_office', 'counter'] },
+    qspGoto(s, 'post_office', 'counter');
+  } },
     ]);
   }
   if (((s as any).region ?? 0) === 'pav') {
     scene.actions([
-      { label: 'Go to the Postmaster\'s office', goto: ['post_master', 'start'] },
+      { label: 'Go to the Postmaster\'s office', handler: (st: GameState) => {
+    qspGoto(s, 'post_master', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -146,7 +149,8 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Recover', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 3);
-  }, goto: ['post_office', 'leave'] },
+    qspGoto(s, 'post_office', 'leave');
+  } },
       ]);
     } else {
       qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 28) + 18);
@@ -157,12 +161,18 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Cum on your face', handler: (st: GameState) => {
     if ((!((s as any).pcs_haircol ?? 0))) {
+      (s as any).cum_face_image = 'black/' + Math.floor(Math.random() * 23) + 1;
     } else {
       if (((s as any).pcs_haircol ?? 0) === 1) {
+        (s as any).cum_face_image = 'brown/' + Math.floor(Math.random() * 31) + 1;
       } else {
         if (((s as any).pcs_haircol ?? 0) === 2) {
+          (s as any).cum_face_image = 'red/' + Math.floor(Math.random() * 19) + 1;
         } else {
           if (((s as any).pcs_haircol ?? 0) === 3) {
+            (s as any).cum_face_image = 'blonde/' + Math.floor(Math.random() * 25) + 1;
+          } else {
+            (s as any).cum_face_image = 'custom/' + Math.floor(Math.random() * 20) + 1;
           }
         }
       }
@@ -221,10 +231,10 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Pay off your fine(s)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']');
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['legal_fine'] = 0;
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['missed_fine_deadlines'] = 0;
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['fine_deadline'] = 0;
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['arrest_gameover_flag'] = 0;
+    ((s as any).policeQW = (s as any).policeQW ?? {})['legal_fine'] = 0;
+    ((s as any).policeQW = (s as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
+    ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = 0;
+    ((s as any).policeQW = (s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Counter</b></center>');
     scene.img('images/locations/shared/postoffice/counter.jpg');
@@ -247,10 +257,10 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).fineIN ?? 0) >= ((s as any).policeQW ?? 0)?.['legal_fine']) {
         if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).policeQW ?? 0)?.['legal_fine'])) {
           qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']');
-          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['legal_fine'] = 0;
-          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['missed_fine_deadlines'] = 0;
-          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['fine_deadline'] = 0;
-          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['arrest_gameover_flag'] = 0;
+          ((s as any).policeQW = (s as any).policeQW ?? {})['legal_fine'] = 0;
+          ((s as any).policeQW = (s as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
+          ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = 0;
+          ((s as any).policeQW = (s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
           scene.text('<br>You pay the full amount of your outstanding fine(s) to the cashier and they print out a receipt to say that it\'s paid off.');
         } else {
           scene.text('<br>You don\'t have enough money to pay that amount.');
@@ -347,7 +357,7 @@ function enterPickupMail(s: GameState, scene: SceneBuilder): void {
 
 function enterAddMail(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = 'all';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 'all';
   }
   // TODO-QSP: $mail_region[] = $ARGS[1]
   // TODO-QSP: $mail_code[] = $ARGS[2]

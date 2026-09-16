@@ -118,13 +118,16 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
 function enterFetishes(s: GameState, scene: SceneBuilder): void {
   (s as any).will_fetish_mod = 0;
   (s as any).will_fetish_mod_pref = 0;
+  (s as any).temp_fetish_list = qspUntranslated(s, "trim(ARGS[1])", { location: "willpower" });
   if (((s as any).temp_fetish_list ?? 0) === '') {
     return;
   }
   (s as any).will_fetish_count = 0;
   // TODO-QSP: :jump_fetish_list
-  (s as any).temp_fetish_pos = qspUntranslated(s, "instr(temp_fetish_list, ';')", { location: "willpower" });
+  (s as any).temp_fetish_pos = ((String(((s as any).temp_fetish_list ?? 0)).indexOf(String(';'))) + 1);
   if (((s as any).temp_fetish_pos ?? 0) > 0) {
+    (s as any).temp_fetish = (String((String(((s as any).temp_fetish_list ?? 0)).slice((1)-1, ((1)-1)+(((s as any).temp_fetish_pos ?? 0) - 1)))).trim());
+    (s as any).temp_fetish_list = (String((String(((s as any).temp_fetish_list ?? 0)).slice((((s as any).temp_fetish_pos ?? 0) + 1)-1))).trim());
     if (((s as any).temp_fetish ?? 0) === 'creampie'  ||  ((s as any).temp_fetish ?? 0) === 'pregnant') {
       // TODO-QSP: jump 'jump_fetish_list'
     }
@@ -136,7 +139,10 @@ function enterFetishes(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'jump_fetish_list'
   } else {
     if (((s as any).temp_fetish_list ?? 0) !== '') {
+      (s as any).temp_fetish = ((s as any).temp_fetish_list ?? 0);
+      (s as any).temp_fetish_list = '';
       if (((s as any).temp_fetish ?? 0) === 'creampie'  ||  ((s as any).temp_fetish ?? 0) === 'pregnant') {
+        (s as any).temp_fetish = 'none';
       }
       if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).temp_fetish ?? 0)) : -1) >= 0) {
         (s as any).will_fetish_mod = ((s as any).will_fetish_mod ?? 0) + (Math.max(0, qspFunc(s, 'fetish', 'get_exp', ((s as any).temp_fetish ?? 0)) - 25));
@@ -230,23 +236,30 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
 
 function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).will_cost ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).will_cost ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) <= 0) {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).pcs_willpwr ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).pcs_willpwr ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).cheatVars ?? 0)?.['willcost_style'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).cheatVars ?? 0)?.['willcost_style'];
   }
   if (((s as any).locArgs?.[3] ?? 0) === 1) {
+    (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '/' + ((s as any).locArgs?.[2] ?? 0) + '';
   } else {
     if (((s as any).locArgs?.[3] ?? 0) === 2) {
+      (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '';
+    } else {
+      (s as any).result = '' + ((s as any).locArgs?.[2] ?? 0) + '/' + ((s as any).locArgs?.[1] ?? 0) + '';
     }
   }
   if (((s as any).locArgs?.[2] ?? 0) < ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).locArgs?.[4] ?? 0) === 0  &&  ((s as any).locArgs?.[4] ?? 0) === '') {
+    (s as any).result = ' (' + qspFunc(s, 'wrap', 'v_neg', ((s as any).result ?? 0) + ' Willpower') + ')';
+  } else {
+    (s as any).result = ' (' + ((s as any).result ?? 0) + ' Willpower)';
   }
   return;
   // TODO-QSP: end
@@ -276,8 +289,8 @@ function enterSimpleAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "
   // TODO-QSP: act ""<<$ARGS[1]>>"" + $func('willpower', 'get_willcost_string'):
   // TODO-QSP: delact $selact
-  qspCall(s, 'willpower', '<<$ARGS[3]>>', '' + qspUntranslated(s, "ARGS[4]>", { location: "willpower" }) + '', '' + qspUntranslated(s, "ARGS[5]>", { location: "willpower" }) + '', '' + qspUntranslated(s, "ARGS[6]>", { location: "willpower" }) + '');
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + qspUntranslated(s, "ARGS[4]>", { location: "willpower" }) + '']; enterPay(s, scene); (s as any).locArgs = __savedLocArgs; }
+  qspCall(s, 'willpower', '' + ((s as any).locArgs?.[3] ?? 0) + '', '' + ((s as any).locArgs?.[4] ?? 0) + '', '' + ((s as any).locArgs?.[5] ?? 0) + '', '' + ((s as any).locArgs?.[6] ?? 0) + '');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + ((s as any).locArgs?.[4] ?? 0) + '']; enterPay(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic ""<<$ARGS[2]>>""
   // TODO-QSP: end
@@ -1128,7 +1141,7 @@ function enterSkill(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pcs_') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 0;
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 0;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[4] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((0 as any) >= 100) {
@@ -1149,7 +1162,7 @@ function enterSkillBase(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice(((String(((s as any).locArgs?.[1] ?? 0)).length)-3)-1)) === '_lvl') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+((String(((s as any).locArgs?.[1] ?? 0)).length)-4)));
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+((String(((s as any).locArgs?.[1] ?? 0)).length)-4)));
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[4] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((0 as any) >= 100) {

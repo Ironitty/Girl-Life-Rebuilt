@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFollownush(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
+  (s as any).loc = 'pav_aptcourtev1';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/complex/hey.jpg');
@@ -113,6 +115,7 @@ function enterFollownush(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/complex/finish.jpg');
     scene.text('Several minutes pass before she encourages you to turn around as she keeps plunging the dildo into your increasingly wet pussy.');
+    (s as any).orgasm_txt = 'You are overwhelmed by the wild excitement of the dildo plunging into your pussy, knowing that at any moment someone could catch the two of you having sex in the stairs. You can\'t take any more; waves of pleasure come crashing over you as you wither in ecstasy. She keeps dildoing you until your shuddering stop.';
     qspCall(s, 'arousal', 'vaginal_dildo', 5, 'lesbian', 'exhibitionism');
     scene.text('You\'re suddenly interrupted by the sound of an old woman\'s voice, who sounds like she is near the top of the stairs. "Oh my god, is someone being attacked? Are you alright dear? What\'s going on?"');
     scene.text('You and Anushka both stop and quickly get dressed. You\'re just pulling on the last of your clothes when an old woman comes round the landing looking at the two of you. She looks confused at first before she scoffs in disgust and heads back upstairs.');
@@ -194,7 +197,7 @@ function enterFollownush(s: GameState, scene: SceneBuilder): void {
     scene.text('"Magic!" you see with a giggle. "Why don\'t you put it in your mouth and see how real it tastes." She looks up at you from where she kneels in front of you, stroking your dick, which quickly get hard. "Go on, you know you are curious what a magic cock tastes like."');
     scene.actions([
       { label: 'Get a blowjob', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick'] = ((s as any).anushkaQW['magic_dick'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['magic_dick'] = ((s as any).anushkaQW['magic_dick'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/complex/penis_envy/blowjob1.jpg');
     scene.text('She opens her mouth and takes your dick in her mouth. She starts sucking it at once, she quickly becomes very enthusiastic while she sucks your dick. You quickly start to moan, as you feel her hot wet mouth sucking your dick. Her lips tightly wrapped around the shaft of your cock, as she bobs her head back and forth. You have a strong urge to just grab her head and shove your dick balls deep in her mouth.');
     qspCall(s, 'arousal', 'magicd_bj', 1);
@@ -275,8 +278,9 @@ function enterFollownush(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMagicCumMouth(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/cum_mouth.jpg');
+  (s as any).orgasm_txt = 'You are overwhelmed by the sensation of having your dick sucked, you feel your dick twitching in her mouth as you start to empty your balls full of cum right into her mouth. She is surprised for a moment but doesn\'t stop sucking your dick.';
   qspCall(s, 'arousal', 'magicd_bj', 1);
   scene.text('As you fill her mouth with your cum, she pulls her mouth off your dick, but keeps stroking it. A couple of more spurts of cum land on her cheek. She sticks out her tongue to show you the cum coating it. "Now swallow it like a good little slut." You have heard that so many times in porno\'s and from girls at school, that guys love to say that.');
   scene.text('She swallows it down, opening her mouth to show you her now clean tongue, you stick your dick back in her mouth as your tell her. "Suck it clean." She does as she is told sucking it nice and clean, before you pull your dick out of her mouth, as you start to get dressed. "So how did it taste?" You ask her.');
@@ -308,6 +312,7 @@ function enterMagicCumMouth(s: GameState, scene: SceneBuilder): void {
 
 function enterMagicCumFace(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/facial.jpg');
+  (s as any).orgasm_txt = 'You are overwhelmed by the sensation of having your dick sucked, you feel you are about to cum. You quickly pull your dick out of her mouth, just as your dick starts twitching as you empty your balls full of cum right onto her face. She is surprised for a moment but doesn\'t move as you coat her face in your magical cum.';
   qspCall(s, 'arousal', 'magicd_bj', 1);
   scene.text('A couple of more spurts of cum land on her cheek. She sticks out her tongue to lick some of your cum off her lips. You stick your dick back in her open mouth as your tell her. "Suck it clean." She does as she is told sucking it nice and clean, before you pull your dick out of her mouth, as you start to get dressed. "So how did it taste?" You ask her.');
   qspCall(s, 'arousal', 'magicd_bj', 1);
@@ -337,6 +342,8 @@ function enterMagicCumFace(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuck3stooges(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'pav_aptcourtev1';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'fame', 'pav', 'sex', 3);
   qspCall(s, 'npcStat', 'A9');
   qspCall(s, 'npcStat', 'A10', 'a');

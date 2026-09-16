@@ -1,10 +1,14 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'city_dima';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'city_dima';
+  (s as any).menu_arg = '';
   scene.build();
 }
 
@@ -18,7 +22,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
   ]);
   scene.build();
 }

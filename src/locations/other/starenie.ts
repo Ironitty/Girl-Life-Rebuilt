@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -52,20 +50,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $loc_clothestypes[45] = 'nerdvana_outfits'
   // TODO-QSP: $loc_clothestypes[46] = 'nerdvana_bikinis'
   // TODO-QSP: $loc_clothestypes[47] = 'nerdvana_swimsuit'
-  if (!(s as any).gm_school_w) (s as any).gm_school_w = {}; (s as any).gm_school_w[6] = 0;
+  ((s as any).gm_school_w = (s as any).gm_school_w ?? {})[6] = 0;
   (s as any).j = 1;
   // TODO-QSP: :loopclotype
   (s as any).i = 1;
   // TODO-QSP: :loopclonum
   // TODO-QSP: dynamic "
-  const _dynVarName = ((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] + '_w';
-  if ((s as any)[_dynVarName]?.[String((s as any).i ?? 0)] === 1) {
+  const _dynVarName = ((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] + '_w'; if ((s as any)[_dynVarName]?.[String((s as any).i ?? 0)] === 1) {
     // TODO-QSP: <<$loc_clothestypes[j]>>_w[i] = 0
     // TODO-QSP: gs 'clothing', 'decrease_strength', $loc_clothestypes[j], i, 1
   }
   // TODO-QSP: "
   (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) < Object.keys((s as any)['' + qspUntranslated(s, "loc_clothestypes[j]>", { location: "starenie" }) + '_w'] ?? {}).length) {
+  if (((s as any).i ?? 0) < Object.keys((s as any)['' + ((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] + '_w'] ?? {}).length) {
     // TODO-QSP: jump 'loopclonum'
   }
   (s as any).j = ((s as any).j ?? 0) + (1);

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -19,7 +19,8 @@ function enterStartDoor(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).petersexday ?? 0) < 1) {
@@ -33,7 +34,8 @@ function enterStartDoor(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
       ]);
     }
   } },
@@ -52,13 +54,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'I am, Master', handler: (st: GameState) => {
     (s as any).petersex = ((s as any).petersex ?? 0) + 1;
     if (((s as any).analPlugIn ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['peterroom', 'klap'] }]);
+      qspGoto(s, 'peterroom', 'klap');
     }
     if (((s as any).peterrand ?? 0) < 2) {
-      scene.actions([{ label: 'Continue', goto: ['peterroom', 'd1'] }]);
+      qspGoto(s, 'peterroom', 'd1');
     }
     if (((s as any).peterrand ?? 0) > 1) {
-      scene.actions([{ label: 'Continue', goto: ['peterroom', 'd2'] }]);
+      qspGoto(s, 'peterroom', 'd2');
     }
   } },
     ]);
@@ -153,6 +155,7 @@ function enterKlap(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Moan', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/sex/7.jpg');
+    (s as any).temp = 'Your moans are muffled by the gag as Peter bears down on you from above. "Let\'s see how well your sweet ass takes me…" he says ';
     if (((s as any).analPlugIn ?? 0) === 1) {
       (s as any).analPlugIn = 0;
       (s as any).analPlugOut = 1;
@@ -172,7 +175,9 @@ function enterKlap(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     }
     if (((s as any).pcs_horny ?? 0) >= 100) {
+      (s as any).orgasm_or = 'yes';
       qspCall(s, 'arousal', 'anal', (-10), 'sub');
+      (s as any).orgasm_txt = 'A pleasant sensation surges within you and an orgasm washes over you, juices spraying from your pussy as you moan loudly into the gag.';
     }
     scene.text('Your ass makes a loud squelching noise when he pulls his dick out. Peter sits on the bed, breathing heavily while you remain bound, his cum slowly leaking from your asshole.');
     scene.actions([
@@ -209,7 +214,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and get into the car next to him, giving him directions to your apartment complex.');
     // TODO-QSP: dynamic text: You spend the journey talking about the sex you just had and you eventually reac...
     scene.text(`You spend the journey talking about the sex you just had and you eventually reach your apartment building. Peter leans over and gives your ass a firm squeeze as you climb out of the car. "Until next time, ${((s as any).pcs_nickname || '')}." You smile at him and close the door before he drives off.`);
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     scene.actions([
@@ -218,7 +224,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and get into the car next to him. "Just into the city center is fine, thanks."');
     // TODO-QSP: dynamic text: You spend the journey talking about the sex you just had and you reach the city ...
     scene.text(`You spend the journey talking about the sex you just had and you reach the city center a few minutes later. Peter leans over and gives your ass a firm squeeze as you climb out of the car. "Until next time, ${((s as any).pcs_nickname || '')}." You smile at him and close the door before he drives off.`);
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   } },
   ]);
@@ -251,10 +258,12 @@ function enterD1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/peter/sex/d1-4.jpg');
     scene.text('He continues to fuck you hard and you submit yourself to the pleasure of your ass being hammered as your pussy juices run down your legs.');
     if (((s as any).pcs_horny ?? 0) >= 100) {
+      (s as any).orgasm_or = 'yes';
       qspCall(s, 'arousal', 'anal', (-10), 'sub');
       scene.text('He continues to fuck you hard and fast and you soon feel an intense orgasm washing over you, juices squirting from your pussy as his warm cum fills your ass.');
     } else {
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('He suddenly slows the rhythm, finishing with several sharp uneven thrusts that fill your ass with a hot load of cum.');
       }
     }
@@ -297,6 +306,7 @@ function enterD2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_horny ?? 0) >= 100) {
+      (s as any).orgasm_or = 'yes';
       scene.text('Your orgasm suddenly hits you. Waves of pleasure ripple through your body, and you moan and shudder with release, but Peter holds you in place and refuses to allow his cock out of your mouth.');
     }
     scene.actions([

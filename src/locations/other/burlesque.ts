@@ -9,6 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'start';
+  (s as any).loc = 'burlesque';
+  (s as any).menu_loc = 'burlesque';
+  (s as any).menu_arg = 'start';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Burlesque club</b></center>');

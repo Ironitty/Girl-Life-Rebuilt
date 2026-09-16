@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'start');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Coco Carmen</b></center>');
@@ -31,6 +32,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'dress');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Coco Carmen dresses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -45,13 +47,15 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_coco_carmen', 'start'] },
+    qspGoto(s, 'shop_coco_carmen', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterOutfits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'outfits');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Coco Carmen outfits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -66,13 +70,15 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_coco_carmen', 'start'] },
+    qspGoto(s, 'shop_coco_carmen', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterPurses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'purses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Coco Carmen purses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -87,7 +93,8 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_coco_carmen', 'start'] },
+    qspGoto(s, 'shop_coco_carmen', 'start');
+  } },
   ]);
   scene.build();
 }

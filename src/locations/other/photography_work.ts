@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === "((s as any).evt_stage ?? 0)"  ||  ((s as any).locArgs?.[0] ?? 0) === '') {
-    if (!(s as any).photography) (s as any).photography = {}; (s as any).photography['experience'] = ((s as any).photography['experience'] ?? 0) + (1);
+    ((s as any).photography = (s as any).photography ?? {})['experience'] = ((s as any).photography['experience'] ?? 0) + (1);
     // TODO-QSP: gs 'money', 'earn', evtVars['wage']
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'photography_work', 'stage_' + evtVars['event_sub']
@@ -35,7 +35,7 @@ function enterStage_1(s: GameState, scene: SceneBuilder): void {
     scene.text(`Once the day is over, you remove your SD card and hand it to the representative, who shows the photos to the group. Once they've sorted out whether any of the customers want additional copies, your contact takes you back to the city's industrial region. When you check your account, you see that you have been paid ${((s as any).evtVars ?? 0)?.['wage'] ?? ''}.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -56,7 +56,7 @@ function enterStage_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -82,7 +82,7 @@ function enterStage_3(s: GameState, scene: SceneBuilder): void {
     scene.text(`Leaving them to close up the venue, you walk out back into the residential district. When you check your account, you see that you have been paid ${qspFunc(s, 'money', 'string_profit', ((s as any).evtVars ?? 0)?.['wage'] ?? '')}.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -113,7 +113,7 @@ function enterStage_4(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your contact then takes you back to the city's industrial region. When you check your account, you see that you have been paid ${qspFunc(s, 'money', 'string_profit', ((s as any).evtVars ?? 0)?.['wage'] ?? '')}.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -136,7 +136,7 @@ function enterStage_5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -173,6 +173,9 @@ function enterPhotojobPay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJob_1(s: GameState, scene: SceneBuilder): void {
+  (s as any).photojob_shortname = 'Tank';
+  (s as any).temp_job_desc = 'Tank and Bazooka Experience Day in Levingrad Oblast';
+  (s as any).temp_journal_desc = 'Travel to St Petersburg Industrial Area';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 1, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
   // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_industrial', '', "gt 'photography_work', 'evt_stage'"
   // TODO-QSP: end
@@ -180,6 +183,9 @@ function enterJob_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJob_2(s: GameState, scene: SceneBuilder): void {
+  (s as any).photojob_shortname = 'Model';
+  (s as any).temp_job_desc = 'Newspaper Commission at Petrovskaya Akvatoria';
+  (s as any).temp_journal_desc = 'Meet Branko at the Photography Shop';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 2, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
   // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'shop_photography', 'start', "gt 'photography_work', 'evt_stage'"
   // TODO-QSP: end
@@ -187,6 +193,9 @@ function enterJob_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJob_3(s: GameState, scene: SceneBuilder): void {
+  (s as any).photojob_shortname = 'Wedding';
+  (s as any).temp_job_desc = 'Wedding at Yelagin Palace';
+  (s as any).temp_journal_desc = 'Travel to St Petersburg Residential Area';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 3, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
   // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_residential', '', "gt 'photography_work', 'evt_stage'"
   // TODO-QSP: end
@@ -194,6 +203,9 @@ function enterJob_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJob_4(s: GameState, scene: SceneBuilder): void {
+  (s as any).photojob_shortname = 'Motorsport';
+  (s as any).temp_job_desc = 'Russian Touring Car Championship Event at St. Petersburg Autodrome';
+  (s as any).temp_journal_desc = 'Travel to St Petersburg Industrial Area';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 4, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
   // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_industrial', '', "gt 'photography_work', 'evt_stage'"
   // TODO-QSP: end
@@ -201,6 +213,9 @@ function enterJob_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJob_5(s: GameState, scene: SceneBuilder): void {
+  (s as any).photojob_shortname = 'Motorsport';
+  (s as any).temp_job_desc = 'Press Event at City Courthouse';
+  (s as any).temp_journal_desc = 'Meet Branko at the Photography Shop';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 5, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
   // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'shop_photography', 'start', "gt 'photography_work', 'evt_stage'"
   // TODO-QSP: end

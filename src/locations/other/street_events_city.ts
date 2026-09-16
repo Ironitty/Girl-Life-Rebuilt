@@ -16,7 +16,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 360;
   (s as any).fingal = ((s as any).fingal ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (2);
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (2);
   (s as any).shantpopala = ((s as any).shantpopala ?? 0) - (1);
   scene.img('images/locations/city/shared/sex/rape.jpg');
   scene.text('A black jeep suddenly hit the brakes on the street close to you. You turn your head to see what\'s happening and see two prominent men jump out of it and start running towards you. Before you can react, they grab you and drag you into the car.');
@@ -47,7 +47,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -57,7 +57,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
 
 function enterFameEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame_events', 'select', 'city');
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }
@@ -72,7 +72,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -89,7 +89,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -109,7 +109,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -129,7 +129,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -149,7 +149,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -169,7 +169,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -188,7 +188,7 @@ function enterMinorHomelessMen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore them', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -204,7 +204,7 @@ function enterMinorGayCouple(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -220,7 +220,7 @@ function enterMinorOldCouple(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -239,7 +239,7 @@ function enterMinorGirlBeggarSubEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('You open your purse up and pull out the money you can spare and hand it to her. She breaks down and cries when she sees how much money you gave her. She gets up and hugs you tightly with one arm while holding her cat with the other, thanking you over and over. She smells like she hasn\'t bathed for a while, but you don\'t mind. She finally lets go of you, and as you walk away, she hugs her cat, and you hear her tell him that tonight they will sleep indoors and eat.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },

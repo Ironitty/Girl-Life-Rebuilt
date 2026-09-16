@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,6 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  (s as any).subs = ((s as any).access ?? 0)?.['subscription'];
   scene.text('<center><b>Assbook</b></center>');
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
     scene.img('images/pc/items/accessories/computer/eror.jpg');
@@ -23,9 +24,9 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/image_needed.png');
     scene.text('You\'re currently on Russia\'s biggest social network site, "Assbook". Almost everyone has an account here');
     if (((s as any).assbook ?? 0)?.['account_name'] === '') {
-      scene.text('Click here to log in or <a href="exec:gt \'komp_assbook\', \'signup\' ">sign up</a>');
+      scene.text('Click here to log in or <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp_assbook\\u0027, \\u0027signup\\u0027); return false;">sign up</a>');
     } else {
-      scene.text('Click here to <a href="exec:gt \'komp_assbook\', \'login\' ">log in</a> or signup');
+      scene.text('Click here to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp_assbook\\u0027, \\u0027login\\u0027); return false;">log in</a> or signup');
       scene.actions([
         { label: 'Go to your page', goto: ['komp_assbook', 'login'] },
       ]);
@@ -52,9 +53,9 @@ function enterSignup(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Assbook</b></center>');
   scene.img('images/system/image_needed.png');
   scene.text('You consider which name you\'d like to register under.');
-  if (!(s as any).assbook) (s as any).assbook = {}; (s as any).assbook['account_name'] = 0;
+  ((s as any).assbook = (s as any).assbook ?? {})['account_name'] = 0;
   if (((s as any).assbook ?? 0)?.['account_name'] === '') {
-    if (!(s as any).assbook) (s as any).assbook = {}; (s as any).assbook['account_name'] = '' + qspUntranslated(s, "pcs_nickname>", { location: "komp_assbook" }) + '';
+    ((s as any).assbook = (s as any).assbook ?? {})['account_name'] = '' + ((s as any).pcs_nickname ?? 0) + '';
   }
   scene.text('You fill in your personal details and within a few moments you\'ve created an account. You can even upload photos to your own page.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -94,7 +95,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
 function enterLogin(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/image_needed.png');
   scene.text('This content is WIP.');
-  scene.text('<a href="exec: gt \'komp_assbook\', \'upload_photo\'">Upload a new photo</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp_assbook\\u0027, \\u0027upload_photo\\u0027); return false;">Upload a new photo</a>');
   scene.text('Uploaded photos:');
   qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
   (s as any).temp_locationCnt = 0;
@@ -118,6 +119,7 @@ function enterShowlocation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterListretrieve(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_table = '<center><table width=80%>';
   // TODO-QSP: $temp_table += $func('komp_assbook', 'retrieve_clothed_selfies',  ARGS[1], $ARGS[2])
   // TODO-QSP: $temp_table += $func('komp_assbook', 'retrieve_swim_selfies',  ARGS[1], $ARGS[2])
   // TODO-QSP: $temp_table += '</table></center>'
@@ -185,6 +187,8 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
 
 function enterUploadPhoto(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_suppress_other_selfies = 1;
+  (s as any).temp_ssh_ret_loc = 'komp_assbook';
+  (s as any).temp_ssh_ret_arg = 'upload_photo2';
   qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
   (s as any).temp_locationCnt = 0;
   // TODO-QSP: :LocationLoop_upload
@@ -198,7 +202,8 @@ function enterUploadPhoto(s: GameState, scene: SceneBuilder): void {
     { label: 'Go back to your page', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 1);
-  }, goto: ['komp_assbook', 'login'] },
+    qspGoto(s, 'komp_assbook', 'login');
+  } },
   ]);
   scene.build();
 }
@@ -208,7 +213,7 @@ function enterUploadPhoto2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
-  scene.actions([{ label: 'Continue', goto: ['komp_assbook', 'login'] }]);
+  qspGoto(s, 'komp_assbook', 'login');
   // TODO-QSP: end
   scene.build();
 }
@@ -221,6 +226,7 @@ function enterShowlocation2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_table = '<center><table width=80%>';
   // TODO-QSP: $temp_table += $func('komp_assbook', 'upload_clothed_selfies',  ARGS[1], $ARGS[2])
   // TODO-QSP: $temp_table += $func('komp_assbook', 'upload_swim_selfies',    ARGS[1], $ARGS[2])
   // TODO-QSP: $temp_table += '</table></center>'

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -13,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterWhore1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 40;
   qspCall(s, 'npcgeneratec', '', 0, 'The Armenian', Math.floor(Math.random() * 15) + 18, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'stat', '');
   if (((s as any).AlbinaQW ?? 0)?.['client1'] === 0) {
@@ -22,7 +20,7 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Please him', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['client1'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['client1'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/kotovbj51.mp4');
     scene.text('He unzips his pants, pulls his cock out and stares down at you impatiently, so you start sheepishly licking his shaft and sucking on the head before taking it into your mouth and sucking while looking up at him to seek approval.');
@@ -37,7 +35,7 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel the tip of his cock spread your lips apart as he pushes into you before grabbing your throat and pinning you to the bed as he starts to very roughly pound your pussy. He occasionally uses his other hand to very tightly squeeze and twist your nipple, seemingly enjoying treating you roughly.');
     scene.actions([
       { label: 'You like it', handler: (st: GameState) => {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['client1_like'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['client1_like'] = 1;
     qspCall(s, 'stat', '');
     scene.text('He twists your nipple even harder and you try holding back your moans of pleasure to hide the fact that you\'re enjoying the roughness, but he can see the pleasure in your eyes and smiles sadistically as he tightens his grip around your neck.');
     scene.actions([
@@ -185,14 +183,14 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
 function enterWhore2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npcgeneratec', '', 0, 'The Armenian', Math.floor(Math.random() * 15) + 18, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'npcgeneratec', '', 0, 'The second Armenian', Math.floor(Math.random() * 15) + 18, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust1'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust1'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust1'], 'a'
   qspCall(s, 'stat', '');
   if (((s as any).AlbinaQW ?? 0)?.['client2'] === 0) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['client2'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['client2'] = 1;
     qspCall(s, 'stat', '');
     scene.text('Laughing, the two Armenians shove you into their hotel room and you fall to the floor. "Get up. It\'s time to show us what you\'ve got little lamb!" one says.');
     // TODO-QSP: dynamic text: "I want to see what those <<$pc_desc['lips']>> lips of yours can do. They look l...
@@ -361,14 +359,14 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
 function enterWhore3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npcgeneratec', '', 0, 'The confident boy', Math.floor(Math.random() * 6) + 18, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'npcgeneratec', '', 0, 'The shy boy', Math.floor(Math.random() * 6) + 18, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust1'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust1'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust1'], 'a'
   qspCall(s, 'stat', '');
   if (((s as any).AlbinaQW ?? 0)?.['client3'] === 0) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['client3'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['client3'] = 1;
     qspCall(s, 'stat', '');
     scene.text('The young men take you to their hotel room. One of them impatiently pulls you along while the other shyly tags along behind you.');
     scene.actions([
@@ -476,7 +474,7 @@ function enterWhore3(s: GameState, scene: SceneBuilder): void {
 function enterWhore4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'npcgeneratec', '', 0, 'The old man', Math.floor(Math.random() * 11) + 60, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'stat', '');
   scene.text('Holding your hand, the old man escorts you into his cheap motel room. While he still retains some muscle and even tattoos from his youth, you can\'t ignore the fact that he\'s old enough to be your grandfather, if not older.');
@@ -551,10 +549,10 @@ function enterWhore4(s: GameState, scene: SceneBuilder): void {
 function enterWhore5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'npcgeneratec', '', 0, 'The first old man', Math.floor(Math.random() * 6) + 60, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'npcgeneratec', '', 0, 'The second old man', Math.floor(Math.random() * 6) + 60, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust1'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust1'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust1'], 'a'
   qspCall(s, 'stat', '');
   scene.text('The two old men can barely contain their excitement as they lead you to their cheap motel room. You can\'t ignore the fact that they\'re both old enough to be your grandfather, if not older.');
@@ -624,9 +622,10 @@ function enterWhore5(s: GameState, scene: SceneBuilder): void {
 function enterWhore6(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 40;
   qspCall(s, 'npcgeneratec', '', 0, 'The man', Math.floor(Math.random() * 17) + 24, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'stat', '');
+  (s as any).orgasm_or = 'no';
   scene.text('The man leads you by the hand into his hotel room and over to the bed, where he undresses you and lays you on your back. You notice the ring on his finger, but since he hasn\'t paid for you to ask questions, you ignore it.');
   // TODO-QSP: end
   scene.actions([
@@ -678,12 +677,13 @@ function enterWhore6(s: GameState, scene: SceneBuilder): void {
     scene.text('You blush at him, but obediently slide your panties back over your cum covered ass before he gives you a final smack on the ass and lets you leave.');
     qspCall(s, 'arousal', 'cuni', (-2), 'sub', 'prostitution');
     qspCall(s, 'arousal', 'vaginal_finger', (-1), 'sub', 'prostitution');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'BDSM', (-1), 'sub', 'humiliation', 'prostitution');
     // TODO-QSP: gs 'cum_call', 'pantyrear', $AlbinaQW['Cust']
     qspCall(s, 'pain', '', 1, 'asscheeks', 'slap');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home', '\'no_clean\''] },
+      { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home', 'no_clean'] },
     ]);
   } },
     ]);
@@ -711,12 +711,12 @@ function enterWhore7(s: GameState, scene: SceneBuilder): void {
   scene.text('"I can see you\'re a little nervous, so why don\'t you take this liquid courage first?"');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npcgeneratec', '', 0, 'The old man', Math.floor(Math.random() * 21) + 40, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust0'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust0'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust0']
   (s as any).s = 1;
   // TODO-QSP: :loop_whore7
-  qspCall(s, 'npcgeneratec', '', 0, 'The old man\'s friend ' + qspUntranslated(s, "s>", { location: "albina_starlets_sex" }) + '', Math.floor(Math.random() * 31) + 30, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust' + String((s as any).s || '') + ''] = ((s as any).npclastgenerated ?? 0);
+  qspCall(s, 'npcgeneratec', '', 0, 'The old man\'s friend ' + ((s as any).s ?? 0) + '', Math.floor(Math.random() * 31) + 30, 0, 1);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust' + String((s as any).s || '') + ''] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust<<s>>'], s
   (s as any).s = ((s as any).s ?? 0) + (1);
   if (((s as any).s ?? 0) < 12) {
@@ -900,7 +900,7 @@ function enterWhore8(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     if (((s as any).AlbinaQW ?? 0)?.['client8'] === 0) {
-      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['client8'] = 1;
+      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['client8'] = 1;
       scene.text('"I look forward to playing with you again next time my pet," she says with a small laugh.');
       scene.text('"Ne… next time?" you sheepishly reply.');
       scene.text('"Yes. I quite like you. I might speak to that sweet little friend of yours too. She seems like she\'d make a good pet as well…"');
@@ -934,7 +934,7 @@ function enterWhore8(s: GameState, scene: SceneBuilder): void {
     scene.text('"Get dressed. I\'ll take you home after I shower," she says and leaves the room. You get to your feet and get dressed before waiting for the woman to return.');
     scene.text('When she does, you follow her outside and get into the backseat of her car. Telling her where to go, she backs out and starts driving down the road.');
     if (((s as any).AlbinaQW ?? 0)?.['client8'] === 0) {
-      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['client8'] = 1;
+      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['client8'] = 1;
       scene.text('"You better make me cum next time, pet," she says sternly.');
       scene.text('"Ne… next time?" you sheepishly reply.');
       scene.text('"Yes. I quite like you but next time I feel like playing, you better be a good girl. I might speak to that sweet little friend of yours too. She seems like she\'d make a good pet…"');
@@ -962,10 +962,10 @@ function enterWhore8(s: GameState, scene: SceneBuilder): void {
 function enterWhore9(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'npcgeneratec', '', 0, 'The porn actor', Math.floor(Math.random() * 17) + 24, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'npcgeneratec', '', 0, 'The bald man', Math.floor(Math.random() * 17) + 24, 0, 1);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Cust1'] = ((s as any).npclastgenerated ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust1'] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust1'], 'a'
   qspCall(s, 'stat', '');
   scene.text('The bald man escorts you to a hotel room, where you\'re greeted by a second man.');

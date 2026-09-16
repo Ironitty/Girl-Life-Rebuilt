@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -70,6 +70,7 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     scene.text('The photographer smiles when he notices you\'re not objecting, and slowly kisses his way down your back until his nose rests between your buttocks. When he pulls down your stylish panties, he buries his tongue between your ass cheeks and tries to make his way to your pussy.');
     scene.text('The other girl is still a bit baffled by what\'s happening, and awkwardly holds your breasts in her hands while trying to figure out what to do. She decides to just go along with it and kisses your lips carefully while kneading your breasts and teasing your nipples. Your hands, in turn, are on the girl\'s ass, pulling her closer to you.');
     scene.text('Feeling that you\'re close to an orgasm, you let go of the girl and lean back towards the photographer, making him lick you to completion. With a satisfied moan, you cum on his mouth while you kiss the girl happily. The photographer then stands up. "So… How about we continue this in the locker room?"');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 15, ((s as any).npcID ?? 0), 'dom', 'group');
     qspCall(s, 'arousal', 'kiss', (-15), ((s as any).npcID1 ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'foreplay', (-15), ((s as any).npcID1 ?? 0), 'lesbian', 'group');
@@ -99,7 +100,8 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go with them', handler: (st: GameState) => {
     (s as any).picrand = 30;
-  }, goto: ['podrsex', 'suck'] },
+    qspGoto(s, 'podrsex', 'suck');
+  } },
     ]);
   } },
     ]);
@@ -233,7 +235,8 @@ function enterVar2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).picrand = 22;
-  }, goto: ['lezbsex', 'var'] },
+    qspGoto(s, 'lezbsex', 'var');
+  } },
     ]);
   } },
   ]);
@@ -290,7 +293,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = 81;
     qspCall(s, 'npcgeneratec', '', 0, 'Shy Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['sex', 'var'] },
+    qspGoto(s, 'sex', 'var');
+  } },
     ]);
   } },
     ]);
@@ -320,7 +324,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = 82;
     qspCall(s, 'npcgeneratec', '', 0, 'Dejected Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['sex', 'var'] },
+    qspGoto(s, 'sex', 'var');
+  } },
     ]);
   } },
       ]);
@@ -369,7 +374,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = 85;
     qspCall(s, 'npcgeneratec', '', 0, 'Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['sex', 'kuni'] },
+    qspGoto(s, 'sex', 'kuni');
+  } },
           ]);
         }
       } else {
@@ -415,7 +421,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = 31;
     qspCall(s, 'npcgeneratec', '', 0, 'Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['podrsex', 'suck'] },
+    qspGoto(s, 'podrsex', 'suck');
+  } },
     ]);
   } },
             ]);
@@ -463,7 +470,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = 32;
     qspCall(s, 'npcgeneratec', '', 0, 'Painter\'s Husband', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['podrsex', 'suck'] },
+    qspGoto(s, 'podrsex', 'suck');
+  } },
     ]);
   } },
               ]);
@@ -484,7 +492,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcgeneratec', '', 0, 'Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).picrand = 86;
-  }, goto: ['sex', 'minet'] },
+    qspGoto(s, 'sex', 'minet');
+  } },
               ]);
             }
           }

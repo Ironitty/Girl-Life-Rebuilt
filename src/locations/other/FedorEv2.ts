@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -176,6 +176,7 @@ function enterMovies(s: GameState, scene: SceneBuilder): void {
 
 function enterCinema(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/couple.jpg');
   scene.text('As you enter the cinema Fedor takes the lead and shows the tickets to a man at the ticket check. You look around you see a young couple at the concession stand buying snacks causing you think about what snacks you might want, Until you feel Fedor\'s hand on your back. Fedor then leads you to the concession stand and asks you what you would like.');
@@ -368,6 +369,7 @@ function enterMovie4(s: GameState, scene: SceneBuilder): void {
 
 function enterHome(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big5.jpg');
@@ -537,6 +539,7 @@ function enterVirginSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/cowgirlkiss2.mp4');
     scene.text('You return his kiss as you continue to thrust yourself up and down and soon you feel the pleasure that was building erupt and suddenly all your muscles tenses up, and you feel a warm heat in your groin and your breath stops then suddenly you feel a burst of pleasure erupt inside you. Unable to think of anything but the pleasure you moan so loudly you are almost screaming and you ride out this intense feeling. When it is over you realize that you have just had your first vaginal orgasm then suddenly Fedor pushes you on your back.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/orgasm.mp4');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Let him come', handler: (st: GameState) => {
@@ -643,7 +646,7 @@ function enterWashUp(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor walks you out of the bathroom then takes out his phone and asks you to strike a pose. You happily comply, Fedor takes a picture and says, "Thank you ${((s as any).pcs_firstname || '')}, I needed some beautiful wallpaper for my phone." you reply with a smirk "Flatterer." Fedor chuckles then leads you to the front door, where he helps you into your coat then kisses you on the cheek. "${((s as any).pcs_nickname || '')} are you ready to head home?" you turn to him, smile, nod then grab his hand and start walking home with Fedor.`);
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv2" })} [${((s as any).pcs_nickname || '')}] ${((s as any).pcs_lastname || '')}">></font></h4></b></center>`);
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorEv2" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "FedorEv2" }) + '');
     scene.actions([
       { label: 'Walk Home', handler: (st: GameState) => {
     (s as any).fedorkozqw = 5;
@@ -682,9 +685,9 @@ function enterSkate(s: GameState, scene: SceneBuilder): void {
       { label: 'Skate', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 2) + 1;
     if (((s as any).VK ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv2', 'Trip'] }]);
+      qspGoto(s, 'FedorEv2', 'Trip');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv2', 'No Trip'] }]);
+      qspGoto(s, 'FedorEv2', 'No Trip');
     }
   } },
     ]);
@@ -698,9 +701,9 @@ function enterSkate(s: GameState, scene: SceneBuilder): void {
       { label: 'Skate', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 2) + 1;
     if (((s as any).VK ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv2', 'Trip'] }]);
+      qspGoto(s, 'FedorEv2', 'Trip');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv2', 'No Trip'] }]);
+      qspGoto(s, 'FedorEv2', 'No Trip');
     }
   } },
     ]);
@@ -776,6 +779,7 @@ function enterSkateEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterCafe(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: Fedor walks you to the cafe in the financial district then orders you some food ...
   scene.text(`Fedor walks you to the cafe in the financial district then orders you some food and as you both sit down and chat, the food arrives and Fedor says, "Hey ${((s as any).pcs_nickname || '')} wanna get something to eat before we leave?"`);
@@ -1209,7 +1213,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const FedorEv2: LocationDef = {
   name: 'FedorEv2',
-  title: '<<"Vasily [Shulga] Shulgin">>',
   region: 'other',
   locationType: 'public_indoors',
   description: ['As you arrive at the park Fedor reaches out for your hand and leads you down the main path. You turn to him to see a gentle smile on his face which you are quite surprised to see. Usually Fedor is pretty crude when he is hanging out with the other jocks but there may be a softer side to him you think to yourself as Fedor leads you through the park. During your walk you both hear some people loudly laughing nearby, Fedor turns to you "Sounds like someone is having fun, wanna check it out?"'],

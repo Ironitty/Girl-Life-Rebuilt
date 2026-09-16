@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).pav_park_meet_event_type = ((s as any).locArgs?.[0] ?? 0);
   if (((s as any).pav_park_meet_event_type ?? 0) ==='kol') {
     qspCall(s, 'pav_park_meet_kol_event', 'meet_start');
   } else {

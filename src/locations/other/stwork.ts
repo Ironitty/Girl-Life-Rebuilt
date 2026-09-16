@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,8 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'stwork', 'start');
+  (s as any).sexloc = 'stwork';
   (s as any).stripMir = 1;
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
@@ -18,16 +20,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close 'sound/street_club.mp3'
   scene.text('<center><b>Dressing Room</b></center>');
   scene.img('images/locations/city/redlight/stripclub/backstage.jpg');
-  scene.text('The room has <a href="exec:gt \'mirror\', \'start\'">mirrors</a> all along the walls, where you can <a href="exec:gt \'mirror\', \'brush\'">brush</a> your hair, and a selection of <a href="exec:gt \'wardrobe\', \'start\'">clothes</a> hanging on rails for the girls to dress in. The whiteboard serving as the signup sheet for <a href="exec: gt \'stwork\', \'set_schedule\', \'this_week\' ">this week</a> and <a href="exec: gt \'stwork\', \'set_schedule\', \'next_week\' ">next week</a> is suctioned to one of the mirrors with a pen on top.');
-  scene.text('There are some stairs leading to the <a href="exec:gt \'stwork\', \'stripgirl\'">stage</a> where you can head out to perform.');
+  scene.text('The room has <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a> all along the walls, where you can <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a> your hair, and a selection of <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">clothes</a> hanging on rails for the girls to dress in. The whiteboard serving as the signup sheet for <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stwork\\u0027, \\u0027set_schedule\\u0027, \\u0027this_week\\u0027); return false;">this week</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stwork\\u0027, \\u0027set_schedule\\u0027, \\u0027next_week\\u0027); return false;">next week</a> is suctioned to one of the mirrors with a pen on top.');
+  scene.text('There are some stairs leading to the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stwork\\u0027, \\u0027stripgirl\\u0027); return false;">stage</a> where you can head out to perform.');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    scene.text('To the side is a door which overlooks the staff parking lot to the rear, used as a private entrance so girls don\'t to deal with scummy customers queuing out front. Always standing by this entrance is a <a href="exec:gt \'stwork\', \'guard\'">security guard</a>, who isn\'t going to let you walk outside unless you put some clothes on.');
+    scene.text('To the side is a door which overlooks the staff parking lot to the rear, used as a private entrance so girls don\'t to deal with scummy customers queuing out front. Always standing by this entrance is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stwork\\u0027, \\u0027guard\\u0027); return false;">security guard</a>, who isn\'t going to let you walk outside unless you put some clothes on.');
   } else {
-    scene.text('To the side is a <a href="exec:stripMir = 0 & gt \'stripclub\', \'start\'">door</a> which overlooks the staff parking lot to the rear, used as a private entrance so girls don\'t to deal with scummy customers queuing out front. Always standing by this entrance is a <a href="exec:gt \'stwork\', \'guard\'">security guard</a> keeping the girls safe.');
+    scene.text('To the side is a <a href="#" onclick="window.__gameStore.setState((s) => { s.stripMir = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027stripclub\\u0027, \\u0027start\\u0027); return false;">door</a> which overlooks the staff parking lot to the rear, used as a private entrance so girls don\'t to deal with scummy customers queuing out front. Always standing by this entrance is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stwork\\u0027, \\u0027guard\\u0027); return false;">security guard</a> keeping the girls safe.');
   }
   // TODO-QSP: dynamic text: Near the exit door is a vending machine selling '+iif(func('money', 'can_afford'...
-  scene.text('Near the exit door is a vending machine selling \'+iif(func(\'money\', \'can_afford\', 100) = 1, \'<a href="exec:gs \'money\', \'pay\', 100 & gt \'food\', \'snack\'">snacks</a>\', \'snacks\')+\' and a <a href="exec:gt \'beverage\', \'water\'">water cooler</a> which is used heavily by girls coming off stage.');
-  scene.text('A wooden door leads to the <a href="exec:gt \'stwork\', \'toilet\'">staff bathroom</a>.');
+  scene.text('Near the exit door is a vending machine selling \'+iif(func(\'money\', \'can_afford\', 100) = 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027money\\u0027, \\u0027pay\\u0027, String(window.__gameStore.getState().100 ?? \\u0027\\u0027)); return false;">snacks</a>\', \'snacks\')+\' and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027beverage\\u0027, \\u0027water\\u0027); return false;">water cooler</a> which is used heavily by girls coming off stage.');
+  scene.text('A wooden door leads to the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stwork\\u0027, \\u0027toilet\\u0027); return false;">staff bathroom</a>.');
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder'] > 0) {
     (s as any).stripKoef1 = Math.floor(Math.random() * 3) + 1;
   }
@@ -105,7 +107,7 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -121,8 +123,9 @@ function enterSetPerformActs(s: GameState, scene: SceneBuilder): void {
       scene.text('One of the bouncers walks up and tells you that a customer is waiting for you in one of the private rooms.');
       scene.actions([
         { label: 'Perform a private dance', handler: (st: GameState) => {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['lapdance_chance'] = 0;
-  }, goto: ['stwork2', 'privatdance'] },
+    ((s as any).strip_club = (s as any).strip_club ?? {})['lapdance_chance'] = 0;
+    qspGoto(s, 'stwork2', 'privatdance');
+  } },
       ]);
     }
   }
@@ -146,7 +149,7 @@ function enterSetPerformActs(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_makeup ?? 0) < 4) {
       qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
       (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
       (s as any).pcs_makeup = 4;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -156,7 +159,7 @@ function enterSetPerformActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go on stage', handler: (st: GameState) => {
     if (((s as any).pcs_leghair ?? 0) <= 3  &&  ((s as any).pcs_pubes ?? 0) <= 25) {
-      scene.actions([{ label: 'Continue', goto: ['stwork2', 'strip_show_start'] }]);
+      qspGoto(s, 'stwork2', 'strip_show_start');
     } else {
       scene.img('images/locations/city/redlight/stripclub/backstage.jpg');
       scene.text('You start climbing the steps to the stage when a shout from behind makes you stop.');
@@ -173,7 +176,7 @@ function enterSetPerformActs(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -228,7 +231,7 @@ function enterSetShiftOverAct(s: GameState, scene: SceneBuilder): void {
         { label: 'Speak with Sasha about your job', goto: ['stripclub', 'manager_job_change'] },
       ]);
     } else {
-      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_hookup'] = 0;
+      ((s as any).strip_club = (s as any).strip_club ?? {})['guard_hookup'] = 0;
       scene.text('You finish getting dressed and pack up your belongings before heading out the back door. Viktor is waiting for you outside.');
       if (((s as any).strip_club ?? 0)?.['guard_sex'] === 0) {
         scene.text('"I\'ve been looking forward to this. I want to know just what kind of minx you are!"');
@@ -249,16 +252,16 @@ function enterSetShiftOverAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripClothing(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).lastwornclothingtype) (s as any).lastwornclothingtype = {}; (s as any).lastwornclothingtype['strip_club'] = ((s as any).clothingworntype ?? 0);
-  if (!(s as any).lastwornclothingnumber) (s as any).lastwornclothingnumber = {}; (s as any).lastwornclothingnumber['strip_club'] = ((s as any).clothingwornnumber ?? 0);
-  if (!(s as any).lastwornpantytype) (s as any).lastwornpantytype = {}; (s as any).lastwornpantytype['strip_club'] = ((s as any).pantyworntype ?? 0);
-  if (!(s as any).lastwornpantynumber) (s as any).lastwornpantynumber = {}; (s as any).lastwornpantynumber['strip_club'] = ((s as any).pantywornnumber ?? 0);
-  if (!(s as any).lastwornbratype) (s as any).lastwornbratype = {}; (s as any).lastwornbratype['strip_club'] = ((s as any).braworntype ?? 0);
-  if (!(s as any).lastwornbranumber) (s as any).lastwornbranumber = {}; (s as any).lastwornbranumber['strip_club'] = ((s as any).brawornnumber ?? 0);
+  ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['strip_club'] = ((s as any).clothingworntype ?? 0);
+  ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['strip_club'] = ((s as any).clothingwornnumber ?? 0);
+  ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})['strip_club'] = ((s as any).pantyworntype ?? 0);
+  ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})['strip_club'] = ((s as any).pantywornnumber ?? 0);
+  ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})['strip_club'] = ((s as any).braworntype ?? 0);
+  ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})['strip_club'] = ((s as any).brawornnumber ?? 0);
   if (((s as any).PCloStyle2 ?? 0) === 4  ||  ((s as any).PCloSchool ?? 0) === 1) {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['school_girl_outfit'] = 1;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['school_girl_outfit'] = 1;
   } else {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['school_girl_outfit'] = 0;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['school_girl_outfit'] = 0;
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
     qspCall(s, 'clothing', 'strip');
@@ -276,7 +279,7 @@ function enterStripClothing(s: GameState, scene: SceneBuilder): void {
 function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
   scene.text('You now have a chance to add up any tips you gained from your last show.');
   if ((!(Math.floor(Math.random() * 5) + 0))) {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + (((s as any).stripKoef ?? 0));
+    ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + (((s as any).stripKoef ?? 0));
   }
   if (((s as any).strip_club ?? 0)?.['strip_tips'] < 25) {
     scene.text('Nobody even noticed you or your efforts on the stage and it\'s no surprise you got nothing for your efforts.');
@@ -312,7 +315,7 @@ function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             (s as any).paymoneyrand = (Math.floor(Math.random() * (3 * (((s as any).strip_club ?? {})?.['strip_tips'] ?? 0) - (((s as any).strip_club ?? {})?.['strip_tips'] ?? 0) + 1)) + ((((s as any).strip_club ?? {})?.['strip_tips'] ?? 0)));
-            (s as any).paymoneyrand = 0;
+            (s as any).paymoneyrand = Math.min(((s as any).paymoneyrand ?? 0), 500);
             qspCall(s, 'money', 'earn', ((s as any).paymoneyrand ?? 0));
             qspCall(s, 'mood', 'raise', 'small');
             qspCall(s, 'stat', '');
@@ -424,7 +427,7 @@ function enterStripgirl(s: GameState, scene: SceneBuilder): void {
 function enterGuard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).strip_club ?? 0)?.['guard_meet'] === 0) {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_meet'] = 1;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['guard_meet'] = 1;
     scene.img('images/locations/city/redlight/stripclub/viktor.jpg');
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('Standing guard at the door is a bald man with a beard, a towering mountain of muscle who grins as you approach him.');
@@ -432,7 +435,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Flirt with him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_flirt'] = 1;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['guard_flirt'] = 1;
     qspCall(s, 'stat', '');
     scene.text('You decide to play him at his own game.');
     scene.text('"Don\'t pretend you wouldn\'t enjoy chasing me. Catching my naked body would be your reward after all…" you joke with a smile while drawing attention to your breasts.');
@@ -482,7 +485,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Flirt with him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_flirt'] = 1;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['guard_flirt'] = 1;
     qspCall(s, 'stat', '');
     scene.text('"Oh? Like what you see?" you ask with a smile while turning to show him your ass.');
     scene.text('He grins at you while checking you out. Yeah, I guess I do… I\'m Viktor by the way."');
@@ -531,7 +534,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
         if (((s as any).strip_club ?? 0)?.['guard_flirt'] === 0) {
           scene.actions([
             { label: 'Flirt with him', handler: (st: GameState) => {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_flirt'] = 1;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['guard_flirt'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.text('You decide that he isn\'t so bad after all and flirt with him.');
@@ -552,7 +555,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
           if (((s as any).strip_club ?? 0)?.['guard_flirt'] === 1) {
             scene.actions([
               { label: 'Continue flirting with him', handler: (st: GameState) => {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_flirt'] = 2;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['guard_flirt'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.text('He\'s pretty good looking for his age and you can tell he\'s interested in you, so you decide to have some fun with him. You turn and wiggle your naked ass at him.');
@@ -594,7 +597,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
         if (((s as any).strip_club ?? 0)?.['guard_flirt'] === 0) {
           scene.actions([
             { label: 'Flirt with him', handler: (st: GameState) => {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_flirt'] = 1;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['guard_flirt'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.text('You decide that he isn\'t so bad after all and flirt with him.');
@@ -614,7 +617,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
           if (((s as any).strip_club ?? 0)?.['guard_flirt'] === 1) {
             scene.actions([
               { label: 'Continue flirting with him', handler: (st: GameState) => {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_flirt'] = 2;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['guard_flirt'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.text('He\'s pretty good looking for his age and you can tell he\'s interested in you, so you decide to have some fun with him. You turn and wiggle your ass at him.');
@@ -657,7 +660,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
         scene.text(`Viktor grins as you approach. "Hey ${((s as any).pcs_strippername || '')}. Looking as sexy as ever."`);
         if (((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).stat ?? 0)?.['vaginal'] === 0) {
           (s as any).minut = ((s as any).minut ?? 0) + 2;
-          if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_flirt'] = (-1);
+          ((s as any).strip_club = (s as any).strip_club ?? {})['guard_flirt'] = (-1);
           qspCall(s, 'stat', '');
           scene.text('You place your hand on his chest and lean in close to him.');
           scene.text('"You want a piece of this ass, don\'t you?" you whisper.');
@@ -685,7 +688,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', goto: ['stwork', 'start'] },
       ]);
     } else {
-      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_hookup'] = 1;
+      ((s as any).strip_club = (s as any).strip_club ?? {})['guard_hookup'] = 1;
       scene.text('You just smile at him. You know what you want and you\'re going to get it. You place your hand on his chest and lean in close to him.');
       scene.text('"You like me, I like you. So why don\'t you take me home and ravage me like the little slut that I am?" you whisper while brushing your hand across his crotch.');
       scene.text('In response, he grabs your ass cheek and firmly squeezes it in his hand. "You won\'t be able to walk for a week when I\'m done with you!"');
@@ -719,7 +722,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', goto: ['stwork', 'start'] },
       ]);
     } else {
-      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_hookup'] = 1;
+      ((s as any).strip_club = (s as any).strip_club ?? {})['guard_hookup'] = 1;
       scene.text('His hand caresses your back. "Then I\'ll be sure to take good care of you then, baby girl."');
       scene.text('You give him a quick kiss and he slaps your ass before you head on your way.');
       scene.actions([
@@ -744,11 +747,16 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToilet(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'bathroom';
+  (s as any).loc = 'stwork';
+  (s as any).loc_arg = 'toilet';
+  (s as any).locM = 'stwork';
+  (s as any).locM_arg = 'toilet';
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/bathroom/toilet.jpg');
   scene.text('You enter the staff bathroom that contains a single shower, a toilet stall and a wash basin.');
   // TODO-QSP: dynamic text: Your razor will last <b><<mc_inventory['razor']>></b> more ' + iif(mc_inventory[...
-  scene.text(`Your razor will last <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more ' + iif(mc_inventory['razor'] = 1, 'shave', 'shaves') + '. <a href="exec:gs 'din_van', 'shave_options'">Shave Options</a>`);
+  scene.text(`Your razor will last <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more ' + iif(mc_inventory['razor'] = 1, 'shave', 'shaves') + '. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027din_van\\u0027, \\u0027shave_options\\u0027); return false;">Shave Options</a>`);
   qspCall(s, 'din_van', 'brit');
   qspCall(s, 'din_van', 'toymanage');
   qspCall(s, 'din_van', 'enema');
@@ -773,7 +781,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'din_van', 'brit');
     scene.actions([
       { label: 'Get out and dry off', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -789,7 +797,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/makeup.jpg');
     if (((s as any).AlbinaQW ?? 0)?.['working_stripclub'] === 0) {
-      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['working_stripclub'] = 1;
+      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['working_stripclub'] = 1;
       scene.text('A brunette girl wearing a tight silver corset with matching thong is sitting at one of the mirrors touching up her heavy layer of makeup. You don\'t think you\'ve seen her before, so you walk over to introduce yourself.');
       if ((((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')  &&  ((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0) {
         scene.text('"Hey, I\'m-" you start, but stop when the girl turns to look at you. You don\'t recognize her, but the look on her face tells you that she seems to know you.');
@@ -839,7 +847,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.img('images/locations/city/redlight/stripclub/snort.mp4');
       if (((s as any).strip_club ?? 0)?.['seen_ruby_drugs'] === 0  ||  ((s as any).strip_club ?? 0)?.['seen_ruby_sex'] === 0) {
-        if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['seen_ruby_drugs'] = 1;
+        ((s as any).strip_club = (s as any).strip_club ?? {})['seen_ruby_drugs'] = 1;
         scene.text('You see a red haired girl in a fishnet bodysuit sitting at one of the mirrors. She looks a little jumpy as she rolls up a ruble bill before she suddenly leans over and snorts what you assume to be drugs up her nose. She blissfully slumps back in her chair before she spots you in the mirror.');
         scene.text('"The fuck are you looking at, bitch?! Mind your own fucking business!" she snarls before she shoves you aside and struts out of the room.');
         scene.text('That must have been Ruby. You\'ve heard the other strippers talking about her having a serious drug problem.');
@@ -859,7 +867,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         scene.img('images/locations/city/redlight/stripclub/makeup.jpg');
         if (((s as any).strip_club ?? 0)?.['jade_intro'] === 0) {
-          if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['jade_intro'] = 1;
+          ((s as any).strip_club = (s as any).strip_club ?? {})['jade_intro'] = 1;
           scene.text('You see a buxom blonde sitting at one of the mirrors... entirely naked. She excitedly bounces in her seat as she admires her jiggling breasts. Given the way they openly defy gravity, they must be fake.');
           scene.text('You\'ve heard the other strippers mention a girl called "Jade", a dimwitted, big boobed blonde they all call a bimbo. This must be her.');
           scene.text('"Oh hi!" she chirps. "You\'re the new girl!"');
@@ -894,7 +902,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           scene.img('images/locations/city/redlight/stripclub/makeup.jpg');
           if (((s as any).strip_club ?? 0)?.['onyx_intro'] === 0) {
-            if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['onyx_intro'] = 1;
+            ((s as any).strip_club = (s as any).strip_club ?? {})['onyx_intro'] = 1;
             scene.text('Your attention is drawn to one of the strippers sitting at the mirrors, her raven black hair, fashioned into bangs, contrasting with her blue eyes and pale skin. She\'s wearing an elegant black lace corset, complete with matching thong, an outfit which accents her long, slender legs.');
             scene.text('She\'s singing to herself as she touches up her makeup, her voice almost angelic as you notice the treble clef tattoo on her shoulder.');
             scene.text('Seemingly hearing you behind her, she turns to face you.');
@@ -945,7 +953,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             scene.img('images/locations/city/redlight/stripclub/makeup.jpg');
             if (((s as any).strip_club ?? 0)?.['emerald_intro'] === 0) {
-              if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['emerald_intro'] = 1;
+              ((s as any).strip_club = (s as any).strip_club ?? {})['emerald_intro'] = 1;
               scene.text('You see a blonde girl with striking green eyes sitting at one of the mirrors fixing up her hair. Her pink string bikini outfit, if you can even call it that, is so extremely skimpy and offers such little coverage that she might as well be naked.');
               scene.text('When she finishes ruffling her hair, she runs her hands down her tight body, drawing your attention to the large tattoo of an intricately designed rose on her thigh.');
               scene.text('"Oh," she says when she spots you. "Enjoying the show? I can strip for you right now if you want to see more..."');
@@ -977,7 +985,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               scene.img('images/locations/city/redlight/stripclub/makeup.jpg');
               if (((s as any).strip_club ?? 0)?.['amythest_intro'] === 0) {
-                if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['amythest_intro'] = 1;
+                ((s as any).strip_club = (s as any).strip_club ?? {})['amythest_intro'] = 1;
                 scene.text('You see a petite girl with deeply tanned skin sitting at the mirrors, carefully tying a few locks of her dark brown hair into a small braid. She\'s wearing a gold thong bikini and you can\'t help but admire the intricate tattoos covering her hands.');
                 // TODO-QSP: dynamic text: "Hi, I don't think we've met," you smile as you approach. "I'm <<$pcs_stripperna...
                 scene.text(`"Hi, I don't think we've met," you smile as you approach. "I'm ${((s as any).pcs_strippername || '')}."`);
@@ -992,7 +1000,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).strip_club ?? 0)?.['amythest_convo'] === 0) {
-                  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['amythest_convo'] = 1;
+                  ((s as any).strip_club = (s as any).strip_club ?? {})['amythest_convo'] = 1;
                   scene.text('You see Amythest sitting at the mirrors, touching up the henna tattoos on her hands.');
                   scene.text('"Hi Amythest," you smile as you approach. "I\'ve said it before, but your tattoos are so cool!"');
                   scene.text('A small smile appears on her lips. "Mr. Grinevsky think they look... Oh, what is word? <i>Sexy</i>, so I make sure they always look good for customer."');
@@ -1004,7 +1012,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
                   ]);
                 } else {
                   if (((s as any).strip_club ?? 0)?.['amythest_convo'] === 1) {
-                    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['amythest_convo'] = 2;
+                    ((s as any).strip_club = (s as any).strip_club ?? {})['amythest_convo'] = 2;
                     scene.text('You see Amythest sitting at the mirrors as she applies some makeup.');
                     scene.text('"Hey Amythest," you smile. "How are you doing?"');
                     scene.text('She flinches a little when she sees you. "Mr. Grinevsky tell me not talk to you! He think you asking too many questions!"');
@@ -1029,7 +1037,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'stat', '');
                 scene.img('images/locations/city/redlight/stripclub/makeup.jpg');
                 if (((s as any).strip_club ?? 0)?.['diamond_intro'] === 0) {
-                  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['diamond_intro'] = 1;
+                  ((s as any).strip_club = (s as any).strip_club ?? {})['diamond_intro'] = 1;
                   scene.text('You spot a girl with platinum blonde hair and icy blue eyes sitting at one of the mirrors, applying what you think is moisturizer and other lotions to her skin. She\'s dressed in an exquisite, yet delicate looking set of sexy white lingerie.');
                   scene.text('"So you\'re the new girl, huh?" she asks as she turns to look you and down. "What name did they give you?"');
                   // TODO-QSP: dynamic text: "<<$pcs_strippername>>," you reply. "And you are?"
@@ -1076,7 +1084,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'stat', '');
                   scene.img('images/locations/city/redlight/stripclub/makeup.jpg');
                   if (((s as any).strip_club ?? 0)?.['azul_intro'] === 0) {
-                    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['azul_intro'] = 1;
+                    ((s as any).strip_club = (s as any).strip_club ?? {})['azul_intro'] = 1;
                     scene.text('You spot a brunette girl dressed as a slutty schoolgirl sitting at the mirrors touching up her makeup before she pulls out a book and... starts reading? As you approach, you notice that her eyes are different colors.');
                     // TODO-QSP: dynamic text: "Oh. Hi..." you stutter. "I'm <<$pcs_strippername>>."
                     scene.text(`"Oh. Hi..." you stutter. "I'm ${((s as any).pcs_strippername || '')}."`);
@@ -1135,7 +1143,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'stat', '');
                   scene.img('images/locations/city/redlight/stripclub/makeup.jpg');
                   if (((s as any).strip_club ?? 0)?.['opal_intro'] === 0) {
-                    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['opal_intro'] = 1;
+                    ((s as any).strip_club = (s as any).strip_club ?? {})['opal_intro'] = 1;
                     scene.text('You see a young brunette girl sitting at one of the mirrors, touching up her hair and makeup. You can\'t help but notice how her <i>very</i> tight fitting white leather corset is not only accenting her massive breasts, but is struggling to contain them. You think they might actually pop out at any second.');
                     scene.text('She spots your reflection in the mirror and smiles.');
                     if (((s as any).tits ?? 0) >= 5) {

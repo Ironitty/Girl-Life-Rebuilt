@@ -40,7 +40,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('He kisses your cheek and leaves you alone, and almost immediately afterwards you notice that people treat you differently. No one dares to make remarks about your reputation any more and some even look scared when you walk past, asking you to forgive them. You nearly can\'t believe it, but Vitek actually intimidated everyone to the point where no one dares to bring it up any more.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -59,7 +59,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Get out of here, whore!" he yells at you, not showing any sign of compassion or regret. "We\'re done… don\'t you ever talk to me again, you fucking slut!"');
     scene.actions([
       { label: 'Leave him', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Besides, I\'m already as good as I\'m ever going to be," he continues. "You know, in that championship match, I actually beat the shit out of the champion. I had him down on the mat twice, but they still gave him the win! They said he won \'on points\'… fucking cowards, what does that even mean? They were afraid to send a real fighter to the national championships, so they made up a bunch of rules to have that pansy win. Anyway, training is starting soon, I have to get going!"');
     scene.actions([
       { label: 'Let him go to his training', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -100,7 +100,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname || '')}. It's nice seeing you, but the training starts soon!"`);
         scene.actions([
           { label: 'Let him go to his training', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -121,7 +121,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'No time right now, sorry!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -144,7 +144,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'No time right now, sorry!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -173,7 +173,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'No time right now, sorry!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -201,7 +201,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const kotovEv: LocationDef = {
   name: 'kotovEv',
-  title: '<<$npc_firstname[\'A9\']>> <<$npc_lastname[\'A9\']>>',
   region: 'other',
   enter: enter,
 };

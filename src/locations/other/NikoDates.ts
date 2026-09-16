@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -134,7 +134,7 @@ function enterDate1_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStrangerDanger(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).YurikEv) (s as any).YurikEv = {}; (s as any).YurikEv['Stranger'] = 1;
+  ((s as any).YurikEv = (s as any).YurikEv ?? {})['Stranger'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
@@ -737,7 +737,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Talk to Niko', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoDates" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoDates" }) + '');
     scene.text('"Do you mind if I ask you some more questions about your… family?" you ask as Niko applies the sunscreen. "I\'m really interested in getting to know you better."');
     scene.text('He pauses for a second before replying. "Sure, why not? Ask away."');
     scene.text('"You told me that you had a sister who… passed away, but you never told me what happened to your younger brother or your father."');
@@ -764,7 +764,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat with him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoDates" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoDates" }) + '');
     scene.text('You spend the next few minutes talking about various topics before Niko interrupts.');
     // TODO-QSP: dynamic text: "Hey <<$pcs_firstname>>, would you consider yourself a daring girl?"
     scene.text(`"Hey ${((s as any).pcs_firstname || '')}, would you consider yourself a daring girl?"`);
@@ -1002,19 +1002,24 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'bathroom';
+  (s as any).loc = 'NikoDates';
+  (s as any).locM_arg = 'bathroom';
+  (s as any).locM = 'NikoDates';
+  (s as any).location_type = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/volkovHome/Rooms/bathroom.jpg');
-  scene.text('The bathroom seems rather clean and contains a sink, a toilet, a <a href="exec:gt \'mirror\', \'start\'">mirror</a> and a bathtub.');
+  scene.text('The bathroom seems rather clean and contains a sink, a toilet, a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> and a bathtub.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Quick wash (0:10)', goto: ['NikoDates', 'quick_wash'] },
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).NikoEv ?? 0) === 5) {
-      scene.actions([{ label: 'Continue', goto: ['NikoDates', 'yurik_intro'] }]);
+      qspGoto(s, 'NikoDates', 'yurik_intro');
     } else {
       if (((s as any).NikoEv ?? 0) === 11) {
-        scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward'] }]);
+        qspGoto(s, 'NikoEv2', 'Reward');
       }
     }
   } },
@@ -1041,10 +1046,10 @@ function enterQuickWash(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Dry off', handler: (st: GameState) => {
     if (((s as any).NikoEv ?? 0) === 5) {
-      scene.actions([{ label: 'Continue', goto: ['NikoDates', 'yurik_intro'] }]);
+      qspGoto(s, 'NikoDates', 'yurik_intro');
     } else {
       if (((s as any).NikoEv ?? 0) === 11) {
-        scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward'] }]);
+        qspGoto(s, 'NikoEv2', 'Reward');
       }
     }
   } },
@@ -1067,7 +1072,7 @@ function enterYurikIntro(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'See what Niko does', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).YurikEv) (s as any).YurikEv = {}; (s as any).YurikEv['Name'] = 'Yurik';
+    ((s as any).YurikEv = (s as any).YurikEv ?? {})['Name'] = 'Yurik';
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/avatars/yurik1.jpg');
     scene.text('"What the fu… Oh shit! <i>Yurik</i>? You said you were going to be out all day!"');
@@ -1290,6 +1295,7 @@ function enterHallwayStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
   (s as any).NikoDate_Day = ((s as any).daystart ?? 0);
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'boyStat', 'A189');
   qspCall(s, 'stat', '');
@@ -1420,6 +1426,7 @@ function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
 
 function enterDisco(s: GameState, scene: SceneBuilder): void {
   (s as any).NikoDate_Day = ((s as any).daystart ?? 0);
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'boyStat', 'A189');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -1571,6 +1578,7 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
 
 function enterAfterSchool2(s: GameState, scene: SceneBuilder): void {
   (s as any).NikoDate_Day = ((s as any).daystart ?? 0);
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'boyStat', 'A189');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -1765,7 +1773,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const NikoDates: LocationDef = {
   name: 'NikoDates',
-  title: '<<"Nikolai [Niko] Volkov">>',
   region: 'other',
   locationType: 'public_indoors',
   enter: enter,

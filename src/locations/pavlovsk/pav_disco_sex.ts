@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterPcCondomFunc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  (!((s as any).preziktype ?? 0))) {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) - (1);
     }
   }
   qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 0, 'normal');
@@ -24,9 +24,9 @@ function enterPcCondomFunc(s: GameState, scene: SceneBuilder): void {
 function enterDiscoSexFame(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'prostitute') {
     if (((s as any).temp ?? 0)?.['prostitution_offer'] === 0) {
-      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prostitution_offer'] = 100;
+      ((s as any).temp = (s as any).temp ?? {})['prostitution_offer'] = 100;
     }
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prostitution_paid'] = ((s as any).temp ?? 0)?.['prostitution_offer'];
+    ((s as any).temp = (s as any).temp ?? {})['prostitution_paid'] = ((s as any).temp ?? 0)?.['prostitution_offer'];
     // TODO-QSP: gs 'money', 'earn', temp['prostitution_offer']
     if (((s as any).npc_indiscreet ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       qspCall(s, 'fame', 'pav', 'prostitute', 'small');
@@ -52,8 +52,12 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).gdk_nice_guy = 1;
   }
+  (s as any).loc_arg = 'outside';
+  (s as any).loc = 'pav_disco_sex';
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  (s as any).boydesc = ((s as any).npc_firstname ?? 0)?.[String((s as any).npclastcalled ?? 0)];
   scene.img('images/locations/pavlovsk/community/dk_night.jpg');
   // TODO-QSP: dynamic text: You leave the disco with <<$npcdesc>> and walk into a quiet garden area.
   scene.text(`You leave the disco with ${((s as any).npcdesc || '')} and walk into a quiet garden area.`);
@@ -147,7 +151,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/community/disco/sex/grab_tit.jpg');
       scene.text('He\'s too drunk to notice your objections and slides a hand underneath your clothes, squeezing your breasts.');
       scene.actions([
-        { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', '\'unpaid\''] },
+        { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', 'unpaid'] },
         { label: 'Don\'t say anything', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -190,16 +194,18 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
           ]);
         }
       }
       scene.text('You\'re feeling rather horny yourself, and don\'t object to his actions. You moan softly when he exposes your breasts, licking and sucking on your nipples.');
       scene.actions([
-        { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', '\'unpaid\''] },
+        { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', 'unpaid'] },
       ]);
     }
-  }, goto: ['pav_disco_sex', 'handjob'] },
+    qspGoto(s, 'pav_disco_sex', 'handjob');
+  } },
           ]);
         }
       }
@@ -238,7 +244,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'npcgeneratec', '', 0, '', 'like');
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    if (!(s as any).bmFrend) (s as any).bmFrend = {}; (s as any).bmFrend[String((s as any).Tboynum ?? 0)] = 1;
+    ((s as any).bmFrend = (s as any).bmFrend ?? {})[String((s as any).Tboynum ?? 0)] = 1;
     qspCall(s, 'lover', 'add_dating', ((s as any).npcID ?? 0));
     qspCall(s, 'stat', '');
     scene.text('You smile and give him your number, which he diligently adds to his phone.');
@@ -266,7 +272,8 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
                 ]);
               }
             }
@@ -291,7 +298,8 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
               ]);
             }
           }
@@ -369,7 +377,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss him back', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    if (!(s as any).bmKISS) (s as any).bmKISS = {}; (s as any).bmKISS[String((s as any).Tboynum ?? 0)] = ((s as any).bmKISS[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmKISS = (s as any).bmKISS ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmKISS[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     scene.text('You lean in and reciprocate the kiss before you feel his hands on your chest.');
@@ -387,14 +395,15 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
         ]);
       }
     }
     scene.actions([
       { label: 'Let him', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 3, 'no_orgasm_msg');
-    if (!(s as any).bmTITS) (s as any).bmTITS = {}; (s as any).bmTITS[String((s as any).Tboynum ?? 0)] = ((s as any).bmTITS[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmTITS = (s as any).bmTITS ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmTITS[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     // TODO-QSP: dynamic text: You ignore <<$npcdesc>>'s hands and kiss him, letting him pull your clothes asid...
@@ -416,10 +425,10 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     scene.text('"That sounds nice," you smile at him. After sprucing yourself up a bit, you follow him back to his apartment.');
     scene.actions([
-      { label: 'Go to his place', goto: ['date_hangout', 'start', '\'disco\''] },
+      { label: 'Go to his place', goto: ['date_hangout', 'start', 'disco'] },
     ]);
   } },
-        { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+        { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
       ]);
     }
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
@@ -436,7 +445,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>My parents aren\'t home tonight...</i>"');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
           ]);
@@ -449,7 +458,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.text('"How about you come back to my place instead?" you ask. "My housemates won\'t mind."');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the Meynold\'s house together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
           ]);
@@ -459,12 +468,13 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/handjob/hj.jpg');
     scene.text('You reach down his pants, grab hold of his erection and pull it out.');
     scene.text('"Why wait?" you grin, steadily stroking him.');
-  }, goto: ['pav_disco_sex', 'handjob'] },
+    qspGoto(s, 'pav_disco_sex', 'handjob');
+  } },
           { label: 'Sure', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     scene.text('You pull your clothes back into place before letting him drag you away.');
     scene.actions([
-      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
         ]);
@@ -481,7 +491,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>My parents aren\'t home tonight...</i>"');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
           ]);
@@ -494,7 +504,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.text('"How about you come back to my place instead?" you ask. "My housemates won\'t mind."');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the Meynold\'s house together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
           ]);
@@ -504,7 +514,8 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/handjob/hj.jpg');
     scene.text('You reach down his pants, grab hold of his erection and pull it out.');
     scene.text('"That\'s way too far," you grin, steadily stroking him.');
-  }, goto: ['pav_disco_sex', 'handjob'] },
+    qspGoto(s, 'pav_disco_sex', 'handjob');
+  } },
           { label: 'Sure', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     if (((s as any).npc_car ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -513,7 +524,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       scene.text('You pull your clothes back into place as you let him drag you away to catch a cab.');
     }
     scene.actions([
-      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
         ]);
@@ -533,7 +544,8 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
           ]);
         }
       }
@@ -559,13 +571,15 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
         ]);
       }
     }
     scene.actions([
       { label: 'Let him continue', handler: (st: GameState) => {
     scene.text('He has an expert touch and quickly brings you to an intense orgasm. You bite your lip hard, trying your best not to cry out in ecstasy.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -613,7 +627,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Jerk him off', handler: (st: GameState) => {
-    if (!(s as any).bmHJ) (s as any).bmHJ = {}; (s as any).bmHJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmHJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmHJ = (s as any).bmHJ ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmHJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     // TODO-QSP: gs 'cum_call', 'face', $npcID, temp['known_cumID']
@@ -631,7 +645,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck it', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 5, 'no_orgasm_msg');
-    if (!(s as any).bmBJ) (s as any).bmBJ = {}; (s as any).bmBJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmBJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmBJ = (s as any).bmBJ ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmBJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksuck.jpg');
     scene.text('Without even realizing it, you move in. Then, after a few kisses and licks, you let it slide into your mouth and diligently suck him off.');
@@ -727,7 +741,8 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
         ]);
       }
     }
@@ -751,11 +766,13 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
         ]);
       }
     }
-  }, goto: ['pav_disco_sex', 'handjob'] },
+    qspGoto(s, 'pav_disco_sex', 'handjob');
+  } },
     ]);
   } },
       ]);
@@ -771,7 +788,7 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Jerk him off', handler: (st: GameState) => {
-    if (!(s as any).bmHJ) (s as any).bmHJ = {}; (s as any).bmHJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmHJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmHJ = (s as any).bmHJ ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmHJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'arousal', 'hj', 5, 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -812,7 +829,7 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Squat down and blow him', goto: ['pav_disco_sex', 'blowjob', '\'unpaid\''] },
+      { label: 'Squat down and blow him', goto: ['pav_disco_sex', 'blowjob', 'unpaid'] },
     ]);
   } },
   ]);
@@ -844,7 +861,7 @@ function enterHandjobEnd(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
       scene.actions([
         { label: 'Wipe your hand off and head in', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
     (s as any).cumspclnt = 9;
     qspCall(s, 'cum_cleanup', '');
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
@@ -875,15 +892,15 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'fame', 'pav', 'sex', 'medium');
   }
-  if (!(s as any).pav_disco_bj) (s as any).pav_disco_bj = {}; (s as any).pav_disco_bj[String((s as any).npcID ?? 0)] = ((s as any).totminut ?? 0);
-  if (!(s as any).bmBJ) (s as any).bmBJ = {}; (s as any).bmBJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmBJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['bj'] = 1;
+  ((s as any).pav_disco_bj = (s as any).pav_disco_bj ?? {})[String((s as any).npcID ?? 0)] = ((s as any).totminut ?? 0);
+  ((s as any).bmBJ = (s as any).bmBJ ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmBJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+  ((s as any).gdk = (s as any).gdk ?? {})['bj'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/public/outdoor/bj1.mp4');
   // TODO-QSP: dynamic text: Knees to the ground, you take <<$npcdesc>>'s <<$npc_dick_noun[$npcID]>> in your ...
   scene.text(`Knees to the ground, you take ${((s as any).npcdesc || '')}'s ${((s as any).npc_dick_noun ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} in your hand and guide it into your mouth to start sucking. He groans under your touch, and you see him tilting his head back in pleasure above you.`);
   if ((Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).gdk ?? 0)?.['fuck'] !== 2) {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'fuck_pre1'] }]);
+    qspGoto(s, 'pav_disco_sex', 'fuck_pre1');
   } else {
     if ((Math.floor(Math.random() * 10) + 1) >= ((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 1) {
@@ -897,7 +914,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'mouth';
+    ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'mouth';
     scene.img('images/shared/sex/cum/mouth/cum1,3.mp4');
     // TODO-QSP: dynamic text: You continue working his cock for several minutes until <<$npcdesc>> grunts, and...
     scene.text(`You continue working his cock for several minutes until ${((s as any).npcdesc || '')} grunts, and a thick salty liquid pours into your mouth without warning.`);
@@ -906,12 +923,14 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_call', 'mouth', $npcID, temp['known_cumID']
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
     scene.text('You retch, coughing up the cum that suddenly appeared in your mouth and looking back at him with tears in your eyes.');
-  }, goto: ['pav_disco_sex', 'disco_mouth_react1'] },
+    qspGoto(s, 'pav_disco_sex', 'disco_mouth_react1');
+  } },
       { label: 'Swallow', handler: (st: GameState) => {
     // TODO-QSP: gs 'cum_call', 'mouth_swallow', $npcID, temp['known_cumID']
     // TODO-QSP: dynamic text: Not knowing what else to do, you reflexively swallow, gulping down the cum spurt...
     scene.text(`Not knowing what else to do, you reflexively swallow, gulping down the cum spurting from ${((s as any).npcdesc || '')}'s cock. Soon enough, nothing else comes out, and you pull back, looking up at him.`);
-  }, goto: ['pav_disco_sex', 'disco_mouth_react2'] },
+    qspGoto(s, 'pav_disco_sex', 'disco_mouth_react2');
+  } },
     ]);
   } },
         ]);
@@ -920,7 +939,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gs 'cum_call', 'face', $npcID, temp['known_cumID']
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'facial';
+    ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'facial';
     scene.img('images/shared/sex/public/outdoor/cum_facial1.mp4');
     // TODO-QSP: dynamic text: You continue working his cock for several minutes until <<$npcdesc>> pushes you ...
     scene.text(`You continue working his cock for several minutes until ${((s as any).npcdesc || '')} pushes you off him and begins rapidly jerking himself above your face. You close your eyes, and cum splatters across your face moments later.`);
@@ -1001,7 +1020,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
           { label: 'Insist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['condom'] = 1;
+    ((s as any).gdk = (s as any).gdk ?? {})['condom'] = 1;
     if (((s as any).npc_no_condoms ?? 0)?.[String((s as any).npcID ?? 0)] < 1) {
       // TODO-QSP: gs 'npcStat', $npcID, 0, $npc_condom_type[$npcID]
       scene.img('images/shared/sex/public/outdoor/stand_insert1.mp4');
@@ -1019,7 +1038,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
           { label: 'Get a condom from your purse', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
     scene.text('"Then use this," you say, reaching into your bag and pulling out a condom. He looks at it with disgust but puts it on anyways.');
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['condom'] = 1;
+    ((s as any).gdk = (s as any).gdk ?? {})['condom'] = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcCondomFunc(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Get fucked', goto: ['pav_disco_sex', 'fuck1'] },
@@ -1029,7 +1048,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Maybe it\'ll be okay...', handler: (st: GameState) => {
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['condom'] = 2;
+    ((s as any).gdk = (s as any).gdk ?? {})['condom'] = 2;
     scene.text('<i>Maybe it\'ll be okay...</i> you think to yourself.');
     scene.actions([
       { label: 'Just go with it', handler: (st: GameState) => {
@@ -1077,7 +1096,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Maybe it\'ll be okay...', handler: (st: GameState) => {
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['condom'] = 2;
+    ((s as any).gdk = (s as any).gdk ?? {})['condom'] = 2;
     scene.text('<i>Maybe it\'ll be okay...</i> you think to yourself.');
     scene.actions([
       { label: 'Just go with it', handler: (st: GameState) => {
@@ -1135,7 +1154,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'not_inside') {
-        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['not_inside_req'] = 1;
+        ((s as any).temp = (s as any).temp ?? {})['not_inside_req'] = 1;
         scene.text('"Just don\'t cum inside me," you tell him over your shoulder.');
       }
       scene.text('And then he thrusts his cock inside you.');
@@ -1149,7 +1168,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVirginFuck(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['virgin'] = 1;
+  ((s as any).gdk = (s as any).gdk ?? {})['virgin'] = 1;
   qspCall(s, 'arousal', 'vaginal', Math.floor(Math.random() * 5) + 3, 'no_orgasm_msg');
   scene.img('images/shared/sex/public/outdoor/stand_fuck1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> thrusts into your pussy, and you gasp in pain as his cock pierces y...
@@ -1157,22 +1176,27 @@ function enterVirginFuck(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'This hurts!', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     if (((s as any).pcs_horny ?? 0) > 50) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (50);
     }
     scene.text('You grunt your way through the discomfort of the next few minutes. You try to focus on the sensations, hoping they will start feeling good, but it never does. It just feels like being stabbed repeatedly. <i>In your pussy.</i> It\'s awful and painful, and you can\'t wait for it to stop. The only other sensation you can feel is the blood of your virginity running down your leg.');
-  }, goto: ['pav_disco_sex', 'disco_cum'] },
+    qspGoto(s, 'pav_disco_sex', 'disco_cum');
+  } },
     { label: 'Don\'t feel much', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     if (((s as any).pcs_horny ?? 0) > 50) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (40);
     }
     scene.text('Within a minute, the initial pain fades. After that, you hope it\'ll start to feel good, but... it doesn\'t actually feel like anything. Just a sort of "pressure" moving in and out of you. It doesn\'t feel good, it doesn\'t feel bad, it just sort of... feels. The only thing you can feel is the blood of your virginity running down your leg.');
-  }, goto: ['pav_disco_sex', 'disco_cum'] },
+    qspGoto(s, 'pav_disco_sex', 'disco_cum');
+  } },
     { label: 'Start to feel good', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: Within a minute, the initial pain fades. And after that, you start to feel <i>re...
     scene.text(`Within a minute, the initial pain fades. And after that, you start to feel <i>really good</i>. ${((s as any).npcdesc || '')}'s cock just "fills" you in a way you've never experienced before. Soon, you're thrusting your hips back to meet his, chasing after this brand-new pleasure.`);
     scene.text('<i>Why did I wait this long to have sex?!</i> You think to yourself.');
-  }, goto: ['pav_disco_sex', 'disco_cum'] },
+    qspGoto(s, 'pav_disco_sex', 'disco_cum');
+  } },
   ]);
   scene.build();
 }
@@ -1190,7 +1214,7 @@ function enterFuckPre1(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>My parents aren\'t home tonight...</i>"');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
     ]);
@@ -1209,7 +1233,7 @@ function enterFuckPre1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I don\'t want to have sex', handler: (st: GameState) => {
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['fuck'] = 2;
+    ((s as any).gdk = (s as any).gdk ?? {})['fuck'] = 2;
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
     scene.text('"I just don\'t want to!"');
     if (((s as any).pav_disco_bj ?? 0)?.[String((s as any).npcID ?? 0)] >= ((s as any).totminut ?? 0) - 20) {
@@ -1259,7 +1283,7 @@ function enterFuckPre1(s: GameState, scene: SceneBuilder): void {
         { label: 'Go with him', handler: (st: GameState) => {
     scene.text('"Well... a bed <i>does</i> sound nice," you smile. Taking that as acceptance, he pulls up his pants and grabs you by the arm, leading you back to a nearby apartment complex.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
       ]);
@@ -1268,14 +1292,14 @@ function enterFuckPre1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Bend over (sex)', goto: ['pav_disco_sex', 'insert'] },
-    { label: 'Let it happen (sex)', goto: ['pav_disco_sex', 'insert', '\'compliance\''] },
-    { label: 'Ask him to use a condom', goto: ['pav_disco_sex', 'insert', '\'condom_request\''] },
+    { label: 'Let it happen (sex)', goto: ['pav_disco_sex', 'insert', 'compliance'] },
+    { label: 'Ask him to use a condom', goto: ['pav_disco_sex', 'insert', 'condom_request'] },
     { label: 'Not here (suggest his place)', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
     scene.text('"Wait!" you cry, looking around. "Not here. Maybe we could... go back to your place?"');
     scene.text('"That works for me," he grins. Then, pulling his pants back up, he rushes you to a nearby apartment complex, and you head inside.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
   ]);
@@ -1328,7 +1352,7 @@ function enterFuckPre2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Oh hell yes," <<$npcdesc>> grins back and pulls a wrapper out of his pocket.
       scene.text(`"Oh hell yes," ${((s as any).npcdesc || '')} grins back and pulls a wrapper out of his pocket.`);
       // TODO-QSP: gs 'npcStat', $npcID, 0, $npc_condom_type[$npcID]
-      if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['condom'] = 1;
+      ((s as any).gdk = (s as any).gdk ?? {})['condom'] = 1;
       scene.actions([
         { label: 'Bend over', handler: (st: GameState) => {
     scene.img('images/shared/sex/public/outdoor/stand_insert1.mp4');
@@ -1347,10 +1371,10 @@ function enterFuckPre2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuck1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['fuck'] = 1;
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['orgasm'] = ((s as any).orgasm ?? 0);
+  ((s as any).gdk = (s as any).gdk ?? {})['fuck'] = 1;
+  ((s as any).gdk = (s as any).gdk ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'virgin_fuck'] }]);
+    qspGoto(s, 'pav_disco_sex', 'virgin_fuck');
   }
   qspCall(s, 'arousal', 'vaginal', Math.floor(Math.random() * 5) + 3, 'no_orgasm_msg');
   scene.img('images/shared/sex/public/outdoor/stand_fuck1.mp4');
@@ -1361,35 +1385,35 @@ function enterFuck1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> quickly builds up to a steady pace, pummeling your pussy from behin...
     scene.text(`${((s as any).npcdesc || '')} quickly builds up to a steady pace, pummeling your pussy from behind, pumping his cock in and out of you. The rhythmic fucking pounds your insides just the right way, and you soon find yourself moaning in pleasure.`);
   }
-  scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'disco_cum'] }]);
+  qspGoto(s, 'pav_disco_sex', 'disco_cum');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDiscoCum(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]) {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['known_cumID'] = 1;
+    ((s as any).temp = (s as any).temp ?? {})['known_cumID'] = 1;
   } else {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['known_cumID'] = 0;
+    ((s as any).temp = (s as any).temp ?? {})['known_cumID'] = 0;
   }
   if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'mouth') {
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum_num'] = 2;
+    ((s as any).gdk = (s as any).gdk ?? {})['cum_num'] = 2;
   } else {
     if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'facial') {
-      if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum_num'] = 3;
+      ((s as any).gdk = (s as any).gdk ?? {})['cum_num'] = 3;
     } else {
       if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'creampie') {
         if (((s as any).temp ?? 0)?.['not_inside_req'] === 0) {
-          if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum_num'] = 4;
+          ((s as any).gdk = (s as any).gdk ?? {})['cum_num'] = 4;
         } else {
           if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_misogynist ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-            if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum_num'] = 4;
+            ((s as any).gdk = (s as any).gdk ?? {})['cum_num'] = 4;
           } else {
-            if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum_num'] = Math.floor(Math.random() * 3) + 1;
+            ((s as any).gdk = (s as any).gdk ?? {})['cum_num'] = Math.floor(Math.random() * 3) + 1;
           }
         }
       } else {
-        if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum_num'] = Math.floor(Math.random() * 4) + 1;
+        ((s as any).gdk = (s as any).gdk ?? {})['cum_num'] = Math.floor(Math.random() * 4) + 1;
       }
     }
   }
@@ -1427,13 +1451,13 @@ function enterDiscoCum(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).gdk ?? 0)?.['cum_num'] === 4) {
           if (((s as any).npcCondom ?? 0) !== '') {
-            if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'condom';
+            ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'condom';
             scene.actions([
               { label: 'Continue', goto: ['pav_disco_sex', 'disco_condom1'] },
             ]);
           } else {
             if (((s as any).temp ?? 0)?.['not_inside_req'] > 0) {
-              if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'creampie';
+              ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'creampie';
               if (((s as any).gdk ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
                 // TODO-QSP: dynamic text: You feel pressure building with every thrust of <<$npcdesc>>'s cock inside you, ...
                 scene.text(`You feel pressure building with every thrust of ${((s as any).npcdesc || '')}'s cock inside you, and soon, it explodes in a climactic orgasm. Every muscle in your body clenches, your pussy clamping down on the cock inside it so hard, it almost hurts. Then, as your breathing winds down, you feel ${((s as any).npcdesc || '')} slip out from inside you.`);
@@ -1446,15 +1470,16 @@ function enterDiscoCum(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               // TODO-QSP: gs 'cum_call', '', $npcID, temp['known_cumID']
-              if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'creampie';
+              ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'creampie';
               if (((s as any).pcs_horny ?? 0) >= 90) {
+                (s as any).orgasm_or = 'yes';
                 // TODO-QSP: dynamic text: You feel pressure building with every thrust of <<$npcdesc>>'s cock inside you, ...
                 scene.text(`You feel pressure building with every thrust of ${((s as any).npcdesc || '')}'s cock inside you, and soon, it explodes in a climactic orgasm. Every muscle in your body clenches, your pussy clamping down on the cock inside it so hard, it almost hurts. Finally, your breathing slowly winds down, and you feel ${((s as any).npcdesc || '')} slip his cock out from inside you.`);
                 scene.text('As he does, you feel something oozing out of your pussy after it.');
-                scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'creampie_surprise1'] }]);
+                qspGoto(s, 'pav_disco_sex', 'creampie_surprise1');
               } else {
                 scene.text('Your eyes go wide when you feel something spurt inside of your pussy.');
-                scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'creampie_surprise1'] }]);
+                qspGoto(s, 'pav_disco_sex', 'creampie_surprise1');
               }
             }
           }
@@ -1467,7 +1492,7 @@ function enterDiscoCum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDiscoCumFacial(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'facial';
+  ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'facial';
   // TODO-QSP: gs 'cum_call', 'face', $npcID, temp['known_cumID']
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/public/outdoor/cum_facial1.mp4');
@@ -1616,7 +1641,7 @@ function enterDiscoMouthReact2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDiscoCumMouth(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'mouth';
+  ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'mouth';
   scene.img('images/shared/sex/cum/mouth/cum1,3.mp4');
   if (((s as any).gdk ?? 0)?.['cum_num'] !== 3) {
     if (((s as any).gdk ?? 0)?.['condom'] === 1) {
@@ -1658,7 +1683,7 @@ function enterDiscoCumMouth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDiscoCondom1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'condom';
+  ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'condom';
   // TODO-QSP: gs 'cum_call', '', $npcID, temp['known_cumID'], 3
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/public/outdoor/stand_fuck1.mp4');
@@ -1700,7 +1725,7 @@ function enterDiscoCondom1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDiscoCondom2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'condom';
+  ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'condom';
   // TODO-QSP: gs 'cum_call', '', $npcID, temp['known_cumID'], 3
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/public/outdoor/stand_fuck1.mp4');
@@ -1743,12 +1768,13 @@ function enterDiscoCondomBreak(s: GameState, scene: SceneBuilder): void {
 
 function enterDiscoCreampie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gdk ?? 0)?.['condom'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'disco_condom2'] }]);
+    qspGoto(s, 'pav_disco_sex', 'disco_condom2');
   }
   // TODO-QSP: gs 'cum_call', '', $npcID, temp['known_cumID']
-  if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['cum'] = 'creampie';
+  ((s as any).gdk = (s as any).gdk ?? {})['cum'] = 'creampie';
   scene.img('images/shared/sex/public/outdoor/creampie1.jpg');
   if (((s as any).pcs_horny ?? 0) >= 90) {
+    (s as any).orgasm_or = 'yes';
     // TODO-QSP: dynamic text: You don't say a word, instead throwing your hips back onto <<$npcdesc>>'s cock a...
     scene.text(`You don't say a word, instead throwing your hips back onto ${((s as any).npcdesc || '')}'s cock as hard as you can. Seconds later, you hear him groan and feel his load spill out inside you. The sensation sends you over the edge, and your body goes taut, leaving you on tiptoes while the orgasm rolls through your body.`);
     // TODO-QSP: dynamic text: When the quivering finally stops, you lean forward, letting <<$npcdesc>>'s cock ...
@@ -2114,7 +2140,8 @@ function enterHotelPre(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 0);
     }
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
         ]);
       }
     }
@@ -2154,8 +2181,8 @@ function enterHotel(s: GameState, scene: SceneBuilder): void {
   scene.text(`You get into the back seat of the taxi with him and spend the next five minutes driving, mostly in silence. You notice ${((s as any).npcdesc || '')} giving the taxi driver an impressive tip when you arrive at the hotel... is he trying to impress you or is he just very generous...?`);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go to <<$npcdesc>>\'s room', goto: ['sex_ev_start', 'hotel_start', '\'hookup\''] },
-    { label: 'Go to <<$npcdesc>>\'s room (old content)', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npcdesc || '') ?? '') + '\'s room', goto: ['sex_ev_start', 'hotel_start', 'hookup'] },
+    { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npcdesc || '') ?? '') + '\'s room (old content)', handler: (st: GameState) => {
     if (((s as any).DPtipe ?? 0) !== 1) {
       qspCall(s, 'stat', '');
       scene.img('images/shared/sex/kiss/kiss.jpg');
@@ -2166,7 +2193,7 @@ function enterHotel(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHeatingUp(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if ((!(Math.floor(Math.random() * 5) + 0))) {
-        scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'drug_user'] }]);
+        qspGoto(s, 'pav_disco_sex', 'drug_user');
       }
       (s as any).BeInOtel = ((s as any).BeInOtel ?? 0) + (1);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -2240,7 +2267,8 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'prostitution', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_market', ''] },
+    qspGoto(s, 'pav_market', '');
+  } },
       ]);
     }
     scene.actions([
@@ -2251,14 +2279,14 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/money.jpg');
     // TODO-QSP: dynamic text: You give him a nod and wordlessly extend your hand. <<$npcdesc>> readily gives y...
     scene.text(`You give him a nod and wordlessly extend your hand. ${((s as any).npcdesc || '')} readily gives you the money.`);
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', '\'paid\''] }]);
+    qspGoto(s, 'pav_disco_sex', 'hotelsex', 'paid');
   } },
     ]);
   } },
         ]);
       }
       scene.actions([
-        { label: 'Suck his cock', goto: ['pav_disco_sex', 'hotelsex', '\'unpaid\''] },
+        { label: 'Suck his cock', goto: ['pav_disco_sex', 'hotelsex', 'unpaid'] },
       ]);
     } else {
       scene.img('images/locations/pavlovsk/community/disco/sex/hotel/money.jpg');
@@ -2279,7 +2307,8 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_market', ''] },
+    qspGoto(s, 'pav_market', '');
+  } },
         ]);
       }
       qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
@@ -2311,7 +2340,8 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'prostitution', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_market', ''] },
+    qspGoto(s, 'pav_market', '');
+  } },
       ]);
     }
     scene.actions([
@@ -2322,7 +2352,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/money.jpg');
     // TODO-QSP: dynamic text: You give him a nod and wordlessly extend your hand. <<$npcdesc>> readily gives y...
     scene.text(`You give him a nod and wordlessly extend your hand. ${((s as any).npcdesc || '')} readily gives you the money.`);
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', '\'paid\''] }]);
+    qspGoto(s, 'pav_disco_sex', 'hotelsex', 'paid');
   } },
     ]);
   } },
@@ -2371,7 +2401,8 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'prostitution', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_market', ''] },
+    qspGoto(s, 'pav_market', '');
+  } },
       ]);
     }
     scene.actions([
@@ -2386,7 +2417,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinSex', 'std_trigger_oral');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', '\'paid\''] },
+      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', 'paid'] },
     ]);
   } },
     ]);
@@ -2396,7 +2427,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Lose your virginity for money', handler: (st: GameState) => {
     (s as any).lose_virginity_event = 1;
-    if (!(s as any).bmSEX) (s as any).bmSEX = {}; (s as any).bmSEX[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmSEX = (s as any).bmSEX ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'money', 'earn', 5000);
     qspCall(s, 'fame', 'pav', 'prostitute', Math.floor(Math.random() * 5) + 2);
     qspCall(s, 'stat', '');
@@ -2407,7 +2438,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'prostitution');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', '\'paid\''] },
+      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', 'paid'] },
     ]);
   } },
     ]);
@@ -2468,7 +2499,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinSex', 'std_trigger_oral');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', '\'paid\''] },
+      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', 'paid'] },
     ]);
   } },
     ]);
@@ -2479,7 +2510,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree to have sex for money', handler: (st: GameState) => {
     (s as any).hotel_sex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
-    if (!(s as any).bmSEX) (s as any).bmSEX = {}; (s as any).bmSEX[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmSEX = (s as any).bmSEX ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'money', 'earn', 2000);
     qspCall(s, 'fame', 'pav', 'prostitute', Math.floor(Math.random() * 5) + 2);
     qspCall(s, 'stat', '');
@@ -2490,7 +2521,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'prostitution');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', '\'paid\''] },
+      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', 'paid'] },
     ]);
   } },
     ]);
@@ -2499,7 +2530,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Give him a blowjob', goto: ['pav_disco_sex', 'hotelsex', '\'unpaid\''] },
+    { label: 'Give him a blowjob', goto: ['pav_disco_sex', 'hotelsex', 'unpaid'] },
     { label: 'Have sex with him', handler: (st: GameState) => {
     if ((!((s as any).boynumBlock ?? 0))) {
       (s as any).guy = ((s as any).guy ?? 0) + (1);
@@ -2508,7 +2539,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).hotel_sex = 1;
-    if (!(s as any).bmSEX) (s as any).bmSEX = {}; (s as any).bmSEX[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmSEX = (s as any).bmSEX ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/foreplay.jpg');
     // TODO-QSP: dynamic text: <<$npcdesc>> pushes you down on the bed and starts taking off your top.
@@ -2517,7 +2548,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', '\'unpaid\''] },
+      { label: 'Continue', goto: ['pav_disco_sex', 'hotelsex', 'unpaid'] },
     ]);
   } },
   ]);
@@ -2531,7 +2562,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).boynumBlock ?? 0) > 0  &&  ((s as any).bmTOTSEX ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }
-  if (!(s as any).bmBJ) (s as any).bmBJ = {}; (s as any).bmBJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmBJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+  ((s as any).bmBJ = (s as any).bmBJ ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmBJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
   scene.img('images/locations/pavlovsk/community/disco/sex/hotel/foreplay.jpg');
   scene.text('He pulls your top aside to expose your breasts. He fondles them, followed by a few kisses and caresses before he undresses you more. Unable to wait anymore, he pulls his dick out of his pants and pushes you down to your knees.');
   if (((s as any).locArgs?.[1] ?? 0) === 'paid') {
@@ -2616,7 +2647,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Suggest he fucks your ass', handler: (st: GameState) => {
     (s as any).hotel_sex = 0;
-    if (!(s as any).bmANAL) (s as any).bmANAL = {}; (s as any).bmANAL[String((s as any).Tboynum ?? 0)] = ((s as any).bmANAL[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmANAL = (s as any).bmANAL ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmANAL[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/anal1.jpg');
     scene.text('You pull yourself away from his cock, your lips making a loud pop as it leaves your mouth. You quickly jump up on the bed, lay yourself down on your back and lift your knees all the way up to your breasts before reaching down with one hand to pull one of your ass cheeks aside.');
     qspCall(s, 'arousal', 'auto_lube', 'anal');
@@ -2649,7 +2680,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).spafinloc = 3;
     qspCall(s, 'cum_manage', '');
-    if (!(s as any).bmANAL) (s as any).bmANAL = {}; (s as any).bmANAL[String((s as any).Tboynum ?? 0)] = ((s as any).bmANAL[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmANAL = (s as any).bmANAL ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmANAL[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/anal2.jpg');
     // TODO-QSP: dynamic text: Since you are on your back, you are a bit lower than ideal. <<$npcdesc>> is havi...
     scene.text(`Since you are on your back, you are a bit lower than ideal. ${((s as any).npcdesc || '')} is having trouble getting enough leverage to fuck your ass with as much force as he'd like, so he pulls his cock out of your hole and flips you over. You get yourself up on your hands and knees, and he pulls your hips back towards him, and within seconds, you feel him thrust his cock balls deep back up your ass. He grabs your hips and starts pounding your asshole as hard as he can, his balls slapping against your clit with every thrust, the sound of hitting flesh getting louder as his hips join in, smacking against your ass. You feel him begin to cum in your ass, but he's not done with you yet.`);
@@ -2677,7 +2708,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Let him fuck your pussy too', handler: (st: GameState) => {
-    if (!(s as any).bmSEX) (s as any).bmSEX = {}; (s as any).bmSEX[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmSEX = (s as any).bmSEX ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/fuck2.jpg');
     scene.text('After some time, he pulls out of you. Before you can even ask why he turns you on your side and slides his dick into your wet pussy. He slides himself balls-deep into you and starts fucking you, his thighs pounding against your ass cheeks.');
     scene.text('He is really getting into it. His movements are almost frenzied in their pace.');
@@ -2750,7 +2781,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Lie down on his bed', handler: (st: GameState) => {
-    if (!(s as any).bmSEX) (s as any).bmSEX = {}; (s as any).bmSEX[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmSEX = (s as any).bmSEX ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     (s as any).hotel_sex = 0;
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/fuck1.jpg');
     // TODO-QSP: dynamic text: After sucking his dick, you stop, lie on the bed and spread your legs. <<$npcdes...
@@ -2818,7 +2849,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).bmSEX) (s as any).bmSEX = {}; (s as any).bmSEX[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmSEX = (s as any).bmSEX ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmSEX[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/fuck2.jpg');
     scene.text('After some time, he pulls out of you, and before you can even ask why, he turns you on your side and slides his dick back into your wet pussy. Then, he slides himself balls deep in you again and starts fucking you, his thighs pounding against your ass cheeks.');
     scene.text('He seems to be really getting into it. His movements are almost frenzied in their pace as he leans forward towards you and says, "I want to fuck your ass."');
@@ -2832,7 +2863,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).lose_virginity_event ?? 0))) {
       scene.actions([
         { label: 'Let him fuck your ass', handler: (st: GameState) => {
-    if (!(s as any).bmANAL) (s as any).bmANAL = {}; (s as any).bmANAL[String((s as any).Tboynum ?? 0)] = ((s as any).bmANAL[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmANAL = (s as any).bmANAL ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmANAL[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/anal1.jpg');
     scene.text('You nod and roll over onto your back before pulling your knees up to your breasts. You reach down with one hand and pull one of your ass cheeks aside.');
     qspCall(s, 'arousal', 'auto_lube', 'anal');
@@ -2864,7 +2895,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).spafinloc = 3;
     qspCall(s, 'cum_manage', '');
-    if (!(s as any).bmANAL) (s as any).bmANAL = {}; (s as any).bmANAL[String((s as any).Tboynum ?? 0)] = ((s as any).bmANAL[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
+    ((s as any).bmANAL = (s as any).bmANAL ?? {})[String((s as any).Tboynum ?? 0)] = ((s as any).bmANAL[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/anal2.jpg');
     // TODO-QSP: dynamic text: Since you are on your back, you are a bit lower than ideal. <<$npcdesc>> is havi...
     scene.text(`Since you are on your back, you are a bit lower than ideal. ${((s as any).npcdesc || '')} is having trouble getting enough leverage to fuck your ass with as much force as he'd like, so he pulls his cock out of your hole and flips you over. You get yourself up on your hands and knees as he pulls your hips back towards him, and within seconds, you feel him thrust his cock balls deep back up your ass. He grabs your hips and starts pounding your asshole as hard as he can, his balls slapping against your clit with every thrust, the sound of hitting flesh getting louder as his hips join in, smacking against your ass. You feel him begin to cum in your ass, but he's not done with you yet.`);
@@ -3005,7 +3036,8 @@ function enterDrugUser(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drugs', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco_sex', 'no drugs'] },
+    qspGoto(s, 'pav_disco_sex', 'no drugs');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -3017,7 +3049,7 @@ function enterDrugUser(s: GameState, scene: SceneBuilder): void {
 
 function enterDrugs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).drugVars ?? 0)?.['city_drugden'] === 0) {
-    if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['city_drugden'] = 1;
+    ((s as any).drugVars = (s as any).drugVars ?? {})['city_drugden'] = 1;
   }
   qspCall(s, 'drugs', 'cocaine', 1);
   qspCall(s, 'stat', '');
@@ -3065,6 +3097,7 @@ function enterDrugs(s: GameState, scene: SceneBuilder): void {
     scene.text(`The two of you start making out, and you let out a little moan when ${((s as any).npcdesc || '')} starts stroking your thighs.`);
     // TODO-QSP: dynamic text: Before you know it, you've been stripped down to your underwear while <<$npcdesc...
     scene.text(`Before you know it, you've been stripped down to your underwear while ${((s as any).npcdesc || '')} squeezes your breasts. He gives you a few more kisses and hooks one finger into your panties before looking at you. "Time for some pleasure."`);
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -3074,6 +3107,7 @@ function enterDrugs(s: GameState, scene: SceneBuilder): void {
     scene.text(`Giddy with excitement, you eagerly remove your underwear and let ${((s as any).npcdesc || '')} lead you to a grand mirror, where he drops down to his knees, spreads your legs wide and shoves his face into your crotch, wildly licking your sopping wet pussy.`);
     scene.text('You can feel your pussy pulsing as he eats you out, your rampant arousal overwhelming you.');
     scene.text('Before long, you start shuddering in pleasure, and within seconds, you begin rolling your hips as the satisfaction is too much for you to handle. Finally, you let out a loud sigh, grab him by the hair and clench his head between your thighs as you orgasm wildly, your knees turning to jelly from the sweet satisfaction.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -3121,6 +3155,7 @@ function enterDrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel another orgasm building, but this one is different. It feels like it\'s coming from deeper inside you. "Harder! I\'m almost there. Make me cum again!" you scream as his thrusting becomes more frantic.');
     // TODO-QSP: dynamic text: <<$npcdesc>> speeds up his movements as you start shaking and shivering as your ...
     scene.text(`${((s as any).npcdesc || '')} speeds up his movements as you start shaking and shivering as your orgasm hits, spraying girl-cum all over the bed cover as you pant.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal', 5);
     qspCall(s, 'dinSex', 'std_trigger');
     qspCall(s, 'stat', '');

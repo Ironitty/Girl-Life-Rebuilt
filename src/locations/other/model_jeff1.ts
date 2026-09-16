@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,13 +10,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterJeff_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).jeff ?? 0)?.['status'] === 2) {
-    scene.actions([{ label: 'Continue', goto: ['model_jeff1', 'jeff_2'] }]);
+    qspGoto(s, 'model_jeff1', 'jeff_2');
   } else {
     if (((s as any).jeff ?? 0)?.['status'] > 2  &&  ((s as any).jeff ?? 0)?.['status'] < 5) {
-      scene.actions([{ label: 'Continue', goto: ['model_jeff1', 'jeff_3'] }]);
+      qspGoto(s, 'model_jeff1', 'jeff_3');
     } else {
       if (((s as any).jeff ?? 0)?.['status'] === 5) {
-        scene.actions([{ label: 'Continue', goto: ['model_jeff1', 'jeff_modelling'] }]);
+        qspGoto(s, 'model_jeff1', 'jeff_modelling');
       }
     }
   }
@@ -58,7 +58,7 @@ function enterJeff_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ahh, uh… Okay…" you say.');
     scene.text('All of sudden she seems to startle herself and squeaks. "Oh no! I totally forgot, I was supposed to be on set! Gotta run! It was nice meeting you!" you hear Jeff call back as she skips off towards the other side of the studio.');
     scene.text('<i>What a weird girl…</i>');
-    if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['status'] = 2;
+    ((s as any).jeff = (s as any).jeff ?? {})['status'] = 2;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -75,7 +75,7 @@ function enterJeff_1(s: GameState, scene: SceneBuilder): void {
 
 function enterJeff_2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/4.jpg');
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['status'] = 3;
+  ((s as any).jeff = (s as any).jeff ?? {})['status'] = 3;
   scene.text('As you walk past a set, you hear someone yell out from an armchair. "Hey there, cutie!"');
   scene.text('Looking over, you see Jeff smiling at you, sitting with her legs up and her neat little pussy on peeking out from between them. She must\'ve just finished a shoot.');
   // TODO-QSP: end
@@ -214,8 +214,8 @@ function enterJeff_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJeff_3(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['status'] = Math.floor(Math.random() * 3) + 3;
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['grope'] = ((s as any).jeff['grope'] ?? 0) + (1);
+  ((s as any).jeff = (s as any).jeff ?? {})['status'] = Math.floor(Math.random() * 3) + 3;
+  ((s as any).jeff = (s as any).jeff ?? {})['grope'] = ((s as any).jeff['grope'] ?? 0) + (1);
   scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/grope.jpg');
   scene.text('While walking through the studio, you suddenly feel someone\'s arms wrap around your waist and two soft breasts press into your back.');
   scene.text('Before you can say anything you jump in surprise as you feel the person\'s hands fly up your body and slap against your breasts to give them a firm squeeze.');
@@ -254,7 +254,7 @@ function enterJeffChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).jeff ?? 0)?.['model_exp'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask for modelling advice', handler: (st: GameState) => {
-    if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['model_exp'] = ((s as any).daystart ?? 0);
+    ((s as any).jeff = (s as any).jeff ?? {})['model_exp'] = ((s as any).daystart ?? 0);
     qspCall(s, 'exp_gain', 'mdlng', 1);
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/9.jpg');
     scene.text('"How to be a better model? Oh that\'s easy! Just have fun!" she says.');
@@ -302,12 +302,12 @@ function enterJeffChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Chat', handler: (st: GameState) => {
-    if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['convo'] = Math.floor(Math.random() * 5) + 1;
+    ((s as any).jeff = (s as any).jeff ?? {})['convo'] = Math.floor(Math.random() * 5) + 1;
     if (((s as any).jeff ?? 0)?.['convo'] === 1) {
       scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/15.jpg');
       scene.text('"So Jeff, have you seen any good movies lately?"');
       scene.text('"Oh no! I don\'t go to the movies. I hate them! They\'re so loud and unpleasant! My poor ears can\'t handle them!" she whines while putting her hands over her ears even though it is perfectly quiet right now.');
-      if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['movies'] = 1;
+      ((s as any).jeff = (s as any).jeff ?? {})['movies'] = 1;
     } else {
       if (((s as any).jeff ?? 0)?.['convo'] === 2) {
         scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/16.jpg');
@@ -478,12 +478,12 @@ function enterJeffSexAdvice(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJeffModelling(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['busy_cooldown_day'] = ((s as any).daystart ?? 0);
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
+  ((s as any).jeff = (s as any).jeff ?? {})['busy_cooldown_day'] = ((s as any).daystart ?? 0);
+  ((s as any).jeff = (s as any).jeff ?? {})['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('You\'re looking for Jeff when you hear her voice coming from one of the sets.');
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['status'] = Math.floor(Math.random() * 3) + 3;
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['model'] = Math.floor(Math.random() * 3) + 1;
+  ((s as any).jeff = (s as any).jeff ?? {})['status'] = Math.floor(Math.random() * 3) + 3;
+  ((s as any).jeff = (s as any).jeff ?? {})['model'] = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {

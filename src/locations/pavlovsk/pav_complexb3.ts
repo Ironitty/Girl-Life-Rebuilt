@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'pav_complexb3';
   if (((s as any).liftnotwork_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).liftnotwork_count = 1;
   }
@@ -34,14 +36,15 @@ function enterHousemates(s: GameState, scene: SceneBuilder): void {
 
 function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_complexb3', 'etaj_1');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Ground floor of the apartment building</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/podezd2.jpg');
   scene.text('<center>A dirty and poorly maintained stairwell, the same as any other in your town.</center>');
-  scene.text('There\'s a <a href="exec: gt \'pav_complexb3\', \'housemates\'">list</a> of the people who live here on the wall.');
-  scene.text('Someone put up some <a href="exec:gt \'pav_complexb3\',\'pod_objava\'">advertisements</a> on the wall near the entrance.');
+  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_complexb3\\u0027, \\u0027housemates\\u0027); return false;">list</a> of the people who live here on the wall.');
+  scene.text('Someone put up some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_complexb3\\u0027, \\u0027pod_objava\\u0027); return false;">advertisements</a> on the wall near the entrance.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the building', handler: (st: GameState) => {
@@ -50,13 +53,14 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'etaj_2'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_1\''] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_1'] },
   ]);
   scene.build();
 }
 
 function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_complexb3', 'etaj_2');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>2nd floor of the apartment building</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj2.jpg');
@@ -69,13 +73,14 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the third floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'etaj_3'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_2\''] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_2'] },
   ]);
   scene.build();
 }
 
 function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_complexb3', 'etaj_3');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>3rd floor of the apartment building</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj3.jpg');
@@ -88,19 +93,20 @@ function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the fourth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'etaj_4'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_3\''] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_3'] },
   ]);
   scene.build();
 }
 
 function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_complexb3', 'etaj_4');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>4th floor of the apartment building</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj4.jpg');
   scene.text('<center>The fourth floor stairwell was renovated not long ago, but some hoodlums have already sprayed graffiti on the walls.</center>');
   if (((s as any).shared_apt ?? 0)?.['seenAd'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'advertNo30'] }]);
+    qspGoto(s, 'pav_shared_apt', 'advertNo30');
   } else {
     scene.actions([
       { label: 'Apartment 30: Shared apartment', goto: ['pav_shared_apt', 'doorNo30'] },
@@ -114,13 +120,14 @@ function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the fifth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'etaj_5'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_4\''] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_4'] },
   ]);
   scene.build();
 }
 
 function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_complexb3', 'etaj_5');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>Floor #5</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj5.jpg');
@@ -133,13 +140,14 @@ function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the roof', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'roof'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_5\''] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_5'] },
   ]);
   scene.build();
 }
 
 function enterRoof(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_complexb3', 'roof');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.text('<center>Roof</center>');
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
@@ -159,7 +167,8 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
-  }, goto: ['pav_complexb3', 'roof'] },
+    qspGoto(s, 'pav_complexb3', 'roof');
+  } },
     ]);
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21) {
@@ -186,7 +195,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You put the sunblock on your body and lie down on the roof to sunbathe.');
       }
@@ -202,10 +211,10 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go down to the fifth floor', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['pav_complexb3', 'roof'] }]);
+      qspGoto(s, 'pav_complexb3', 'roof');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['pav_complexb3', 'etaj_5'] }]);
+      qspGoto(s, 'pav_complexb3', 'etaj_5');
     }
   } },
   ]);
@@ -217,7 +226,7 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator.jpg');
-  scene.text('<center>The elevator in the apartment building is quite old. The building supervisor does his best to keep it running, but it breaks down a lot. Someone put up a <a href="exec:gt \'pav_complexb3\',\'elev_objava\',$ARGS[1]">notification</a> in the elevator.</center>');
+  scene.text('<center>The elevator in the apartment building is quite old. The building supervisor does his best to keep it running, but it breaks down a lot. Someone put up a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_complexb3\\u0027, \\u0027elev_objava\\u0027, String(window.__gameStore.getState().ARGS ?? \\u0027\\u0027)); return false;">notification</a> in the elevator.</center>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Push button: Floor 1', goto: ['pav_complexb3', 'etaj_1'] },
@@ -232,10 +241,10 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
 function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).pod_lift_ev = Math.floor(Math.random() * 101) + 0;
   if (((s as any).pod_lift_ev ?? 0) <= 5) {
-    scene.actions([{ label: 'Continue', goto: ['pav_complexb3', 'lift_event_1'] }]);
+    qspGoto(s, 'pav_complexb3', 'lift_event_1');
   } else {
     if (((s as any).pod_lift_ev ?? 0) <=10  ||  ((s as any).liftnotwork_count ?? 0) <=0) {
-      scene.actions([{ label: 'Continue', goto: ['pav_complexb3', 'lift_event_2'] }]);
+      qspGoto(s, 'pav_complexb3', 'lift_event_2');
     }
   }
   // TODO-QSP: end
@@ -251,7 +260,7 @@ function enterLiftEvent_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['pav_complexb3', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['pav_complexb3', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -267,7 +276,7 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['pav_complexb3', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['pav_complexb3', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }

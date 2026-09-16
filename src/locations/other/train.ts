@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,13 +10,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'center');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>City Center Train Station</b></center>');
   scene.img('images/locations/city/shared/trainstation/central_station_inside.jpg');
   scene.text('The grand old station in the city center is an impressive building. It is busy and has a number of shops and bars.');
   if (qspFunc(s, 'car_funcs', 'is_here', 'city_center', '')) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'carF','start'">Your <<$car['name']>></a> is in the parking lot...
-    scene.text(`<a href="exec:gs 'carF','start'">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the parking lot.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the parking lot.`);
   }
   if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['trainpass_day']) {
     scene.actions([
@@ -25,10 +26,10 @@ function enterCenter(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $func('transport_functions', 'display_trainpass_time')
     scene.actions([
-      { label: 'Take a train to the city industrial area (<<func(\'transport_functions\', \'display_train_timecost\', \'center\', \'industrial\')>>)', goto: ['train', 'center_industrial'] },
-      { label: 'Take a train to the old platform by the communal village (<<func(\'transport_functions\', \'display_train_timecost\', \'center\', \'communal\')>>)', goto: ['train', 'center_communal'] },
-      { label: 'Take a train to the village of Gadukino (<<func(\'transport_functions\', \'display_train_timecost\', \'center\', \'gadukino\')>>)', goto: ['train', 'center_gadukino'] },
-      { label: 'Take a train to Pavlovsk (<<func(\'transport_functions\', \'display_train_timecost\', \'center\', \'pavlovsk\')>>)', goto: ['train', 'center_pavlovsk'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to the city industrial area (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'center', 'industrial') ?? '') + ')', goto: ['train', 'center_industrial'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to the old platform by the communal village (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'center', 'communal') ?? '') + ')', goto: ['train', 'center_communal'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to the village of Gadukino (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'center', 'gadukino') ?? '') + ')', goto: ['train', 'center_gadukino'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to Pavlovsk (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'center', 'pavlovsk') ?? '') + ')', goto: ['train', 'center_pavlovsk'] },
     ]);
   }
   // TODO-QSP: end
@@ -49,7 +50,7 @@ function enterCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['trainpass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['train', 'center'] }]);
+    qspGoto(s, 'train', 'center');
   }
   qspCall(s, 'core_library', 'setloc', 'train', 'center_tickets');
   qspCall(s, 'stat', '');
@@ -77,6 +78,7 @@ function enterCenterTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'communal');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Communal Village Train Station</b></center>');
   scene.img('images/locations/shared/train/oldplat.jpg');
@@ -91,10 +93,10 @@ function enterCommunal(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $func('transport_functions', 'display_trainpass_time')
     scene.actions([
-      { label: 'Take a train to St. Petersburg city center (<<func(\'transport_functions\', \'display_train_timecost\', \'communal\', \'center\')>>)', goto: ['train', 'communal_center'] },
-      { label: 'Take a train to St. Petersburg city industrial area (<<func(\'transport_functions\', \'display_train_timecost\', \'communal\', \'industrial\')>>)', goto: ['train', 'communal_industrial'] },
-      { label: 'Take a train to the village of Gadukino (<<func(\'transport_functions\', \'display_train_timecost\', \'communal\', \'gadukino\')>>)', goto: ['train', 'communal_gadukino'] },
-      { label: 'Take a train to Pavlovsk (<<func(\'transport_functions\', \'display_train_timecost\', \'communal\', \'pavlovsk\')>>)', goto: ['train', 'communal_pavlovsk'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to St. Petersburg city center (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'communal', 'center') ?? '') + ')', goto: ['train', 'communal_center'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to St. Petersburg city industrial area (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'communal', 'industrial') ?? '') + ')', goto: ['train', 'communal_industrial'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to the village of Gadukino (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'communal', 'gadukino') ?? '') + ')', goto: ['train', 'communal_gadukino'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to Pavlovsk (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'communal', 'pavlovsk') ?? '') + ')', goto: ['train', 'communal_pavlovsk'] },
     ]);
   }
   scene.actions([
@@ -115,7 +117,7 @@ function enterCommunal(s: GameState, scene: SceneBuilder): void {
 
 function enterCommunalTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['trainpass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['train', 'communal'] }]);
+    qspGoto(s, 'train', 'communal');
   }
   qspCall(s, 'core_library', 'setloc', 'train', 'communal_tickets');
   scene.text('<center><b>Train station</b></center>');
@@ -140,6 +142,7 @@ function enterCommunalTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'gadukino');
+  (s as any).location_type = 'public_outdoors';
   (s as any).display_bb = 0;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Gadukino Train Station</b></center>');
@@ -155,10 +158,10 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $func('transport_functions', 'display_trainpass_time')
     scene.actions([
-      { label: 'Take a train to Pavlovsk (<<func(\'transport_functions\', \'display_train_timecost\', \'gadukino\', \'pavlovsk\')>>)', goto: ['train', 'gadukino_pavlovsk'] },
-      { label: 'Take a train to the communal village (<<func(\'transport_functions\', \'display_train_timecost\', \'gadukino\', \'communal\')>>)', goto: ['train', 'gadukino_communal'] },
-      { label: 'Take a train to St. Petersburg city industrial area (<<func(\'transport_functions\', \'display_train_timecost\', \'gadukino\', \'industrial\')>>)', goto: ['train', 'gadukino_industrial'] },
-      { label: 'Take a train to St. Petersburg city center (<<func(\'transport_functions\', \'display_train_timecost\', \'gadukino\', \'center\')>>)', goto: ['train', 'gadukino_center'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to Pavlovsk (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'gadukino', 'pavlovsk') ?? '') + ')', goto: ['train', 'gadukino_pavlovsk'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to the communal village (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'gadukino', 'communal') ?? '') + ')', goto: ['train', 'gadukino_communal'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to St. Petersburg city industrial area (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'gadukino', 'industrial') ?? '') + ')', goto: ['train', 'gadukino_industrial'] },
+      { label: '', labelFn: (s: GameState) => 'Take a train to St. Petersburg city center (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'gadukino', 'center') ?? '') + ')', goto: ['train', 'gadukino_center'] },
     ]);
   }
   scene.actions([
@@ -179,7 +182,7 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukinoTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['trainpass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['train', 'gadukino'] }]);
+    qspGoto(s, 'train', 'gadukino');
   }
   qspCall(s, 'core_library', 'setloc', 'train', 'gadukino_tickets');
   scene.text('<center><b>Gadukino Train station</b></center>');
@@ -203,21 +206,22 @@ function enterGadukinoTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_industrial_train', 'inside');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'center');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'private'] }]);
+        qspGoto(s, 'train_events', 'private');
       }
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['rand'] < 45) {
         if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+          qspGoto(s, 'train_events', 'events');
         }
       }
     }
@@ -229,9 +233,9 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -239,16 +243,17 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'communal');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'center');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -259,9 +264,9 @@ function enterCenterCommunal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -269,16 +274,17 @@ function enterCenterCommunal(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'gadukino');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'center');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -289,9 +295,9 @@ function enterCenterGadukino(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) <= 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -299,26 +305,27 @@ function enterCenterGadukino(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterPavlovsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', '');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'center');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'private'] }]);
+        qspGoto(s, 'train_events', 'private');
       }
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['rand'] < 55) {
         if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['train_events', 'Gopnik'] }]);
+          qspGoto(s, 'train_events', 'Gopnik');
         }
       } else {
         if (((s as any).temp_transportVars ?? 0)?.['rand'] < 65) {
           if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+            qspGoto(s, 'train_events', 'events');
           }
         }
       }
@@ -332,9 +339,9 @@ function enterCenterPavlovsk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -342,21 +349,22 @@ function enterCenterPavlovsk(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'private'] }]);
+        qspGoto(s, 'train_events', 'private');
       }
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['rand'] < 45) {
         if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+          qspGoto(s, 'train_events', 'events');
         }
       }
     }
@@ -369,9 +377,9 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train at this station', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -379,16 +387,17 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'communal');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -399,9 +408,9 @@ function enterIndustrialCommunal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -409,16 +418,17 @@ function enterIndustrialCommunal(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'gadukino');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -429,9 +439,9 @@ function enterIndustrialGadukino(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -439,26 +449,27 @@ function enterIndustrialGadukino(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialPavlovsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', '');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'private'] }]);
+        qspGoto(s, 'train_events', 'private');
       }
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['rand'] < 55) {
         if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['train_events', 'Gopnik'] }]);
+          qspGoto(s, 'train_events', 'Gopnik');
         }
       } else {
         if (((s as any).temp_transportVars ?? 0)?.['rand'] < 65) {
           if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+            qspGoto(s, 'train_events', 'events');
           }
         }
       }
@@ -472,9 +483,9 @@ function enterIndustrialPavlovsk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -482,16 +493,17 @@ function enterIndustrialPavlovsk(s: GameState, scene: SceneBuilder): void {
 
 function enterCommunalCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'communal');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -502,9 +514,9 @@ function enterCommunalCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -512,16 +524,17 @@ function enterCommunalCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterCommunalIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_industrial_train', 'inside');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'communal');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -532,9 +545,9 @@ function enterCommunalIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -542,16 +555,17 @@ function enterCommunalIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'gadukino');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'communal');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -562,9 +576,9 @@ function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -572,16 +586,17 @@ function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
 
 function enterCommunalPavlovsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', '');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'communal');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -593,9 +608,9 @@ function enterCommunalPavlovsk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -603,16 +618,17 @@ function enterCommunalPavlovsk(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukinoCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'gadukino');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -623,9 +639,9 @@ function enterGadukinoCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -633,16 +649,17 @@ function enterGadukinoCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukinoIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_industrial_train', 'inside');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'gadukino');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -653,9 +670,9 @@ function enterGadukinoIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -663,16 +680,17 @@ function enterGadukinoIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'communal');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'gadukino');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -683,9 +701,9 @@ function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -693,16 +711,17 @@ function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukinoPavlovsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', '');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'gadukino');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -714,9 +733,9 @@ function enterGadukinoPavlovsk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -724,31 +743,32 @@ function enterGadukinoPavlovsk(s: GameState, scene: SceneBuilder): void {
 
 function enterPavlovskCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'private'] }]);
+        qspGoto(s, 'train_events', 'private');
       }
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['rand'] < 55) {
         if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['train_events', 'Gopnik'] }]);
+          qspGoto(s, 'train_events', 'Gopnik');
         }
       } else {
         if (((s as any).temp_transportVars ?? 0)?.['rand'] < 65) {
           if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['train_events', 'weed'] }]);
+            qspGoto(s, 'train_events', 'weed');
           }
         } else {
           if (((s as any).temp_transportVars ?? 0)?.['rand'] < 70) {
             if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-              scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+              qspGoto(s, 'train_events', 'events');
             }
           }
         }
@@ -762,9 +782,9 @@ function enterPavlovskCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -772,26 +792,27 @@ function enterPavlovskCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterPavlovskIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_industrial_train', 'inside');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'private'] }]);
+        qspGoto(s, 'train_events', 'private');
       }
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['rand'] < 55) {
         if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['train_events', 'Gopnik'] }]);
+          qspGoto(s, 'train_events', 'Gopnik');
         }
       } else {
         if (((s as any).temp_transportVars ?? 0)?.['rand'] < 65) {
           if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+            qspGoto(s, 'train_events', 'events');
           }
         }
       }
@@ -804,9 +825,9 @@ function enterPavlovskIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -814,16 +835,17 @@ function enterPavlovskIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterPavlovskCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'communal');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -834,9 +856,9 @@ function enterPavlovskCommunal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -844,16 +866,17 @@ function enterPavlovskCommunal(s: GameState, scene: SceneBuilder): void {
 
 function enterPavlovskGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'gadukino');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+    qspGoto(s, 'train_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['train_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'events'] }]);
+        qspGoto(s, 'train_events', 'events');
       }
     }
   }
@@ -865,9 +888,9 @@ function enterPavlovskGadukino(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end'] }]);
+      qspGoto(s, 'train_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

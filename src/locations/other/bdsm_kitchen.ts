@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_kitchen', 'kitchen');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/kitchen.jpg');
   // TODO-QSP: end
@@ -23,6 +25,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterLaundry(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_kitchen', 'laundry');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/laundry.jpg');
   scene.text('The laundry');
@@ -35,6 +39,8 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
 
 function enterPantry(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_kitchen', 'pantry');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/pantry.jpg');
   // TODO-QSP: end

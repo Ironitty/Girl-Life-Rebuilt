@@ -1,10 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   (s as any).kisvrand = 0;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -21,16 +22,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).alla ?? 0) >= 20) {
         (s as any).kisvrand = Math.floor(Math.random() * 9) + 0;
         if (((s as any).kisvrand ?? 0) < 2) {
-          scene.actions([{ label: 'Continue', goto: ['kazinosvid', '1'] }]);
+          qspGoto(s, 'kazinosvid', '1');
         } else {
           if (((s as any).kisvrand ?? 0) < 4) {
-            scene.actions([{ label: 'Continue', goto: ['kazinosvid', '2'] }]);
+            qspGoto(s, 'kazinosvid', '2');
           } else {
-            scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+            qspGoto(s, 'kazinosvid', '3');
           }
         }
       } else {
-        scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+        qspGoto(s, 'kazinosvid', '3');
       }
     } else {
       if (((s as any).telsob ?? 0) === 'Masha') {
@@ -38,16 +39,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).masha ?? 0) >= 20) {
           (s as any).kisvrand = Math.floor(Math.random() * 9) + 0;
           if (((s as any).kisvrand ?? 0) < 2) {
-            scene.actions([{ label: 'Continue', goto: ['kazinosvid', '1'] }]);
+            qspGoto(s, 'kazinosvid', '1');
           } else {
             if (((s as any).kisvrand ?? 0) < 4) {
-              scene.actions([{ label: 'Continue', goto: ['kazinosvid', '2'] }]);
+              qspGoto(s, 'kazinosvid', '2');
             } else {
-              scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+              qspGoto(s, 'kazinosvid', '3');
             }
           }
         } else {
-          scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+          qspGoto(s, 'kazinosvid', '3');
         }
       } else {
         if (((s as any).telsob ?? 0) === 'Kate') {
@@ -55,31 +56,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_rel ?? 0)?.['A219'] >= 20) {
             (s as any).kisvrand = Math.floor(Math.random() * 9) + 0;
             if (((s as any).kisvrand ?? 0) < 2) {
-              scene.actions([{ label: 'Continue', goto: ['kazinosvid', '1'] }]);
+              qspGoto(s, 'kazinosvid', '1');
             } else {
               if (((s as any).kisvrand ?? 0) < 4) {
-                scene.actions([{ label: 'Continue', goto: ['kazinosvid', '2'] }]);
+                qspGoto(s, 'kazinosvid', '2');
               } else {
-                scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+                qspGoto(s, 'kazinosvid', '3');
               }
             }
           } else {
-            scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+            qspGoto(s, 'kazinosvid', '3');
           }
         } else {
           if (((s as any).telsob ?? 0) === ((s as any).npcdesc ?? 0)) {
             qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
             if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 60) {
-              scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+              qspGoto(s, 'kazinosvid', '3');
             } else {
               (s as any).kisvrand = Math.floor(Math.random() * 9) + 0;
               if (((s as any).kisvrand ?? 0) <= 1) {
-                scene.actions([{ label: 'Continue', goto: ['kazinosvid', '1'] }]);
+                qspGoto(s, 'kazinosvid', '1');
               } else {
                 if (((s as any).kisvrand ?? 0) <= 3) {
-                  scene.actions([{ label: 'Continue', goto: ['kazinosvid', '2'] }]);
+                  qspGoto(s, 'kazinosvid', '2');
                 } else {
-                  scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+                  qspGoto(s, 'kazinosvid', '3');
                 }
               }
             }
@@ -122,12 +123,13 @@ function enter1(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "I wouldn't mind consoling the losers," says <<$telsob>>, with a lustful look in...
         scene.text(`"I wouldn't mind consoling the losers," says ${((s as any).telsob || '')}, with a lustful look in her eye. One of the men starts to unbutton his fly.`);
         scene.actions([
-          { label: 'Take <<$telsob>> and leave.', goto: ['kazinosvid', '3'] },
+          { label: '', labelFn: (s: GameState) => 'Take ' + String(((s as any).telsob || '') ?? '') + ' and leave.', goto: ['kazinosvid', '3'] },
           { label: 'Console the losers', handler: (st: GameState) => {
     (s as any).kazsexdva = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-  }, goto: ['sexdvanadva', 'var'] },
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    qspGoto(s, 'sexdvanadva', 'var');
+  } },
         ]);
       }
     } else {
@@ -140,8 +142,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
           { label: 'Pay them', handler: (st: GameState) => {
     (s as any).kazsexdva = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-  }, goto: ['sexdvanadva', 'var'] },
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    qspGoto(s, 'sexdvanadva', 'var');
+  } },
         ]);
       } else {
         scene.text('You have enough money to pay them, but the guys are obviously hinting that they would rather take another form of payment from you.');
@@ -167,16 +170,18 @@ function enter1(s: GameState, scene: SceneBuilder): void {
               { label: 'Use an alternative form of payment', handler: (st: GameState) => {
     (s as any).kazsexdva = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['sexdvanadva', 'var'] },
+    qspGoto(s, 'sexdvanadva', 'var');
+  } },
             ]);
           }
           scene.actions([
-            { label: 'Give them the money, and leave with <<$telsob>>.', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Give them the money, and leave with ' + String(((s as any).telsob || '') ?? '') + '.', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', ((s as any).randkazinvsum ?? 0), 'cash');
-  }, goto: ['kazinosvid', '3'] },
+    qspGoto(s, 'kazinosvid', '3');
+  } },
           ]);
         }
       }
@@ -206,16 +211,17 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Take <<$telsob>> and leave', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Take ' + String(((s as any).telsob || '') ?? '') + ' and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Take <<$telsob>> and leave', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Take ' + String(((s as any).telsob || '') ?? '') + ' and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['kazinosvid', '3'] },
+    qspGoto(s, 'kazinosvid', '3');
+  } },
       ]);
     }
     scene.actions([
@@ -238,7 +244,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).picrand = 23;
     (s as any).kazsexdva = 1;
-  }, goto: ['podrsex', 'suck'] },
+    qspGoto(s, 'podrsex', 'suck');
+  } },
     ]);
   } },
     ]);

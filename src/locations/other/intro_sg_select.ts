@@ -1,3 +1,5 @@
+import { qspGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -7,132 +9,132 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'start'] }]);
+  qspGoto(s, 'intro_character_creation', 'start');
   scene.build();
 }
 
 function enterSGStart2(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'start2'] }]);
+  qspGoto(s, 'intro_character_creation', 'start2');
   scene.build();
 }
 
 function enterSGStart3(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'start3'] }]);
+  qspGoto(s, 'intro_character_creation', 'start3');
   scene.build();
 }
 
 function enterPavStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'pav_start'] }]);
+  qspGoto(s, 'intro_character_creation', 'pav_start');
   scene.build();
 }
 
 function enterPavParentsStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'pav_parents_start'] }]);
+  qspGoto(s, 'intro_character_creation', 'pav_parents_start');
   scene.build();
 }
 
 function enterPushStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'push_start'] }]);
+  qspGoto(s, 'intro_character_creation', 'push_start');
   scene.build();
 }
 
 function enterPavSharingStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'pav_sharing_start'] }]);
+  qspGoto(s, 'intro_character_creation', 'pav_sharing_start');
   scene.build();
 }
 
 function enterGadStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'gad_start'] }]);
+  qspGoto(s, 'intro_character_creation', 'gad_start');
   scene.build();
 }
 
 function enterCharselect(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'charselect'] }]);
+  qspGoto(s, 'intro_character_creation', 'charselect');
   scene.build();
 }
 
 function enterCharselectNerd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'charselect_nerd'] }]);
+  qspGoto(s, 'intro_character_creation', 'charselect_nerd');
   scene.build();
 }
 
 function enterRandomStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'random_start'] }]);
+  qspGoto(s, 'intro_character_creation', 'random_start');
   scene.build();
 }
 
 function enterNerdinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'nerdinfo'] }]);
+  qspGoto(s, 'intro_character_creation', 'nerdinfo');
   scene.build();
 }
 
 function enterJockinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'jockinfo'] }]);
+  qspGoto(s, 'intro_character_creation', 'jockinfo');
   scene.build();
 }
 
 function enterPopularinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'popularinfo'] }]);
+  qspGoto(s, 'intro_character_creation', 'popularinfo');
   scene.build();
 }
 
 function enterGopnikinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'gopnikinfo'] }]);
+  qspGoto(s, 'intro_character_creation', 'gopnikinfo');
   scene.build();
 }
 
 function enterOutcastinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'outcastinfo'] }]);
+  qspGoto(s, 'intro_character_creation', 'outcastinfo');
   scene.build();
 }
 
 function enterNerd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'nerd'] }]);
+  qspGoto(s, 'intro_character_creation', 'nerd');
   scene.build();
 }
 
 function enterNerdqueen(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'nerdqueen'] }]);
+  qspGoto(s, 'intro_character_creation', 'nerdqueen');
   scene.build();
 }
 
 function enterJock(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'jock'] }]);
+  qspGoto(s, 'intro_character_creation', 'jock');
   scene.build();
 }
 
 function enterVolleyball(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'volleyball'] }]);
+  qspGoto(s, 'intro_character_creation', 'volleyball');
   scene.build();
 }
 
 function enterCool(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'cool'] }]);
+  qspGoto(s, 'intro_character_creation', 'cool');
   scene.build();
 }
 
 function enterSocialite(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'socialite'] }]);
+  qspGoto(s, 'intro_character_creation', 'socialite');
   scene.build();
 }
 
 function enterGopnik(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'gopnik'] }]);
+  qspGoto(s, 'intro_character_creation', 'gopnik');
   scene.build();
 }
 
 function enterGopnikstart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'gopnikstart'] }]);
+  qspGoto(s, 'intro_character_creation', 'gopnikstart');
   scene.build();
 }
 
 function enterOutcast(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'outcast'] }]);
+  qspGoto(s, 'intro_character_creation', 'outcast');
   scene.build();
 }
 
 function enterFriendless(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'friendless'] }]);
+  qspGoto(s, 'intro_character_creation', 'friendless');
   scene.build();
 }
 

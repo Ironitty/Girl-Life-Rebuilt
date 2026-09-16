@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'katja_lake', 'start');
+  (s as any).region = 'pav';
+  (s as any).locclass = 'beach';
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   if (((s as any).season ?? 0) === 'winter') {
     scene.img('images/locations/pavlovsk/lake/lake.winter.jpg');
@@ -53,7 +56,7 @@ function enterLakeActivities(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).season ?? 0) === 'winter') {
-      scene.actions([{ label: 'Continue', goto: ['katja_lake', 'winter_activities'] }]);
+      qspGoto(s, 'katja_lake', 'winter_activities');
     } else {
       if (((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 20) {
         scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -114,7 +117,8 @@ function enterLakeActivities(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_inhib ?? 0) < 20) {
       qspCall(s, 'exp_gain', 'inhib', 1);
     }
-  }, goto: ['katja_lake', 'swim'] },
+    qspGoto(s, 'katja_lake', 'swim');
+  } },
       ]);
     }
     scene.actions([
@@ -123,18 +127,20 @@ function enterLakeActivities(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_inhib ?? 0) < 20) {
       qspCall(s, 'exp_gain', 'inhib', 1);
     }
-  }, goto: ['katja_lake', 'tan'] },
+    qspGoto(s, 'katja_lake', 'tan');
+  } },
       { label: 'Walk', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur', 10);
     if (((s as any).pcs_inhib ?? 0) < 20) {
       qspCall(s, 'exp_gain', 'inhib', 1);
     }
-  }, goto: ['katja_lake', 'walk'] },
+    qspGoto(s, 'katja_lake', 'walk');
+  } },
     ]);
   } },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_lake', 'beach_in_swimwear1'] }]);
+      qspGoto(s, 'katja_lake', 'beach_in_swimwear1');
     }
   } },
           ]);
@@ -146,7 +152,8 @@ function enterLakeActivities(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'backup', 'swim');
     }
     qspCall(s, 'outfit', 'strip_all');
-  }, goto: ['katja_lake', 'beach_nude'] },
+    qspGoto(s, 'katja_lake', 'beach_nude');
+  } },
           ]);
         } else {
           qspCall(s, 'willpower', 'exhib', 'self', 'easy');
@@ -168,7 +175,8 @@ function enterLakeActivities(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'inhib', 1);
     }
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'beach_nude'] },
+    qspGoto(s, 'katja_lake', 'beach_nude');
+  } },
             ]);
           }
         }
@@ -233,12 +241,13 @@ function enterSaunaTime(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'backup', 'swim');
     }
     qspCall(s, 'outfit', 'strip_all');
-  }, goto: ['katja_lake', 'saune_time'] },
+    qspGoto(s, 'katja_lake', 'saune_time');
+  } },
     ]);
   } },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_lake', 'sauna_in_swimmwear1'] }]);
+      qspGoto(s, 'katja_lake', 'sauna_in_swimmwear1');
     }
     if (((s as any).pcs_inhib ?? 0) > 20) {
       scene.actions([
@@ -247,7 +256,8 @@ function enterSaunaTime(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'backup', 'swim');
     }
     qspCall(s, 'outfit', 'strip_all');
-  }, goto: ['katja_lake', 'saune_time'] },
+    qspGoto(s, 'katja_lake', 'saune_time');
+  } },
       ]);
     } else {
       qspCall(s, 'willpower', 'exhib', 'self', 'easy');
@@ -269,7 +279,8 @@ function enterSaunaTime(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'inhib', 1);
     }
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'saune_time'] },
+    qspGoto(s, 'katja_lake', 'saune_time');
+  } },
         ]);
       }
     }
@@ -283,7 +294,8 @@ function enterSaunaTime(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'backup', 'swim');
     }
     qspCall(s, 'outfit', 'strip_all');
-  }, goto: ['katja_lake', 'saune_time'] },
+    qspGoto(s, 'katja_lake', 'saune_time');
+  } },
       ]);
     } else {
       qspCall(s, 'willpower', 'exhib', 'self', 'easy');
@@ -305,7 +317,8 @@ function enterSaunaTime(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'inhib', 1);
     }
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'saune_time'] },
+    qspGoto(s, 'katja_lake', 'saune_time');
+  } },
         ]);
       }
     }
@@ -322,6 +335,8 @@ function enterSaunaTime(s: GameState, scene: SceneBuilder): void {
 function enterBeachInSwimwear1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).loc = 'katja_lake';
+    (s as any).loc_arg = 'beach_in_swimwear1';
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
@@ -348,6 +363,8 @@ function enterBeachInSwimwear1(s: GameState, scene: SceneBuilder): void {
 function enterBeachInSwimwear2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).PSwim ?? 0))) {
     qspCall(s, 'stat', '');
+    (s as any).loc = 'katja_lake';
+    (s as any).loc_arg = 'beach_in_swimwear2';
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
@@ -377,6 +394,8 @@ function enterBeachInSwimwear2(s: GameState, scene: SceneBuilder): void {
 
 function enterSaunaInSwimmwear1(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).PSwim ?? 0))) {
+    (s as any).loc = 'katja_lake';
+    (s as any).loc_arg = 'sauna_in_swimmwear1';
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
@@ -385,7 +404,7 @@ function enterSaunaInSwimmwear1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    scene.actions([{ label: 'Continue', goto: ['katja_lake', 'saune_time'] }]);
+    qspGoto(s, 'katja_lake', 'saune_time');
   }
   // TODO-QSP: end
   scene.build();
@@ -393,6 +412,8 @@ function enterSaunaInSwimmwear1(s: GameState, scene: SceneBuilder): void {
 
 function enterSaunaInSwimmwear2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).PSwim ?? 0))) {
+    (s as any).loc = 'katja_lake';
+    (s as any).loc_arg = 'sauna_in_swimmwear2';
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
@@ -418,10 +439,10 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
   (s as any).dummy = Math.floor(Math.random() * 29) + 2;
   qspCall(s, 'stat', '');
   if (((s as any).dummy ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['katja_lake', 'playing_in_snow'] }]);
+    qspGoto(s, 'katja_lake', 'playing_in_snow');
   } else {
     if (((s as any).dummy ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['katja_lake', 'hockey_match'] }]);
+      qspGoto(s, 'katja_lake', 'hockey_match');
     } else {
       if (((s as any).dummy ?? 0) >= 3  &&  ((s as any).mc_inventory ?? 0)?.['ice_skates'] === 0) {
         scene.img('images/locations/pavlovsk/lake/lake.winter.jpg');
@@ -602,13 +623,14 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 5);
     qspCall(s, 'npc_relationship', 'modify', 'A141', 5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (10);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (5);
     qspCall(s, 'exp_gain', 'stren', 1);
     qspCall(s, 'exp_gain', 'agil', 1);
     qspCall(s, 'exp_gain', 'react', 1);
     qspCall(s, 'exp_gain', 'icesktng', 1);
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
             ]);
           } else {
             if (((s as any).dummy ?? 0) > 50) {
@@ -725,10 +747,13 @@ function enterHockeyMatch(s: GameState, scene: SceneBuilder): void {
     scene.text('The bitch squad then suddenly jumps you and as everyone starts attacking the nearest target as Vicky quickly escorts Katja from the madness.');
     scene.actions([
       { label: 'Brawl', handler: (st: GameState) => {
+    (s as any).boydesc = 'The bitch squad';
+    (s as any).npcdesc = 'The bitch squad';
     scene.img('images/characters/pavlovsk/school/girl/katja/KWT14.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'bitch squad');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
     ]);
   } },
     ]);
@@ -791,7 +816,7 @@ function enterBeachNude(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'inhib', 1);
   }
   if (((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
   }
   if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     qspCall(s, 'outfit', 'backup', 'swim');
@@ -814,10 +839,10 @@ function enterBeachNude(s: GameState, scene: SceneBuilder): void {
 
 function enterSwim(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
   }
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).pcs_makeup = 1;
   (s as any).cumspclnt = 4;
@@ -840,11 +865,12 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
       { label: 'Redress and return home', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['pav_residential', ''] },
+    qspGoto(s, 'pav_residential', '');
+  } },
     ]);
   } else {
     if ((Math.floor(Math.random() * 20) + 1) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['katja_lake', 'ivan_appeared'] }]);
+      qspGoto(s, 'katja_lake', 'ivan_appeared');
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         scene.img('images/characters/pavlovsk/school/girl/katja/KL4.jpg');
@@ -868,7 +894,8 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     { label: 'Redress and look for something else to do', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
   ]);
   scene.build();
 }
@@ -884,11 +911,12 @@ function enterTan(s: GameState, scene: SceneBuilder): void {
       { label: 'Redress and return home', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['pav_residential', ''] },
+    qspGoto(s, 'pav_residential', '');
+  } },
     ]);
   } else {
     if ((Math.floor(Math.random() * 20) + 1) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['katja_lake', 'ivan_appeared'] }]);
+      qspGoto(s, 'katja_lake', 'ivan_appeared');
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         scene.img('images/characters/pavlovsk/school/girl/katja/KL6.jpg');
@@ -909,11 +937,11 @@ function enterTan(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
   qspCall(s, 'mood', 'raise', 'tiny');
   if (((s as any).pcs_sweat ?? 0) < 35) {
     qspCall(s, 'sweat', 'add', 5);
@@ -931,7 +959,8 @@ function enterTan(s: GameState, scene: SceneBuilder): void {
     { label: 'Redress and look for something else to do', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
   ]);
   scene.build();
 }
@@ -947,11 +976,12 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Redress and return to her home', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['pav_residential', ''] },
+    qspGoto(s, 'pav_residential', '');
+  } },
     ]);
   } else {
     if ((Math.floor(Math.random() * 20) + 1) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['katja_lake', 'ivan_appeared'] }]);
+      qspGoto(s, 'katja_lake', 'ivan_appeared');
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         scene.img('images/characters/pavlovsk/school/girl/katja/KL7.jpg');
@@ -968,11 +998,11 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
@@ -986,7 +1016,8 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
     { label: 'Redress and look for something else to do', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
   ]);
   scene.build();
 }
@@ -1014,8 +1045,8 @@ function enterIvanAppeared(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go and talk with him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A14', (-1));
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1047,8 +1078,8 @@ function enterIvanAppeared(s: GameState, scene: SceneBuilder): void {
     scene.text('"I... don\'t know. Maybe?"');
     scene.text('Katja obviously isn\'t happy with your answer and sits there red-faced. After a few more awkward minutes, you finally realize that Ivan has left the area, and it\'s safe to leave the water.');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (5);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
     qspCall(s, 'stat', '');
     if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
@@ -1060,7 +1091,8 @@ function enterIvanAppeared(s: GameState, scene: SceneBuilder): void {
       { label: 'Redress and look for something else to do', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
       { label: 'Tan', goto: ['katja_lake', 'tan'] },
       { label: 'Walk', goto: ['katja_lake', 'walk'] },
     ]);
@@ -1107,7 +1139,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A3', 1);
     qspCall(s, 'mood', 'raise', 'tiny');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/KL9.jpg');
     if (((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -1183,7 +1215,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       scene.text('Ivan literally throatfucks Katja for several minutes, but that doesn\'t seems to make him cum; he takes his dick out and helps Katja to her feet before bending her over a bench.');
     }
     if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-      if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+      ((s as any).npc_throat = (s as any).npc_throat ?? {})['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
     }
     scene.actions([
       { label: 'Some anal with Katja', handler: (st: GameState) => {
@@ -1192,7 +1224,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KIS2.jpg');
     if (((s as any).npc_ass ?? 0)?.['A14'] === 0) {
       if (((s as any).katjaQW ?? 0)?.['anal_quest'] === 2) {
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['anal_quest'] = 3;
       }
       // TODO-QSP: dynamic text: "Ivan, that's... You're going to- <<$pcs_nickname>>!"
       scene.text(`"Ivan, that's... You're going to- ${((s as any).pcs_nickname || '')}!"`);
@@ -1205,7 +1237,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).dick1 ?? 0) < ((s as any).npc_ass ?? 0)?.['A14']) {
         if (((s as any).katjaQW ?? 0)?.['anal_quest'] === 2) {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['anal_quest'] = 3;
         }
         // TODO-QSP: dynamic text: Katja bites her lips as she looks transfixed at Ivan's <<dick>>cm <<$dick_girth>...
         scene.text(`Katja bites her lips as she looks transfixed at Ivan's ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock. "I can't believe I'm letting you put that in me!"`);
@@ -1216,7 +1248,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
         scene.text('You obey her command and start fingering her wet pussy as Ivan slowly fucks her asshole. The room quickly fills with the sound of the aroused moans coming from between your linked tongues.');
       } else {
         if (((s as any).katjaQW ?? 0)?.['anal_quest'] === 2) {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['anal_quest'] = 3;
         }
         // TODO-QSP: dynamic text: "Ivan, please... I'm not exactly... experienced back there..." Katja blushes as ...
         scene.text(`"Ivan, please... I'm not exactly... experienced back there..." Katja blushes as she takes a long look at his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock.`);
@@ -1227,10 +1259,10 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).npc_ass ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+      ((s as any).npc_ass = (s as any).npc_ass ?? {})['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_ass ?? 0)?.['A14'] * 2 < ((s as any).dick ?? 0)) {
-      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+      ((s as any).npc_ass = (s as any).npc_ass ?? {})['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     scene.actions([
       { label: 'A happy ending', handler: (st: GameState) => {
@@ -1243,11 +1275,11 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Afterglow', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A3', 1);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'cum_call', 'mouth', 'A3', 1);
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -1261,7 +1293,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was great, girls! We need to do this more often."');
     scene.text('He then kisses you both and, after checking that nobody is looking, walks out, leaving you and Katja alone.');
     if (((s as any).katjaQW ?? 0)?.['ivan_anal'] === 0) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['ivan_anal'] = 1;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['ivan_anal'] = 1;
       // TODO-QSP: dynamic text: "You've done this with him before, <<$pcs_nickname>>. That made us..."
       scene.text(`"You've done this with him before, ${((s as any).pcs_nickname || '')}. That made us..."`);
       scene.text('"Ivan\'s anal harem sisters?"');
@@ -1277,7 +1309,8 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       { label: 'Redress and take Katja home', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['pav_residential', ''] },
+    qspGoto(s, 'pav_residential', '');
+  } },
     ]);
   } },
     ]);
@@ -1302,7 +1335,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
     }
     if (((s as any).katjaQW ?? 0)?.['knows_BJ'] === 0) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_BJ'] = 1;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['knows_BJ'] = 1;
     }
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/shower6.mp4');
@@ -1334,7 +1367,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).katjaQW ?? 0)?.['knows_anal'] === 0) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_anal'] = 1;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['knows_anal'] = 1;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KIS5.jpg');
@@ -1361,13 +1394,13 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Afterglow', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A3', 1);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     (s as any).kiss = ((s as any).kiss ?? 0) + (1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A3'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A3'] = 1;
     qspCall(s, 'cum_call', 'mouth', 'A3', 1);
     qspCall(s, 'cum_call', 'breasts', 'A3', 1);
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -1387,7 +1420,8 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
     ]);
   } },
     ]);
@@ -1407,7 +1441,8 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       { label: 'Redress and look for something else to do', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
     ]);
   } },
   ]);
@@ -1450,7 +1485,8 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
           { label: 'Give in', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'sel');
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'sauna_sex1'] },
+    qspGoto(s, 'katja_lake', 'sauna_sex1');
+  } },
         ]);
       }
       if (((s as any).month ?? 0) === 12  ||  ((s as any).month ?? 0) < 3) {
@@ -1466,7 +1502,8 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
             { label: 'Go ice dipping', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'ice_dipping'] },
+    qspGoto(s, 'katja_lake', 'ice_dipping');
+  } },
           ]);
         }
       }
@@ -1475,7 +1512,8 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
       ]);
     } else {
       if (((s as any).katjaQW ?? 0)?.['slut'] >= 20) {
@@ -1495,7 +1533,8 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
               { label: 'Go ice dipping', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'ice_dipping'] },
+    qspGoto(s, 'katja_lake', 'ice_dipping');
+  } },
             ]);
           }
         }
@@ -1504,7 +1543,8 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
         ]);
       } else {
         scene.text('You both undress, but quickly grab Katja\'s bikini before she has a chance to put it on.');
@@ -1527,20 +1567,22 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Go ice dipping', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'ice_dipping'] },
+    qspGoto(s, 'katja_lake', 'ice_dipping');
+  } },
             ]);
           }
         }
         scene.actions([
           { label: 'Shower and leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
         ]);
       }
     }
@@ -1566,7 +1608,8 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
           { label: 'Go ice dipping', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'ice_dipping'] },
+    qspGoto(s, 'katja_lake', 'ice_dipping');
+  } },
         ]);
       }
     }
@@ -1575,7 +1618,8 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1609,7 +1653,8 @@ function enterIceDipping(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
   ]);
   scene.build();
 }
@@ -1645,7 +1690,7 @@ function enterSaunaSex1(s: GameState, scene: SceneBuilder): void {
         { label: 'Make her eat you', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'arousal', 'cuni_give', 10, 'exhibitionism', 'dom');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KS11.jpg');
@@ -1663,7 +1708,7 @@ function enterSaunaSex1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Eat her', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'cuni_give', 10, 'exhibitionism', 'sub');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KS10.jpg');
@@ -1721,12 +1766,13 @@ function enterSaunaSex1(s: GameState, scene: SceneBuilder): void {
 
 function enterSaunaSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'exhibitionism', 'lesbian');
   qspCall(s, 'arousal', 'cuni', 5, 'exhibitionism', 'lesbian');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'mood', 'raise', 'tiny');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A14'] = 1;
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A14'] = 1;
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
   qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 3) + 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/sex/KS12.jpg');
@@ -1760,7 +1806,8 @@ function enterSaunaSex2(s: GameState, scene: SceneBuilder): void {
           { label: 'Go ice dipping', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['katja_lake', 'ice_dipping'] },
+    qspGoto(s, 'katja_lake', 'ice_dipping');
+  } },
         ]);
       }
     }
@@ -1769,7 +1816,8 @@ function enterSaunaSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'swim');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['katjaEv', 'kathan'] },
+    qspGoto(s, 'katjaEv', 'kathan');
+  } },
     ]);
   } },
   ]);

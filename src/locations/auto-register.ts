@@ -15,7 +15,7 @@ function isLocationDef(v: unknown): v is LocationDef {
 
 let count = 0;
 for (const [path, mod] of Object.entries(modules)) {
-  if (path.includes('auto-register') || path.includes('/test.ts')) continue;
+  if (path.includes('auto-register') || path.includes('/test.ts') || path.includes('/other/map_view.ts')) continue;
 
   const toRegister: LocationDef[] = [];
 

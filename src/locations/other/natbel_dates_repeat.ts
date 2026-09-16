@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -199,7 +199,7 @@ function enterGoToDelParco(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Be flirty', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['romance'] = ((s as any).NatbelQW['romance'] ?? 0) + (1);
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['romance'] = ((s as any).NatbelQW['romance'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/friends/Hands.jpg');
     scene.text('You reach over, place your hand on hers, and gently squeeze it, leaving your hand holding hers. "I know; I just wanted to treat you. You mean a lot to me. Maybe we can do more like this in the future if you like?"');
     scene.text('Natasha smiles, then after a moment, she looks around at the other people, after which she gently pulls her hand away. You can tell it made her uncomfortable, but she didn\'t seem to mind it too much. "There\'s nothing I\'d like more, but I simply can\'t afford it. Sometimes I kid myself, but that\'s when I\'ve borrowed money, and I need to stop doing that as it keeps getting on top of me."');
@@ -243,7 +243,7 @@ function enterSetDiscoDateAct(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_dates_repeat', 'disco_date1'] }]);
+      qspGoto(s, 'natbel_dates_repeat', 'disco_date1');
     }
   } },
     ]);
@@ -336,6 +336,7 @@ function enterDiscoDate2(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'npcStat', 'A16');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'outfit', 'strip_all');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha25.mp4');
@@ -386,7 +387,10 @@ function enterDiscoDate2(s: GameState, scene: SceneBuilder): void {
     scene.text('As you get to work on her you feel Natasha sliding her tongue slowly up and down and flicking it inside you as she sucks up your juices that are flowing out by now.');
     scene.text('Suddenly and almost without warning the dam bursts and you reach a toe curling orgasm squirting into her mouth and soaking her face with your juices.');
     qspCall(s, 'arousal', 'cuni_give', (-5), 'lesbian');
+    (s as any).orgasm_txt = '';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Reflect', handler: (st: GameState) => {
@@ -412,7 +416,8 @@ function enterDiscoDate2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
     qspCall(s, 'sleep_simple', 'sleep_until', 8, 0);
-  }, goto: ['natbel_dates_repeat', 'disco_date3'] },
+    qspGoto(s, 'natbel_dates_repeat', 'disco_date3');
+  } },
     ]);
   } },
     ]);
@@ -467,6 +472,9 @@ function enterDiscoDate3(s: GameState, scene: SceneBuilder): void {
     scene.text('It seems that the same is happening to Natasha as you can hear her breathing change and she starts moving against you ever so slightly at first…');
     scene.text('You lie pretty still just letting your body respond to her actions as you let her take control of the pace.');
     scene.text('It\'s not long before she gives you a long passionate kiss which you fully return as you roll over facing her.');
+    (s as any).loc = 'natbel_dates_repeat';
+    (s as any).loc_arg = 'disco_date4';
+    (s as any).natbel_wakeupsex_endact = 'Shower, breakfast and leave';
     qspCall(s, 'natbel_kissinggames', 'init_wakeup_sex_routine');
   } },
   ]);
@@ -487,7 +495,10 @@ function enterDiscoDate4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['wardrobe', 'start'] },
+    (s as any).loc = 'natbel_dates_repeat';
+    (s as any).loc_arg = 'disco_date5';
+    qspGoto(s, 'wardrobe', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -514,7 +525,7 @@ function enterSetCityRaceDateAct(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_dates_repeat', 'city_race_date1'] }]);
+      qspGoto(s, 'natbel_dates_repeat', 'city_race_date1');
     }
   } },
       ]);
@@ -689,14 +700,15 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Enter the amateur fight', handler: (st: GameState) => {
-    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateur_fight_day'] = ((s as any).daystart ?? 0);
+    ((s as any).kickbox = (s as any).kickbox ?? {})['amateur_fight_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier3', 30, 'jab', 'punch', 'kick', 'def');
     qspCall(s, 'kickboxing_funcs', 'init_fight_vars');
-    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['opponent'] = (((s as any).kickbox ?? {})?.['sash'] ?? 0) + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
-    if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['fight_type'] = 1;
+    ((s as any).kickbox = (s as any).kickbox ?? {})['opponent'] = (((s as any).kickbox ?? {})?.['sash'] ?? 0) + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['fight_type'] = 1;
     // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
-  }, goto: ['havana_kickboxing', 'match'] },
+    qspGoto(s, 'havana_kickboxing', 'match');
+  } },
             ]);
           }
         }
@@ -733,7 +745,9 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               scene.actions([
-                { label: '<b>Enter competition race</b>', goto: ['havana_running', 'race_start'] },
+                { label: '<b>Enter competition race</b>', handler: (st: GameState) => {
+    qspGoto(s, 'havana_running', 'race_start');
+  } },
               ]);
             }
           }
@@ -758,7 +772,7 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -849,6 +863,8 @@ function enterCityRaceDate2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'npcStat', 'A16');
     qspCall(s, 'outfit', 'strip_all');
+    (s as any).orgasm_txt = '';
+    (s as any).orgasm_or = 'no';
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha43.jpg');
     scene.text('You arrive back at the hotel and enter your room and immediately guide Natasha to the bed and after a passionate kiss you start pulling her dress down. "I\'ve been waiting for this… Good thing we were in a public place earlier or you\'d never have finished your meal!"');
     qspCall(s, 'arousal', 'erotic_nudity', 1, 'lesbian');
@@ -885,6 +901,8 @@ function enterCityRaceDate2(s: GameState, scene: SceneBuilder): void {
     scene.text('As you get to work on her you feel Natasha sliding her tongue slowly up and down and flicking it inside you as she sucks up your juices that are flowing out by now.');
     scene.text('Suddenly and almost without warning the dam bursts and you reach a toe curling orgasm squirting into her mouth and soaking her face with your juices.');
     qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
+    (s as any).orgasm_txt = '';
+    (s as any).arousal_or = 'custom';
     qspCall(s, 'arousal', 'cuni', (-5), 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -909,7 +927,8 @@ function enterCityRaceDate2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
     qspCall(s, 'sleep_simple', 'sleep_until', 8, 0);
-  }, goto: ['natbel_dates_repeat', 'city_race_date3'] },
+    qspGoto(s, 'natbel_dates_repeat', 'city_race_date3');
+  } },
     ]);
   } },
     ]);
@@ -957,6 +976,9 @@ function enterCityRaceDate3(s: GameState, scene: SceneBuilder): void {
     scene.text('It seems that the same is happening to Natasha as you can hear her breathing change and she starts moving against you ever so slightly at first…');
     scene.text('You lie pretty still just letting your body respond to her actions as you let her take control of the pace.');
     scene.text('It\'s not long before she gives you a long passionate kiss which you fully return as you roll over facing her.');
+    (s as any).loc = 'natbel_dates_repeat';
+    (s as any).loc_arg = 'city_race_date4';
+    (s as any).natbel_wakeupsex_endact = 'Shower, breakfast and leave';
     qspCall(s, 'natbel_kissinggames', 'init_wakeup_sex_routine');
   } },
   ]);
@@ -987,17 +1009,19 @@ function enterCityRaceDate4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s just see how things go eh?" You say taking hold of Natasha\'s hand and heading out.');
     scene.actions([
       { label: 'Enter the museum', handler: (st: GameState) => {
+    (s as any).loc = 'natbel_dates_repeat';
+    (s as any).loc_arg = 'city_race_date5';
     (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['city_hermitage', 'peacock'] }]);
+      qspGoto(s, 'city_hermitage', 'peacock');
     } else {
       if (((s as any).temp_rand ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['city_hermitage', 'art'] }]);
+        qspGoto(s, 'city_hermitage', 'art');
       } else {
         if (((s as any).temp_rand ?? 0) === 2) {
-          scene.actions([{ label: 'Continue', goto: ['city_hermitage', 'highlights'] }]);
+          qspGoto(s, 'city_hermitage', 'highlights');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['city_hermitage', 'red_rooms'] }]);
+          qspGoto(s, 'city_hermitage', 'red_rooms');
         }
       }
     }
@@ -1127,7 +1151,7 @@ function enterShoppingDate1(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk back', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     if (((s as any).NatbelQW ?? 0)?.['shopping'] < 4) {
-      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['shopping'] = 4;
+      ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['shopping'] = 4;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/friends/shop7.jpg');
@@ -1160,7 +1184,7 @@ function enterSetCelebrateAct(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1700) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_dates_repeat', 'celebrate_runner_championship1'] }]);
+      qspGoto(s, 'natbel_dates_repeat', 'celebrate_runner_championship1');
     }
   } },
     ]);

@@ -5,10 +5,18 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'city_experimental_trials';
+  (s as any).location_type = 'private';
+  (s as any).locM = 'city_experimental_trials';
+  (s as any).doc1 = 'Doctor Sokolnikov';
+  (s as any).doc2 = 'Doctor Ivanov';
   scene.build();
 }
 
 function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_experimental_trials';
+  (s as any).menu_arg = 'front_desk';
+  (s as any).loc_arg = 'front_desk';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
@@ -50,7 +58,7 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'money', 'earn', ((s as any).temp_tip ?? 0));
       }
     }
-    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = '';
+    ((s as any).experimentQW = (s as any).experimentQW ?? {})['trial_active'] = '';
     scene.actions([
       { label: 'Continue', goto: ['city_experimental_trials', 'front_desk'] },
     ]);
@@ -94,7 +102,7 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
     scene.text('At the bottom of the document is an area where you need to write down your full name, age and add your signature.');
     scene.actions([
       { label: 'Sign the document', handler: (st: GameState) => {
-    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['signed'] = 1;
+    ((s as any).experimentQW = (s as any).experimentQW ?? {})['signed'] = 1;
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\desk1.jpg');
     scene.text('You hand the signed document back to the woman.');
     // TODO-QSP: dynamic text: "Thank you Miss… <<$pcs_lastname>>," she says as she looks it over. "We'll add y...

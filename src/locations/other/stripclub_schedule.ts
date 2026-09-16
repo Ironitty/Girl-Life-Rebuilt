@@ -11,9 +11,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoBook(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_sb_weekday = qspUntranslated(s, "ARGS[1]", { location: "stripclub_schedule" });
-  (s as any).temp_sb_shift = qspUntranslated(s, "ARGS[2]", { location: "stripclub_schedule" });
-  (s as any).temp_sb_next = qspUntranslated(s, "ARGS[3]", { location: "stripclub_schedule" });
+  (s as any).temp_sb_weekday = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).temp_sb_shift = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).temp_sb_next = ((s as any).locArgs?.[3] ?? 0);
   (s as any).temp_sb_offset = (((s as any).temp_sb_weekday ?? 0) - ((s as any).week ?? 0) + 7) % 7;
   if (((s as any).temp_sb_next ?? 0) === 1) {
     (s as any).temp_sb_offset = ((s as any).temp_sb_offset ?? 0) + (7);
@@ -26,9 +26,9 @@ function enterDoBook(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoCancel(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_sc_weekday = qspUntranslated(s, "ARGS[1]", { location: "stripclub_schedule" });
-  (s as any).temp_sc_shift = qspUntranslated(s, "ARGS[2]", { location: "stripclub_schedule" });
-  (s as any).temp_sc_next = qspUntranslated(s, "ARGS[3]", { location: "stripclub_schedule" });
+  (s as any).temp_sc_weekday = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).temp_sc_shift = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).temp_sc_next = ((s as any).locArgs?.[3] ?? 0);
   (s as any).temp_sc_offset = (((s as any).temp_sc_weekday ?? 0) - ((s as any).week ?? 0) + 7) % 7;
   if (((s as any).temp_sc_next ?? 0) === 1) {
     (s as any).temp_sc_offset = ((s as any).temp_sc_offset ?? 0) + (7);
@@ -42,25 +42,30 @@ function enterDoCancel(s: GameState, scene: SceneBuilder): void {
 
 function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[3] ?? 0))) {
+    (s as any).scs_return_arg = 'set_schedule';
   } else {
     if (((s as any).locArgs?.[3] ?? 0) === 1) {
+      (s as any).scs_return_arg = 'next_week_set_schedule';
     }
   }
   if (((s as any).locArgs?.[2] ?? 0) === 1) {
+    (s as any).scs_time_string = '18:00-00:00';
     (s as any).scs_hour1 = 9;
     (s as any).scs_hour2 = 13;
   } else {
     if (((s as any).locArgs?.[2] ?? 0) === 2) {
+      (s as any).scs_time_string = '21:00-03:00';
       (s as any).scs_hour1 = 13;
       (s as any).scs_hour2 = 17;
     }
   }
-  (s as any).scs_offset = (((s as any).ARGS ?? 0)[1] - ((s as any).week ?? 0) + 7) % 7;
+  (s as any).scs_offset = (((s as any).locArgs?.[1] ?? 0) - ((s as any).week ?? 0) + 7) % 7;
   if (((s as any).locArgs?.[3] ?? 0) === 1) {
     (s as any).scs_offset = ((s as any).scs_offset ?? 0) + (7);
   }
   (s as any).scs_day = ((s as any).daystart ?? 0) + ((s as any).scs_offset ?? 0);
-  (s as any).scs_slot = ((s as any).ARGS ?? 0)[2] - 1;
+  (s as any).scs_slot = ((s as any).locArgs?.[2] ?? 0) - 1;
+  (s as any).scs_booking = qspFunc(s, 'jobs', 'get_booking_data', 'city_strip_stripper', ((s as any).scs_day ?? 0), ((s as any).scs_slot ?? 0));
   (s as any).scs_has_conflict = qspFunc(s, 'jobs', 'check_booking_conflict', 'city_strip_stripper', ((s as any).scs_day ?? 0), ((s as any).scs_slot ?? 0));
   // TODO-QSP: $result +=  '<tr><td>'
   if (((s as any).scs_booking ?? 0) === ''  &&  !(((s as any).locArgs?.[3] ?? 0) === 0  &&  ((s as any).week ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).hour ?? 0) >= ((s as any).scs_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).scs_hour2 ?? 0))) {
@@ -96,18 +101,27 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
 function enterRandomStripperName(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 8) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).result = '<i>Ruby</i>';
   } else {
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).result = '<i>Onyx</i>';
     } else {
       if (((s as any).temp_rand ?? 0) === 2) {
+        (s as any).result = '<i>Jade</i>';
       } else {
         if (((s as any).temp_rand ?? 0) === 3) {
+          (s as any).result = '<i>Emerald</i>';
         } else {
           if (((s as any).temp_rand ?? 0) === 4) {
+            (s as any).result = '<i>Amythest</i>';
           } else {
             if (((s as any).temp_rand ?? 0) === 5) {
+              (s as any).result = '<i>Diamond</i>';
             } else {
               if (((s as any).temp_rand ?? 0) === 6) {
+                (s as any).result = '<i>Azul</i>';
+              } else {
+                (s as any).result = '<i>Opal</i>';
               }
             }
           }
@@ -121,6 +135,7 @@ function enterRandomStripperName(s: GameState, scene: SceneBuilder): void {
 
 function enterSetScheduleBase(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  (s as any).temp_table = '<table border=1>';
   // TODO-QSP: $temp_table +=    '<tr>'
   // TODO-QSP: $temp_table +=      '<th></th>'
   // TODO-QSP: $temp_table +=      '<th>Sunday</th>'

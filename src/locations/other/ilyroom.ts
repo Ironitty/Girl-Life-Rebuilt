@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('As you approach the door, you hear a faint rustling behind you. You turn and see Gustav. He walks up to you and says, "This is Ilyushkin\'s apartment. Take this camera and film. Now we\'ll get him."');
       scene.actions([
         { label: 'Come on we\'ll get this monster', handler: (st: GameState) => {
-    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWTatianaHelp'] = 0;
+    ((s as any).BurgerQW = (s as any).BurgerQW ?? {})['IlyQWTatianaHelp'] = 0;
     (s as any).poverKAR = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
@@ -130,7 +130,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).TatianaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/aptmanagers/sex/threesome2.jpg');
     scene.text('Kneeling beside Tatiana, you happily share Ilyushkin\'s cock between you, one sucking his cock while the other tongues his balls, then changing positions, kissing each other in between.');
@@ -155,6 +155,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/aptmanagers/sex/threesome5.jpg');
     scene.text('You lower your face to Tatiana\'s pussy and begin licking her as her tongue licks furiously at your clit. You\'re extremely turned on when Ilyushkin\'s hard cock parts the folds of your pussy and fills you up from behind, the feeling of being penetrated as your clit is worked out from below overwhelming you. You give your all to Tatiana, licking her pussy fast and hard as Ilyushkin pounds into you. In no time, you begin to shudder with convulsions as a huge orgasm spikes through your body. You hear Tatiana cry out with you as she hugs your body close, her own orgasm roaring through her. The two of you feel as one being, and you\'re both moaning loudly. With that, Ilyushkin roars and buries himself deep inside you, shooting his hot semen into your quivering pussy. For one moment, the three of you spasm together, then Ilyushkin pulls out of you and slides his dick into Tatiana\'s mouth, shooting the last bit of his sperm into her. As he falls away, you feel Tatiana licking the sperm from your pussy.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni_give', 5, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
@@ -169,7 +170,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Interrogate Ilyushkin', handler: (st: GameState) => {
     (s as any).softKAR = 10;
-    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWEvidence'] = 1;
+    ((s as any).BurgerQW = (s as any).BurgerQW ?? {})['IlyQWEvidence'] = 1;
     qspCall(s, 'exp_gain', 'photoskl', 2);
     (s as any).cumface = 0;
     qspCall(s, 'stat', '');
@@ -283,7 +284,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).TatianaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/aptmanagers/sex/threesome2.jpg');
     scene.text('Kneeling beside Tanya, you happily share Ilyushkin\'s cock between you, one sucking his cock while the other tongues his balls, then changing positions, kissing each other in between.');
@@ -309,6 +310,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/aptmanagers/sex/threesome5.jpg');
     scene.text('You lower your face to Tanya\'s pussy and begin licking her as her tongue licks furiously at your clit. You\'re extremely turned on when a hard cock parts the folds of your pussy and fills you up from behind, the feeling of being penetrated as your clit is worked out from below overwhelming you. You give your all to Tanya, licking her pussy fast and hard as Ilyushkin pounds into you from behind. In no time, you begin to shudder with convulsions as a huge orgasm spikes through your body. You hear Tanya cry out with you as she hugs your body close, her own orgasm roaring through her. The two of you feel as one being, and you\'re both moaning loudly. With that, Ilyushkin roars and buries himself deep inside you, shooting his hot semen into your quivering pussy. For one moment, the three of you spasm together, then Ilyushkin pulls out of you and slides his dick into Tanya\'s mouth, shooting the last bit of his sperm into her. As he falls away, you feel Tanya licking the sperm from your pussy.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni_give', 5, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
@@ -323,7 +325,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Interrogate Ilyushkin', handler: (st: GameState) => {
     (s as any).softKAR = 10;
-    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWEvidence'] = 1;
+    ((s as any).BurgerQW = (s as any).BurgerQW ?? {})['IlyQWEvidence'] = 1;
     (s as any).cumface = 0;
     qspCall(s, 'stat', '');
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
@@ -363,7 +365,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_industrial', ''] },
+    qspGoto(s, 'city_industrial', '');
+  } },
   ]);
   scene.build();
 }

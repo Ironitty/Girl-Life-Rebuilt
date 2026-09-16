@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,7 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', goto: ['sexorg', 'var'] }]);
+  qspGoto(s, 'sexorg', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -82,6 +82,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).spafinloc = 12;
   qspCall(s, 'cum_manage', '');
   if (((s as any).pcs_horny ?? 0) >= 80) {
+    (s as any).orgasm_or = 'yes';
   }
   scene.img(`images/locations/city/citycenter/mall/bowling/sex/cum${((s as any).picrand || '')}.jpg`);
   scene.text('The guys put you and the other two girls on your knees in front of them and furiously stroke their dicks into your expectant mouths. You barely even taste the sperm, even though you catch a full spurt of it on your tongue - to you, it marks the end of a thrilling adventure. It\'s not every day that you have an orgy in a bowling center.');

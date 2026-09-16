@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -15,12 +15,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).parkrand = Math.floor(Math.random() * 20) + 1;
   if (((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 21) {
     if (((s as any).parkrand ?? 0) < 10) {
-      scene.actions([{ label: 'Continue', goto: ['park_walkevents', '<<parkrand>>'] }]);
+      qspGoto(s, 'park_walkevents', '' + ((s as any).parkrand ?? 0) + '');
     } else {
       if (((s as any).parkrand ?? 0) === 19  &&  ((s as any).lactation ?? 0)?.['active'] > 0) {
-        scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'find_baby'] }]);
+        qspGoto(s, 'park_walkevents', 'find_baby');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+        qspGoto(s, 'park_walkevents', 'empty');
       }
     }
   } else {
@@ -47,12 +47,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).parkrand ?? 0) <= 5) {
-      scene.actions([{ label: 'Continue', goto: ['park_walkevents', '1'] }]);
+      qspGoto(s, 'park_walkevents', '1');
     } else {
       if (((s as any).parkrand ?? 0) >= ((s as any).fairyrand ?? 0)  &&  ((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
-        scene.actions([{ label: 'Continue', goto: ['MagEncounterFairy', ''] }]);
+        qspGoto(s, 'MagEncounterFairy', '');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+        qspGoto(s, 'park_walkevents', 'empty');
       }
     }
   }

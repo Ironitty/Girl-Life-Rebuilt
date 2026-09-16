@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -32,7 +32,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     { label: 'Undress', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'outfit', 'strip_all');
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = 0;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha25.mp4');
     scene.text('You slowly wriggle out of your top, allowing it to slip down your body.');
@@ -50,7 +50,8 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'breast') {
     scene.actions([
       { label: 'Breast play', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'breast';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha26.mp4');
     scene.text('Natasha crawls over to you and starts slowly playing with and sucking on your boobs while gently massaging them. She then follows up by flicking her tongue over your nipple.');
     scene.text('You don\'t want her to feel left out, so you reciprocate.');
@@ -64,7 +65,8 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'rub_clit') {
     scene.actions([
       { label: 'Rub her clit', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'rub_clit';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha27.mp4');
     scene.text('Natasha turns over slowly and lying on her front she spreads her legs sticking her bum in the air giving you easy access to that sexy arse.');
     // TODO-QSP: iif(pcs_horny >= 50, 'You are already very turned on and', 'You') + ' quickly get to work massaging ...
@@ -79,7 +81,8 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'lick_pussy') {
     scene.actions([
       { label: 'Lick her pussy', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'lick_pussy';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha28.mp4');
     // TODO-QSP: iif(pcs_horny >= 50, 'Both of you are dripping with arousal as y', 'Y') +'ou push Natasha onto her b...
     scene.text('Breathing heavily, she lies back while you slowly take her to the edge before stopping, teasing her.');
@@ -95,7 +98,8 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([
         { label: 'Lose your virginity', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'dildo';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha29a.mp4');
     scene.text('Natasha opens her bedside cabinet drawer and pulls out a double dildo and, after placing it inside her pussy, lines it up with yours.');
     scene.text('Saying nothing, you slowly lower yourself onto it and start rocking to and fro, so that you are fucking Natasha while stimulating yourself at the same time.');
@@ -108,6 +112,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSexActs1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         { label: 'No, I\'m a virgin', handler: (st: GameState) => {
+    (s as any).temp_last_sexact = 'dildo';
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha29b.jpg');
     scene.text('Realising what\'s happening, you decide to stop Natasha. "Wait, I\'m still a virgin!"');
     // TODO-QSP: dynamic text: She immediately stops and removes the dildo. "I'm sorry, <<$pcs_nickname>>! I di...
@@ -119,7 +124,8 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Use a dildo', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'dildo';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha29.mp4');
     scene.text('Natasha opens her bedside cabinet drawer and pulls out a double dildo and, after placing it inside her pussy, lines it up with yours.');
     scene.text('You slowly lower yourself onto it and start rocking to and fro, so that you are fucking Natasha while stimulating yourself at the same time.');
@@ -148,6 +154,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Fuck, ${((s as any).pcs_nickname || '')}, that was something else!" she says, still short of breath.`);
     scene.text('"Yeah, Natasha, you are one foxy little minx, that\'s for sure!"');
     scene.text('"You want to go again or are you good? Gotta make sure my girlfriend is happy."');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'trib', 5, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -188,7 +195,8 @@ function enterSetMainEndActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['pre_sleep', 'start'] },
+    qspGoto(s, 'pre_sleep', 'start');
+  } },
     ]);
   } },
     ]);
@@ -197,9 +205,9 @@ function enterSetMainEndActs(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'natbelapt') {
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'etaj_4'] }]);
+      qspGoto(s, 'pod_ezd', 'etaj_4');
     } else {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+      dynamicGoto(s, 'prevLoc', 'prevArg');
     }
   } },
   ]);
@@ -230,6 +238,7 @@ function enterWakeupSex(s: GameState, scene: SceneBuilder): void {
   scene.text('It seems that the same is happening to Natasha as you can hear her breathing change and she starts moving against you ever so slightly at first…');
   scene.text('You lie pretty still just letting your body respond to her actions as you let her take control of the pace.');
   scene.text('It\'s not long before she gives you a long passionate kiss which you fully return as you roll over facing her.');
+  (s as any).natbel_wakeupsex_endact = 'Return';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInitWakeupSexRoutine(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -237,8 +246,12 @@ function enterWakeupSex(s: GameState, scene: SceneBuilder): void {
 
 function enterInitWakeupSexRoutine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = 0;
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = 0;
+  (s as any).temp_last_sexact = '';
+  (s as any).orgasm_txt = '';
+  (s as any).orgasm_or = 'no';
   if (((s as any).natbel_wakeupsex_endact ?? 0) === '') {
+    (s as any).natbel_wakeupsex_endact = 'Return';
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSexActs2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -249,7 +262,8 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'boob_kiss') {
     scene.actions([
       { label: 'Boob kiss', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'boob_kiss';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha52.jpg');
     scene.text('You crawl on top of her and tweak her nipples at first.');
     scene.text('Slowly you begin kissing, licking and sucking them then letting her nipple pop out before recommencing as you keep your eyes focused directly on hers.');
@@ -262,7 +276,8 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'scissoring') {
     scene.actions([
       { label: 'Scissoring', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'scissoring';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha53.jpg');
     scene.text('As both of your passion builds neither of you can resist moving so that your legs are intertwined.');
     scene.text('You both begin rocking back and forth slowly at first but gradually increasing in speed and intensity bring you both higher and higher.');
@@ -275,7 +290,8 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'special') {
     scene.actions([
       { label: 'Special pussy massage', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'special';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha54.jpg');
     scene.text('You decide to use your boob to massage her pussy and slowly lower yourself down her body until you can feel Natasha\'s wetness.');
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
@@ -303,7 +319,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['horny'] % 10000 >= 100) {
     scene.actions([
       { label: 'Making Natasha cum', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = 10000 + ((((s as any).NatbelQW ?? {})?.['horny'] ?? 0) / 10000) * 10000;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = 10000 + ((((s as any).NatbelQW ?? {})?.['horny'] ?? 0) / 10000) * 10000;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha55.jpg');
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
@@ -341,7 +357,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Natasha makes you cum', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = 0;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha56.mp4');
     if ((!(Math.floor(Math.random() * 3) + 0))) {
       scene.text('Your excitement has been building a while but you managed to contain it and keep yourself on the edge, however, all of a sudden Natasha starts changing the pace and her tongue hits just the right spot!');
@@ -352,14 +368,16 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
       scene.text('Unable to hold back any longer you groan loudly and squirt into her mouth as you grab her arse squeezing her buttocks together.');
       scene.text('You then spend a few minutes in each other\'s arms enjoying the afterglow and a little reluctant to move.');
     }
+    (s as any).orgasm_txt = '';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'trib', 5, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: act $natbel_wakeupsex_endact:
     qspCall(s, 'outfit', 'wear_last_worn');
     if (((s as any).loc ?? 0) === 'natbelapt') {
-      scene.actions([{ label: 'Continue', goto: ['natbelapt', 'natroom'] }]);
+      qspGoto(s, 'natbelapt', 'natroom');
     } else {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+      dynamicGoto(s, 'prevLoc', 'prevArg');
     }
   } },
     ]);
@@ -373,7 +391,8 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'breast_play') {
     scene.actions([
       { label: 'Breast play', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'breast_play';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha26a.mp4');
     scene.text('Natasha crawls over to you and starts slowly playing with and sucking on your boobs while gently massaging them. She then follows up by flicking her tongue over your nipple.');
     scene.text('You don\'t want her to feel left out, so you reciprocate.');
@@ -386,7 +405,8 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'clit_rub') {
     scene.actions([
       { label: 'Rub her clit', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'clit_rub';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha27.mp4');
     scene.text('Natasha turns over slowly and lying on her front she spreads her legs sticking her bum in the air giving you easy access to that sexy arse.');
     // TODO-QSP: dynamic text: You ' + iif(pcs_horny >= 50, 'are already very turned on and ', ') +'quickly get...
@@ -401,7 +421,8 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'pussy_lick') {
     scene.actions([
       { label: 'Lick her pussy', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'pussy_lick';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha28.mp4');
     if (((s as any).pcs_horny ?? 0) >= 50) {
       scene.text('Both of you are dripping with arousal as you push Natasha onto her back and bring your mouth to her pussy and start eating her out.');
@@ -418,7 +439,8 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'scissoring') {
     scene.actions([
       { label: 'Scissoring', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'scissoring';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha30.mp4');
     if (((s as any).pcs_arousal ?? 0) >= 50) {
       scene.text('Overcome with arousal, you lay back on the bed with your legs wide open and pull Natasha on top of you.');
@@ -433,6 +455,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'dildo') {
     scene.actions([
       { label: 'Use a dildo', handler: (st: GameState) => {
+    (s as any).temp_last_sexact = 'dildo';
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha29.mp4');
       scene.text('Natasha opens her bedside cabinet drawer and pulls out a double dildo and, after placing it inside her pussy, lines it up with yours.');
@@ -472,7 +495,8 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_sexact ?? 0) !== 'special') {
     scene.actions([
       { label: 'Special pussy massage', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    (s as any).temp_last_sexact = 'special';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha54.jpg');
     scene.text('You decide to use your boob to massage her pussy and slowly lower yourself down her body until you can feel Natasha\'s wetness.');
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
@@ -500,7 +524,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['horny'] % 10000 >= 100) {
     scene.actions([
       { label: 'Making Natasha cum', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = 10000 + ((((s as any).NatbelQW ?? {})?.['horny'] ?? 0) / 10000) * 10000;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = 10000 + ((((s as any).NatbelQW ?? {})?.['horny'] ?? 0) / 10000) * 10000;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha55.jpg');
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
@@ -538,7 +562,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Natasha makes you cum', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['horny'] = 0;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha56.mp4');
     if ((!(Math.floor(Math.random() * 3) + 0))) {
       scene.text('Your excitement has been building a while but you managed to contain it and keep yourself on the edge, however, all of a sudden Natasha starts changing the pace and her tongue hits just the right spot!');
@@ -549,11 +573,13 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
       scene.text('Unable to hold back any longer you groan loudly and squirt into her mouth as you grab her arse squeezing her buttocks together.');
       scene.text('You then spend a few minutes in each other\'s arms enjoying the afterglow and a little reluctant to move.');
     }
+    (s as any).orgasm_txt = '';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'trib', 5, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: act $natbel_wakeupsex_endact:
     qspCall(s, 'outfit', 'wear_last_worn');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -581,7 +607,7 @@ function enterNatbelaptKiss(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Undress', handler: (st: GameState) => {
     if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 8) {
-      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 8;
+      ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['FriendLover'] = 8;
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha25.mp4');
@@ -599,6 +625,7 @@ function enterNatbelaptKiss(s: GameState, scene: SceneBuilder): void {
 function enterNatbelaptSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
   qspCall(s, 'npcStat', 'D2', 'a');
+  (s as any).orgasm_or = 'no';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha26.mp4');
   scene.text('Natasha crawls over to you and starts slowly playing with and sucking on your boobs while gently massaging them. She then follows up by flicking her tongue over your nipple.');
@@ -630,8 +657,8 @@ function enterNatbelaptSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([
         { label: 'Lose your virginity', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['virginity_lost'] = 1;
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A16'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['virginity_lost'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A16'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha29a.mp4');
     scene.text('Natasha opens her bedside cabinet drawer and pulls out a double dildo and, after placing it inside her pussy, lines it up with yours.');
@@ -683,7 +710,7 @@ function enterNatbelaptSex(s: GameState, scene: SceneBuilder): void {
 
 function enterNatbelaptSexClimax(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A16'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A16'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha30.mp4');
   scene.text('You lay back on the bed with your legs wide open and pull Natasha on top of you.');
@@ -701,6 +728,7 @@ function enterNatbelaptSexClimax(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Fuck, <<$pcs_nickname>>, that was something else!" she says, still short of bre...
     scene.text(`"Fuck, ${((s as any).pcs_nickname || '')}, that was something else!" she says, still short of breath.`);
     scene.text('"Yeah, Natasha, you are one foxy little minx, that\'s for sure!"');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'trib', 5, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     if (((s as any).NatbelQW ?? 0)?.['virginity_lost'] !== 1) {
@@ -743,7 +771,8 @@ function enterNatbelaptSexClimax(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['pre_sleep', 'start'] },
+    qspGoto(s, 'pre_sleep', 'start');
+  } },
     ]);
   } },
     ]);

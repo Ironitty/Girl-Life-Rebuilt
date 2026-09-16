@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Greet her', handler: (st: GameState) => {
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
     scene.img('images/locations/city/industrial/police/sex/c2.jpg');
     scene.text('When you\'re about to open your mouth to greet her, she roughly grabs you by your hair and pulls you from your bunk to the floor.');
     scene.text('She quickly pulled her overall open at the same time, and you can\'t help but stare at the enormous strap-on directly in front of your face!');
@@ -71,10 +71,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you officer, thank you…" you moan, when you feel your orgasm overtake you. You black out for a second, completely oblivious to your surroundings.');
     scene.text('When you regain your focus, the girl stands a bit awkwardly next to you. This wasn\'t supposed to happen! Her orders were to squeeze a confession out of you, not to give you a good fucking with her baton!');
     scene.text('You can tell that she has an obvious damp spot in her panties; bringing you to an unintended orgasm aroused her a great deal! She has a somewhat frustrated look in her eyes when she looks at you, knowing she failed. She has a firm grip on her nightstick.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_dildo', 90, 'sub', 'lesbian', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Rudely tell her to get lost', goto: ['gameover', 'force', '7'] },
+      { label: 'Rudely tell her to get lost', handler: (st: GameState) => {
+    qspGoto(s, 'gameover', 'force', '7');
+  } },
       { label: 'Kiss her pussy through her panties', handler: (st: GameState) => {
     (s as any).mentovka = 1;
     scene.img('images/locations/city/industrial/police/sex/c8.jpg');

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -13,10 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'autosalonF', 'start');
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Car Dealership</b></center>');
   scene.img('images/locations/city/industrial/cardealer/manager.jpg');
   scene.text('<b><center>Vehicles for sale, all brand new</center></b>');
+  (s as any).car_table = '<center><table border=0>';
   // TODO-QSP: $car_table +=  '<tr><th>Car</th><th></th><th>Price</th></tr>'
   // TODO-QSP: $car_table +=  $func('autosalonF', 'vehicle_table_row', 6)
   // TODO-QSP: $car_table +=  $func('autosalonF', 'vehicle_table_row', 7)
@@ -53,6 +53,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterVehicleTableRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'car_attributes', ARGS[1]
+  (s as any).result = '<tr>';
   // TODO-QSP: $result +=  '<td><a href="exec:gs ''autosalonF'', ''display_vehicle'', <<ARGS[1]>>"><<$CarName>></a>...
   // TODO-QSP: $result +=  '<td> - </td>'
   // TODO-QSP: $result +=  '<td>' + func('money', 'string_price', CarPrice) + '</td>'
@@ -62,10 +63,12 @@ function enterVehicleTableRow(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplayVehicle(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'autosalonF';
+  (s as any).loc_arg = 'display_vehicle';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   if ((!((s as any).autosalonF_carnum ?? 0))) {
-    (s as any).autosalonF_carnum = qspUntranslated(s, "ARGS[1]", { location: "autosalonF" });
+    (s as any).autosalonF_carnum = ((s as any).locArgs?.[1] ?? 0);
     qspCall(s, 'car_attributes', '', ((s as any).autosalonF_carnum ?? 0));
   }
   if (((s as any).CarName ?? 0) === '') {
@@ -142,7 +145,7 @@ function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'car_attributes', ARGS[1]
   if (qspFunc(s, 'money', 'can_afford', ((s as any).CarPrice ?? 0), 'bank') === 0) {
     scene.actions([
-      { label: 'Buy a <<$CarName>>  [+$func(\'wrap\', \'neg\', \'(<<$func(\'money\'...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Buy a ' + String(((s as any).CarName || '') ?? '') + '  [+$func(\'wrap\', \'neg\', \'(<<$func(\'money\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
   } },
     ]);
@@ -160,7 +163,7 @@ function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
 function enterBuy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'car_funcs', 'add_car', ARGS[1]
   qspCall(s, 'money', 'pay', ((s as any).CarPrice ?? 0), 'bank');
-  if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = 3;
+  ((s as any).car = (s as any).car ?? {})['fuel'] = 3;
   qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
   scene.text('The manager draws up a purchasing contract, and you inform the bank of the impending transaction. Once the bank has confirmed the write-off, the manager hands you the key to your new car.');
   scene.text('"It\'s waiting for you outside," he says. "The fuel tank is almost empty though, so you should stop by the gas station right away."');
@@ -200,7 +203,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const autosalonF: LocationDef = {
   name: 'autosalonF',
-  title: '(<<$func(\'money\', \'string_price\', CarPrice)>>)',
+  title: '()',
   region: 'other',
   locationType: 'event',
   enter: enter,

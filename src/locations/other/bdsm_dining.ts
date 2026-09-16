@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -7,6 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_dining', '');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/diningroom.jpg');
   // TODO-QSP: end
@@ -20,7 +21,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 70) {
     // TODO-QSP: exit
   }
-  scene.actions([{ label: 'Continue', goto: ['bdsm_dining', 'event_<<rand(1, 10)>>'] }]);
+  qspGoto(s, 'bdsm_dining', 'event_' + Math.floor(Math.random() * 10) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }

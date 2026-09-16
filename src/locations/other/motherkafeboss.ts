@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -61,7 +61,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -89,7 +89,7 @@ function enterConfrontation(s: GameState, scene: SceneBuilder): void {
     scene.text('Borislav shifts in his chair and studies you. Given the subject of the conversation, you can\'t help but feel that he\'s acting too calmly."');
     scene.text('"So? This doesn\'t explain why you\'re here. What do you want from me?"');
     scene.actions([
-      { label: '"I want you to stop blackmailing <<$npc_nickname[\'A29\']>>"', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => '"I want you to stop blackmailing ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + '"', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
     // TODO-QSP: dynamic text: "I want you to stop blackmailing <<$npc_nickname['A29']>>," you say. "Stop extor...
     scene.text(`"I want you to stop blackmailing ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you say. "Stop extorting her for sex and just let her work here as a normal waitress."`);
@@ -147,7 +147,7 @@ function enterConfrontation(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head in anger, more at yourself than at him. Borislav walks past you to open the door and you leave with your head held low.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -160,7 +160,7 @@ function enterConfrontation(s: GameState, scene: SceneBuilder): void {
     scene.text('There\'s nothing you can do. With a sinking heart you shake your head before Borislav gets up and opens the door, watching you walk away before going back to his customers.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -227,7 +227,7 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.text('Unable to say a word, you just walk out, your head spinning as you do.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -240,7 +240,7 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t know how you\'re supposed to feel about that. The only thing you\'re sure of is that you feel like throwing up…');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -252,11 +252,11 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.text('Everything about this has shaken you to your core. Your head is spinning. What are you supposed to do about this?');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
-      { label: 'Fuck <<$npc_nickname[\'A29\']>>! I\'m fucking him!', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Fuck ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + '! I\'m fucking him!', handler: (st: GameState) => {
     (s as any).pcafejob = 4;
     (s as any).slavatalk = 3;
     scene.img('images/locations/pavlovsk/cafe/backroom.jpg');
@@ -286,7 +286,8 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Blow him', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'kafe');
-  }, goto: ['motherkafeboss', 'cloth_bj'] },
+    qspGoto(s, 'motherkafeboss', 'cloth_bj');
+  } },
     ]);
   } },
       { label: 'No, I just want to be free', handler: (st: GameState) => {
@@ -295,7 +296,8 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Blow him', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'kafe');
-  }, goto: ['motherkafeboss', 'cloth_bj'] },
+    qspGoto(s, 'motherkafeboss', 'cloth_bj');
+  } },
     ]);
   } },
       { label: 'No, you just helped me realize I love sex', handler: (st: GameState) => {
@@ -303,7 +305,8 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Blow him', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'kafe');
-  }, goto: ['motherkafeboss', 'cloth_bj'] },
+    qspGoto(s, 'motherkafeboss', 'cloth_bj');
+  } },
     ]);
   } },
       { label: 'I\'m going to become a huge slut just to show her', handler: (st: GameState) => {
@@ -312,7 +315,8 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Fuck him', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'kafe');
-  }, goto: ['motherkafeboss', 'cloth_fuck'] },
+    qspGoto(s, 'motherkafeboss', 'cloth_fuck');
+  } },
     ]);
   } },
     ]);
@@ -351,7 +355,8 @@ function enterWorkShift(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Uphold the deal', handler: (st: GameState) => {
     (s as any).slavadealfuck = ((s as any).daystart ?? 0);
-  }, goto: ['motherkafeboss', 'slava_deal'] },
+    qspGoto(s, 'motherkafeboss', 'slava_deal');
+  } },
     ]);
   } else {
     scene.text('You finish up your shift and glance at Slava but since you\'ve already fucked today, your end of the deal has already been upheld and he doesn\'t pay attention to you.');
@@ -377,7 +382,8 @@ function enterWorkCock(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Uphold the deal', handler: (st: GameState) => {
     (s as any).slavadealfuck = ((s as any).daystart ?? 0);
-  }, goto: ['motherkafeboss', 'slava_deal'] },
+    qspGoto(s, 'motherkafeboss', 'slava_deal');
+  } },
     ]);
   } else {
     scene.text('You finish up your shift and glance at Slava but since you\'ve already fucked today, your end of the deal has already been upheld and he doesn\'t pay attention to you.');
@@ -524,7 +530,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -572,7 +578,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -621,7 +627,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -678,7 +684,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -729,7 +735,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -782,7 +788,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -811,7 +817,7 @@ function enterSlavaDeal(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Reluctantly let him use you', goto: ['motherkafeboss', 'duty'] },
       { label: 'Walk out the door', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -854,16 +860,16 @@ function enterSlavaDeal(s: GameState, scene: SceneBuilder): void {
 function enterDuty(s: GameState, scene: SceneBuilder): void {
   (s as any).slava_fuck_pick = Math.floor(Math.random() * 1) + 4;
   if (((s as any).slava_fuck_pick ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_pre_fuck'] }]);
+    qspGoto(s, 'motherkafeboss', 'cloth_pre_fuck');
   }
   if (((s as any).slava_fuck_pick ?? 0) === 2) {
-    scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_bj'] }]);
+    qspGoto(s, 'motherkafeboss', 'cloth_bj');
   }
   if (((s as any).slava_fuck_pick ?? 0) === 3) {
-    scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_pre_fuck'] }]);
+    qspGoto(s, 'motherkafeboss', 'cloth_pre_fuck');
   }
   if (((s as any).slava_fuck_pick ?? 0) === 4) {
-    scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_bj'] }]);
+    qspGoto(s, 'motherkafeboss', 'cloth_bj');
   }
   // TODO-QSP: end
   scene.build();
@@ -889,7 +895,7 @@ function enterClothBj(s: GameState, scene: SceneBuilder): void {
     scene.text('It was all over so quickly that you think there\'s something you\'re forgetting to do but since you never took off your clothes and don\'t have anything to clean off your face, you shrug and leave behind him.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -965,7 +971,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -985,7 +992,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1005,6 +1013,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('You release your mouth from your hand, breathing hard, drooling onto the table a little bit. In a twist of terrible irony, it seems your efforts to hold yourself back only resulted in an even more powerful climax. You feel exhausted.');
     // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can't turn around right no...
     scene.text(`"Did you just cum ${((s as any).pcs_nickname || '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1022,7 +1031,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1034,6 +1044,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('As your orgasm winds down, you lean forward onto the table, breathing hard.');
     // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can't turn around right no...
     scene.text(`"Did you just cum ${((s as any).pcs_nickname || '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1051,7 +1062,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1069,6 +1081,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re so absorbed in your anxiety that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused for a moment before you realize what happened. You were so caught up in it that you didn\'t notice him pull out. Your eyes go wide with a worse realization. You were moving your hips on your own. You were fucking him as much as he was fucking you. You slowly turn your head around to look at him in horror.');
     // TODO-QSP: dynamic text: "Glad to see you're enjoying this deal as much as I am," Slava says, grinning. N...
     scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((s as any).pcs_nickname || '')}. It's natural for a girl your age to be enjoying sex. Here, kneel down and I'll cheer you up with something."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1087,7 +1100,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1099,6 +1113,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re so absorbed in your pleasure that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused, almost frustrated, for a moment wondering what happened to that good feeling. You slowly turn your head around to see what happened and see Slava slowly jacking himself. You were so caught up in it that you didn\'t notice him pull out. He pulled out when your body wanted to keep going and missing his cock, your hips kept thrusting anyways. You were fucking him as much as he was fucking you. ');
     // TODO-QSP: dynamic text: "Glad to see you're enjoying this deal as much as I am," Slava says, grinning. N...
     scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((s as any).pcs_firstname || '')}. If you want more, we can keep fucking tomorrow. Here, kneel down and I'll cheer you up with something."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1116,7 +1131,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1147,7 +1163,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1177,7 +1194,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1203,6 +1221,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('You release your mouth from your hand, breathing hard, drooling onto the table a little bit. In a twist of terrible irony, it seems your efforts to hold yourself back only resulted in an even more powerful climax. You feel exhausted.');
     // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can't turn around right no...
     scene.text(`"Did you just cum ${((s as any).pcs_nickname || '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1220,7 +1239,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1233,6 +1253,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('As your orgasm winds down, you lean forward onto the table, breathing hard.');
     // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can't turn around right no...
     scene.text(`"Did you just cum ${((s as any).pcs_nickname || '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1250,7 +1271,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1268,6 +1290,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re so absorbed in your anxiety that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused for a moment before you realize what happened. You were so caught up in it that you didn\'t notice him pull out. Your eyes go wide with a worse realization. You were moving your hips on your own. You were fucking him as much as he was fucking you. You slowly turn your head around to look at him in horror.');
     // TODO-QSP: dynamic text: "Glad to see you're enjoying this deal as much as I am," Slava says, grinning. N...
     scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((s as any).pcs_nickname || '')}. It's natural for a girl your age to be enjoying sex. Here, kneel down and I'll cheer you up with something."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1286,7 +1309,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1299,6 +1323,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re so absorbed in your pleasure that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused, almost frustrated, for a moment wondering what happened to that good feeling. You slowly turn your head around to see what happened and see Slava slowly jacking himself. You were so caught up in it that you didn\'t notice him pull out. He pulled out when your body wanted to keep going and missing his cock, your hips kept thrusting anyways. You were fucking him as much as he was fucking you. ');
     // TODO-QSP: dynamic text: "Glad to see you're enjoying this deal as much as I am," Slava says, grinning. N...
     scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((s as any).pcs_firstname || '')}. If you want more, we can keep fucking tomorrow. Here, kneel down and I'll cheer you up with something."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1316,7 +1341,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);
@@ -1333,6 +1359,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>Uh! Uhh! Ahh! Aah! Slava! Ah! Yes!</i>');
     // TODO-QSP: dynamic text: Slava suddenly pulls his cock out of your pussy and you squeel in protest. "Put ...
     scene.text(`Slava suddenly pulls his cock out of your pussy and you squeel in protest. "Put it in! Please!" You buck your hips at him, But Slava responds by giving your ass a hard swat. "On your knees, ${((s as any).pcs_firstname || '')}. I'll fuck you again tomorrow."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1350,7 +1377,8 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
-  }, goto: ['gkafe', ''] },
+    qspGoto(s, 'gkafe', '');
+  } },
     ]);
   } },
     ]);

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,24 +6,26 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bedr', '');
+  (s as any).locclass = 'bedr';
+  (s as any).location_type = 'private';
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'music_actions', 'clear_restrictions');
   if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['tobiQW', 'start'] }]);
+    qspGoto(s, 'tobiQW', 'start');
   }
   scene.text('<center><b>Bedroom</b></center>');
   if ((!((s as any).rembedr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/bedr.jpg');
-    scene.text('A tight, little room with a <a href="exec:gt \'bed\', \'start\'">double bed</a>.');
+    scene.text('A tight, little room with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">double bed</a>.');
     // TODO-QSP: func('alarmclock', 'base_alarmclock_text')
-    scene.text('An old wooden <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a> stands near the door to the corridor. The windows are closed with faded, heavy curtains.');
+    scene.text('An old wooden <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a> stands near the door to the corridor. The windows are closed with faded, heavy curtains.');
   } else {
     scene.img('images/locations/city/residential/apartment/bedr2.jpg');
-    scene.text('A bright and beautiful room, with a large, kingsized <a href="exec:gt \'bed\', \'start\'">double bed</a>.');
+    scene.text('A bright and beautiful room, with a large, kingsized <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">double bed</a>.');
     // TODO-QSP: 'There is an <a href="exec:gt ''alarmclock'', ''start''">alarm clock</a> on the bedside table, and i...
-    scene.text('A modern <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a> stands near the door to the corridor. Against the wall stands a make-up table with a <a href="exec:gt \'mirror\', \'start\'">mirror</a> on it.');
+    scene.text('A modern <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a> stands near the door to the corridor. Against the wall stands a make-up table with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> on it.');
   }
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');

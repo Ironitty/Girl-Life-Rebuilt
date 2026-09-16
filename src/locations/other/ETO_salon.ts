@@ -71,6 +71,7 @@ function enterSolarium(s: GameState, scene: SceneBuilder): void {
     scene.text('Finally, you experience a powerful orgasm and collapse in exhaustion. You can no longer hear any sniffing; it seems your secret observer has finished watching you.');
     scene.text('');
     scene.text('Gradually you come to your senses, get dressed, and leave the booth.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'masturbate', 10, 'exhibitionism');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -101,6 +102,7 @@ function enterMarketGrope(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Move away', goto: ['city_market', 'start'] },
     { label: 'Next', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 10, '', 'rough', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterForestEdge(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_forest', 'forest_edge');
+  (s as any).region = 'gad';
+  (s as any).location_type = 'secluded';
+  (s as any).forest_args1 = 'forest_edge';
   qspCall(s, 'miroslava_schedule', '');
   (s as any).clothesAtLocation = qspFunc(s, 'clothing', 'lost_clothes_here', 'forest_edge');
   qspCall(s, 'gadukino_event', 'sound');
@@ -45,7 +48,7 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) < 10  ||  ((s as any).hour ?? 0) > 14) {
       (s as any).forestpicnic = 0;
     } else {
-      scene.text('On the edge of the forest, you see people. Apparently, they are having a family <a href="exec:gt \'gad_forest_events\', \'picnic\'">picnic</a>.');
+      scene.text('On the edge of the forest, you see people. Apparently, they are having a family <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_forest_events\\u0027, \\u0027picnic\\u0027); return false;">picnic</a>.');
     }
   }
   if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) > 16  &&  ((s as any).mushroom_pickers ?? 0) !== 0) {
@@ -65,7 +68,7 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
-    scene.text('<a href="exec: gt \'Miroslava\', \'start\' ">Mira</a> is here with you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Miroslava\\u0027, \\u0027start\\u0027); return false;">Mira</a> is here with you.');
   }
   (s as any).foresteventrand = Math.floor(Math.random() * 20) + 1;
   if ((! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  qspFunc(s, 'miroslava_schedule', 'was_here')) {
@@ -74,41 +77,44 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((s as any).pcs_nickname || '')}, I'm going to head home now, but we can hang out again later," Mira said as she began walking out of the forest.`);
     scene.actions([
       { label: 'Convince her to stay with you', handler: (st: GameState) => {
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = ((((s as any).minut ?? 0) > 30) ? (2) : (1));
-  }, goto: ['gad_forest', 'forest_edge'] },
-      { label: 'Say goodbye', goto: ['gad_forest', 'forest_edge'] },
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = ((((s as any).minut ?? 0) > 30) ? (2) : (1));
+    qspGoto(s, 'gad_forest', 'forest_edge');
+  } },
+      { label: 'Say goodbye', handler: (st: GameState) => {
+    qspGoto(s, 'gad_forest', 'forest_edge');
+  } },
     ]);
   } else {
     if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
       if (((s as any).MiraVars ?? 0)?.['pickingtalk'] === 0  &&  ((s as any).MiraVars ?? 0)?.['talkday'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mira_picking_talk'] }]);
+        qspGoto(s, 'gad_forest_events', 'mira_picking_talk');
       }
       if (((s as any).MiraVars ?? 0)?.['nudetalk'] === 0  &&  ((s as any).MiraVars ?? 0)?.['talkday'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mira_nude_talk'] }]);
+        qspGoto(s, 'gad_forest_events', 'mira_nude_talk');
       }
       if (((s as any).forestpicnic ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).clothesAtLocation ?? 0) === 0  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).MiraVars ?? 0)?.['nudetalk'] === 1  &&  ((s as any).MiraVars ?? 0)?.['talkday'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mira_nude_event'] }]);
+        qspGoto(s, 'gad_forest_events', 'mira_nude_event');
       }
     } else {
       if (((s as any).foresteventrand ?? 0) <= 2  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).mushroom_pickersday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).mushroom_pickers = 1;
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mushroom_pickers1'] }]);
+        qspGoto(s, 'gad_forest_events', 'mushroom_pickers1');
       }
       if (((s as any).foresteventrand ?? 0) <= 4  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).mushroom_pickersday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).mushroom_pickers = 2;
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mushroom_pickers2'] }]);
+        qspGoto(s, 'gad_forest_events', 'mushroom_pickers2');
       }
       if (((s as any).foresteventrand ?? 0) === 5  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 14  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).week ?? 0) > 5  &&  (!((s as any).forestpicnic ?? 0))) {
         (s as any).forestpicnic = 1;
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'picnic'] }]);
+        qspGoto(s, 'gad_forest_events', 'picnic');
       }
     }
   }
   if (((s as any).foresteventrand ?? 0) <= 8  &&  ((s as any).MiraVars ?? 0)?.['meadow'] >= 2  &&  ((s as any).gadboyday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
     if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)) {
       if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mitka_temporary_event'] }]);
+        qspGoto(s, 'gad_forest_events', 'mitka_temporary_event');
       }
     }
   }
@@ -142,9 +148,9 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk to the hunters cabin (1:00)', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 22) {
-      scene.actions([{ label: 'Continue', goto: ['gad_swamp', 'stuck'] }]);
+      qspGoto(s, 'gad_swamp', 'stuck');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', '\'forest_edge\''] }]);
+      qspGoto(s, 'gad_forest_lost', 'wolves', 'forest_edge');
     }
   } },
     ]);
@@ -166,7 +172,8 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave in your makeshift clothing (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-  }, goto: ['gad_road', 'start'] },
+    qspGoto(s, 'gad_road', 'start');
+  } },
         ]);
       } else {
         scene.actions([
@@ -188,7 +195,8 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-  }, goto: ['gad_road', 'start'] },
+    qspGoto(s, 'gad_road', 'start');
+  } },
     ]);
   } },
         ]);
@@ -197,7 +205,7 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
       if (((s as any).clothingworntype ?? 0) !== 'nude') {
         (s as any).minut = ((s as any).minut ?? 0) + 15;
         qspCall(s, 'stat', '');
-        scene.actions([{ label: 'Continue', goto: ['gad_road', 'start'] }]);
+        qspGoto(s, 'gad_road', 'start');
       } else {
         if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 22) {
           if ((Math.floor(Math.random() * 11) + 0) > 5) {
@@ -245,7 +253,8 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-  }, goto: ['gad_road', 'start'] },
+    qspGoto(s, 'gad_road', 'start');
+  } },
     ]);
   } },
           ]);
@@ -266,21 +275,21 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).forestcaughtrand ?? 0) >= 9) {
-        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 4) + 7);
+        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 4) + 7);
         scene.img('images/locations/gadukino/forest/gadukino_old_woman.jpg');
         scene.text('You\'ve been spotted walking home naked by all the village\'s women. So, naturally, they scold you as you walk by. Your grandparents are definitely going to find out about this.');
       } else {
         if (((s as any).forestcaughtrand ?? 0) >= 7) {
-          if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 4);
+          ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 4);
           scene.img('images/locations/gadukino/forest/gadukino_old_woman\'+rand(1, 5)+\'.jpg');
           scene.text('You\'ve been spotted walking home naked by a woman from the village. You hope she doesn\'t tell your grandmother.');
         } else {
           if (((s as any).forestcaughtrand ?? 0) >= 5) {
-            if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
+            ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
             scene.img('images/locations/gadukino/forest/gadukino_old_man\'+rand(1, 5)+\'.jpg');
             scene.text('You\'ve been spotted walking home naked by a man from the village. You hope he doesn\'t tell your grandfather.');
           } else {
-            if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+            ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
             scene.img('images/locations/gadukino/grandparents/gaddvor_nude.jpg');
             scene.text('No one saw you outside naked, but there\'s a thrill in almost getting caught.');
           }
@@ -290,7 +299,8 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue home to your grandparents (0:30)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'stat', '');
-  }, goto: ['gad_gpyard', 'start'] },
+    qspGoto(s, 'gad_gpyard', 'start');
+  } },
       ]);
     } else {
       qspCall(s, 'clothing', 'add_item', 'gm_outfits', 2);
@@ -309,7 +319,8 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-  }, goto: ['gad_road', 'start'] },
+    qspGoto(s, 'gad_road', 'start');
+  } },
       ]);
     }
   } },
@@ -323,6 +334,9 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
 
 function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_forest', 'forest_outskirts');
+  (s as any).location_type = 'secluded';
+  (s as any).region = 'gad_forest';
+  (s as any).forest_args1 = 'forest_outskirts';
   (s as any).clothesAtLocation = qspFunc(s, 'clothing', 'lost_clothes_here', 'forest_outskirts');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
@@ -372,14 +386,14 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
   (s as any).foresteventrand = Math.floor(Math.random() * 20) + 1;
   if (((s as any).foresteventrand ?? 0) <= 2  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).mushroom_pickersday ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).mushroom_pickers = 2;
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mushroom_pickers1'] }]);
+    qspGoto(s, 'gad_forest_events', 'mushroom_pickers1');
   }
   if (((s as any).foresteventrand ?? 0) <= 4  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).mushroom_pickersday ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).mushroom_pickers = 2;
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mushroom_pickers3'] }]);
+    qspGoto(s, 'gad_forest_events', 'mushroom_pickers3');
   }
   if (((s as any).foresteventrand ?? 0) === 5  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'forest_hunters', '\'forest_outskirts\''] }]);
+    qspGoto(s, 'gad_forest_events', 'forest_hunters', 'forest_outskirts');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripping(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDressing(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -399,6 +413,9 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
 
 function enterForestCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_forest', 'forest_center');
+  (s as any).region = 'gad_forest';
+  (s as any).location_type = 'secluded';
+  (s as any).forest_args1 = 'forest_center';
   (s as any).clothesAtLocation = qspFunc(s, 'clothing', 'lost_clothes_here', 'forest_center');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
@@ -447,16 +464,16 @@ function enterForestCenter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).foresteventrand = Math.floor(Math.random() * 20) + 1;
   if (((s as any).foresteventrand ?? 0) <= 2  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'basket'] }]);
+    qspGoto(s, 'gad_forest_events', 'basket');
   }
   if (((s as any).foresteventrand ?? 0) <= 3  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'bilberry'] }]);
+    qspGoto(s, 'gad_forest_events', 'bilberry');
   }
   if (((s as any).foresteventrand ?? 0) <= 4  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mushroom'] }]);
+    qspGoto(s, 'gad_forest_events', 'mushroom');
   }
   if (((s as any).foresteventrand ?? 0) === 5  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'forest_hunters', '\'forest_center\''] }]);
+    qspGoto(s, 'gad_forest_events', 'forest_hunters', 'forest_center');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripping(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDressing(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -560,11 +577,11 @@ function enterStripping(s: GameState, scene: SceneBuilder): void {
     }
     if ((!((s as any).swamp_clothes ?? 0))) {
       qspCall(s, 'outfit', 'strip_all', ((s as any).forest_args1 ?? 0));
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['strip_loc'] = ((s as any).forest_args1 ?? 0);
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['strip_loc'] = ((s as any).forest_args1 ?? 0);
     } else {
       if (((s as any).swamp_clothes ?? 0) === 1) {
         qspCall(s, 'outfit', 'strip_all', 'gad_forest');
-        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['strip_loc'] = 'gad_forest';
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['strip_loc'] = 'gad_forest';
         qspCall(s, 'clothing', 'gad_swamp_clothes', 0);
       }
     }
@@ -726,7 +743,7 @@ function enterWalking(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
       if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).gad_meadow_found ?? 0) === 0  &&  ((s as any).forest_args1 ?? 0) === 'forest_edge') {
-        scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'find_meadow'] }]);
+        qspGoto(s, 'gad_forest_events', 'find_meadow');
       } else {
         if (((s as any).clothingworntype ?? 0) !== 'nude') {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miraforest'+rand...
@@ -759,7 +776,7 @@ function enterWalking(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).gad_meadow_found ?? 0) === 0  &&  ((s as any).forest_args1 ?? 0) === 'forest_edge') {
-      scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'find_meadow'] }]);
+      qspGoto(s, 'gad_forest_events', 'find_meadow');
     } else {
       if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
         if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)  &&  (!((s as any).PCloSkirt ?? 0))) {
@@ -1055,7 +1072,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const gad_forest: LocationDef = {
   name: 'gad_forest',
-  title: 'You don\'t know this part of the forest very well. You could get lost if you go any deeper into the woods.',
+  title: 'You don\'t know this part of the forest very well. You could ',
   region: 'gadukino',
   locationType: 'secluded',
   enter: enter,

@@ -1,10 +1,11 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   (s as any).kisvrand = 0;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -21,16 +22,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).alla ?? 0) >= 20) {
         (s as any).kisvrand = Math.floor(Math.random() * 21) + 0;
         if (((s as any).kisvrand ?? 0) <= 4) {
-          scene.actions([{ label: 'Continue', goto: ['kinosvid', '1'] }]);
+          qspGoto(s, 'kinosvid', '1');
         }
         if (((s as any).kisvrand ?? 0) === 5) {
-          scene.actions([{ label: 'Continue', goto: ['kinosvid', '2'] }]);
+          qspGoto(s, 'kinosvid', '2');
         }
         if (((s as any).kisvrand ?? 0) >= 6) {
-          scene.actions([{ label: 'Continue', goto: ['kinosvid', '3'] }]);
+          qspGoto(s, 'kinosvid', '3');
         }
       } else {
-        scene.actions([{ label: 'Continue', goto: ['kinosvid', '3'] }]);
+        qspGoto(s, 'kinosvid', '3');
       }
     } else {
       if (((s as any).telsob ?? 0) === 'Masha') {
@@ -38,16 +39,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).masha ?? 0) >= 20) {
           (s as any).kisvrand = Math.floor(Math.random() * 21) + 0;
           if (((s as any).kisvrand ?? 0) <= 4) {
-            scene.actions([{ label: 'Continue', goto: ['kinosvid', '1'] }]);
+            qspGoto(s, 'kinosvid', '1');
           }
           if (((s as any).kisvrand ?? 0) === 5) {
-            scene.actions([{ label: 'Continue', goto: ['kinosvid', '2'] }]);
+            qspGoto(s, 'kinosvid', '2');
           }
           if (((s as any).kisvrand ?? 0) >= 6) {
-            scene.actions([{ label: 'Continue', goto: ['kinosvid', '3'] }]);
+            qspGoto(s, 'kinosvid', '3');
           }
         } else {
-          scene.actions([{ label: 'Continue', goto: ['kinosvid', '3'] }]);
+          qspGoto(s, 'kinosvid', '3');
         }
       } else {
         if (((s as any).telsob ?? 0) === 'Kate') {
@@ -55,31 +56,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_rel ?? 0)?.['A219'] >= 20) {
             (s as any).kisvrand = Math.floor(Math.random() * 21) + 0;
             if (((s as any).kisvrand ?? 0) <= 4) {
-              scene.actions([{ label: 'Continue', goto: ['kinosvid', '1'] }]);
+              qspGoto(s, 'kinosvid', '1');
             }
             if (((s as any).kisvrand ?? 0) === 5) {
-              scene.actions([{ label: 'Continue', goto: ['kinosvid', '2'] }]);
+              qspGoto(s, 'kinosvid', '2');
             }
             if (((s as any).kisvrand ?? 0) >= 6) {
-              scene.actions([{ label: 'Continue', goto: ['kinosvid', '3'] }]);
+              qspGoto(s, 'kinosvid', '3');
             }
           } else {
-            scene.actions([{ label: 'Continue', goto: ['kinosvid', '3'] }]);
+            qspGoto(s, 'kinosvid', '3');
           }
         } else {
           if (((s as any).telsob ?? 0) === ((s as any).npcdesc ?? 0)) {
             qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
             if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 60) {
-              scene.actions([{ label: 'Continue', goto: ['kinosvid', '3'] }]);
+              qspGoto(s, 'kinosvid', '3');
             } else {
               (s as any).kisvrand = Math.floor(Math.random() * 21) + 0;
               if (((s as any).kisvrand ?? 0) <= 4) {
-                scene.actions([{ label: 'Continue', goto: ['kinosvid', '1'] }]);
+                qspGoto(s, 'kinosvid', '1');
               } else {
                 if (((s as any).kisvrand ?? 0) === 5) {
-                  scene.actions([{ label: 'Continue', goto: ['kinosvid', '2'] }]);
+                  qspGoto(s, 'kinosvid', '2');
                 } else {
-                  scene.actions([{ label: 'Continue', goto: ['kinosvid', '3'] }]);
+                  qspGoto(s, 'kinosvid', '3');
                 }
               }
             }
@@ -122,6 +123,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Soon the popcorn is long forgotten, as <<$telsob>> works her way down between yo...
   scene.text(`Soon the popcorn is long forgotten, as ${((s as any).telsob || '')} works her way down between your legs. Her expert tongue along with the thrill of doing this in a movie theater brings you to orgasm almost immediately.`);
   scene.text('The devilish look she gives you tells you she isn\'t done with you yet.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -131,6 +133,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/boyfriend/sex/event/cinema/4.jpg');
     // TODO-QSP: dynamic text: <<$telsob>> continues to massage your clitoris with her tongue, as she slowly wo...
     scene.text(`${((s as any).telsob || '')} continues to massage your clitoris with her tongue, as she slowly works the first of her fingers inside you. Working gently, she adds fingers one at a time until you are wrapped around her entire hand. The feeling is so intense that she brings you to a second orgasm, which runs though your entire body.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
     qspCall(s, 'arousal', 'vaginal_finger', (-10), 'lesbian');
     qspCall(s, 'stat', '');
@@ -250,6 +253,7 @@ function enter18(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/12.jpg');
   // TODO-QSP: dynamic text: You hike a leg up onto the chair, and motion <<$telsob>> forward. She reaches up...
   scene.text(`You hike a leg up onto the chair, and motion ${((s as any).telsob || '')} forward. She reaches up to gently caress one of you cheeks, as she brings her mouth close to your waiting pussy. She teases you with a few deep hot breaths, before her mouth finds its target. A few minutes of kissing and licking later, you are thoroughly satisfied.`);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -276,6 +280,7 @@ function enter110(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/14.jpg');
   // TODO-QSP: dynamic text: You get up on the chair and wiggle you butt at <<$telsob>>. Needing no further e...
   scene.text(`You get up on the chair and wiggle you butt at ${((s as any).telsob || '')}. Needing no further encouragement, ${((s as any).telsob || '')} spreads your cheeks, and buries her tongue deep in your ass. Your gasp of surprise is quickly replaced with moans of pleasure, as she continues to aggressively tongue your bottom. After a few minutes of this your knees buckle, and you collapse on the chair spent.`);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'rimming', 10, 'lesbian');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -486,6 +491,7 @@ function enter23(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$telsob>> gives you a slow deep kiss, as she works two fingers into your pussy...
     scene.text(`${((s as any).telsob || '')} gives you a slow deep kiss, as she works two fingers into your pussy. She curls her fingers up, and gives a firm tug. "This is mine", she whispers against your lips.`);
     scene.text('All you can do is whimper, "Yes."');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'lesbian', 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -496,6 +502,7 @@ function enter23(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I want you to cum for me now, <<$pcs_nickname>>", she says, in a firm voice.
     scene.text(`"I want you to cum for me now, ${((s as any).pcs_nickname || '')}", she says, in a firm voice.`);
     scene.text('You do.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -534,6 +541,7 @@ function enter21(s: GameState, scene: SceneBuilder): void {
     scene.text('She drops to her knees, spreading your legs as she goes. Her expert tongue brings you to orgasm in no time.');
     // TODO-QSP: dynamic text: You lie back, breathing heavy, basking in the afterglow, and the thought of <<$t...
     scene.text(`You lie back, breathing heavy, basking in the afterglow, and the thought of ${((s as any).telsob || '')} no longer being mad about the incident.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([

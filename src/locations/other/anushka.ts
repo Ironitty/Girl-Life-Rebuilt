@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -32,7 +32,7 @@ function enterPlan(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', (-2));
     qspCall(s, 'npc_relationship', 'modify', 'A158', (-2));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Detention</b></center>');
@@ -51,7 +51,7 @@ function enterPlan(s: GameState, scene: SceneBuilder): void {
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A158', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Detention</b></center>');
     scene.img('images/locations/pavlovsk/school/detention/anushdes.jpg');
@@ -88,7 +88,7 @@ function enterPlan(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'npc_relationship', 'modify', 'A144', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A158', (-1));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Detention</b></center>');
     scene.img('images/locations/pavlovsk/school/detention/sex/det3sum.jpg');
@@ -148,7 +148,7 @@ function enterPlan(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a drink', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A158', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 13;
     qspCall(s, 'drugs', 'alcohol', 'moonshine', 1);
     qspCall(s, 'drugs', 'joint', 1);
@@ -231,8 +231,8 @@ function enterHerTurn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 15, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'arousal', 'cuni', (-15), ((s as any).npcID ?? 0), 'group', 'lesbian');
     qspCall(s, 'arousal', 'cuni_give', (-5), ((s as any).npcID ?? 0), 'group', 'lesbian');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A158'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A144'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A158'] = 1;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -386,10 +386,10 @@ function enterWedgieFight(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).anushkaQW ?? 0)?.['first_visit'] === 0) {
       (s as any).AnushkaLoc = 5;
-      scene.actions([{ label: 'Continue', goto: ['anushapt', 'livingroom'] }]);
+      qspGoto(s, 'anushapt', 'livingroom');
     } else {
       (s as any).AnushkaLoc = 2;
-      scene.actions([{ label: 'Continue', goto: ['anush_bedroom', 'anushroom'] }]);
+      qspGoto(s, 'anush_bedroom', 'anushroom');
     }
   } },
     ]);
@@ -585,7 +585,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/anushka/hiding.jpg');
     }
     if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
-      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dolls'] = 2;
+      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dolls'] = 2;
     }
     scene.text('You\'re curious where she gets her clothes, since it\'s obvious she doesn\'t get them locally. None of the local stores carry clothes like the ones she wears, and you rarely even see them much in the city. "Where do you buy your clothes? Online?"');
     scene.text('She lifts an eyebrow before looking down at her naked body and grinning, causing you to laugh. "Dolls, well… Patchwork Dolls to be exact. It\'s near the university in the city." She proceeds to tell you how to find the place.');
@@ -639,32 +639,33 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     scene.text('She laughs. "Yeah, everyone is surprised by that, but I checked what grades I needed to go to the university and I make sure mine stay above that. Yeah, I\'m a smart bitch as well as a good looking one. What about you?"');
     if (((s as any).rex_love ?? 0) === 1) {
       scene.actions([
-        { label: 'Get married to Rex', goto: ['anushka', 'telling_marrige_dreams', '\'Rex\''] },
+        { label: 'Get married to Rex', goto: ['anushka', 'telling_marrige_dreams', 'Rex'] },
       ]);
     }
     if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
       scene.actions([
-        { label: 'Get married to Artem', goto: ['anushka', 'telling_marrige_dreams', '\'Artem\''] },
+        { label: 'Get married to Artem', goto: ['anushka', 'telling_marrige_dreams', 'Artem'] },
       ]);
     }
     if (((s as any).kotovLoveQW ?? 0) === 1) {
       scene.actions([
-        { label: 'Get married to Vitek', goto: ['anushka', 'telling_marrige_dreams', '\'Vitek\''] },
+        { label: 'Get married to Vitek', goto: ['anushka', 'telling_marrige_dreams', 'Vitek'] },
       ]);
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 5) {
       scene.actions([
-        { label: 'Get married to Fedor', goto: ['anushka', 'telling_marrige_dreams', '\'Fedor\''] },
+        { label: 'Get married to Fedor', goto: ['anushka', 'telling_marrige_dreams', 'Fedor'] },
       ]);
     }
     if (((s as any).NikoVolkovQW ?? 0) >= 5) {
       scene.actions([
-        { label: 'Get married to Niko', goto: ['anushka', 'telling_marrige_dreams', '\'Niko\''] },
+        { label: 'Get married to Niko', goto: ['anushka', 'telling_marrige_dreams', 'Niko'] },
       ]);
     }
     (s as any).i = 0;
     // TODO-QSP: :marrid_looop
     if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+      (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
         // TODO-QSP: dynamic 'act ''Get married to <<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''anushka'', ''telling_marr...
       }
@@ -733,7 +734,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Classroom</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/\'+iif(rand(0, 1) = 0, \'weed\', \'hiding\')+\'.jpg');
     if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-      if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
+      ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
       qspCall(s, 'calendar', 'add', 'band_practice_event');
       scene.text('"How is the band going?" you ask.');
       scene.text('She nods. "Pretty good, but you should come by and hear us play."');
@@ -802,7 +803,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Maybe', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['fedor_3some'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['fedor_3some'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You blush slightly. "Let me think about it, then I\'ll talk to him. I\'ll let you know."');
@@ -813,7 +814,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'I\'ll ask him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['fedor_3some'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['fedor_3some'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You can\'t help but grin. You think about it and it does sound fun. "Sure. I\'ll ask him and see what he thinks. It could be fun," you tell her.');
@@ -883,7 +884,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Maybe', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_ask'] = ((s as any).artemQW['nush3some_ask'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some_ask'] = ((s as any).artemQW['nush3some_ask'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You blush slightly. "Let me think about it and talk to him. We will see, but I\'ll let you know if we do."');
@@ -894,7 +895,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'I\'ll ask him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_ask'] = ((s as any).artemQW['nush3some_ask'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some_ask'] = ((s as any).artemQW['nush3some_ask'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You can\'t help but grin. You think about it and it does sound fun. "Sure. I\'ll ask him and see what he thinks. He\'s kind of shy though, so I don\'t know what he\'ll say," you tell her.');
@@ -934,6 +935,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     // TODO-QSP: :lover_looop
     if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+      (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
         // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''anushka'', ''tell_about_generic_boyfrein...
       }

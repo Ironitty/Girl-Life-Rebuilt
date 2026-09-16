@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,6 +12,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterAftermath(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A25'] >= 80) {
+    (s as any).VK_VikName = 'Vicky';
+  } else {
+    (s as any).VK_VikName = 'Viktoriya';
   }
   if (((s as any).npc_rel ?? 0)?.['A14'] < 90) {
     qspCall(s, 'npc_relationship', 'set', 'A14', 90);
@@ -101,7 +104,7 @@ function enterAftermath(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$VK_VikName>> stands up. "Well, you take all the time you need. If you need an...
     scene.text(`${((s as any).VK_VikName || '')} stands up. "Well, you take all the time you need. If you need anything, then don't be afraid to holler," she says in a cheerful tone before walking toward the door and motioning for the other girls to follow.`);
     scene.actions([
-      { label: 'Watch <<$VK_VikName>> leave', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Watch ' + String(((s as any).VK_VikName || '') ?? '') + ' leave', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/Katja2.jpg');
     scene.text('Katja stands up. "I\'m sorry that I\'ve been a bit stern, I just don\'t want to see what happened today repeat itself. When you finish resting, come see me okay? We can have a nice chat together. Don\'t worry, I won\'t lecture you again."');
@@ -153,6 +156,10 @@ function enterAftermath2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHallway(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'hallway';
+  (s as any).loc = 'NikoMeyHome';
+  (s as any).menu_loc = 'NikoMeyHome';
+  (s as any).menu_arg = 'hallway';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hallway</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/corridor.jpg');
@@ -160,7 +167,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('There are stairs leading to the second floor. You can also see two doors with the signs \'Toilet\' and \'Bathroom\' attached to them.');
   if (((s as any).VKAftermathEvent ?? 0) === 2) {
     // TODO-QSP: dynamic text: You see <a href="exec:gt 'NikoMeyHome', 'vickychat3'"><<$VK_VikName>></a> leanin...
-    scene.text(`You see <a href="exec:gt 'NikoMeyHome', 'vickychat3'">${((s as any).VK_VikName || '')}</a> leaning against the wall, playing a game on her phone.`);
+    scene.text(`You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027vickychat3\\u0027); return false;">${((s as any).VK_VikName || '')}</a> leaning against the wall, playing a game on her phone.`);
   }
   if (((s as any).VKAftermathEvent ?? 0) === 2  &&  ((s as any).VKKatjaChat ?? 0) < 2  ||  ((s as any).VKAftermathEvent ?? 0) === 2  &&  ((s as any).VKNatChat ?? 0) < 2) {
     scene.actions([
@@ -214,6 +221,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 3) {
     scene.text('<font color=#ffae00>You can hear some loud music coming from Vicky\'s room.</font>');
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/hate.mp3';
       (s as any).volume = 10;
       (s as any).music_loop = 1;
     }
@@ -228,8 +236,13 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'NikoMeyHome';
+  (s as any).loc_arg = 'kitchen';
+  (s as any).menu_loc = 'NikoMeyHome';
+  (s as any).menu_arg = 'kitchen';
   if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 3) {
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/hate.mp3';
       (s as any).volume = 5;
       (s as any).music_loop = 1;
     }
@@ -240,7 +253,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('The sparkling clean kitchen is huge and luxurious, decorated in a minimalist high-tech style. An oval dining room table stands in the middle of the room while the appliances are all hidden.');
   if (((s as any).VKAftermathEvent ?? 0) < 2  &&  ((s as any).NikoAftermath ?? 0) === 1) {
     // TODO-QSP: dynamic text: <a href="exec:gt 'NikoMeyHome', 'vickychat'"><<$VK_VikName>></a> is standing by ...
-    scene.text(`<a href="exec:gt 'NikoMeyHome', 'vickychat'">${((s as any).VK_VikName || '')}</a> is standing by the stove playing on her phone.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027vickychat\\u0027); return false;">${((s as any).VK_VikName || '')}</a> is standing by the stove playing on her phone.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -250,8 +263,13 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLounge(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'NikoMeyHome';
+  (s as any).loc_arg = 'lounge';
+  (s as any).menu_loc = 'NikoMeyHome';
+  (s as any).menu_arg = 'lounge';
   if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 3) {
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/hate.mp3';
       (s as any).volume = 5;
       (s as any).music_loop = 1;
     }
@@ -261,28 +279,28 @@ function enterLounge(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/meynolds/hall.jpg');
   scene.text('A spacious room with a sofa and armchairs. A large TV hangs on the wall next to the bookcase and on the opposite side is a fireplace. There is access to a bright garden, overgrown with grapes.');
   if ((!((s as any).VKNatChat ?? 0))) {
-    scene.text('You see <a href="exec:gt \'NikoMeyHome\', \'nataliachat\'">Natalia</a> leaning against the fireplace. She appears lost in thought.');
+    scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027nataliachat\\u0027); return false;">Natalia</a> leaning against the fireplace. She appears lost in thought.');
   } else {
     if (((s as any).VKNatChat ?? 0) === 1  &&  (!((s as any).VKAftermathEvent ?? 0))) {
-      scene.text('You see <a href="exec:gt \'NikoMeyHome\', \'nataliachat\'">Natalia</a> leaning against the fireplace. She appears lost in thought.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027nataliachat\\u0027); return false;">Natalia</a> leaning against the fireplace. She appears lost in thought.');
     } else {
       if (((s as any).VKAftermathEvent ?? 0) === 2  &&  ((s as any).VKNatChat ?? 0) === 1  ||  ((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKNatChat ?? 0) === 1) {
-        scene.text('You see <a href="exec:gt \'NikoMeyHome\', \'nataliachat2\'">Natalia</a> sitting on a chair near the window, staring out at the garden.');
+        scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027nataliachat2\\u0027); return false;">Natalia</a> sitting on a chair near the window, staring out at the garden.');
       } else {
         if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKNatChat ?? 0) < 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKKatjaChat ?? 0) === 3) {
-          scene.text('You see <a href="exec:gt \'NikoMeyHome\', \'Katja and Natalia\'">Katja and Natalia</a> sitting on the couch chatting with each other.');
+          scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027Katja and Natalia\\u0027); return false;">Katja and Natalia</a> sitting on the couch chatting with each other.');
         } else {
           if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKNatChat ?? 0) === 4  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKKatjaChat ?? 0) === 3) {
-            scene.text('You see <a href="exec:gt \'NikoMeyHome\', \'Katja and Natalia 2\'">Katja and Natalia</a> sitting on the couch chatting with each other.');
+            scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027Katja and Natalia 2\\u0027); return false;">Katja and Natalia</a> sitting on the couch chatting with each other.');
           } else {
             if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKNatChat ?? 0) < 3  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-              scene.text('You see <a href="exec:gt \'NikoMeyHome\', \'nataliachat3\'">Natalia</a> leaning against the fireplace as she runs her fingers through her hair.');
+              scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027nataliachat3\\u0027); return false;">Natalia</a> leaning against the fireplace as she runs her fingers through her hair.');
             } else {
               if (((s as any).VKNatChat ?? 0) === 4  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKKatjaChat ?? 0) < 3) {
-                scene.text('You see <a href="exec:gt \'NikoMeyHome\', \'nataliachat4\'">Natalia</a> leaning against the fireplace. She looks at you with a warm smile.');
+                scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027nataliachat4\\u0027); return false;">Natalia</a> leaning against the fireplace. She looks at you with a warm smile.');
               } else {
                 if (((s as any).VKNatChat ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKKatjaChat ?? 0) === 3) {
-                  scene.text('You see <a href="exec:gt \'NikoMeyHome\', \'katjachat4\'">Katja</a> sitting on the couch watching TV.');
+                  scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027katjachat4\\u0027); return false;">Katja</a> sitting on the couch watching TV.');
                 }
               }
             }
@@ -299,8 +317,13 @@ function enterLounge(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKatjaRoom(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'NikoMeyHome';
+  (s as any).loc_arg = 'katja_room';
+  (s as any).menu_loc = 'NikoMeyHome';
+  (s as any).menu_arg = 'katja_room';
   if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 3) {
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/hate.mp3';
       (s as any).volume = 5;
       (s as any).music_loop = 1;
     }
@@ -312,16 +335,16 @@ function enterKatjaRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('There are numerous flowers in pots on the windowsill, there are pots hanging on the walls and there are even plants in pots on the floor, giving the room a greenhouse feeling.');
   scene.text('There is a computer desk in one of the corners, opposite the bed. In another corner is a hidden wardrobe. A well hidden bookshelf can be seen, but it is hard to spot because of the wildly overgrown plants.');
   if (((s as any).VKKatjaChat ?? 0) === 0  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-    scene.text('<a href="exec:gt \'NikoMeyHome\', \'katjachat\'">Katja</a> is standing in front of a mirror, checking herself out from different angles.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027katjachat\\u0027); return false;">Katja</a> is standing in front of a mirror, checking herself out from different angles.');
   } else {
     if (((s as any).VKAftermathEvent ?? 0) < 2  &&  ((s as any).VKKatjaChat ?? 0) === 1  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-      scene.text('<a href="exec:gt \'NikoMeyHome\', \'katjachat\'">Katja</a> is standing in front of a mirror, tweezing her eyebrows while humming a soothing tune.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027katjachat\\u0027); return false;">Katja</a> is standing in front of a mirror, tweezing her eyebrows while humming a soothing tune.');
     } else {
       if (((s as any).VKAftermathEvent ?? 0) === 2  &&  ((s as any).VKKatjaChat ?? 0) === 1  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-        scene.text('<a href="exec:gt \'NikoMeyHome\', \'katjachat2\'">Katja</a> is cleaning up her shoe closet.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027katjachat2\\u0027); return false;">Katja</a> is cleaning up her shoe closet.');
       } else {
         if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKKatjaChat ?? 0) === 2  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-          scene.text('<a href="exec:gt \'NikoMeyHome\', \'katjachat3\'">Katja</a> is lying in bed humming a sweet melody.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027katjachat3\\u0027); return false;">Katja</a> is lying in bed humming a sweet melody.');
         }
       }
     }
@@ -334,11 +357,16 @@ function enterKatjaRoom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVickyRoom(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'NikoMeyHome';
+  (s as any).loc_arg = 'vicky_room';
+  (s as any).menu_loc = 'NikoMeyHome';
+  (s as any).menu_arg = 'vicky_room';
   if (((s as any).VKVickyChat ?? 0) === 4) {
     (s as any).music_loop = 0;
   } else {
     if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 3) {
       if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+        (s as any).track_loop = 'sound/hate.mp3';
         (s as any).volume = 20;
         (s as any).music_loop = 1;
       }
@@ -352,11 +380,11 @@ function enterVickyRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('There\'s a laptop on the table by the window, which accidentally brings a sense of orderliness. The room\'s centerpiece is the enormous bed, while a wardrobe sits next to it and there\'s a lone chair somewhere in the corner hidden under all the stuff.');
   if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 3) {
     // TODO-QSP: dynamic text: <a href="exec:gt 'NikoMeyHome', 'vickychat4'"><<$VK_VikName>></a> is dancing to ...
-    scene.text(`<a href="exec:gt 'NikoMeyHome', 'vickychat4'">${((s as any).VK_VikName || '')}</a> is dancing to some music playing on her radio.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027vickychat4\\u0027); return false;">${((s as any).VK_VikName || '')}</a> is dancing to some music playing on her radio.`);
   } else {
     if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 4) {
       // TODO-QSP: dynamic text: <a href="exec:gt 'NikoMeyHome', 'vickychat5'"><<$VK_VikName>></a> is lying face ...
-      scene.text(`<a href="exec:gt 'NikoMeyHome', 'vickychat5'">${((s as any).VK_VikName || '')}</a> is lying face down in bed. She appears to be asleep.`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoMeyHome\\u0027, \\u0027vickychat5\\u0027); return false;">${((s as any).VK_VikName || '')}</a> is lying face down in bed. She appears to be asleep.`);
     }
   }
   // TODO-QSP: end
@@ -515,10 +543,12 @@ function enterVickychat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).VKVickyChat ?? 0) === 0  &&  (!((s as any).VKMeyLock ?? 0))) {
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
+    (s as any).VK_VikName = 'Vicky';
     if ((!((s as any).VKVickyChat ?? 0))) {
       (s as any).VKVickyChat = 1;
     }
-  }, goto: ['NikoMeyHome', 'kitchen'] },
+    qspGoto(s, 'NikoMeyHome', 'kitchen');
+  } },
     ]);
   } else {
     scene.actions([
@@ -526,7 +556,8 @@ function enterVickychat(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).VKVickyChat ?? 0))) {
       (s as any).VKVickyChat = 1;
     }
-  }, goto: ['NikoMeyHome', 'kitchen'] },
+    qspGoto(s, 'NikoMeyHome', 'kitchen');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -573,7 +604,8 @@ function enterVickychat2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).VKVickyChat ?? 0) === 1) {
       (s as any).VKVickyChat = 2;
     }
-  }, goto: ['NikoMeyHome', 'hallway'] },
+    qspGoto(s, 'NikoMeyHome', 'hallway');
+  } },
   ]);
   scene.build();
 }
@@ -635,7 +667,7 @@ function enterVickyReminder(s: GameState, scene: SceneBuilder): void {
 
 function enterLeaving(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoMeyHome" }) + '');
+  scene.img('' + qspFunc(s, '$face_image', '') + '');
   // TODO-QSP: 'You approach the door. ' + $OpenInnerThought + 'I haven''t spoken to all the girls yet. Should I le...
   // TODO-QSP: end
   scene.actions([
@@ -650,7 +682,7 @@ function enterLeaving(s: GameState, scene: SceneBuilder): void {
 function enterVickyGoodbye(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   if (((s as any).npc_grupTipe ?? 0)?.['A189'] === 4) {
-    if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A189'] = 600;
+    ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A189'] = 600;
   }
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vicky2.jpg');
@@ -695,7 +727,7 @@ function enterKatjachat(s: GameState, scene: SceneBuilder): void {
       { label: 'Reply', handler: (st: GameState) => {
     (s as any).VKKatjaChat = 1;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoMeyHome" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoMeyHome" }) + '');
     if ((!((s as any).VKNatChat ?? 0))) {
       scene.text('"Tell me about it," you sarcastically reply and Katja lightly squeezes your shoulders.');
       scene.text('"No one can change who you are beside you. Remember that. Anyway, you should take a bath before Vicky decides to gussy herself in there. Trust me when I say you won\'t be able to use the bathroom anytime this century."');
@@ -811,7 +843,7 @@ function enterKatjaAndNatalia(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Natalia's eyes light up. "Great! Are you ready to head out now or would you like...
     scene.text(`Natalia's eyes light up. "Great! Are you ready to head out now or would you like to speak to ${((s as any).VK_VikName || '')} or Katja first?"`);
     scene.actions([
-      { label: 'Stay to chat with <<$VK_VikName>> and Katja', goto: ['NikoMeyHome', 'lounge'] },
+      { label: '', labelFn: (s: GameState) => 'Stay to chat with ' + String(((s as any).VK_VikName || '') ?? '') + ' and Katja', goto: ['NikoMeyHome', 'lounge'] },
       { label: 'Leave with Natalia', handler: (st: GameState) => {
     (st as any).VKNatChat = 5;
   }, goto: ['NikoMeyHome', 'natalia_walk'] },
@@ -935,7 +967,7 @@ function enterNataliachat3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Natalia's eyes light up. "Great! Are you ready to head out now or would you like...
     scene.text(`Natalia's eyes light up. "Great! Are you ready to head out now or would you like to speak to ${((s as any).VK_VikName || '')} or Katja first?"`);
     scene.actions([
-      { label: 'Stay and chat with <<$VK_VikName>> and Katja', goto: ['NikoMeyHome', 'lounge'] },
+      { label: '', labelFn: (s: GameState) => 'Stay and chat with ' + String(((s as any).VK_VikName || '') ?? '') + ' and Katja', goto: ['NikoMeyHome', 'lounge'] },
       { label: 'Leave with Natalia', goto: ['NikoMeyHome', 'natalia_walk'] },
     ]);
   } },
@@ -1077,24 +1109,31 @@ function enterNataliaKiss(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM = 'NikoMeyHome';
+  (s as any).locM_arg = 'bathroom';
+  (s as any).loc_arg = 'bathroom';
+  (s as any).menu_loc = 'NikoMeyHome';
+  (s as any).menu_arg = 'bathroom';
   qspCall(s, 'stat', '');
   if (((s as any).VKVickyChat ?? 0) === 4) {
     (s as any).music_loop = 0;
   } else {
     if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 3) {
       if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+        (s as any).track_loop = 'sound/hate.mp3';
         (s as any).volume = 5;
         (s as any).music_loop = 1;
       }
     }
   }
+  (s as any).location_type = 'bathroom';
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/hotel/hotel.room.best1.jpg');
   scene.text('A luxurious bathroom that looks like the five-star hotel bathrooms you read about in magazines.');
   if (((s as any).VKAftermathEvent ?? 0) === 0  &&  ((s as any).VKKatjaChat ?? 0) === 1  &&  ((((s as any).katjaQW ?? 0)?.['dom'] > 30  &&  ((s as any).npc_had_sex ?? 0)?.['A14'])  ||  ((s as any).NataliaPavlovaQW ?? 0) >= 10)) {
     scene.text('Above the beautiful vanity and sink is a huge mirror. You can feel a hand on your shoulder.');
   } else {
-    scene.text('Above the beautiful vanity and sink is a huge <a href="exec:gt \'mirror\',\'start\'">mirror</a>.');
+    scene.text('Above the beautiful vanity and sink is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>.');
   }
   if (((s as any).VKAftermathEvent ?? 0) === 0  &&  ((s as any).katjaQW ?? 0)?.['dom'] > 30  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).VKKatjaChat ?? 0) === 1) {
     scene.actions([

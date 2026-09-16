@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('After a while of talking and drinking you feel a bit drunk, and Alexey asks you to come closer.');
   scene.actions([
     { label: 'Get on your knees and take it in your mouth', handler: (st: GameState) => {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).alexeySex = ((s as any).alexeySex ?? 0) + (1);
     scene.img(`images/shared/sex/blowjob/bj${Math.floor(Math.random() * 13) + 29}.jpg`);
     scene.text('Kneeling before him, you unbutton his pants and take a firm grasp of his erect cock.');

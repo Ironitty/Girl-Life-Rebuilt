@@ -11,11 +11,20 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBuild(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_fn = ((s as any).npc_firstname ?? 0)?.[String((s as any)._hc_npcid ?? 0)];
+  (s as any)._hc_nn = ((s as any).npc_nickname ?? 0)?.[String((s as any)._hc_npcid ?? 0)];
+  (s as any)._hc_ln = ((s as any).npc_lastname ?? 0)?.[String((s as any)._hc_npcid ?? 0)];
+  (s as any)._hc_un = ((s as any).npc_usedname ?? 0)?.[String((s as any)._hc_npcid ?? 0)];
   if (((s as any)._hc_un ?? 0) !== '') {
+    (s as any).help_page_title = ((s as any)._hc_un ?? 0);
   } else {
     if (((s as any)._hc_fn ?? 0) !== '') {
+      (s as any).help_page_title = ((s as any)._hc_fn ?? 0);
+    } else {
+      (s as any).help_page_title = '(Unknown)';
     }
   }
+  (s as any)._hc_full = ((s as any)._hc_fn ?? 0);
   if (((s as any)._hc_nn ?? 0) !== ''  &&  ((s as any)._hc_nn ?? 0) !== ((s as any)._hc_fn ?? 0)) {
     // TODO-QSP: $_hc_full  += ' ''' + $_hc_nn + ''''
   }
@@ -23,30 +32,48 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $_hc_full  += ' ' + $_hc_ln
   }
   if (((s as any).npc_dob ?? 0)?.[String((s as any)._hc_npcid ?? 0)] > 0) {
+    (s as any)._hc_birthday = qspFunc(s, 'shortgs', 'convert_dob', ((s as any)._hc_npcid ?? 0));
+  } else {
+    (s as any)._hc_birthday = 'Unknown';
   }
   if (((s as any)._hc_residence ?? 0) === '') {
+    (s as any)._hc_residence = 'Unknown';
   }
+  (s as any)._hc_curloc = '';
   if (((s as any)._hc_npcid ?? 0) === 'A28') {
+    (s as any)._hc_locvar = 'Stepdad';
   } else {
     if (((s as any)._hc_npcid ?? 0) === 'A29') {
+      (s as any)._hc_locvar = 'Mother';
     } else {
       if (((s as any)._hc_npcid ?? 0) === 'A33') {
+        (s as any)._hc_locvar = 'Anya';
       } else {
         if (((s as any)._hc_npcid ?? 0) === 'A34') {
+          (s as any)._hc_locvar = 'Kolka';
         } else {
           if (((s as any)._hc_npcid ?? 0) === 'A4') {
+            (s as any)._hc_locvar = 'igor';
           } else {
             if (((s as any)._hc_npcid ?? 0) === 'A14') {
+              (s as any)._hc_locvar = 'katja';
             } else {
               if (((s as any)._hc_npcid ?? 0) === 'A15') {
+                (s as any)._hc_locvar = 'Vicky';
               } else {
                 if (((s as any)._hc_npcid ?? 0) === 'A13') {
+                  (s as any)._hc_locvar = 'Lariska';
                 } else {
                   if (((s as any)._hc_npcid ?? 0) === 'A18') {
+                    (s as any)._hc_locvar = 'Christina';
                   } else {
                     if (((s as any)._hc_npcid ?? 0) === 'A23') {
+                      (s as any)._hc_locvar = 'A23';
                     } else {
                       if (((s as any)._hc_npcid ?? 0) === 'A248') {
+                        (s as any)._hc_locvar = 'Silvestr';
+                      } else {
+                        (s as any)._hc_locvar = '';
                       }
                     }
                   }
@@ -60,21 +87,33 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any)._hc_locvar ?? 0) !== '') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLocText(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (s as any)._hc_curloc = ((s as any).result ?? 0);
   }
+  (s as any)._hc_relhtml = '';
   (s as any)._hc_i = 0;
   // TODO-QSP: :_hc_relloop
   if (((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)] !== '') {
-    (s as any)._hc_p1 = qspUntranslated(s, "instr(_hc_rel[_hc_i], '|')", { location: "help_characters" });
-    (s as any)._hc_p2 = qspUntranslated(s, "instr(_hc_rest, '|')", { location: "help_characters" });
+    (s as any)._hc_p1 = ((String(((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)]).indexOf(String('|'))) + 1);
+    (s as any)._hc_reltype = (String(qspUntranslated(s, "$\u00000\u0000", { location: "help_characters" })).slice((1)-1, ((1)-1)+(((s as any)._hc_p1 ?? 0) - 1)));
+    (s as any)._hc_rest = (String(qspUntranslated(s, "$\u00000\u0000", { location: "help_characters" })).slice((((s as any)._hc_p1 ?? 0) + 1)-1));
+    (s as any)._hc_p2 = ((String(((s as any)._hc_rest ?? 0)).indexOf(String('|'))) + 1);
+    (s as any)._hc_relkey = (String(((s as any)._hc_rest ?? 0)).slice((1)-1, ((1)-1)+(((s as any)._hc_p2 ?? 0) - 1)));
+    (s as any)._hc_relnpc = (String(((s as any)._hc_rest ?? 0)).slice((((s as any)._hc_p2 ?? 0) + 1)-1));
     if (((s as any)._hc_relnpc ?? 0) === 'PC') {
+      (s as any)._hc_relname = ((s as any).pcs_firstname ?? 0);
     } else {
       if (((s as any).npc_usedname ?? 0)?.[String((s as any)._hc_relnpc ?? 0)] !== '') {
+        (s as any)._hc_relname = ((s as any).npc_usedname ?? 0)?.[String((s as any)._hc_relnpc ?? 0)];
+      } else {
+        (s as any)._hc_relname = ((s as any).npc_firstname ?? 0)?.[String((s as any)._hc_relnpc ?? 0)];
       }
     }
+    (s as any)._hc_href = 'exec: gs ' + '\'' + 'help_characters' + '\'' + ', ' + '\'' + ((s as any)._hc_relkey ?? 0) + '\'';
     // TODO-QSP: $_hc_relhtml += '<li>' + $_hc_reltype + ': <a href="' + $_hc_href + '">' + $_hc_relname + '</a></li>...
     (s as any)._hc_i = ((s as any)._hc_i ?? 0) + (1);
     // TODO-QSP: jump '_hc_relloop'
   }
+  (s as any)._hc_info = '<b style="font-size:1.05em">' + ((s as any)._hc_full ?? 0) + '</b>';
   // TODO-QSP: $_hc_info += '<table style="margin:4px 0 6px 0;border-collapse:collapse">'
   // TODO-QSP: $_hc_info += '<tr><td style="padding:1px 10px 1px 0;opacity:0.65"><b>Birthday</b></td><td>' + $_hc_b...
   // TODO-QSP: $_hc_info += '<tr><td style="padding:1px 10px 1px 0;opacity:0.65"><b>Residence</b></td><td>' + $_hc_...
@@ -88,8 +127,10 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any)._hc_bio ?? 0) === '') {
     if (qspFunc(s, 'npc_notes', ((s as any)._hc_npcid ?? 0)) !== '') {
+      (s as any)._hc_bio = '<p>' + qspFunc(s, 'npc_notes', '$_hc_npcid') + '</p>';
     }
   }
+  (s as any).help_page_content = '<table cellspacing="0" cellpadding="0" style="margin:4px 0 8px 0;width:100%"><tr>';
   // TODO-QSP: $help_page_content += '<td style="width:1%;white-space:nowrap;vertical-align:top;padding-right:14px"...
   // TODO-QSP: $help_page_content += '<img src="' + $_hc_portrait + '" style="height:200px;width:auto;max-width:180...
   // TODO-QSP: $help_page_content += '</td>'
@@ -107,37 +148,53 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
 function enterLocText(s: GameState, scene: SceneBuilder): void {
   if (((s as any)._hc_locvar ?? 0) === 'Stepdad'  ||  ((s as any)._hc_locvar ?? 0) === 'Mother'  ||  ((s as any)._hc_locvar ?? 0) === 'Anya'  ||  ((s as any)._hc_locvar ?? 0) === 'Kolka') {
     if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
+      (s as any).result = 'In the village (Gad)';
       return;
     }
   }
   if (((s as any)._hc_locvar ?? 0) === 'Anya'  &&  ((s as any).locat ?? 0)?.['Anya_Gad'] === 1) {
+    (s as any).result = 'In the village (Gad)';
     return;
   }
   (s as any)._hc_lv = ((s as any).locat ?? 0)?.[String((s as any)._hc_locvar ?? 0)];
   if (((s as any)._hc_locvar ?? 0) === 'Stepdad') {
     if (((s as any)._hc_lv ?? 0) === 1) {
+      (s as any).result = 'Asleep';
     } else {
       if (((s as any)._hc_lv ?? 0) === 2) {
+        (s as any).result = 'Home - getting ready';
       } else {
         if (((s as any)._hc_lv ?? 0) === 3) {
+          (s as any).result = 'Home - breakfast';
         } else {
           if (((s as any)._hc_lv ?? 0) === 4) {
+            (s as any).result = 'Home - kitchen';
           } else {
             if (((s as any)._hc_lv ?? 0) === 5) {
+              (s as any).result = 'Home - getting dressed';
             } else {
               if (((s as any)._hc_lv ?? 0) === 6) {
+                (s as any).result = 'At work (driving)';
               } else {
                 if (((s as any)._hc_lv ?? 0) === 7) {
+                  (s as any).result = 'Home - setting the table';
                 } else {
                   if (((s as any)._hc_lv ?? 0) === 8) {
+                    (s as any).result = 'Home - dinner';
                   } else {
                     if (((s as any)._hc_lv ?? 0) === 9) {
+                      (s as any).result = 'In the garage';
                     } else {
                       if (((s as any)._hc_lv ?? 0) === 10) {
+                        (s as any).result = 'Home - living room';
                       } else {
                         if (((s as any)._hc_lv ?? 0) === 11) {
+                          (s as any).result = 'Home - shower';
                         } else {
                           if (((s as any)._hc_lv ?? 0) === 12) {
+                            (s as any).result = 'Away';
+                          } else {
+                            (s as any).result = 'Unknown';
                           }
                         }
                       }
@@ -153,44 +210,66 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any)._hc_locvar ?? 0) === 'Mother') {
       if (((s as any)._hc_lv ?? 0) === 1) {
+        (s as any).result = 'Asleep';
       } else {
         if (((s as any)._hc_lv ?? 0) === 2) {
+          (s as any).result = 'Home - shower';
         } else {
           if (((s as any)._hc_lv ?? 0) === 3) {
+            (s as any).result = 'Home - getting dressed';
           } else {
             if (((s as any)._hc_lv ?? 0) === 4) {
+              (s as any).result = 'Home - kitchen';
             } else {
               if (((s as any)._hc_lv ?? 0) === 7) {
+                (s as any).result = 'At the supermarket';
               } else {
                 if (((s as any)._hc_lv ?? 0) === 8) {
+                  (s as any).result = 'Walking home';
                 } else {
                   if (((s as any)._hc_lv ?? 0) === 9) {
+                    (s as any).result = 'At work (cafe)';
                   } else {
                     if (((s as any)._hc_lv ?? 0) === 10) {
+                      (s as any).result = 'Walking home from work';
                     } else {
                       if (((s as any)._hc_lv ?? 0) === 11) {
+                        (s as any).result = 'Home - making dinner';
                       } else {
                         if (((s as any)._hc_lv ?? 0) === 12) {
+                          (s as any).result = 'Home - dinner';
                         } else {
                           if (((s as any)._hc_lv ?? 0) === 13) {
+                            (s as any).result = 'Home - cleaning up';
                           } else {
                             if (((s as any)._hc_lv ?? 0) === 14) {
+                              (s as any).result = 'Traveling';
                             } else {
                               if (((s as any)._hc_lv ?? 0) === 15) {
+                                (s as any).result = 'Shopping';
                               } else {
                                 if (((s as any)._hc_lv ?? 0) === 16) {
+                                  (s as any).result = 'At church';
                                 } else {
                                   if (((s as any)._hc_lv ?? 0) === 17) {
+                                    (s as any).result = 'Out (evening)';
                                   } else {
                                     if (((s as any)._hc_lv ?? 0) === 18) {
+                                      (s as any).result = 'At church (evening mass)';
                                     } else {
                                       if (((s as any)._hc_lv ?? 0) === 19) {
+                                        (s as any).result = 'Home - watching TV';
                                       } else {
                                         if (((s as any)._hc_lv ?? 0) === 20) {
+                                          (s as any).result = 'Visiting Luda';
                                         } else {
                                           if (((s as any)._hc_lv ?? 0) === 21) {
+                                            (s as any).result = 'At the salon';
                                           } else {
                                             if (((s as any)._hc_lv ?? 0) === 23  ||  ((s as any)._hc_lv ?? 0) === 24  ||  ((s as any)._hc_lv ?? 0) === 25  ||  ((s as any)._hc_lv ?? 0) === 26) {
+                                              (s as any).result = 'Home - cleaning';
+                                            } else {
+                                              (s as any).result = 'Unknown';
                                             }
                                           }
                                         }
@@ -214,30 +293,45 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any)._hc_locvar ?? 0) === 'Anya') {
         if (((s as any)._hc_lv ?? 0) === 1) {
+          (s as any).result = 'Asleep';
         } else {
           if (((s as any)._hc_lv ?? 0) === 2  ||  ((s as any)._hc_lv ?? 0) === 3  ||  ((s as any)._hc_lv ?? 0) === 4  ||  ((s as any)._hc_lv ?? 0) === 5) {
+            (s as any).result = 'Home';
           } else {
             if (((s as any)._hc_lv ?? 0) === 7) {
+              (s as any).result = 'At work';
             } else {
               if (((s as any)._hc_lv ?? 0) === 8  ||  ((s as any)._hc_lv ?? 0) === 9) {
+                (s as any).result = 'Commuting';
               } else {
                 if (((s as any)._hc_lv ?? 0) === 10  ||  ((s as any)._hc_lv ?? 0) === 21) {
+                  (s as any).result = 'At community center';
                 } else {
                   if (((s as any)._hc_lv ?? 0) === 11) {
+                    (s as any).result = 'Home - in room';
                   } else {
                     if (((s as any)._hc_lv ?? 0) === 12) {
+                      (s as any).result = 'Home - dinner';
                     } else {
                       if (((s as any)._hc_lv ?? 0) === 13) {
+                        (s as any).result = 'Out with friends';
                       } else {
                         if (((s as any)._hc_lv ?? 0) === 14) {
+                          (s as any).result = 'Out with Roma';
                         } else {
                           if (((s as any)._hc_lv ?? 0) === 15  ||  ((s as any)._hc_lv ?? 0) === 16  ||  ((s as any)._hc_lv ?? 0) === 23) {
+                            (s as any).result = 'Home';
                           } else {
                             if (((s as any)._hc_lv ?? 0) === 17) {
+                              (s as any).result = 'At the beach';
                             } else {
                               if (((s as any)._hc_lv ?? 0) === 24) {
+                                (s as any).result = 'At a party';
                               } else {
                                 if (((s as any)._hc_lv ?? 0) === 26) {
+                                  (s as any).result = 'Returning from party';
+                                } else {
+                                  (s as any).result = 'Unknown';
                                 }
                               }
                             }
@@ -254,16 +348,24 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any)._hc_locvar ?? 0) === 'Kolka') {
           if (((s as any)._hc_lv ?? 0) === 1) {
+            (s as any).result = 'Asleep';
           } else {
             if (((s as any)._hc_lv ?? 0) === 2  ||  ((s as any)._hc_lv ?? 0) === 3  ||  ((s as any)._hc_lv ?? 0) === 7  ||  ((s as any)._hc_lv ?? 0) === 8  ||  ((s as any)._hc_lv ?? 0) === 10  ||  ((s as any)._hc_lv ?? 0) === 11) {
+              (s as any).result = 'Home';
             } else {
               if (((s as any)._hc_lv ?? 0) === 4) {
+                (s as any).result = 'Walking to school';
               } else {
                 if (((s as any)._hc_lv ?? 0) === 5) {
+                  (s as any).result = 'At school';
                 } else {
                   if (((s as any)._hc_lv ?? 0) === 6) {
+                    (s as any).result = 'Track field';
                   } else {
                     if (((s as any)._hc_lv ?? 0) === 9) {
+                      (s as any).result = 'Out with friends';
+                    } else {
+                      (s as any).result = 'Unknown';
                     }
                   }
                 }
@@ -273,16 +375,24 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any)._hc_locvar ?? 0) === 'igor') {
             if (((s as any)._hc_lv ?? 0) === 1) {
+              (s as any).result = 'Asleep';
             } else {
               if (((s as any)._hc_lv ?? 0) === 2  ||  ((s as any)._hc_lv ?? 0) === 3  ||  ((s as any)._hc_lv ?? 0) === 7) {
+                (s as any).result = 'Home';
               } else {
                 if (((s as any)._hc_lv ?? 0) === 4) {
+                  (s as any).result = 'Walking to school';
                 } else {
                   if (((s as any)._hc_lv ?? 0) === 5) {
+                    (s as any).result = 'At school';
                   } else {
                     if (((s as any)._hc_lv ?? 0) === 6) {
+                      (s as any).result = 'Near school';
                     } else {
                       if (((s as any)._hc_lv ?? 0) === 8) {
+                        (s as any).result = 'At community center disco';
+                      } else {
+                        (s as any).result = 'Unknown';
                       }
                     }
                   }
@@ -292,24 +402,36 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any)._hc_locvar ?? 0) === 'katja') {
               if (((s as any)._hc_lv ?? 0) === 1  ||  ((s as any)._hc_lv ?? 0) === 20) {
+                (s as any).result = 'Asleep';
               } else {
                 if (((s as any)._hc_lv ?? 0) === 2  ||  ((s as any)._hc_lv ?? 0) === 3  ||  ((s as any)._hc_lv ?? 0) === 9) {
+                  (s as any).result = 'Home (Meynold house)';
                 } else {
                   if (((s as any)._hc_lv ?? 0) === 4  ||  ((s as any)._hc_lv ?? 0) === 7) {
+                    (s as any).result = 'Walking to school';
                   } else {
                     if (((s as any)._hc_lv ?? 0) === 5) {
+                      (s as any).result = 'At school';
                     } else {
                       if (((s as any)._hc_lv ?? 0) === 6) {
+                        (s as any).result = 'Near school';
                       } else {
                         if (((s as any)._hc_lv ?? 0) === 8) {
+                          (s as any).result = 'At community center disco';
                         } else {
                           if (((s as any)._hc_lv ?? 0) === 10) {
+                            (s as any).result = 'At the lake beach';
                           } else {
                             if (((s as any)._hc_lv ?? 0) >= 21  &&  ((s as any)._hc_lv ?? 0) <= 35) {
+                              (s as any).result = 'At university (dorm / campus)';
                             } else {
                               if (((s as any)._hc_lv ?? 0) === 36) {
+                                (s as any).result = 'Out - restaurant';
                               } else {
                                 if (((s as any)._hc_lv ?? 0) === 37) {
+                                  (s as any).result = 'Out - party / bar / cafe';
+                                } else {
+                                  (s as any).result = 'Unknown';
                                 }
                               }
                             }
@@ -323,16 +445,24 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any)._hc_locvar ?? 0) === 'Vicky') {
                 if (((s as any)._hc_lv ?? 0) === 1) {
+                  (s as any).result = 'Asleep';
                 } else {
                   if (((s as any)._hc_lv ?? 0) === 2  ||  ((s as any)._hc_lv ?? 0) === 3) {
+                    (s as any).result = 'Home (Meynold house)';
                   } else {
                     if (((s as any)._hc_lv ?? 0) === 4) {
+                      (s as any).result = 'Walking to school';
                     } else {
                       if (((s as any)._hc_lv ?? 0) === 5) {
+                        (s as any).result = 'At school';
                       } else {
                         if (((s as any)._hc_lv ?? 0) === 6) {
+                          (s as any).result = 'Cheerleader practice';
                         } else {
                           if (((s as any)._hc_lv ?? 0) === 7) {
+                            (s as any).result = 'Game night';
+                          } else {
+                            (s as any).result = 'Unknown';
                           }
                         }
                       }
@@ -342,12 +472,18 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any)._hc_locvar ?? 0) === 'Lariska') {
                   if (((s as any)._hc_lv ?? 0) === 1) {
+                    (s as any).result = 'Asleep';
                   } else {
                     if (((s as any)._hc_lv ?? 0) === 2  ||  ((s as any)._hc_lv ?? 0) === 3) {
+                      (s as any).result = 'Home';
                     } else {
                       if (((s as any)._hc_lv ?? 0) === 4) {
+                        (s as any).result = 'Walking to school';
                       } else {
                         if (((s as any)._hc_lv ?? 0) === 5) {
+                          (s as any).result = 'At school';
+                        } else {
+                          (s as any).result = 'Unknown';
                         }
                       }
                     }
@@ -355,18 +491,27 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any)._hc_locvar ?? 0) === 'Christina') {
                     if (((s as any)._hc_lv ?? 0) === 1) {
+                      (s as any).result = 'Asleep';
                     } else {
                       if (((s as any)._hc_lv ?? 0) === 2  ||  ((s as any)._hc_lv ?? 0) === 3  ||  ((s as any)._hc_lv ?? 0) === 11  ||  ((s as any)._hc_lv ?? 0) === 12  ||  ((s as any)._hc_lv ?? 0) === 13  ||  ((s as any)._hc_lv ?? 0) === 14  ||  ((s as any)._hc_lv ?? 0) === 22) {
+                        (s as any).result = 'Home (Zvereva house)';
                       } else {
                         if (((s as any)._hc_lv ?? 0) === 4) {
+                          (s as any).result = 'Walking to school';
                         } else {
                           if (((s as any)._hc_lv ?? 0) === 5) {
+                            (s as any).result = 'At school';
                           } else {
                             if (((s as any)._hc_lv ?? 0) === 6) {
+                              (s as any).result = 'Cheerleader practice';
                             } else {
                               if (((s as any)._hc_lv ?? 0) === 7) {
+                                (s as any).result = 'Game night';
                               } else {
                                 if (((s as any)._hc_lv ?? 0) === 9) {
+                                  (s as any).result = 'Jogging';
+                                } else {
+                                  (s as any).result = 'Unknown';
                                 }
                               }
                             }
@@ -377,32 +522,48 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any)._hc_locvar ?? 0) === 'A23') {
                       if (((s as any)._hc_lv ?? 0) === 1  ||  ((s as any)._hc_lv ?? 0) === 9) {
+                        (s as any).result = 'Asleep';
                       } else {
                         if (((s as any)._hc_lv ?? 0) === 2) {
+                          (s as any).result = 'At school';
                         } else {
                           if (((s as any)._hc_lv ?? 0) === 3) {
+                            (s as any).result = 'At Starlets';
                           } else {
                             if (((s as any)._hc_lv ?? 0) === 4) {
+                              (s as any).result = 'Cheerleading practice';
                             } else {
                               if (((s as any)._hc_lv ?? 0) === 5) {
+                                (s as any).result = 'At community center disco';
                               } else {
                                 if (((s as any)._hc_lv ?? 0) === 6) {
+                                  (s as any).result = 'At the lake';
                                 } else {
                                   if (((s as any)._hc_lv ?? 0) === 7) {
+                                    (s as any).result = 'In the city';
                                   } else {
                                     if (((s as any)._hc_lv ?? 0) === 8) {
+                                      (s as any).result = 'Jogging';
                                     } else {
                                       if (((s as any)._hc_lv ?? 0) >= 10  &&  ((s as any)._hc_lv ?? 0) <= 19) {
+                                        (s as any).result = 'At university (dorm / campus)';
                                       } else {
                                         if (((s as any)._hc_lv ?? 0) === 20) {
+                                          (s as any).result = 'At the gym';
                                         } else {
                                           if (((s as any)._hc_lv ?? 0) === 21  ||  ((s as any)._hc_lv ?? 0) === 22) {
+                                            (s as any).result = 'At work (strip club)';
                                           } else {
                                             if (((s as any)._hc_lv ?? 0) === 35) {
+                                              (s as any).result = 'On vacation';
                                             } else {
                                               if (((s as any)._hc_lv ?? 0) === 36) {
+                                                (s as any).result = 'At Lazar\'s place';
                                               } else {
                                                 if (((s as any)._hc_lv ?? 0) === 37) {
+                                                  (s as any).result = 'Walking home from Lazar\'s place';
+                                                } else {
+                                                  (s as any).result = 'Unknown';
                                                 }
                                               }
                                             }
@@ -419,6 +580,9 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
                       }
                     } else {
                       if (((s as any)._hc_locvar ?? 0) === 'Silvestr') {
+                        (s as any).result = 'Unknown';
+                      } else {
+                        (s as any).result = 'Unknown';
                       }
                     }
                   }
@@ -436,6 +600,8 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharsPc(s: GameState, scene: SceneBuilder): void {
+  (s as any).help_page_title = ((s as any).pcs_firstname ?? 0) + ' ' + ((s as any).pcs_lastname ?? 0) + ' (You)';
+  (s as any).help_page_content = '<p><em>Coming soon.</em></p>';
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
   return;
   // TODO-QSP: end
@@ -443,10 +609,16 @@ function enterCharsPc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharDad(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A28';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big28.jpg';
+  (s as any)._hc_residence = 'Apt. 7, apartment building, Pavlovsk';
+  (s as any)._hc_locvar = 'Stepdad';
   // TODO-QSP: $_hc_rel[0] = 'Married to|char_mom|A29'
   // TODO-QSP: $_hc_rel[1] = 'Stepfather of|chars_pc|PC'
   // TODO-QSP: $_hc_rel[2] = 'Stepfather of|char_anya|A33'
   // TODO-QSP: $_hc_rel[3] = 'Stepfather of|char_kolka|A34'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -454,6 +626,11 @@ function enterCharDad(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMom(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A29';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big29.jpg';
+  (s as any)._hc_residence = 'Apt. 7, apartment building, Pavlovsk';
+  (s as any)._hc_locvar = 'Mother';
   // TODO-QSP: $_hc_rel[0] = 'Married to|char_dad|A28'
   // TODO-QSP: $_hc_rel[1] = 'Mother of|chars_pc|PC'
   // TODO-QSP: $_hc_rel[2] = 'Mother of|char_anya|A33'
@@ -461,6 +638,7 @@ function enterCharMom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[4] = 'Sister of|char_luda|A30'
   // TODO-QSP: $_hc_rel[5] = 'Daughter of|char_grandma|A31'
   // TODO-QSP: $_hc_rel[6] = 'Daughter of|char_grandpa|A32'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -468,10 +646,15 @@ function enterCharMom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLuda(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A30';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big30.jpg';
+  (s as any)._hc_residence = 'Apt. 21, apartment building, Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Sister of|char_mom|A29'
   // TODO-QSP: $_hc_rel[1] = 'Daughter of|char_grandma|A31'
   // TODO-QSP: $_hc_rel[2] = 'Daughter of|char_grandpa|A32'
   // TODO-QSP: $_hc_rel[3] = 'Aunt of|chars_pc|PC'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -479,10 +662,15 @@ function enterCharLuda(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharGrandma(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A31';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big31.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
   // TODO-QSP: $_hc_rel[0] = 'Married to|char_grandpa|A32'
   // TODO-QSP: $_hc_rel[1] = 'Daughter|char_mom|A29'
   // TODO-QSP: $_hc_rel[2] = 'Daughter|char_luda|A30'
   // TODO-QSP: $_hc_rel[3] = 'Long-time farmhand|char_grigory|A221'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -490,10 +678,15 @@ function enterCharGrandma(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharGrandpa(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A32';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big32.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
   // TODO-QSP: $_hc_rel[0] = 'Married to|char_grandma|A31'
   // TODO-QSP: $_hc_rel[1] = 'Daughter|char_mom|A29'
   // TODO-QSP: $_hc_rel[2] = 'Daughter|char_luda|A30'
   // TODO-QSP: $_hc_rel[3] = 'Long-time farmhand|char_grigory|A221'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -501,11 +694,17 @@ function enterCharGrandpa(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAnya(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A33';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big33.jpg';
+  (s as any)._hc_residence = 'Apt. 7, apartment building, Pavlovsk';
+  (s as any)._hc_locvar = 'Anya';
   // TODO-QSP: $_hc_rel[0] = 'Stepfather|char_dad|A28'
   // TODO-QSP: $_hc_rel[1] = 'Mother|char_mom|A29'
   // TODO-QSP: $_hc_rel[2] = 'Younger sister|chars_pc|PC'
   // TODO-QSP: $_hc_rel[3] = 'Younger brother|char_kolka|A34'
   // TODO-QSP: $_hc_rel[4] = 'Boyfriend|char_roma|A56'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -513,10 +712,16 @@ function enterCharAnya(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharKolka(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A34';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big34.jpg';
+  (s as any)._hc_residence = 'Apt. 7, apartment building, Pavlovsk';
+  (s as any)._hc_locvar = 'Kolka';
   // TODO-QSP: $_hc_rel[0] = 'Stepfather|char_dad|A28'
   // TODO-QSP: $_hc_rel[1] = 'Mother|char_mom|A29'
   // TODO-QSP: $_hc_rel[2] = 'Older sister|chars_pc|PC'
   // TODO-QSP: $_hc_rel[3] = 'Older sister|char_anya|A33'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -524,7 +729,12 @@ function enterCharKolka(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharUncleMisha(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A54';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big54.jpg';
+  (s as any)._hc_residence = 'Apt. 9, apartment building, Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Uncle of|chars_pc|PC'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -532,7 +742,12 @@ function enterCharUncleMisha(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharDimka(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A1';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big1.jpg';
+  (s as any)._hc_residence = 'Private house, Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_igor|A4'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -540,7 +755,13 @@ function enterCharDimka(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharIgor(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A4';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big4.jpg';
+  (s as any)._hc_residence = 'Private house, Pavlovsk';
+  (s as any)._hc_locvar = 'igor';
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_dimka|A1'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -548,7 +769,12 @@ function enterCharIgor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMarcus(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A146';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big146.jpg';
+  (s as any)._hc_residence = 'Staying with the Aleksandrov family, Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Best friend and host family|char_andrey|A147'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -556,9 +782,13 @@ function enterCharMarcus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAndrey(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A147';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big147.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_marcus|A146'
   // TODO-QSP: $_hc_rel[1] = 'Girlfriend|char_stasya|A139'
   // TODO-QSP: $_hc_rel[2] = 'Aunt|char_miss_aleksand|A136'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -566,6 +796,10 @@ function enterCharAndrey(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMefodiy(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A148';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big148.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -573,8 +807,14 @@ function enterCharMefodiy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharKatja(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A14';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big14.jpg';
+  (s as any)._hc_residence = 'Meynold house, Pavlovsk';
+  (s as any)._hc_locvar = 'katja';
   // TODO-QSP: $_hc_rel[0] = 'Twin sister|char_vicky|A15'
   // TODO-QSP: $_hc_rel[1] = 'Brother|char_roma|A56'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -582,8 +822,14 @@ function enterCharKatja(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVicky(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A15';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big15.jpg';
+  (s as any)._hc_residence = 'Meynold house, Pavlovsk';
+  (s as any)._hc_locvar = 'Vicky';
   // TODO-QSP: $_hc_rel[0] = 'Twin sister|char_katja|A14'
   // TODO-QSP: $_hc_rel[1] = 'Brother|char_roma|A56'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -591,6 +837,10 @@ function enterCharVicky(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharIrina(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A17';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big17.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -598,6 +848,10 @@ function enterCharIrina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharBella(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A22';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big22.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -605,7 +859,11 @@ function enterCharBella(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharStasya(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A139';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big139.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Boyfriend|char_andrey|A147'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -613,6 +871,10 @@ function enterCharStasya(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLizaveta(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A140';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big140.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -620,7 +882,11 @@ function enterCharLizaveta(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharSonia(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A25';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big25.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Step-brother|char_shulyov|A127'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -628,7 +894,11 @@ function enterCharSonia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharIvan(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A3';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big3.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Training partner|char_fedor|A5'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -636,7 +906,11 @@ function enterCharIvan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharFedor(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A5';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big5.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Training partner|char_ivan|A3'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -644,6 +918,10 @@ function enterCharFedor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharSvyatoslav(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A8';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big8.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -651,6 +929,10 @@ function enterCharSvyatoslav(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLazar(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A149';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big149.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -658,6 +940,10 @@ function enterCharLazar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharErast(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A150';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big150.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -665,6 +951,10 @@ function enterCharErast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVanya(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A165';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big165.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -672,7 +962,13 @@ function enterCharVanya(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLariska(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A13';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big13.jpg';
+  (s as any)._hc_residence = 'Private house, Pavlovsk (richer district)';
+  (s as any)._hc_locvar = 'Lariska';
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_christina|A18'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -680,9 +976,15 @@ function enterCharLariska(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharChristina(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A18';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big18.jpg';
+  (s as any)._hc_residence = 'Private house, Pavlovsk';
+  (s as any)._hc_locvar = 'Christina';
   // TODO-QSP: $_hc_rel[0] = 'Friend|char_lariska|A13'
   // TODO-QSP: $_hc_rel[1] = 'Friend|char_lina|A19'
   // TODO-QSP: $_hc_rel[2] = 'Older brother|char_silvestr|A248'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -690,7 +992,11 @@ function enterCharChristina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLina(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A19';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big19.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Friend|char_christina|A18'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -698,6 +1004,12 @@ function enterCharLina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAlbina(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A23';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big23.jpg';
+  (s as any)._hc_residence = 'Mansion, Pavlovsk';
+  (s as any)._hc_locvar = 'A23';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -705,6 +1017,10 @@ function enterCharAlbina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharRonnie(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A141';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big141.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -712,7 +1028,12 @@ function enterCharRonnie(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharArtem(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A2';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big2.jpg';
+  (s as any)._hc_residence = 'Apt. 2, apartment building, Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Close friend|char_petka|A6'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -720,7 +1041,11 @@ function enterCharArtem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharPetka(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A6';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big6.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Close friend|char_artem|A2'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -728,6 +1053,10 @@ function enterCharPetka(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharEvgeny(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A151';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big151.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -735,6 +1064,10 @@ function enterCharEvgeny(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharFeofan(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A152';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big152.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -742,6 +1075,10 @@ function enterCharFeofan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharGerasim(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A153';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big153.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -749,6 +1086,11 @@ function enterCharGerasim(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharJulia(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A12';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big12.jpg';
+  (s as any)._hc_residence = 'Apt. 15, apartment building, Pavlovsk';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -756,6 +1098,10 @@ function enterCharJulia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharNatashaS(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A16';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big16.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -763,7 +1109,11 @@ function enterCharNatashaS(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharZina(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A142';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big142.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Brother|char_petia|A159'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -771,6 +1121,11 @@ function enterCharZina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharNatalia(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A240';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big240.jpg';
+  (s as any)._hc_residence = 'Apt. 19, apartment building, Pavlovsk';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -778,9 +1133,13 @@ function enterCharNatalia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVitek(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A9';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big9.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Twin sister|char_lena|A20'
   // TODO-QSP: $_hc_rel[1] = 'Best friend|char_dan|A10'
   // TODO-QSP: $_hc_rel[2] = 'Best friend|char_shulga|A11'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -788,8 +1147,12 @@ function enterCharVitek(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharDan(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A10';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big10.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_vitek|A9'
   // TODO-QSP: $_hc_rel[1] = 'Best friend|char_shulga|A11'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -797,9 +1160,14 @@ function enterCharDan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharShulga(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A11';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big11.jpg';
+  (s as any)._hc_residence = 'Apt. 13, apartment building, Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_vitek|A9'
   // TODO-QSP: $_hc_rel[1] = 'Best friend|char_dan|A10'
   // TODO-QSP: $_hc_rel[2] = 'Father|char_sergey|A112'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -807,9 +1175,13 @@ function enterCharShulga(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharRadomir(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A154';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big154.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Bandmate (guitarist)|char_anushka|A144'
   // TODO-QSP: $_hc_rel[1] = 'Bandmate (drummer)|char_arkadi|A156'
   // TODO-QSP: $_hc_rel[2] = 'Bandmate (bassist)|char_valentin|A158'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -817,6 +1189,10 @@ function enterCharRadomir(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLavrenti(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A155';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big155.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -824,9 +1200,13 @@ function enterCharLavrenti(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharArkadi(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A156';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big156.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Bandmate (lead)|char_radomir|A154'
   // TODO-QSP: $_hc_rel[1] = 'Bandmate|char_anushka|A144'
   // TODO-QSP: $_hc_rel[2] = 'Bandmate|char_valentin|A158'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -834,7 +1214,11 @@ function enterCharArkadi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharRomanY(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A157';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big157.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Associate|char_niko|A189'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -842,9 +1226,13 @@ function enterCharRomanY(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharValentin(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A158';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big158.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Bandmate (lead)|char_radomir|A154'
   // TODO-QSP: $_hc_rel[1] = 'Bandmate|char_anushka|A144'
   // TODO-QSP: $_hc_rel[2] = 'Bandmate|char_arkadi|A156'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -852,7 +1240,11 @@ function enterCharValentin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharNiko(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A189';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big189.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Associate|char_roman_y|A157'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -860,8 +1252,12 @@ function enterCharNiko(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLena(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A20';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big20.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Twin brother|char_vitek|A9'
   // TODO-QSP: $_hc_rel[1] = 'Best friend|char_lera|A21'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -869,10 +1265,14 @@ function enterCharLena(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLera(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A21';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big21.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Father|char_anatoly|A26'
   // TODO-QSP: $_hc_rel[1] = 'Mother|char_vera|A27'
   // TODO-QSP: $_hc_rel[2] = 'Cousin|char_lesco|A7'
   // TODO-QSP: $_hc_rel[3] = 'Best friend|char_lena|A20'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -880,6 +1280,10 @@ function enterCharLera(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharPauline(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A24';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big24.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -887,6 +1291,10 @@ function enterCharPauline(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAlyona(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A143';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big143.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -894,9 +1302,13 @@ function enterCharAlyona(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAnushka(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A144';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big144.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Bandmate (lead)|char_radomir|A154'
   // TODO-QSP: $_hc_rel[1] = 'Bandmate|char_arkadi|A156'
   // TODO-QSP: $_hc_rel[2] = 'Bandmate|char_valentin|A158'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -904,6 +1316,10 @@ function enterCharAnushka(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharKatyusha(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A145';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big145.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -911,8 +1327,12 @@ function enterCharKatyusha(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLesco(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A7';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big7.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Uncle|char_anatoly|A26'
   // TODO-QSP: $_hc_rel[1] = 'Cousin|char_lera|A21'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -920,7 +1340,11 @@ function enterCharLesco(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharPetia(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A159';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big159.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Sister|char_zina|A142'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -928,6 +1352,10 @@ function enterCharPetia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharCoach(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A69';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big69.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -935,6 +1363,10 @@ function enterCharCoach(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVasilyev(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A128';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big128.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -942,6 +1374,10 @@ function enterCharVasilyev(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharIvanov(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A129';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big129.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -949,6 +1385,10 @@ function enterCharIvanov(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharYenotin(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A130';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big130.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -956,6 +1396,10 @@ function enterCharYenotin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharPavlovich(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A131';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big131.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -963,6 +1407,10 @@ function enterCharPavlovich(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharKuznetsovT(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A132';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big132.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -970,6 +1418,10 @@ function enterCharKuznetsovT(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMatveev(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A133';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big133.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -977,6 +1429,10 @@ function enterCharMatveev(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMissVolkov(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A134';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big134.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -984,6 +1440,10 @@ function enterCharMissVolkov(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMissSokoloff(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A135';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big135.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -991,7 +1451,11 @@ function enterCharMissSokoloff(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMissAleksand(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A136';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big136.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Nephew|char_andrey|A147'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -999,6 +1463,10 @@ function enterCharMissAleksand(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMissBraakman(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A137';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big137.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1006,6 +1474,10 @@ function enterCharMissBraakman(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMissOrlov(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A138';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big138.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1013,9 +1485,13 @@ function enterCharMissOrlov(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAnatoly(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A26';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big26.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Married to|char_vera|A27'
   // TODO-QSP: $_hc_rel[1] = 'Daughter|char_lera|A21'
   // TODO-QSP: $_hc_rel[2] = 'Nephew|char_lesco|A7'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1023,8 +1499,12 @@ function enterCharAnatoly(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVera(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A27';
+  (s as any)._hc_portrait = 'images/characters/pavlovsk/resident/vera/verasmoke.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Married to|char_anatoly|A26'
   // TODO-QSP: $_hc_rel[1] = 'Daughter|char_lera|A21'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1032,7 +1512,11 @@ function enterCharVera(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharOlu(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A55';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big55.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Nephew|char_djibril|A82'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1040,9 +1524,14 @@ function enterCharOlu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharRoma(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A56';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big56.jpg';
+  (s as any)._hc_residence = 'Meynold house, Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Sister|char_katja|A14'
   // TODO-QSP: $_hc_rel[1] = 'Sister|char_vicky|A15'
   // TODO-QSP: $_hc_rel[2] = 'Girlfriend|char_anya|A33'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1050,7 +1539,11 @@ function enterCharRoma(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharRex(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A57';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big57.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Friend|char_anya|A33'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1058,6 +1551,10 @@ function enterCharRex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharArthur(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A73';
+  (s as any)._hc_portrait = 'images/characters/pavlovsk/resident/arthur/artur.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1065,6 +1562,10 @@ function enterCharArthur(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMarisha(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A93';
+  (s as any)._hc_portrait = 'images/characters/pavlovsk/resident/marisha/marisha.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1072,7 +1573,12 @@ function enterCharMarisha(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharSergey(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A112';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big112.jpg';
+  (s as any)._hc_residence = 'Apt. 13, apartment building, Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Son|char_shulga|A11'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1080,6 +1586,11 @@ function enterCharSergey(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVadim(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A113';
+  (s as any)._hc_portrait = 'images/characters/pavlovsk/vadim/belyjeep.jpg';
+  (s as any)._hc_residence = 'Pavlovsk';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1087,7 +1598,11 @@ function enterCharVadim(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharShulyov(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A127';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big127.jpg';
   // TODO-QSP: $_hc_rel[0] = 'Step-sister|char_sonia|A25'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1095,6 +1610,11 @@ function enterCharShulyov(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharPavlin(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A217';
+  (s as any)._hc_portrait = 'images/characters/pavlovsk/pavlin/clown1.jpg';
+  (s as any)._hc_residence = 'Pavlovsk';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1102,8 +1622,13 @@ function enterCharPavlin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMira(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A60';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big60.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
   // TODO-QSP: $_hc_rel[0] = 'Father|char_afanasiy|A64'
   // TODO-QSP: $_hc_rel[1] = 'Brother|char_vitaliy|A65'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1111,6 +1636,11 @@ function enterCharMira(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharKolyamba(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A61';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big61.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1118,6 +1648,11 @@ function enterCharKolyamba(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVasyan(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A62';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big62.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1125,6 +1660,10 @@ function enterCharVasyan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMitka(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A63';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big63.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1132,8 +1671,13 @@ function enterCharMitka(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAfanasiy(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A64';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big64.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
   // TODO-QSP: $_hc_rel[0] = 'Daughter|char_mira|A60'
   // TODO-QSP: $_hc_rel[1] = 'Son|char_vitaliy|A65'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1141,8 +1685,13 @@ function enterCharAfanasiy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVitaliy(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A65';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big65.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
   // TODO-QSP: $_hc_rel[0] = 'Sister|char_mira|A60'
   // TODO-QSP: $_hc_rel[1] = 'Father|char_afanasiy|A64'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1150,6 +1699,11 @@ function enterCharVitaliy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAndreiG(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A172';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big172.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1157,6 +1711,11 @@ function enterCharAndreiG(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharIgorG(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A173';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big173.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1164,6 +1723,11 @@ function enterCharIgorG(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharSergeiG(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A174';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big174.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1171,6 +1735,10 @@ function enterCharSergeiG(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharJora(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A44';
+  (s as any)._hc_portrait = 'images/characters/city/jora/11 1.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1178,7 +1746,12 @@ function enterCharJora(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharNicholas(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A52';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big52.jpg';
+  (s as any)._hc_residence = 'Pavlovsk';
   // TODO-QSP: $_hc_rel[0] = 'Sister|char_tanya|A218'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1186,6 +1759,10 @@ function enterCharNicholas(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharIlyushkin(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A76';
+  (s as any)._hc_portrait = 'images/characters/city/ilyushkin/event/kpz.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1193,6 +1770,11 @@ function enterCharIlyushkin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharTryndin(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A77';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big77.jpg';
+  (s as any)._hc_residence = 'Apt. 37, residential area, city';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1200,6 +1782,10 @@ function enterCharTryndin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharEugene(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A89';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big89.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1207,6 +1793,10 @@ function enterCharEugene(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharTatiana(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A176';
+  (s as any)._hc_portrait = 'images/characters/city/tatiana/Tatianalesson.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1214,6 +1804,10 @@ function enterCharTatiana(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharNastja(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A192';
+  (s as any)._hc_portrait = 'images/characters/city/anastasia/1avtostop.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1221,6 +1815,10 @@ function enterCharNastja(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharSavva(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A204';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big204.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1228,7 +1826,12 @@ function enterCharSavva(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharTanya(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A218';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big218.jpg';
+  (s as any)._hc_residence = 'City';
   // TODO-QSP: $_hc_rel[0] = 'Brother|char_nicholas|A52'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1236,7 +1839,11 @@ function enterCharTanya(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharKat(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A219';
+  (s as any)._hc_portrait = 'images/characters/city/katja/bedroom.jpg';
   // TODO-QSP: $_hc_rel[0] = 'University roommate|char_sofia_u|A260'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1244,8 +1851,13 @@ function enterCharKat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharGrigory(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A221';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big221.jpg';
+  (s as any)._hc_residence = 'Gadukino village';
   // TODO-QSP: $_hc_rel[0] = 'Farmhand on land of|char_grandma|A31'
   // TODO-QSP: $_hc_rel[1] = 'Farmhand on land of|char_grandpa|A32'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1253,6 +1865,10 @@ function enterCharGrigory(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAlex(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A241';
+  (s as any)._hc_portrait = 'images/characters/city/alexandria/alexandria.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1260,6 +1876,11 @@ function enterCharAlex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharAmelia(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A267';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big267.jpg';
+  (s as any)._hc_residence = 'University dorm, room 702 (city)';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1267,8 +1888,13 @@ function enterCharAmelia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharDjibril(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A82';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big82.jpg';
+  (s as any)._hc_residence = 'University dorm, room 810 (city)';
   // TODO-QSP: $_hc_rel[0] = 'Uncle|char_olu|A55'
   // TODO-QSP: $_hc_rel[1] = 'Friend|char_haruna|A245'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1276,6 +1902,11 @@ function enterCharDjibril(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharGoshi(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A83';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big83.jpg';
+  (s as any)._hc_residence = 'University dorm, room 602 (city)';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1283,6 +1914,11 @@ function enterCharGoshi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharKendra(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A84';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big84.jpg';
+  (s as any)._hc_residence = 'University dorm, room 801 (city)';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1290,6 +1926,10 @@ function enterCharKendra(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharVikaU(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A220';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big220.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1297,6 +1937,11 @@ function enterCharVikaU(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharErmias(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A243';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big243.jpg';
+  (s as any)._hc_residence = 'University dorm (city)';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1304,7 +1949,12 @@ function enterCharErmias(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharHaruna(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A245';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big245.jpg';
+  (s as any)._hc_residence = 'University dorm, 8th floor (city)';
   // TODO-QSP: $_hc_rel[0] = 'Friend|char_djibril|A82'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1312,6 +1962,10 @@ function enterCharHaruna(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharLilly(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A247';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big247.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1319,7 +1973,13 @@ function enterCharLilly(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharSilvestr(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A248';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big248.jpg';
+  (s as any)._hc_residence = 'Pavlovsk';
+  (s as any)._hc_locvar = 'Silvestr';
   // TODO-QSP: $_hc_rel[0] = 'Younger sister|char_christina|A18'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1327,7 +1987,12 @@ function enterCharSilvestr(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharSofiaU(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A260';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big260.jpg';
+  (s as any)._hc_residence = 'University dorm, room 204 (city)';
   // TODO-QSP: $_hc_rel[0] = 'University roommate|char_kat|A219'
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1335,6 +2000,10 @@ function enterCharSofiaU(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharProfMarinova(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A269';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big269.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1342,6 +2011,10 @@ function enterCharProfMarinova(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharProfKudelina(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A270';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big270.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1349,6 +2022,10 @@ function enterCharProfKudelina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharProfBorisov(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A271';
+  (s as any)._hc_portrait = 'images/characters/shared/headshots_main/big271.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1356,6 +2033,10 @@ function enterCharProfBorisov(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharMaya(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A274';
+  (s as any)._hc_portrait = 'images/characters/pushkin/maya/274_profile.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1363,6 +2044,10 @@ function enterCharMaya(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharTanis(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A276';
+  (s as any)._hc_portrait = 'images/characters/ballet/276_profile.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1370,6 +2055,10 @@ function enterCharTanis(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharGasha(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A280';
+  (s as any)._hc_portrait = 'images/characters/pushkin/gasha/280_profile.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1377,6 +2066,10 @@ function enterCharGasha(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharRudolf(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A283';
+  (s as any)._hc_portrait = 'images/characters/pushkin/rudolph/1292-3.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -1384,6 +2077,10 @@ function enterCharRudolf(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCharBronya(s: GameState, scene: SceneBuilder): void {
+  (s as any)._hc_key = ((s as any).locArgs?.[0] ?? 0);
+  (s as any)._hc_npcid = 'A286';
+  (s as any)._hc_portrait = 'images/characters/ballet/286.jpg';
+  (s as any)._hc_bio = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuild(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end

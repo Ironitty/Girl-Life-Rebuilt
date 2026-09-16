@@ -1,12 +1,13 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
   (s as any).FedorHomeDate = 1;
   (s as any).WithFedor = 1;
   qspCall(s, 'boyStat', 'A5');
@@ -110,9 +111,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterHome2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).locclass = 'livingr';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/sitting.jpg');
-  scene.text('You walk into the living room then take a seat on the couch. Fedor walks into the kitchen and returns with a bowl of <a href="exec:gt \'FedorEv4\', \'Popcorn\'">popcorn</a>, some <a href="exec:gt \'FedorEv4\', \'Snacks\'">snacks</a> and a few cans of soda then lays them down on the table. Fedor grabs the remote then sits down next to you as he begins flipping through channels.');
+  scene.text('You walk into the living room then take a seat on the couch. Fedor walks into the kitchen and returns with a bowl of <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Popcorn\\u0027); return false;">popcorn</a>, some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Snacks\\u0027); return false;">snacks</a> and a few cans of soda then lays them down on the table. Fedor grabs the remote then sits down next to you as he begins flipping through channels.');
   qspCall(s, 'FedorEV4', 'movie_choice');
   // TODO-QSP: end
   scene.build();
@@ -159,15 +161,15 @@ function enterMovieChoice(s: GameState, scene: SceneBuilder): void {
     { label: 'Wait for Fedor to pick a channel', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 4) + 1;
     if (((s as any).VK ?? 0) <= 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Movie Family'] }]);
+      qspGoto(s, 'FedorEv4', 'Movie Family');
     } else {
       if (((s as any).VK ?? 0) === 2) {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Movie Sports'] }]);
+        qspGoto(s, 'FedorEv4', 'Movie Sports');
       } else {
         if (((s as any).VK ?? 0) === 3) {
-          scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Movie Porn'] }]);
+          qspGoto(s, 'FedorEv4', 'Movie Porn');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Movie Action'] }]);
+          qspGoto(s, 'FedorEv4', 'Movie Action');
         }
       }
     }
@@ -246,9 +248,9 @@ function enterHome3(s: GameState, scene: SceneBuilder): void {
       { label: 'I could use a nice warm bed right now', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 2) + 1;
     if (((s as any).VK ?? 0) <= 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Bedroom Cam'] }]);
+      qspGoto(s, 'FedorEv4_sex', 'Bedroom Cam');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Bedroom 1'] }]);
+      qspGoto(s, 'FedorEv4_sex', 'Bedroom 1');
     }
   } },
     ]);
@@ -264,17 +266,18 @@ function enterHome3(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck Fedor\'s dick', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 2) + 1;
     if (((s as any).VK ?? 0) <= 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Livingroom 1'] }]);
+      qspGoto(s, 'FedorEv4_sex', 'Livingroom 1');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Livingroom 2'] }]);
+      qspGoto(s, 'FedorEv4_sex', 'Livingroom 2');
     }
   } },
     { label: 'I have a treat for you in the kitchen', handler: (st: GameState) => {
+    (s as any).locclass = 'kitr';
     (s as any).VK = Math.floor(Math.random() * 2) + 1;
     if (((s as any).VK ?? 0) <= 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Kitchen 1'] }]);
+      qspGoto(s, 'FedorEv4_sex', 'Kitchen 1');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Kitchen 2'] }]);
+      qspGoto(s, 'FedorEv4_sex', 'Kitchen 2');
     }
   } },
     { label: 'Use bathroom', goto: ['FedorEv4_sex', 'Bathroom 1'] },
@@ -285,30 +288,30 @@ function enterHome3(s: GameState, scene: SceneBuilder): void {
 function enterRandomSex(s: GameState, scene: SceneBuilder): void {
   (s as any).VK = Math.floor(Math.random() * 8) + 1;
   if (((s as any).VK ?? 0) <= 1) {
-    scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Livingroom 1'] }]);
+    qspGoto(s, 'FedorEv4_sex', 'Livingroom 1');
   } else {
     if (((s as any).VK ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Livingroom 2'] }]);
+      qspGoto(s, 'FedorEv4_sex', 'Livingroom 2');
     } else {
       if (((s as any).VK ?? 0) === 3  &&  ((s as any).VKwip ?? 0) === 100) {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Livingroom 3'] }]);
+        qspGoto(s, 'FedorEv4_sex', 'Livingroom 3');
       } else {
         if (((s as any).VK ?? 0) === 4) {
-          scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Kitchen 1'] }]);
+          qspGoto(s, 'FedorEv4_sex', 'Kitchen 1');
         } else {
           if (((s as any).VK ?? 0) === 5) {
-            scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Kitchen 2'] }]);
+            qspGoto(s, 'FedorEv4_sex', 'Kitchen 2');
           } else {
             if (((s as any).VK ?? 0) === 6) {
-              scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Bathroom 1'] }]);
+              qspGoto(s, 'FedorEv4_sex', 'Bathroom 1');
             } else {
               if (((s as any).VK ?? 0) === 7  &&  ((s as any).FedorLove ?? 0) === 1) {
-                scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Bedroom Cam'] }]);
+                qspGoto(s, 'FedorEv4_sex', 'Bedroom Cam');
               } else {
                 if (((s as any).VK ?? 0) === 8  &&  ((s as any).FedorLove ?? 0) === 1) {
-                  scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Bedroom 1'] }]);
+                  qspGoto(s, 'FedorEv4_sex', 'Bedroom 1');
                 } else {
-                  scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'random_sex'] }]);
+                  qspGoto(s, 'FedorEv4', 'random_sex');
                 }
               }
             }
@@ -323,6 +326,8 @@ function enterRandomSex(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Bathroom');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 9  &&  (!((s as any).WithFedor ?? 0))) {
@@ -338,7 +343,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.img('images/locations/pavlovsk/resident/fedorhome/bathroom.jpg');
-      scene.text('This bathroom is very clean and organized with a sink, <a href="exec:gt \'FedorEv4\', \'Toilet\'">Toilet</a>, <a href="exec:gt \'mirror\', \'start\'">mirror</a> and bathtub.');
+      scene.text('This bathroom is very clean and organized with a sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Toilet\\u0027); return false;">Toilet</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> and bathtub.');
       if ((!((s as any).WithFedor ?? 0))) {
         scene.actions([
           { label: 'Leave bathroom', goto: ['FedorEv4', 'Hallway'] },
@@ -430,21 +435,21 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
       { label: 'Use the toilet', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 6) + 1;
     if (((s as any).VK ?? 0) >= 1  &&  ((s as any).VK ?? 0) <= 3  &&  ((s as any).WithFedor ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Bathroom Cam'] }]);
+      qspGoto(s, 'FedorEv4_sex', 'Bathroom Cam');
     } else {
       if (((s as any).VK ?? 0) >= 4  &&  ((s as any).VK ?? 0) <= 6  &&  ((s as any).WithFedor ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Bathroom 2'] }]);
+        qspGoto(s, 'FedorEv4_sex', 'Bathroom 2');
       } else {
         if (((s as any).VK ?? 0) >= 7  &&  ((s as any).VK ?? 0) <= 9  &&  ((s as any).WithFedor ?? 0) === 1  &&  ((s as any).VKwip ?? 0) === 100) {
-          scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', 'Bathroom 3'] }]);
+          qspGoto(s, 'FedorEv4_sex', 'Bathroom 3');
         } else {
           if (((s as any).VK ?? 0) < 6  &&  (!((s as any).WithFedor ?? 0))) {
-            scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Toilet 2'] }]);
+            qspGoto(s, 'FedorEv4', 'Toilet 2');
           } else {
             if (((s as any).VK ?? 0) === 6  &&  (!((s as any).WithFedor ?? 0))) {
-              scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Toilet 3'] }]);
+              qspGoto(s, 'FedorEv4', 'Toilet 3');
             } else {
-              scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Toilet'] }]);
+              qspGoto(s, 'FedorEv4', 'Toilet');
             }
           }
         }
@@ -488,26 +493,27 @@ function enterToilet3(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Kitchen');
+  (s as any).locclass = 'kitr';
   if (((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 22  &&  (!((s as any).ReginaIntro ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Regina Intro'] }]);
+    qspGoto(s, 'FedorEv4', 'Regina Intro');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'kit_din', '');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/kitchen.jpg');
   scene.text('This kitchen is very clean. Fedor\'s parents must be very neat people.');
-  scene.text('There is a sink, a microwave, a stove and a <a href="exec:gt \'FedorEv4\', \'Fridge\'">refrigerator</a> stocked with food.');
+  scene.text('There is a sink, a microwave, a stove and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fridge\\u0027); return false;">refrigerator</a> stocked with food.');
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 20  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
-    scene.text('<a href="exec:gt \'FedorEv4\', \'Fedor Kitchen\'">Fedor</a> is sitting down, eating dinner.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Kitchen\\u0027); return false;">Fedor</a> is sitting down, eating dinner.');
   } else {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 22  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 16) {
-      scene.text('<a href="exec:gt \'FedorEv4\', \'Regina Chat\'">Regina</a> is sitting at the table, eating dinner.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is sitting at the table, eating dinner.');
     } else {
       if (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 20) {
-        scene.text('<a href="exec:gt \'FedorEv4\', \'Regina Chat\'">Regina</a> is cleaning the kitchen.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is cleaning the kitchen.');
       } else {
         if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) === 11) {
-          scene.text('<a href="exec:gt \'FedorEv4\', \'Regina Chat\'">Regina</a> is getting ready to leave for work.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is getting ready to leave for work.');
         }
       }
     }
@@ -525,18 +531,19 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Livingroom');
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/livingroom.jpg');
-  scene.text('The living room looks very neat and has a couch, a blu-ray player and a <a href="exec:gt \'FedorEv4\', \'TV\'">TV</a>.');
+  scene.text('The living room looks very neat and has a couch, a blu-ray player and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027TV\\u0027); return false;">TV</a>.');
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 22  ||  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 19  ||  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 16  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18) {
-    scene.text('<a href="exec:gt \'FedorEv4\', \'Fedor Livingroom\'">Fedor</a> is sitting on the couch, watching TV.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Livingroom\\u0027); return false;">Fedor</a> is sitting on the couch, watching TV.');
   }
   if (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 12) {
-    scene.text('<a href="exec:gt \'FedorEv4\', \'Regina Chat\'">Regina</a> is vacuuming the floor.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is vacuuming the floor.');
   } else {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) > 22  &&  ((s as any).hour ?? 0) <= 24  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
-      scene.text('<a href="exec:gt \'FedorEv4\', \'Regina Chat\'">Regina</a> is sitting down on the couch, watching TV.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is sitting down on the couch, watching TV.');
     }
   }
   // TODO-QSP: end
@@ -549,14 +556,15 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
 
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Hallway');
+  (s as any).location_type = 'private';
   if (((s as any).hour ?? 0) === 20  &&  (!((s as any).ReginaIntro ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Regina Intro'] }]);
+    qspGoto(s, 'FedorEv4', 'Regina Intro');
   }
   (s as any).WithFedor = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/hallway.jpg');
-  scene.text('This is the central hallway which connects the whole house. There is a <a href="exec:gt \'mirror\', \'start\'">mirror</a>, a coat rack and multiple paintings on the walls.');
+  scene.text('This is the central hallway which connects the whole house. There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, a coat rack and multiple paintings on the walls.');
   if (((s as any).fedorKozlovQW ?? 0) > 1  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 17) {
     scene.actions([
       { label: 'Go to Fedor\'s bedroom', goto: ['FedorMisc', 'Workout Time'] },
@@ -597,14 +605,14 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '<b>Leave the house</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Nude'] }]);
+      qspGoto(s, 'FedorEv4', 'Nude');
     } else {
       if (((s as any).FedorHomeDate ?? 0) === 1  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 24) {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'End Date'] }]);
+        qspGoto(s, 'FedorEv4', 'End Date');
       } else {
         (s as any).FedorHomeDate = 0;
         (s as any).minut = ((s as any).minut ?? 0) + 5;
-        scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+        qspGoto(s, 'pav_residential', '');
       }
     }
   } },
@@ -614,21 +622,22 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Bedroom');
+  (s as any).locclass = 'bedr';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/bedroom.jpg');
-  scene.text('Fedor\'s bedroom is very neat, it has a bed, a computer desk with a chair and a <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a>, where you can choose outfits and organize your clothing.');
+  scene.text('Fedor\'s bedroom is very neat, it has a bed, a computer desk with a chair and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a>, where you can choose outfits and organize your clothing.');
   if (((s as any).FedorLove ?? 0) === 1) {
-    scene.text('Fedor has a <a href="exec:gt \'FedorEv4\', \'Picture\'">framed picture</a> by his bed.');
+    scene.text('Fedor has a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Picture\\u0027); return false;">framed picture</a> by his bed.');
   }
   if (((s as any).hour ?? 0) < 8) {
-    scene.text('<a href="exec:gt \'FedorEv4\', \'Fedor Sleeping\'">Fedor</a> is sleeping in his bed.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Sleeping\\u0027); return false;">Fedor</a> is sleeping in his bed.');
   } else {
     if (((s as any).hour ?? 0) >= 22) {
-      scene.text('<a href="exec:gt \'FedorEv4\', \'Fedor Bedroom\'">Fedor</a> is laying on his bed.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Bedroom\\u0027); return false;">Fedor</a> is laying on his bed.');
     } else {
       if (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) < 14  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22) {
-        scene.text('<a href="exec:gt \'FedorEv4\', \'Fedor Bedroom 2\'">Fedor</a> is on his computer.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Bedroom 2\\u0027); return false;">Fedor</a> is on his computer.');
       }
     }
   }
@@ -654,7 +663,7 @@ function enterPicture(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname || '')}] ${((s as any).pcs_lastname || '')}">></font></h4></b></center>`);
-  scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorEv4" }) + '');
+  scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "FedorEv4" }) + '');
   scene.text('Fedor has framed the picture he took of you and placed it by his bed with your name on the frame. After seeing the picture by his bed, you can\'t help but think to yourself. "That\'s so sweet. I must mean a lot to him… ohh Fedor." you then place the picture back.');
   // TODO-QSP: end
   scene.actions([
@@ -760,9 +769,9 @@ function enterEndDate(s: GameState, scene: SceneBuilder): void {
     { label: 'Not right now', goto: ['FedorEv4', 'Hallway'] },
     { label: 'Yes I am', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Nude'] }]);
+      qspGoto(s, 'FedorEv4', 'Nude');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'End Date 2'] }]);
+      qspGoto(s, 'FedorEv4', 'End Date 2');
     }
   } },
   ]);
@@ -800,9 +809,9 @@ function enterTV(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) <= 24  &&  ((s as any).hour ?? 0) > 20  ||  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) <= 10  &&  ((s as any).hour ?? 0) > 9  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) <= 18  &&  ((s as any).hour ?? 0) > 9) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Solo Caught'] }]);
+      qspGoto(s, 'FedorEv4', 'Solo Caught');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Solo'] }]);
+      qspGoto(s, 'FedorEv4', 'Solo');
     }
   } },
     ]);
@@ -811,9 +820,9 @@ function enterTV(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch porn (0:30)', handler: (st: GameState) => {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) <= 24  &&  ((s as any).hour ?? 0) > 20  &&  ((s as any).VKwip ?? 0) === 100  ||  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) <= 10  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).VKwip ?? 0) === 100  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) <= 18  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).VKwip ?? 0) === 100) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Porn Caught'] }]);
+      qspGoto(s, 'FedorEv4', 'Porn Caught');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'TV Porn'] }]);
+      qspGoto(s, 'FedorEv4', 'TV Porn');
     }
   } },
     ]);
@@ -972,7 +981,7 @@ function enterReginaChat(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 20) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'check_up'] }]);
+      qspGoto(s, 'FedorEv4', 'check_up');
     }
   } },
     ]);
@@ -1098,6 +1107,7 @@ function enterCheckUp(s: GameState, scene: SceneBuilder): void {
 
 function enterFedorLivingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Fedor Livingroom');
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
@@ -1112,7 +1122,7 @@ function enterFedorLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor reaches over, then begins rubbing your ass, "You have a body to die for ${((s as any).pcs_nickname || '')}."`);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    scene.text('Fedor notices your messy hair and pulls out his <a href="exec:gt \'FedorMisc\', \'Comb\'">comb</a>.');
+    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.');
   }
   if (((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).DimaRudeBlock ?? 0) === 0  &&  ((s as any).FedorLove ?? 0) === 1  &&  (!((s as any).FedorvsDimka ?? 0))) {
     scene.actions([
@@ -1140,6 +1150,7 @@ function enterFedorLivingroom(s: GameState, scene: SceneBuilder): void {
 
 function enterFedorKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Fedor Kitchen');
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/fedor.jpg');
@@ -1153,7 +1164,7 @@ function enterFedorKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor looks at you and frowns. "${((s as any).pcs_firstname || '')} you're hurt. My mother works as a nurse, if she is home then you should have her take a look at you."`);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    scene.text('Fedor notices your messy hair and pulls out his <a href="exec:gt \'FedorMisc\', \'Comb\'">comb</a>.');
+    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.');
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     // TODO-QSP: dynamic text: Fedor reaches over, then begins feeling up your legs, "You are so hot, <<$pcs_ni...
@@ -1205,6 +1216,7 @@ function enterFedorKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterFedorBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Fedor Bedroom');
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/fedor.jpg');
@@ -1217,7 +1229,7 @@ function enterFedorBedroom(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor looks at you then frowns. "${((s as any).pcs_firstname || '')} you're hurt. My mother works as a nurse. You should have her take a look at you."`);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    scene.text('Fedor notices your messy hair and pulls out his <a href="exec:gt \'FedorMisc\', \'Comb\'">comb</a>.');
+    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.');
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -1291,6 +1303,7 @@ function enterFedorBedroom(s: GameState, scene: SceneBuilder): void {
 
 function enterFedorBedroom2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv4', 'Fedor Bedroom 2');
+  (s as any).locclass = 'bedr';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
@@ -1306,7 +1319,7 @@ function enterFedorBedroom2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor looks at you and frowns. "${((s as any).pcs_firstname || '')} you're hurt. My mother works as a nurse, if she is home then you should have her take a look at you."`);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    scene.text('Fedor notices your messy hair and pulls out his <a href="exec:gt \'FedorMisc\', \'Comb\'">comb</a>.');
+    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.');
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     // TODO-QSP: dynamic text: Fedor reaches over, then begins gently squeezing your breasts, "You have great t...
@@ -1586,10 +1599,10 @@ function enterDimkaAftermath(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'FedorEv4') {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Bedroom'] }]);
+      qspGoto(s, 'FedorEv4', 'Bedroom');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+      qspGoto(s, 'pav_residential', '');
     }
   } },
   ]);
@@ -1617,14 +1630,14 @@ function enterHomeEntrance2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FedorShelter ?? 0) === 2) {
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname || '')}] ${((s as any).pcs_lastname || '')}">></font></h4></b></center>`);
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorEv4" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "FedorEv4" }) + '');
     scene.text('You place the key into the door lock then turn it, unlocking the door then making your way inside.');
     scene.actions([
       { label: 'Enter house', goto: ['FedorEv4', 'Hallway'] },
     ]);
   } else {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 19) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Home Entrance 3'] }]);
+      qspGoto(s, 'FedorEv4', 'Home Entrance 3');
     } else {
       if (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 10) {
         // TODO-QSP: dynamic text: <center><b><h4><font color="#FF00FF"><<"Regina Kozlov">></font></h4></b></center...

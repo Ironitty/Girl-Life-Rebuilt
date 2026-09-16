@@ -1,14 +1,16 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'katjaEv';
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   if (((s as any).katjaQW ?? 0)?.['afterschool_hangout_day'] !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
   }
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['afterschool_hangout_day'] = ((s as any).daystart ?? 0);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['afterschool_hangout_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'katjaEvDin', '');
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   qspCall(s, 'stat', '');
@@ -30,7 +32,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             scene.text(`Katja is blushing fairly obviously and looks at you longingly. "${((s as any).pcs_nickname || '')}, what do you want to do?"`);
           } else {
             if (((s as any).katjaQW ?? 0)?.['horny'] >= (Math.floor(Math.random() * -49) + 150)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1  &&  ((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
-              scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'home_work_ask_katja_no_artem'] }]);
+              qspGoto(s, 'artem_katja_sex', 'home_work_ask_katja_no_artem');
             }
             // TODO-QSP: dynamic text: Katja is as red as a lobster and her chest is heaving from her heavy breaths. Sh...
             scene.text(`Katja is as red as a lobster and her chest is heaving from her heavy breaths. She's idly rubbing her thighs against one another while she talks. "What do you want to do, ${((s as any).pcs_nickname || '')}?"`);
@@ -69,7 +71,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A14'] >= 50  &&  (Math.floor(Math.random() * 6) + 1) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (5);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'TamVal'] }]);
+      qspGoto(s, 'KatjaHomeTalk', 'TamVal');
     }
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 1  &&  ((s as any).pcs_makeup ?? 0) <= 1) {
       // TODO-QSP: dynamic text: "Wait a minute, <<$pcs_nickname>>! I bet you would look great with a little make...
@@ -87,7 +89,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 2;
     scene.text('Katja subtly applies some neutral tones, with a light application of makeup to bring out your natural beauty.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she\'s staring into your eyes and blushes.');
     }
     qspCall(s, 'stat', '');
@@ -99,7 +101,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 3;
     scene.text('Katja applies some mildly vibrate tones and colors of makeup to cover your minor imperfections and enhance your best features.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she\'s staring into your eyes and blushes.');
     }
     qspCall(s, 'stat', '');
@@ -111,7 +113,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 4;
     scene.text('Katja applies some deeper, richer shades of makeup that are thick enough to cover most imperfections while drawing attention to your eyes and lips.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she\'s staring into your eyes and blushes.');
     }
     qspCall(s, 'stat', '');
@@ -124,7 +126,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'You really don\'t need it', goto: ['katjaEv', 'kathan'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['KatjaEv', 'kathan'] }]);
+      qspGoto(s, 'KatjaEv', 'kathan');
     }
   } },
   ]);
@@ -159,9 +161,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('Katja asks you about your relationship with Vitek and expresses her opinion about it.');
   }
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).katjaQW ?? 0)?.['know_Pirced_tongue'] === 0) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_Pirced_tongue'] = 1;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['know_Pirced_tongue'] = 1;
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     }
     scene.text('Katja notices that you have a pierced tongue and chatters all the way home, trying to find out all about it.');
   }
@@ -232,9 +234,9 @@ function enterKathan(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Do our homework', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'mey_home') {
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'homework'] }]);
+      qspGoto(s, 'KatjaHomeTalk', 'homework');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['KatjaEv', '1'] }]);
+      qspGoto(s, 'KatjaEv', '1');
     }
   } },
       ]);
@@ -287,7 +289,7 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   if (((s as any).pcs_chrsm ?? 0) <= 45) {
     qspCall(s, 'exp_gain', 'chrsm', 1);
   }
@@ -362,10 +364,10 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).random_event ?? 0) <= 20) {
-          scene.actions([{ label: 'Continue', goto: ['katjaEv', 'discount'] }]);
+          qspGoto(s, 'katjaEv', 'discount');
         } else {
           if (((s as any).random_event ?? 0) === 21  &&  ((s as any).NatbelQW ?? 0)?.['pregday'] > 0) {
-            scene.actions([{ label: 'Continue', goto: ['katjaEv', 'discount'] }]);
+            qspGoto(s, 'katjaEv', 'discount');
           } else {
             scene.img('images/characters/pavlovsk/school/girl/katja/KWS3.jpg');
             if (((s as any).NatbelQW ?? 0)?.['QWstage'] >= 8) {
@@ -393,7 +395,7 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
                 { label: 'Tease Natasha', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/KWS5.jpg');
@@ -420,7 +422,8 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
           { label: 'Take Natasha to Katja\'s room', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['katja_sex', 'katnatsex1'] },
+    qspGoto(s, 'katja_sex', 'katnatsex1');
+  } },
         ]);
       }
     } else {
@@ -581,7 +584,7 @@ function enterKathan15(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A16', 1);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   if (((s as any).pcs_chrsm ?? 0) <= 45) {
     qspCall(s, 'exp_gain', 'chrsm', 1);
   }
@@ -627,52 +630,52 @@ function enterKathan16(s: GameState, scene: SceneBuilder): void {
   (s as any).random_event = ((((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 12) ? (Math.floor(Math.random() * 23) + 1) : (Math.floor(Math.random() * 33) + 24));
   qspCall(s, 'stat', '');
   if (((s as any).random_event ?? 0) <= 5) {
-    scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan17'] }]);
+    qspGoto(s, 'katjaEv', 'kathan17');
   } else {
     if (((s as any).random_event ?? 0) === 6) {
-      scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan18'] }]);
+      qspGoto(s, 'katjaEv', 'kathan18');
     } else {
       if (((s as any).random_event ?? 0) === 7) {
-        scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan19'] }]);
+        qspGoto(s, 'katjaEv', 'kathan19');
       } else {
         if (((s as any).random_event ?? 0) >= 8  &&  ((s as any).random_event ?? 0) <= 12) {
-          scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan20'] }]);
+          qspGoto(s, 'katjaEv', 'kathan20');
         } else {
           if (((s as any).random_event ?? 0) >= 13  &&  ((s as any).random_event ?? 0) <= 17) {
-            scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan21'] }]);
+            qspGoto(s, 'katjaEv', 'kathan21');
           } else {
             if (((s as any).random_event ?? 0) >= 18  &&  ((s as any).random_event ?? 0) <= 22) {
-              scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan22'] }]);
+              qspGoto(s, 'katjaEv', 'kathan22');
             } else {
               if (((s as any).random_event ?? 0) === 23) {
-                scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan23'] }]);
+                qspGoto(s, 'katjaEv', 'kathan23');
               } else {
                 if (((s as any).random_event ?? 0) >= 24  &&  ((s as any).random_event ?? 0) <= 28) {
-                  scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan17'] }]);
+                  qspGoto(s, 'katjaEv', 'kathan17');
                 } else {
                   if (((s as any).random_event ?? 0) === 29) {
-                    scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan18'] }]);
+                    qspGoto(s, 'katjaEv', 'kathan18');
                   } else {
                     if (((s as any).random_event ?? 0) === 30) {
-                      scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan19'] }]);
+                      qspGoto(s, 'katjaEv', 'kathan19');
                     } else {
                       if (((s as any).random_event ?? 0) >= 31  &&  ((s as any).random_event ?? 0) <= 35) {
-                        scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan20'] }]);
+                        qspGoto(s, 'katjaEv', 'kathan20');
                       } else {
                         if (((s as any).random_event ?? 0) >= 36  &&  ((s as any).random_event ?? 0) <= 40) {
-                          scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan21'] }]);
+                          qspGoto(s, 'katjaEv', 'kathan21');
                         } else {
                           if (((s as any).random_event ?? 0) >= 41  &&  ((s as any).random_event ?? 0) <= 45) {
-                            scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan22'] }]);
+                            qspGoto(s, 'katjaEv', 'kathan22');
                           } else {
                             if (((s as any).random_event ?? 0) === 46) {
-                              scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan23'] }]);
+                              qspGoto(s, 'katjaEv', 'kathan23');
                             } else {
                               if (((s as any).random_event ?? 0) >= 47  &&  ((s as any).random_event ?? 0) <= 51) {
-                                scene.actions([{ label: 'Continue', goto: ['katja_lake', 'playing_in_snow'] }]);
+                                qspGoto(s, 'katja_lake', 'playing_in_snow');
                               } else {
                                 if (((s as any).random_event ?? 0) >= 52  &&  ((s as any).random_event ?? 0) <= 56) {
-                                  scene.actions([{ label: 'Continue', goto: ['katja_lake', 'hockey_match'] }]);
+                                  qspGoto(s, 'katja_lake', 'hockey_match');
                                 }
                               }
                             }
@@ -699,7 +702,7 @@ function enterKathan17(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   (s as any).willpower = ((s as any).willpower ?? 0) + (Math.floor(Math.random() * 10) + 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/KWT3.jpg');
   scene.text('Sometimes, you don\'t want to walk, carouse, dance or do "archetypical teen stuff". Sometimes, you only want to sit and, well, smell the flowers. So you look for a nice place to sit and talk about your life, school, family. You know, normal stuff, until Katja starts talking about your classmates.');
@@ -863,7 +866,7 @@ function enterKathan18(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/KWT4.jpg');
   scene.text('Katja gives you a nudge in the ribs, puts a finger over her lips and signals towards a secluded corner.');
@@ -937,7 +940,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (10);
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big140.jpg');
   scene.text('"Hey girls! Just a moment!"');
@@ -1086,7 +1089,7 @@ function enterKathan20(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   (s as any).random_event = Math.floor(Math.random() * 19) + 1;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/KWT8.jpg');
   scene.text('Being young and pretty, attracting attention is inevitable. As you walk around Pavlovsk, the boys and girls like to talk. And some <i>really</i> talk.');
@@ -1185,7 +1188,7 @@ function enterKathan21(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   (s as any).random_event = Math.floor(Math.random() * 19) + 1;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/pc/reactions/disgust.jpg');
   scene.text('Being young and pretty, attracting attention is inevitable. As you walk around Pavlovsk, the boys and girls like to talk. And some <i>really</i> talk.');
@@ -1283,7 +1286,7 @@ function enterKathan22(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   if ((Math.floor(Math.random() * 4) + 0) === 3  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 40  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] > 2  &&  ((s as any).npc_rel ?? 0)?.['A14'] >= 80  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
     scene.img('images/characters/pavlovsk/school/girl/katja/KWT15.jpg');
@@ -1476,12 +1479,12 @@ function enterKathan23(s: GameState, scene: SceneBuilder): void {
 function enterDiscount(s: GameState, scene: SceneBuilder): void {
   (s as any).random_event = Math.floor(Math.random() * 3) + 1;
   if (((s as any).random_event ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['katjaEv', 'discountcosmetics'] }]);
+    qspGoto(s, 'katjaEv', 'discountcosmetics');
   } else {
     if (((s as any).random_event ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['katjaEv', 'discountvitamins'] }]);
+      qspGoto(s, 'katjaEv', 'discountvitamins');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katjaEv', 'discountlipbalm'] }]);
+      qspGoto(s, 'katjaEv', 'discountlipbalm');
     }
   }
   // TODO-QSP: end
@@ -1502,8 +1505,8 @@ function enterDiscountcosmetics(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
-      scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan14'] }]);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
+      qspGoto(s, 'katjaEv', 'kathan14');
     }
   } },
       { label: 'Continue window shopping', goto: ['katjaEv', 'kathan14'] },
@@ -1516,9 +1519,9 @@ function enterDiscountcosmetics(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+      qspGoto(s, 'pav_residential', '');
     }
   } },
       { label: 'Accompany Katja back home', handler: (st: GameState) => {
@@ -1543,9 +1546,9 @@ function enterDiscountvitamins(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
-      scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan14'] }]);
+      qspGoto(s, 'katjaEv', 'kathan14');
     }
   } },
       { label: 'Continue window shopping', goto: ['katjaEv', 'kathan14'] },
@@ -1558,9 +1561,9 @@ function enterDiscountvitamins(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+      qspGoto(s, 'pav_residential', '');
     }
   } },
       { label: 'Accompany Katja back home', handler: (st: GameState) => {
@@ -1585,9 +1588,9 @@ function enterDiscountlipbalm(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (30);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (30);
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
-      scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan14'] }]);
+      qspGoto(s, 'katjaEv', 'kathan14');
     }
   } },
       { label: 'Continue window shopping', goto: ['katjaEv', 'kathan14'] },
@@ -1599,10 +1602,10 @@ function enterDiscountlipbalm(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (30);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (30);
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+      qspGoto(s, 'pav_residential', '');
     }
   } },
       { label: 'Accompany Katja to her home', handler: (st: GameState) => {
@@ -1676,7 +1679,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const katjaEv: LocationDef = {
   name: 'katjaEv',
-  title: '<<$npc_firstname[\'A14\']>> <<$npc_lastname[\'A14\']>>',
   region: 'other',
   description: ['You and Katja run into Fedor, who gives you a wave. "Hey girls, what are you two up to?"'],
   enter: enter,

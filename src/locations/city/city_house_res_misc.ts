@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFronty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_house_res_misc', 'fronty');
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -30,7 +31,7 @@ function enterFronty(s: GameState, scene: SceneBuilder): void {
   scene.text('Your small two story house sits on the edge of the residential area. Despite that, your neighbors are pretty close and the sounds of the street fill the air.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is in the driveway.
-    scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the driveway.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the driveway.`);
   }
   if (qspFunc(s, 'homes_properties', 'is_current_home', ((s as any).loc ?? 0)) === 0) {
     scene.actions([
@@ -44,13 +45,15 @@ function enterFronty(s: GameState, scene: SceneBuilder): void {
     { label: 'Go inside', goto: ['city_house_res_misc', 'hallw'] },
     { label: 'Go to the city', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
   ]);
   scene.build();
 }
 
 function enterHallw(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_house_res_misc', 'hallw');
+  (s as any).location_type = 'private';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -61,7 +64,7 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/house/crh_hallway.jpg');
   qspCall(s, 'courtletter', '');
   scene.text('The main hallway of your house. You can visit the different rooms from here.');
-  scene.text('There\'s a <a href="exec:gt \'mirror\', \'start\'">mirror</a> hanging on the wall.');
+  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> hanging on the wall.');
   if (((s as any).mc_inventory ?? 0)?.['umbrella'] > 0) {
     scene.text('There\'s an umbrella hanging on a hook by the door.');
   }
@@ -71,9 +74,9 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
     { label: 'Go out front', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['city_house_res_misc', 'fronty'] }]);
+      qspGoto(s, 'city_house_res_misc', 'fronty');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_house_res_misc', 'hallw'] }]);
+      qspGoto(s, 'city_house_res_misc', 'hallw');
     }
   } },
     { label: 'Go to your bedroom', goto: ['city_house_res_bedr', 'bedro'] },
@@ -87,6 +90,7 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
 
 function enterBacky(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_house_res_misc', 'backy');
+  (s as any).location_type = 'secluded';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living Room</b></center>');
@@ -114,27 +118,29 @@ function enterBacky(s: GameState, scene: SceneBuilder): void {
 
 function enterLivroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_house_res_misc', 'livroom');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Living Room</b></center>');
   scene.img('images/locations/city/residential/house/crh_living.jpg');
-  scene.text('A place where you can watch <a href="exec:gt \'TV\',\'start\'">TV</a>, or relax on your <a href="exec:gt \'divan\', \'start\'">sofa</a>.');
+  scene.text('A place where you can watch <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027start\\u0027); return false;">TV</a>, or relax on your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027divan\\u0027, \\u0027start\\u0027); return false;">sofa</a>.');
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to the sofa.');
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access');
-    scene.text('There\'s a <a href="exec:gt \'komp\', \'start\'">computer</a> sitting on your <a href="exec:gt \'stol\', \'start\'">desk</a>.');
+    scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> sitting on your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">desk</a>.');
   } else {
-    scene.text('A small <a href="exec:gt \'stol\', \'start\'">desk</a> is against the wall.');
+    scene.text('A small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">desk</a> is against the wall.');
   }
   scene.text('There is enough space to workout.');
   qspCall(s, 'exercise', 'start');
   qspCall(s, 'subkid', '');
   qspCall(s, 'music_actions', 'start');
   if (((s as any).mc_inventory ?? 0)?.['sewing_kit'] === 1) {
-    scene.text('Your <a href="exec:gt \'sewing\',\'start\'">sewing kit</a> is stored next to your favorite chair.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027sewing\\u0027, \\u0027start\\u0027); return false;">sewing kit</a> is stored next to your favorite chair.');
     if (((s as any).pcs_sewng ?? 0) >= 80) {
       if (((s as any).newgobelen ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] > 0) {
         scene.actions([

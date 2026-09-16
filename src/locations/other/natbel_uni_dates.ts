@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -26,7 +26,7 @@ function enterCoffeeHoleChat(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 930, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'nightclub_date_ask'] }]);
+      qspGoto(s, 'natbel_uni_dates', 'nightclub_date_ask');
     }
   } },
     ]);
@@ -43,7 +43,7 @@ function enterCoffeeHoleChat(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 4400) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'beach_date1'] }]);
+      qspGoto(s, 'natbel_uni_dates', 'beach_date1');
     }
   } },
         ]);
@@ -53,7 +53,7 @@ function enterCoffeeHoleChat(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 2650) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'beach_date1'] }]);
+      qspGoto(s, 'natbel_uni_dates', 'beach_date1');
     }
   } },
         ]);
@@ -67,21 +67,21 @@ function enterCoffeeHoleChat(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'mall_date1'] }]);
+      qspGoto(s, 'natbel_uni_dates', 'mall_date1');
     }
   } },
     { label: 'Ask Natasha if she\'d like to go to the National library', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'library_date1'] }]);
+      qspGoto(s, 'natbel_uni_dates', 'library_date1');
     }
   } },
     { label: 'Stay in the cafe and chat with Natasha', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 540) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'cafe_date1'] }]);
+      qspGoto(s, 'natbel_uni_dates', 'cafe_date1');
     }
   } },
   ]);
@@ -102,7 +102,7 @@ function enterDormChats(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 930, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'nightclub_date1'] }]);
+      qspGoto(s, 'natbel_uni_dates', 'nightclub_date1');
     }
   } },
       ]);
@@ -146,8 +146,8 @@ function enterNightclubDateAsk(s: GameState, scene: SceneBuilder): void {
 
 function enterNightclubDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_nightclub_1'] = ((s as any).NatbelQW['uni_dates_nightclub_1'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates_nightclub_1'] = ((s as any).NatbelQW['uni_dates_nightclub_1'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/natdressing1.jpg');
   scene.text('You look up and see Natasha entering your room but she isn\'t ready yet.');
@@ -274,6 +274,8 @@ function enterNightclubDate1_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'backup');
     qspCall(s, 'outfit', 'strip_all');
     qspCall(s, 'stat', '');
+    (s as any).loc = 'natbel_uni_dates';
+    (s as any).loc_arg = 'nightclub_date1_3';
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha25.mp4');
     scene.text('You slowly wriggle out of your top, allowing it to slip down your body.');
     scene.text('You are both overcome by a loving feeling towards each other and lust quickly takes over.');
@@ -335,8 +337,8 @@ function enterNightclubDate1_3(s: GameState, scene: SceneBuilder): void {
 
 function enterMallDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_mall_1'] = ((s as any).NatbelQW['uni_dates_mall_1'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates_mall_1'] = ((s as any).NatbelQW['uni_dates_mall_1'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat4.jpg');
   scene.text('You spot Natasha sitting alone by the window and head over.');
@@ -424,9 +426,10 @@ function enterMallDate1(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000)  &&  ((s as any).NatbelQW ?? 0)?.['uni_fashionista_dress'] === 0) {
       scene.actions([
         { label: 'Natasha spots a really nice dress', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_fashionista_dress'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_fashionista_dress'] = 1;
     qspCall(s, 'money', 'pay', 5000);
     qspCall(s, 'stat', '');
+    (s as any).temp_price_string = qspFunc(s, 'money', 'format', qspFunc(s, 'money', 'price', 5000));
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat17.jpg');
     scene.text('With that you head inside and browse their clothes and outfits.');
     scene.text('They are some really nice dresses and outfits, not quite the quality of the boutique in the mall but not far short.');
@@ -583,8 +586,8 @@ function enterMallDate1_2(s: GameState, scene: SceneBuilder): void {
 
 function enterLibraryDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_library_1'] = ((s as any).NatbelQW['uni_dates_library_1'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates_library_1'] = ((s as any).NatbelQW['uni_dates_library_1'] ?? 0) + (1);
   qspCall(s, 'beverage', 'coffee_stats');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat4.jpg');
@@ -692,6 +695,8 @@ function enterLibraryDate1(s: GameState, scene: SceneBuilder): void {
     scene.text('You slowly wriggle out of your top, allowing it to slip down your body.');
     scene.text('You are both overcome by a loving feeling towards each other and lust quickly takes over.');
     scene.text('She slowly makes her way down your body and tenderly starts kissing and sucking on your breasts.');
+    (s as any).loc = 'natbel_uni_dates';
+    (s as any).loc_arg = 'library_date1_2';
     qspCall(s, 'natbel_kissinggames', 'set_sex_acts1');
   } },
     ]);
@@ -766,8 +771,8 @@ function enterLibraryDate1_2(s: GameState, scene: SceneBuilder): void {
 
 function enterCafeDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_cafe_1'] = ((s as any).NatbelQW['uni_dates_cafe_1'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates_cafe_1'] = ((s as any).NatbelQW['uni_dates_cafe_1'] ?? 0) + (1);
   qspCall(s, 'beverage', 'coffee_stats');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat1.jpg');
@@ -886,8 +891,8 @@ function enterCafeDate1(s: GameState, scene: SceneBuilder): void {
 
 function enterBeachDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_beach_1'] = ((s as any).NatbelQW['uni_dates_beach_1'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dates_beach_1'] = ((s as any).NatbelQW['uni_dates_beach_1'] ?? 0) + (1);
   qspCall(s, 'beverage', 'coffee_stats');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat4.jpg');
@@ -959,7 +964,7 @@ function enterBeachDate1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Right Natasha I need to get a costume or bikini too."');
       scene.text('You both look at the options and decide on your favourite.');
       scene.text('After paying for it you both leave the shop and head to the changing rooms to put in your swimwear.');
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'beach_date1_buy_swimwear_loop'] }]);
+      qspGoto(s, 'natbel_uni_dates', 'beach_date1_buy_swimwear_loop');
     }
   } },
     ]);
@@ -988,6 +993,7 @@ function enterBeachDate1BuySwimwearLoop(s: GameState, scene: SceneBuilder): void
 
 function enterBeachDate1BuySwimsuit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'natbel_uni_dates', 'swimwear_buy_loop');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Swimsuits - one size fits all</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -1003,13 +1009,15 @@ function enterBeachDate1BuySwimsuit(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['natbel_uni_dates', 'beach_date1_buy_swimwear_loop'] },
+    qspGoto(s, 'natbel_uni_dates', 'beach_date1_buy_swimwear_loop');
+  } },
   ]);
   scene.build();
 }
 
 function enterBeachDate1BuyBikini(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'natbel_uni_dates', 'swimwear_buy_loop');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bikinis - one size fits all</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -1025,7 +1033,8 @@ function enterBeachDate1BuyBikini(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['natbel_uni_dates', 'beach_date1_buy_swimwear_loop'] },
+    qspGoto(s, 'natbel_uni_dates', 'beach_date1_buy_swimwear_loop');
+  } },
   ]);
   scene.build();
 }

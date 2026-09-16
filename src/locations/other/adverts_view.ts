@@ -7,6 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModel(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'AURORA<br>'
   // TODO-QSP: $text += 'We are St. Petersburg''s lead female casting agency, providing actresses for blockbuster m...
   // TODO-QSP: $text += 'TV shows and commercials, and we are looking for our next BIG STAR!<br>'
@@ -25,6 +26,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGuitar(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'Guitar lessons with Vikotr Zinchuk.<br>'
   // TODO-QSP: $text += '- Modern methods<br>'
   // TODO-QSP: $text += '- All ages welcome<br>'
@@ -37,12 +39,13 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Enroll now'
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
-  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['advertisement'] = 1;
+  ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['advertisement'] = 1;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSing(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'Let your inner beauty shine! Singing lessons now available at the Vladimir Lenin community...
   // TODO-QSP: $text += 'Only <<$func(''money'', ''string_price'', 500)>>!'
   // TODO-QSP: $text += '</center>'
@@ -52,6 +55,7 @@ function enterSing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBurlesque(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'Pushkin Dance Theater (Est. 1995)<br>'
   // TODO-QSP: $text += 'We are a celebrated burlesque troupe based in Pushkin.<br>'
   // TODO-QSP: $text += 'It is inspired by the beauty of the human sexuality and is full of extravagance, glamour a...
@@ -64,6 +68,7 @@ function enterBurlesque(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSecretary(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'Titan-Express Engineering<br>'
   // TODO-QSP: $text += 'Join our Team, We are hiring!<br>'
   // TODO-QSP: $text += '<br>Our company is looking to hire motivated members to work at our different locations.<b...
@@ -79,13 +84,14 @@ function enterSecretary(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
   if (((s as any).job_hiring_step ?? 0)?.['city_office_secretary'] === 0) {
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_secretary'] = 1;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['city_office_secretary'] = 1;
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDiner(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'Dish Washer Wanted!<br>'
   // TODO-QSP: $text += 'Diner Bystroeshka located in Downtown District.<br>'
   // TODO-QSP: $text += '100 per hour<br>'
@@ -103,6 +109,7 @@ function enterFitness(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPushkin(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'Visit Pushkin!<br>'
   // TODO-QSP: $text += 'Explore beautiful historic buildings and the famous Catherine park.<br>'
   // TODO-QSP: $text += 'Embrace history and heritage in Old Town.'
@@ -113,6 +120,7 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStarlets(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'Do you have the groove and something to prove? Then sign up for Dance Classes at Pavlovsk ...
   // TODO-QSP: $text += 'Lessons range from beginner to expert level. FUN for girls of any skill level.<br>'
   // TODO-QSP: $text += 'And, if you''ve really know how to shake that money-maker, then audition for the<br>'
@@ -126,6 +134,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTherapy(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += 'Depression? Low self-esteem?<br>'
   // TODO-QSP: $text += 'Don''t let it break you!<br>'
   // TODO-QSP: $text += '<br>Come see the friendly and warm Dr. Pavlov. Board certified and highly respected.<br>'
@@ -138,6 +147,7 @@ function enterTherapy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHotelmaid(s: GameState, scene: SceneBuilder): void {
+  (s as any).text = '<center>';
   // TODO-QSP: $text += '<b>Maid Wanted!</b><br>'
   // TODO-QSP: $text += '<br>The Pavlovsk Hotel is looking for a hardworking maid to join our housekeeping team.<br...
   // TODO-QSP: $text += 'Duties include cleaning rooms, making beds, and maintaining common areas.<br>'
@@ -147,7 +157,7 @@ function enterHotelmaid(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] === 0) {
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 1;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
   }
   // TODO-QSP: end
   scene.build();

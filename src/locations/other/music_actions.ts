@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_time_left = (((s as any).ml_performance ?? {})?.['max_perform_minutes'] ?? 0)-(((s as any).ml_performance ?? {})?.['performed_minutes'] ?? 0);
   if (((s as any).ml_activities ?? 0)?.['enabled'] === 0  &&  (((s as any).ml_guitar ?? 0)?.['hasguitar']  ||  ((s as any).vokal_lvl ?? 0) > 5)) {
-    if (!(s as any).ml_activities) (s as any).ml_activities = {}; (s as any).ml_activities['enabled'] = 1;
+    ((s as any).ml_activities = (s as any).ml_activities ?? {})['enabled'] = 1;
   }
   if (((s as any).ml_activities ?? 0)?.['enabled'] === 0  ||  ((s as any).ml_no_music ?? 0) !== 0) {
     // TODO-QSP: exit
@@ -108,18 +108,18 @@ function enterPutDownPickUp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_guitar ?? 0)?.['carried'] === 1) {
     scene.actions([
       { label: 'Place the guitar next to your desk', handler: (st: GameState) => {
-    if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['carried'] = 0;
-    if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['location'] = ((s as any).loc ?? 0);
-    dynamicGoto(st, 'loc', 'loc_arg');
+    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 0;
+    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['location'] = ((s as any).loc ?? 0);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
     if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
       scene.actions([
         { label: 'Pick up the guitar', handler: (st: GameState) => {
-    if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['carried'] = 1;
-    if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['location'] = 'carried';
-    dynamicGoto(st, 'loc', 'loc_arg');
+    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['location'] = 'carried';
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -247,7 +247,8 @@ function enterPracticeGuitar(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['music_bedroomPractice', 'guitar'] },
+    qspGoto(s, 'music_bedroomPractice', 'guitar');
+  } },
           ]);
         }
       }
@@ -364,7 +365,8 @@ function enterStreamMusic(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['music_onlinemusic', 'live_stream'] },
+    qspGoto(s, 'music_onlinemusic', 'live_stream');
+  } },
                   ]);
                 }
               }
@@ -411,7 +413,8 @@ function enterRecordMusic(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['music_onlinemusic', 'record_song'] },
+    qspGoto(s, 'music_onlinemusic', 'record_song');
+  } },
           ]);
         }
       }
@@ -428,7 +431,8 @@ function enterEditRecording(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['music_onlinemusic', 'recordAndEditSong'] },
+    qspGoto(s, 'music_onlinemusic', 'recordAndEditSong');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -468,7 +472,8 @@ function enterRehearseSets(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['music_bedroompractice', 'rehearse'] },
+    qspGoto(s, 'music_bedroompractice', 'rehearse');
+  } },
             ]);
           }
         }
@@ -558,7 +563,7 @@ function enterClearRestrictions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFinish(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }

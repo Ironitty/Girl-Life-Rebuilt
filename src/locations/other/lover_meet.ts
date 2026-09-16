@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,13 +11,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0));
-  if (!(s as any).npc_meetday) (s as any).npc_meetday = {}; (s as any).npc_meetday[String((s as any).npcID ?? 0)] = 0;
-  if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  ((s as any).npc_meetday = (s as any).npc_meetday ?? {})[String((s as any).npcID ?? 0)] = 0;
+  ((s as any).npc_dates = (s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   qspCall(s, 'lover_pref', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
+  (s as any).changeFind = '';
   (s as any).clotDay = 9;
   (s as any).bodyDay = 21;
   (s as any).pierDay = 21;
@@ -30,10 +32,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
       (s as any).randchan = Math.floor(Math.random() * 3) + 0;
       if ((!((s as any).randchan ?? 0))) {
+        (s as any).greet = 'says with love in ' + ((s as any).Xyr ?? 0) + ' eyes, "Hey ' + ((s as any).pcs_nickname ?? 0) + '."';
       } else {
         if (((s as any).randchan ?? 0) === 1) {
+          (s as any).greet = 'says lovingly, "Hello love. I\'m glad so see you."';
         } else {
           if (((s as any).randchan ?? 0) === 2) {
+            (s as any).greet = 'says quietly while looking into your eyes, "Hello love." ';
           }
         }
       }
@@ -41,10 +46,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
         (s as any).randchan = Math.floor(Math.random() * 2) + 0;
         if ((!((s as any).randchan ?? 0))) {
+          (s as any).greet = 'says with a faint smile, "Hey ' + ((s as any).pcs_nickname ?? 0) + '."';
         } else {
           if (((s as any).randchan ?? 0) === 1) {
+            (s as any).greet = 'says with a smile, "Hi ' + ((s as any).pcs_nickname ?? 0) + '."';
           }
         }
+      } else {
+        (s as any).greet = 'says, "Hi ' + ((s as any).pcs_firstname ?? 0) + '."';
       }
     }
   } else {
@@ -52,10 +61,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
         (s as any).randchan = Math.floor(Math.random() * 3) + 0;
         if ((!((s as any).randchan ?? 0))) {
+          (s as any).greet = 'says, "Hey love. I am so happy to see you."';
         } else {
           if (((s as any).randchan ?? 0) === 1) {
+            (s as any).greet = 'says intimately, "Hello my angel."';
           } else {
             if (((s as any).randchan ?? 0) === 2) {
+              (s as any).greet = 'says while admiring you, "Hello ' + ((s as any).pcs_nickname ?? 0) + ' beautiful."';
             }
           }
         }
@@ -63,20 +75,27 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
           (s as any).randchan = Math.floor(Math.random() * 2) + 0;
           if ((!((s as any).randchan ?? 0))) {
+            (s as any).greet = 'says with a smile, "Hey ' + ((s as any).pcs_nickname ?? 0) + ', glad to see you."';
           } else {
             if (((s as any).randchan ?? 0) === 1) {
+              (s as any).greet = 'says with a soft tone, "Hello beautiful."';
             }
           }
+        } else {
+          (s as any).greet = 'says, "Hello ' + ((s as any).pcs_nickname ?? 0) + '."';
         }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
         (s as any).randchan = Math.floor(Math.random() * 3) + 0;
         if ((!((s as any).randchan ?? 0))) {
+          (s as any).greet = 'says with a loving voice, "There\'s my sexy gal."';
         } else {
           if (((s as any).randchan ?? 0) === 1) {
+            (s as any).greet = 'says with a toothful grin, "There is my goddess."';
           } else {
             if (((s as any).randchan ?? 0) === 2) {
+              (s as any).greet = 'says with a rather loud enduring voice, "Hey babe!"';
             }
           }
         }
@@ -84,10 +103,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
           (s as any).randchan = Math.floor(Math.random() * 2) + 0;
           if ((!((s as any).randchan ?? 0))) {
+            (s as any).greet = 'says with a grin, "Hey ' + ((s as any).pcs_nickname ?? 0) + '."';
           } else {
             if (((s as any).randchan ?? 0) === 1) {
+              (s as any).greet = 'says with a chuckle, "Hey\'ya ' + ((s as any).pcs_nickname ?? 0) + '."';
             }
           }
+        } else {
+          (s as any).greet = 'says, "Hey ' + ((s as any).pcs_nickname ?? 0) + '."';
         }
       }
     }
@@ -96,37 +119,51 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).didPushAway = 0;
   if (((s as any).pcs_skin ?? 0) < 20) {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
+    (s as any).meetskin = 'looking at ' + ((s as any).Xyr ?? 0) + ' feet';
   } else {
     if (((s as any).pcs_skin ?? 0) < 40) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
+      (s as any).meetskin = 'giving you a quick glance';
     } else {
       if (((s as any).pcs_skin ?? 0) < 60) {
+        (s as any).meetskin = 'looking at you';
       } else {
         if (((s as any).pcs_skin ?? 0) < 80) {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+          (s as any).meetskin = 'smiling at you';
         } else {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
+          (s as any).meetskin = 'smiling at you';
         }
       }
     }
   }
   if ((!((s as any).pcs_lip ?? 0))) {
+    (s as any).meetlip = 'thin lips';
   }
   if (((s as any).pcs_lip ?? 0) === 1) {
+    (s as any).meetlip = 'soft lips';
   }
   if (((s as any).pcs_lip ?? 0) === 2) {
+    (s as any).meetlip = 'plump lips';
   }
   if (((s as any).pcs_lip ?? 0) === 3) {
+    (s as any).meetlip = 'large, plump lips';
   }
   if (((s as any).pcs_lip ?? 0) === 4) {
+    (s as any).meetlip = 'thick and huge lips';
   }
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+    (s as any).clom = 'dressed in a tracksuit.';
   } else {
     if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      (s as any).clom = 'dressed in jeans and a sweater.';
     } else {
       if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+        (s as any).clom = 'dressed in a respectable and expensive jacket.';
       } else {
         if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+          (s as any).clom = 'dressed in a beautiful and expensive dress.';
         }
       }
     }
@@ -178,7 +215,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npcdesc>> takes a closer look at you and says, "What is wrong with your lips?...
       scene.text(`${((s as any).npcdesc || '')} takes a closer look at you and says, "What is wrong with your lips? They are very sore. Is that genital herpes? I better go, I do not want to get infected. I'm sorry, goodbye."`);
       qspCall(s, 'mood', 'lower', 'medium');
-      scene.actions([{ label: 'Continue', goto: ['lover_meet', 'go_home'] }]);
+      qspGoto(s, 'lover_meet', 'go_home');
     } else {
       if (((s as any).Venera ?? 0) < 4  &&  ((s as any).cumloc ?? 0)[11] === 0  &&  (((s as any).cumloc ?? 0)[6] === 0  &&  ((s as any).cumloc ?? 0)[7] === 0)) {
         if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -248,14 +285,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: <<$Xec>> notices the sperm on your face, "H-Hey- <<$pcs_firstname>>! What the…?!...
               scene.text(`${((s as any).Xec || '')} notices the sperm on your face, "H-Hey- ${((s as any).pcs_firstname || '')}! What the…?! You dirty whore!", ${((s as any).Xe || '')} then pushes you out of ${((s as any).Xyr || '')} face. "We are through, I don't want to see your face again!`);
               qspCall(s, 'mood', 'lower', 'medium');
-              scene.actions([{ label: 'Continue', goto: ['lover_meet', 'go_home'] }]);
+              qspGoto(s, 'lover_meet', 'go_home');
             } else {
               if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)) {
                 qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
                 // TODO-QSP: dynamic text: <<$Xec>> notices the sperm on your ass, "<<$pcs_firstname>>! What the…?! You dir...
                 scene.text(`${((s as any).Xec || '')} notices the sperm on your ass, "${((s as any).pcs_firstname || '')}! What the…?! You dirty whore!", ${((s as any).Xe || '')} then pushes you away. "We are through, I don't want to see your face again!`);
                 qspCall(s, 'mood', 'lower', 'medium');
-                scene.actions([{ label: 'Continue', goto: ['lover_meet', 'go_home'] }]);
+                qspGoto(s, 'lover_meet', 'go_home');
               }
             }
           }
@@ -370,7 +407,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: <<$Xec>> notices the sperm on your face, "<<$pcs_firstname>>! What the…?! You di...
             scene.text(`${((s as any).Xec || '')} notices the sperm on your face, "${((s as any).pcs_firstname || '')}! What the…?! You dirty whore!", ${((s as any).Xe || '')} then pushes you out of ${((s as any).Xyr || '')} face. "We are through, I don't want to see your face again!`);
             qspCall(s, 'mood', 'lower', 'medium');
-            scene.actions([{ label: 'Continue', goto: ['lover_meet', 'go_home'] }]);
+            qspGoto(s, 'lover_meet', 'go_home');
           } else {
             if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)) {
               if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
@@ -381,7 +418,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: <<$Xec>> notices the sperm on your ass, "<<$pcs_firstname>>! What the…?! You dir...
               scene.text(`${((s as any).Xec || '')} notices the sperm on your ass, "${((s as any).pcs_firstname || '')}! What the…?! You dirty whore!", ${((s as any).Xe || '')} then pushes you away. "We are through, I don't want to see your face again!`);
               qspCall(s, 'mood', 'lower', 'medium');
-              scene.actions([{ label: 'Continue', goto: ['lover_meet', 'go_home'] }]);
+              qspGoto(s, 'lover_meet', 'go_home');
             }
           }
         }
@@ -474,7 +511,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: <<$Xec>> notices the sperm on your face, "H-Hey- <<$pcs_firstname>>! What the…?!...
             scene.text(`${((s as any).Xec || '')} notices the sperm on your face, "H-Hey- ${((s as any).pcs_firstname || '')}! What the…?! You dirty whore!", ${((s as any).Xe || '')} then pushes you out of ${((s as any).Xyr || '')} face. "We are through, I don't want to see your face again!`);
             qspCall(s, 'mood', 'lower', 'medium');
-            scene.actions([{ label: 'Continue', goto: ['lover_meet', 'go_home'] }]);
+            qspGoto(s, 'lover_meet', 'go_home');
           } else {
             if (((s as any).cumloc ?? 0)[6]+((s as any).cumloc ?? 0)[7] > 0) {
               if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
@@ -485,7 +522,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: <<$Xec>> notices the sperm on your ass, "H-Hey- <<$pcs_firstname>>! What the…?! ...
               scene.text(`${((s as any).Xec || '')} notices the sperm on your ass, "H-Hey- ${((s as any).pcs_firstname || '')}! What the…?! You dirty whore!", ${((s as any).Xe || '')} then pushes you away. "We are through, I don't want to see your face again!`);
               qspCall(s, 'mood', 'lower', 'medium');
-              scene.actions([{ label: 'Continue', goto: ['lover_meet', 'go_home'] }]);
+              qspGoto(s, 'lover_meet', 'go_home');
             } else {
               if (((s as any).cumloc ?? 0)[12] > 0) {
                 if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
@@ -496,7 +533,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 // TODO-QSP: dynamic text: <<$Xec>> realizes your mouth smells like sperm, "H-Hey- <<$pcs_firstname>>! What...
                 scene.text(`${((s as any).Xec || '')} realizes your mouth smells like sperm, "H-Hey- ${((s as any).pcs_firstname || '')}! What the…?! You dirty whore!", ${((s as any).Xe || '')} then pushes you away. "We are through, I don't want to see your face again!"`);
                 qspCall(s, 'mood', 'lower', 'medium');
-                scene.actions([{ label: 'Continue', goto: ['lover_meet', 'go_home'] }]);
+                qspGoto(s, 'lover_meet', 'go_home');
               }
             }
           }
@@ -509,7 +546,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: 'Push <<$Xyr>> face away', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Push ' + String(((s as any).Xyr || '') ?? '') + ' face away', handler: (st: GameState) => {
     (s as any).didPushAway = 1;
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
     // TODO-QSP: dynamic text: Maybe you had a bad day, maybe you don't want a kiss, you rudely push <<$Xyr>> f...
@@ -548,7 +585,7 @@ function enterLikes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] >= ((s as any).bodyDay ?? 0)) {
     qspCall(s, 'lover_likes', 'bodyPrefTmp');
   }
-  scene.actions([{ label: 'Continue', goto: ['lover_meet', 'actions'] }]);
+  qspGoto(s, 'lover_meet', 'actions');
   // TODO-QSP: end
   scene.build();
 }
@@ -587,32 +624,37 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).npc_compliance ?? 0)?.[String((s as any).npcID ?? 0)] >= -2) {
+      (s as any).loverResist = 'easy';
     } else {
       if (((s as any).npc_compliance ?? 0)?.[String((s as any).npcID ?? 0)] >= -4) {
+        (s as any).loverResist = 'medium';
+      } else {
+        (s as any).loverResist = 'hard';
       }
     }
     qspCall(s, 'willpower', 'misc', 'self', ((s as any).loverResist ?? 0));
-    if (!(s as any).lover_meet) (s as any).lover_meet = {}; (s as any).lover_meet['ChangeActions'] = qspUntranslated(s, "{", { location: "lover_meet" });
+    ((s as any).lover_meet = (s as any).lover_meet ?? {})['ChangeActions'] = qspUntranslated(s, "{", { location: "lover_meet" });
     // TODO-QSP: !$ARGS[0] = name of thing being changed
     // TODO-QSP: !$ARGS[1] = Parameter for lover_change procedure
-    if (!(s as any).lover_meet) (s as any).lover_meet = {}; (s as any).lover_meet['ChangeName'] = ((s as any).locArgs?.[0] ?? 0);
-    if (!(s as any).lover_meet) (s as any).lover_meet = {}; (s as any).lover_meet['ChangeParamName'] = ((s as any).locArgs?.[1] ?? 0);
+    ((s as any).lover_meet = (s as any).lover_meet ?? {})['ChangeName'] = ((s as any).locArgs?.[0] ?? 0);
+    ((s as any).lover_meet = (s as any).lover_meet ?? {})['ChangeParamName'] = ((s as any).locArgs?.[1] ?? 0);
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'I like my <<$lover_meet["ChangeName"]>> just the way it is', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I like my ' + String(((s as any).lover_meet ?? 0)?.['ChangeName'] ?? '' ?? '') + ' just the way it is', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'I like my <<$lover_meet["ChangeName"]>> just the way it is', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I like my ' + String(((s as any).lover_meet ?? 0)?.['ChangeName'] ?? '' ?? '') + ' just the way it is', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * ((-1) - (-2) + 1)) + ((-2))));
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
     // TODO-QSP: dynamic text: <<$npcdesc>> realizes you will not give in this situation, and walks away mumbli...
     scene.text(`${((s as any).npcdesc || '')} realizes you will not give in this situation, and walks away mumbling to ${((s as any).Xemself || '')}.`);
-  }, goto: ['lover_meet', 'go_home'] },
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
       ]);
     }
     if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -696,8 +738,9 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Sorry, but I need to go', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $npcID, 0 - (1 + rand(-npc_gentle[$npcID], npc_rough[$npcID]))
-  }, goto: ['lover_meet', 'go_home'] },
-            { label: 'Go with <<$Xem>>', goto: ['lover_meet', 'go_stairwell_date'] },
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
+            { label: '', labelFn: (s: GameState) => 'Go with ' + String(((s as any).Xem || '') ?? ''), goto: ['lover_meet', 'go_stairwell_date'] },
           ]);
         } else {
           if (((s as any).randchan ?? 0) === 2  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -706,8 +749,9 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Sorry, but I need to go', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $npcID, 0 - (1 + rand(-npc_gentle[$npcID], npc_rough[$npcID]))
-  }, goto: ['lover_meet', 'go_home'] },
-              { label: 'Go with <<$Xem>>', handler: (st: GameState) => {
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
+              { label: '', labelFn: (s: GameState) => 'Go with ' + String(((s as any).Xem || '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'lover_meet', 'go_park_date');
   } },
             ]);
@@ -825,8 +869,9 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Sorry, but I need to go', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $npcID, 0 - (1 + rand(-npc_gentle[$npcID], npc_rough[$npcID]))
-  }, goto: ['lover_meet', 'go_home'] },
-              { label: 'Go with <<$Xem>>', goto: ['lover_meet', 'go_movie_date'] },
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
+              { label: '', labelFn: (s: GameState) => 'Go with ' + String(((s as any).Xem || '') ?? ''), goto: ['lover_meet', 'go_movie_date'] },
             ]);
           } else {
             if (((s as any).randchan ?? 0) === 2) {
@@ -835,8 +880,9 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Sorry, but I need to go', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $npcID, 0 - (1 + rand(-npc_gentle[$npcID], npc_rough[$npcID]))
-  }, goto: ['lover_meet', 'go_home'] },
-                { label: 'Go with <<$Xem>>', goto: ['lover_meet', 'go_park_date'] },
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
+                { label: '', labelFn: (s: GameState) => 'Go with ' + String(((s as any).Xem || '') ?? ''), goto: ['lover_meet', 'go_park_date'] },
               ]);
             } else {
               if (((s as any).randchan ?? 0) === 3) {
@@ -845,8 +891,9 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Sorry, but I need to go', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $npcID, 0 - (1 + rand(-npc_gentle[$npcID], npc_rough[$npcID]))
-  }, goto: ['lover_meet', 'go_home'] },
-                  { label: 'Go with <<$Xem>>', goto: ['lover_meet', 'go_cafe_date'] },
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
+                  { label: '', labelFn: (s: GameState) => 'Go with ' + String(((s as any).Xem || '') ?? ''), goto: ['lover_meet', 'go_cafe_date'] },
                 ]);
               }
             }
@@ -984,8 +1031,9 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Sorry, but I need to leave', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $npcID, 0 - (1 + rand(-npc_gentle[$npcID], npc_rough[$npcID]))
-  }, goto: ['lover_meet', 'go_home'] },
-              { label: 'Go with <<$Xem>>', goto: ['lover_meet', 'go_cafe_date'] },
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
+              { label: '', labelFn: (s: GameState) => 'Go with ' + String(((s as any).Xem || '') ?? ''), goto: ['lover_meet', 'go_cafe_date'] },
             ]);
           } else {
             if (((s as any).randchan ?? 0) === 2) {
@@ -994,8 +1042,9 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Sorry, but I need to leave', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $npcID, 0 - (1 + rand(-npc_gentle[$npcID], npc_rough[$npcID]))
-  }, goto: ['lover_meet', 'go_home'] },
-                { label: 'Go with <<$Xem>>', goto: ['lover_meet', 'go_restaurant_date'] },
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
+                { label: '', labelFn: (s: GameState) => 'Go with ' + String(((s as any).Xem || '') ?? ''), goto: ['lover_meet', 'go_restaurant_date'] },
               ]);
             } else {
               if (((s as any).randchan ?? 0) === 3) {
@@ -1004,8 +1053,9 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Sorry, but I need to go', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $npcID, 0 - (1 + rand(-npc_gentle[$npcID], npc_rough[$npcID]))
-  }, goto: ['lover_meet', 'go_home'] },
-                  { label: 'Go with <<$Xem>>', goto: ['lover_meet', 'go_movie_date'] },
+    qspGoto(s, 'lover_meet', 'go_home');
+  } },
+                  { label: '', labelFn: (s: GameState) => 'Go with ' + String(((s as any).Xem || '') ?? ''), goto: ['lover_meet', 'go_movie_date'] },
                 ]);
               }
             }
@@ -1014,7 +1064,7 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Agree with <<$Xem>> to change your <<$lover_meet["ChangeName"]>>', goto: ['lover_change', '<<$lover_meet["ChangeParamName"]>>'] },
+      { label: '', labelFn: (s: GameState) => 'Agree with ' + String(((s as any).Xem || '') ?? '') + ' to change your ' + String(((s as any).lover_meet ?? 0)?.['ChangeName'] ?? '' ?? ''), goto: ['lover_change', '' + ((s as any).lover_meet ?? 0)?.['ChangeParamName'] + ''] },
     ]);
   } },
     { label: 'I want to do something today', handler: (st: GameState) => {
@@ -1030,6 +1080,7 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+        (s as any).telsob = '' + ((s as any).npcdesc ?? 0) + '';
         if (((s as any).month ?? 0) > 5  &&  ((s as any).temper ?? 0) > 20  &&  ((s as any).sunWeather ?? 0) === 1) {
           scene.actions([
             { label: 'Invite to the park', goto: ['lover_meet', 'go_park_date'] },
@@ -1067,9 +1118,10 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
 function enterGoParkDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['parkM', 'start'] }]);
+    qspGoto(s, 'parkM', 'start');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['parksvid', ''] }]);
+    (s as any).telsob = ((s as any).npcdesc ?? 0);
+    qspGoto(s, 'parksvid', '');
   }
   // TODO-QSP: end
   scene.build();
@@ -1078,9 +1130,10 @@ function enterGoParkDate(s: GameState, scene: SceneBuilder): void {
 function enterGoMovieDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['kinoM', 'start'] }]);
+    qspGoto(s, 'kinoM', 'start');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['kinosvid', ''] }]);
+    (s as any).telsob = ((s as any).npcdesc ?? 0);
+    qspGoto(s, 'kinosvid', '');
   }
   // TODO-QSP: end
   scene.build();
@@ -1089,9 +1142,10 @@ function enterGoMovieDate(s: GameState, scene: SceneBuilder): void {
 function enterGoCafeDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['kafeM', 'start'] }]);
+    qspGoto(s, 'kafeM', 'start');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['kafesvid', ''] }]);
+    (s as any).telsob = ((s as any).npcdesc ?? 0);
+    qspGoto(s, 'kafesvid', '');
   }
   // TODO-QSP: end
   scene.build();
@@ -1100,9 +1154,10 @@ function enterGoCafeDate(s: GameState, scene: SceneBuilder): void {
 function enterGoRestaurantDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_gender ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['restoranM', 'start'] }]);
+    qspGoto(s, 'restoranM', 'start');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['kafesvid', ''] }]);
+    (s as any).telsob = ((s as any).npcdesc ?? 0);
+    qspGoto(s, 'kafesvid', '');
   }
   // TODO-QSP: end
   scene.build();
@@ -1110,28 +1165,30 @@ function enterGoRestaurantDate(s: GameState, scene: SceneBuilder): void {
 
 function enterGoCasinoDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.actions([{ label: 'Continue', goto: ['kazinosvid', ''] }]);
+  (s as any).telsob = ((s as any).npcdesc ?? 0);
+  qspGoto(s, 'kazinosvid', '');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGoPoolHallDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.actions([{ label: 'Continue', goto: ['billsvid', ''] }]);
+  (s as any).telsob = ((s as any).npcdesc ?? 0);
+  qspGoto(s, 'billsvid', '');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGoStairwellDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.actions([{ label: 'Continue', goto: ['podezdM', 'start'] }]);
+  qspGoto(s, 'podezdM', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGoHome(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.actions([{ label: 'Continue', goto: ['homes_properties', 'go_home'] }]);
+  qspGoto(s, 'homes_properties', 'go_home');
   // TODO-QSP: end
   scene.build();
 }

@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_bathrooms', 'bath');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/bath1.jpg');
   scene.text('A luxrious bathroom, designed to indulge and relax.');
@@ -23,6 +24,7 @@ function enterBath(s: GameState, scene: SceneBuilder): void {
 
 function enterEnsuite(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_bathrooms', 'ensuite');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/ensuite1.jpg');
   scene.text('An ensuite bathroom');
@@ -33,6 +35,7 @@ function enterEnsuite(s: GameState, scene: SceneBuilder): void {
 
 function enterRestroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_bathrooms', 'restroom');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/rest.jpg');
   scene.text('A beautiful little room for taking care of the essentials and making yourself look good.');

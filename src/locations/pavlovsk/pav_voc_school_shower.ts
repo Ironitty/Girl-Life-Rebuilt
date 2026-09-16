@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterShower(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
+  (s as any).menu_loc = 'pav_voc_school_shower';
+  (s as any).menu_arg = 'shower';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Women\'s Shower</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_jen.jpg');
@@ -24,7 +26,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUndress(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (1);
+  ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (1);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (3);
   qspCall(s, 'stat', '');
@@ -34,7 +36,7 @@ function enterUndress(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Head to the shower', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).pcs_horny ?? 0) >= 70) {
-      scene.actions([{ label: 'Continue', goto: ['pav_voc_school_shower', 'shower_event'] }]);
+      qspGoto(s, 'pav_voc_school_shower', 'shower_event');
     }
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (3);
@@ -71,6 +73,7 @@ function enterShowerEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Tease them', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     scene.img('images/locations/pavlovsk/clinic/gyno/sex/ptu_shower_3.jpg');
     scene.text('Feeling aroused that someone walked in on you, you try to keep quiet while your hand begins sliding down toward your clit. The closer your hand gets, the more a warm feeling rises inside you.');
     scene.text('You should stop, but you can\'t as your hand reaches down and you begin touching yourself. It doesn\'t take long before you\'re dripping wet. Knowing that you must keep quiet, you try your best to stay as silent as possible. You feel your body fill with warmth, and you close your eyes in anticipation…');
@@ -121,6 +124,7 @@ function enterShowerEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('The second guy moves away and watches while the first sits down and has you straddle him. You begin to slowly move, trying to press yourself deeper and deeper onto his cock.');
     scene.text('You feel a pleasant sensation with every penetration. As you increase the pace, you feel yourself getting more excited, and you use your hand to stimulate your clit to reach orgasm faster. As you furiously finger yourself while his cock presses against your inner walls, it doesn\'t take long before your body starts shaking and you loudly orgasm.');
     scene.text('As you return to your senses, you can feel his cock twitching inside you. He barely manages to pull out and cum in your mouth.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'unknown');
     qspCall(s, 'arousal', 'vaginal_finger', (-5), 'unknown', 'self');
     qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0));
@@ -141,6 +145,7 @@ function enterShowerEvent(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/gyno/sex/ptu_shower_11.jpg');
     scene.text('He smirks as he grabs hold of you and whispers, "We\'re not done yet…" Feeling inferior to his friend because he hasn\'t made you orgasm yet, he shoves his cock inside you and begins furiously thrusting.');
     scene.text('You begin to moan loudly as he penetrates you deeper and deeper. He frantically increases his pace as your orgasm builds quickly, and before you know it, he manages to bring you to climax too. This time, you let out a tear as your body shakes from the intense orgasm.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'rough', 'unknown');
     qspCall(s, 'stat', '');
     scene.actions([

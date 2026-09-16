@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'blowPR';
+  (s as any).location_type = 'event';
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 1, 'unknown', 'prostitution');
   if ((Math.floor(Math.random() * 101) + 0) >= 70) {
@@ -18,7 +21,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/sex/car/bj.jpg');
   scene.text('You slide your hand onto his crotch, once you\'re in his car. The man quickly drives to a quiet area, about two streets away. You can feel an impressive bulge when you reach into his pants, and compliment him on his nice cock when you liberate it. He\'s nearly fully erect already, and if you look closely you can actually see the cock throbbing.');
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['blowPR', '1'] }]);
+    qspGoto(s, 'blowPR', '1');
     scene.actions([
       { label: 'Put on a condom, using your mouth', handler: (st: GameState) => {
     (st as any).sexcontra = 3;
@@ -35,10 +38,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'blowPR';
+  (s as any).location_type = 'event';
   (s as any).protect = 1;
   qspCall(s, 'dinSex', 'std_trigger_oral');
   (s as any).protect = 0;
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
   (s as any).tmppicrand = Math.floor(Math.random() * 7) + 1;
@@ -78,6 +84,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'blowPR';
+  (s as any).location_type = 'event';
   qspCall(s, 'dinSex', 'std_trigger_oral');
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
@@ -91,6 +100,9 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter12(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'blowPR';
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   if ((!((s as any).prosti ?? 0))) {
     (s as any).bjrand = Math.floor(Math.random() * 100) + 1;

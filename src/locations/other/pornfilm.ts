@@ -74,7 +74,7 @@ function enterPornactor(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).aksex ?? 0)?.[String((s as any).akrand ?? 0)] === 0) {
-      if (!(s as any).aksex) (s as any).aksex = {}; (s as any).aksex[String((s as any).akrand ?? 0)] = 1;
+      ((s as any).aksex = (s as any).aksex ?? {})[String((s as any).akrand ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).num = ((s as any).num ?? 0) - (1);
@@ -133,7 +133,7 @@ function enterPornactress(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).aksex ?? 0)?.[String((s as any).akrand ?? 0)] === 0) {
-      if (!(s as any).aksex) (s as any).aksex = {}; (s as any).aksex[String((s as any).akrand ?? 0)] = 1;
+      ((s as any).aksex = (s as any).aksex ?? {})[String((s as any).akrand ?? 0)] = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
     (s as any).num = ((s as any).num ?? 0) - (1);
@@ -515,7 +515,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -609,7 +609,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -719,6 +719,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 20);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   scene.text('The set is already bustling with assistants preparing for the shoot.');
@@ -788,8 +789,9 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).porngang = ((s as any).porngang ?? 0) + (1);
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -873,6 +875,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
         (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
         scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
         scene.text('You have a very real and very explosive orgasm. Your legs buckle and you almost collapse on the guy beneath you as they both unload inside you. Once they\'re finished, they pull out and you lie on the bed with your legs spread so the camera can get a close-up of your pussy and ass as their cum trickles out of you. After a few seconds, the director nods and you get up.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'vaginal', 2, ((s as any).npcID ?? 0), 'exhibitionism');
         qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID1 ?? 0), 'exhibitionism');
         qspCall(s, 'arousal', 'end');
@@ -901,7 +904,8 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -992,6 +996,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
         (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
         scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
         scene.text('You have a very real orgasm and explosive orgasm, your moans muffled by the cock in your mouth. The guys finish and step away so the camera can film you swallowing the load in your mouth before moving down for a close-up of the cum trickling out of your pussy.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'vaginal', 5, 'exhibitionism');
         qspCall(s, 'arousal', 'end');
         scene.actions([
@@ -1061,7 +1066,8 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1116,6 +1122,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
       (s as any).pornorg = 1;
       scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
       scene.text('You\'re rubbing your clit and end up cumming alongside him as he coats your twitching pussy with his load.');
+      (s as any).orgasm_or = 'yes';
       qspCall(s, 'stat', '');
     }
     qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
@@ -1159,6 +1166,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
       // TODO-QSP: dynamic text: <<$npcdesc2>> is pounding you so hard that you have an orgasm as he coats your w...
       scene.text(`${((s as any).npcdesc2 || '')} is pounding you so hard that you have an orgasm as he coats your writhing body with his load.`);
+      (s as any).orgasm_or = 'yes';
     }
     qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
     qspCall(s, 'stat', '');
@@ -1183,6 +1191,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
       (s as any).pornorg = 1;
       scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
       scene.text('The four guys fucking you has aroused you incredibly. You end up having an explosive orgasm as he coats your writhing body with his load.');
+      (s as any).orgasm_or = 'yes';
     }
     qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
     if (((s as any).cuminside ?? 0) === 1) {
@@ -1221,7 +1230,8 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1303,6 +1313,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
         scene.text('Since you\'re already on edge, this pushes you over, and you cum around his dick, milking it even more. This pleases the director greatly. As soon as the guys are finished, the camera comes for a close-up as a stream of cum runs from your pussy. It then pans up to you, and you give it a wink and kiss.');
         (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
         (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
         qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
         qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
@@ -1359,7 +1370,8 @@ function enter12(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1444,6 +1456,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
         scene.text('Since you\'re already on edge, this pushes you over, and you moan into the pillow as your legs buckle in orgasm. The director seems exceptionally pleased with this. The guy pulls out, and you immediately feel another dick replace him, pushing deep into your ass before it starts thrusting. The other guys take their turns cumming in your ass, and you can feel a considerable amount of cum pooled inside you when they\'re done.');
         (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
         (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
         qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
         qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
@@ -1483,7 +1496,8 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1530,6 +1544,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
     qspCall(s, 'stat', '');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'They fuck your ass', handler: (st: GameState) => {
@@ -1582,6 +1597,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
         (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
         scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
         scene.text('The pleasure of your ass being double fucked means you also cum, visibly orgasming on camera alongside the guys.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
         qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
         qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
@@ -1607,8 +1623,9 @@ function enter14(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 40);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (50);
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   if (((s as any).fame ?? 0)?.['city_porn'] >= 200) {
@@ -1635,7 +1652,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     (s as any).gb_sex_count = 0;
     // TODO-QSP: :gb_main_loop
     (s as any).gb_counter = ((s as any).gb_counter ?? 0) + (1);
-    if (!(s as any).arousal_overcall) (s as any).arousal_overcall = {}; (s as any).arousal_overcall['args'] = '';
+    ((s as any).arousal_overcall = (s as any).arousal_overcall ?? {})['args'] = '';
     qspCall(s, 'npcgeneratec', '', 0, 'Porn Fan', Math.floor(Math.random() * 17) + 22, 0, 1);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).gb_roll = Math.floor(Math.random() * 6) + 1;
@@ -1660,16 +1677,19 @@ function enter14(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).orgasm_or = 'no';
     if (((s as any).orgasm_buildup ?? 0) >= 400 - 3*((s as any).pcs_inhib ?? 0)) {
       (s as any).gangOrg = ((s as any).gangOrg ?? 0) + (1);
+      (s as any).orgasm_txt = '';
+      (s as any).orgasm_or = 'custom';
     }
     if (((s as any).gb_counter ?? 0) < 50) {
       // TODO-QSP: jump 'gb_main_loop'
     }
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (((s as any).gb_sex_count ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (((s as any).gb_anal_count ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (((s as any).gb_bj_count ?? 0) + ((s as any).gb_lip_count ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hj'] = ((s as any).stat['hj'] ?? 0) + (((s as any).gb_hj_count ?? 0));
+    ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (((s as any).gb_sex_count ?? 0));
+    ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (((s as any).gb_anal_count ?? 0));
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (((s as any).gb_bj_count ?? 0) + ((s as any).gb_lip_count ?? 0));
+    ((s as any).stat = (s as any).stat ?? {})['hj'] = ((s as any).stat['hj'] ?? 0) + (((s as any).gb_hj_count ?? 0));
     if (((s as any).gb_bj_count ?? 0) + ((s as any).gb_lip_count ?? 0) > 5) {
       (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
     }
@@ -2152,7 +2172,7 @@ function enter19(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactressID[1], 'a'
@@ -2237,7 +2257,7 @@ function enter20(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactressID[1]

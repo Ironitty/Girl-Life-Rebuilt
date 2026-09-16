@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,7 +16,7 @@ function enterSetExit(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -26,12 +26,18 @@ function enterSetExit(s: GameState, scene: SceneBuilder): void {
 
 function enterAfteralcohol(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hydra ?? 0) < 20) {
+    (s as any).mtxt = ' while you drink, you wish you were better hydrated before you started.';
   } else {
     if (((s as any).pcs_hydra ?? 0) <= 40) {
+      (s as any).mtxt = ' you should remind yourself to drink some water later, so you don\'t get dehydrated.';
     } else {
       if (((s as any).pcs_hydra ?? 0) <= 60) {
+        (s as any).mtxt = ' you aren\'t sure how many more you can fit in before you need to pee.';
       } else {
         if (((s as any).pcs_hydra ?? 0) <= 80) {
+          (s as any).mtxt = ' you definitely need to drink some water now, or you\'ll end up with a hangover.';
+        } else {
+          (s as any).mtxt = ' you enjoyed that drink immensely. Let\'s have some more!';
         }
       }
     }
@@ -42,12 +48,18 @@ function enterAfteralcohol(s: GameState, scene: SceneBuilder): void {
 
 function enterAfterdrink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hydra ?? 0) < 40) {
+    (s as any).mtxt = ' it did nothing to satisfy your thirst; you should probably have some more.';
   } else {
     if (((s as any).pcs_hydra ?? 0) < 60) {
+      (s as any).mtxt = ' while your mouth is no longer dry, you would like another drink.';
     } else {
       if (((s as any).pcs_hydra ?? 0) < 80) {
+        (s as any).mtxt = ' you could definitely go another round.';
       } else {
         if (((s as any).pcs_hydra ?? 0) <= 100) {
+          (s as any).mtxt = ' it was sufficient enough to quench your thirst.';
+        } else {
+          (s as any).mtxt = ' while your thirst is quenched, you are starting to feel bloated, with your belly full of liquids.';
         }
       }
     }
@@ -66,7 +78,7 @@ function enterWatercooler(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -74,7 +86,7 @@ function enterWatercooler(s: GameState, scene: SceneBuilder): void {
 
 function enterBbr(s: GameState, scene: SceneBuilder): void {
   (s as any).food_loc = 0;
-  scene.actions([{ label: 'Continue', goto: ['brothel', 'password'] }]);
+  qspGoto(s, 'brothel', 'password');
   // TODO-QSP: end
   scene.build();
 }
@@ -119,7 +131,7 @@ function enterOnlyCostWater(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWaterStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -147,7 +159,7 @@ function enterTeaStats(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
-  if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['caffe_or_tea'] = ((s as any).teeth['caffe_or_tea'] ?? 0) + (2);
+  ((s as any).teeth = (s as any).teeth ?? {})['caffe_or_tea'] = ((s as any).teeth['caffe_or_tea'] ?? 0) + (2);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();
@@ -167,7 +179,7 @@ function enterOnlyCostTea(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTeaStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -216,7 +228,7 @@ function enterOnlyCostJuice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJuiceStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -245,7 +257,7 @@ function enterCoffeeStats(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
-  if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['caffe_or_tea'] = ((s as any).teeth['caffe_or_tea'] ?? 0) + (5);
+  ((s as any).teeth = (s as any).teeth ?? {})['caffe_or_tea'] = ((s as any).teeth['caffe_or_tea'] ?? 0) + (5);
   qspCall(s, 'drugs', 'caffeine', 4, 1);
   // TODO-QSP: end
   scene.build();
@@ -265,7 +277,7 @@ function enterOnlyCostCoffee(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoffeeStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -310,7 +322,7 @@ function enterOnlyCostEspresso(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEspressoStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -355,7 +367,7 @@ function enterOnlyCostKvass(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKvassStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -401,7 +413,7 @@ function enterOnlyCostMilkshake(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMilkshakeStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -450,7 +462,7 @@ function enterOnlyCostEnergyDrink(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnergyDrinkStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -473,10 +485,11 @@ function enterBeerStats(s: GameState, scene: SceneBuilder): void {
 
 function enterBeer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 20) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
+    (s as any).boozeVar = 'beer';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBeerStats(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBeerText(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -489,7 +502,7 @@ function enterOnlyCostBeer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBeerStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -512,10 +525,11 @@ function enterWineStats(s: GameState, scene: SceneBuilder): void {
 
 function enterWine(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 20) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
+    (s as any).boozeVar = 'wine';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWineStats(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWineText(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -528,7 +542,7 @@ function enterOnlyCostWine(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWineStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -551,10 +565,11 @@ function enterVodkaStats(s: GameState, scene: SceneBuilder): void {
 
 function enterVodka(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 20) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
+    (s as any).boozeVar = 'vodka';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVodkaStats(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVodkaText(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -567,7 +582,7 @@ function enterOnlyCostVodka(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVodkaStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -591,10 +606,11 @@ function enterBlackRussianStats(s: GameState, scene: SceneBuilder): void {
 
 function enterBlackRussian(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 20) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
+    (s as any).boozeVar = 'spirit';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlackRussianStats(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlackRussianText(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -607,7 +623,7 @@ function enterOnlyCostBlackRussian(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlackRussianStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -630,10 +646,11 @@ function enterScotchStats(s: GameState, scene: SceneBuilder): void {
 
 function enterScotch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 20) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
+    (s as any).boozeVar = 'spirit';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterScotchStats(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterScotchText(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -646,7 +663,7 @@ function enterOnlyCostScotch(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterScotchStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -670,7 +687,7 @@ function enterVodkaMartiniStats(s: GameState, scene: SceneBuilder): void {
 
 function enterVodkaMartini(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 20) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
@@ -686,7 +703,7 @@ function enterOnlyCostVodkaMartini(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVodkaMartiniStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -709,7 +726,7 @@ function enterChampagneStats(s: GameState, scene: SceneBuilder): void {
 
 function enterChampagne(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 20) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
@@ -725,7 +742,7 @@ function enterOnlyCostChampagne(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChampagneStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -750,7 +767,7 @@ function enterCocktailStats(s: GameState, scene: SceneBuilder): void {
 
 function enterCocktail(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 20) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
@@ -766,7 +783,7 @@ function enterOnlyCostCocktail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _drink['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCocktailStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }

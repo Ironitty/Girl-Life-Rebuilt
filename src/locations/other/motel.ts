@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'motel', '');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Motel</h4></center>');
   scene.img('images/locations/highway/motel/motel.jpg');

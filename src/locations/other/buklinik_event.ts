@@ -182,12 +182,13 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
 
 function enterHall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'buklinik_event', 'hall');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/city/industrial/mercyclinic/kor.jpg');
   if (((s as any).nanny_vika ?? 0) === 1) {
-    scene.text('The beautiful <a href="exec:gt \'buklinik_event\',\'vika\'">Vika</a> is standing by the mirror.');
+    scene.text('The beautiful <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027vika\\u0027); return false;">Vika</a> is standing by the mirror.');
     scene.actions([
       { label: 'Go', goto: ['city_industrial', ''] },
     ]);
@@ -218,13 +219,13 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('You cleaned the apartment.');
     scene.actions([
       { label: 'Finish cleaning', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
     ]);
   }
-  scene.text('<a href="exec:gt \'buklinik_event\',\'misha\'">Michael</a> lies in bed reading a book.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027misha\\u0027); return false;">Michael</a> lies in bed reading a book.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Out', goto: ['buklinik_event', 'hall'] },
@@ -234,6 +235,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'buklinik_event', 'kitchen');
+  (s as any).locclass = 'kitr';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kitchen</b></center>');
@@ -248,7 +250,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text('You cook the food and feed Michael.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -955,7 +957,7 @@ function enterEvent2NannyAct4(s: GameState, scene: SceneBuilder): void {
     scene.text('You suddenly wanted him to make you a pussy.');
     scene.actions([
       { label: 'Want Cunnilingus', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['cuni'] = ((s as any).stat['cuni'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['cuni'] = ((s as any).stat['cuni'] ?? 0) + (1);
     scene.img('images/locations/city/industrial/mercyclinic/sex/facesitting.mp4');
     scene.text('You told him about it. He immediately agreed. You sat on his face and began to slowly move your hips. Arousal gushed on, and you reached…');
     scene.actions([
@@ -1087,6 +1089,7 @@ function enterEvent2NannyAct5(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_manage', '');
     scene.img('images/locations/city/industrial/mercyclinic/sex/sex.mp4');
     scene.text('You took his cock in your hand and placed the head at your pussy, asking him to rate his level of arousal. At first, you didn\'t move, then you lowered yourself down. After about a minute, he reached orgasm.');
+    (s as any).orgasm_or = 'No';
     qspCall(s, 'arousal', 'vaginal', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -1160,6 +1163,8 @@ function enterEvent2NannyAct6(s: GameState, scene: SceneBuilder): void {
     scene.text('You put on a condom and slid your finger on his back, easily tightening the member by hand. You slung your leg over to make sure his cock was inside you, and began to move, rocking. You felt your vagina swell. Together with him, you reached the highest point of arousal. You took a breath, but then stopped to ask Misha how he rated his arousal.');
     scene.text('- About eight, he said.');
     scene.text('You quickened the pace. Misha came. His excitement lasted longer than during any of your previous sessions.');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'Even after orgasm, his cock was still hard, so you made a few more movements up and down and came.';
     qspCall(s, 'arousal', 'vaginal', 5);
     qspCall(s, 'arousal', 'end');
     scene.text('He almost immediately asked if you had an orgasm. When you said you did, he beamed.');

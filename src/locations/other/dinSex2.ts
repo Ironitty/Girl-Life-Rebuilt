@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -17,18 +15,25 @@ function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).sh_ind = ((s as any).sexvar ?? 0);
   if (((s as any).sh_ind ?? 0) === 6) {
+    (s as any).ind_npc = '<font color = green  > ██████ </font> ';
   }
   if (((s as any).sh_ind ?? 0) === 5) {
+    (s as any).ind_npc = '<font color = green  > █████_ </font> ';
   }
   if (((s as any).sh_ind ?? 0) === 4) {
+    (s as any).ind_npc = qspFunc(s, 'wrap', 'accent', ' ████__ ') + ' ';
   }
   if (((s as any).sh_ind ?? 0) === 3) {
+    (s as any).ind_npc = qspFunc(s, 'wrap', 'accent', ' ███___ ') + ' ';
   }
   if (((s as any).sh_ind ?? 0) === 2) {
+    (s as any).ind_npc = '<font color = red  > ██____ </font> ';
   }
   if (((s as any).sh_ind ?? 0) === 1) {
+    (s as any).ind_npc = '<font color = red  > █_____ </font> ';
   }
   if (((s as any).sh_ind ?? 0) <=0) {
+    (s as any).ind_npc = '<font color = red  > Cumming! </font> ';
   }
   // TODO-QSP: dynamic text: <center>You have sex with <<$boydesc>>, his stamina: <<$ind_npc>></center>
   scene.text(`<center>You have sex with ${((s as any).boydesc || '')}, his stamina: ${((s as any).ind_npc || '')}</center>`);
@@ -38,11 +43,12 @@ function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
 
 function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-1);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   (s as any).frost = 0;
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
     (s as any).grange = 0;
+    (s as any).temp_mens = ((((s as any).cycle ?? 0) <= 0) ? (' and menstruation blood leaks from your vagina') : (''));
     if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= 30) {
       // TODO-QSP: dynamic text: You groan in pain when <<$boydesc>> penetrates you. Tears flow from your eyes an...
       scene.text(`You groan in pain when ${((s as any).boydesc || '')} penetrates you. Tears flow from your eyes and it feels like someone drove a red-hot rod into your vagina. You cry and moan while ${((s as any).xyr || '')} fake ${((s as any).dick || '')} centimeter dick fucks your pussy${((s as any).temp_mens || '')}.`);
@@ -52,6 +58,7 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
       scene.text(`You bite your lip in pain when ${((s as any).boydesc || '')} enters you. It is very painful. You frown and moan in pain while ${((s as any).xyr || '')} fake ${((s as any).dick || '')} centimeter dick fucks your pussy${((s as any).temp_mens || '')}.`);
     }
     if (((s as any).cycle ?? 0) <= 0) {
+      (s as any).temp_mens = ', even though' + ((s as any).temp_mens ?? 0);
     }
     if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= 12  &&  (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) < 20) {
       // TODO-QSP: dynamic text: You wince at the sudden pain when <<$boydesc>> enters you, it hurts but graduall...
@@ -75,6 +82,7 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'arousal', 'vaginal_strap', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], ...
   } else {
+    (s as any).temp_mens = ((((s as any).cycle ?? 0) <= 0) ? (' and menstruation blood leaks from your vagina') : (''));
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'lower', 'medium');
     // TODO-QSP: dynamic text: You bite your <<$pc_desc['lips']>> lips in pain while tears start to flow from y...
@@ -87,11 +95,13 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
 
 function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
+  (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
+  (s as any).dick_girth = 'well proportioned';
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-1);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
+    (s as any).temp_mens = ((((s as any).cycle ?? 0) <= 0) ? (' and menstruation blood leaks from your vagina') : (''));
     (s as any).grange = 0;
     if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= 30) {
       // TODO-QSP: dynamic text: You groan in pain when the <<dick>> cm dildo enters your pussy. Tears flow from ...
@@ -102,6 +112,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
       scene.text(`You bite your lip in pain when the ${((s as any).dick || '')} cm dildo enters your pussy. You feel pain between your legs${((s as any).temp_mens || '')}.`);
     }
     if (((s as any).cycle ?? 0) <= 0) {
+      (s as any).temp_mens = ', even though' + ((s as any).temp_mens ?? 0);
     }
     if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= 12  &&  (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) < 20) {
       // TODO-QSP: dynamic text: You flinch at the sudden pain when the <<dick>>cm dildo enters your pussy, but t...
@@ -125,6 +136,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'arousal', 'vaginal_dildo', ARGS[1], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
   } else {
+    (s as any).temp_mens = ((((s as any).cycle ?? 0) <= 0) ? (' and menstruation blood leaks from your vagina') : (''));
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'lower', 'medium');
     // TODO-QSP: dynamic text: You bite your lip in pain while tears stream from your eyes when the bottle ente...
@@ -138,7 +150,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
 function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-1);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   // TODO-QSP: dynamic text: <<$boydesc>> tucks a finger into your anus, then a second one.
   scene.text(`${((s as any).boydesc || '')} tucks a finger into your anus, then a second one.`);
@@ -187,9 +199,10 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
+  (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
+  (s as any).dick_girth = 'well proportioned';
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-1);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   if (((s as any).analPlugIn ?? 0) === 1) {
     scene.text('You pull the plug out of your narrow and tight ass.');
@@ -239,7 +252,7 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   (s as any).totPain = 0;
   if (((s as any).locArgs?.[1] ?? 0) / 2 === 0) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-2);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-2);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
     (s as any).grange = 0;
@@ -389,7 +402,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const dinSex2: LocationDef = {
   name: 'dinSex2',
-  title: ' ████__ ',
+  title: '████__',
   region: 'other',
   enter: enter,
 };

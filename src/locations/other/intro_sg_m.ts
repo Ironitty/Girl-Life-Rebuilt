@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFour(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_start', 'start'] }]);
+  qspGoto(s, 'intro_start', 'start');
   // TODO-QSP: end
   scene.build();
 }

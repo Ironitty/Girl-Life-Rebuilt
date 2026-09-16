@@ -9,11 +9,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_id = 'beta_journal_quests';
+  (s as any).hot_link = ((s as any).loc_id ?? 0);
   qspCall(s, 'beta_journal', 'nav_construct');
   if (((s as any).debug ?? 0)?.['journal'] !== '') {
     // TODO-QSP: dynamic text: <h2><font color = "red">Error with:</font> <<$debug['journal']>></h2>
     scene.text(`<h2><font color = "red">Error with:</font> ${((s as any).debug ?? 0)?.['journal'] ?? ''}</h2>`);
-    if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['journal'] = '';
+    ((s as any).debug = (s as any).debug ?? {})['journal'] = '';
   }
   if (((s as any).journal ?? 0)?.['alert'] === 1) {
     scene.text('<div>');

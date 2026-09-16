@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -59,7 +59,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).drugVars ?? 0)?.['amphetamine_high'] > 23  ||  ((s as any).drugVars ?? 0)?.['heroin_high'] > 23) {
-        scene.actions([{ label: 'Continue', goto: ['city_drugden', 'kiteHigh'] }]);
+        qspGoto(s, 'city_drugden', 'kiteHigh');
       }
     }
   }
@@ -98,9 +98,9 @@ function enterAmphetamine(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 1600, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) + (20);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'amphetamine'] }]);
+      qspGoto(s, 'city_drugden', 'amphetamine');
     }
   } },
     { label: 'Buy 10 pills', handler: (st: GameState) => {
@@ -109,9 +109,9 @@ function enterAmphetamine(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 800, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) + (10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) + (10);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'amphetamine'] }]);
+      qspGoto(s, 'city_drugden', 'amphetamine');
     }
   } },
     { label: 'Buy 5 pills', handler: (st: GameState) => {
@@ -120,9 +120,9 @@ function enterAmphetamine(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 400, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) + (5);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) + (5);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'amphetamine'] }]);
+      qspGoto(s, 'city_drugden', 'amphetamine');
     }
   } },
     { label: 'Buy some heroin instead', goto: ['city_drugden', 'heroin'] },
@@ -151,9 +151,9 @@ function enterJoints(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 1000, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (20);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'joints'] }]);
+      qspGoto(s, 'city_drugden', 'joints');
     }
   } },
     { label: 'Buy enough weed for 10 joints', handler: (st: GameState) => {
@@ -162,9 +162,9 @@ function enterJoints(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 500, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (10);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'joints'] }]);
+      qspGoto(s, 'city_drugden', 'joints');
     }
   } },
     { label: 'Buy enough weed for 5 joints', handler: (st: GameState) => {
@@ -173,9 +173,9 @@ function enterJoints(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 250, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (5);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (5);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'joints'] }]);
+      qspGoto(s, 'city_drugden', 'joints');
     }
   } },
     { label: 'Buy some heroin instead', goto: ['city_drugden', 'heroin'] },
@@ -204,9 +204,9 @@ function enterCocaine(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 7200, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (20);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'cocaine'] }]);
+      qspGoto(s, 'city_drugden', 'cocaine');
     }
   } },
     { label: 'Buy enough cocaine for 10 lines', handler: (st: GameState) => {
@@ -215,9 +215,9 @@ function enterCocaine(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 3600, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (10);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'cocaine'] }]);
+      qspGoto(s, 'city_drugden', 'cocaine');
     }
   } },
     { label: 'Buy enough cocaine for 5 lines', handler: (st: GameState) => {
@@ -226,9 +226,9 @@ function enterCocaine(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 1800, 'cash');
       (s as any).drugUser = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (5);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (5);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['city_drugden', 'cocaine'] }]);
+      qspGoto(s, 'city_drugden', 'cocaine');
     }
   } },
     { label: 'Buy some heroin instead', goto: ['city_drugden', 'heroin'] },
@@ -359,7 +359,7 @@ function enterHeroin(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks," you smile and take the needle before finding a couch to sit on.');
     scene.text('You inject the needle into your arm, unable to stop yourself from trembling a little.');
     scene.text('The rush is instantaneous and you close your eyes as it rolls over you.');
-    if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['heroin_inject'] = 1;
+    ((s as any).drugVars = (s as any).drugVars ?? {})['heroin_inject'] = 1;
     (s as any).drugUser = 1;
     qspCall(s, 'drugs', 'heroin');
     qspCall(s, 'stat', '');
@@ -418,7 +418,8 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drugs', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     if (((s as any).drugVars ?? 0)?.['heroin_whore'] > 5) {
@@ -483,8 +484,15 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).bobrand = Math.floor(Math.random() * 5) + 0;
     if (((s as any).bobrand ?? 0) < 3) {
+      (s as any).bobtalk = '"You know the drill. Get on your knees and start sucking!"';
+      (s as any).bobtext = 'Do as he says';
     } else {
       if (((s as any).bobrand ?? 0) === 3) {
+        (s as any).bobtalk = '"You\'re just a dirty whore, aren\'t you? Lick my dirty asshole and I\'ll consider it!"';
+        (s as any).bobtext = 'Lick his ass';
+      } else {
+        (s as any).bobtalk = '"I don\'t need more blowjobs from you. I do have to pee, though… Maybe you\'ll make a decent toilet. Get down on your knees and open your mouth!" <br>Despite your need for drugs, you realize you can\'t keep doing this! You\'ll lose yourself if you keep this up…';
+        (s as any).bobtext = 'Kneel down and open your mouth';
       }
     }
     // TODO-QSP: dynamic text: bobrand: <<bobrand>>
@@ -508,11 +516,12 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     scene.actions([
-      { label: '<<$bobtext>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).bobtext || '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: drugVars['heroin_whore'] += 1
     // TODO-QSP: gt 'city_bobka', bobrand
   } },
@@ -539,7 +548,8 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drugs', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
         ]);
       }
       scene.actions([
@@ -568,13 +578,14 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     scene.actions([
       { label: 'Suck his cock', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
-    if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['heroin_whore'] = ((s as any).drugVars['heroin_whore'] ?? 0) + (1);
+    ((s as any).drugVars = (s as any).drugVars ?? {})['heroin_whore'] = ((s as any).drugVars['heroin_whore'] ?? 0) + (1);
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
     qspCall(s, 'dinSex', 'std_trigger');
     scene.img('images/characters/city/bobka/sex/bj.jpg');

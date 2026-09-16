@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterZariyahPassingBy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_checks', 'zariyah_approach');
   if (((s as any).ml_approach ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['music_gigstarts', 'delparco_start'] }]);
+    qspGoto(s, 'music_gigstarts', 'delparco_start');
   } else {
     qspCall(s, 'music_actions', 'finish');
   }
@@ -22,6 +22,7 @@ function enterZariyahPassingBy(s: GameState, scene: SceneBuilder): void {
 function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
   (s as any).rules = 0;
   if (((s as any).ml_delparcoQW ?? 0)?.['Drinking Rule'] === 1) {
+    (s as any).ruletext = 'be sober';
     (s as any).rules = 1;
   }
   if (((s as any).ml_delparcoQW ?? 0)?.['Weed Rule'] === 1) {
@@ -30,6 +31,8 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).ruletext ?? 0) !== ''  &&  ((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 1) {
         // TODO-QSP: $ruletext += ', don''t be high'
+      } else {
+        (s as any).ruletext = 'don\'t be high';
       }
     }
     (s as any).rules = 1;
@@ -37,6 +40,8 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 1) {
     if (((s as any).ruletext ?? 0) !== '') {
       // TODO-QSP: $ruletext += 'and wear appropriate clothing.'
+    } else {
+      (s as any).ruletext = 'wear and appropriate outfit.';
     }
     (s as any).rules = 1;
   }
@@ -94,9 +99,9 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).ml_venues) (s as any).ml_venues = {}; (s as any).ml_venues['del_parco'] = 1;
-  if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Stage'] = 2;
-  if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Next Date'] = ((s as any).daystart ?? 0) + (12 - ((s as any).week ?? 0));
+  ((s as any).ml_venues = (s as any).ml_venues ?? {})['del_parco'] = 1;
+  ((s as any).ml_delparcoQW = (s as any).ml_delparcoQW ?? {})['Stage'] = 2;
+  ((s as any).ml_delparcoQW = (s as any).ml_delparcoQW ?? {})['Next Date'] = ((s as any).daystart ?? 0) + (12 - ((s as any).week ?? 0));
   scene.img('images/pc/activities/music/zariyah.jpg');
   scene.text('You look at the woman a bit surprised, then you smile back "Of course! I mean… you mean like a proper stage performance?"');
   if ((!((s as any).rules ?? 0))) {
@@ -117,8 +122,8 @@ function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDelparcoDecline(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).ml_venues) (s as any).ml_venues = {}; (s as any).ml_venues['del_parco'] = 1;
-  if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Stage'] = 1;
+  ((s as any).ml_venues = (s as any).ml_venues ?? {})['del_parco'] = 1;
+  ((s as any).ml_delparcoQW = (s as any).ml_delparcoQW ?? {})['Stage'] = 1;
   scene.img('images/pc/activities/music/zariyah.jpg');
   scene.text('You look at the woman a bit surprised - "I\'m… that\'s really nice but… I\'m not sure… "');
   if ((!((s as any).rules ?? 0))) {

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Brothel</b></center>');
   scene.img('images/locations/city/residential/sauna/bordel.jpg');
@@ -37,9 +38,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterBrothel(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bordel', 'brothel');
+  (s as any).location_type = 'private';
+  (s as any).sexloc = 'bordel';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/sauna/borroom.jpg');
-  scene.text('This is your room in the brothel. In the middle is a huge bed sits in the middle and there\'s a small side door to the <a href="exec:gt \'bordel\', \'dysh\'">bathroom</a>, but not much else.');
+  scene.text('This is your room in the brothel. In the middle is a huge bed sits in the middle and there\'s a small side door to the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bordel\\u0027, \\u0027dysh\\u0027); return false;">bathroom</a>, but not much else.');
   scene.text('There is a lot of competition at the brothel. In order to avoid any fights, they introduced a rule - no more than two clients per day.');
   if (qspFunc(s, 'bordel', 'is_open') === 0) {
     scene.text('The brothel is closed for the night. You won\'t be able to work now.');
@@ -62,7 +65,7 @@ function enterBrothel(s: GameState, scene: SceneBuilder): void {
           { label: 'Go to the bathroom', goto: ['bordel', 'dysh'] },
         ]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['bordel', 'var'] }]);
+        qspGoto(s, 'bordel', 'var');
       }
     }
   } },
@@ -73,7 +76,7 @@ function enterBrothel(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['city_redlight', 'start'] }]);
+      qspGoto(s, 'city_redlight', 'start');
     } else {
       scene.text('You can\'t go outside naked.');
       scene.actions([
@@ -87,6 +90,8 @@ function enterBrothel(s: GameState, scene: SceneBuilder): void {
 
 function enterDysh(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bordel', 'dysh');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/sauna/bordysh.jpg');
   scene.text('The bathroom is well fitted and clean since customers can access it and hygiene is very important in a brothel.');
@@ -102,6 +107,7 @@ function enterDysh(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVar(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'npcgeneratec', '', 0, 'Client', Math.floor(Math.random() * 23) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -124,14 +130,15 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['bordel', 'brothel'] },
+    qspGoto(s, 'bordel', 'brothel');
+  } },
       ]);
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
@@ -139,7 +146,8 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'dinSex', 'std_trigger');
     }
     (s as any).picrand = Math.floor(Math.random() * 41) + 0;
-  }, goto: ['sex', 'start'] },
+    qspGoto(s, 'sex', 'start');
+  } },
     ]);
   } else {
     if (((s as any).borrand ?? 0) === 1) {
@@ -159,21 +167,23 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['bordel', 'brothel'] },
+    qspGoto(s, 'bordel', 'brothel');
+  } },
         ]);
       }
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
     if (((s as any).zpprand ?? 0) >= 70) {
       qspCall(s, 'dinSex', 'std_trigger');
     }
-  }, goto: ['podrsex', 'start'] },
+    qspGoto(s, 'podrsex', 'start');
+  } },
       ]);
     } else {
       if (((s as any).borrand ?? 0) === 2) {
@@ -193,14 +203,15 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['bordel', 'brothel'] },
+    qspGoto(s, 'bordel', 'brothel');
+  } },
           ]);
         }
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
@@ -209,7 +220,8 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'npcgeneratec', '', 0, 'Client', Math.floor(Math.random() * 23) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), '1');
-  }, goto: ['sexdvoe', 'start'] },
+    qspGoto(s, 'sexdvoe', 'start');
+  } },
         ]);
       } else {
         if (((s as any).borrand ?? 0) === 3) {
@@ -229,14 +241,15 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['bordel', 'brothel'] },
+    qspGoto(s, 'bordel', 'brothel');
+  } },
             ]);
           }
           scene.actions([
             { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
@@ -245,7 +258,8 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'npcgeneratec', '', 0, 'Client', Math.floor(Math.random() * 23) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), '1');
-  }, goto: ['sexdvanadva', 'start'] },
+    qspGoto(s, 'sexdvanadva', 'start');
+  } },
           ]);
         } else {
           if (((s as any).borrand ?? 0) === 4) {
@@ -265,14 +279,15 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['bordel', 'brothel'] },
+    qspGoto(s, 'bordel', 'brothel');
+  } },
               ]);
             }
             scene.actions([
               { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
@@ -286,7 +301,8 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 1);
     qspCall(s, 'npcgeneratec', '', 0, 'Bordel Client', Math.floor(Math.random() * 23) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 2);
-  }, goto: ['paysex', 'start'] },
+    qspGoto(s, 'paysex', 'start');
+  } },
             ]);
           } else {
             if (qspFunc(s, 'bordel', 'is_open')) {

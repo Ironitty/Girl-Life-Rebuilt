@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -15,22 +13,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-      scene.actions([{ label: 'Continue', goto: ['intro_end', 'sg_tg'] }]);
+      qspGoto(s, 'intro_end', 'sg_tg');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['intro_end', 'sg_shared'] }]);
+      qspGoto(s, 'intro_end', 'sg_shared');
     }
   } else {
     if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
       if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-        scene.actions([{ label: 'Continue', goto: ['intro_end', 'uni_tg'] }]);
+        qspGoto(s, 'intro_end', 'uni_tg');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['intro_end', 'uni_shared'] }]);
+        qspGoto(s, 'intro_end', 'uni_shared');
       }
     } else {
       if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-        scene.actions([{ label: 'Continue', goto: ['intro_end', 'city_tg'] }]);
+        qspGoto(s, 'intro_end', 'city_tg');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['intro_end', 'city_shared'] }]);
+        qspGoto(s, 'intro_end', 'city_shared');
       }
     }
   }
@@ -50,7 +48,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'npc_relationship', 'set', 'A29', 30 + 20 * rand(0, 2)
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['intro_game_start', 'quick_start'] }]);
+  qspGoto(s, 'intro_game_start', 'quick_start');
   // TODO-QSP: end
   scene.build();
 }
@@ -351,7 +349,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSgShared(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_game_start', 'start'] }]);
+  qspGoto(s, 'intro_game_start', 'start');
   // TODO-QSP: end
   scene.build();
 }
@@ -453,7 +451,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
       qspCall(s, 'homes_properties', 'give_access', 'parents_home');
-      if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['school_diploma'] = 1;
+      ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['school_diploma'] = 1;
       qspCall(s, 'homes_properties', 'set_home', 'university_dorm');
       qspCall(s, 'npc_relationship', 'default_family_friends');
       scene.img('images/system/1_openings/6_uni/degree_choice.jpg');
@@ -461,10 +459,12 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Teaching', handler: (st: GameState) => {
     qspCall(s, 'uni_admin', 'courses', 'enroll_teaching', 1);
-  }, goto: ['intro_end', 'uni_shared', '2'] },
+    qspGoto(s, 'intro_end', 'uni_shared', '2');
+  } },
         { label: 'Nursing', handler: (st: GameState) => {
     qspCall(s, 'uni_admin', 'courses', 'enroll_nursing', 1);
-  }, goto: ['intro_end', 'uni_shared', '2'] },
+    qspGoto(s, 'intro_end', 'uni_shared', '2');
+  } },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -588,8 +588,9 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     scene.text('Anya gives her a smile, but is mostly occupied with checking out your room.');
     scene.text('Diane stays in the doorway, though you do notice the strange look she gives Vika. "We should let your parents know which room you\'re in so they can drop your stuff off while I show you around the campus."');
     scene.text('Once you get back out into the hallway, you ask why she doesn\'t like your roommate. "There are a lot of nasty rumors about her. I\'m not exactly a prude or anything, but if even <i>one</i> of those rumors is true, then she makes me look like a virgin that\'s been living under a rock my whole life."');
+    (s as any).temp = 0;
     if (((s as any).temp ?? 0) !== '') {
-      if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A29'] = '' + qspUntranslated(s, "temp>", { location: "intro_end" }) + '';
+      ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A29'] = '' + ((s as any).temp ?? 0) + '';
     }
     scene.actions([
       { label: 'Find your parents', handler: (st: GameState) => {
@@ -763,8 +764,9 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
     scene.text('Already knowing the answer, you ask anyway. "Why don\'t you have your own apartment then?"');
     scene.text('"I\'m comfortable where I am right now. When I\'m ready, maybe I will."');
     scene.text('Rolling your eyes, you let her keep pulling on your arm.');
+    (s as any).temp = 0;
     if (((s as any).temp ?? 0) !== '') {
-      if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A29'] = '' + qspUntranslated(s, "temp>", { location: "intro_end" }) + '';
+      ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A29'] = '' + ((s as any).temp ?? 0) + '';
     }
     scene.actions([
       { label: 'Enter the apartment', handler: (st: GameState) => {
@@ -774,7 +776,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
     scene.text(`By the time you're done, Kolka and Vladimir have started bringing boxes in. "Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is staying outside to keep an eye on your stuff. I don't think she likes the neighborhood much," he says with a shrug.`);
     scene.text('You and Anya pick up the boxes they set down and take them to the rooms they were labeled for while your brother and stepfather bring it all inside.');
     scene.actions([
-      { label: 'Greet your <<$npc_nickname[\'A29\']>>', goto: ['intro_end', 'city_shared', '1'] },
+      { label: '', labelFn: (s: GameState) => 'Greet your ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), goto: ['intro_end', 'city_shared', '1'] },
     ]);
   } },
     ]);

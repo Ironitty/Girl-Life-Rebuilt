@@ -3,8 +3,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: <center><table width='80%' cellspacing='0' cellpadding='20' valign='top'><tr><td width='500' cellspa...
-  // TODO-QSP: <center><h1>Changelog</h1></center>
+  (s as any).ul = '<ul style=\'padding: 5px; margin-bottom: 0px; margin-top: 0px\'>';
+  (s as any).ulend = '</ul>';
+  (s as any).li = '<li style=\'padding: 0px\'>';
+  (s as any).liend = '</li>';
   // TODO-QSP: "
   // TODO-QSP: $temp_text += "
   // TODO-QSP: <center><h3>0.9</h3></center>

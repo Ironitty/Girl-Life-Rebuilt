@@ -6,10 +6,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).loc ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
   }
   (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A60_loc'], ((s as any).locat ?? 0)?.['A60_arg']);
   return;
@@ -19,10 +19,10 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
 
 function enterWasHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).loc ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
   }
   (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A60_loc_prev'], ((s as any).locat ?? 0)?.['A60_arg_prev']);
   return;
@@ -38,7 +38,7 @@ function enterHereCore(s: GameState, scene: SceneBuilder): void {
       (s as any).result = ((String(((s as any).locArgs?.[3] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'forest_road') {
-        (s as any).result = (((s as any).locArgs?.[3] ?? 0) === 'gad_road'  ||  ((s as any).locArgs?.[3] ?? 0) === 'mitkabuh_group'  ||  (((s as any).locArgs?.[3] ?? 0) === 'bus'  &&  (String('gadukino;gadukino_tickets').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1));
+        (s as any).result = (((s as any).locArgs?.[3] ?? 0) === 'gad_road'  ||  ((s as any).locArgs?.[3] ?? 0) === 'mitkabuh_group'  ||  (((s as any).locArgs?.[3] ?? 0) === 'bus'  &&  ((String('gadukino;gadukino_tickets').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1)));
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'river') {
           (s as any).result = (((s as any).locArgs?.[3] ?? 0) === 'gad_river'  ||  ((s as any).locArgs?.[3] ?? 0) === 'gad_beach');
@@ -78,7 +78,7 @@ function enterGetLocatFromLoc(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).loc ?? 0) === 'gad_road') {
                   (s as any).result = 40;
                 } else {
-                  if (((s as any).loc ?? 0) === 'bus'  &&  (String('gadukino;gadukino_tickets').indexOf(String(((s as any).loc_arg ?? 0)))) + 1 > 0) {
+                  if (((s as any).loc ?? 0) === 'bus'  &&  ((String('gadukino;gadukino_tickets').indexOf(String(((s as any).loc_arg ?? 0)))) + 1) > 0) {
                     (s as any).result = 41;
                   } else {
                     if (((s as any).loc ?? 0) === 'mitkabuh'  ||  ((s as any).loc ?? 0) === 'mitkabuh_group') {
@@ -144,8 +144,8 @@ function enterGetLocatFromLoc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_rand'] = Math.floor(Math.random() * 6) + 0;
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_prost'] = ((Math.floor(Math.random() * 3) + 0) > 0);
+  ((s as any).locat = (s as any).locat ?? {})['A60_rand'] = Math.floor(Math.random() * 6) + 0;
+  ((s as any).locat = (s as any).locat ?? {})['A60_prost'] = ((Math.floor(Math.random() * 3) + 0) > 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -154,9 +154,10 @@ function enterForceChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home') {
     // TODO-QSP: exit
   }
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 0;
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 0;
+  (s as any).temp_start_loc = ((s as any).locat ?? 0)?.['A60_loc'];
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 0;
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).mss_i = 0;
   // TODO-QSP: :mira_loop_start
@@ -173,9 +174,9 @@ function enterForceChange(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc_prev'] = ((s as any).locat ?? 0)?.['A60_loc'];
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg_prev'] = ((s as any).locat ?? 0)?.['A60_arg'];
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1_prev'] = ((s as any).locat ?? 0)?.['A60_arg1'];
+  ((s as any).locat = (s as any).locat ?? {})['A60_loc_prev'] = ((s as any).locat ?? 0)?.['A60_loc'];
+  ((s as any).locat = (s as any).locat ?? {})['A60_arg_prev'] = ((s as any).locat ?? 0)?.['A60_arg'];
+  ((s as any).locat = (s as any).locat ?? {})['A60_arg1_prev'] = ((s as any).locat ?? 0)?.['A60_arg1'];
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -188,27 +189,27 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).MiraVars ?? 0)?.['guest'] === 1) {
     if (((s as any).MiraVars ?? 0)?.['guestday'] <= ((s as any).daystart ?? 0)) {
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guestday'] = ((s as any).daystart ?? 0) + 1;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0) + 1;
     }
     if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp'  ||  ((s as any).loc ?? 0) === 'gad_field') {
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = ((s as any).loc ?? 0);
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = ((s as any).loc_arg ?? 0);
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = ((s as any).loc ?? 0);
+      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = ((s as any).loc_arg ?? 0);
+      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
     } else {
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     return;
   }
   if (((s as any).MiraVars ?? 0)?.['follower'] === 1) {
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
     (s as any).MiraLoc = qspFunc(s, 'miroslava_schedule', 'get_locat_from_loc');
     // TODO-QSP: jump 'set_locarg'
   } else {
     if (((s as any).MiraVars ?? 0)?.['follow_time'] > 0) {
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = ((s as any).locat ?? 0)?.['A60_loc_prev'];
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = ((s as any).locat ?? 0)?.['A60_arg_prev'];
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = ((s as any).locat ?? 0)?.['A60_arg1_prev'];
+      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = ((s as any).locat ?? 0)?.['A60_loc_prev'];
+      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = ((s as any).locat ?? 0)?.['A60_arg_prev'];
+      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = ((s as any).locat ?? 0)?.['A60_arg1_prev'];
       return;
     }
   }
@@ -227,11 +228,11 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
       if (((s as any).MiraVars ?? 0)?.['invite_day'] >= ((s as any).daystart ?? 0)  ||  ((s as any).npc_known ?? 0)?.['A60'] === 0  ||  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home'  ||  ((s as any).npc_rel ?? 0)?.['A60'] < 15  ||  (((s as any).npc_QW ?? 0)?.['A63'] >= 11  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] <= 1)) {
         (s as any).MiraLoc = 10;
       } else {
-        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['invite_rand'] = Math.floor(Math.random() * 2) + 0;
-        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['invite_day'] = ((s as any).daystart ?? 0);
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['invite_rand'] = Math.floor(Math.random() * 2) + 0;
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['invite_day'] = ((s as any).daystart ?? 0);
         if (((s as any).MiraVars ?? 0)?.['invite_rand'] === 0) {
           (s as any).MiraLoc = 20;
-          if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 2;
+          ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 2;
         } else {
           (s as any).MiraLoc = 10;
         }
@@ -269,114 +270,114 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
 
 function enterSetLocarg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 10) {
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_miroslava_home';
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+    ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_miroslava_home';
+    ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+    ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 11) {
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_miroslava_home';
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = 'sleep';
+      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_miroslava_home';
+      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = 'sleep';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 20) {
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_gpyard';
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+        ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_gpyard';
+        ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+        ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 21) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_gphouse';
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'main';
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+          ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_gphouse';
+          ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'main';
+          ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 22) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_gpbath';
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+            ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_gpbath';
+            ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+            ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 23) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_gpbarn';
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = '';
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+              ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_gpbarn';
+              ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = '';
+              ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 30) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gadukino';
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = '';
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gadukino';
+                ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = '';
+                ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 31) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_church';
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                  ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_church';
+                  ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+                  ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 40) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_road';
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                    ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_road';
+                    ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+                    ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) === 41) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'bus';
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'gadukino';
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'bus';
+                      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'gadukino';
+                      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                     } else {
                       if (((s as any).locArgs?.[1] ?? 0) === 42) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'mitkabuh_group';
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                        ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'mitkabuh_group';
+                        ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+                        ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                       } else {
                         if (((s as any).locArgs?.[1] ?? 0) === 50) {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_river';
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                          ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_river';
+                          ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+                          ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                         } else {
                           if (((s as any).locArgs?.[1] ?? 0) === 51) {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_beach';
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                            ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_beach';
+                            ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+                            ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                           } else {
                             if (((s as any).locArgs?.[1] ?? 0) === 60) {
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_forest';
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'forest_edge';
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                              ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_forest';
+                              ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'forest_edge';
+                              ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                             } else {
                               if (((s as any).locArgs?.[1] ?? 0) === 61) {
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_meadow';
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                                ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_meadow';
+                                ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+                                ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                               } else {
                                 if (((s as any).locArgs?.[1] ?? 0) === 62) {
-                                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_forest';
-                                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'forest_outskirts';
-                                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                                  ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_forest';
+                                  ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'forest_outskirts';
+                                  ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                 } else {
                                   if (((s as any).locArgs?.[1] ?? 0) === 63) {
-                                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_forest';
-                                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'forest_center';
-                                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                                    ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_forest';
+                                    ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'forest_center';
+                                    ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                   } else {
                                     if (((s as any).locArgs?.[1] ?? 0) === 64) {
-                                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_swamp';
-                                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-                                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                                      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_swamp';
+                                      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+                                      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                     } else {
                                       if (((s as any).locArgs?.[1] ?? 0) === 70) {
-                                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_field';
-                                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'field';
-                                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                                        ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_field';
+                                        ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'field';
+                                        ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                       } else {
                                         if (((s as any).locArgs?.[1] ?? 0) === 80) {
-                                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'gad_prostitutes';
-                                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'start';
-                                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                                          ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_prostitutes';
+                                          ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
+                                          ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                         } else {
                                           if (((s as any).locArgs?.[1] ?? 0) === 81) {
-                                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'train';
-                                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = 'gadukino';
-                                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                                            ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'train';
+                                            ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'gadukino';
+                                            ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                           } else {
                                             if (((s as any).locArgs?.[1] ?? 0) === 82) {
-                                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = 'furi';
-                                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = '';
-                                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
+                                              ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'furi';
+                                              ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = '';
+                                              ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                             }
                                           }
                                         }
@@ -542,65 +543,65 @@ function enterGetBaseSchedule(s: GameState, scene: SceneBuilder): void {
 function enterGetLocation(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home') {
-    if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at home';
+    ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at home';
   } else {
     if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_gpyard') {
-      if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is in your Grandparents yard';
+      ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is in your Grandparents yard';
     } else {
       if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_gphouse') {
-        if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at your Grandparents house';
+        ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at your Grandparents house';
       } else {
         if (((s as any).locat ?? 0)?.['A60_loc'] === 'gadukino') {
-          if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is walking around Gad';
+          ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is walking around Gad';
         } else {
           if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_church') {
-            if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the church';
+            ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the church';
           } else {
             if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_road') {
-              if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira at the forest road';
+              ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira at the forest road';
             } else {
               if (((s as any).locat ?? 0)?.['A60_loc'] === 'bus') {
-                if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the bus station';
+                ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the bus station';
               } else {
                 if (((s as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group') {
-                  if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is with the gopniks';
+                  ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is with the gopniks';
                 } else {
                   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_river') {
-                    if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the river';
+                    ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the river';
                   } else {
                     if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_beach') {
-                      if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the beach';
+                      ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the beach';
                     } else {
                       if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_forest') {
                         if (((s as any).locat ?? 0)?.['A60_arg'] === 'forest_edge') {
-                          if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the forest edge';
+                          ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the forest edge';
                         } else {
                           if (((s as any).locat ?? 0)?.['A60_arg'] === 'forest_outskirts') {
-                            if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is in the forest outskirts';
+                            ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is in the forest outskirts';
                           } else {
                             if (((s as any).locat ?? 0)?.['A60_arg'] === 'forest_center') {
-                              if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is in the center of the forest';
+                              ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is in the center of the forest';
                             }
                           }
                         }
                       } else {
                         if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_meadow') {
-                          if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the meadow';
+                          ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the meadow';
                         } else {
                           if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_swamp') {
-                            if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the swamps';
+                            ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the swamps';
                           } else {
                             if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
-                              if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at field';
+                              ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at field';
                             } else {
                               if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_prostitution') {
-                                if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the highway';
+                                ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the highway';
                               } else {
                                 if (((s as any).locat ?? 0)?.['A60_loc'] === 'train') {
-                                  if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the train station';
+                                  ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the train station';
                                 } else {
                                   if (((s as any).locat ?? 0)?.['A60_loc'] === 'furi') {
-                                    if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at the lorry';
+                                    ((s as any).npcLocation = (s as any).npcLocation ?? {})['A60'] = 'Mira is at the lorry';
                                   }
                                 }
                               }

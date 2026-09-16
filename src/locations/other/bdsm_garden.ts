@@ -1,10 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
   scene.build();
 }
 
@@ -26,23 +27,23 @@ function enterCheckGardenEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_rand ?? 0) < 5) {
     if (((s as any).bdsmclub ?? 0)?.['role'] === 'sub'  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['bdsm_garden', 'gEV1'] }]);
+      qspGoto(s, 'bdsm_garden', 'gEV1');
     }
   } else {
     if (((s as any).temp_rand ?? 0) < 8) {
-      scene.actions([{ label: 'Continue', goto: ['bdsm_garden', 'garden_event_2'] }]);
+      qspGoto(s, 'bdsm_garden', 'garden_event_2');
     } else {
       if (((s as any).temp_rand ?? 0) < 11) {
-        scene.actions([{ label: 'Continue', goto: ['bdsm_garden', 'garden_event_3'] }]);
+        qspGoto(s, 'bdsm_garden', 'garden_event_3');
       } else {
         if (((s as any).temp_rand ?? 0) < 14) {
           if (((s as any).sunWeather ?? 0) === 1) {
-            scene.actions([{ label: 'Continue', goto: ['bdsm_garden', 'garden_event_4'] }]);
+            qspGoto(s, 'bdsm_garden', 'garden_event_4');
           }
         } else {
           if (((s as any).temp_rand ?? 0) < 17) {
             if (((s as any).sunWeather ?? 0) === 1) {
-              scene.actions([{ label: 'Continue', goto: ['bdsm_garden', 'garden_event_5'] }]);
+              qspGoto(s, 'bdsm_garden', 'garden_event_5');
             }
           }
         }
@@ -109,7 +110,8 @@ function enterGEV1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Strip and go meet the older men', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');
-  }, goto: ['bdsm_garden', 'gEV2'] },
+    qspGoto(s, 'bdsm_garden', 'gEV2');
+  } },
     ]);
   } else {
     scene.text('Another submissive woman approaches you and says, "If you are looking to earn a nice bonus, there is a group of older men at the outside dining table. If you go over and have sex with them, they will give you a load of cash."');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_complex', 'start');
+  (s as any).location_type = 'public_outdoors';
+  (s as any).region = 'pav';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     if (((s as any).month ?? 0) >= 11  &&  ((s as any).month ?? 0) <= 12  ||  ((s as any).month ?? 0) >= 1  &&  ((s as any).month ?? 0) <= 3) {
       if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
@@ -27,14 +29,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).boynumBlock = 0;
   qspCall(s, 'stat', '');
   if (((s as any).complx_rand ?? 0)[1] + (Math.floor(Math.random() * 6) + 5) < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50  &&  (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 23)) {
-    if (!(s as any).complx_rand) (s as any).complx_rand = {}; (s as any).complx_rand[1] = ((s as any).daystart ?? 0);
+    ((s as any).complx_rand = (s as any).complx_rand ?? {})[1] = ((s as any).daystart ?? 0);
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
-      scene.actions([{ label: 'Continue', goto: ['gossips', 'complex', '\'girls_slutrep\''] }]);
+      qspGoto(s, 'gossips', 'complex', 'girls_slutrep');
     } else {
       if ((Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).hour ?? 0) < 19) {
-        scene.actions([{ label: 'Continue', goto: ['gossips', 'complex', '\'old_women_slutrep\''] }]);
+        qspGoto(s, 'gossips', 'complex', 'old_women_slutrep');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['gossips', 'complex', '\'boys_slutrep\''] }]);
+        qspGoto(s, 'gossips', 'complex', 'boys_slutrep');
       }
     }
   }
@@ -59,20 +61,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).minut ?? 0) + 60 * (((s as any).hour ?? 0) + ((s as any).daystart ?? 0) * 24) - ((s as any).pavcomplexevent_time ?? 0)) > 60)  ||  ((((s as any).daystart ?? 0) + 1) * 1440 < ((s as any).pavcomplexevent_time ?? 0))) {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  (!(Math.floor(Math.random() * 3) + 0))) {
       (s as any).pavcomplexevent_time = ((s as any).minut ?? 0) + 60 * (((s as any).hour ?? 0) + ((s as any).daystart ?? 0) * 24);
-      scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'events1'] }]);
+      qspGoto(s, 'pav_aptcourtev', 'events1');
     } else {
       if ((((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) > 20)  &&  (!(Math.floor(Math.random() * 4) + 0))) {
         (s as any).pavcomplexevent_time = ((s as any).minut ?? 0) + 60 * (((s as any).hour ?? 0) + ((s as any).daystart ?? 0) * 24);
-        scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'events2'] }]);
+        qspGoto(s, 'pav_aptcourtev', 'events2');
       }
     }
   }
   if ((((s as any).week ?? 0) <= 5  &&  ((s as any).cheerleaders_on ?? 0) === 0  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 18  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg')  &&  ((((s as any).LariskaQW ?? 0)?.['story'] === 0  ||  ((s as any).LariskaQW ?? 0)?.['story'] === 1)  &&  ((s as any).npc_rel ?? 0)?.['A13'] > 40  &&  ((s as any).lariska_ball ?? 0) !== ((s as any).daystart ?? 0))) {
-    scene.text('Walking along the apartment complex, you hear a bouncing sound. Turning the corner, you see <a href="exec:gt \'lariska_storyline\', \'story_intro\'">Lariska</a> hitting a volleyball against a wall.');
+    scene.text('Walking along the apartment complex, you hear a bouncing sound. Turning the corner, you see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lariska_storyline\\u0027, \\u0027story_intro\\u0027); return false;">Lariska</a> hitting a volleyball against a wall.');
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked in the str...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the street.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the street.`);
   }
   if (((s as any).rexCar ?? 0) === 1  &&  ((s as any).rexCarDay ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 21  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).rexSisTalk ?? 0) === 3) {
     scene.text('<br>Rex is in his car, waiting for you at the parking lot near the apartment building where your parents live.');
@@ -91,73 +93,74 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('Opposite you is a meager courtyard, which has changed over the years to now include a kid\'s playground, a basketball court and a small grassy area that\'s mostly used to play football.');
   scene.text('A few benches and tables surround it, and there\'s a handful of small utility sheds tucked away in the corner for tenants to use if they\'re willing to pay for the extra space.');
   // TODO-QSP: dynamic text: Behind the apartments is a row of <a href="exec:minut += 3 & gt 'pav_complex', '...
-  scene.text('Behind the apartments is a row of <a href="exec:minut += 3 & gt \'pav_complex\', \'garages\'">garages</a> and storage space for tenants.');
+  scene.text('Behind the apartments is a row of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_complex\\u0027, \\u0027garages\\u0027); return false;">garages</a> and storage space for tenants.');
   if ((((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0))  &&  (((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0)) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
     return;
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
     // TODO-QSP: dynamic text: <br>The <a href="exec:minut += 1 & gt 'pav_laundromat'">old laundromat</a> is op...
-    scene.text('<br>The <a href="exec:minut += 1 & gt \'pav_laundromat\'">old laundromat</a> is open. The advertisement says: "You can wash your clothes here."');
+    scene.text('<br>The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_laundromat\\u0027, \\u0027\\u0027); return false;">old laundromat</a> is open. The advertisement says: "You can wash your clothes here."');
   } else {
     // TODO-QSP: dynamic text: <br>The old laundromat is closed, it'll open again at <<func('time', 'get_time_s...
     scene.text(`<br>The old laundromat is closed, it'll open again at ${qspFunc(s, 'time', 'get_time_string', 8, 0)}. The advertisement says: "You can wash your clothes here."`);
   }
   if (((s as any).pavComplex_met_dealer ?? 0) >= 3  &&  ((s as any).hour ?? 0) > 20) {
     // TODO-QSP: dynamic text: <br>You can see the <a href="exec:minut += 3 & gt 'pav_aptcourtev', 'dealer'">bo...
-    scene.text('<br>You can see the <a href="exec:minut += 3 & gt \'pav_aptcourtev\', \'dealer\'">boy</a> who sells weed in the courtyard.');
+    scene.text('<br>You can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_aptcourtev\\u0027, \\u0027dealer\\u0027); return false;">boy</a> who sells weed in the courtyard.');
   }
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).npc_rel ?? 0)?.['A112'] >= 70  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 23)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 2)) {
       // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'vasilyhome', 'home'">The Shulgin family</a> live...
-      scene.text('<a href="exec:minut += 15 & gt \'vasilyhome\', \'home\'">The Shulgin family</a> live in the apartment above your parents.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027home\\u0027); return false;">The Shulgin family</a> live in the apartment above your parents.');
     }
     if (((s as any).ArtemBeInHome ?? 0) > 0  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0) {
       // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'artemhome', 'home'">Artem Chebotarev</a>, one of...
-      scene.text('<a href="exec:minut += 15 & gt \'artemhome\', \'home\'">Artem Chebotarev</a>, one of your classmates, lives in the same apartment building as your parents, on the first floor.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027artemhome\\u0027, \\u0027home\\u0027); return false;">Artem Chebotarev</a>, one of your classmates, lives in the same apartment building as your parents, on the first floor.');
     }
     if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 1) {
       if ((((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) < 6)  ||  (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) >= 6)) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'JuliaMilHome', 'home'">Julia Milova</a>, one of ...
-        scene.text('<a href="exec:minut += 15 & gt \'JuliaMilHome\', \'home\'">Julia Milova</a>, one of your classmates, lives in the same apartment building as your parents, on the third floor.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027JuliaMilHome\\u0027, \\u0027home\\u0027); return false;">Julia Milova</a>, one of your classmates, lives in the same apartment building as your parents, on the third floor.');
       } else {
         scene.text('Julia Milova, one of your classmates, lives in the same apartment building as your parents. She resides on the third floor.');
       }
     }
     if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 1) {
       // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'natbelapt', 'home'">Natasha Belova</a>, one of y...
-      scene.text('<a href="exec:minut += 15 & gt \'natbelapt\', \'home\'">Natasha Belova</a>, one of your classmates, lives in the same apartment building as your parents. She resides on the fourth floor.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027natbelapt\\u0027, \\u0027home\\u0027); return false;">Natasha Belova</a>, one of your classmates, lives in the same apartment building as your parents. She resides on the fourth floor.');
     }
     if (((s as any).anushkaQW ?? 0)?.['first_visit'] !== 0) {
       // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt 'anushapt', 'home'">Anushka Konstantinov</a>, a c...
-      scene.text('<a href="exec:minut += 10 & gt \'anushapt\', \'home\'">Anushka Konstantinov</a>, a classmate, lives in one of the other apartment blocks here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\\u0027anushapt\\u0027, \\u0027home\\u0027); return false;">Anushka Konstantinov</a>, a classmate, lives in one of the other apartment blocks here.');
     }
     if (((s as any).radomirQW ?? 0)?.['first_visit'] !== 0) {
       // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt 'radapt', 'home'">Radomir Popov</a>, a classmate,...
-      scene.text('<a href="exec:minut += 10 & gt \'radapt\', \'home\'">Radomir Popov</a>, a classmate, lives in one of the other apartment blocks here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027home\\u0027); return false;">Radomir Popov</a>, a classmate, lives in one of the other apartment blocks here.');
     }
   } else {
     (s as any).st_count = 0;
+    (s as any).show_table = '';
     if (((s as any).npc_rel ?? 0)?.['A112'] >= 70  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 23)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 2)) {
-      qspCall(s, 'show_table', '', 'Apartment of Uncle <a href="exec:minut += 15 & gt \'vasilyhome\', \'home\'" >Shulgin</a>.', '3');
+      qspCall(s, 'show_table', '', 'Apartment of Uncle <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027home\\u0027); return false;">Shulgin</a>.', '3');
     } else {
       qspCall(s, 'show_table', 'Apartment of Uncle Shulgin.', '3');
     }
     if (((s as any).ArtemBeInHome ?? 0) > 0  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0) {
-      qspCall(s, 'show_table', '', 'Apartment of <a href="exec:minut += 15 & gt \'artemhome\', \'home\'">Artem Chebotarev</a>.', '3');
+      qspCall(s, 'show_table', '', 'Apartment of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027artemhome\\u0027, \\u0027home\\u0027); return false;">Artem Chebotarev</a>.', '3');
     }
     if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 1) {
       if ((((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) < 6)  ||  (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) >= 6)) {
-        qspCall(s, 'show_table', '', 'Apartment of <a href="exec:minut += 15 & gt \'JuliaMilHome\', \'home\'">Julia Milova</a>.', '3');
+        qspCall(s, 'show_table', '', 'Apartment of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027JuliaMilHome\\u0027, \\u0027home\\u0027); return false;">Julia Milova</a>.', '3');
       } else {
         qspCall(s, 'show_table', 'Apartment of Julia Milova.', '3');
       }
     }
     if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 1) {
-      qspCall(s, 'show_table', '', 'Apartment of <a href="exec:minut += 15 & gt \'natbelapt\', \'home\'">Natasha Belova</a>.', '3');
+      qspCall(s, 'show_table', '', 'Apartment of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027natbelapt\\u0027, \\u0027home\\u0027); return false;">Natasha Belova</a>.', '3');
     }
     if (((s as any).anushkaQW ?? 0)?.['first_visit'] !== 0) {
-      qspCall(s, 'show_table', '', 'Messy home of <a href="exec:minut += 10 & gt \'anushapt\', \'home\'">Anushka Konstantinov</a>.', '3');
+      qspCall(s, 'show_table', '', 'Messy home of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\\u0027anushapt\\u0027, \\u0027home\\u0027); return false;">Anushka Konstantinov</a>.', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
@@ -166,22 +169,23 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).shared_apt ?? 0)?.['seenAd'] === 1  &&  ((s as any).shared_apt ?? 0)?.['enabled'] === 0) {
     // TODO-QSP: dynamic text: <br>Some guys in one of the <a href="exec:minut += 5 & gt 'pav_shared_apt','door...
-    scene.text('<br>Some guys in one of the <a href="exec:minut += 5 & gt \'pav_shared_apt\',\'doorNo30\'">apartments</a> are looking for a roommate.');
+    scene.text('<br>Some guys in one of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_shared_apt\\u0027, \\u0027doorNo30\\u0027); return false;">apartments</a> are looking for a roommate.');
   }
   if (((s as any).rolanmeet ?? 0) === 8  &&  ((s as any).rolanblockhome ?? 0) !== 1) {
     // TODO-QSP: dynamic text: <br>Mr. Matveev's is living in an <a href="exec:minut += 5 & gt 'rolanapt','home...
-    scene.text('<br>Mr. Matveev\'s is living in an <a href="exec:minut += 5 & gt \'rolanapt\',\'home\'">apartment</a> in the Five Eight Estate.');
+    scene.text('<br>Mr. Matveev\'s is living in an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027rolanapt\\u0027, \\u0027home\\u0027); return false;">apartment</a> in the Five Eight Estate.');
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
     scene.actions([
       { label: '<b>Go Home</b> (Parents\' Apartment)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 4;
     (s as any).pavhome_enter = 1;
-  }, goto: ['korrPar', ''] },
+    qspGoto(s, 'korrPar', '');
+  } },
     ]);
   }
   if (((s as any).shared_apt ?? 0)?.['enabled'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'start'] }]);
+    qspGoto(s, 'pav_shared_apt', 'start');
     scene.actions([
       { label: '<b>Go Home</b> (Shared Apartment)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -237,11 +241,11 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
   scene.text('Along the back street is a row of garages available for the residents of the apartments to rent. The weather in Pavlovsk can be brutal, especially in the winter, so people who own a car often have a garage to put it away safely. Between the garages and the courtyard is a series of smaller storage buildings that can be rented, as well as the complex\'s maintenance and laundry buildings. The layout of the buildings leaves a maze of walkways between them, which are a popular place for kids to play or for teenagers to hang out.');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gt 'gargazel'">stepfather's garage</a> is around...
-    scene.text('Your <a href="exec:minut += 5 & gt \'gargazel\'">stepfather\'s garage</a> is around here somewhere.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027gargazel\\u0027, \\u0027\\u0027); return false;">stepfather\'s garage</a> is around here somewhere.');
   }
   if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 1) {
     // TODO-QSP: dynamic text: The converted <a href="exec:minut += 5 & gt 'praiders_garage', 'band_garage'">ga...
-    scene.text('The converted <a href="exec:minut += 5 & gt \'praiders_garage\', \'band_garage\'">garage</a> the band uses to practice in is around here.');
+    scene.text('The converted <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027praiders_garage\\u0027, \\u0027band_garage\\u0027); return false;">garage</a> the band uses to practice in is around here.');
   }
   if (((s as any).gopnik_initiation ?? 0) === 1  &&  ((s as any).gopnik_initiation_day ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 20) {
     scene.actions([
@@ -254,7 +258,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed4.jpg');
         scene.text('As you\'re walking around the garages, you notice an open garage door. You see a tattooed man inside working on a motorcycle. He looks really rough and dangerous - he must be one of the bikers that live around the area. You have heard your mother warn you about them before.');
         scene.text('As you pass by, you can hear the man talking to someone else. You throw a quick glance towards them, and you see the man showing something off to a younger man sitting on a motorcycle. Looking closer, you realize that the younger man is Valentin. They seem really into it and you quickly move on before they can turn their attention to you.');
-        if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['seen_ed'] = 1;
+        ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['seen_ed'] = 1;
         (s as any).ed_event_day = ((s as any).daystart ?? 0);
       }
     } else {
@@ -663,7 +667,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
   if (((s as any).curacts ?? 0) === '') {
     qspCall(s, 'stat', '');
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      scene.actions([{ label: 'Continue', goto: ['gargazel', ''] }]);
+      qspGoto(s, 'gargazel', '');
       scene.actions([
         { label: 'Go to your stepfather\'s garage', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

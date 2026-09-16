@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -23,7 +23,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -64,7 +65,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'voyeur', 'resist', 'hard');
     }
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -87,7 +89,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pcs_danc ?? 0) >= 40) {
-      scene.actions([{ label: 'Continue', goto: ['belpicknick', 'dance'] }]);
+      qspGoto(s, 'belpicknick', 'dance');
     }
   } },
   ]);
@@ -114,7 +116,8 @@ function enterVbLight(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
     scene.actions([
@@ -134,7 +137,8 @@ function enterVbLight(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
     scene.actions([
@@ -170,7 +174,8 @@ function enterVbHard(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
     scene.actions([
@@ -190,7 +195,8 @@ function enterVbHard(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
     scene.actions([
@@ -226,7 +232,8 @@ function enterAbLight(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
     scene.actions([
@@ -246,7 +253,8 @@ function enterAbLight(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
     scene.actions([
@@ -280,7 +288,8 @@ function enterAbHard(s: GameState, scene: SceneBuilder): void {
       { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -317,7 +326,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/characters/pavlovsk/vadim/sex/round.jpg');
     scene.text('You get down on your knees as the four men surround you, slapping their cocks against your cheeks and forehead. Dutifully keeping your hands behind your back, you do your best to serve them with your mouth alone as you suck on them in turns, licking the heads and teasing the balls as good as you can while trying to not make anyone feel left out.');
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     (s as any).belsexpayment = 900;
     qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'prostitution');
     qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'prostitution');
@@ -333,7 +342,8 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Lie on your back', handler: (st: GameState) => {
     (s as any).belsexpayment = ((s as any).belsexpayment ?? 0) + (25);
-  }, goto: ['belpicknick', 'missionary'] },
+    qspGoto(s, 'belpicknick', 'missionary');
+  } },
       ]);
     } else {
       // TODO-QSP: dynamic text: Suddenly the cock you're currently sucking on is pulled away from you, and <<$bo...
@@ -341,7 +351,8 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get on your hands and knees', handler: (st: GameState) => {
     (s as any).belsexpayment = ((s as any).belsexpayment ?? 0) + (25);
-  }, goto: ['belpicknick', 'doggy'] },
+    qspGoto(s, 'belpicknick', 'doggy');
+  } },
       ]);
     }
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
@@ -356,7 +367,8 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
   } },
@@ -396,7 +408,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   qspCall(s, 'dinsex', 'sexcum');
   qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'prostitution');
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).times_picknick ?? 0) <= 0) {
     scene.actions([
@@ -432,7 +444,8 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
   } },
@@ -464,7 +477,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'vaginal_sex', 10);
     qspCall(s, 'dinsex', 'sexcum');
     qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough', 'prostitution');
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
   } else {
     (s as any).spafinloc = 3;
@@ -521,7 +534,8 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
         { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['belpicknick', 'leave'] },
+    qspGoto(s, 'belpicknick', 'leave');
+  } },
       ]);
     }
   } },
@@ -600,12 +614,14 @@ function enterGang(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vagmembergang ?? 0) === ((s as any).analmembergang ?? 0)) {
     (s as any).analmembergang = 116;
   }
-  qspCall(s, 'npcStat', 'A<<vagmembergang>>', 'a');
-  qspCall(s, 'npcStat', 'A<<analmembergang>>', 'b');
+  qspCall(s, 'npcStat', 'A' + ((s as any).vagmembergang ?? 0) + '', 'a');
+  qspCall(s, 'npcStat', 'A' + ((s as any).analmembergang ?? 0) + '', 'b');
+  (s as any).temp_letter = 'c';
   (s as any).s = 113;
   // TODO-QSP: :oral_member_gang_loop
   if (((s as any).s ?? 0) !== ((s as any).vagmembergang ?? 0)  &&  ((s as any).s ?? 0) !== ((s as any).analmembergang ?? 0)) {
-    qspCall(s, 'npcStat', 'A<<s>>', ((s as any).temp_letter ?? 0));
+    qspCall(s, 'npcStat', 'A' + ((s as any).s ?? 0) + '', ((s as any).temp_letter ?? 0));
+    (s as any).temp_letter = 'd';
   }
   (s as any).s = ((s as any).s ?? 0) + (1);
   if (((s as any).s ?? 0) <= 116) {
@@ -700,9 +716,9 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['road', '<<(rand(1, 9) + rand(1, 9)) / 2 + 10 * rand(0, 1)>>'] }]);
+    qspGoto(s, 'road', '' + ((Math.floor(Math.random() * 9) + 1) + (Math.floor(Math.random() * 9) + 1)) / 2 + 10 * (Math.floor(Math.random() * 2) + 0) + '');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['road', '<<(rand(1, 19) + rand(1, 19)) / 2>>'] }]);
+    qspGoto(s, 'road', '' + ((Math.floor(Math.random() * 19) + 1) + (Math.floor(Math.random() * 19) + 1)) / 2 + '');
   }
   // TODO-QSP: end
   scene.build();

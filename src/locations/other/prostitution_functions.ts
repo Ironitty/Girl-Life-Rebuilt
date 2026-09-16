@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -19,14 +19,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetPavlovskHours(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_start_hour'] = qspUntranslated(s, "ARGS[1]", { location: "prostitution_functions" });
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_end_hour'] = qspUntranslated(s, "ARGS[2]", { location: "prostitution_functions" });
+  ((s as any).prostitute = (s as any).prostitute ?? {})['pav_start_hour'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['pav_end_hour'] = ((s as any).locArgs?.[2] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterWlBlock(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['wl_block'] = qspUntranslated(s, "ARGS[1]", { location: "prostitution_functions" });
+  ((s as any).prostitute = (s as any).prostitute ?? {})['wl_block'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).prostitute ?? 0)?.['wl_block']) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6, 23]; enterSetPavlovskHours(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -34,7 +34,7 @@ function enterWlBlock(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   if (((s as any).locArgs?.[1] ?? 0) === 'block') {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['full_block'] = qspUntranslated(s, "ARGS[1]", { location: "prostitution_functions" });
+    ((s as any).prostitute = (s as any).prostitute ?? {})['full_block'] = ((s as any).locArgs?.[1] ?? 0);
   }
   scene.build();
 }
@@ -45,7 +45,7 @@ function enterCheckForWlife(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :mod_exec
     if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] === 'wlife') {
       if (((s as any).prostitute ?? 0)?.['payment_method'] === 0) {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['wl_block'] = 1;
+        ((s as any).prostitute = (s as any).prostitute ?? {})['wl_block'] = 1;
       }
     }
     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
@@ -71,11 +71,11 @@ function enterUpdateProstitutionLocations(s: GameState, scene: SceneBuilder): vo
 
 function enterSetPavlovskProstitute(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).fame ?? 0)?.['pav_prostitute'] > 250  ||  ((s as any).fame ?? 0)?.['pav_slut'] > 250)  &&  ((s as any).prostitute ?? 0)?.['wl_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['full_block'] === 0) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pavlovsk'] = 1;
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['active'] = 1;
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_method'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pavlovsk'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['active'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment_method'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pavlovsk'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pavlovsk'] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -83,11 +83,11 @@ function enterSetPavlovskProstitute(s: GameState, scene: SceneBuilder): void {
 
 function enterSetGadukinoProstitute(s: GameState, scene: SceneBuilder): void {
   if (((s as any).GadBoy ?? 0)?.['river_gang'] === 2  &&  ((s as any).MiraVars ?? 0)?.['pimp'] !== 1  &&  ((s as any).prostitute ?? 0)?.['full_block'] === 0) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['gadukino'] = 1;
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['active'] = 1;
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_method'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['gadukino'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['active'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment_method'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['gadukino'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['gadukino'] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -95,11 +95,11 @@ function enterSetGadukinoProstitute(s: GameState, scene: SceneBuilder): void {
 
 function enterSetHighwayProstitute(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute ?? 0)?.['highway_idea'] === 2  &&  ((s as any).prostitute ?? 0)?.['active'] === 1  &&  ((((s as any).prostitute ?? 0)?.['full_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['wl_block'] === 0)  ||  (((s as any).prostitute ?? 0)?.['wl_block'] === 1  &&  ((s as any).prostitute ?? 0)?.['payment_method'] === 1))) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['road'] = 1;
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['active'] = 1;
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_method'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['road'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['active'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment_method'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['road'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['road'] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -154,7 +154,7 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Replace your default prostitute outfit with the current outfit', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetDefaultOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -162,7 +162,7 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Set the current as your default prostitute outfit', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetDefaultOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
           ]);
         }
@@ -170,11 +170,12 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Change into regular clothes', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChangeIntoRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
       if (((s as any).prostitute ?? 0)?.['outfit_is_set']) {
+        (s as any).temp_not_wear_reason = qspFunc(s, 'clothing', 'not_wear_reason', ((s as any).prostitute ?? 0)?.['clothingworntype'], ((s as any).prostitute ?? 0)?.['clothingwornnumber']);
         if (((s as any).temp_not_wear_reason ?? 0) === 'too_small') {
           scene.actions([
             { label: 'Change into prostitute outfit', handler: (st: GameState) => {
@@ -206,7 +207,7 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Change into prostitute outfit', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChangeIntoProstituteOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
                 ]);
               }
@@ -243,7 +244,7 @@ function enterRandomApproachChance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWorkClothes(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['work_clothes'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['work_clothes'] = 0;
   (s as any).PProstitute = 0;
   if ((!((s as any).PCloProstitute ?? 0))) {
     // TODO-QSP: exit
@@ -258,7 +259,7 @@ function enterWorkClothes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['work_clothes'] = 1;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['work_clothes'] = 1;
   (s as any).PProstitute = 1;
   return;
   // TODO-QSP: end
@@ -319,43 +320,43 @@ function enterIsDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetDefaultOutfit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['clothingworntype'] = ((s as any).clothingworntype ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['clothingwornnumber'] = ((s as any).clothingwornnumber ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['underweartype'] = ((s as any).underwear ?? 0)?.['type'];
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['bodysuitworntype'] = ((s as any).bodysuitworntype ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['bodysuitwornnumber'] = ((s as any).bodysuitwornnumber ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pantyworntype'] = ((s as any).pantyworntype ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pantywornnumber'] = ((s as any).pantywornnumber ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['braworntype'] = ((s as any).braworntype ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['brawornnumber'] = ((s as any).brawornnumber ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['shoeworntype'] = ((s as any).shoeworntype ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['shoewornnumber'] = ((s as any).shoewornnumber ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['currentpursetype'] = ((s as any).currentpursetype ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['currentpursenumber'] = ((s as any).currentpursenumber ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['coatworntype'] = ((s as any).coatworntype ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['coatwornnumber'] = ((s as any).coatwornnumber ?? 0);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['outfit_is_set'] = 1;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['clothingworntype'] = ((s as any).clothingworntype ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['clothingwornnumber'] = ((s as any).clothingwornnumber ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['underweartype'] = ((s as any).underwear ?? 0)?.['type'];
+  ((s as any).prostitute = (s as any).prostitute ?? {})['bodysuitworntype'] = ((s as any).bodysuitworntype ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['bodysuitwornnumber'] = ((s as any).bodysuitwornnumber ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['pantyworntype'] = ((s as any).pantyworntype ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['pantywornnumber'] = ((s as any).pantywornnumber ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['braworntype'] = ((s as any).braworntype ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['brawornnumber'] = ((s as any).brawornnumber ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['shoeworntype'] = ((s as any).shoeworntype ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['shoewornnumber'] = ((s as any).shoewornnumber ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['currentpursetype'] = ((s as any).currentpursetype ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['currentpursenumber'] = ((s as any).currentpursenumber ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['coatworntype'] = ((s as any).coatworntype ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['coatwornnumber'] = ((s as any).coatwornnumber ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['outfit_is_set'] = 1;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterClearingDefaultOutfit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['clothingworntype'] = '';
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['clothingwornnumber'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['underweartype'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['bodysuitworntype'] = '';
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['bodysuitwornnumber'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pantyworntype'] = '';
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pantywornnumber'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['braworntype'] = '';
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['brawornnumber'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['shoeworntype'] = '';
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['shoewornnumber'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['currentpursetype'] = '';
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['currentpursenumber'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['coatworntype'] = '';
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['coatwornnumber'] = 0;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['outfit_is_set'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['clothingworntype'] = '';
+  ((s as any).prostitute = (s as any).prostitute ?? {})['clothingwornnumber'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['underweartype'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['bodysuitworntype'] = '';
+  ((s as any).prostitute = (s as any).prostitute ?? {})['bodysuitwornnumber'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['pantyworntype'] = '';
+  ((s as any).prostitute = (s as any).prostitute ?? {})['pantywornnumber'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['braworntype'] = '';
+  ((s as any).prostitute = (s as any).prostitute ?? {})['brawornnumber'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['shoeworntype'] = '';
+  ((s as any).prostitute = (s as any).prostitute ?? {})['shoewornnumber'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['currentpursetype'] = '';
+  ((s as any).prostitute = (s as any).prostitute ?? {})['currentpursenumber'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['coatworntype'] = '';
+  ((s as any).prostitute = (s as any).prostitute ?? {})['coatwornnumber'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['outfit_is_set'] = 0;
   // TODO-QSP: end
   scene.build();
 }
@@ -363,25 +364,25 @@ function enterClearingDefaultOutfit(s: GameState, scene: SceneBuilder): void {
 function enterChangeIntoProstituteOutfit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'wardrobe', 'is_sport');
   qspCall(s, 'wardrobe', 'back_to_regular_clothes');
-  if (!(s as any).lastwornclothingtype) (s as any).lastwornclothingtype = {}; (s as any).lastwornclothingtype['prostitute'] = ((s as any).clothingworntype ?? 0);
-  if (!(s as any).lastwornclothingnumber) (s as any).lastwornclothingnumber = {}; (s as any).lastwornclothingnumber['prostitute'] = ((s as any).clothingwornnumber ?? 0);
-  if (!(s as any).lastwornunderwear) (s as any).lastwornunderwear = {}; (s as any).lastwornunderwear['prostitute'] = 0;
+  ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['prostitute'] = ((s as any).clothingworntype ?? 0);
+  ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['prostitute'] = ((s as any).clothingwornnumber ?? 0);
+  ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})['prostitute'] = 0;
   if (((s as any).underwear ?? 0)?.['type'] === 2) {
-    if (!(s as any).lastwornunderwear) (s as any).lastwornunderwear = {}; (s as any).lastwornunderwear['prostitute'] = 2;
-    if (!(s as any).lastwornbodysuittype) (s as any).lastwornbodysuittype = {}; (s as any).lastwornbodysuittype['prostitute'] = ((s as any).bodysuitworntype ?? 0);
-    if (!(s as any).lastwornbodysuitnumber) (s as any).lastwornbodysuitnumber = {}; (s as any).lastwornbodysuitnumber['prostitute'] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})['prostitute'] = 2;
+    ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})['prostitute'] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})['prostitute'] = ((s as any).bodysuitwornnumber ?? 0);
   } else {
-    if (!(s as any).lastwornpantytype) (s as any).lastwornpantytype = {}; (s as any).lastwornpantytype['prostitute'] = ((s as any).pantyworntype ?? 0);
-    if (!(s as any).lastwornpantynumber) (s as any).lastwornpantynumber = {}; (s as any).lastwornpantynumber['prostitute'] = ((s as any).pantywornnumber ?? 0);
-    if (!(s as any).lastwornbratype) (s as any).lastwornbratype = {}; (s as any).lastwornbratype['prostitute'] = ((s as any).braworntype ?? 0);
-    if (!(s as any).lastwornbranumber) (s as any).lastwornbranumber = {}; (s as any).lastwornbranumber['prostitute'] = ((s as any).brawornnumber ?? 0);
+    ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})['prostitute'] = ((s as any).pantyworntype ?? 0);
+    ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})['prostitute'] = ((s as any).pantywornnumber ?? 0);
+    ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})['prostitute'] = ((s as any).braworntype ?? 0);
+    ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})['prostitute'] = ((s as any).brawornnumber ?? 0);
   }
-  if (!(s as any).lastwornshoetype) (s as any).lastwornshoetype = {}; (s as any).lastwornshoetype['prostitute'] = ((s as any).shoeworntype ?? 0);
-  if (!(s as any).lastwornshoenumber) (s as any).lastwornshoenumber = {}; (s as any).lastwornshoenumber['prostitute'] = ((s as any).shoewornnumber ?? 0);
-  if (!(s as any).lastwornpursetype) (s as any).lastwornpursetype = {}; (s as any).lastwornpursetype['prostitute'] = ((s as any).currentpursetype ?? 0);
-  if (!(s as any).lastwornpursenumber) (s as any).lastwornpursenumber = {}; (s as any).lastwornpursenumber['prostitute'] = ((s as any).currentpursenumber ?? 0);
-  if (!(s as any).lastworncoattype) (s as any).lastworncoattype = {}; (s as any).lastworncoattype['prostitute'] = ((s as any).coatworntype ?? 0);
-  if (!(s as any).lastworncoatnumber) (s as any).lastworncoatnumber = {}; (s as any).lastworncoatnumber['prostitute'] = ((s as any).coatwornnumber ?? 0);
+  ((s as any).lastwornshoetype = (s as any).lastwornshoetype ?? {})['prostitute'] = ((s as any).shoeworntype ?? 0);
+  ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})['prostitute'] = ((s as any).shoewornnumber ?? 0);
+  ((s as any).lastwornpursetype = (s as any).lastwornpursetype ?? {})['prostitute'] = ((s as any).currentpursetype ?? 0);
+  ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})['prostitute'] = ((s as any).currentpursenumber ?? 0);
+  ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})['prostitute'] = ((s as any).coatworntype ?? 0);
+  ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})['prostitute'] = ((s as any).coatwornnumber ?? 0);
   // TODO-QSP: gs 'clothing', 'wear', $prostitute['clothingworntype'], prostitute['clothingwornnumber']
   if (((s as any).prostitute ?? 0)?.['underweartype'] === 2) {
     // TODO-QSP: gs 'underwear_bodysuits', 'wear', $lastwornbodysuittype['prostitute'], lastwornbodysuitnumber['prost...
@@ -394,7 +395,7 @@ function enterChangeIntoProstituteOutfit(s: GameState, scene: SceneBuilder): voi
   // TODO-QSP: gs 'coats', 'wear', $prostitute['coatworntype'], prostitute['coatwornnumber']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWorkClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locArgs?.[1] ?? 0) === 'work') {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['changed_for_work'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['changed_for_work'] = 1;
   }
   // TODO-QSP: end
   scene.build();
@@ -428,7 +429,7 @@ function enterChangeToWork(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -452,7 +453,7 @@ function enterChangeBack(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -469,7 +470,7 @@ function enterCheckSolicitationEvent(s: GameState, scene: SceneBuilder): void {
         { label: 'Look for clients (prostitution)', goto: ['prostitution_pavlovsk', 'search'] },
       ]);
     }
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_residential_prost_day'] = ((s as any).daystart ?? 0);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_residential_prost_day'] = ((s as any).daystart ?? 0);
   }
   // TODO-QSP: end
   scene.build();
@@ -494,7 +495,7 @@ function enterWillUnprotected(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0)) / 10;
     }
   }
-  qspCall(s, 'willpower', 'difficulty', '' + qspUntranslated(s, "ARGS[2]>", { location: "prostitution_functions" }) + '');
+  qspCall(s, 'willpower', 'difficulty', '' + ((s as any).locArgs?.[2] ?? 0) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -522,7 +523,7 @@ function enterWillRimming(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'willpower', 'difficulty', '' + qspUntranslated(s, "ARGS[2]>", { location: "prostitution_functions" }) + '');
+  qspCall(s, 'willpower', 'difficulty', '' + ((s as any).locArgs?.[2] ?? 0) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -550,7 +551,7 @@ function enterWillAtm(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'willpower', 'difficulty', '' + qspUntranslated(s, "ARGS[2]>", { location: "prostitution_functions" }) + '');
+  qspCall(s, 'willpower', 'difficulty', '' + ((s as any).locArgs?.[2] ?? 0) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -569,13 +570,13 @@ function enterStdCheckOral(s: GameState, scene: SceneBuilder): void {
 
 function enterRemoveCondom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0  &&  ((s as any).preziktype ?? 0) === 2) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['sabotaged_condoms'] = ((s as any).mc_inventory['sabotaged_condoms'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = ((s as any).mc_inventory['sabotaged_condoms'] ?? 0) - (1);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0  &&  ((s as any).preziktype ?? 0) !== 2) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) - (1);
       }
     }
   }
@@ -584,17 +585,17 @@ function enterRemoveCondom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterYourCondom(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['condom'] = 1;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['condom'] = 1;
   (s as any).protect = ((((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) ? (1) : (0));
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
     if ((Math.floor(Math.random() * (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] - 1 + 1)) + (1)) <= ((s as any).mc_inventory ?? 0)?.['bad_condoms']) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['bad_condoms'] = ((s as any).mc_inventory['bad_condoms'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['bad_condoms'] = ((s as any).mc_inventory['bad_condoms'] ?? 0) - (1);
       (s as any).noprotect = 1;
       (s as any).sexcontra = Math.floor(Math.random() * 2) + 4;
     } else {
       (s as any).sexcontra = 3;
     }
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
     if (((s as any).preziktype ?? 0) === 2) {
       (s as any).sexcontra = 7;
       (s as any).noprotect = 1;
@@ -607,10 +608,11 @@ function enterYourCondom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHisCondom(s: GameState, scene: SceneBuilder): void {
+  (s as any).bwa_boy = ((((s as any).locArgs?.[1] ?? 0) === '') ? (((s as any).boydesc ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
   // TODO-QSP: dynamic text: <<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom...
-  scene.text(`${qspUntranslated(s, "ucase(mid(bwa_boy,1,1))", { location: "prostitution_functions" })}${(String(((s as any).bwa_boy || '')).slice((2)-1, ((2)-1)+((String(((s as any).bwa_boy || '')).length)-1)))} takes his condom and puts it on his ${((s as any).dick || '')} centimeter dick.`);
+  scene.text(`${(String((String(((s as any).bwa_boy || '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(((s as any).bwa_boy || '')).slice((2)-1, ((2)-1)+((String(((s as any).bwa_boy || '')).length)-1)))} takes his condom and puts it on his ${((s as any).dick || '')} centimeter dick.`);
   // TODO-QSP: end
   scene.build();
 }
@@ -626,122 +628,127 @@ function enterDarkness(s: GameState, scene: SceneBuilder): void {
 function enterParameters(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 0;
   (s as any).sexcontra = 0;
+  (s as any).pro_client_condom = 'tbd';
+  (s as any).pro_client_cumshot = 'tbd';
   qspCall(s, 'npcgeneratec', '', 0, 'client', Math.floor(Math.random() * 48) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   if (((s as any).hour ?? 0) > 19  ||  ((s as any).hour ?? 0) < 7) {
+    (s as any).pro_work_time = 'night';
+  } else {
+    (s as any).pro_work_time = 'day';
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStdCumCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((Math.floor(Math.random() * 10) + 1) === 10) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['mesec_mod'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['mesec_mod'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['mesec_mod'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['mesec_mod'] = 0;
   }
   if ((Math.floor(Math.random() * 100) + 1) > 97) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['dirty_anal_mod'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['dirty_anal_mod'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['dirty_anal_mod'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['dirty_anal_mod'] = 0;
   }
   if ((Math.floor(Math.random() * 10) + 1) === 10) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_visible_mod'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_visible_mod'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_visible_mod'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_visible_mod'] = 0;
   }
   if (((s as any).vidage ?? 0) < 18  &&  (Math.floor(Math.random() * 10) + 1) < 7) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['vidage_mod'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['vidage_mod'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['vidage_mod'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['vidage_mod'] = 0;
   }
   (s as any).pro_scene_rand = Math.floor(Math.random() * 100) + 1;
   if (((s as any).pro_scene_rand ?? 0) <= 50) {
     if (((s as any).mesec ?? 0) === 0  ||  ((s as any).prostitute ?? 0)?.['mesec_mod'] === 1) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Vaginal';
+      ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Vaginal';
     } else {
       if (((s as any).mesec ?? 0) > 0  &&  ((s as any).prostitute ?? 0)?.['mesec_mod'] === 0  &&  (((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)  ||  ((s as any).prostitute ?? 0)?.['dirty_anal_mod'] === 1)) {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Anal';
+        ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Anal';
       } else {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Blowjob';
+        ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Blowjob';
       }
     }
   } else {
     if (((s as any).pro_scene_rand ?? 0) > 50  &&  ((s as any).pro_scene_rand ?? 0) <= 75) {
       if (((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)  ||  ((s as any).prostitute ?? 0)?.['dirty_anal_mod'] === 1) {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Anal';
+        ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Anal';
       } else {
         if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).prostitute ?? 0)?.['dirty_anal_mod'] === 0  &&  (((s as any).mesec ?? 0) === 0  ||  ((s as any).prostitute ?? 0)?.['mesec_mod'] === 1)) {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Vaginal';
+          ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Vaginal';
         } else {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Blowjob';
+          ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Blowjob';
         }
       }
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Blowjob';
+      ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Blowjob';
     }
   }
   if (((s as any).prostitute ?? 0)?.['customer_total'] < 10) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular_chance'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['regular_chance'] = 0;
   } else {
     if (((s as any).prostitute ?? 0)?.['customer_total'] >= 10  &&  ((s as any).prostitute ?? 0)?.['customer_total'] <= 25) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular_chance'] = 1;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['regular_chance'] = 1;
     } else {
       if (((s as any).prostitute ?? 0)?.['customer_total'] > 25  &&  ((s as any).prostitute ?? 0)?.['customer_total'] <= 50) {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular_chance'] = 2;
+        ((s as any).prostitute = (s as any).prostitute ?? {})['regular_chance'] = 2;
       } else {
         if (((s as any).prostitute ?? 0)?.['customer_total'] > 50  &&  ((s as any).prostitute ?? 0)?.['customer_total'] <= 100) {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular_chance'] = 3;
+          ((s as any).prostitute = (s as any).prostitute ?? {})['regular_chance'] = 3;
         } else {
           if (((s as any).prostitute ?? 0)?.['customer_total'] > 100  &&  ((s as any).prostitute ?? 0)?.['customer_total'] <= 250) {
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular_chance'] = 4;
+            ((s as any).prostitute = (s as any).prostitute ?? {})['regular_chance'] = 4;
           }
         }
       }
     }
   }
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_chance'] = ((s as any).pcs_hotcat ?? 0) * 10 + (((s as any).prostitute ?? {})?.['regular_chance'] ?? 0) * 5 + (Math.floor(Math.random() * 100) + 1) + (((s as any).prostitute ?? {})?.['pity_counter'] ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['client_chance'] = ((s as any).pcs_hotcat ?? 0) * 10 + (((s as any).prostitute ?? {})?.['regular_chance'] ?? 0) * 5 + (Math.floor(Math.random() * 100) + 1) + (((s as any).prostitute ?? {})?.['pity_counter'] ?? 0);
   if (((s as any).pantyworntype ?? 0) === 'eroto'  &&  ((s as any).PCloSkirt ?? 0) > 4) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_chance'] = ((s as any).prostitute['client_chance'] ?? 0) + (10);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['client_chance'] = ((s as any).prostitute['client_chance'] ?? 0) + (10);
   }
   if (((s as any).prostitute ?? 0)?.['regular_timer'] !== ((s as any).daystart ?? 0)  &&  ((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
     if ((((s as any).prostitute ?? 0)?.['regular_chance'] === 1  &&  (Math.floor(Math.random() * 100) + 1) > 95)  ||  (((s as any).prostitute ?? 0)?.['regular_chance'] === 2  &&  (Math.floor(Math.random() * 100) + 1) > 90)  ||  (((s as any).prostitute ?? 0)?.['regular_chance'] === 3  &&  (Math.floor(Math.random() * 100) + 1) > 80)  ||  (((s as any).prostitute ?? 0)?.['regular_chance'] === 4  &&  (Math.floor(Math.random() * 100) + 1) > 60)) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular'] = 1;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['regular'] = 1;
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular'] = 0;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['regular'] = 0;
     }
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['regular'] = 0;
   }
   if (((s as any).prostitute ?? 0)?.['regular'] === 0  &&  ((s as any).prostitute ?? 0)?.['rough'] === 0  &&  ((s as any).prostitute ?? 0)?.['std_mod'] === 0  &&  (Math.floor(Math.random() * 100) + 1) > ((s as any).iif ?? 0)(((s as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92)) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_creampie'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['client_creampie'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_creampie'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['client_creampie'] = 0;
   }
   if (((s as any).prostitute ?? 0)?.['rough'] === 1  ||  (((s as any).prostitute ?? 0)?.['rough'] === 0  &&  (Math.floor(Math.random() * 100) + 1) > 40)) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['propose'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 0;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['propose'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 1;
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSolicitationEffort(s: GameState, scene: SceneBuilder): void {
-  (s as any).cost = qspUntranslated(s, "ARGS[1]", { location: "prostitution_functions" });
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['skin_penalty'] = ((s as any).prostitute['skin_penalty'] ?? 0) + (5);
+  (s as any).cost = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['skin_penalty'] = ((s as any).prostitute['skin_penalty'] ?? 0) + (5);
   if (((s as any).temper ?? 0) < 15) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['skin_penalty'] = ((s as any).prostitute['skin_penalty'] ?? 0) + (5);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['skin_penalty'] = ((s as any).prostitute['skin_penalty'] ?? 0) + (5);
   }
   if (((s as any).temper ?? 0) > 25) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['skin_penalty'] = ((s as any).prostitute['skin_penalty'] ?? 0) + (5);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['skin_penalty'] = ((s as any).prostitute['skin_penalty'] ?? 0) + (5);
   }
   if (((s as any).cost ?? 0) <= ((s as any).willpowermax ?? 0) / 4) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (5);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (5);
   } else {
     if (((s as any).cost ?? 0) <= ((s as any).willpowermax ?? 0) / 3) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (10);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (10);
     } else {
       if (((s as any).cost ?? 0) <= ((s as any).willpowermax ?? 0) / 2) {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (15);
+        ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (15);
       } else {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (20);
+        ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (20);
       }
     }
   }
@@ -750,14 +757,15 @@ function enterSolicitationEffort(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClientEffort(s: GameState, scene: SceneBuilder): void {
+  (s as any).client_type = ((((s as any).locArgs?.[1] ?? 0) === '') ? ('normal') : (((s as any).locArgs?.[1] ?? 0)));
   if (((s as any).client_type ?? 0) === 'nice') {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (5);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (5);
   } else {
     if (((s as any).client_type ?? 0) === 'normal') {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (10);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (10);
     } else {
       if (((s as any).client_type ?? 0) === 'abusive') {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (20);
+        ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (20);
       }
     }
   }
@@ -769,12 +777,12 @@ function enterDailyEffects(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute ?? 0)?.['age_mod'] >= 100) {
     (s as any).temp_age_mod_remain = qspUntranslated(s, "prostitute['age_mod'] MOD 100", { location: "prostitution_functions" });
     (s as any).vidageday = ((s as any).vidageday ?? 0) - ((((((s as any).prostitute ?? {})?.['age_mod'] ?? 0) - ((s as any).temp_age_mod_remain ?? 0)) / 100));
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['age_mod'] = ((s as any).temp_age_mod_remain ?? 0);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).temp_age_mod_remain ?? 0);
   }
   if (((s as any).prostitute ?? 0)?.['skin_penalty'] >= 100) {
     (s as any).temp_skin_remain = qspUntranslated(s, "prostitute['skin_penalty'] MOD 100", { location: "prostitution_functions" });
     (s as any).skinDailyPenalty = ((s as any).skinDailyPenalty ?? 0) + ((((((s as any).prostitute ?? {})?.['skin_penalty'] ?? 0) - ((s as any).temp_skin_remain ?? 0)) / 100));
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['skin_penalty'] = ((s as any).temp_skin_remain ?? 0);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['skin_penalty'] = ((s as any).temp_skin_remain ?? 0);
   }
   // TODO-QSP: end
   scene.build();
@@ -783,108 +791,108 @@ function enterDailyEffects(s: GameState, scene: SceneBuilder): void {
 function enterPayment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'pav') {
     if (((s as any).prostitute ?? 0)?.['pav_scene'] === 'blowjob') {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 425;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 425;
     } else {
       if (((s as any).prostitute ?? 0)?.['pav_scene'] === 'anal') {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 1200;
+        ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 1200;
       } else {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 1000;
+        ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 1000;
       }
     }
   } else {
     if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob') {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 350;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 350;
       if (((s as any).locArgs?.[1] ?? 0) === 'condom_no') {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((s as any).prostitute['payment'] ?? 0) + (75);
+        ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (75);
       }
       if (((s as any).locArgs?.[2] ?? 0) === 'inside_yes') {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((s as any).prostitute['payment'] ?? 0) + (50);
+        ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (50);
       }
     } else {
       if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 700;
+        ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 700;
         if (((s as any).locArgs?.[1] ?? 0) === 'condom_no') {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((s as any).prostitute['payment'] ?? 0) + (300);
+          ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (300);
         }
         if (((s as any).locArgs?.[2] ?? 0) === 'inside_yes') {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((s as any).prostitute['payment'] ?? 0) + (300);
+          ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (300);
         }
       } else {
         if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 900;
+          ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 900;
           if (((s as any).locArgs?.[1] ?? 0) === 'condom_no') {
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((s as any).prostitute['payment'] ?? 0) + (200);
+            ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (200);
           }
           if (((s as any).locArgs?.[2] ?? 0) === 'inside_yes') {
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((s as any).prostitute['payment'] ?? 0) + (100);
+            ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (100);
           }
         }
       }
     }
   }
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).pcs_hotcat ?? 0) * 10;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).pcs_hotcat ?? 0) * 10;
   if ((!((s as any).pcs_makeup ?? 0))) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (20);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (20);
   } else {
     if (((s as any).pcs_makeup ?? 0) > 1) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (((s as any).pcs_makeup ?? 0) * 10);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (((s as any).pcs_makeup ?? 0) * 10);
     }
   }
   if (((s as any).mesec ?? 0) > 0  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
     if (((s as any).prostitute ?? 0)?.['mesec_mod'] === 0) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (200);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (200);
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (300);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (300);
     }
   }
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
     if (((s as any).prostitute ?? 0)?.['dirty_anal_mod'] === 0) {
       if (((s as any).locArgs?.[1] ?? 0) === 'condom_no') {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (600);
+        ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (600);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'condom_yes') {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (300);
+          ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (300);
         }
       }
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (300);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (300);
     }
   }
   if (((s as any).prostitute ?? 0)?.['cum_dressed'] === 1) {
     if (((s as any).prostitute ?? 0)?.['cum_visible_mod'] === 0) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (200);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (200);
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (300);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (300);
     }
   }
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (((s as any).pcs_mood ?? 0) - 50);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (((s as any).pcs_mood ?? 0) - 50);
   if (((s as any).pantyworntype ?? 0) === 'eroto'  &&  ((s as any).PCloSkirt ?? 0) > 4) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (50);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (50);
   }
   if (((s as any).prostitute ?? 0)?.['vidage_mod'] === 1) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (50 * (18 - ((s as any).vidage ?? 0)));
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (50 * (18 - ((s as any).vidage ?? 0)));
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (50 * (18 - ((s as any).vidage ?? 0)));
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (50 * (18 - ((s as any).vidage ?? 0)));
   }
   if ((((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob')  ||  (((s as any).prostitute ?? 0)?.['pav_scene'] === 'blowjob')) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = (((s as any).prostitute ?? {})?.['payment_mod'] ?? 0) / 2;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = (((s as any).prostitute ?? {})?.['payment_mod'] ?? 0) / 2;
     if (((s as any).pcs_piercings ?? 0)?.['tongue'] === 2) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (50);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (50);
     } else {
       if (((s as any).pcs_piercings ?? 0)?.['tongue'] === 4) {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (75);
+        ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (75);
       } else {
         if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (25);
+          ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) + (25);
         }
       }
     }
   }
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((s as any).prostitute['payment'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment_mod']);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_backup'] = ((s as any).prostitute ?? 0)?.['payment'];
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((((s as any).prostitute ?? {})?.['payment'] ?? 0) * (100 + (((s as any).prostitute ?? {})?.['client_satisfaction'] ?? 0))) / 100;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = qspFunc(s, 'math', 'int_round', ((s as any).prostitute ?? 0)?.['payment'], 10);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment_backup'] = qspFunc(s, 'math', 'int_round', ((s as any).prostitute ?? 0)?.['payment_backup'], 10);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment_mod']);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment_backup'] = ((s as any).prostitute ?? 0)?.['payment'];
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((((s as any).prostitute ?? {})?.['payment'] ?? 0) * (100 + (((s as any).prostitute ?? {})?.['client_satisfaction'] ?? 0))) / 100;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = qspFunc(s, 'math', 'int_round', ((s as any).prostitute ?? 0)?.['payment'], 10);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment_backup'] = qspFunc(s, 'math', 'int_round', ((s as any).prostitute ?? 0)?.['payment_backup'], 10);
   // TODO-QSP: end
   scene.build();
 }
@@ -912,7 +920,7 @@ function enterAbortion(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
   if (((s as any).broodcurse ?? 0) > 0) {
-    scene.actions([{ label: 'Continue', goto: ['gameover', 'force', '13'] }]);
+    qspGoto(s, 'gameover', 'force', '13');
   }
   // TODO-QSP: end
   scene.build();
@@ -924,52 +932,76 @@ function enterRandomName(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :pro_rng_jump
   (s as any).temp_pro_roll = Math.floor(Math.random() * 24) + 0;
   if ((!((s as any).temp_pro_roll ?? 0))) {
+    (s as any).pro_temp = 'Abram';
   } else {
     if (((s as any).temp_pro_roll ?? 0) === 1) {
+      (s as any).pro_temp = 'Alexei';
     } else {
       if (((s as any).temp_pro_roll ?? 0) === 2) {
+        (s as any).pro_temp = 'Adrian';
       } else {
         if (((s as any).temp_pro_roll ?? 0) === 3) {
+          (s as any).pro_temp = 'Dima';
         } else {
           if (((s as any).temp_pro_roll ?? 0) === 4) {
+            (s as any).pro_temp = 'Dimitri';
           } else {
             if (((s as any).temp_pro_roll ?? 0) === 5) {
+              (s as any).pro_temp = 'Igor';
             } else {
               if (((s as any).temp_pro_roll ?? 0) === 6) {
+                (s as any).pro_temp = 'Leonid';
               } else {
                 if (((s as any).temp_pro_roll ?? 0) === 7) {
+                  (s as any).pro_temp = 'Petka';
                 } else {
                   if (((s as any).temp_pro_roll ?? 0) === 8) {
+                    (s as any).pro_temp = 'Michail';
                   } else {
                     if (((s as any).temp_pro_roll ?? 0) === 9) {
+                      (s as any).pro_temp = 'Vasily';
                     } else {
                       if (((s as any).temp_pro_roll ?? 0) === 10) {
+                        (s as any).pro_temp = 'Oleg';
                       } else {
                         if (((s as any).temp_pro_roll ?? 0) === 11) {
+                          (s as any).pro_temp = 'Olezka';
                         } else {
                           if (((s as any).temp_pro_roll ?? 0) === 12) {
+                            (s as any).pro_temp = 'Pasha';
                           } else {
                             if (((s as any).temp_pro_roll ?? 0) === 13) {
+                              (s as any).pro_temp = 'Pavel';
                             } else {
                               if (((s as any).temp_pro_roll ?? 0) === 14) {
+                                (s as any).pro_temp = 'Sacha';
                               } else {
                                 if (((s as any).temp_pro_roll ?? 0) === 15) {
+                                  (s as any).pro_temp = 'Slava';
                                 } else {
                                   if (((s as any).temp_pro_roll ?? 0) === 16) {
+                                    (s as any).pro_temp = 'Ruslan';
                                   } else {
                                     if (((s as any).temp_pro_roll ?? 0) === 17) {
+                                      (s as any).pro_temp = 'Taras';
                                     } else {
                                       if (((s as any).temp_pro_roll ?? 0) === 18) {
+                                        (s as any).pro_temp = 'Timofey';
                                       } else {
                                         if (((s as any).temp_pro_roll ?? 0) === 19) {
+                                          (s as any).pro_temp = 'Vanya';
                                         } else {
                                           if (((s as any).temp_pro_roll ?? 0) === 20) {
+                                            (s as any).pro_temp = 'Viktor';
                                           } else {
                                             if (((s as any).temp_pro_roll ?? 0) === 21) {
+                                              (s as any).pro_temp = 'Vladimir';
                                             } else {
                                               if (((s as any).temp_pro_roll ?? 0) === 22) {
+                                                (s as any).pro_temp = 'Yaromir';
                                               } else {
                                                 if (((s as any).temp_pro_roll ?? 0) === 23) {
+                                                  (s as any).pro_temp = 'Yevgeni';
                                                 }
                                               }
                                             }
@@ -1017,68 +1049,68 @@ function enterTatPierceCount(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPavClient(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_internal'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['pav_internal'] = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStdCumCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).prostitute ?? 0)?.['pav_total'] < 10) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_chance'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_chance'] = 0;
   } else {
     if (((s as any).prostitute ?? 0)?.['pav_total'] >= 10  &&  ((s as any).prostitute ?? 0)?.['pav_total'] <= 25) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_chance'] = 1;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['pav_chance'] = 1;
     } else {
       if (((s as any).prostitute ?? 0)?.['pav_total'] > 25  &&  ((s as any).prostitute ?? 0)?.['pav_total'] <= 50) {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_chance'] = 2;
+        ((s as any).prostitute = (s as any).prostitute ?? {})['pav_chance'] = 2;
       } else {
         if (((s as any).prostitute ?? 0)?.['pav_total'] > 50  &&  ((s as any).prostitute ?? 0)?.['pav_total'] <= 100) {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_chance'] = 3;
+          ((s as any).prostitute = (s as any).prostitute ?? {})['pav_chance'] = 3;
         } else {
           if (((s as any).prostitute ?? 0)?.['pav_total'] > 100  &&  ((s as any).prostitute ?? 0)?.['pav_total'] <= 250) {
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_chance'] = 4;
+            ((s as any).prostitute = (s as any).prostitute ?? {})['pav_chance'] = 4;
           }
         }
       }
     }
   }
   if (((((s as any).prostitute ?? 0)?.['pav_chance'] === 1  &&  (Math.floor(Math.random() * 100) + 1) > 95)  ||  (((s as any).prostitute ?? 0)?.['pav_chance'] === 2  &&  (Math.floor(Math.random() * 100) + 1) > 90)  ||  (((s as any).prostitute ?? 0)?.['pav_chance'] === 3  &&  (Math.floor(Math.random() * 100) + 1) > 80)  ||  (((s as any).prostitute ?? 0)?.['pav_chance'] === 4  &&  (Math.floor(Math.random() * 100) + 1) > 60))  &&  (((s as any).pro_rand ?? 0) !== 8  ||  (((s as any).pro_rand ?? 0) === 8  &&  ((s as any).prostitute ?? 0)?.['pav_regular_s8'] === 1))) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_regular'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_regular'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_regular'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_regular'] = 0;
   }
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_behavior'] = (((Math.floor(Math.random() * 100) + 1) < ((s as any).prostitute ?? 0)?.['client_behavior_chance']  ||  ((s as any).prostitute ?? 0)?.['pav_regular'] === -1) ? ('nice') : ('abusive'));
+  ((s as any).prostitute = (s as any).prostitute ?? {})['client_behavior'] = (((Math.floor(Math.random() * 100) + 1) < ((s as any).prostitute ?? 0)?.['client_behavior_chance']  ||  ((s as any).prostitute ?? 0)?.['pav_regular'] === -1) ? ('nice') : ('abusive'));
   if (((s as any).pro_rand ?? 0) > 7) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_scene'] = 'anal';
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_scene'] = 'anal';
   } else {
     if (((s as any).mesec ?? 0) === 0  &&  (Math.floor(Math.random() * 101) + 0) < 50) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_scene'] = 'pussy';
+      ((s as any).prostitute = (s as any).prostitute ?? {})['pav_scene'] = 'pussy';
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_scene'] = 'blowjob';
+      ((s as any).prostitute = (s as any).prostitute ?? {})['pav_scene'] = 'blowjob';
     }
   }
   if (((s as any).pro_rand ?? 0) === 0  ||  ((s as any).pro_rand ?? 0) === 8  ||  ((s as any).pro_rand ?? 0) === 9  ||  ((((s as any).pro_rand ?? 0) === 2  ||  ((s as any).pro_rand ?? 0) === 3  ||  (((s as any).pro_rand ?? 0) === 5  &&  ((s as any).prostitute ?? 0)?.['client_behavior'] === 'nice')  ||  ((s as any).pro_rand ?? 0) === 6  ||  ((s as any).pro_rand ?? 0) === 7)  &&  ((s as any).prostitute ?? 0)?.['pav_scene'] === 'pussy')) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_location'] = 'private';
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_location'] = 'private';
     if (((s as any).pro_rand ?? 0) === 3  ||  ((s as any).pro_rand ?? 0) === 8) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_behavior'] = 'abusive';
+      ((s as any).prostitute = (s as any).prostitute ?? {})['client_behavior'] = 'abusive';
     }
   } else {
     if (((s as any).pro_rand ?? 0) === 1  &&  ((s as any).prostitute ?? 0)?.['pav_scene'] === 'pussy') {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_location'] = ((((s as any).prostitute ?? 0)?.['client_behavior'] === 'nice') ? ('private') : ('public'));
+      ((s as any).prostitute = (s as any).prostitute ?? {})['pav_location'] = ((((s as any).prostitute ?? 0)?.['client_behavior'] === 'nice') ? ('private') : ('public'));
     } else {
       if (((((s as any).pro_rand ?? 0) === 2  ||  ((s as any).pro_rand ?? 0) === 3  ||  ((s as any).pro_rand ?? 0) === 6  ||  ((s as any).pro_rand ?? 0) === 7)  &&  ((s as any).prostitute ?? 0)?.['pav_scene'] === 'blowjob')  ||  ((s as any).pro_rand ?? 0) === 4  ||  ((s as any).pro_rand ?? 0) === 5) {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_location'] = 'public';
+        ((s as any).prostitute = (s as any).prostitute ?? {})['pav_location'] = 'public';
         if (((s as any).pro_rand ?? 0) === 5) {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_behavior'] = 'abusive';
+          ((s as any).prostitute = (s as any).prostitute ?? {})['client_behavior'] = 'abusive';
         }
       } else {
-        scene.actions([{ label: 'Continue', goto: ['prostitution_pavlovsk', 'rng'] }]);
+        qspGoto(s, 'prostitution_pavlovsk', 'rng');
       }
     }
   }
   if (((s as any).prostitute ?? 0)?.['pav_regular_s8'] === 1  &&  ((s as any).pro_rand ?? 0) === 8) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_regular'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_regular'] = 1;
   }
   if ((((s as any).pro_rand ?? 0) === 3  ||  ((s as any).pro_rand ?? 0) === 8)  &&  ((s as any).prostitute ?? 0)?.['pav_scene'] === 'private'  &&  ((s as any).prostitute ?? 0)?.['pav_regular'] === 1) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_condom_refusal'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_condom_refusal'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pav_condom_refusal'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['pav_condom_refusal'] = 0;
   }
   qspCall(s, 'npcgeneratec', '', 0, 'pavlovsk client', Math.floor(Math.random() * 28) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
@@ -1088,36 +1120,36 @@ function enterPavClient(s: GameState, scene: SceneBuilder): void {
 
 function enterStdCumCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_apprnc ?? 0) === -10  &&  (Math.floor(Math.random() * 10) + 1) < 8) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['std_mod'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['std_mod'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['std_mod'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['std_mod'] = 0;
   }
   if (((s as any).cumloc ?? 0)[0] === 1) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_vaginal_mod'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_vaginal_mod'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_vaginal_mod'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_vaginal_mod'] = 0;
   }
   if (((s as any).cumloc ?? 0)[3] === 1) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_anal_mod'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_anal_mod'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_anal_mod'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_anal_mod'] = 0;
   }
   if (((s as any).cumloc ?? 0)[7] === 1  ||  ((s as any).cumloc ?? 0)[11] === 1  ||  ((s as any).cumloc ?? 0)[13] === 1  ||  ((s as any).cumloc ?? 0)[15] === 1) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_dressed'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_dressed'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_dressed'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_dressed'] = 0;
   }
   if (((s as any).cumloc ?? 0)[1] === 1  ||  ((s as any).cumloc ?? 0)[4] === 1  ||  ((s as any).cumloc ?? 0)[8] === 1  ||  ((s as any).cumloc ?? 0)[14] === 1  ||  ((s as any).cumloc ?? 0)[16] === 1) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_undressed'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_undressed'] = 1;
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['cum_undressed'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['cum_undressed'] = 0;
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterExactRound(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = qspFunc(s, 'math', 'int_round', qspUntranslated(s, "ARGS[1]", { location: "prostitution_functions" }), qspUntranslated(s, "ARGS[2]", { location: "prostitution_functions" }));
+  (s as any).result = qspFunc(s, 'math', 'int_round', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();

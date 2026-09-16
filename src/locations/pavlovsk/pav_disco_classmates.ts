@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,8 +12,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterClassmates(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 20) {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco', ''] }]);
+    qspGoto(s, 'pav_disco', '');
   }
+  (s as any).loc_arg = '';
+  (s as any).loc = 'pav_disco';
+  (s as any).location_type = 'public_indoors';
+  (s as any).menu_loc = 'pav_disco_classmates';
+  (s as any).menu_arg = 'classmates';
   qspCall(s, 'anushka_konstantinov_schedule', '');
   qspCall(s, 'arkadi_fyodorov_schedule', '');
   qspCall(s, 'radomir_popov_schedule', '');
@@ -22,16 +27,18 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'albina_schedule', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/komb.mp3';
     (s as any).volume = 80;
     (s as any).music_loop = 1;
   }
   if (((s as any).atdisco ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  ||  ((s as any).atdisco ?? 0)?.['hour'] !== ((s as any).hour ?? 0)) {
-    if (!(s as any).atdisco) (s as any).atdisco = {}; (s as any).atdisco['day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).atdisco) (s as any).atdisco = {}; (s as any).atdisco['hour'] = ((s as any).hour ?? 0);
+    ((s as any).atdisco = (s as any).atdisco ?? {})['day'] = ((s as any).daystart ?? 0);
+    ((s as any).atdisco = (s as any).atdisco ?? {})['hour'] = ((s as any).hour ?? 0);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAtdisco(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('<center><b>Disco</b></center>');
   scene.text('Most of the cool kids and jocks are gathered around some tables and couches near the dance floor while the others dance. Some of the other students are hanging around near them or are out dancing.');
+  (s as any).table_disco = '<center><table>';
   (s as any).i = 1;
   (s as any).i2 = 0;
   // TODO-QSP: :discopop_loop
@@ -96,11 +103,15 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You check where the gopniks normally hang out and you don\'t see any of them. You wonder where they might be.');
     }
+    (s as any).table_disco = '<center><table>';
   } else {
     scene.text('The gopniks are lounging in the darkest corner of the hall. They\'re mostly keeping to themselves, but a few of them are out dancing.');
+    (s as any).table_disco = '<center><table>';
     (s as any).i = 1;
     // TODO-QSP: :discogop_loop
     if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4  &&  ((s as any).discoenable ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).discobloc ?? 0)['A' + ((s as any).i ?? 0)] !== ((s as any).daystart ?? 0)) {
+      (s as any).loopname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+      (s as any).loopname = qspUntranslated(s, "lcase(loopname)", { location: "pav_disco_classmates" });
       if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_disco += '<tr>'
       }
@@ -134,6 +145,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).discoenable ?? 0)?.['A25'] === 1  &&  ((s as any).discobloc ?? 0)?.['A25'] !== ((s as any).daystart ?? 0)  &&  ((s as any).soniaQW ?? 0)?.['hate'] < 1  &&  (((s as any).soniaQW ?? 0)?.['fallenangel'] < 1  ||  ((s as any).daystart ?? 0) > ((s as any).soniaQW ?? 0)?.['fallday'] + 7)) {
     if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).day ?? 0) >= 15  &&  ((s as any).day ?? 0) <= 21  &&  (((s as any).kanikuli ?? 0) < 6  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] !== 0)) {
+      (s as any).table_disco = '<center><table>';
     }
     if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
       // TODO-QSP: $table_disco += '<tr><td><table bgcolor=#404040>'
@@ -146,6 +158,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_disco
   if (((s as any).hour ?? 0) >= 21  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).week ?? 0)===5) {
     scene.text('Coach Mikhail Nikolayevich stands at the entrance of the hall.');
+    (s as any).table_disco = '<center><table>';
     if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
       // TODO-QSP: $table_disco += '<tr><td><table bgcolor=#404040>'
     } else {
@@ -158,25 +171,31 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
 }
 
 function enterJocksList(s: GameState, scene: SceneBuilder): void {
+  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = qspUntranslated(s, "lcase(listname)", { location: "pav_disco_classmates" });
   // TODO-QSP: gt 'pav_disco_jocks', $listname
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCoolList(s: GameState, scene: SceneBuilder): void {
+  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = qspUntranslated(s, "lcase(listname)", { location: "pav_disco_classmates" });
   // TODO-QSP: gt 'pav_disco_coolkids', $listname
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGopList(s: GameState, scene: SceneBuilder): void {
+  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = qspUntranslated(s, "lcase(listname)", { location: "pav_disco_classmates" });
   // TODO-QSP: gt 'pav_disco_gopniks', $listname
   // TODO-QSP: end
   scene.build();
@@ -184,12 +203,12 @@ function enterGopList(s: GameState, scene: SceneBuilder): void {
 
 function enterAtdisco(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorQW ?? 0)?.['DimaNos_day'] === ((s as any).daystart ?? 0)) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A1'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A1'] = 0;
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).IgorQW ?? 0)?.['DimaNos_day'] === ((s as any).daystart ?? 0)) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A4'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A4'] = 0;
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -199,18 +218,18 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Katja'] === 8) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 14]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A14'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A14'] = 0;
   }
   if (((s as any).locat ?? 0)?.['Vicky'] === 14) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 15]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A15'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A15'] = 0;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 17]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 22]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 140]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).discoenable ?? 0)?.['A147'] === 1) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A139'] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A139'] = 1;
   }
   if (((s as any).soniaQW ?? 0)?.['slut'] > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 25]; enterAtdisco4i(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -241,7 +260,7 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A23'] === 5) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 23]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A23'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A23'] = 0;
   }
   if (((s as any).week ?? 0) === 5) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 18]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -254,54 +273,54 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 19]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 5) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A3'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A3'] = 0;
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterAtdisco10i(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 5) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A150'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A150'] = 0;
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 150]; enterAtdisco5i(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 16]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).discoenable ?? 0)?.['A9'] === 1) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A10'] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A10'] = 1;
   }
   if (((s as any).discoenable ?? 0)?.['A9'] === 1) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A11'] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A11'] = 1;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 157]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A154'] === 25) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 154]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A154'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A154'] = 0;
   }
   if (((s as any).locat ?? 0)?.['A158'] === 25) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 158]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A158'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A158'] = 0;
   }
   if (((s as any).locat ?? 0)?.['A156'] === 25) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 156]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A156'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A156'] = 0;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 185]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 155]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 20]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).discoenable ?? 0)?.['A20'] === 1) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A21'] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A21'] = 1;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 24]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A144'] === 25) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 144]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A144'] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A144'] = 0;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 143]; enterAtdisco2(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A141'] = 0;
-  if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A145'] = 0;
+  ((s as any).discoenable = (s as any).discoenable ?? {})['A141'] = 0;
+  ((s as any).discoenable = (s as any).discoenable ?? {})['A145'] = 0;
   // TODO-QSP: end
   scene.build();
 }
@@ -309,9 +328,9 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco2(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 2) + 1) !== 2) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -320,9 +339,9 @@ function enterAtdisco2(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco3i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 3) + 1) === 1) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -331,9 +350,9 @@ function enterAtdisco3i(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco4(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 4) + 1) !== 4) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -342,9 +361,9 @@ function enterAtdisco4(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco4i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 4) + 1) === 1) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -353,9 +372,9 @@ function enterAtdisco4i(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco5i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 5) + 1) === 1) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -364,9 +383,9 @@ function enterAtdisco5i(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco10(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 10) + 1) !== 10) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -375,9 +394,9 @@ function enterAtdisco10(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco10i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 10) + 1) === 1) {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -388,7 +407,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).vballVars ?? 0)?.['on_team'] > 0) {
     if (((s as any).vballVars ?? 0)?.['coachsex'] >= 4) {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_classmates', 'coach_sex'] }]);
+      qspGoto(s, 'pav_disco_classmates', 'coach_sex');
     } else {
       scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener2.jpg');
       scene.text('You go up to Mikhail Nikolayevich and politely say hello.');
@@ -398,7 +417,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
       if (((s as any).alko ?? 0) > 1) {
         scene.text('"You\'ve been drinking! If you can\'t even take the team seriously, then you\'re not playing tomorrow."');
         qspCall(s, 'npc_relationship', 'modify', 'A69', (-20));
-        if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['disco_drunk'] = ((s as any).daystart ?? 0);
+        ((s as any).vballVars = (s as any).vballVars ?? {})['disco_drunk'] = ((s as any).daystart ?? 0);
       }
       scene.text('"Come on, I\'d better take you home," the coach says. Looks like you are done at the disco for tonight.');
       scene.actions([
@@ -434,7 +453,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: "<<$pcs_lastname>>, don't piss me off. What I do is my business, and what you ar...
             scene.text(`"${((s as any).pcs_lastname || '')}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
             if (((s as any).pcs_horny ?? 0) > 79) {
-              if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (1);
+              ((s as any).vballVars = (s as any).vballVars ?? {})['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (1);
               scene.text('"Is that the truth, Mr. Nikolayevich? Are you here because of me?" You move closer to the coach and flutter your eyes at him.');
               scene.text('"I meant as your coach, and don\'t think you can win just by fluttering your eyes. Want to impress me? Work out, and no partying."');
             } else {
@@ -508,7 +527,7 @@ function enterCoachSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     if (((s as any).vballVars ?? 0)?.['coachsex'] < 5) {
-      if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coachsex'] = 5;
+      ((s as any).vballVars = (s as any).vballVars ?? {})['coachsex'] = 5;
     }
     qspCall(s, 'stat', '');
     scene.actions([

@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,18 +10,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).inSleep = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['slept_in'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['slept_in'] = 0;
   (s as any).strip_here = 0;
   (s as any).SleepHorny = 0;
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out', 'mod_sleeptriggers'] }]);
+  qspGoto(s, 'bed_get_out', 'mod_sleeptriggers');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_get_out', 'mod_sleeptriggers');
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'start'] }]);
+  qspGoto(s, 'bed_get_out_events', 'start');
   // TODO-QSP: end
   scene.build();
 }
@@ -29,14 +29,14 @@ function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fullmorrout ?? 0) === 1) {
     if (((s as any).loc ?? 0) === 'bedrPar') {
-      scene.actions([{ label: 'Continue', goto: ['vanrPar', ''] }]);
+      qspGoto(s, 'vanrPar', '');
     } else {
       if (((s as any).loc ?? 0) === 'bedr') {
-        scene.actions([{ label: 'Continue', goto: ['vanr', ''] }]);
+        qspGoto(s, 'vanr', '');
       }
     }
   }
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }

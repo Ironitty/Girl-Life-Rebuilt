@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,14 +9,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_event_day'] = ((s as any).daystart ?? 0);
+  ((s as any).transportVars = (s as any).transportVars ?? {})['train_event_day'] = ((s as any).daystart ?? 0);
   if (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) < 7) {
-    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 2) + 0;
+    ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 0;
   } else {
     if ((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 16)  ||  (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22)) {
-      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 2) + 1;
+      ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 1;
     } else {
-      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 2) + 2;
+      ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 2;
     }
   }
   // TODO-QSP: gt 'metro_incidental', 'event<<temp_transportVars[''rand'']>>'
@@ -39,7 +39,7 @@ function enterEvent0(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -60,7 +60,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -81,7 +81,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -103,7 +103,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -111,7 +111,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end<<rand(1, 1)>>'] }]);
+  qspGoto(s, 'metro_incidental', 'end' + Math.floor(Math.random() * 1) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -123,7 +123,7 @@ function enterEnd1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

@@ -1,33 +1,97 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['city_library'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['city_island'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['gadukino'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['gad_forest'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['pav_complex'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['pav_market'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['gschool_grounds'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['pav_park'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['pav_lake'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_locations) (s as any).camera_locations = {}; (s as any).camera_locations['pav_church'] = qspUntranslated(s, "{", { location: "camera" });
-  if (!(s as any).camera_people) (s as any).camera_people = {}; (s as any).camera_people['mother'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['city_library'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'City Library';
+  (s as any).camera_event = 'city_library';
+  (s as any).camera_return_loc = 'city_center';
+  (s as any).camera_return_loc_arg = '';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['city_island'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'University';
+  (s as any).camera_event = 'city_uni';
+  (s as any).camera_return_loc = 'city_island';
+  (s as any).camera_return_loc_arg = '';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['gadukino'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Gadukino Village';
+  (s as any).camera_event = 'gadukino';
+  (s as any).camera_return_loc = 'gadukino';
+  (s as any).camera_return_loc_arg = '';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['gad_forest'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Gadukino Forest';
+  (s as any).camera_event = 'gad_forest';
+  (s as any).camera_return_loc = 'gad_forest';
+  (s as any).camera_return_loc_arg = 'forest_edge';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['pav_complex'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Pavlovsk Five Estates';
+  (s as any).camera_event = 'pav_complex';
+  (s as any).camera_return_loc = 'pav_complex';
+  (s as any).camera_return_loc_arg = 'start';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['pav_market'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Pavlovsk Train Station';
+  (s as any).camera_event = 'pav_train_hall';
+  (s as any).camera_return_loc = 'pav_market';
+  (s as any).camera_return_loc_arg = '';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['gschool_grounds'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Pavlovsk School';
+  (s as any).camera_event = 'pav_school';
+  (s as any).camera_return_loc = 'gschool_grounds';
+  (s as any).camera_return_loc_arg = 'main';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['pav_park'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Pavlovsk Park';
+  (s as any).camera_event = 'pav_park';
+  (s as any).camera_return_loc = 'pav_park';
+  (s as any).camera_return_loc_arg = 'start';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['pav_lake'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Pavlovsk Lake';
+  (s as any).camera_event = 'pav_lake';
+  (s as any).camera_return_loc = 'pav_lake';
+  (s as any).camera_return_loc_arg = '';
+  ((s as any).camera_locations = (s as any).camera_locations ?? {})['pav_church'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Pavlovsk Church';
+  (s as any).camera_event = 'pav_church';
+  (s as any).camera_return_loc = 'pav_church';
+  (s as any).camera_return_loc_arg = 'start';
+  ((s as any).camera_people = (s as any).camera_people ?? {})['mother'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = ((s as any).npc_nickname ?? 0)?.['A29'];
+  (s as any).camera_event = 'mother';
+  (s as any).camera_return_loc = '';
+  (s as any).camera_return_loc_arg = '';
   (s as any).camera_requirement = (((s as any).npc_rel ?? 0)?.['A29'] >= 50  &&  ((s as any).month ?? 0) > 2  &&  ((s as any).month ?? 0) < 9);
-  if (!(s as any).camera_people) (s as any).camera_people = {}; (s as any).camera_people['anya'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_people = (s as any).camera_people ?? {})['anya'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Anya';
+  (s as any).camera_event = 'anya';
+  (s as any).camera_return_loc = '';
+  (s as any).camera_return_loc_arg = '';
   (s as any).camera_requirement = (((s as any).npc_rel ?? 0)?.['A33'] >= 50);
-  if (!(s as any).camera_people) (s as any).camera_people = {}; (s as any).camera_people['anushka'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_people = (s as any).camera_people ?? {})['anushka'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Anushka';
+  (s as any).camera_event = '';
+  (s as any).camera_return_loc = '';
+  (s as any).camera_return_loc_arg = '';
   (s as any).camera_requirement = (((s as any).npc_rel ?? 0)?.['A144'] >= 50);
-  if (!(s as any).camera_people) (s as any).camera_people = {}; (s as any).camera_people['lazar'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_people = (s as any).camera_people ?? {})['lazar'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Lazar';
+  (s as any).camera_event = 'lazar';
+  (s as any).camera_return_loc = '';
+  (s as any).camera_return_loc_arg = '';
   (s as any).camera_requirement = (((s as any).npc_rel ?? 0)?.['A149'] >= 50  &&  ((s as any).month ?? 0) > 2  &&  ((s as any).month ?? 0) < 9);
-  if (!(s as any).camera_people) (s as any).camera_people = {}; (s as any).camera_people['eugene'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_people = (s as any).camera_people ?? {})['eugene'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Eugene';
+  (s as any).camera_event = 'eugene';
+  (s as any).camera_return_loc = '';
+  (s as any).camera_return_loc_arg = '';
   (s as any).camera_requirement = (((s as any).LCEugenefirst ?? 0) >= 1);
-  if (!(s as any).camera_people) (s as any).camera_people = {}; (s as any).camera_people['albina'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_people = (s as any).camera_people ?? {})['albina'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_description = 'Albina';
+  (s as any).camera_event = '';
+  (s as any).camera_return_loc = '';
+  (s as any).camera_return_loc_arg = '';
   (s as any).camera_requirement = (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2);
   scene.build();
 }
@@ -63,7 +127,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -73,8 +137,10 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).photographyEv ?? 0) >= 2  &&  ((s as any).camera_locations ?? 0)?.[String((s as any).loc ?? 0)] !== '') {
     if (((s as any).camera_found ?? 0)?.[String((s as any).camera_event ?? 0)] !== 1) {
       scene.actions([
-        { label: 'Photograph the <<$camera_description>>', handler: (st: GameState) => {
-    if (!(s as any).camera_found) (s as any).camera_found = {}; (s as any).camera_found[String((s as any).camera_event ?? 0)] = 1;
+        { label: '', labelFn: (s: GameState) => 'Photograph the ' + String(((s as any).camera_description || '') ?? ''), handler: (st: GameState) => {
+    ((s as any).camera_found = (s as any).camera_found ?? {})[String((s as any).camera_event ?? 0)] = 1;
+    (s as any).loc = ((s as any).camera_return_loc ?? 0);
+    (s as any).loc_arg = ((s as any).camera_return_loc_arg ?? 0);
     // TODO-QSP: gt 'camera', $camera_event
   } },
       ]);
@@ -135,7 +201,7 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
     { label: 'Take her photo', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-    if (!(s as any).portfolio_people) (s as any).portfolio_people = {}; (s as any).portfolio_people[1] = 1;
+    ((s as any).portfolio_people = (s as any).portfolio_people ?? {})[1] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/pc/activities/photography/foto/people/1.jpg');
     scene.text('You go outside and have her stand in a few poses around the courtyard before finally settling on her standing in front of some flowers. "I got it!"');
@@ -147,9 +213,9 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Put your camera away', handler: (st: GameState) => {
     if (((s as any).region ?? 0) === 'pav') {
-      scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+      qspGoto(s, 'pav_complex', 'start');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_gpyard', 'start'] }]);
+      qspGoto(s, 'gad_gpyard', 'start');
     }
   } },
     ]);
@@ -170,7 +236,7 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
     { label: 'Take her photo', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-    if (!(s as any).portfolio_people) (s as any).portfolio_people = {}; (s as any).portfolio_people[2] = 1;
+    ((s as any).portfolio_people = (s as any).portfolio_people ?? {})[2] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/pc/activities/photography/foto/people/2.jpg');
     scene.text('You direct her to lie on the bed in several poses, then stand in various spots around the room before you finally find the perfect image. Once you\'ve taken it, you sit down on the bed. "I got it."');
@@ -196,7 +262,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
     { label: 'Take his photo', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-    if (!(s as any).portfolio_people) (s as any).portfolio_people = {}; (s as any).portfolio_people[3] = 1;
+    ((s as any).portfolio_people = (s as any).portfolio_people ?? {})[3] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/pc/activities/photography/foto/people/3.jpg');
     scene.text('You watch as he starts showing off his skills, pretending to be teaching them, but you\'re reasonably sure he\'s just showing off for you. You begin taking several photos of him, and they\'re looking pretty good. He then suddenly pulls off his shirt, and you keep taking photographs as you try to remain focused. You finally get the shot you want and put your camera away before giving Lazar a wave. He returns the wave as you leave.');
@@ -211,14 +277,14 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
 function enterCityLibrary(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[1] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[1] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('You make your way over to the city library. It is a grand building and would make for a beautiful photograph. You move around several times until you find the perfect spot and take several photos before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -227,14 +293,14 @@ function enterCityLibrary(s: GameState, scene: SceneBuilder): void {
 function enterCityUni(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 5);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[2] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[2] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('You make your way over to the university. It is a grand building and would make for a beautiful photograph. You move around several times until you find the perfect spot and take several photos before pausing and checking them. You can\'t help but notice all the students moving around and feel they would make for a great shot. You stop and take several more photos of the students before stopping. You\'re happy with the results, knowing you have something to add to your portfolio.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -243,14 +309,14 @@ function enterCityUni(s: GameState, scene: SceneBuilder): void {
 function enterGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 5);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[4] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[4] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in the village, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. You can\'t help but notice the houses and feel that they would also make for a great photo. You stop and take several pictures of different places before finally settling on your grandparents\' home. You\'re happy with the results, knowing you have something to add to your portfolio.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -259,14 +325,14 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
 function enterGadForest(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[6] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[6] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in the forest, you are amazed by how breathtakingly beautiful it is. You take photos of the trees until you\'re happy and check all the shots you\'ve taken. Finally, you feel confident that you\'ve found something to add to your portfolio and put your camera away.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -275,14 +341,14 @@ function enterGadForest(s: GameState, scene: SceneBuilder): void {
 function enterPavChurch(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 5);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[12] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[12] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in front of the local church, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. You then spot the cemetery and take some photos of it. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -291,14 +357,14 @@ function enterPavChurch(s: GameState, scene: SceneBuilder): void {
 function enterPavTrainHall(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[8] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[8] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in front of the local train station, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -307,14 +373,14 @@ function enterPavTrainHall(s: GameState, scene: SceneBuilder): void {
 function enterPavComplex(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[7] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[7] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in the courtyard, you realize this place would make a wonderful photo. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -323,14 +389,14 @@ function enterPavComplex(s: GameState, scene: SceneBuilder): void {
 function enterPavSchool(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[9] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[9] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in front of the school, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -339,14 +405,14 @@ function enterPavSchool(s: GameState, scene: SceneBuilder): void {
 function enterPavPark(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[10] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[10] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Walking through the park, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -355,7 +421,7 @@ function enterPavPark(s: GameState, scene: SceneBuilder): void {
 function enterPavLake(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).portfolio_locations) (s as any).portfolio_locations = {}; (s as any).portfolio_locations[11] = 1;
+  ((s as any).portfolio_locations = (s as any).portfolio_locations ?? {})[11] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('As you look out over the lake, you realize what a wonderful photo this place would make. You walk around the shore several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
@@ -366,7 +432,7 @@ function enterPavLake(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -379,7 +445,7 @@ function enterPavLakeSonia(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take her photograph', handler: (st: GameState) => {
-    if (!(s as any).camera_found) (s as any).camera_found = {}; (s as any).camera_found['sonia'] = 1;
+    ((s as any).camera_found = (s as any).camera_found ?? {})['sonia'] = 1;
     qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/lake/photography/photo1.jpg');
@@ -427,7 +493,7 @@ function enterPavLakeSonia(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Naked', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
-    if (!(s as any).portfolio_people) (s as any).portfolio_people = {}; (s as any).portfolio_people[4] = 1;
+    ((s as any).portfolio_people = (s as any).portfolio_people ?? {})[4] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/lake/photography/photo6.jpg');
     scene.text('You continue taking photos of her naked body and start getting closer to her. The longer it goes on, the more aroused she seems to get, eventually playing with her pussy. Finally, having taken several dozen photos, you feel you\'ve taken enough and stop. "Thanks, Sonia. I got what I needed."');
@@ -437,13 +503,13 @@ function enterPavLakeSonia(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod. "I will, but I\'ve got all I need now. I\'ll let you get back to sunbathing. Thanks again."');
     scene.text('She smiles and gets dressed as you put your camera away.');
     if (((s as any).soniaQW ?? 0)?.['homeinvite'] > 0) {
-      if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['homeinvite'] = 1;
+      ((s as any).soniaQW = (s as any).soniaQW ?? {})['homeinvite'] = 1;
     }
     qspCall(s, 'arousal', 'voyeur', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

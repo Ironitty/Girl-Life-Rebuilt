@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -78,7 +78,8 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_nightclub', 'inside'] },
+    qspGoto(s, 'city_nightclub', 'inside');
+  } },
     { label: 'Caress yourself', handler: (st: GameState) => {
     (s as any).TQuest = 1;
     if (((s as any).pcs_inhib ?? 0) < 40) {
@@ -90,6 +91,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
     scene.text('You caress your swollen pussy with your fingers until you orgasm. When you catch your breath, you notice someone peeking at you through a hole in the wall.');
     // TODO-QSP: dynamic text: <<$func('money', 'string_profit', 500)>> is pushed through the hole as the man t...
     scene.text(`${qspFunc(s, 'money', 'string_profit', 500)} is pushed through the hole as the man thanks you for the show.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'clit_finger', 5, 'exhibitionism', 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -141,8 +143,10 @@ function enterToilet2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
     if ((Math.floor(Math.random() * 100) + 1) > ((s as any).pcs_horny ?? 0)) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).orgasm_or = 'no';
     } else {
       (s as any).pcs_horny = 0;
+      (s as any).orgasm_or = 'yes';
     }
     qspCall(s, 'stat', '');
     scene.actions([

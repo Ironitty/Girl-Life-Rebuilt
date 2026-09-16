@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gadukino', '');
+  (s as any).region = 'gad';
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'gadukino_event', 'sound');
   (s as any).temp_rand = Math.floor(Math.random() * 10) + 1;
@@ -20,38 +22,38 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).npc_QW ?? 0)?.['A63'] === 20  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((s as any).gadboyday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).GadBoy ?? 0)?.['river_gang'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadriver_gang'] }]);
+      qspGoto(s, 'gadukino_event', 'gadriver_gang');
     }
     if (((s as any).GadBoy ?? 0)?.['river_gang'] === 1  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).gadboyday ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gang_apologise'] }]);
+      qspGoto(s, 'gadukino_event', 'gang_apologise');
     }
     if (((s as any).GadBoy ?? 0)?.['river_gang'] === 3  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).gadboyday ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mitka_apologise'] }]);
+      qspGoto(s, 'gadukino_event', 'mitka_apologise');
     }
     if (((s as any).GadBoy ?? 0)?.['river_gang'] === 4  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] === 1  &&  ((s as any).MiraVars ?? 0)?.['cuni_given'] === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).gadboyday ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_apologise'] }]);
+      qspGoto(s, 'gadukino_event', 'mira_apologise');
     }
     if (((s as any).GadBoy ?? 0)?.['river_gang'] === 2  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((s as any).gadboyday ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).temp_randB = Math.floor(Math.random() * 12) + 1;
       if (((s as any).temp_randB ?? 0) <= 4) {
         if (((s as any).temp_randB ?? 0) === 4) {
           if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_2boys', '\'1\''] }]);
+            qspGoto(s, 'gadukino_event', 'gadukino_2boys', '1');
           } else {
             if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-              scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_2boys', '\'2\''] }]);
+              qspGoto(s, 'gadukino_event', 'gadukino_2boys', '2');
             } else {
               if (((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_2boys', '\'3\''] }]);
+                qspGoto(s, 'gadukino_event', 'gadukino_2boys', '3');
               } else {
                 if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)) {
-                  scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_mitka'] }]);
+                  qspGoto(s, 'gadukino_event', 'gadukino_mitka');
                 } else {
                   if (((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)) {
-                    scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_kolyamba'] }]);
+                    qspGoto(s, 'gadukino_event', 'gadukino_kolyamba');
                   } else {
                     if (((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                      scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_vasyan'] }]);
+                      qspGoto(s, 'gadukino_event', 'gadukino_vasyan');
                     }
                   }
                 }
@@ -60,13 +62,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_mitka'] }]);
+            qspGoto(s, 'gadukino_event', 'gadukino_mitka');
           } else {
             if (((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)) {
-              scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_kolyamba'] }]);
+              qspGoto(s, 'gadukino_event', 'gadukino_kolyamba');
             } else {
               if (((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'gadukino_vasyan'] }]);
+                qspGoto(s, 'gadukino_event', 'gadukino_vasyan');
               }
             }
           }
@@ -74,7 +76,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).temp_rand ?? 0) <= 6) {
           if (((s as any).npc_QW ?? 0)?.['A63'] >= 11  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] === 1  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'mira_lesb_talk4'] }]);
+            qspGoto(s, 'gad_meadow', 'mira_lesb_talk4');
           }
         }
       }
@@ -97,24 +99,25 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('A small village with many old wooden houses and even more in various states of disrepair. It has certainly seen better times.');
     if (qspFunc(s, 'car_funcs', 'is_here')) {
       // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is close by.
-      scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is close by.`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is close by.`);
     }
     // TODO-QSP: dynamic text: Several small farms are scattered around the outskirts of the village, one of wh...
-    scene.text('Several small farms are scattered around the outskirts of the village, one of which belongs to <a href="exec:minut += 5 & gt \'gad_gpyard\', \'start\'">your grandparents</a>.');
+    scene.text('Several small farms are scattered around the outskirts of the village, one of which belongs to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027gad_gpyard\\u0027, \\u0027start\\u0027); return false;">your grandparents</a>.');
     if (((s as any).home ?? 0)?.['current'] === 'hunters_lodge'  ||  ((s as any).home ?? 0)?.['current'] === 'grandparents_house') {
       if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 30  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
-        scene.text('<a href="exec:gt \'vladimirQW_meet\',\'2\'">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vladimirQW_meet\\u0027, \\u00272\\u0027); return false;">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
       }
       if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 40  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
-        scene.text('<a href="exec:gt \'vladimirQW_meet\',\'3\'">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vladimirQW_meet\\u0027, \\u00273\\u0027); return false;">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
       }
       if (Object.keys((s as any).lover ?? {}).length > 0) {
         (s as any).temp_i = 0;
         (s as any).temp_max_i = 0;
         // TODO-QSP: :lover_pickup_loop
+        (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).temp_i ?? 0)];
         if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
           // TODO-QSP: dynamic text: <b><a href="exec: gt 'lover_meet', 'start', '<<$temp_npcid>>'"><<$npc_usedname[$...
-          scene.text(`<b><a href="exec: gt 'lover_meet', 'start', '${((s as any).temp_npcid || '')}'">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? ''}</a> is waiting in the street.</b>`);
+          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lover_meet\\u0027, \\u0027start\\u0027, \\u0027${((s as any).temp_npcid || '')}\\u0027); return false;">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? ''}</a> is waiting in the street.</b>`);
         }
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
         if (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0)) {
@@ -124,7 +127,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).npc_rel ?? 0)?.['A60'] > 0  &&  ((s as any).npc_known ?? 0)?.['A60'] === 1) {
       // TODO-QSP: dynamic text: Just down the road from your grandparents' house is <a href="exec:minut += 5 & g...
-      scene.text('Just down the road from your grandparents\' house is <a href="exec:minut += 5 & gt \'gad_miroslava_home\', \'start\'">Mira\'s house</a>.');
+      scene.text('Just down the road from your grandparents\' house is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027gad_miroslava_home\\u0027, \\u0027start\\u0027); return false;">Mira\'s house</a>.');
       scene.actions([
         { label: 'Go to Mira\'s house', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -133,7 +136,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9) {
       if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 16) {
-        scene.text('An old farm truck is parked halfway off one of the roads nearby. The farmer who owns it will buy <a href="exec: gt \'gadukino\',\'collection_point\'">mushrooms and berries</a> from the locals to sell back in the city. He makes multiple trips from Gadukino to the city daily to ensure the freshest produce so he can be found from 6 am to 4 pm.');
+        scene.text('An old farm truck is parked halfway off one of the roads nearby. The farmer who owns it will buy <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gadukino\\u0027, \\u0027collection_point\\u0027); return false;">mushrooms and berries</a> from the locals to sell back in the city. He makes multiple trips from Gadukino to the city daily to ensure the freshest produce so he can be found from 6 am to 4 pm.');
       } else {
         scene.text('This time of year, a truck usually comes by multiple times a day between 6 am and 4 pm to purchase mushrooms and berries from the locals.');
       }
@@ -142,10 +145,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('In the center of the village is a small grass-covered square where villagers gather to meet and discuss or argue about politics or village life.');
     // TODO-QSP: dynamic text: Near the square sits the old <a href="exec: minut += 3 & gt 'gad_church','start'...
-    scene.text('Near the square sits the old <a href="exec: minut += 3 & gt \'gad_church\',\'start\'">chapel</a>, it is not in the best shape, but it appears well-loved.');
+    scene.text('Near the square sits the old <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027gad_church\\u0027, \\u0027start\\u0027); return false;">chapel</a>, it is not in the best shape, but it appears well-loved.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
       // TODO-QSP: dynamic text: One of the buildings facing the square has a sign saying, <a href="exec: minut +...
-      scene.text('One of the buildings facing the square has a sign saying, <a href="exec: minut += 5 & gt \'gad_store\'">General Store</a>. A sign on the door proclaims it "OPEN". It looks like the only place in the village to buy goods.');
+      scene.text('One of the buildings facing the square has a sign saying, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027gad_store\\u0027, \\u0027\\u0027); return false;">General Store</a>. A sign on the door proclaims it "OPEN". It looks like the only place in the village to buy goods.');
       scene.actions([
         { label: 'Go to the general store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -165,9 +168,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     if ((Math.floor(Math.random() * 2) + 0) === 0  &&  qspFunc(s, 'miroslava_schedule', 'is_here')) {
-      scene.actions([{ label: 'Continue', goto: ['gadukino', 'mira_events'] }]);
+      qspGoto(s, 'gadukino', 'mira_events');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gadukino', 'other_events'] }]);
+      qspGoto(s, 'gadukino', 'other_events');
     }
   } },
       ]);
@@ -276,7 +279,7 @@ function enterSuccubusHunt(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('At this hour of the night, the village is only illuminated by the light of the moon. You know this will be to your advantage. No one will be able to see you coming… That is if there were anyone out at night. You prowl the village looking for prey, but as the minutes pass, your frustration grows.');
   if ((Math.floor(Math.random() * 8) + 0) - ((s as any).succublvl ?? 0) < 2) {
-    scene.actions([{ label: 'Continue', goto: ['gadukino', 'succubus_hunt2'] }]);
+    qspGoto(s, 'gadukino', 'succubus_hunt2');
   } else {
     qspCall(s, 'mood', 'lower', 'tiny');
     scene.text('God, this place is dull! After searching for an hour, you find no one; not even a stray cat seems to be out and about tonight. You give up reluctantly, pondering how else you will feed tonight.');
@@ -311,10 +314,14 @@ function enterSuccubusHunt2(s: GameState, scene: SceneBuilder): void {
     (s as any).scrand = Math.floor(Math.random() * 4) + 0;
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     if (((s as any).scfeed ?? 0) === 2) {
+      (s as any).scxcum = 'twice';
+    } else {
+      (s as any).scxcum = 'multiple times';
     }
     (s as any).i = 0;
     // TODO-QSP: :sucfeeding_loop
     (s as any).i = ((s as any).i ?? 0) + (1);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
     if (((s as any).scfeed ?? 0) > ((s as any).i ?? 0)) {
       // TODO-QSP: jump 'sucfeeding_loop'
@@ -344,7 +351,8 @@ function enterSuccubusHunt2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['gadukino', ''] },
+    qspGoto(s, 'gadukino', '');
+  } },
     ]);
   } },
     ]);
@@ -360,7 +368,7 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk away', goto: ['gadukino', ''] },
       { label: 'Help her', handler: (st: GameState) => {
-    if (!(s as any).npc_known) (s as any).npc_known = {}; (s as any).npc_known['A60'] = 1;
+    ((s as any).npc_known = (s as any).npc_known ?? {})['A60'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A60', 10);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
@@ -409,8 +417,8 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for a car…', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['prostitute'] = ((s as any).MiraVars['prostitute'] ?? 0) + (1);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 16;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['prostitute'] = ((s as any).MiraVars['prostitute'] ?? 0) + (1);
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 16;
     scene.img('images/characters/gadukino/mira/miraprost.jpg');
     scene.text('It isn\'t long before Mira\'s first customer pulls up in an excellent vehicle. She takes a deep breath, looks you in the eyes, winks, approaches the car, and starts talking to the driver.');
     scene.text('You can\'t hear what she is saying, but after only a few minutes, the door opens, and Mira steps into the vehicle. It pulls away but doesn\'t go far. You see it pull off the main road and head down a dirt road. Smiling and wanting to see the action, you run into the woods, trying to head off the vehicle.');
@@ -439,7 +447,8 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk back to the village together', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gadukino', ''] },
+    qspGoto(s, 'gadukino', '');
+  } },
     ]);
   } },
     ]);
@@ -467,7 +476,8 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk back to the village together', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gadukino', ''] },
+    qspGoto(s, 'gadukino', '');
+  } },
     ]);
   } },
     ]);
@@ -490,7 +500,7 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
-        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
         if (((s as any).pcs_horny ?? 0) > 50  &&  (!(Math.floor(Math.random() * 2) + 0))) {
           qspCall(s, 'miroslava', 'miraclothes');
           scene.text('You meet Mira, heading to the river to get some water. Seeing you, she decides to stop and chat with you for a few minutes.');
@@ -618,7 +628,7 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).MiraVars ?? 0)?.['QW'] >= 4  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
-          if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
+          ((s as any).MiraVars = (s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
           if (((s as any).MiraVars ?? 0)?.['QW'] >= 6) {
             scene.img('images/characters/gadukino/mira/sex/mirasexgad2.jpg');
             scene.text('Walking through the village, you happen to notice Mira fucking Mitka. Mitka slowly grinds his cock deep into Mira\'s pussy. You see Mira shudder under him as she climaxes. She moaned and raked his back with her fingernails as she squirted and continued to cum. Mitka increased his pace and roughly hammered his cock into her dripping pussy. With his left hand, he reached for Mira\'s right tit and squeezed it without mercy; Mira just squealed and laughed.');

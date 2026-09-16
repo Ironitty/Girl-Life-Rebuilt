@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You walk back home with Katja.');
@@ -30,13 +30,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['sex_in_the_park_comment'] = 0;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['sex_in_the_park_comment'] = 0;
     }
     scene.text('You say goodbye and Katja disappears into her house.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['friend_index'] = 0;
-  }, goto: ['pav_residential', ''] },
+    ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_index'] = 0;
+    qspGoto(s, 'pav_residential', '');
+  } },
     ]);
   }
   scene.build();

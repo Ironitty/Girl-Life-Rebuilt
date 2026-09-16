@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPostShower(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'gschool_post_shower';
+  (s as any).menu_arg = 'post_shower';
   scene.img('images/locations/pavlovsk/school/gym/locker/nudepic2.jpg');
   scene.text('You walk back to your locker, throwing your towel in a bin along the way, and start rifling through your locker, gathering your things and grabbing your clothes.');
   // TODO-QSP: end
@@ -26,7 +28,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Check out Albina', handler: (st: GameState) => {
     if (((s as any).AlbinaQW ?? 0)?.['voyeur'] === 0) {
-      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['voyeur'] = 1;
+      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['voyeur'] = 1;
     }
     scene.img('images/locations/pavlovsk/school/gym/locker/albpeek.jpg');
     scene.text('You glance at Albina as she pulls her clothes out of her locker. She is petite and slender, but has well-toned muscles, a very shapely set of thighs and a firm bubble butt that\'s the envy of many girls in school. Her long dark brown hair reaches halfway down her back and her pussy is clean-shaven - in fact, you can\'t see a single hair on her smooth skin. She has a great body and you can see why so many boys consider her one of the most attractive girls in your class.');
@@ -351,7 +353,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Check out Julia', handler: (st: GameState) => {
-    if (!(s as any).shower_checkout) (s as any).shower_checkout = {}; (s as any).shower_checkout['julia_m'] = 1;
+    ((s as any).shower_checkout = (s as any).shower_checkout ?? {})['julia_m'] = 1;
     scene.img('images/locations/pavlovsk/school/gym/locker/julpeek.jpg');
     if (((s as any).tits ?? 0) < 4) {
       scene.text('You peek at Julia while she stands at her locker, still naked and still toweling her long brown hair off. Although her arms and legs are barely more than boney twigs, her breasts are quite large. Certainly bigger than your own, possibly one of the biggest in the whole class, and <i>very</i> soft looking.');
@@ -1239,6 +1241,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPostShower2(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'gschool_post_shower';
+  (s as any).menu_arg = 'post_shower2';
   scene.img('images/locations/pavlovsk/school/gym/shower/postphyssho\' + rand(1, 7) + \'.jpg');
   scene.text('You let your eyes wander around the room, checking out the other girls as they chat and shower. It\'s a nice view, one thing you\'ll always appreciate about gym class.');
   // TODO-QSP: end
@@ -1248,7 +1252,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons4', 'dress'] },
     { label: 'Check out Albina', handler: (st: GameState) => {
     if (((s as any).AlbinaQW ?? 0)?.['voyeur'] === 0) {
-      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['voyeur'] = 1;
+      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['voyeur'] = 1;
     }
     scene.img('images/locations/pavlovsk/school/gym/shower/watchalb.jpg');
     if (((s as any).tits ?? 0) < 2) {

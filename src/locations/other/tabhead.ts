@@ -7,6 +7,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).tabhead_max_i ?? 0))) {
     return;
   }
+  (s as any).tabhead_table = '<center><b><table width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>';
   (s as any).tabhead_i = 0;
   // TODO-QSP: :tabs_loop
   // TODO-QSP: $tabhead_table += '<th padding=<<40 / tabhead_max_i>>>'

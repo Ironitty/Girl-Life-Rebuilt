@@ -7,6 +7,8 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'spellList', '');
   (s as any).spellSuccess = 0;
+  (s as any).SpellID = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).SpellArgs = '';
   (s as any).i = 1;
   // TODO-QSP: :ArgLoop
   if (((s as any).i ?? 0) < Object.keys((s as any).ARGS ?? {}).length) {

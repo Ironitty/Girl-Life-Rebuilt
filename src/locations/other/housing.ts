@@ -58,22 +58,22 @@ function enterRent(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (!(s as any).home_rent) (s as any).home_rent = {}; (s as any).home_rent[1] = 15000;
+  ((s as any).home_rent = (s as any).home_rent ?? {})[1] = 15000;
   // TODO-QSP: $home_rent_txt[1] = $func('money', 'string_price', 15000)
-  if (!(s as any).home_rent) (s as any).home_rent = {}; (s as any).home_rent[4] = 10000;
+  ((s as any).home_rent = (s as any).home_rent ?? {})[4] = 10000;
   // TODO-QSP: $home_rent_txt[4] = $func('money', 'string_price', 10000)
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSale(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).home_value) (s as any).home_value = {}; (s as any).home_value[1] = 800000;
+  ((s as any).home_value = (s as any).home_value ?? {})[1] = 800000;
   // TODO-QSP: $home_value_txt[1] = $func('money', 'string_price', 800000)
-  if (!(s as any).home_value) (s as any).home_value = {}; (s as any).home_value[3] = 150000;
+  ((s as any).home_value = (s as any).home_value ?? {})[3] = 150000;
   // TODO-QSP: $home_value_txt[3] = $func('money', 'string_price', 150000)
-  if (!(s as any).home_value) (s as any).home_value = {}; (s as any).home_value[5] = 1500000;
+  ((s as any).home_value = (s as any).home_value ?? {})[5] = 1500000;
   // TODO-QSP: $home_value_txt[5] = $func('money', 'string_price', 1500000)
-  if (!(s as any).home_value) (s as any).home_value = {}; (s as any).home_value[15] = 800000;
+  ((s as any).home_value = (s as any).home_value ?? {})[15] = 800000;
   // TODO-QSP: $home_value_txt[15] = $func('money', 'string_price', 800000)
   // TODO-QSP: end
   scene.build();

@@ -1,10 +1,16 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '';
+  (s as any).loc = 'nichBathMaster';
+  (s as any).location_type = 'bathroom';
+  (s as any).menu_loc = 'nichBathMaster';
+  (s as any).nichLoc = 'masterBathroom';
+  (s as any).menu_arg = '';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Nicholas\' Bathroom</b></center>');
@@ -14,6 +20,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You have your own bathroom and should not use this one.');
   }
   (s as any).nichCleanAppropriate = 1;
+  (s as any).nichGalaAct = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
+  (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
+  (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
   (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'masterBathroom');
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'masterBathroom');
   (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'masterBathroom');
@@ -41,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).nichTanyAct ?? 0) === 'bathMorning') {
-    scene.text('<a href="exec: gt \'nichTanya\', \'bathroom\'">Tanya</a> is currently in here using the shower.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichTanya\\u0027, \\u0027bathroom\\u0027); return false;">Tanya</a> is currently in here using the shower.');
     (s as any).nichCleanAppropriate = 0;
   } else {
     if (((s as any).nichTanyAct ?? 0) === 'bathEvening') {
@@ -65,10 +74,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go to the master bedroom', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichBedroomMaster', ''] },
+    qspGoto(s, 'nichBedroomMaster', '');
+  } },
     { label: 'Go to Tanya\'s room', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichBedroomTanja', ''] },
+    qspGoto(s, 'nichBedroomTanja', '');
+  } },
   ]);
   scene.build();
 }

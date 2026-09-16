@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -41,7 +41,8 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -67,7 +68,8 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -91,7 +93,8 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -137,7 +140,8 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -163,7 +167,8 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       ]);
     }
     scene.actions([

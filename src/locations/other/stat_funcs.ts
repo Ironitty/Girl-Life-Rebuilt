@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -12,7 +10,7 @@ function enterGetXpprv(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).result = 0;
   } else {
-    (s as any).result = 1 + (146 * (((s as any).ARGS ?? 0)[1] - 1) * (((s as any).ARGS ?? 0)[1] - 1) / 91);
+    (s as any).result = 1 + (146 * (((s as any).locArgs?.[1] ?? 0) - 1) * (((s as any).locArgs?.[1] ?? 0) - 1) / 91);
   }
   return;
   // TODO-QSP: end
@@ -20,14 +18,14 @@ function enterGetXpprv(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetXpnxt(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = 1 + (146 * ((s as any).ARGS ?? 0)[1] * ((s as any).ARGS ?? 0)[1] / 91);
+  (s as any).result = 1 + (146 * ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0) / 91);
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGetMaxDeg(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = Math.max(200, (102 - Math.min(qspUntranslated(s, "ARGS[1]", { location: "stat_funcs" }), 100) + ((s as any).ARGS ?? 0)[2]) * 100);
+  (s as any).result = Math.max(200, (102 - Math.min(((s as any).locArgs?.[1] ?? 0), 100) + ((s as any).locArgs?.[2] ?? 0)) * 100);
   return;
   // TODO-QSP: end
   scene.build();

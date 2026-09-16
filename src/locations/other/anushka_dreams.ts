@@ -62,7 +62,7 @@ function enterDreams(s: GameState, scene: SceneBuilder): void {
 
 function enterDream1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dreams'] = 1;
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dreams'] = 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Dream</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/1_hike.jpg');
@@ -235,7 +235,7 @@ function enterDream1Three(s: GameState, scene: SceneBuilder): void {
 
 function enterDream2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dreams'] = 2;
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dreams'] = 2;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Dream</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/darkness1.jpg');
@@ -479,7 +479,7 @@ function enterDream2Five(s: GameState, scene: SceneBuilder): void {
 
 function enterDream3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dreams'] = 3;
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dreams'] = 3;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Dream</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy1.jpg');
@@ -882,6 +882,7 @@ function enterDream3Fuck(s: GameState, scene: SceneBuilder): void {
     scene.text('Her eyes drift down to your dangling cock and she shakes her head slightly. "I will never get over just how real looking… and feeling that thing is." She says as she bites her lower lip, obviously already getting a little worked up, just staring at your dangling cock.');
     scene.text('You smirk a bit to her. "Well if you want to get fucked, why don\'t you do something for me and get off that bed."');
   }
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'flash', 1);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -935,7 +936,7 @@ function enterDream3Fuck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDream3Fuck1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick'] = ((s as any).anushkaQW['magic_dick'] ?? 0) + (1);
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['magic_dick'] = ((s as any).anushkaQW['magic_dick'] ?? 0) + (1);
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy5.jpg');
   scene.text('She bites her lower lip as you tell her what to do, then slowly walks over to you. Standing so close her face is just in front of yours. You can feel the tip of your dick brush against her thigh, then she slowly lowers down to her knees in front of you. Once she is down all the way, your dick is right in front of her face, she opens her mouth and takes your cock into her mouth. She looks up at you, meeting your eyes as she starts to suck your dick.');
@@ -972,7 +973,7 @@ function enterDream3Fuck2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy8.jpg');
   scene.text('You get on the bed behind her and rub the tip of your dick against the slit of her pussy. Which causes her to moan as you do, her pussy is already soaking wet');
-  qspCall(s, 'npcStat', 'D<<strapNumber>>');
+  qspCall(s, 'npcStat', 'D' + ((s as any).strapNumber ?? 0) + '');
   if (((s as any).strapNumber ?? 0) > 3) {
     // TODO-QSP: dynamic text: You push your hips forward, there is a little resistance from her pussy. As your...
     scene.text(`You push your hips forward, there is a little resistance from her pussy. As your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} magical cock forces it's way into her wet pussy stretching it out, she gasps which quickly turns into a moan of pleasure. Her pussy tightly grips the shaft of your dick as you slide it further into her, "OH FUCK! You cock is so big." She cries out.`);
@@ -1033,7 +1034,7 @@ function enterDream3Fuck3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy11.jpg');
   scene.text('She gets on all fours on the bed, as she does. You grab the lube out of her nightstand and pour a generous amount on her asshole, using your fingers to work it inside of her, she moans slight as you do. You pull your hand away and then rub the tip of your dick against her asshole.');
-  qspCall(s, 'npcStat', 'D<<strapNumber>>');
+  qspCall(s, 'npcStat', 'D' + ((s as any).strapNumber ?? 0) + '');
   if (((s as any).strapNumber ?? 0) > 3) {
     // TODO-QSP: dynamic text: You push your hips forward, feel a lot of resistance from her asshole as she say...
     scene.text(`You push your hips forward, feel a lot of resistance from her asshole as she says. "Owe, fuck… you're to big." You know some of the guys she lets fuck her butt, you know you are not to big for her. Grabbing her hips with both hands and thrusting your hips forward. You pop the head of your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} magical cock into her ass, you feel her try and pull away as she hisses in pain, as she cries out. "NO… fuck… your to big… fuck… stop…"`);
@@ -1097,13 +1098,15 @@ function enterDream3Fuck3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDream3Fuck4(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy14.jpg');
   scene.text('With her shaking orgasm passing, while she lays on her side. You roll her over onto her back and straddle her chest with your dick directly over her face. "Open your mouth." You tell her.');
   scene.text('She does as you tell her and opens her mouth, you start stroking your cock while pointing the tip of it right into her mouth.');
   (s as any).tempOrgasm = ((s as any).orgasm ?? 0);
+  (s as any).orgasm_txt = 'It only takes a few strokes before you feel your balls tighten and the pressure build up and then the sudden release, as you start shotting cum into Anushka\'s waiting open mouth. It takes several strokes to fully empty your balls and fill her mouth up.';
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'magicd_bj', 1);
   scene.text('Once you stop cumming you look down at her face, your dick hanging just over it. Her mouth is completely full of your cum until it looks like it is overflowing, a bit runs down her cheeks. Either you missed her mouth with a couple of spurts of cum or you really did overfill her mouth. "Be a good little cum slut and swallow my sweet cum." You tell her.');
   scene.text('She swallows the mouthful of cum and then grins to you. "Fuck that feels and tastes so real, well other than your cum is way sweeter than any guys."');
@@ -1126,13 +1129,14 @@ function enterDream3Fuck4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDream3Fuck5(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy15.jpg');
   scene.text('With her shaking orgasm passing, while she lays on her side. You roll her over onto her back and straddle her chest with your dick directly over her face. "Open your mouth." You tell her as you slap the tip of your dick against her lips.');
   scene.text('She does as you tell her and opens her mouth, as soon as her mouth is open you shove you dick inside her mouth and starting fucking her mouth. She clamps her lips around the shaft of your cock and just lets you fuck her mouth.');
   (s as any).tempOrgasm = ((s as any).orgasm ?? 0);
+  (s as any).orgasm_txt = 'It doesn\'t take long until you start moaning loudly yourself, you feel your balls tighten up and the pressure building up. Until the sudden release as you start cumming in her mouth. You hear her surprised gag as you start filling her mouth with you cum, "That\'s it take my cum." You say to her as you groan as the last few spurts of cum fill her mouth. Finally you use her mouth to milk every last drop of cum out of you. A part of you wants to keep fucking her mouth, but you know you should stop.';
   qspCall(s, 'arousal', 'magicd_bj', 2);
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
@@ -1154,13 +1158,14 @@ function enterDream3Fuck5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDream3Fuck6(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy15.jpg');
   scene.text('With her shaking orgasm passing, while she lays on her side. You roll her over onto her back and straddle her chest with your dick directly over her face. "Open your mouth." You tell her.');
   scene.text('She does as you tell her and opens her mouth, you start stroking your cock while pointing the tip of it right into her mouth.');
   (s as any).tempOrgasm = ((s as any).orgasm ?? 0);
+  (s as any).orgasm_txt = 'It only takes a few strokes before you feel your balls tighten and the pressure build up and then the sudden release, as you start shotting cum into Anushka\'s waiting open mouth. It takes several strokes to fully empty your balls and fill her mouth up.';
   scene.text('Once you stop cumming you look down at her face, your dick hanging just over it. Her mouth is completely full of your cum until it looks like it is overflowing, a bit runs down her cheeks. Either you missed her mouth with a couple of spurts of cum or you really did overfill her mouth. "Be a good little cum slut and swallow my sweet cum." You tell her.');
   scene.text('She swallows the mouthful of cum and then grins to you. "Fuck that feels and tastes so real, well other than your cum is way sweeter than any guys."');
   // TODO-QSP: end

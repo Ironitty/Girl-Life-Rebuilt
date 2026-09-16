@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneralEducation_102(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period = (s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -21,7 +21,7 @@ function enterGeneralEducation_102(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_teaching_studies_semester_1');
-    if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_teaching_studies_semester_2_general education 102_exam_done'] = 1;
+    ((s as any).class = (s as any).class ?? {})['uni_teaching_studies_semester_2_general education 102_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_2_general education 102_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 102_grade'] ?? ''}.`);
@@ -42,7 +42,8 @@ function enterGeneralEducation_102(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to university campus', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['uni_grounds', ''] },
+    qspGoto(s, 'uni_grounds', '');
+  } },
     ]);
   } },
   ]);
@@ -50,7 +51,7 @@ function enterGeneralEducation_102(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTeachingMethods_102(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period = (s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -62,7 +63,7 @@ function enterTeachingMethods_102(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_teaching_studies_semester_1');
-    if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_teaching_studies_semester_2_teaching methods 102_exam_done'] = 1;
+    ((s as any).class = (s as any).class ?? {})['uni_teaching_studies_semester_2_teaching methods 102_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_2_teaching methods 102_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 102_grade'] ?? ''}.`);
@@ -83,7 +84,8 @@ function enterTeachingMethods_102(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to university campus', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['uni_grounds', ''] },
+    qspGoto(s, 'uni_grounds', '');
+  } },
     ]);
   } },
   ]);
@@ -91,7 +93,7 @@ function enterTeachingMethods_102(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPsychologyOfAStudent_101(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period = (s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -103,7 +105,7 @@ function enterPsychologyOfAStudent_101(s: GameState, scene: SceneBuilder): void 
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_teaching_studies_semester_1');
-    if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_teaching_studies_semester_2_psychology of a student 101_exam_done'] = 1;
+    ((s as any).class = (s as any).class ?? {})['uni_teaching_studies_semester_2_psychology of a student 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_2_psychology of a student 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] ?? ''}.`);
@@ -124,7 +126,8 @@ function enterPsychologyOfAStudent_101(s: GameState, scene: SceneBuilder): void 
     scene.actions([
       { label: 'Go to university campus', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['uni_grounds', ''] },
+    qspGoto(s, 'uni_grounds', '');
+  } },
     ]);
   } },
   ]);
@@ -132,7 +135,7 @@ function enterPsychologyOfAStudent_101(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterPatientCare_102(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period = (s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -144,7 +147,7 @@ function enterPatientCare_102(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_nursing_semester_2');
-    if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_nursing_semester_2_patient care 102_exam_done'] = 1;
+    ((s as any).class = (s as any).class ?? {})['uni_nursing_semester_2_patient care 102_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_2_patient care 102_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_2_patient care 102_grade'] ?? ''}.`);
@@ -165,7 +168,8 @@ function enterPatientCare_102(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to university campus', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['uni_grounds', ''] },
+    qspGoto(s, 'uni_grounds', '');
+  } },
     ]);
   } },
   ]);
@@ -173,7 +177,7 @@ function enterPatientCare_102(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnatomyAndPhysiology_102(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period = (s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -185,7 +189,7 @@ function enterAnatomyAndPhysiology_102(s: GameState, scene: SceneBuilder): void 
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_nursing_semester_2');
-    if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_nursing_semester_2_anatomy and physiology 102_exam_done'] = 1;
+    ((s as any).class = (s as any).class ?? {})['uni_nursing_semester_2_anatomy and physiology 102_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_2_anatomy  &&  physiology 102_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_2_anatomy and physiology 102_grade'] ?? ''}.`);
@@ -206,7 +210,8 @@ function enterAnatomyAndPhysiology_102(s: GameState, scene: SceneBuilder): void 
     scene.actions([
       { label: 'Go to university campus', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['uni_grounds', ''] },
+    qspGoto(s, 'uni_grounds', '');
+  } },
     ]);
   } },
   ]);
@@ -214,7 +219,7 @@ function enterAnatomyAndPhysiology_102(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterExaminationAndTreatment_102(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period = (s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -226,7 +231,7 @@ function enterExaminationAndTreatment_102(s: GameState, scene: SceneBuilder): vo
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_nursing_semester_2');
-    if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_nursing_semester_2_examination and treatment 102_exam_done'] = 1;
+    ((s as any).class = (s as any).class ?? {})['uni_nursing_semester_2_examination and treatment 102_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_2_examination  &&  treatment 102_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_2_examination and treatment 102_grade'] ?? ''}.`);
@@ -247,7 +252,8 @@ function enterExaminationAndTreatment_102(s: GameState, scene: SceneBuilder): vo
     scene.actions([
       { label: 'Go to university campus', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['uni_grounds', ''] },
+    qspGoto(s, 'uni_grounds', '');
+  } },
     ]);
   } },
   ]);

@@ -7,18 +7,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterScandalicious(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/scandalicious/bodysuits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterMoncheri(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/moncheri/bodysuits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterSalacious(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/salacious/bodysuits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterLusso(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/lusso/bodysuits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   // TODO-QSP: end
   scene.build();
 }

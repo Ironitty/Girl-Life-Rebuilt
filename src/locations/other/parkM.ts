@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -193,12 +193,12 @@ function enterSexrand3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
-      scene.actions([{ label: 'Continue', goto: ['pav_park', 'start'] }]);
+      qspGoto(s, 'pav_park', 'start');
     } else {
       if (((s as any).home ?? 0)?.['town'] === 'oldtown') {
-        scene.actions([{ label: 'Continue', goto: ['pushkin_parks', 'start'] }]);
+        qspGoto(s, 'pushkin_parks', 'start');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+        qspGoto(s, 'city_park', 'start');
       }
     }
   } },
@@ -219,12 +219,12 @@ function enterSexrand4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
-      scene.actions([{ label: 'Continue', goto: ['pav_park', 'start'] }]);
+      qspGoto(s, 'pav_park', 'start');
     } else {
       if (((s as any).home ?? 0)?.['town'] === 'oldtown') {
-        scene.actions([{ label: 'Continue', goto: ['pushkin_parks', 'start'] }]);
+        qspGoto(s, 'pushkin_parks', 'start');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+        qspGoto(s, 'city_park', 'start');
       }
     }
   } },
@@ -255,7 +255,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>You hold his hand as you walk through the park.</center>');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
     scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + ' takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
       { label: 'Reject his request', handler: (st: GameState) => {
@@ -263,7 +263,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center>${((s as any).npcdesc || '')} looks rather disappointed as you continue your walk through the park.</center>`);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
     scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + ' takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
     ]);
@@ -280,7 +280,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center>You enjoy ${((s as any).npcdesc || '')}'s warm embrace.</center>`);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
     scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + ' takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
         { label: 'Pull away', handler: (st: GameState) => {
@@ -288,7 +288,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center>${((s as any).npcdesc || '')} looks rather disappointed as you continue your walk through the park.</center>`);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
     scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + ' takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
       ]);
@@ -305,7 +305,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center>You are very happy with all the affection and attention ${((s as any).npcdesc || '')} is giving you.</center>`);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
     scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + ' takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
           { label: 'Pull away', handler: (st: GameState) => {
@@ -315,15 +315,19 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center>${((s as any).npcdesc || '')} looks rather disappointed as you continue your walk through the park.</center>`);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
     scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + ' takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
         ]);
       } else {
         (s as any).temploverrand = Math.floor(Math.random() * 3) + 1;
         if (((s as any).temploverrand ?? 0) === 1) {
+          (s as any).temploveraction = 'stops several times to give you a passionate kiss. You gladly accept and kiss him passionately.';
         } else {
           if (((s as any).temploverrand ?? 0) === 2) {
+            (s as any).temploveraction = 'takes you to a beautiful grove of trees and tenderly makes out with you. You gladly accept your lover\'s advances.';
+          } else {
+            (s as any).temploveraction = 'stops at a park bench and passionately makes out with you for all to see. You return the passion with enthusiasm and don\'t care who is watching.';
           }
         }
         // TODO-QSP: dynamic text: <center><<$npcdesc>> takes you on a nice walk through the park…</center>
@@ -342,7 +346,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center>While walking for an hour ${((s as any).npcdesc || '')} ${((s as any).temploveraction || '')}</center>`);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
     scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + ' takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
         ]);

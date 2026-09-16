@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A70');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -54,7 +54,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Close your eyes', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['katalkinSex', 'd_katsub'] },
+    qspGoto(s, 'katalkinSex', 'd_katsub');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -124,7 +125,7 @@ function enterSexgo(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You\'re doing your best to give captain Katalkin a good blowjob, but after a few minutes he suddenly pulls his dick out of your mouth and pulls you up.');
       scene.text('He grabs you by the ass cheeks and gives you another rough kiss. "That was nice, but now one of your other holes gets a turn…"');
-      scene.actions([{ label: 'Continue', goto: ['katalkinSex', 'd_katsub'] }]);
+      qspGoto(s, 'katalkinSex', 'd_katsub');
     }
   } },
     ]);

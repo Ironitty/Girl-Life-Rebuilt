@@ -1,4 +1,6 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,13 +12,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['gameover'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['gameover', 'screen', '\'<<ARGS[1]>>\''] }]);
+    qspGoto(s, 'gameover', 'screen', qspUntranslated(s, "'<<ARGS[1]>>'", { location: "gameover" }));
   }
   scene.build();
 }
 
 function enterForce(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['gameover', 'screen', '\'<<ARGS[1]>>\''] }]);
+  qspGoto(s, 'gameover', 'screen', qspUntranslated(s, "'<<ARGS[1]>>'", { location: "gameover" }));
   // TODO-QSP: end
   scene.build();
 }

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -8,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['skill_gain'] === 0) {
-    if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['skill_gain'] = 3;
+    ((s as any).cheatVars = (s as any).cheatVars ?? {})['skill_gain'] = 3;
   }
   scene.build();
 }
@@ -17,129 +15,129 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
     if (((s as any).locArgs?.[2] ?? 0) === 'sims') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = (-4);
-      if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
-      if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = (-4);
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['pos_mood_opt'] = 3;
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['neg_mood_opt'] = (-3);
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['wp_cost_opt'] = (-3);
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['preg_chance'] = (-4);
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_lovers'] = 0;
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_robbers'] = 1;
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_snatchers'] = 1;
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_rapists'] = 1;
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['abduction_chance'] = 1;
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['tatiana_apprnc_change'] = 0;
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['auto_tampons'] = 1;
-      if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = (-4);
+      ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
+      ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['neg_mult_opt'] = (-4);
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['pos_mood_opt'] = 3;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['neg_mood_opt'] = (-3);
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['wp_cost_opt'] = (-3);
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['preg_chance'] = (-4);
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_lovers'] = 0;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_robbers'] = 1;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_snatchers'] = 1;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_rapists'] = 1;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['abduction_chance'] = 1;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['tatiana_apprnc_change'] = 0;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
+      ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'very easy') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = (-3);
-        if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
-        if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = (-3);
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['pos_mood_opt'] = 2;
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['neg_mood_opt'] = (-2);
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['wp_cost_opt'] = (-2);
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['preg_chance'] = (-3);
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_lovers'] = 0;
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_robbers'] = 2;
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_snatchers'] = 2;
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_rapists'] = 2;
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['abduction_chance'] = 1;
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['tatiana_apprnc_change'] = 0;
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['auto_tampons'] = 1;
-        if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = (-3);
+        ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
+        ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['neg_mult_opt'] = (-3);
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['pos_mood_opt'] = 2;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['neg_mood_opt'] = (-2);
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['wp_cost_opt'] = (-2);
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['preg_chance'] = (-3);
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_lovers'] = 0;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_robbers'] = 2;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_snatchers'] = 2;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_rapists'] = 2;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['abduction_chance'] = 1;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['tatiana_apprnc_change'] = 0;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'easy') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = (-1);
-          if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
-          if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = (-1);
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['pos_mood_opt'] = 1;
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['neg_mood_opt'] = (-1);
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['wp_cost_opt'] = (-1);
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['preg_chance'] = (-2);
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_lovers'] = 0;
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_robbers'] = 0;
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_snatchers'] = 0;
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_rapists'] = 2;
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['abduction_chance'] = 2;
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['tatiana_apprnc_change'] = 0;
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['auto_tampons'] = 1;
-          if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = (-1);
+          ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
+          ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['neg_mult_opt'] = (-1);
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['pos_mood_opt'] = 1;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['neg_mood_opt'] = (-1);
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['wp_cost_opt'] = (-1);
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['preg_chance'] = (-2);
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_lovers'] = 0;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_robbers'] = 0;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_snatchers'] = 0;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_rapists'] = 2;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['abduction_chance'] = 2;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['tatiana_apprnc_change'] = 0;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 'normal') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 0;
-            if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
-            if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['pos_mood_opt'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['neg_mood_opt'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['wp_cost_opt'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['preg_chance'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_lovers'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_robbers'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_snatchers'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_rapists'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['abduction_chance'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['tatiana_apprnc_change'] = 0;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['auto_tampons'] = 1;
-            if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = 0;
+            ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
+            ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['neg_mult_opt'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['pos_mood_opt'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['neg_mood_opt'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['wp_cost_opt'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['preg_chance'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_lovers'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_robbers'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_snatchers'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_rapists'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['abduction_chance'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['tatiana_apprnc_change'] = 0;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
+            ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
           } else {
             if (((s as any).locArgs?.[2] ?? 0) === 'hard') {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 2;
-              if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
-              if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = 2;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['pos_mood_opt'] = (-1);
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['neg_mood_opt'] = 1;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['wp_cost_opt'] = 1;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['preg_chance'] = 2;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_lovers'] = 0;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_robbers'] = 3;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_snatchers'] = 3;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_rapists'] = 0;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['abduction_chance'] = 0;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['tatiana_apprnc_change'] = 1;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['auto_tampons'] = 0;
-              if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = 2;
+              ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
+              ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['neg_mult_opt'] = 2;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['pos_mood_opt'] = (-1);
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['neg_mood_opt'] = 1;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['wp_cost_opt'] = 1;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['preg_chance'] = 2;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_lovers'] = 0;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_robbers'] = 3;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_snatchers'] = 3;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_rapists'] = 0;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['abduction_chance'] = 0;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['tatiana_apprnc_change'] = 1;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 0;
+              ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
             } else {
               if (((s as any).locArgs?.[2] ?? 0) === 'very hard') {
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 3;
-                if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
-                if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = 3;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['pos_mood_opt'] = (-2);
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['neg_mood_opt'] = 2;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['wp_cost_opt'] = 2;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['preg_chance'] = 3;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_lovers'] = 0;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_robbers'] = 3;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_snatchers'] = 4;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_rapists'] = 3;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['abduction_chance'] = 3;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['tatiana_apprnc_change'] = 1;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['auto_tampons'] = 0;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 0;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = 3;
+                ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
+                ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['neg_mult_opt'] = 3;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['pos_mood_opt'] = (-2);
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['neg_mood_opt'] = 2;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['wp_cost_opt'] = 2;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['preg_chance'] = 3;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_lovers'] = 0;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_robbers'] = 3;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_snatchers'] = 4;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_rapists'] = 3;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['abduction_chance'] = 3;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['tatiana_apprnc_change'] = 1;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 0;
+                ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 0;
               } else {
                 if (((s as any).locArgs?.[2] ?? 0) === 'russia') {
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 4;
-                  if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
-                  if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = 4;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['pos_mood_opt'] = (-3);
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['neg_mood_opt'] = 3;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['wp_cost_opt'] = 3;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['preg_chance'] = 4;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_lovers'] = 0;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_robbers'] = 4;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_snatchers'] = 4;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['random_rapists'] = 4;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['abduction_chance'] = 4;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['tatiana_apprnc_change'] = 1;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['auto_tampons'] = 0;
-                  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 0;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = 4;
+                  ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
+                  ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['neg_mult_opt'] = 4;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['pos_mood_opt'] = (-3);
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['neg_mood_opt'] = 3;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['wp_cost_opt'] = 3;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['preg_chance'] = 4;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_lovers'] = 0;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_robbers'] = 4;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_snatchers'] = 4;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['random_rapists'] = 4;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['abduction_chance'] = 4;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['tatiana_apprnc_change'] = 1;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 0;
+                  ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 0;
                 }
               }
             }
@@ -199,7 +197,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetdifficultyInt(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['skill_gain'] = 0;
+  ((s as any).cheatVars = (s as any).cheatVars ?? {})['skill_gain'] = Math.min(Math.max(1, ((s as any).locArgs?.[1] ?? 0)), 4);
   return;
   // TODO-QSP: end
   scene.build();
@@ -225,11 +223,15 @@ function enterSetdifficulty(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetdifficulty(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = 'realistic';
   if (((s as any).cheatVars ?? 0)?.['skill_gain'] === 1) {
+    (s as any).result = 'easy peasy';
   }
   if (((s as any).cheatVars ?? 0)?.['skill_gain'] === 2) {
+    (s as any).result = 'relaxed';
   }
   if (((s as any).cheatVars ?? 0)?.['skill_gain'] === 4) {
+    (s as any).result = 'hardcore';
   }
   // TODO-QSP: end
   scene.build();
@@ -272,6 +274,7 @@ function enterAddmoney(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddmoneystring(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = qspFunc(s, 'money', 'string_profit', ((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: end
   scene.build();
 }
@@ -287,34 +290,34 @@ function enterGetMultiplied(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   } else {
     if ((!((s as any).locArgs?.[1] ?? 0))) {
-      (s as any).result = qspUntranslated(s, "ARGS[2]", { location: "_difficulty" });
+      (s as any).result = ((s as any).locArgs?.[2] ?? 0);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 1) {
-        (s as any).result = (((s as any).ARGS ?? 0)[2] * 5) / 4;
+        (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 5) / 4;
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 2) {
-          (s as any).result = (((s as any).ARGS ?? 0)[2] * 3) / 2;
+          (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 3) / 2;
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 3) {
-            (s as any).result = ((s as any).ARGS ?? 0)[2] * 2;
+            (s as any).result = ((s as any).locArgs?.[2] ?? 0) * 2;
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 4) {
-              (s as any).result = ((s as any).ARGS ?? 0)[2] * 3;
+              (s as any).result = ((s as any).locArgs?.[2] ?? 0) * 3;
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === -1) {
-                (s as any).result = (((s as any).ARGS ?? 0)[2] * 3) / 4;
+                (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 3) / 4;
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === -2) {
-                  (s as any).result = (((s as any).ARGS ?? 0)[2] * 2) / 3;
+                  (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 2) / 3;
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === -3) {
-                    (s as any).result = ((s as any).ARGS ?? 0)[2] / 2;
+                    (s as any).result = ((s as any).locArgs?.[2] ?? 0) / 2;
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) === -4) {
-                      (s as any).result = ((s as any).ARGS ?? 0)[2] / 3;
+                      (s as any).result = ((s as any).locArgs?.[2] ?? 0) / 3;
                     } else {
                       if (((s as any).locArgs?.[1] ?? 0) === 99) {
-                        (s as any).result = (((s as any).ARGS ?? 0)[2] * ((s as any).ARGS ?? 0)[3]) / 100;
+                        (s as any).result = (((s as any).locArgs?.[2] ?? 0) * ((s as any).locArgs?.[3] ?? 0)) / 100;
                       }
                     }
                   }
@@ -332,6 +335,7 @@ function enterGetMultiplied(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpendmoneystring(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = qspFunc(s, 'money', 'string_price', ((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: end
   scene.build();
 }

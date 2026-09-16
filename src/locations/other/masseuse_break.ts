@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,21 +9,23 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'masseuse_break';
+  (s as any).loc_arg = 'start';
   scene.img('images/locations/city/citycenter/mall/salon/work/break.jpg');
   if (((s as any).masseuse ?? 0)?.['break'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (!(s as any).salon) (s as any).salon = {}; (s as any).salon['work_minutes'] = ((s as any).salon['work_minutes'] ?? 0) + (15);
-    if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['break'] = 1;
+    ((s as any).salon = (s as any).salon ?? {})['work_minutes'] = ((s as any).salon['work_minutes'] ?? 0) + (15);
+    ((s as any).masseuse = (s as any).masseuse ?? {})['break'] = 1;
   }
   qspCall(s, 'stat', '');
   scene.text('You\'re taking a break.');
   // TODO-QSP: dynamic text: There's a vending machine in the corner you can buy '+iif(func('money', 'can_aff...
-  scene.text('There\'s a vending machine in the corner you can buy \'+iif(func(\'money\', \'can_afford\', 100, \'cash\'), \'<a href="exec:gs \'money\', \'pay\', 100, \'cash\' & gt \'food\', \'snack\'">snacks</a>\', \'snacks\' + $func(\'money\', \'get_cost_string\', 100, \'cash\'))+\' from and a fridge stocked with <a href="exec:gt \'beverage\', \'water\'">bottled water</a> and <a href="exec:gt \'beverage\', \'juice\'">juice</a> for masseuses to enjoy, as well as a <a href="exec:gt \'beverage\', \'coffee\'">coffee machine</a>.');
+  scene.text('There\'s a vending machine in the corner you can buy \'+iif(func(\'money\', \'can_afford\', 100, \'cash\'), \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027money\\u0027, \\u0027pay\\u0027, String(window.__gameStore.getState().100 ?? \\u0027\\u0027)); return false;">snacks</a>\', \'snacks\' + $func(\'money\', \'get_cost_string\', 100, \'cash\'))+\' from and a fridge stocked with <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027beverage\\u0027, \\u0027water\\u0027); return false;">bottled water</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027beverage\\u0027, \\u0027juice\\u0027); return false;">juice</a> for masseuses to enjoy, as well as a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027beverage\\u0027, \\u0027coffee\\u0027); return false;">coffee machine</a>.');
   if ((Math.floor(Math.random() * 2) + 0) === 1) {
     if (((s as any).masseuse ?? 0)?.['meet_lei'] === 0) {
-      scene.text('The only other person in here right now is <a href="exec:gt\'masseuse_break\',\'lei_talk\'">a small asian girl</a> taking duck face selfies on her phone.');
+      scene.text('The only other person in here right now is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027masseuse_break\\u0027, \\u0027lei_talk\\u0027); return false;">a small asian girl</a> taking duck face selfies on her phone.');
     } else {
-      scene.text('Looks like <a href="exec:gt\'masseuse_break\',\'lei_talk\'">Lei</a> is also taking a break right now, taking duck face selfies on her phone again.');
+      scene.text('Looks like <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027masseuse_break\\u0027, \\u0027lei_talk\\u0027); return false;">Lei</a> is also taking a break right now, taking duck face selfies on her phone again.');
     }
   } else {
     scene.text('No one else is here with you.');
@@ -55,9 +57,9 @@ function enterBreakOver(s: GameState, scene: SceneBuilder): void {
 
 function enterLeiTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).masseuse ?? 0)?.['meet_lei'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['masseuse_break', 'lei_talk2'] }]);
+    qspGoto(s, 'masseuse_break', 'lei_talk2');
   }
-  if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['meet_lei'] = 1;
+  ((s as any).masseuse = (s as any).masseuse ?? {})['meet_lei'] = 1;
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('You slide around the table to talk to the girl.');
   // TODO-QSP: dynamic text: "Hey, I don't think we've met before," you say. "I'm <<$pcs_firstname>>."
@@ -141,7 +143,7 @@ function enterLeiTalk3(s: GameState, scene: SceneBuilder): void {
 function enterLeiSmallTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   // TODO-QSP: :lei_talk_loop1
-  if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_talk'] = Math.floor(Math.random() * 6) + 1;
+  ((s as any).masseuse = (s as any).masseuse ?? {})['lei_talk'] = Math.floor(Math.random() * 6) + 1;
   if (((s as any).masseuse ?? 0)?.['lei_talk'] === 1) {
     if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 1) {
       // TODO-QSP: jump 'lei_talk_loop1'
@@ -156,7 +158,7 @@ function enterLeiSmallTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).masseuse ?? 0)?.['lei_talk'] === 2) {
       if (((s as any).masseuse ?? 0)?.['lei_sisters'] >= 2) {
         if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 3) {
-          if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_sisters'] = 3;
+          ((s as any).masseuse = (s as any).masseuse ?? {})['lei_sisters'] = 3;
         }
         scene.text('"You said your mom was an immigrant right?"');
         scene.text('"Yeah."');
@@ -199,8 +201,8 @@ function enterLeiFunTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('"Do anything fun lately?" you ask conversationally.');
   // TODO-QSP: :lei_talk_loop2
-  if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_fun'] = ((s as any).daystart ?? 0);
-  if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_talk'] = Math.floor(Math.random() * 7) + 1;
+  ((s as any).masseuse = (s as any).masseuse ?? {})['lei_fun'] = ((s as any).daystart ?? 0);
+  ((s as any).masseuse = (s as any).masseuse ?? {})['lei_talk'] = Math.floor(Math.random() * 7) + 1;
   if (((s as any).masseuse ?? 0)?.['lei_talk'] === 1) {
     scene.text('"I went to that fair in the park with some friends the other day."');
     scene.text('"That sounds nice. How was it?"');
@@ -303,7 +305,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sisters?', handler: (st: GameState) => {
     if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 2) {
-      if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_sisters'] = 2;
+      ((s as any).masseuse = (s as any).masseuse ?? {})['lei_sisters'] = 2;
     }
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"You mentioned something about your sisters working here?"');
@@ -342,7 +344,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Family business?', handler: (st: GameState) => {
     if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 1) {
-      if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_sisters'] = 1;
+      ((s as any).masseuse = (s as any).masseuse ?? {})['lei_sisters'] = 1;
     }
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"So, you said this was a family business?"');

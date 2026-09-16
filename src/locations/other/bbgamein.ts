@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sit and watch them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/watch.jpg');
     scene.text('You take a seat on the bleachers near the court and watch them play. Most of them are pretty competitive, really pushing it to try and win.');
@@ -30,7 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Ask to join', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/teampick.jpg');
     scene.text('You walk over to them and several turn towards you. "Hey guys, what are you doing?"');
@@ -41,7 +41,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sit and watch them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/watch.jpg');
     scene.text('You take a seat on the bleachers near the court and watch them play. Most of them are pretty competitive, really pushing it to try and win.');
@@ -144,7 +144,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -161,7 +161,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
@@ -174,7 +174,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -190,7 +190,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
@@ -205,7 +205,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -221,7 +221,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -237,7 +237,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'huge');
     qspCall(s, 'sweat', 'add', 40);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
@@ -293,7 +293,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -310,7 +310,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
@@ -323,7 +323,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -339,7 +339,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
@@ -354,7 +354,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -370,7 +370,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -386,7 +386,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'sweat', 'add', 20);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
@@ -442,7 +442,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -459,7 +459,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
@@ -473,7 +473,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -489,7 +489,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
@@ -504,7 +504,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -520,7 +520,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -536,7 +536,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'large');
     qspCall(s, 'sweat', 'add', 30);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
@@ -603,7 +603,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -620,7 +620,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
@@ -633,7 +633,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -648,7 +648,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
@@ -663,7 +663,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -679,7 +679,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -695,7 +695,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'huge');
     qspCall(s, 'sweat', 'add', 40);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
@@ -740,7 +740,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -757,7 +757,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
@@ -770,7 +770,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -785,7 +785,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
@@ -800,7 +800,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -816,7 +816,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -832,7 +832,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'sweat', 'add', 20);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
@@ -877,7 +877,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -894,7 +894,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
@@ -907,7 +907,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -922,7 +922,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
@@ -937,7 +937,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -953,7 +953,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -969,7 +969,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'large');
     qspCall(s, 'sweat', 'add', 30);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
@@ -1034,7 +1034,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -1053,7 +1053,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
@@ -1066,7 +1066,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -1082,7 +1082,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
@@ -1097,7 +1097,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 40);
@@ -1113,7 +1113,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -1129,7 +1129,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'huge');
     qspCall(s, 'sweat', 'add', 40);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail1.jpg');
@@ -1177,7 +1177,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -1196,7 +1196,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
@@ -1209,7 +1209,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -1225,7 +1225,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
@@ -1239,7 +1239,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 20);
@@ -1255,7 +1255,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -1271,7 +1271,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'sweat', 'add', 20);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail1.jpg');
@@ -1319,7 +1319,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -1338,7 +1338,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
@@ -1351,7 +1351,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -1367,7 +1367,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
@@ -1381,7 +1381,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'sweat', 'add', 30);
@@ -1397,7 +1397,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
@@ -1413,7 +1413,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     qspCall(s, 'mood', 'lower', 'large');
     qspCall(s, 'sweat', 'add', 30);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail1.jpg');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -31,7 +31,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 240) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_chat', 'coffee_hole_chat_brokenup_1'] }]);
+      qspGoto(s, 'natbel_uni_chat', 'coffee_hole_chat_brokenup_1');
     }
   } },
           ]);
@@ -45,7 +45,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 240) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_chat', 'coffee_hole_chat_gf_1'] }]);
+      qspGoto(s, 'natbel_uni_chat', 'coffee_hole_chat_gf_1');
     }
   } },
         ]);
@@ -57,7 +57,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1362) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_chat', 'coffee_hole_chat_strangers_1'] }]);
+      qspGoto(s, 'natbel_uni_chat', 'coffee_hole_chat_strangers_1');
     }
   } },
           ]);
@@ -74,7 +74,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 660) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_chat', 'coffee_hole_nightclubdate_gf_1'] }]);
+      qspGoto(s, 'natbel_uni_chat', 'coffee_hole_nightclubdate_gf_1');
     }
   } },
           ]);
@@ -86,7 +86,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 660) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_chat', 'coffee_hole_nightclubdate_strangers_1'] }]);
+      qspGoto(s, 'natbel_uni_chat', 'coffee_hole_nightclubdate_strangers_1');
     }
   } },
             ]);
@@ -103,7 +103,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates_2', 'designs_chat'] }]);
+      qspGoto(s, 'natbel_uni_dates_2', 'designs_chat');
     }
   } },
       ]);
@@ -123,7 +123,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
 function enterCoffeeHoleChatGf_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 9) {
     qspCall(s, 'npcStat', 'A16');
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 9;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['FriendLover'] = 9;
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 240);
@@ -169,7 +169,7 @@ function enterCoffeeHoleChatGf_1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'We\'ll have to arrange some dates', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_nightclub_date'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_nightclub_date'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat6.jpg');
     scene.text('Okay so Natasha, how about we arrange to do something together soon? Maybe watch a movie, go shopping and so on or perhaps go to the nightclub at some point. What do you say?"');
@@ -292,7 +292,8 @@ function enterCoffeeHoleNightclubdateGf_1(s: GameState, scene: SceneBuilder): vo
     scene.actions([
       { label: 'Wake up', handler: (st: GameState) => {
     qspCall(s, 'sleep_simple', 'sleep_until', 8, 0);
-  }, goto: ['natbel_uni_chat', 'coffee_hole_nightclubdate_gf_1_after'] },
+    qspGoto(s, 'natbel_uni_chat', 'coffee_hole_nightclubdate_gf_1_after');
+  } },
     ]);
   } },
     ]);
@@ -405,6 +406,7 @@ function enterCoffeeHoleNightclubdate_1CafeLeave(s: GameState, scene: SceneBuild
     { label: 'Start undressing', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A16');
     qspCall(s, 'outfit', 'backup');
+    (s as any).orgasm_or = 'no';
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/Kissing_games/natasha43.jpg');
     scene.text('You arrive back at the hotel and enter your room and immediately guide Natasha to the bed and after a passionate kiss you start pulling her dress down. "I\'ve been wanting to do that for a while now, good thing we were in a public place earlier or you\'d never have finished your meal!"');
@@ -442,6 +444,8 @@ function enterCoffeeHoleNightclubdate_1CafeLeave(s: GameState, scene: SceneBuild
     scene.text('She leaves you lying on the bed and completely climbs on top of you presenting her pussy to your eager mouth, her juices dripping onto your face.');
     scene.text('As you get to work on her you feel Natasha sliding her tongue slowly up and down and flicking it inside you as she sucks up your juices that are flowing freely by now.');
     scene.text('Suddenly and almost without warning the dam bursts and you reach a toe curling orgasm squirting into her mouth and soaking her face with your juices.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_msg = '';
     qspCall(s, 'arousal', 'cuni', 5, 'no_orgasm_msg');
     qspCall(s, 'arousal', 'cuni_give', (-5));
     qspCall(s, 'stat', '');
@@ -461,8 +465,8 @@ function enterCoffeeHoleNightclubdate_1CafeLeave(s: GameState, scene: SceneBuild
     scene.actions([
       { label: 'Return to university', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dorm_access'] = 1;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_nightclub_date'] = 2;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_dorm_access'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_nightclub_date'] = 2;
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'outfit', 'restore');
     qspCall(s, 'stat', '');
@@ -521,7 +525,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
       { label: 'How about we get back together then?', handler: (st: GameState) => {
     qspCall(s, 'natbel_friend', 'reconcile');
     qspCall(s, 'npcStat', 'A16');
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 9;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['FriendLover'] = 9;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat6.jpg');
@@ -538,7 +542,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
     scene.actions([
       { label: 'Ask her if she\'as doing any extra courses', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_nightclub_date'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_nightclub_date'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat4.jpg');
     scene.text('After a minute or so embracing you ask her "So Natasha are you looking forward to your course in fashion design?"');
@@ -601,7 +605,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'natbel_friend', 'reconcile');
     qspCall(s, 'npcStat', 'A16');
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 9;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['FriendLover'] = 9;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat6.jpg');
     scene.text('"Okay I think I know what you\'re trying to say. Maybe we can hang out sometimes and watch a movie, go shopping and so on or perhaps go to the nightclub at some point if you want?"');
@@ -617,7 +621,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
     scene.text('With a grin you tell her that was the real reason you visited but thought you might have to work hard to convince her. "Well that was much easier than I imagined i>girlfriend</i>, I thought you\'d make me work hard to convince you!"');
     scene.actions([
       { label: 'Ask her if she\'s doing any extra courses', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_nightclub_date'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_nightclub_date'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat4.jpg');
@@ -802,7 +806,7 @@ function enterCoffeeHoleChatStrangers_1(s: GameState, scene: SceneBuilder): void
     scene.text('When Natasha tries to protest you place your finger across her lips and simply tell her that you want to treat her and she has to choose what she wants as a style. Then you leave her with the stylist and wait.');
     scene.actions([
       { label: 'Check out the new Natasha', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_nightclub_date'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['uni_nightclub_date'] = 1;
     qspCall(s, 'money', 'pay', 750);
     (s as any).minut = ((s as any).minut ?? 0) + 35;
     qspCall(s, 'stat', '');
@@ -955,7 +959,8 @@ function enterCoffeeHoleNightclubdateStrangers_1(s: GameState, scene: SceneBuild
     scene.actions([
       { label: 'Wake up', handler: (st: GameState) => {
     qspCall(s, 'sleep_simple', 'sleep_until', 8, 0);
-  }, goto: ['natbel_uni_chat', 'coffee_hole_nightclubdate_strangers_1_after'] },
+    qspGoto(s, 'natbel_uni_chat', 'coffee_hole_nightclubdate_strangers_1_after');
+  } },
     ]);
   } },
     ]);
@@ -999,7 +1004,7 @@ function enterCoffeeHoleNightclubdateStrangers_1After(s: GameState, scene: Scene
   scene.actions([
     { label: 'Kiss her to confirm she\'s your girlfriend', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A16');
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 9;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['FriendLover'] = 9;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
     scene.text('Breaking the silence you respond to her earlier comments about the kiss; smiling at her you say. "Okay Natasha, that was a surprise but I guess you know from the way I responded to your kiss at the club that I liked it."');

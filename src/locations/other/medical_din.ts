@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -18,7 +18,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 2750) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['medical_din', 'birth_control_shot'] }]);
+      qspGoto(s, 'medical_din', 'birth_control_shot');
     }
   } },
       ]);
@@ -29,7 +29,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['medical_din', 'birth_control_implant'] }]);
+      qspGoto(s, 'medical_din', 'birth_control_implant');
     }
   } },
       ]);
@@ -40,7 +40,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['medical_din', 'birth_control_renew'] }]);
+      qspGoto(s, 'medical_din', 'birth_control_renew');
     }
   } },
         ]);
@@ -53,7 +53,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['medical_din', 'birth_control_remove'] }]);
+      qspGoto(s, 'medical_din', 'birth_control_remove');
     }
   } },
     ]);
@@ -84,7 +84,7 @@ function enterBirthControlShot(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -99,8 +99,8 @@ function enterBirthControlImplant(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     (s as any).tabletkicheck = 0;
     (s as any).tabletkishot = 0;
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_status'] = 3;
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_timer'] = 1095;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['implant_status'] = 3;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['implant_timer'] = 1095;
     (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25) + 4000);
     (s as any).pillcon2 = ((s as any).pillcon2 ?? 0) + (((((s as any).pillcon2 ?? 0) + 15000) / 25) + 4000);
     scene.text('"Everything looks great," she says and gives you a reassuring smile. "Please lie down, the procedure won\'t take long."');
@@ -118,7 +118,7 @@ function enterBirthControlImplant(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -133,8 +133,8 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     (s as any).tabletkicheck = 0;
     (s as any).tabletkishot = 0;
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_status'] = 3;
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_timer'] = 1095;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['implant_status'] = 3;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['implant_timer'] = 1095;
     (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25) + 4000);
     (s as any).pillcon2 = ((s as any).pillcon2 ?? 0) + (((((s as any).pillcon2 ?? 0) + 15000) / 25) + 4000);
     scene.text('"Everything looks great," she says and gives you a reassuring smile. "Please lie down, the procedure won\'t take long."');
@@ -142,8 +142,8 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
     scene.text('"All done! You should be good to go for another three years."');
   } else {
     qspCall(s, 'money', 'pay', 1650);
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_status'] = 0;
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_timer'] = 0;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['implant_status'] = 0;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['implant_timer'] = 0;
     scene.text('"I\'m sorry, but we can\'t renew your implant because you\'re pregnant."');
     // TODO-QSP: dynamic text: After the initial shock subsides, you only have to pay ' + $func('money', 'strin...
     scene.text('After the initial shock subsides, you only have to pay 1650₽ for the test and the removal of your old implant and leave.');
@@ -154,7 +154,7 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -163,8 +163,8 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
 function enterBirthControlRemove(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'pay', 1000);
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_status'] = 0;
-  if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_timer'] = 0;
+  ((s as any).birth_control = (s as any).birth_control ?? {})['implant_status'] = 0;
+  ((s as any).birth_control = (s as any).birth_control ?? {})['implant_timer'] = 0;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/clinic/poli.jpg');
   scene.text('"Everything looks great," she says and gives you a reassuring smile. "Please lie down, the procedure won\'t take long."');
@@ -172,7 +172,7 @@ function enterBirthControlRemove(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -202,7 +202,7 @@ function enterAbortion(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
   if (((s as any).broodcurse ?? 0) > 0) {
-    scene.actions([{ label: 'Continue', goto: ['gameover', 'force', '13'] }]);
+    qspGoto(s, 'gameover', 'force', '13');
   }
   scene.build();
 }
@@ -211,13 +211,13 @@ function enterRemovePreg(s: GameState, scene: SceneBuilder): void {
   (s as any).pregtime = 0;
   (s as any).pregtalk = 0;
   (s as any).pcs_pregtalk = 0;
-  if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A16'] = 0;
-  if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A34'] = 0;
+  ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A16'] = 0;
+  ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A34'] = 0;
   (s as any).preg = 0;
   (s as any).thinkpreg = 0;
   (s as any).knowpreg = 0;
   (s as any).pregChem = 0;
-  if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['morning_sick'] = 0;
+  ((s as any).vomit = (s as any).vomit ?? {})['morning_sick'] = 0;
   (s as any).cycle = 4;
   (s as any).RecovH = Math.floor(Math.random() * 201) + 375;
   (s as any).nextBaby = 0;
@@ -249,7 +249,7 @@ function enterHealthTreatment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pillcon ?? 0) > 0  &&  (!(Math.floor(Math.random() * 5) + 0))) {
     (s as any).pillcon = ((s as any).pillcon ?? 0) - (2500);
   }
-  (s as any).Kandidoz = 0;
+  (s as any).Kandidoz = Math.min(((s as any).Kandidoz ?? 0), 0);
   scene.build();
 }
 
@@ -272,12 +272,12 @@ function enterMorningAfterPillFunction(s: GameState, scene: SceneBuilder): void 
   if (((s as any).cycle ?? 0) === 1) {
     (s as any).focH = ((s as any).focH ?? 0) - (120);
   }
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['morning_after_pill'] = ((s as any).stat['morning_after_pill'] ?? 0) + (1);
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['morning_after_pill'] = ((s as any).mc_inventory['morning_after_pill'] ?? 0) - (1);
+  ((s as any).stat = (s as any).stat ?? {})['morning_after_pill'] = ((s as any).stat['morning_after_pill'] ?? 0) + (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['morning_after_pill'] = ((s as any).mc_inventory['morning_after_pill'] ?? 0) - (1);
   if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((s as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['luda_ma_pill'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['luda_ma_pill'] = 1;
   }
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_morning_after_pill'] = ((s as any).daystart ?? 0);
+  ((s as any).stat = (s as any).stat ?? {})['last_morning_after_pill'] = ((s as any).daystart ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -292,7 +292,7 @@ function enterMorningAfterPill(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: delact 'Swallow' & delact 'Reconsider'
     scene.img('images/pc/items/accessories/birthcontrol/pill_take\' + iif($locclass = \'kitr\' or $locclass = \'kitchen\', 2, 1) + \'.jpg');
     if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((s as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
-      if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['luda_ma_pill'] = 1;
+      ((s as any).LudaQW = (s as any).LudaQW ?? {})['luda_ma_pill'] = 1;
       scene.text('<i>I suppose this is why Aunt Luda gave me this,</i> you think as you take out the morning after pill.');
     }
     if (((s as any).locclass ?? 0) === 'kitr'  ||  ((s as any).locclass ?? 0) === 'kitchen') {
@@ -345,9 +345,9 @@ function enterGiveBirth(s: GameState, scene: SceneBuilder): void {
   (s as any).nextBaby = qspUntranslated(s, "arrpos('kidname', 'unborn')", { location: "medical_din" });
   (s as any).kid = ((s as any).kid ?? 0) + (1);
   (s as any).BabyEmbryo = ((s as any).BabyEmbryo ?? 0) - (1);
-  if (!(s as any).daykid) (s as any).daykid = {}; (s as any).daykid[String((s as any).nextBaby ?? 0)] = ((s as any).day ?? 0);
-  if (!(s as any).monthkid) (s as any).monthkid = {}; (s as any).monthkid[String((s as any).nextBaby ?? 0)] = ((s as any).month ?? 0);
-  if (!(s as any).yearkid) (s as any).yearkid = {}; (s as any).yearkid[String((s as any).nextBaby ?? 0)] = ((s as any).year ?? 0);
+  ((s as any).daykid = (s as any).daykid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).day ?? 0);
+  ((s as any).monthkid = (s as any).monthkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).month ?? 0);
+  ((s as any).yearkid = (s as any).yearkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).year ?? 0);
   if (((s as any).polkid ?? 0)?.[String((s as any).nextBaby ?? 0)] === 0) {
     // TODO-QSP: $polreb[nextBaby] = 'girl'
     scene.text('"Congratulations, it\'s a girl! What is her name?"');
@@ -380,18 +380,18 @@ function enterGiveBirth(s: GameState, scene: SceneBuilder): void {
   (s as any).pregtalk = 0;
   (s as any).pcs_pregtalk = 0;
   (s as any).pregTalkFamily = 0;
-  if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A16'] = 0;
-  if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A34'] = 0;
-  if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A29'] = 0;
+  ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A16'] = 0;
+  ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A34'] = 0;
+  ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 0;
   (s as any).pregChem = 0;
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['preg'] = (((s as any).pcs_mass ?? {})?.['preg'] ?? 0) / 2;
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['preg'] = (((s as any).pcs_mass ?? {})?.['preg'] ?? 0) / 2;
   if (((s as any).pcs_mass ?? 0)?.['preg'] > 0) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['RecovH_next'] = (((s as any).RecovH ?? 0) * ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0)-1)) / (((s as any).pcs_mass ?? {})?.['preg'] ?? 0);
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['RecovH_next'] = (((s as any).RecovH ?? 0) * ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0)-1)) / (((s as any).pcs_mass ?? {})?.['preg'] ?? 0);
   }
   (s as any).cycle = 4;
   if (((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
     qspCall(s, 'arousal_funcs', 'set_virginity_stats', 'birth');
-    if (!(s as any).virgin_stats) (s as any).virgin_stats = {}; (s as any).virgin_stats['lost_cause'] = 'birth';
+    ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['lost_cause'] = 'birth';
   }
   qspCall(s, 'cum_cleanup', 'reset');
   qspCall(s, 'din_bad', 'd_cycreport_choice');

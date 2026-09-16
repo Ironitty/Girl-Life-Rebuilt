@@ -1,10 +1,15 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'zsoft_gopskverGorSlut';
+  (s as any).location_type = 'event_outdoors';
   scene.build();
 }
 
@@ -13,177 +18,268 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/park/skver.jpg');
   (s as any).temp_rand = Math.floor(Math.random() * 11) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shultextrand = 'looking for something to suck on?';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shultextrand = 'want to get fucked?';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shultextrand = 'you look like you want to get some dicks in your ass.';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shultextrand = 'want to get laid?';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).shultextrand = 'want some dick in your ass?';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).shultextrand = 'get down on your hands and knees!';
   }
   if (((s as any).temp_rand ?? 0) === 6) {
+    (s as any).shultextrand = 'you look like you could really use some cock right now!';
   }
   if (((s as any).temp_rand ?? 0) === 7) {
+    (s as any).shultextrand = 'you look like you could use some cock.';
   }
   if (((s as any).temp_rand ?? 0) === 8) {
+    (s as any).shultextrand = 'turn around and show us your holes!';
   }
   if (((s as any).temp_rand ?? 0) === 9) {
+    (s as any).shultextrand = 'you need some cocks? Don\'t worry, we\'ll take care of you!';
   }
   if (((s as any).temp_rand ?? 0) === 10) {
+    (s as any).shultextrand = 'you look like you have this itch… we can scratch it for you. Come here!';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 11) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shultextrand2 = 'slut';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shultextrand2 = 'whore';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shultextrand2 = 'fuck-puppet';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shultextrand2 = 'plaything';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).shultextrand2 = 'school slut';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).shultextrand2 = '' + ((s as any).gnikname ?? 0) + '';
   }
   if (((s as any).temp_rand ?? 0) === 6) {
+    (s as any).shultextrand2 = 'sweetie';
   }
   if (((s as any).temp_rand ?? 0) === 7) {
+    (s as any).shultextrand2 = 'honey';
   }
   if (((s as any).temp_rand ?? 0) === 8) {
+    (s as any).shultextrand2 = 'bitch';
   }
   if (((s as any).temp_rand ?? 0) === 9) {
+    (s as any).shultextrand2 = 'cum dump';
   }
   if (((s as any).temp_rand ?? 0) === 10) {
+    (s as any).shultextrand2 = '' + ((s as any).pcs_nickname ?? 0) + '';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shultextrand3 = 'Vasily';
+    (s as any).shultextID3 = 'A11';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shultextrand3 = 'Vitek';
+    (s as any).shultextID3 = 'A9';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shultextrand3 = 'Dan';
+    (s as any).shultextID3 = 'A10';
   }
-  if (!(s as any).temp_rand) (s as any).temp_rand = {}; (s as any).temp_rand[1] = Math.floor(Math.random() * 3) + 0;
+  ((s as any).temp_rand = (s as any).temp_rand ?? {})[1] = Math.floor(Math.random() * 3) + 0;
   if (((s as any).temp_rand ?? 0)[1] === 0) {
+    (s as any).shultextrand33 = 'Vitek';
+    (s as any).shultextID33 = 'A9';
   }
   if (((s as any).temp_rand ?? 0)[1] === 1) {
+    (s as any).shultextrand33 = 'Dan';
+    (s as any).shultextID33 = 'A10';
   }
   if (((s as any).temp_rand ?? 0)[1] === 2) {
+    (s as any).shultextrand33 = 'Vasily';
+    (s as any).shultextID33 = 'A11';
   }
   if (((s as any).temp_rand ?? 0) === 0  &&  ((s as any).temp_rand ?? 0)[1] === 2) {
+    (s as any).shultextrand33 = 'Dan';
+    (s as any).shultextID33 = 'A10';
   }
   if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).temp_rand ?? 0)[1] === 0) {
+    (s as any).shultextrand33 = 'Vasily';
+    (s as any).shultextID33 = 'A11';
   }
   if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).temp_rand ?? 0)[1] === 1) {
+    (s as any).shultextrand33 = 'Vitek';
+    (s as any).shultextID33 = 'A9';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shultextrand7 = 'ass';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shultextrand7 = 'tits';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shultextrand7 = 'breasts';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shultextrand7 = 'groin';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).shultextrand7 = 'boobs';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 16) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shultextrand4 = 'The guys grin at you, and look at you greedily.';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' begins to kiss you, while ' + ((s as any).shultextrand3 ?? 0) + ' fondles your ' + ((s as any).shultextrand7 ?? 0) + '.';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shultextrand4 = 'The guys all move in closer to you, and ' + ((s as any).shultextrand33 ?? 0) + ' gives you a hard slap on the ass.';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' boldly puts his hand down your pants, and pulls you in closer for a kiss.';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' puts his hand on your ' + ((s as any).shultextrand7 ?? 0) + '.';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' grabs your ' + ((s as any).shultextrand7 ?? 0) + ' and pulls you closer to him.';
   }
   if (((s as any).temp_rand ?? 0) === 6) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' undoes his pants, and pulls your hands towards his exposed cock.';
   }
   if (((s as any).temp_rand ?? 0) === 7) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' puts his hands on your shoulders, and gently but firmly pushes you down to your knees.';
   }
   if (((s as any).temp_rand ?? 0) === 8) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' grins at you and says: "We know a quiet place, not far from here. We took Sonia there, just the other day…"';
   }
   if (((s as any).temp_rand ?? 0) === 9) {
+    (s as any).shultextrand4 = 'The boys are all staring at your ' + ((s as any).shultextrand7 ?? 0) + ' greedily, and lick their lips as they reach out for you.';
   }
   if (((s as any).temp_rand ?? 0) === 10) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' comes up to you and whispers: "Your friend Sonia always satisfies us when we want… surely you\'re not going to let us down?"';
   }
   if (((s as any).temp_rand ?? 0) === 11) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' grins at you and says: "It\'s your turn to please us, ' + ((s as any).pcs_nickname ?? 0) + '. Let\'s see if you can do better than Sonia did yesterday…"';
   }
   if (((s as any).temp_rand ?? 0) === 12) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' takes your hand and puts it on his groin with a meaningful look in his eyes.';
   }
   if (((s as any).temp_rand ?? 0) === 13) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' winks at you and pulls out his cock, and slowly begins to rub it.';
   }
   if (((s as any).temp_rand ?? 0) === 14) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' suggests they could fuck you, right here on the park bench. His friends are definitely on board with the idea, and nod in agreement.';
   }
   if (((s as any).temp_rand ?? 0) === 15) {
+    (s as any).shultextrand4 = '' + ((s as any).shultextrand33 ?? 0) + ' puts his hand under your clothes, and rubs your slit roughly.';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 9) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shultextrand5 = 'You notice the guys are all staring at your groin.';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shultextrand5 = 'You\'re confused, and are not sure whether you should stay.';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shultextrand5 = 'You frantically think, what should you do next?';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shultextrand5 = 'You see the burning lust in their eyes, and realize they all want you.';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).shultextrand5 = 'You see the lust in their eyes, and quickly think: should you stay or leave?';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).shultextrand5 = 'You flutter your eyes at the guys seductively.';
   }
   if (((s as any).temp_rand ?? 0) === 6) {
+    (s as any).shultextrand5 = 'You don\'t care much for the taunts the guys are throwing your way, and you wonder whether you should leave while you still can.';
   }
   if (((s as any).temp_rand ?? 0) === 7) {
+    (s as any).shultextrand5 = 'You try to ignore the boys\' lewd comments.';
   }
   if (((s as any).temp_rand ?? 0) === 8) {
+    (s as any).shultextrand5 = 'You\'re used to their treatment by now, and just ignore their degrading comments.';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 7) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shultextrand6 = 'smugly';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shultextrand6 = 'with a smirk';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shultextrand6 = 'with a laugh';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shultextrand6 = 'calmly';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).shultextrand6 = 'while he is rubbing his pants';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).shultextrand6 = 'approvingly';
   }
   if (((s as any).temp_rand ?? 0) === 6) {
+    (s as any).shultextrand6 = 'soothingly';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shul_text_byh = 'Have a seat! We got you covered.';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shul_text_byh = 'Sit down and have a beer with us!';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shul_text_byh = 'Sure thing ' + ((s as any).pcs_nickname ?? 0) + ', here you go.';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shul_text_byh = 'Relax and have a seat, we\'ve got enough beer to go around!';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).shul_text_byh = 'Come on, let\'s have a drink!';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 9) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).text_sveta_obol = 'seductive';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).text_sveta_obol = 'seductive';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).text_sveta_obol = 'enchanting';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).text_sveta_obol = 'charming';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).text_sveta_obol = 'attractive';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).text_sveta_obol = 'captivating';
   }
   if (((s as any).temp_rand ?? 0) === 6) {
+    (s as any).text_sveta_obol = 'enchanting';
   }
   if (((s as any).temp_rand ?? 0) === 7) {
+    (s as any).text_sveta_obol = 'pretty';
   }
   if (((s as any).temp_rand ?? 0) === 8) {
+    (s as any).text_sveta_obol = 'charming';
   }
   // TODO-QSP: dynamic text: <<$shultextrand3>> <<$shultextrand6>> says: "Hey <<$shultextrand2>>, <<$shultext...
   scene.text(`${((s as any).shultextrand3 || '')} ${((s as any).shultextrand6 || '')} says: "Hey ${((s as any).shultextrand2 || '')}, ${((s as any).shultextrand || '')}" ${((s as any).shultextrand4 || '')}`);
@@ -207,7 +303,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_park', 'start'] },
+    qspGoto(s, 'pav_park', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -226,65 +323,94 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alko ?? 0) >= 6) {
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).beer_drova_text = '' + ((s as any).pcs_nickname ?? 0) + ', sweetie… we gave you all the beer you wanted. It\'s time you do something for us in return.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).beer_drova_text = 'That\'s enough beer for you, slut… it\'s time you do something for us!';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).beer_drova_text = '' + ((s as any).pcs_nickname ?? 0) + ', that\'s enough drinking. Now assume the position! It\'s time you pay us back for our hospitality.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).beer_drova_text = 'You\'ve had enough. We\'re going to fuck you now!';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).beer_drova_text = 'You got us all worked up, babe. How about you take care of that first?';
     }
+    (s as any).beer_text = '' + ((s as any).shultextrand3 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' says: "' + ((s as any).beer_drova_text ?? 0) + '". ' + ((s as any).shultextrand4 ?? 0) + '';
   } else {
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).beer_text = '' + ((s as any).shultextrand3 ?? 0) + ' opens a new beer bottle, and has a couple of sips from it before he gives it to you. You don\'t mind, and are happy to just get a beer from the guys while you chat with them.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).beer_text = '' + ((s as any).shultextrand3 ?? 0) + ' pours out a beer into a clean glass, and gives it to you. You enjoy the drink, and chat with the guys while you drink it.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).beer_text = '' + ((s as any).shultextrand3 ?? 0) + ' gives you a bottle of beer. You happily take it and take sips from it, while you talk with the boys.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).beer_text = '' + ((s as any).shultextrand3 ?? 0) + ' hands you a beer, and you sit down on the bench next to them. For the next 15 minutes, you chat with the guys while you take sips from the beer.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).beer_text = '' + ((s as any).shultextrand3 ?? 0) + ' gives you a bottle of beer. After you take a few sips, he takes the bottle from you and finishes it in one big gulp.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).beer_text = '' + ((s as any).shultextrand3 ?? 0) + ' hands you an unfinished bottle of beer, and you take it from him with a smile. You eagerly drink the remainder of the bottle, while you chat with the guys.';
     }
   }
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).beer_text_bazar2 = 'says';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).beer_text_bazar2 = 'mentions';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).beer_text_bazar2 = 'mutters';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).beer_text_bazar2 = 'says dreamily';
   }
   if (((s as any).alko ?? 0) >= 6) {
+    (s as any).beer_text_bazar = '';
   } else {
     (s as any).temp_rand = Math.floor(Math.random() * 12) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "Would you believe it, guys? Yesterday during the break, Sonia was sucking guys off in the men\'s restroom the whole time! She was like a vacuum cleaner, swallowing every last drop of anyone who would offer her a cock! What a whore…';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "Last night at the disco was fun, right? We got drunk, hung out… I hear some girl even got fucked behind the club!"';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "Man, that test at school recently was brutal. Don\'t tell me you guys had the answers and didn\'t tell me!" ' + ((s as any).shultextrand3 ?? 0) + ' laughs and responds: "Dude, why didn\'t you ask? You know we always get the answers when we need them…"';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "I\'ve heard a rumour not too long ago about Christina sucking off the P.E. teacher at school, just to keep her spot on the team! Can you believe that?" ' + ((s as any).shultextrand3 ?? 0) + ' replies: "You better believe it! She\'s probably not just sucking his cock… I bet she\'s offering him all of her holes, she\'s really not that good of a runner. The fact that she\'s still representing our school says it all!"';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "They say Albina is a whore. Like, an actual prostitute. Several guys I know say they have hired her services… do you think they\'re lying? Her ass always looks great in those yoga pants!" ' + ((s as any).shultextrand3 ?? 0) + ' replies: "Dude, just put Albina out of your head! You know who her dad is… you don\'t want to get on his bad side, trust me."';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "After one drunken night, Sonia gave five guys a blowjob! Five! Funny thing… before that, she was the biggest prude in school." ' + ((s as any).shultextrand3 ?? 0) + ' laughs: "She\'s a total whore now. If you ever want to get your dick sucked, just go to the men\'s restroom during lunch break. There\'s a pretty good chance she\'ll be there, offering blowjobs to whoever happens to come in. Just the other day she offered me one, when I just wanted to take a piss! Couldn\'t say no to that though… she\'s pretty good at it!"';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "One day in the afternoon, I heard some strange noises in the cafe at the station. I looked through one of the windows in the back, and I saw ' + ((s as any).pcs_nickname ?? 0) + '\'s mother getting fucked by the cafe owner! She wanted it badly, man! I could hear her moans through the window, she was such a slut! Remind me to send you the photos later…"';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "I saw ' + ((s as any).pcs_nickname ?? 0) + '\'s mother at the market yesterday… she\'s a beautiful woman! I bet she likes to get fucked in all of her holes, just like her daughter!" ' + ((s as any).shultextrand3 ?? 0) + ' laughs at you and says: "Heh, ' + ((s as any).pcs_nickname ?? 0) + '! Maybe we can set up a gangbang at some time, and fuck you alongside her eh?"';
     }
     if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "I hear someone came across our friend here at the market, one day. After a bit of negotiating, Arthur left with her… and the next day at school she suddenly had a new purse! What\'s up with that?"';
     }
     if (((s as any).temp_rand ?? 0) === 9) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "Hey ' + ((s as any).pcs_nickname ?? 0) + ', want to star in a movie one day? We already have a role thought out for you. In the story, you meet three young stallions here in the park. They give you several beers, and then you fuck them in all possible positions. I bet you\'d do great in the role, you\'d be a natural! What do you say?" You grin and flip the guys off while you continue drinking your beer, ignoring their laughter.';
     }
     if (((s as any).temp_rand ?? 0) === 10) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "Hey guys, I hear that Christina has some slut at her disposal in the women\'s locker room, every Wednesday and Friday after gym class! We should go there one day… ' + ((s as any).pcs_nickname ?? 0) + ', can you get us in? You owe us one, for all the beers you\'ve been mooching!"';
     }
     if (((s as any).temp_rand ?? 0) === 11) {
+      (s as any).beer_text_bazar = '' + ((s as any).shultextrand33 ?? 0) + ' ' + ((s as any).shultextrand6 ?? 0) + ' ' + ((s as any).beer_text_bazar2 ?? 0) + ' "Recently, I saw Sonia fucking two students at school… at the same time! She had one of their cocks in her mouth, and I\'m not sure where the other was… pussy or ass. She had neatly folded her clothes and put them on a clothes hanger, before the guys roughly pounded her. I bet she\'d give it to anyone! You know… maybe we could get her to fuck some teachers, to give us all a better grade?" ' + ((s as any).shultextrand3 ?? 0) + ' laughs as he says: "Worth a shot! My grades could use a little help…"';
     }
   }
   if (((s as any).alko ?? 0) < 6) {
@@ -299,12 +425,12 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).beer_text_bazar || '')}`);
   scene.text('');
   if (((s as any).alko ?? 0)<6) {
-    scene.text('Go into the bushes for a <a href="exec:gt \'zsoft_gopskverGorSlut\',\'piss\'">pee break</a>.');
+    scene.text('Go into the bushes for a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027zsoft_gopskverGorSlut\\u0027, \\u0027piss\\u0027); return false;">pee break</a>.');
   }
   (s as any).temp_rand = Math.floor(Math.random() * 100) + 1;
   if (((s as any).temp_rand ?? 0) <= 15  &&  ((s as any).alko ?? 0) < 6) {
     // TODO-QSP: dynamic text: The guys suggest: "Hey <<$pcs_nickname>>, show us your tits!" (<a href="exec:gt ...
-    scene.text(`The guys suggest: "Hey ${((s as any).pcs_nickname || '')}, show us your tits!" (<a href="exec:gt 'zsoft_gopskverGorSlut','siski'">Show them.</a>)`);
+    scene.text(`The guys suggest: "Hey ${((s as any).pcs_nickname || '')}, show us your tits!" (<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027zsoft_gopskverGorSlut\\u0027, \\u0027siski\\u0027); return false;">Show them.</a>)`);
   }
   qspCall(s, 'willpower', 'drink', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -333,57 +459,82 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).poza_text = 'You get into a comfortable pose, that also shows off your body to the boys.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).poza_text = 'You strike a ' + ((s as any).text_sveta_obol ?? 0) + ' pose for the guys.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).poza_text = 'You get into a comfortable pose. Without realizing it, you\'re also giving the guys a nice show.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).poza_text = 'You shift your weight and get into a different pose while you talk with the boys. Without meaning to, you end up looking quite ' + ((s as any).text_sveta_obol ?? 0) + '.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).poza_text = 'The boys have been so nice to you, you want to do something back for them and show off your body. When they look at you, you give them a cute wink.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).poza_text = 'You calmly put down your empty bottle and strike a sexy pose for the boys, hoping they\'ll give you another.';
     }
     (s as any).temp_rand = Math.floor(Math.random() * 8) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).poza_gop_text3 = 'successfully';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).poza_gop_text3 = 'sexually';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).poza_gop_text3 = 'for fucking';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).poza_gop_text3 = 'excitingly';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).poza_gop_text3 = 'vulgarly';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).poza_gop_text3 = 'handsomely';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).poza_gop_text3 = 'good';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).poza_gop_text3 = 'perfectly';
     }
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).poza_gop_text2 = 'Looks like our ' + ((s as any).shultextrand2 ?? 0) + ' is in the mood!';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).poza_gop_text2 = 'You know, ' + ((s as any).shultextrand2 ?? 0) + '… if you keep doing that, you\'re getting us all worked up! What are you going to do about it?';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).poza_gop_text2 = 'Looks like our ' + ((s as any).shultextrand2 ?? 0) + ' is in the mood for a fucking, boys!';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).poza_gop_text2 = 'You\'re suck a slut, ' + ((s as any).pcs_nickname ?? 0) + '… you want us to fuck you, don\'t you? Don\'t worry, we\'ll take good care of you.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).poza_gop_text2 = 'Looks like her cunt is ready, guys!';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).poza_gop_text2 = 'Haha, that\'s a nice look for you slut! Just stay in that position for a while…';
     }
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).poza_gop_text = 'Well, guys… who\'s going to fuck her first?';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).poza_gop_text = 'Alright, who gets to go first this time?';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).poza_gop_text = 'You were first last time, I think it\'s my turn to use this slut first!';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).poza_gop_text = 'Dibs on her mouth… I bet she gives a great blowjob!';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).poza_gop_text = 'I want to fuck her first, guys. It\'s been a while since I got to go first on a whore.';
     }
     scene.img('images/locations/pavlovsk/park/gop/p\'+rand(1, 34)+\'.jpg');
     // TODO-QSP: dynamic text: <<$poza_text>>
@@ -396,60 +547,80 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).shultextrand33 || '')} speaks "${((s as any).poza_gop_text || '')}"`);
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).horny_orgazm_text2 = 'You\'re enjoying their treatment more than you probably should. You frantically rub your clit, trying to get off while you please the guys.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).horny_orgazm_text2 = 'You groan loudly while you get fucked, and beg the guy to fuck you harder.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).horny_orgazm_text2 = 'It feels great, and you beg your partner to fuck you faster.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).horny_orgazm_text2 = 'You feel close to your orgasm and groan at the guy: "I\'m not made of sugar! Stop treating me like I\'m fragile and fuck me like a man!"';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).horny_orgazm_text2 = 'You moan at your partner: "I\'m a whore… I\'m your slut, I\'ll do whatever you want… just keep fucking me!"';
     }
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).horny_orgazm_text3 = 'You were not satisfied.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).horny_orgazm_text3 = 'Unfortunately, you did not reach your orgasm on time.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).horny_orgazm_text3 = 'You couldn\'t have an orgasm.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).horny_orgazm_text3 = 'Your partner finishes before you, leaving you unsatisfied.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).horny_orgazm_text3 = 'You were close to your orgasm, but didn\'t quite get there.';
     }
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).horny_orgazm_text4 = 'You moan loudly, and cum all over his cock.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).horny_orgazm_text4 = 'Your body begins to shake violently and you shamelessly orgasm.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).horny_orgazm_text4 = 'A loud groan escapes your lips, and your cunt spasms around his cock when you cum violently.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).horny_orgazm_text4 = 'You reach your orgasm loudly, and cover up your mouth afterwards in embarrassment. Oh my…';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).horny_orgazm_text4 = 'Your breathing grows more rapid, and you experience an explosive orgasm while pleasing him.';
     }
     (s as any).temp_rand = Math.floor(Math.random() * 7) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).oral_den_text = 'His cock is not fully hard yet, and he smiles at you: "Go on slut, get it hard for me." You nod and obediently close your lips around it, giving him the best blowjob you can.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).oral_den_text = 'His cock is already fully erect, and you dutifully close your lips around it. You suppress your gag reflex as you take him all the way down your throat, drooling all over his cock while you give him a sloppy blowjob.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).oral_den_text = 'You carefully close your ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lips around his cock, and guide it down your throat while you tease the shaft with your tongue. Eventually his balls are resting on your lips, his penis, and you even manage to lick them with your tongue while his cock is down your throat. You\'re not sure whether to feel proud, or ashamed.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).oral_den_text = 'At first he lets you control the pace while you teasingly suck the head of his dick, but after a while he can\'t take your teasing any longer. He roughly grabs hold of your hair and pushes your head down onto his groan, forcing his cock down your throat. Your throat spasms around his cock while you struggle to draw breath, and after a while he realizes your troubles and pulls back enough so you can breathe through your nose while you please him with your mouth.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
     }
-    // TODO-QSP: Finally, he pulls his dick away from you and complains: "That has to be by far the worst blowjob I h...
     // TODO-QSP: You promise you''ll do better, and obediently open your mouth again and try a bit harder.'
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).oral_den_text = 'You routinely drop to your knees, and suck his cock as instructed. Suddenly Vitek reaches down, and rubs his rough fingers over your holes. He grunts: "Listen, ' + ((s as any).pcs_nickname ?? 0) + '… ever got fucked in the ass before?"';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).oral_den_text = 'His penis is quite long, and you feel like a performing sword swallower in a circus while you do your best to not gag on it. After a while you get used to the pace, and take shallow breaths when his cock is not in your throat.';
     }
     scene.actions([
       { label: 'Suck Dan\'s cock', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A10');
     (s as any).sexpartkno = 1;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A10'] = 1;
     (s as any).dick = 17;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
@@ -468,8 +639,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck Vasily\'s cock', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A11');
     (s as any).sexpartkno = 1;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A11'] = 1;
     (s as any).dick = 15;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
@@ -488,8 +659,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck Vitek\'s cock', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A9');
     (s as any).sexpartkno = 1;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A9'] = 1;
     (s as any).dick = 18;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
@@ -506,7 +677,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnalsex(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Serve all of them at once', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (3);
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (3);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).pcs_hairbsh = 0;
@@ -611,32 +782,26 @@ function enter2(s: GameState, scene: SceneBuilder): void {
           { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_park', 'start'] },
+    qspGoto(s, 'pav_park', 'start');
+  } },
         ]);
       }
       scene.actions([
         { label: 'Let them do what they want', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A10');
     qspCall(s, 'stat', '');
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
+    ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A10'] = 1;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).temp_rand = Math.floor(Math.random() * 2) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
     }
-    // TODO-QSP: <<$shultextrand33>> looks at his friends and grins: "If I were to guess, our <<$shultextrand2>> has ...
-    // TODO-QSP: The other guys begin to slap their cocks against your cheeks, impatiently waiting for you to focus a...
-    // TODO-QSP: Once he feels you''re ready, <<$shultextrand33>> pulls his fingers out of your asshole and guides hi...
     // TODO-QSP: Meanwhile the third guy has taken possession of your pussy, and soon all of your holes are filled wi...
     if (((s as any).temp_rand ?? 0) === 1) {
     }
-    // TODO-QSP: After a minute of sucking off the two guys in turn while Dan fucks you, Dan gets down on the ground ...
-    // TODO-QSP: You dutifully do as he says, guiding it towards your cunt before you begin to ride Dan. The other tw...
-    // TODO-QSP: Then <<$shultextrand33>> pulls away from your mouth and kneels behind you, and soon you feel his fin...
-    // TODO-QSP: You accidentally bite on the cock in your mouth when your ass gets filled, and he instinctively pull...
     // TODO-QSP: You look at him apologetically and massage his prick with your fingers for a while, before guiding i...
     scene.img('images/locations/pavlovsk/park/gop/sex/group/sex/s\'+rand(1, 55)+\'.jpg');
     // TODO-QSP: dynamic text: <<$gop_grup_eba>>
@@ -656,6 +821,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPiss(s: GameState, scene: SceneBuilder): void {
+  (s as any).r1_event_piss = qspUntranslated(s, "{", { location: "zsoft_gopskverGorSlut" });
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   // TODO-QSP: gs'stat'
   scene.text('As you\'re sitting on your haunches peeing in the park, you hear some footsteps and a conversation behind you. You continue your business, desperately hoping they weren\'t talking about you. However, when you\'re finished and turn around, you see two police officers looking directly at you.');
@@ -663,17 +829,20 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
   scene.text('They come up to you and one says: "Miss, do you know where you are? This is a public park, people go here for their enjoyment! Urinating in a public place is strictly forbidden!"');
   // TODO-QSP: dynamic text: Seeing you realize the gravity of the situation he continues: "Look, we're not l...
   scene.text(`Seeing you realize the gravity of the situation he continues: "Look, we're not looking to ruin your day. We'll give you a choice: You can come with us to the police station and pay your ${qspFunc(s, 'money', 'string_price', 500)} fine after we handle all the administrative details. Alternatively you can just pay us the ${qspFunc(s, 'money', 'string_price', 500)} right now, and we'll let you go and fill out the paperwork at the police station later. It's up to you."`);
+  (s as any).r2_event_piss = qspUntranslated(s, "{", { location: "zsoft_gopskverGorSlut" });
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   // TODO-QSP: gs'stat'
   scene.text('You excuse yourself and disappear between some brushes to pee. Just as you pull your clothes aside, you hear some branches snapping behind you.');
   scene.text('When you turn around, you see a guy. You recognize him as one of the regulars in the park. He drinks here quite often, and apparently has to pee just like you.');
   scene.text('For a second you consider getting up and leaving, but you really have to go! You decide to just ignore him and close your eyes, relaxing your muscles. While your pee freely flows out of you, you half expect the guy to move over and drag you away… but he never does. When you\'re finished, you look around to see the guy still watching you. You give him a smug smile and walk away as if nothing happened, after straightening your clothes.');
+  (s as any).r3_event_piss = qspUntranslated(s, "{", { location: "zsoft_gopskverGorSlut" });
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   // TODO-QSP: gs'stat'
   scene.text('You excuse yourself and disappear between some brushes to pee. Your head is buzzing from the booze, and you quickly pull your clothes to the side. Right in time too, a warm stream of urine steadily exits your body, landing on the grass and dry leaves beneath you.');
   scene.text('The feeling is really nice, and when you finish you idly run a finger over your clitoris.');
   scene.text('Then suddenly, someone pulls you back sharply… you hope you didn\'t land in the spot where you just peed. A guy frantically covers your mouth with his hand and says in a hoarse voice: "Don\'t shout or even say a word!"');
+  (s as any).r4_event_piss = qspUntranslated(s, "{", { location: "zsoft_gopskverGorSlut" });
   scene.text('You quickly choose a spot to pee between the bushes, and pull your clothes aside and squat. The beers definitely had an effect on you, and the flow starts quite easily.');
   scene.text('A powerful stream of urine comes from you, and when you moan in relief you notice a blinking light in the corner of your eye - someone is recording this!');
   scene.text('You can\'t help but blush like an embarrassed schoolgirl… but at the same time, you can\'t stop the stream and just continue to pee in front of the camera.');
@@ -681,12 +850,16 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
   scene.text('You make a bit of a show out of it, and carefully and leisurely squeeze out the last few drops of urine from your soaking pussy. You moan eagerly and wag your hips to the camera for a few seconds, before adjusting your clothes again and getting ready to leave. If only the guy had made a move… who knows what he could\'ve had you do!');
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).rand_event_piss = ((s as any).r1_event_piss ?? 0);
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).rand_event_piss = ((s as any).r2_event_piss ?? 0);
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).rand_event_piss = ((s as any).r3_event_piss ?? 0);
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).rand_event_piss = ((s as any).r4_event_piss ?? 0);
   }
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -705,12 +878,16 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).r_piss_text = 'You quickly find a deserted place and squat down, quickly peeing before anyone can find you here.';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).r_piss_text = 'You choose a quiet place, and quickly pull your clothes aside and empty your bladder. You feel so relieved!';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).r_piss_text = 'You quickly pull your clothes to the side and empty your bladder, before anyone finds you here. Whew, what a relief!';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).r_piss_text = 'You quickly pull your clothes to the side and pee. Much better!';
   }
   // TODO-QSP: dynamic text: <<$r_piss_text>> Nothing interesting happens.
   scene.text(`${((s as any).r_piss_text || '')} Nothing interesting happens.`);
@@ -759,7 +936,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (2);
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (2);
     qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), '', '', 20000, 20);
     qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), '', '', 20000, 20);
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), '', '', 20000, 20);
@@ -798,7 +975,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (30);
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     // TODO-QSP: gs'stat'
     scene.img('images/locations/pavlovsk/park/gop/sex/ev3_1.mp4');
     scene.text('Afraid to anger the man, you just nod meekly. Satisfied that you probably won\'t scream or run off, he slowly removes his hand and says: "Very good. Now come with me, I\'ll have some of what you were showing."');
@@ -810,6 +987,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     scene.text('Then you feel another hand on your pussy, and you hear a rough voice say: "Nice find, man! This slut is soaked… no need to go easy on her."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal', 3, 'rough', 'sub', 'gangbang', 'humiliation');
     qspCall(s, 'arousal', 'anal', 2, 'rough', 'sub', 'gangbang', 'humiliation');
     qspCall(s, 'arousal', 'bj', 2, 'rough', 'sub', 'gangbang', 'humiliation');
@@ -820,6 +998,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     scene.text('Before too long, he works his way in too. You try to scream, but all this does is open your mouth further and give the first guy even better access to your throat, which he happily uses. The first guy wasn\'t joking: they didn\'t want to keep you away for long. Without letting up, all the guys begin to fuck your holes for all they\'re worth, treating you like a piece of meat with little more than their own enjoyment in mind.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'bj', 1, 'rough', 'sub', 'gangbang', 'humiliation');
     qspCall(s, 'arousal', 'anal', 1, 'rough', 'sub', 'gangbang', 'humiliation');
     // TODO-QSP: gs'stat'
@@ -880,18 +1059,25 @@ function enterSiski(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).sis_gop_text = '' + ((s as any).shultextrand2 ?? 0) + ', those tits are fantastic!';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).sis_gop_text = '' + ((s as any).shultextrand2 ?? 0) + ', I love the way your boobs bounce when you run. Can you run on the spot for a bit?';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).sis_gop_text = '' + ((s as any).shultextrand2 ?? 0) + ', I bet you could make good money with those tits.';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).sis_gop_text = '' + ((s as any).shultextrand2 ?? 0) + ', I\'d love to stick my cock between your boobs and fuck them every day!';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).sis_gop_text = '' + ((s as any).shultextrand2 ?? 0) + ', I bet I could do a trick or two with those tits.';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).sis_gop_text = '' + ((s as any).shultextrand2 ?? 0) + ', how about a boobjob? I love your rack…';
   }
   if (((s as any).pcs_horny ?? 0) >= 50) {
+    (s as any).sis_gop_text = 'Nice rack, ' + ((s as any).shultextrand2 ?? 0) + '. How about you show us your pussy too? Maybe masturbate a little while you\'re at it?';
   }
   scene.img('images/locations/pavlovsk/park/gop/tits\'+rand(1, 7)+\'.mp4');
   scene.text('You smile at the request, and quietly pull your clothes aside to expose your breasts to the boys with a lewd grin. The guys watch you eagerly, and you slowly rub your boobs and squeeze your nipples lightly. After a little while, they\'re so hard you could cut glass with them.');
@@ -904,12 +1090,16 @@ function enterSiski(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/gop/mast\'+rand(1, 3)+\'.mp4');
     (s as any).temp_randB = Math.floor(Math.random() * 4) + 0;
     if ((!((s as any).temp_randB ?? 0))) {
+      (s as any).rnd_droch_text = 'Without hesitation, you pull your clothes to the side and rub your fingers over your wet cunt lips, and then theatrically suck on your finger to taste yourself. The guys are speechless, never thinking you would actually do it, and watch you intently.';
     }
     if (((s as any).temp_randB ?? 0) === 1) {
+      (s as any).rnd_droch_text = 'You gently rub your fingers over your incredibly wet slit, and nearly orgasm at the first touch. You carefully touch yourself for a few minutes, making sure you don\'t orgasm in front of the guys.';
     }
     if (((s as any).temp_randB ?? 0) === 2) {
+      (s as any).rnd_droch_text = 'You spread your legs and expose your bare pussy to the guys, before you slowly begin to rub your clitoris. The guys watch you intently, not wanting to miss a single moment of your show.';
     }
     if (((s as any).temp_randB ?? 0) === 3) {
+      (s as any).rnd_droch_text = 'You bite your lip as you gently massage your clitoris, fondling your tits with your available hand. The guys are looking at your show with wide eyes, unsure what they did to convince you to actually do this for them.';
     }
     // TODO-QSP: dynamic text: <<$rnd_droch_text>>
     scene.text(`${((s as any).rnd_droch_text || '')}`);
@@ -979,10 +1169,13 @@ function enterCumface(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).cum_face_text = 'He cums all over your face, shooting his hot jets of jizz all over you. You lick your lips obediently, and wink at him lewdly once he\'s finished.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).cum_face_text = 'His warm and slightly sweet jets of cum hit your face. After he\'s mostly finished, you massage his cock for a little while to squeeze out the last drops, and you lick his shrinking cock clean obediently.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).cum_face_text = 'When he\'s about to orgasm, he pulls his cock away from you and begins to jerk off. His sperm flies quite far, splattering against your face with quite a bit of force. The second and third blast hit your cheeks, while the fourth and fifth end up in your hair. Eventually he\'s done, and groans loudly when you lick him clean.';
     }
     // TODO-QSP: dynamic text: <<$cum_face_text>>
     scene.text(`${((s as any).cum_face_text || '')}`);
@@ -1012,15 +1205,19 @@ function enterCumfaceGroup(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).cum_face_textgr = 'You fall back, feeling exhausted. Your face is covered in a mixture of the guys\' cum and your tears and saliva.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).cum_face_textgr = 'You fall back, feeling exhausted. Your face is covered in a mixture of the guys\' cum and your tears and saliva. ' + ((s as any).shultextrand3 ?? 0) + ' grins and says: "She\'s got a great mouth on her… it\'s like she was made for sucking cocks!" You blush and look away with your head held down, trying to ignore their degrading comments while you clean yourself up a little.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
     }
     // TODO-QSP: <<$shultextrand33>> spits on your face and gives you a few slaps, right before he cums on your cheek...
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).cum_face_textgr = 'The guys all cum at roughly the same time, shooting their loads all over your face. When they\'re done, you look like a glazed donut.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).cum_face_textgr = 'Luckily, you had the guys all pent up and they finish fairly quickly. After they shoot their hot loads of cum all over your face, they carefully wipe their dirty cocks off on your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' before letting go of your head.';
     }
     // TODO-QSP: dynamic text: <<$cum_face_textgr>>
     scene.text(`${((s as any).cum_face_textgr || '')}`);
@@ -1050,16 +1247,22 @@ function enterCummouth(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).cum_mouth_text = 'You feel his hot jets of cum shooting down your throat, and choke in surprise. You manage to recover though, and obediently swallow every drop of his load.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).cum_mouth_text = 'He grins: "Bon appetit, sperm slut" and cums down your throat. Then he wipes his limp cock against your cheeks and walks away, not paying you any more attention.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).cum_mouth_text = 'After a few quick hand movements, he pulls your face towards his cock and shoots his cum all over your tongue. Then he puts his hand on your jaw and forces it shut, making you swallow his load.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).cum_mouth_text = 'You can\'t do much besides swallow his load, and involuntarily wince at the horrible taste of it. He doesn\'t care, and tells you to lick him clean before he pulls his cock from your mouth.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).cum_mouth_text = 'Vasily grins at you and says: "Get used to it, whore. This is the way we\'ll be feeding you from now on" while you carefully lick the remnants of sperm from the shrinking cock. You don\'t feel bold enough to refute his statement right now, and just let it slide.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).cum_mouth_text = 'He forces his cock down your throat, and he cums while his balls are touching your lips. You nearly suffocate, but he grabs hold of your hair and keeps forcing you down against his groin until he\'s done. When he finally shot all his cum down your throat he lets you go, and you gasp for air when you can finally breathe again.';
     }
     // TODO-QSP: dynamic text: <<$cum_mouth_text>>
     scene.text(`${((s as any).cum_mouth_text || '')}`);
@@ -1089,12 +1292,16 @@ function enterCummouthGroup(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).cum_mouth_textgr = 'The guys line up, and the cock you are currently sucking on begins to spasm in your mouth, soon filling it with jets of slightly bitter cum. You choke in surprise and do your best to hide your disgust while you swallow every drop, while the second guy approaches you. Two more loads later, you sit back in the grass and idly lick your lips while the guys grin happily and pull up their pants.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).cum_mouth_textgr = 'He grins: "Bon appetit, sperm slut" and cums down your throat. Then he wipes his limp cock against your cheeks and walks away, not paying you any more attention. You\'re not given any time to respond, since a second guy immediately moves in to take his place. You dutifully swallow the loads of all three guys, and sit back in the grass licking your lips while the guys grin and pull up their pants again.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).cum_mouth_textgr = 'You can\'t do much besides swallow his load, and involuntarily wince at the horrible taste of it. He doesn\'t care, and tells you to lick him clean before he pulls his cock from your mouth.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).cum_mouth_textgr = 'Dan forces his cock down your throat, and he cums while his balls are touching your lips. You nearly suffocate, but he grabs hold of your hair and keeps forcing you down against his groin until he\'s done. When he finally shot all his cum down your throat he lets you go, and you gasp for air when you can finally breathe again. Vitek immediately takes his place though, and after a few quick gasps of breath your throat is filled again. Vitek and then Vasily fuck your throat for several more minutes, and eventually both cum in your mouth as well.';
     }
     // TODO-QSP: dynamic text: <<$cum_mouth_textgr>>
     scene.text(`${((s as any).cum_mouth_textgr || '')}`);
@@ -1142,10 +1349,13 @@ function enterCumass(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).cumass_text = 'You feel his body grow tense against yours, and soon after you feel a hot liquid spreading inside you. When he\'s nearly finished, he pulls out his cock and squeezes the last drops out over your ass, before rubbing it against your pussy, rubbing the cum that is slowly running out of your sphincter over your snatch too.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).cumass_text = 'He shoots his load inside your ass, groaning loudly. Then he pulls out his cock and pushes your ass cheeks aside, slowly watching his cum run out of your stretched hole.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).cumass_text = 'You feel hot jets of his jizz spurting inside your asshole, and when he pulls out you can feel it slowly dribbling down your labia.';
     }
     scene.img('images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumass\'+rand(1, 2)+\'.mp4');
     // TODO-QSP: dynamic text: <<$cumass_text>>
@@ -1265,7 +1475,7 @@ function enterVaginalsex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Let him fuck your pussy', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
     (s as any).dick = 17;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1273,16 +1483,12 @@ function enterVaginalsex(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
     }
-    // TODO-QSP: He puts one hand on your throat and pulls your body up, and whispers in your ear: "Don''t worry, slu...
-    // TODO-QSP: Then you feel his cock rubbing against your pussy lips, and them slowly parting to let him in. You''...
-    // TODO-QSP: At first his thrusts are slow and careful, but he soon speeds up and rams his cock in and out of you...
-    // TODO-QSP: You suddenly feel the gaze of the other guys upon you, and you blush while you look in their directi...
     // TODO-QSP: Soon enough, the fucking makes you feel so good that you forget all about them, and just close your ...
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).vag_gop_text = 'Your cunt is quite wet by now, and when he moves his ' + ((s as any).dick ?? 0) + 'cm cock against your pussy it slides in easily. Realizing he doesn\'t have to take it slow with you, he just begins to ram his cock inside you, and you reach down to massage your clit while you get fucked like a whore in the park.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
     }
-    // TODO-QSP: It feels great and you moan silently, begging for him to not stop fucking you. Then you hear a hoars...
     // TODO-QSP: Oh crap, did you just say that out loud!? He redoubles his efforts and fucks you even harder, while ...
     // TODO-QSP: dynamic text: <<$vag_gop_text>>
     scene.text(`${((s as any).vag_gop_text || '')}`);
@@ -1302,7 +1508,7 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Let him fuck your ass', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
     (s as any).dick = 17;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;

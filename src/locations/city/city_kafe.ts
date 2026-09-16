@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'start';
+  (s as any).loc = 'city_kafe';
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'start';
   (s as any).kafe_food = (((s as any).pcs_ate ?? 0) + ((s as any).pcs_drank ?? 0));
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
@@ -66,6 +71,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTable(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'table';
+  (s as any).loc = 'city_kafe';
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'table';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/kafe.jpg');
@@ -83,6 +93,8 @@ function enterTable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFabi2(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'fabi2';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>The Roadhouse</b></center>');
@@ -98,6 +110,8 @@ function enterFabi2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQuit(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'quit';
   qspCall(s, 'jobs', 'set_terminated', 'city_cafe_waitress');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -118,6 +132,8 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOldJob(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'old_job';
   qspCall(s, 'jobs', 'set_employed', 'city_cafe_waitress');
   qspCall(s, 'stat', '');
   scene.text('<center><b>The Roadhouse</b></center>');
@@ -137,6 +153,8 @@ function enterOldJob(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFabi(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'fabi';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>The Roadhouse</b></center>');
@@ -172,6 +190,7 @@ function enterFabi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   if (((s as any).job_last_work_day ?? 0)?.['city_cafe_waitress'] === ((s as any).daystart ?? 0)) {
     scene.text('You have already worked your shift today.');
@@ -183,21 +202,21 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'clock', 'city_cafe_waitress');
   }
   if ((!(Math.floor(Math.random() * 6) + 0))) {
-    scene.actions([{ label: 'Continue', goto: ['city_kafe', 'beg1'] }]);
+    qspGoto(s, 'city_kafe', 'beg1');
   } else {
     if ((!(Math.floor(Math.random() * 5) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['city_kafe', 'beg2'] }]);
+      qspGoto(s, 'city_kafe', 'beg2');
     } else {
       if ((!(Math.floor(Math.random() * 4) + 0))) {
-        scene.actions([{ label: 'Continue', goto: ['city_kafe', 'beg3'] }]);
+        qspGoto(s, 'city_kafe', 'beg3');
       } else {
         if ((!(Math.floor(Math.random() * 3) + 0))) {
-          scene.actions([{ label: 'Continue', goto: ['city_kafe', 'beg4'] }]);
+          qspGoto(s, 'city_kafe', 'beg4');
         } else {
           if ((!(Math.floor(Math.random() * 2) + 0))) {
-            scene.actions([{ label: 'Continue', goto: ['city_kafe', 'beg5'] }]);
+            qspGoto(s, 'city_kafe', 'beg5');
           } else {
-            scene.actions([{ label: 'Continue', goto: ['city_kafe', 'beg6'] }]);
+            qspGoto(s, 'city_kafe', 'beg6');
           }
         }
       }
@@ -208,7 +227,9 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeg1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (30);
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'beg1';
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (30);
   if (((s as any).hour ?? 0) <= 15) {
     (s as any).minut = ((s as any).minut ?? 0) + ((15-((s as any).hour ?? 0)) * 60 +30 - ((s as any).minut ?? 0));
   }
@@ -223,7 +244,9 @@ function enterBeg1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeg2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (30);
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'beg2';
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (30);
   if (((s as any).hour ?? 0) <= 15) {
     (s as any).minut = ((s as any).minut ?? 0) + ((15-((s as any).hour ?? 0)) * 60 +30 - ((s as any).minut ?? 0));
   }
@@ -238,7 +261,9 @@ function enterBeg2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeg3(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (30);
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'beg3';
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (30);
   if (((s as any).hour ?? 0) <= 15) {
     (s as any).minut = ((s as any).minut ?? 0) + ((15-((s as any).hour ?? 0)) * 60 +30 - ((s as any).minut ?? 0));
   }
@@ -253,7 +278,9 @@ function enterBeg3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeg4(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (30);
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'beg4';
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (30);
   if (((s as any).hour ?? 0) <= 15) {
     (s as any).minut = ((s as any).minut ?? 0) + ((15-((s as any).hour ?? 0)) * 60 +30 - ((s as any).minut ?? 0));
   }
@@ -273,7 +300,9 @@ function enterBeg4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeg5(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (40);
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'beg5';
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (40);
   if (((s as any).hour ?? 0) <= 15) {
     (s as any).minut = ((s as any).minut ?? 0) + ((15-((s as any).hour ?? 0)) * 60 +30 - ((s as any).minut ?? 0));
   }
@@ -288,7 +317,9 @@ function enterBeg5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeg6(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (40);
+  (s as any).menu_loc = 'city_kafe';
+  (s as any).menu_arg = 'beg6';
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (40);
   if (((s as any).hour ?? 0) <= 15) {
     (s as any).minut = ((s as any).minut ?? 0) + ((15-((s as any).hour ?? 0)) * 60 +30 - ((s as any).minut ?? 0));
   }
@@ -303,6 +334,7 @@ function enterBeg6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunch(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/kafe.jpg');
   scene.text('Your break time comes, giving you a chance to sit down, eat some food, talk to your coworkers and maybe go to the bathroom.');
@@ -339,7 +371,7 @@ function enterLunchAlone(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchFabi(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).city_cafe) (s as any).city_cafe = {}; (s as any).city_cafe['lunch_talk'] = ((s as any).daystart ?? 0);
+  ((s as any).city_cafe = (s as any).city_cafe ?? {})['lunch_talk'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'npc_relationship', 'modify', 'A41', 1);
   scene.text('<center><b>The Roadhouse</b></center>');
@@ -359,7 +391,7 @@ function enterLunchFabi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchAshot(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).city_cafe) (s as any).city_cafe = {}; (s as any).city_cafe['lunch_talk'] = ((s as any).daystart ?? 0);
+  ((s as any).city_cafe = (s as any).city_cafe ?? {})['lunch_talk'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'npc_relationship', 'modify', 'A42', 1);
   scene.text('<center><b>The Roadhouse</b></center>');
@@ -380,7 +412,7 @@ function enterLunchAshot(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchMarisha(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).city_cafe) (s as any).city_cafe = {}; (s as any).city_cafe['lunch_talk'] = ((s as any).daystart ?? 0);
+  ((s as any).city_cafe = (s as any).city_cafe ?? {})['lunch_talk'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'npc_relationship', 'modify', 'A93', 1);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEatLunch(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -401,7 +433,7 @@ function enterLunchMarisha(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchNika(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).city_cafe) (s as any).city_cafe = {}; (s as any).city_cafe['lunch_talk'] = ((s as any).daystart ?? 0);
+  ((s as any).city_cafe = (s as any).city_cafe ?? {})['lunch_talk'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'npc_relationship', 'modify', 'A43', 1);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEatLunch(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -422,7 +454,7 @@ function enterLunchNika(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEatLunch(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).city_cafe) (s as any).city_cafe = {}; (s as any).city_cafe['lunch'] = ((s as any).daystart ?? 0);
+  ((s as any).city_cafe = (s as any).city_cafe ?? {})['lunch'] = ((s as any).daystart ?? 0);
   (s as any).frost = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -447,18 +479,18 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + ((18-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0));
   }
   if (((s as any).city_cafe ?? 0)?.['events_firsttime'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['city_kafe', 'events1'] }]);
+    qspGoto(s, 'city_kafe', 'events1');
   } else {
     if (((s as any).city_cafe ?? 0)?.['events_firsttime'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['city_kafe', 'events2'] }]);
+      qspGoto(s, 'city_kafe', 'events2');
     } else {
       if (((s as any).city_cafe ?? 0)?.['events_firsttime'] === 2) {
-        scene.actions([{ label: 'Continue', goto: ['city_kafe', 'events3'] }]);
+        qspGoto(s, 'city_kafe', 'events3');
       } else {
         if (((s as any).city_cafe ?? 0)?.['events_firsttime'] === 3) {
-          scene.actions([{ label: 'Continue', goto: ['city_kafe', 'events4'] }]);
+          qspGoto(s, 'city_kafe', 'events4');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['city_kafe', 'shift_end'] }]);
+          qspGoto(s, 'city_kafe', 'shift_end');
         }
       }
     }
@@ -469,7 +501,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A93', 1);
-  if (!(s as any).city_cafe) (s as any).city_cafe = {}; (s as any).city_cafe['events_firsttime'] = ((s as any).city_cafe['events_firsttime'] ?? 0) + (1);
+  ((s as any).city_cafe = (s as any).city_cafe ?? {})['events_firsttime'] = ((s as any).city_cafe['events_firsttime'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/Marisha/MAR-002.jpg');
@@ -490,7 +522,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A41', 1);
-  if (!(s as any).city_cafe) (s as any).city_cafe = {}; (s as any).city_cafe['events_firsttime'] = ((s as any).city_cafe['events_firsttime'] ?? 0) + (1);
+  ((s as any).city_cafe = (s as any).city_cafe ?? {})['events_firsttime'] = ((s as any).city_cafe['events_firsttime'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/fabi/FAB-002.jpg');
@@ -512,7 +544,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A43', 1);
-  if (!(s as any).city_cafe) (s as any).city_cafe = {}; (s as any).city_cafe['events_firsttime'] = ((s as any).city_cafe['events_firsttime'] ?? 0) + (1);
+  ((s as any).city_cafe = (s as any).city_cafe ?? {})['events_firsttime'] = ((s as any).city_cafe['events_firsttime'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/Nika/NIK-002.jpg');
@@ -568,21 +600,21 @@ function enterShiftEnd(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + ((20-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0));
   }
   if ((!(Math.floor(Math.random() * 6) + 0))) {
-    scene.actions([{ label: 'Continue', goto: ['city_kafe', 'end_1'] }]);
+    qspGoto(s, 'city_kafe', 'end_1');
   } else {
     if ((!(Math.floor(Math.random() * 5) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['city_kafe', 'end_2'] }]);
+      qspGoto(s, 'city_kafe', 'end_2');
     } else {
       if ((!(Math.floor(Math.random() * 4) + 0))) {
-        scene.actions([{ label: 'Continue', goto: ['city_kafe', 'end_3'] }]);
+        qspGoto(s, 'city_kafe', 'end_3');
       } else {
         if ((!(Math.floor(Math.random() * 3) + 0))) {
-          scene.actions([{ label: 'Continue', goto: ['city_kafe', 'end_4'] }]);
+          qspGoto(s, 'city_kafe', 'end_4');
         } else {
           if ((!(Math.floor(Math.random() * 2) + 0))) {
-            scene.actions([{ label: 'Continue', goto: ['city_kafe', 'end_5'] }]);
+            qspGoto(s, 'city_kafe', 'end_5');
           } else {
-            scene.actions([{ label: 'Continue', goto: ['city_kafe', 'end_6'] }]);
+            qspGoto(s, 'city_kafe', 'end_6');
           }
         }
       }
@@ -593,7 +625,7 @@ function enterShiftEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd_1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (50);
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (50);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/END-001.jpg');
   scene.text('You\'re fortunate this evening to be able to wait on three regulars who are fully immersed in the vibe Fabi is trying to present. Each uses an English nickname – Lucky, Spike and Slim – and they pepper their conversation with 50s American slang.');
@@ -607,7 +639,7 @@ function enterEnd_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd_2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (40);
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (40);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/END-002.jpg');
   scene.text('It\'s a bad evening. You\'re saddled with a continuous stream of demanding customers who are constantly calling for your attention, and by the time your shift ends you\'re so frazzled you barely know which end is up. You begin mixing up orders, forgetting drinks, dropping plates and generally having a lousy time of it.');
@@ -621,7 +653,7 @@ function enterEnd_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd_3(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (30);
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (30);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/END-003.jpg');
   scene.text('It\'s a busy night and the time flies. You\'re constantly rushing back and forth between the kitchen and the dining area as fast as your feet can take you, and you find yourself in a good groove.');
@@ -634,7 +666,7 @@ function enterEnd_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd_4(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (40);
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (40);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/END-004.jpg');
   scene.text('Most of the time the customers at the Roadhouse are pretty cool, but sometimes, like tonight, they can be a real pain in the ass. An unusually high percentage of your tables tonight are guys with no women, and most of them seem to want to hit on you more than they want to eat. Some of it is playful, but a few of them get overly insistent and make it unpleasant just to walk past their table with their constant comments.');
@@ -647,7 +679,7 @@ function enterEnd_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd_5(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (30);
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (30);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/END-005.jpg');
   scene.text('The evening starts pretty well, except for a couple of misbehaved kids whose parents are more interested in looking at their phones than monitoring them, but it all goes downhill with a single jerk: one customer seems determined to have a terrible time, which wouldn\'t be so bad if he wasn\'t also determined to do it loudly. No matter what you do, his complaints echo from one end of the room to the other.');
@@ -660,7 +692,7 @@ function enterEnd_5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd_6(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (50);
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) - (50);
   qspCall(s, 'npc_relationship', 'modify', 'A41', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A42', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A93', 1);
@@ -678,17 +710,17 @@ function enterEnd_6(s: GameState, scene: SceneBuilder): void {
 
 function enterTips(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PServer ?? 0) === 1) {
-    if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (50);
+    ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = ((s as any).workKafe['tips_roll'] ?? 0) + (50);
   }
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_total'] = ((Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1)) + (((s as any).workKafe ?? {})?.['tips_roll'] ?? 0) + ((s as any).pcs_apprnc ?? 0) - 100 + ((s as any).pcs_servng ?? 0);
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_total'] = ((Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1)) + (((s as any).workKafe ?? {})?.['tips_roll'] ?? 0) + ((s as any).pcs_apprnc ?? 0) - 100 + ((s as any).pcs_servng ?? 0);
   if (((s as any).workKafe ?? 0)?.['tips_total'] < 100) {
-    if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_total'] = 110 - (Math.floor(Math.random() * 21) + 0);
+    ((s as any).workKafe = (s as any).workKafe ?? {})['tips_total'] = 110 - (Math.floor(Math.random() * 21) + 0);
   }
   if (((s as any).workKafe ?? 0)?.['tips_total'] > 500) {
-    if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_total'] = 510 - (Math.floor(Math.random() * 21) + 0);
+    ((s as any).workKafe = (s as any).workKafe ?? {})['tips_total'] = 510 - (Math.floor(Math.random() * 21) + 0);
   }
   // TODO-QSP: gs 'money', 'earn', workKafe['tips_total']
-  if (!(s as any).workKafe) (s as any).workKafe = {}; (s as any).workKafe['tips_roll'] = 0;
+  ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = 0;
   if (((s as any).pcs_servng ?? 0) < 100) {
     qspCall(s, 'exp_gain', 'servng', 1);
   }

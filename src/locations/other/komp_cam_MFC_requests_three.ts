@@ -1,11 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).camGirl) (s as any).camGirl = {}; (s as any).camGirl['MFC_lastrequest'] = ((s as any).totminut ?? 0);
+  ((s as any).camGirl = (s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   scene.build();
 }
@@ -24,7 +24,8 @@ function enterShowAsshole(s: GameState, scene: SceneBuilder): void {
       { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -83,7 +84,8 @@ function enterShowPussy(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse to take off your panties', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -158,7 +160,8 @@ function enterShowTits(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse to take off your bra', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -225,7 +228,8 @@ function enterPlayTits(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse to play with your boobs', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -266,7 +270,8 @@ function enterShowCunt(s: GameState, scene: SceneBuilder): void {
       { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -276,6 +281,10 @@ function enterShowCunt(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/items/accessories/computer/camwhore12.jpg');
     scene.text('You lie down comfortably and put your hand between your legs, gently rubbing your labia with your fingers. You put some effort into showing how wet you are already, which is met with some enthusiastic chatter.');
     if (((s as any).pcs_horny ?? 0) < 100) {
+      (s as any).orgasm_or = 'no';
+    } else {
+      (s as any).orgasm_txt = 'You groan despite yourself, and realize you\'re about to have an orgasm on camera! Deciding it\'s too late to stop, you flick your fingers over your clit several more times and moan loudly as your whole body begins to tremble. When you look at the chat again, you see a mixture of compliments and lewd comments on your show. Either way: they loved it!';
+      (s as any).orgasm_or = 'custom';
     }
     qspCall(s, 'arousal', 'clit_finger', (-5));
     qspCall(s, 'stat', '');
@@ -304,7 +313,8 @@ function enterShowVagina(s: GameState, scene: SceneBuilder): void {
       { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
     ]);
   }
   // TODO-QSP: end

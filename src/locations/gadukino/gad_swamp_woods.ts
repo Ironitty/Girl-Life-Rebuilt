@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_swamp_woods', 'start');
+  (s as any).location_type = 'secluded';
+  (s as any).forest_args1 = 'gad_swamp_woods';
   scene.img('images/locations/gadukino/hunters/nearby_woods.jpg');
   scene.text('You are in the woods near the hut. You can see it not too far in the distance.');
   scene.text('You can also venture deeper into the woods to circle around the swamp, granted you do not get lost trying.');

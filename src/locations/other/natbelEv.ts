@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -15,21 +15,29 @@ function enterNatSchedule(s: GameState, scene: SceneBuilder): void {
     (s as any).NatashaLoc = Math.floor(Math.random() * 7) + 1;
   }
   if ((!((s as any).NatashaLoc ?? 0))) {
+    (s as any).NatashaLocMsg = 'Natasha isn\'t home right now.';
   } else {
     if (((s as any).NatashaLoc ?? 0) === 1) {
+      (s as any).NatashaLocMsg = 'Oh, here\'s Natasha. I\'ll leave you two to it.';
     } else {
       if (((s as any).NatashaLoc ?? 0) === 2) {
+        (s as any).NatashaLocMsg = 'Natasha is in her room. You know the way.';
       } else {
         if (((s as any).NatashaLoc ?? 0) === 3) {
+          (s as any).NatashaLocMsg = 'Natasha is in the kitchen. You know the way.';
         } else {
           if (((s as any).NatashaLoc ?? 0) === 4) {
+            (s as any).NatashaLocMsg = 'Natasha is in the living room. You know the way.';
           } else {
             if (((s as any).NatashaLoc ?? 0) === 5) {
+              (s as any).NatashaLocMsg = 'Natasha was in her room just a little while ago. You\'ll have to go and look for her.';
             } else {
               if (((s as any).NatashaLoc ?? 0) === 6) {
                 (s as any).NatashaShower = 1;
+                (s as any).NatashaLocMsg = 'Natasha is busy taking a shower at the moment. You can wait in her room or come sit with me in the living room if you\'d like.';
               } else {
                 if (((s as any).NatashaLoc ?? 0) === 7) {
+                  (s as any).NatashaLocMsg = 'Natasha is doing some laundry. You know the way.';
                 }
               }
             }
@@ -50,7 +58,7 @@ function enterNatbelGo(s: GameState, scene: SceneBuilder): void {
     { label: 'Go with Natasha', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 0) {
-      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['VisitedHome'] = 1;
+      ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['VisitedHome'] = 1;
     }
     (s as any).NatashaLoc = 2;
     qspCall(s, 'stat', '');
@@ -85,9 +93,9 @@ function enterStudyTogether(s: GameState, scene: SceneBuilder): void {
   (s as any).lern = ((s as any).lern ?? 0) + (Math.floor(Math.random() * 4) + 3);
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1);
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 0) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['QWstage'] = 1;
   }
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['homework'] = ((s as any).NatbelQW['homework'] ?? 0) + (1);
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['homework'] = ((s as any).NatbelQW['homework'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/study.jpg');
   scene.text('"Let\'s do our homework." You tell Natasha as you start taking your things from your bag.');
@@ -197,9 +205,9 @@ function enterNatcumresponse(s: GameState, scene: SceneBuilder): void {
 
 function enterNatmomhome(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 23)  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 23)) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherHome'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherHome'] = 1;
   } else {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherHome'] = 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherHome'] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -207,25 +215,25 @@ function enterNatmomhome(s: GameState, scene: SceneBuilder): void {
 
 function enterNatMotherState(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 0) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherState'] = Math.floor(Math.random() * 6) + 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherState'] = Math.floor(Math.random() * 6) + 1;
   }
   if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 1) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherStateMsg'] = 'tired';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherStateMsg'] = 'tired';
   } else {
     if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 2) {
-      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherStateMsg'] = 'happy';
+      ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherStateMsg'] = 'happy';
     } else {
       if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 3) {
-        if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherStateMsg'] = 'dressed to go out on a date';
+        ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherStateMsg'] = 'dressed to go out on a date';
       } else {
         if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 4) {
-          if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherStateMsg'] = 'drunk';
+          ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherStateMsg'] = 'drunk';
         } else {
           if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 5) {
-            if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherStateMsg'] = 'like something\'s bothering her';
+            ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherStateMsg'] = 'like something\'s bothering her';
           } else {
             if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 6) {
-              if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherStateMsg'] = 'angry';
+              ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherStateMsg'] = 'angry';
             }
           }
         }
@@ -313,7 +321,7 @@ function enterAskState(s: GameState, scene: SceneBuilder): void {
 
 function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 4) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 5;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['QWstage'] = 5;
   }
   scene.img('images/characters/pavlovsk/school/girl/natasha/natgetreadyschool.jpg');
   scene.text('When you head over to Natasha\'s apartment to pick her up her mother opens the door and tells you she\'s in her room getting ready so you go there.');
@@ -343,7 +351,8 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to school', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 9;
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
         ]);
@@ -370,7 +379,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
     scene.text('Natasha obediently opens her legs for you. Showing off her pretty pussy. Not wasting any time you start playing with her, first rubbing her lips, then focussing more on her clit as you watch closely while Natasha\'s pussy gets wetter and wetter.');
     scene.actions([
       { label: 'Stuff her panties', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['panty_stuff_day'] = ((s as any).daystart ?? 0);
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['panty_stuff_day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/stuffpanties.mp4');
     scene.text('You stop playing with her pussy and grab her panties, handing them over to her. "Put them inside your pussy."');
     scene.text('Natasha looks at you in confusion for a second but then starts to slowly push them into her pussy.');
@@ -381,7 +390,8 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to school', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 9;
-  }, goto: ['natbelEv', 'schoolwalk'] },
+    qspGoto(s, 'natbelEv', 'schoolwalk');
+  } },
     ]);
   } },
     ]);
@@ -394,17 +404,18 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go to school', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 9;
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
   ]);
   scene.build();
 }
 
 function enterSchoolwalk(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 5) + 0) > 0) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+    qspGoto(s, 'gschool_grounds', 'main');
   }
   if (((s as any).NatbelQW ?? 0)?.['KolkaTease'] === 0) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['KolkaTease'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['KolkaTease'] = 1;
   }
   scene.img('images/characters/pavlovsk/school/girl/natasha/tease.jpg');
   scene.text('As you reach the bottom of the stairs, you notice Kolka coming down as well.');
@@ -448,9 +459,9 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
       { label: 'Make her play with a cucumber', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 10) {
-      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 11;
+      ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['QWstage'] = 11;
     }
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['cucumber'] = 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['cucumber'] = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natashacucumber01.jpg');
     scene.text('You move over and make her sit on top of it.');
     scene.text('"I thought we could have some fun in here. The noise from the washer should prevent anyone from hearing." You tell her as you hand her the cucumber.');
@@ -494,6 +505,7 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
 function enterShowerspy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
   qspCall(s, 'core_library', 'setloc', 'natbelapt', 'bathroom');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natshowerspy01.jpg');
   scene.text('You open the bathroom door as quietly as you can and peer through the crack to see Natasha sitting down in the shower while she\'s shaving her pussy, completely absorbed in the her grooming.');
@@ -683,6 +695,7 @@ function enterShowerEscalation(s: GameState, scene: SceneBuilder): void {
     scene.text(`As you slowly come down in your afterglow and cuddle up Natasha whispers to you with a cheeky grin. "Umm, that was nice ${((s as any).pcs_nickname || '')}, we'll have to have a repeat performance at some point."`);
     scene.text('You give her a hug as you reply. "Yep, 100% but we\'ll need to be careful we don\'t end up too wrinkly from all the water."');
     qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'trib', 5, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'end');
     if (((s as any).loc ?? 0) === 'natbelapt') {
@@ -692,7 +705,7 @@ function enterShowerEscalation(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -763,7 +776,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const natbelEv: LocationDef = {
   name: 'natbelEv',
-  title: '<<$npc_firstname[\'A16\']>> <<$npc_lastname[\'A16\']>>',
   region: 'other',
   locationType: 'bathroom',
   enter: enter,

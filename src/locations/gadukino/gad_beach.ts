@@ -1,15 +1,18 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gad_beach';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_beach', 'start');
+  (s as any).location_type = 'public_outdoors';
+  (s as any).locclass = 'beach';
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Village Beach</h4></center>');
@@ -32,16 +35,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A small country beach, where you can sunbathe and swim.');
   if ((! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  (Math.floor(Math.random() * 11) + 0) === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
-    scene.text('<a href="exec: gt \'gad_beach\', \'GuysBeach\' ">Kolyamba and Vasyan</a> are resting on the riverbank.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_beach\\u0027, \\u0027GuysBeach\\u0027); return false;">Kolyamba and Vasyan</a> are resting on the riverbank.');
   }
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
     if ((Math.floor(Math.random() * 11) + 0) < 5) {
-      scene.text('<a href="exec:gt \'gad_beach\', \'Mira\', 1 ">Mira</a> is lying on the beach sunbathing.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_beach\\u0027, \\u0027Mira\\u0027, String(window.__gameStore.getState().1 ?? \\u0027\\u0027)); return false;">Mira</a> is lying on the beach sunbathing.');
       if (((s as any).npc_rel ?? 0)?.['A60'] < 15) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
     } else {
-      scene.text('<a href="exec:gt \'gad_beach\', \'Mira\', 0 ">Mira</a> is in the river splashing water around and having fun.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_beach\\u0027, \\u0027Mira\\u0027, String(window.__gameStore.getState().0 ?? \\u0027\\u0027)); return false;">Mira</a> is in the river splashing water around and having fun.');
       if (((s as any).npc_rel ?? 0)?.['A60'] < 15) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
@@ -85,10 +88,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gp_zlatek', 'check_for_chores', 'beach');
   }
   if ((! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  qspFunc(s, 'miroslava_schedule', 'was_here')) {
-    scene.actions([{ label: 'Continue', goto: ['gad_beach', 'Mira_leaves'] }]);
+    qspGoto(s, 'gad_beach', 'Mira_leaves');
   } else {
     if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'arrive_Mira_already_there'] }]);
+      qspGoto(s, 'gad_beach', 'arrive_Mira_already_there');
     }
   }
   // TODO-QSP: end
@@ -107,7 +110,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
-        scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
+        qspGoto(s, 'gad_river', 'start');
       }
     }
   } },
@@ -161,18 +164,18 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'hj', (-15), 'gangbang', 'sub', 'rough');
         qspCall(s, 'arousal', 'end');
         qspCall(s, 'boyStat', 'A63');
-        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+        ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1, '', '', 20);
         qspCall(s, 'cum_call', 'hair', ((s as any).boy ?? 0), 1, '', '', 20);
         qspCall(s, 'boyStat', 'A61');
-        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+        ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1, '', '', 20);
         qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1, '', '', 20);
         qspCall(s, 'boyStat', 'A62');
-        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+        ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1, '', '', 20);
         qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1, '', '', 20);
-        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+        ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
         qspCall(s, 'stat', '');
         scene.actions([
           { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
@@ -182,7 +185,7 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
         scene.text('As soon as you get out of the river, you meet a grinning Kolyamba. He smiles wickedly and commands you to get down on your hands and knees so he can fuck you in the ass…');
         qspCall(s, 'arousal', 'auto_lube', 'anal');
         qspCall(s, 'boyStat', 'A61');
-        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+        ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         (s as any).pose = 1;
         qspCall(s, 'dinSex', 'boy_wants_anal');
         qspCall(s, 'arousal', 'anal', 20, 'sub');
@@ -194,7 +197,7 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
+      qspGoto(s, 'gad_beach', 'start', '1');
     }
   } },
     ]);
@@ -245,21 +248,21 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'bj', 10, 'gangbang', 'sub', 'rough');
       qspCall(s, 'arousal', 'end');
       qspCall(s, 'boyStat', 'A63');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
       qspCall(s, 'boyStat', 'A61');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1, '', '', 20);
       qspCall(s, 'boyStat', 'A62');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
       qspCall(s, 'stat', '');
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+      ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
       scene.actions([
         { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
+      qspGoto(s, 'gad_beach', 'start', '1');
     }
   } },
     ]);
@@ -278,7 +281,7 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
         { label: 'Sunbathe (1:00)', handler: (st: GameState) => {
     if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  (! qspFunc(s, 'miroslava_schedule', 'was_here'))) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 1;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
       if (((s as any).pcs_inhib ?? 0) < 50) {
         (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
       }
@@ -311,7 +314,7 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
         } else {
           if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-            if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+            ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
             scene.text('You smear the suntan lotion all over your body to help prevent sunburn.');
             (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
           }
@@ -326,20 +329,20 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'bj', 10, 'gangbang', 'sub', 'rough');
       qspCall(s, 'arousal', 'hj', 10, 'gangbang', 'sub', 'rough');
       qspCall(s, 'boyStat', 'A62');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
       qspCall(s, 'boyStat', 'A63');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1, '', '', 20);
       qspCall(s, 'boyStat', 'A61');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
       qspCall(s, 'arousal', 'end');
       scene.actions([
         { label: 'Get dressed', goto: ['gad_beach', 'start', '1'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
+      qspGoto(s, 'gad_beach', 'start', '1');
     }
   } },
         ]);
@@ -360,7 +363,7 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
         } else {
           if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-            if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+            ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
             (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
             scene.text('You smear suntan lotion all over your body to prevent sunburn. Then, you\'re all lathered up and sunbathing a few minutes later.');
           }
@@ -377,15 +380,15 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'hj', 10, 'gangbang', 'sub', 'rough');
       qspCall(s, 'arousal', 'end');
       qspCall(s, 'boyStat', 'A61');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
       qspCall(s, 'boyStat', 'A62');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1, '', '', 20);
       qspCall(s, 'boyStat', 'A63');
-      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+      ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+      ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
@@ -400,7 +403,7 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
           { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
         ]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
+        qspGoto(s, 'gad_beach', 'start', '1');
       }
     }
   } },
@@ -436,19 +439,19 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/gadukino/mira/mira_in_river.jpg');
   scene.text('Arriving at the beach, you see Mira lying down, sunbathing on a towel.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 1;
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['swimday'] === ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
+      qspGoto(s, 'gad_beach', 'start', '1');
     } else {
       scene.img('images/characters/gadukino/mira/mirariver.jpg');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, why are you moping about on the shore? Get in the water and ...
       scene.text(`"${((s as any).pcs_nickname || '')}, why are you moping about on the shore? Get in the water and swim with me?" - Mira called out to you as she waded into the river.`);
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['swimday'] = ((s as any).daystart ?? 0);
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['swimday'] = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Agree and get changed', handler: (st: GameState) => {
@@ -504,8 +507,10 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetChanged(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gad_beach';
+  (s as any).loc_arg = 'get_changed';
   if (((s as any).locArgs?.[1] ?? 0) === 'start') {
-    scene.actions([{ label: 'Continue', goto: ['changingroom', ''] }]);
+    qspGoto(s, 'changingroom', '');
   } else {
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/river/undressbch.jpg');
@@ -749,6 +754,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex9.jpg');
       scene.text('Vasyan tells you he heard about a sex position where both of you will reach ecstasy. Intrigued by this, you take your clothes off and start caressing his cock. He removes your hand from his cock and tells you to get down on your hands and knees. Vasya walks behind you, grabs his cock and enters you from behind. You gasp as he mounts you. Soon enough, you both cry out in ecstasy cumming at the same time.');
       qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+      (s as any).orgasm_or = 'yes';
       qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
       qspCall(s, 'cum_call', '', '', ((s as any).npcID1 ?? 0), 1);
     } else {

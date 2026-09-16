@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   qspCall(s, 'core_library', 'setloc', 'natbelapt', 'home');
+  (s as any).location_type = 'private';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   (s as any).popolaini = 0;
@@ -23,23 +25,24 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     (s as any).NatashaLoc = 0;
   }
   if (((s as any).NatbelQW ?? 0)?.['pregday'] > 0  &&  (((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday']) > (280 + (Math.floor(Math.random() * (2 - -2 + 1)) + (-2)))) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['babycount'] = ((s as any).NatbelQW['babycount'] ?? 0) + (1);
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['pregday'] = 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['babycount'] = ((s as any).NatbelQW['babycount'] ?? 0) + (1);
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['pregday'] = 0;
   }
   qspCall(s, 'natbelEv', 'nat_schedule');
   qspCall(s, 'natbelEv', 'natmomhome');
   qspCall(s, 'natbelEv', 'nat_mother_state');
   if (((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherDoor'] = Math.floor(Math.random() * 2) + 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherDoor'] = Math.floor(Math.random() * 2) + 0;
   } else {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherDoor'] = 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherDoor'] = 0;
   }
   if (((s as any).NatbelQW ?? 0)?.['seethroughwearing'] === 1  &&  ((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherDoor'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherDoor'] = 1;
     (s as any).NatashaLoc = 2;
+    (s as any).NatashaLocMsg = 'Natasha is in her room. She has been there since your visit earlier today.';
   }
   if ((((s as any).NatashaLoc ?? 0) === 6  ||  ((s as any).NatashaLoc ?? 0) === 7)  &&  ((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherDoor'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherDoor'] = 1;
   }
   scene.img('images/locations/pavlovsk/resident/apartment/aptdoor.jpg');
   scene.text('You walk up to the front door and knock.');
@@ -57,7 +60,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).NatbelQW ?? 0)?.['blocked'] === 1) {
         if (((s as any).daystart ?? 0) > ((s as any).NatbelQW ?? 0)?.['block_day']  &&  ((s as any).NatbelQW ?? 0)?.['block_reason'] === 'slut') {
-          scene.actions([{ label: 'Continue', goto: ['natbel_friend', 'slut_reconcile_door'] }]);
+          qspGoto(s, 'natbel_friend', 'slut_reconcile_door');
         }
         scene.text('You knock on the door several times, but no one answers.');
         scene.actions([
@@ -113,7 +116,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
             }
             scene.text('You stand outside the Belova household, knocking on the door. It takes quite a while before someone actually comes and in the end, it turns out to be Natasha\'s mother.');
             if (((s as any).NatbelQW ?? 0)?.['MetMother'] === 0) {
-              if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MetMother'] = 1;
+              ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MetMother'] = 1;
               // TODO-QSP: dynamic text: Her mother stands there for a second before she seems to notice you. She looks <...
               scene.text(`Her mother stands there for a second before she seems to notice you. She looks ${((s as any).NatbelQW ?? 0)?.['MotherStateMsg'] ?? ''}.`);
               // TODO-QSP: dynamic text: "Hi, I'm <<$pcs_nickname>>. I go to school with Natasha. Is she home?"
@@ -159,19 +162,20 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
 
 function enterLeaveApartment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['MotherStateKeep'] === 0) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MotherState'] = 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherState'] = 0;
   }
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['NoTV'] = 0;
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['momrobe'] = 0;
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['seethroughkitchen'] = 0;
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['NoTV'] = 0;
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['momrobe'] = 0;
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['seethroughkitchen'] = 0;
   (s as any).natstayroom = 0;
-  scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'etaj_4'] }]);
+  qspGoto(s, 'pod_ezd', 'etaj_4');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'natbelapt', 'hallway');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -180,7 +184,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/hallway.jpg');
   if (((s as any).NatbelQW ?? 0)?.['FirstVisit'] === 0) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FirstVisit'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['FirstVisit'] = 1;
     scene.text('As you enter the Belova\'s hallway, you notice it looks very "Spartan". Their walls are bare, aside from a single picture of Natasha as a baby in her mother\'s arms. The smile on her face seems to light up the room all by itself.');
   } else {
     scene.text('This is the entrance hall of Natasha\'s apartment, with it\'s now familiar picture of Natasha as a baby in her mother\'s arms.');
@@ -237,38 +241,39 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'natbelapt', 'livingroom');
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/living.jpg');
   scene.text('Most of the living room is occupied by an old but comfortable looking couch. It\'s big enough to sleep in. In front of it stands an old tiny TV.');
-  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVshow'] = Math.floor(Math.random() * 9) + 0;
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVshow'] = Math.floor(Math.random() * 9) + 0;
   if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 0) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a nature show about wild animals in their natural habitat';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a nature show about wild animals in their natural habitat';
   } else {
     if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 1) {
-      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a documentary about history';
+      ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a documentary about history';
     } else {
       if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 2) {
-        if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'the news';
+        ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'the news';
       } else {
         if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 3) {
-          if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a talent show';
+          ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a talent show';
         } else {
           if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 4) {
-            if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a comedy';
+            ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a comedy';
           } else {
             if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 5) {
-              if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a romantic movie';
+              ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a romantic movie';
             } else {
               if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 6) {
-                if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a horror movie';
+                ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a horror movie';
               } else {
                 if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 7) {
-                  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a thriller';
+                  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a thriller';
                 } else {
                   if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 8) {
-                    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a porno';
+                    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a porno';
                   }
                 }
               }
@@ -283,8 +288,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll go grab us a snack, pick something good to watch." Natasha says as she heads to the kitchen.');
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] < 5  ||  ((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
       if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 8) {
-        if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVshow'] = 5;
-        if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['TVmsg'] = 'a romantic movie';
+        ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVshow'] = 5;
+        ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a romantic movie';
       }
     }
     // TODO-QSP: dynamic text: You turn on the TV and switch from channel to channel until you see something yo...
@@ -389,7 +394,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
           }
           scene.text('Natasha doesn\'t notice you until she feels the couch move as you sit down next to her. She jumps in surprise and quickly adjusts her skirt to hide her wet panties, completely red in the face from a mixture of arousal and embarrassment at being caught watching porn featuring you.');
           if (((s as any).NatbelQW ?? 0)?.['WatchedYourPorn'] === 0) {
-            if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['WatchedYourPorn'] = 1;
+            ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['WatchedYourPorn'] = 1;
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You… Is this how you get so much money?"
             scene.text(`"${((s as any).pcs_nickname || '')}! You… Is this how you get so much money?"`);
             scene.text('"It pays pretty well yeah."');
@@ -442,6 +447,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'natbelapt', 'kitchen');
+  (s as any).locclass = 'kitr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'kit_din', '');
   qspCall(s, 'stat', '');
@@ -450,7 +456,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('The kitchen is small but has all the necessary things. There is a stove, a fridge, a sink, and a tiny dining table. Everything looks sparkling clean.');
   if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).NatbelQW ?? 0)?.['seethroughwearing'] === 1  &&  ((s as any).NatbelQW ?? 0)?.['seethroughkitchen'] === 0) {
     scene.img('images/characters/pavlovsk/school/girl/natasha/seethroughkitchen01.jpg');
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['seethroughkitchen'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['seethroughkitchen'] = 1;
     scene.text('As you walk into the kitchen, you see Natasha pouring herself a glass of milk.');
     scene.text('When she notices you standing there her face starts turning red immediately.');
     scene.text('"I-I needed a drink." She stammers as she puts the milk back into the fridge and heads towards the door.');
@@ -502,7 +508,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1  &&  (Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).NatbelQW ?? 0)?.['momrobe'] === 0) {
         scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomkitchenrobe.jpg');
-        if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['momrobe'] = 1;
+        ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['momrobe'] = 1;
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         qspCall(s, 'stat', '');
         // TODO-QSP: dynamic text: As you walk into the kitchen, you see <<$npc_nickname['A191']>> having a healthy...
@@ -534,7 +540,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['cucumber'] === 0) {
     scene.actions([
       { label: 'Take a cucumber', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['cucumber'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['cucumber'] = 1;
     scene.text('You take a cucumber out of the fridge. This could come in handy.');
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'fridge'] },
@@ -551,13 +557,14 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'natbelapt', 'bathroom');
+  (s as any).location_type = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/bathroom.jpg');
   scene.text('The bathroom is kept spotlessly clean. Everything here has a well cared for look to it.');
   scene.text('The toilet sits along the wall next to a small bathtub.');
-  scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -573,7 +580,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'stat', '');
     if (((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1  &&  (!(Math.floor(Math.random() * 5) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['natbelEv', 'showerevent1'] }]);
+      qspGoto(s, 'natbelEv', 'showerevent1');
     } else {
       scene.text('<center><b>Bathroom</b></center>');
       scene.img('images/shared/home/bathroom/dush.mp4');
@@ -596,6 +603,8 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterNatroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'natbelapt', 'natroom');
+  (s as any).locclass = 'bedr';
+  (s as any).track_loop = '';
   (s as any).music_loop = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -622,7 +631,7 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/school/girl/natasha/seethrough01.jpg');
         scene.text('When you get back to Natasha\'s room, you see she\'s under her blankets reading a book.');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['natbelapt', 'seethorugh_surprise'] }]);
+        qspGoto(s, 'natbelapt', 'seethorugh_surprise');
       }
     } else {
       if (((s as any).NatbelQW ?? 0)?.['seethroughwearing'] === 1  &&  ((s as any).natstayroom ?? 0) === 1) {
@@ -670,16 +679,17 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
         scene.text('Natasha is sitting on the bed, looking at some fashion magazines.');
         scene.actions([
           { label: 'Let\'s go to the living room', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['NoTV'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['NoTV'] = 1;
     (s as any).NatashaLoc = 4;
-  }, goto: ['natbelapt', 'livingroom'] },
+    qspGoto(s, 'natbelapt', 'livingroom');
+  } },
         ]);
       }
       if (((s as any).NatbelQW ?? 0)?.['pregday'] > 0  &&  ((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday'] > 90  &&  ((s as any).NatbelQW ?? 0)?.['askedbaby'] !== ((s as any).daystart ?? 0)) {
         scene.actions([
           { label: 'Touch her belly', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['askedbaby'] = ((s as any).daystart ?? 0);
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['askedbaby'] = ((s as any).daystart ?? 0);
     qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/touch_belly\'+iif(npc_pregtalk[\'A16\'] = 1, \'_preg\', \')+\'.jpg');
@@ -814,9 +824,9 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/momroom.jpg');
   scene.text('The room is fairly bare, but everything is organized neatly, and it\'s spotlessly clean. There is a bed, a big closet, and some bedstands next to the bed with lamps on them. Everything looks like it\'s cleaned on a daily basis.');
   if (((s as any).NatbelQW ?? 0)?.['CaughtByNatMomHitachi'] >= 1) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['NatMomVibName'] = 'hitachi';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['NatMomVibName'] = 'hitachi';
   } else {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['NatMomVibName'] = 'big vibrator';
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['NatMomVibName'] = 'big vibrator';
   }
   if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).hour ?? 0) === 22  &&  ((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1  &&  ((s as any).NatbelQW ?? 0)?.['SeenNatMomHitachi_day'] !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: As you walk through the hallway, you hear a buzzing noise coming from <<$npc_nic...
@@ -825,8 +835,8 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Don\'t peek', goto: ['natbelapt', 'hallway'] },
       { label: 'Look through the crack in the door', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['SeenNatMomHitachi_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['SeenNatMomHitachi'] = ((s as any).NatbelQW['SeenNatMomHitachi'] ?? 0) + (1);
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['SeenNatMomHitachi_day'] = ((s as any).daystart ?? 0);
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['SeenNatMomHitachi'] = ((s as any).NatbelQW['SeenNatMomHitachi'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natmomhitachi11.jpg');
     // TODO-QSP: dynamic text: You can see <<$npc_nickname['A191']>> sitting on her bed with her eyes closed, w...
     scene.text(`You can see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} sitting on her bed with her eyes closed, wearing only her skirt which she has pulled up to expose her pussy.`);
@@ -1026,10 +1036,11 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('"Just lie back and enjoy it." She tells you as she starts rubbing it on top of your clit on a low setting. "First we\'ll warm you up a bit before we turn up the speed."');
     scene.text('After about a minute of this, she spreads your pussy with her hand and then presses the Hitachi against your exposed clit. You instantly let out a loud moan, hoping that nobody outside the room heard it. The direct stimulation is so intense that you start squirming under it. While you\'re still trying to adjust she starts turning up the speed.');
     scene.text('"Time to show you what it does on max speed. You\'ll want one of your own after this." She says with a grin, as she turns it up all the way');
+    (s as any).orgasm_txt = 'Within seconds you feel your orgasm crash down on you. You start convulsing hard, trying to close your legs to escape further stimulation but ' + ((s as any).npc_nickname ?? 0)?.['A191'] + ' holds your legs open and keeps rubbing your pussy with the Hitachi for a good minute or two. As she lets go, you immediately close your legs and roll onto your side, still shaking in the grip of your orgasm. It takes you a few minutes to get back to yourself. Once ' + ((s as any).npc_nickname ?? 0)?.['A191'] + ' sees that you\'re coherent again she asks: "I can clearly see that you liked it, but was I right that you\'d want one yourself now?" Still too out of breath for speech you just smile and nod.';
     qspCall(s, 'arousal', 'vaginal_vibe', 10, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.text('You can\'t take it anymore and pull away. You mutter an excuse about needing to go, and then leave.');
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['CaughtByNatMomHitachi'] = ((s as any).NatbelQW['CaughtByNatMomHitachi'] ?? 0) + (1);
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['CaughtByNatMomHitachi'] = ((s as any).NatbelQW['CaughtByNatMomHitachi'] ?? 0) + (1);
     scene.actions([
       { label: 'Leave', goto: ['natbelapt', 'hallway'] },
     ]);
@@ -1055,6 +1066,8 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/hitachi02.jpg');
     scene.text('The thought of doing this in someone else\'s bedroom just makes it even more exciting. You feel your orgasm approaching rapidly as you start fingering yourself faster and faster. All the while rubbing your clit with as much pressure as you can stand.');
+    (s as any).orgasm_txt = 'Within seconds you feel your orgasm crash down on you. You start convulsing hard, closing your legs and trapping the ' + ((s as any).NatbelQW ?? 0)?.['NatMomVibName'] + ' between them to hold it in place. After a few more seconds your orgasm starts to subside, and the vibrations start feeling uncomfortable, so you turn it off.';
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_vibe', 10);
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: dynamic text: Deciding not to push your luck any further, you get dressed quickly and straight...

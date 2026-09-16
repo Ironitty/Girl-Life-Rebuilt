@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -12,11 +10,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterShow(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 0) {
-    (s as any).calendar_ui_week_start = qspUntranslated(s, "ARGS[1]", { location: "calendar" });
+    (s as any).calendar_ui_week_start = ((s as any).locArgs?.[1] ?? 0);
   } else {
     (s as any).calendar_ui_week_start = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 1;
   }
   qspCall(s, 'calendar_schedule', 'build_week_schedule', ((s as any).calendar_ui_week_start ?? 0));
+  (s as any).result = '<center><div class="calendar-controls" style="margin: 10px 0;">';
   // TODO-QSP: $result += '<a href="exec: gs ''calendar'', ''navigate'', ''prev''">« Previous Week</a> | '
   // TODO-QSP: $result += '<a href="exec: gs ''calendar'', ''navigate'', ''today''">Today</a> | '
   // TODO-QSP: $result += '<a href="exec: gs ''calendar'', ''navigate'', ''next''">Next Week »</a>'
@@ -30,6 +29,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNavigate(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_nav_direction = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).temp_nav_direction ?? 0) === 'prev') {
     (s as any).calendar_ui_week_start = ((s as any).calendar_ui_week_start ?? 0) - (7);
   } else {
@@ -65,6 +65,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPack(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_function = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).locArgs?.[2] ?? 0) === 'holidays') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_new_year']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_christmas']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -149,23 +150,23 @@ function enterCycleRebuild(s: GameState, scene: SceneBuilder): void {
   if (((s as any).calCycleOpts ?? 0)?.['rebuild_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).locArgs?.[1] ?? 0) !== 1) {
     // TODO-QSP: exit
   }
-  if (!(s as any).calCycleOpts) (s as any).calCycleOpts = {}; (s as any).calCycleOpts['rebuild_day'] = ((s as any).daystart ?? 0);
+  ((s as any).calCycleOpts = (s as any).calCycleOpts ?? {})['rebuild_day'] = ((s as any).daystart ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'remove', 'cycle_phases']; enterPack(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).succubusflag ?? 0) === 1  ||  ((s as any).cycle ?? 0) >= 4  ||  ((s as any).calCycleOpts ?? 0)['phase_start_' + ((s as any).cycle ?? 0)] === 0  ||  ((s as any).calCycleOpts ?? 0)?.['show_0'] + ((s as any).calCycleOpts ?? 0)?.['show_1'] + ((s as any).calCycleOpts ?? 0)?.['show_2'] + ((s as any).calCycleOpts ?? 0)?.['show_3'] === 0) {
     // TODO-QSP: exit
   }
-  if (!(s as any).cal_cycle) (s as any).cal_cycle = {}; (s as any).cal_cycle['dur_0'] = 5;
-  if (!(s as any).cal_cycle) (s as any).cal_cycle = {}; (s as any).cal_cycle['dur_1'] = 9;
-  if (!(s as any).cal_cycle) (s as any).cal_cycle = {}; (s as any).cal_cycle['dur_2'] = 2;
-  if (!(s as any).cal_cycle) (s as any).cal_cycle = {}; (s as any).cal_cycle['dur_3'] = 12;
+  ((s as any).cal_cycle = (s as any).cal_cycle ?? {})['dur_0'] = 5;
+  ((s as any).cal_cycle = (s as any).cal_cycle ?? {})['dur_1'] = 9;
+  ((s as any).cal_cycle = (s as any).cal_cycle ?? {})['dur_2'] = 2;
+  ((s as any).cal_cycle = (s as any).cal_cycle ?? {})['dur_3'] = 12;
   (s as any).chain_end = (((s as any).calCycleOpts ?? {})?.['phase_start_'] ?? 0) - 1;
   (s as any).ph_n = 0;
   // TODO-QSP: :phase_loop
   (s as any).ph_idx = (((s as any).cycle ?? 0) + ((s as any).ph_n ?? 0)) % 4;
   qspCall(s, 'calendar_list', 'init_event_vars');
   // TODO-QSP: gs 'calendar_list', 'cycle_phase_' + ph_idx
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = ((s as any).chain_end ?? 0) + 1;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur_end'] = Math.max(((s as any).chain_end ?? 0) + (((s as any).cal_cycle ?? {})?.['dur_'] ?? 0), ((s as any).daystart ?? 0));
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).chain_end ?? 0) + 1;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = Math.max(((s as any).chain_end ?? 0) + (((s as any).cal_cycle ?? {})?.['dur_'] ?? 0), ((s as any).daystart ?? 0));
   if (((s as any).calCycleOpts ?? 0)['show_' + ((s as any).ph_idx ?? 0)] === 1) {
     // TODO-QSP: gs 'calendar_events', 'new_event', $event_vars['id']
   }

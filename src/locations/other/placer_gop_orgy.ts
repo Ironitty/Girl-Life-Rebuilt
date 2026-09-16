@@ -17,12 +17,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).goporgyeQW = 1;
   }
   if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
     if (((s as any).katjaQW ?? 0)?.['park_sex'] < 3) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['park_sex'] = 3;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['park_sex'] = 3;
     }
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['sex_in_the_park_comment'] = 3;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['sex_in_the_park_comment'] = 3;
     qspCall(s, 'arousal', 'foreplay', 10, 'group');
     qspCall(s, 'stat', '');
   }

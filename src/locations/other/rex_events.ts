@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -196,7 +196,9 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Continue to drink beer', goto: ['sister', 'scene2'] },
+        { label: 'Continue to drink beer', handler: (st: GameState) => {
+    qspGoto(s, 'sister', 'scene2');
+  } },
       ]);
     } else {
       qspCall(s, 'npc_relationship', 'modify', 'A57', 'like');
@@ -225,7 +227,9 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Continue to drink beer', goto: ['sister', 'scene2'] },
+        { label: 'Continue to drink beer', handler: (st: GameState) => {
+    qspGoto(s, 'sister', 'scene2');
+  } },
       ]);
     }
   }
@@ -956,6 +960,7 @@ function enterSms(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A57', 'like');
     scene.img('images/characters/pavlovsk/resident/reks/event/phone/smsrex15.jpg');
     scene.text('You can\'t hold back any longer and you start masturbating while looking at your phone, until you finally explode with an earth-shattering orgasm.');
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([

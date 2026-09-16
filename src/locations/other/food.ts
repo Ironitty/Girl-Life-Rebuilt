@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,12 +10,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterAftermeal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_energy ?? 0) > 100) {
+    (s as any).mtxt = ' you had to force yourself to finish and now you feel stuffed.';
   } else {
     if (((s as any).pcs_energy ?? 0) >= 80) {
+      (s as any).mtxt = ' it was enough to leave you feeling full and satisfied.';
     } else {
       if (((s as any).pcs_energy ?? 0) >= 60) {
+        (s as any).mtxt = ' while you no longer feel especially hungry, you don\'t feel all that satisfied either.';
       } else {
         if (((s as any).pcs_energy ?? 0) >= 40) {
+          (s as any).mtxt = ' while you no longer feel like you are starving, you are still quite hungry - in fact, you could probably eat the same amount again and still have room for dessert.';
+        } else {
+          (s as any).mtxt = ' did nothing to appease your hunger, in fact, it only made you want more.';
         }
       }
     }
@@ -112,7 +118,7 @@ function enterOnlyCostPirosh(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -161,7 +167,7 @@ function enterOnlyCostGolub(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -210,7 +216,7 @@ function enterOnlyCostPozhar(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -259,7 +265,7 @@ function enterOnlyCostReuben(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -308,7 +314,7 @@ function enterOnlyCostBliny(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -353,7 +359,7 @@ function enterOnlyCostVarenfan(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -398,7 +404,7 @@ function enterOnlyCostSalfan(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -443,7 +449,7 @@ function enterOnlyCostStrofan(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -488,7 +494,7 @@ function enterOnlyCostBorfan(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -533,7 +539,7 @@ function enterOnlyCostBlifan(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -578,7 +584,7 @@ function enterOnlyCostRyesna(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -623,7 +629,7 @@ function enterOnlyCostCrisps(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -668,7 +674,7 @@ function enterOnlyCostOnring(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -713,7 +719,7 @@ function enterOnlyCostVegburg(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -758,7 +764,7 @@ function enterOnlyCostTurburg(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -803,7 +809,7 @@ function enterOnlyCostBatfish(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -848,7 +854,7 @@ function enterOnlyCostCheeseburger(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -891,7 +897,7 @@ function enterOnlyCostSnack(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -931,7 +937,7 @@ function enterOnlyCostLightSnack(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLightSnackStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -975,7 +981,7 @@ function enterOnlyCostFastFood(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1019,7 +1025,7 @@ function enterOnlyCostSmallMeal(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1063,7 +1069,7 @@ function enterOnlyCostMediumMeal(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1107,7 +1113,7 @@ function enterOnlyCostLargeMeal(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1149,7 +1155,7 @@ function enterOnlyCostBaggedLunch(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1195,7 +1201,7 @@ function enterOnlyCostHotelFood(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1239,7 +1245,7 @@ function enterOnlyCostHealthyMeal(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1283,7 +1289,7 @@ function enterOnlyCostJerky(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1328,7 +1334,7 @@ function enterOnlyCostMeatStew(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1374,7 +1380,7 @@ function enterOnlyCostMushSoup(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1418,7 +1424,7 @@ function enterOnlyCostBilberry(s: GameState, scene: SceneBuilder): void {
     (s as any).uni_lunch_bought = 1;
   }
   scene.text('Added to your order');
-  scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  qspGoto(s, 'food_menu', '');
   // TODO-QSP: end
   scene.build();
 }

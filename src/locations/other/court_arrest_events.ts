@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,12 +16,12 @@ function enterBookingStart(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstShoplift(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).temp_tot_arrests ?? 0) < 6) {
-        scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'repeat'] }]);
+        qspGoto(s, 'court_arrest_events', 'repeat');
       } else {
         if (((s as any).temp_tot_arrests ?? 0) < 11) {
-          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'multiple'] }]);
+          qspGoto(s, 'court_arrest_events', 'multiple');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'regular'] }]);
+          qspGoto(s, 'court_arrest_events', 'regular');
         }
       }
     }
@@ -33,12 +33,12 @@ function enterBookingStart(s: GameState, scene: SceneBuilder): void {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstProstitution(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).temp_tot_arrests ?? 0) < 6) {
-          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'repeat'] }]);
+          qspGoto(s, 'court_arrest_events', 'repeat');
         } else {
           if (((s as any).temp_tot_arrests ?? 0) < 11) {
-            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'multiple'] }]);
+            qspGoto(s, 'court_arrest_events', 'multiple');
           } else {
-            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'regular'] }]);
+            qspGoto(s, 'court_arrest_events', 'regular');
           }
         }
       }
@@ -50,12 +50,12 @@ function enterBookingStart(s: GameState, scene: SceneBuilder): void {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstPublicIndecency(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).temp_tot_arrests ?? 0) < 6) {
-            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'repeat'] }]);
+            qspGoto(s, 'court_arrest_events', 'repeat');
           } else {
             if (((s as any).temp_tot_arrests ?? 0) < 11) {
-              scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'multiple'] }]);
+              qspGoto(s, 'court_arrest_events', 'multiple');
             } else {
-              scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'regular'] }]);
+              qspGoto(s, 'court_arrest_events', 'regular');
             }
           }
         }
@@ -67,7 +67,7 @@ function enterBookingStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBookingEnd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['police_station', 'booking'] }]);
+  qspGoto(s, 'police_station', 'booking');
   // TODO-QSP: end
   scene.build();
 }
@@ -290,28 +290,28 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
 function enterInterrogationStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).policeQW ?? 0)?.['crime_flag'] === 'shoplift') {
     if (((s as any).locArgs?.[1] ?? 0) === 'easy') {
-      scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'shoplift_easy'] }]);
+      qspGoto(s, 'court_arrest_events', 'shoplift_easy');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'norm') {
-        scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'shoplift_norm'] }]);
+        qspGoto(s, 'court_arrest_events', 'shoplift_norm');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'shoplift_hard'] }]);
+        qspGoto(s, 'court_arrest_events', 'shoplift_hard');
       }
     }
   } else {
     if (((s as any).policeQW ?? 0)?.['crime_flag'] === 'prostitution') {
       if (((s as any).locArgs?.[1] ?? 0) === 'easy') {
-        scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'prostitution_easy'] }]);
+        qspGoto(s, 'court_arrest_events', 'prostitution_easy');
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'norm') {
-          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'prostitution_norm'] }]);
+          qspGoto(s, 'court_arrest_events', 'prostitution_norm');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'prostitution_hard'] }]);
+          qspGoto(s, 'court_arrest_events', 'prostitution_hard');
         }
       }
     } else {
       if (((s as any).policeQW ?? 0)?.['crime_flag'] === 'public_indecency') {
-        scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'public_indecency_interrogation'] }]);
+        qspGoto(s, 'court_arrest_events', 'public_indecency_interrogation');
       }
     }
   }
@@ -320,7 +320,7 @@ function enterInterrogationStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInterrogationEnd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['police_station', 'returncell'] }]);
+  qspGoto(s, 'police_station', 'returncell');
   // TODO-QSP: end
   scene.build();
 }
@@ -339,7 +339,7 @@ function enterShopliftEasy(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['toldonguard'] = 1;
+      ((s as any).policeQW = (s as any).policeQW ?? {})['toldonguard'] = 1;
       (s as any).picrand = Math.floor(Math.random() * 2) + 1;
       scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');
@@ -377,7 +377,7 @@ function enterShopliftNorm(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['toldonguard'] = 1;
+      ((s as any).policeQW = (s as any).policeQW ?? {})['toldonguard'] = 1;
       (s as any).picrand = Math.floor(Math.random() * 2) + 1;
       scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');
@@ -416,7 +416,7 @@ function enterShopliftHard(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['toldonguard'] = 1;
+      ((s as any).policeQW = (s as any).policeQW ?? {})['toldonguard'] = 1;
       (s as any).picrand = Math.floor(Math.random() * 2) + 1;
       scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');

@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,20 +12,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'telefon', 'phone_call_receive');
   if (((s as any).npc_QW ?? 0)?.['A192'] === 1  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).pcs_apprnc ?? 0) > 80) {
-    scene.actions([{ label: 'Continue', goto: ['nastja', 'pos4'] }]);
+    qspGoto(s, 'nastja', 'pos4');
   } else {
     if (((s as any).npc_QW ?? 0)?.['A192'] === 2  &&  ((s as any).week ?? 0) !== 6  &&  ((s as any).mc_inventory ?? 0)?.['tech_camera'] !== 0  &&  ((s as any).nastjaday ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['nastja', 'pos13'] }]);
+      qspGoto(s, 'nastja', 'pos13');
     } else {
       if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).npc_QW ?? 0)?.['A192'] === 2  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).pcs_apprnc ?? 0) > 80  &&  ((s as any).nastjaday ?? 0) !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['nastja', 'pos12'] }]);
+        qspGoto(s, 'nastja', 'pos12');
       } else {
         if (((s as any).npc_QW ?? 0)?.['A192'] === 5  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).nastjaday ?? 0) !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['nastja', 'pos22'] }]);
+          qspGoto(s, 'nastja', 'pos22');
         } else {
           if (((s as any).npc_QW ?? 0)?.['A192'] === 6  &&  ((s as any).nastjaday ?? 0) !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['nastja', 'pos31'] }]);
+            qspGoto(s, 'nastja', 'pos31');
           } else {
+            (s as any).callerid = 'images/system/phone/icons/icon_nastja.png';
             qspCall(s, 'telefon', 'phone_call_reject');
           }
         }
@@ -52,7 +53,7 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
     scene.text('Girl: "Not at all! I\'m Anastasia, but you can call me Nastya."');
     scene.actions([
       { label: '"Do you mind if I ask why you\'re in this restaurant without a companion?"', handler: (st: GameState) => {
-    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A192'] = 1;
+    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 1;
     qspCall(s, 'telefon', 'AddContact', 'A192', 'icon_nastja', 0);
     // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -97,7 +98,7 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
 
 function enterPos5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A192'] = 2;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 2;
   // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/1party0.jpg');
@@ -350,7 +351,7 @@ function enterPos11(s: GameState, scene: SceneBuilder): void {
 function enterPos12(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'mood', 'raise', 'medium');
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A192'] = 3;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 3;
   // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/tel_talk.jpg');
@@ -366,7 +367,7 @@ function enterPos12(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hang up', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -389,7 +390,7 @@ function enterPos13(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hang up', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -399,7 +400,7 @@ function enterPos14(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'medium');
   (s as any).nastjaday = ((s as any).daystart ?? 0);
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A192'] = 4;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 4;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/2hello.jpg');
   scene.text('You recognize Nastya as soon as you walk onto the lake\'s beach: After two meetings, you start to doubt that she even has any dress that isn\'t cut revealingly short and you wonder how she can just keep going out without feeling self-conscious - and you secretly admire her for that.');
@@ -520,7 +521,7 @@ function enterPos20(s: GameState, scene: SceneBuilder): void {
 
 function enterPos21(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A192'] = 5;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 5;
   // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/2bslp.jpg');
@@ -539,7 +540,7 @@ function enterPos21(s: GameState, scene: SceneBuilder): void {
 function enterPos22(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'mood', 'raise', 'large');
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A192'] = 6;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 6;
   // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/tel_talk.jpg');
@@ -721,7 +722,7 @@ function enterPos30(s: GameState, scene: SceneBuilder): void {
 function enterPos31(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'mood', 'raise', 'large');
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A192'] = 7;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 7;
   // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour <= 20"
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/tel_talk.jpg');
@@ -740,7 +741,7 @@ function enterPos31(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hang up', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

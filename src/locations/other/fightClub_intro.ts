@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['story'] = 1;
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['story'] = 1;
   scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
   scene.text('You climb out of the ring when you are approached by a man. ');
   scene.text('"That was impressive."');
@@ -29,7 +29,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'That sounds more than suspicious', handler: (st: GameState) => {
-    if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['declined'] = 1;
+    ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['declined'] = 1;
     scene.text('"No, thanks," you politely decline and leave him standing there. He appears even sadder as before.');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCard(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['story'] = 2;
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['story'] = 2;
   scene.img('images/locations/city/shared/fightclub/card.jpg');
   scene.text('That doesn\'t exactly inspire confidence, but You take his card. It says Sultan Maskaev, Sport Management.');
   // TODO-QSP: dynamic text: <b>Note:</b> You can now find Sultan Maskaev in your smartphone contacts. You ca...
@@ -73,7 +73,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOffice1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['story'] = 4;
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['story'] = 4;
   scene.img('images/locations/city/shared/fightclub/office1.jpg');
   scene.text('You find Sultan Maskaev\'s office above a supermarket. You knock and a hoarse voice calls out: "It\'s open."');
   scene.text('You enter. The office is not large and is littered with pictures of boxers and trophies. Sitting at a tiny desk is a man who, at first glance, looks like an ex-boxer.');
@@ -157,7 +157,7 @@ function enterOffice4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOfficeEnd(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightClub) (s as any).fightClub = {}; (s as any).fightClub['declined'] = 1;
+  ((s as any).fightClub = (s as any).fightClub ?? {})['declined'] = 1;
   scene.img('images/locations/city/shared/fightclub/office1.jpg');
   scene.text('You politely decline and leave. Oleg at his desk looks very disappointed.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -170,7 +170,7 @@ function enterOfficeEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOfficeSign(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['story'] = 5;
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['story'] = 5;
   scene.img('images/locations/city/shared/fightclub/signcontract.jpg');
   scene.text('He presents you with a contract and gives you time to read it. It starts with a confidentiality agreement. Apart from that, it\'s not very long, but it contains a few interesting figures. Firstly, it mentions an absurdly high transfer fee if you wanted to change management, and secondly, it states the manager\'s share.');
   scene.text('"Twenty-five percent?" you ask, frowning. "I was thinking something like ten."');
@@ -203,7 +203,7 @@ function enterOfficeSign(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRide(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['story'] = 6;
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['story'] = 6;
   scene.img('images/locations/city/shared/fightclub/bmw_blue.jpg');
   scene.text('"Excited?" asks Sultan after the brief greeting.');
   scene.text('"It\'s not my first fight," you play it cool.');
@@ -269,13 +269,13 @@ function enterStarjersey(s: GameState, scene: SceneBuilder): void {
   scene.text('"It should strike fear into the hearts of your opponents," he says with pathos, then grins. "No, seriously, it\'s to make sure you stay anonymous. Some of the fighters here are pretty vindictive, you know."');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['name'] = 'Dark Star';
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['name'] = 'Dark Star';
   // TODO-QSP: end
   scene.actions([
-    { label: 'Choose a fight name (Default: <<$fightClubQW[\'name\']>>)', handler: (st: GameState) => {
-    if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['name'] = 0;
+    { label: '', labelFn: (s: GameState) => 'Choose a fight name (Default: ' + String(((s as any).fightClubQW ?? 0)?.['name'] ?? '' ?? '') + ')', handler: (st: GameState) => {
+    ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['name'] = 0;
     if (((s as any).fightClubQW ?? 0)?.['name'] === '') {
-      if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['name'] = 'Dark Star';
+      ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['name'] = 'Dark Star';
     }
   } },
     { label: 'Continue', goto: ['fightClub_intro', 'preparations'] },
@@ -375,8 +375,8 @@ function enterRound2(s: GameState, scene: SceneBuilder): void {
 function enterKnockout(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/knockout.jpg');
   scene.text('Sultan was right, she was no match for you. You celebrate and collect the fight money. The arena cheers.');
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['win'] = ((s as any).fightClubQW['win'] ?? 0) + (1);
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['winKO'] = ((s as any).fightClubQW['winKO'] ?? 0) + (1);
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['win'] = ((s as any).fightClubQW['win'] ?? 0) + (1);
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['winKO'] = ((s as any).fightClubQW['winKO'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -522,14 +522,14 @@ function enterWardrobe(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -766,7 +766,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const fightClub_intro: LocationDef = {
   name: 'fightClub_intro',
-  title: 'You climb out of the ring when you are approached by a man. ',
+  title: 'You climb out of the ring when you are approached by a man.',
   region: 'other',
   enter: enter,
 };

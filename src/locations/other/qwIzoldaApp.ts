@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) < 16  ||  ((s as any).izoldaday ?? 0) === ((s as any).daystart ?? 0)) {
     scene.text('You rang the bell but no one answered you.');
@@ -40,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('Soon you both drunk and Isolde invited you to go to the lounge to relax.');
           scene.actions([
             { label: 'Go Isolde', handler: (st: GameState) => {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).izoldaSex = 1;
     scene.img('images/characters/city/isolde/sex/izoldasex.jpg');
     scene.text('The room suddenly Isolde you kissed and hugged her gently.');
@@ -63,6 +64,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/isolde/sex/izoldasex3.jpg');
     scene.text('Blonde turned and climbed on you without stopping to lick your pussy. She throw the leg over you up her sweaty and expiring juices crack for sex. You started to caress her clitoris tongue and kiss her luscious lips, finally you both shook orgasm.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
     qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
     qspCall(s, 'arousal', 'end');
@@ -86,7 +88,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Go Isolde', handler: (st: GameState) => {
     (s as any).izoldaSex = ((s as any).izoldaSex ?? 0) + (1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     scene.img('images/characters/city/isolde/sex/izoldasex.jpg');
     scene.text('The room suddenly Isolde you kissed and hugged her gently.');
     qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
@@ -109,6 +111,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/isolde/sex/izoldasex3.jpg');
     scene.text('Blonde turned and climbed on you without stopping to lick your pussy. She throw the leg over you up her sweaty and expiring juices crack for sex. You started to caress her clitoris tongue and kiss her luscious lips, finally you both shook orgasm.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
     qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
     qspCall(s, 'arousal', 'end');

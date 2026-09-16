@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,12 +16,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).met_someone = 0;
   if ((!((s as any).encounter ?? 0))) {
+    (s as any).textEvent = 'The park is quiet and deserted. There is no one in sight.';
   } else {
     if (((s as any).encounter ?? 0) === 1) {
+      (s as any).textEvent = 'You see a young mother with a stroller walking along a path.';
     } else {
       if (((s as any).encounter ?? 0) === 2) {
         if (((s as any).arch_vars ?? 0)?.['main_active'] !== 'bimbo'  ||  ((s as any).placerParameter ?? 0)?.['friend_index'] > 0) {
+          (s as any).textEvent = 'A lonely old man with a newspaper in his hand strolls down a path.';
         } else {
+          (s as any).textEvent = 'A lonely old man with a newspaper in his hand is strolling down a path. He looks at you greedily when he sees your appearance and walks over to you. When he reaches you, he extends his hand and says: "Hi there, young lady! If you have a minute, come with me! I have something for you!"';
           scene.actions([
             { label: 'Go see what he has', handler: (st: GameState) => {
     // TODO-QSP: gs 'npcgeneratec', 0, 'Old Man from the park', rand(50, 70)
@@ -31,29 +35,31 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).encounter ?? 0) === 3) {
+          (s as any).textEvent = 'You see a woman hauling several shopping bags though the park, they look quite heavy. It\'s probably the quickest way home for her.';
         } else {
           if (((s as any).encounter ?? 0) === 4) {
+            (s as any).textEvent = 'You see two young girls taking a stroll in the park.';
           } else {
             if (((s as any).encounter ?? 0) === 5) {
               if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14  &&  ((s as any).katjaQW ?? 0)?.['park_sex'] === 0) {
-                if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 1;
+                ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = 1;
               } else {
                 if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14  &&  ((s as any).katjaQW ?? 0)?.['park_sex'] === 1) {
-                  if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 0;
+                  ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = Math.max(1, Math.floor(Math.random() * 4) + 0);
                 } else {
                   if ((!(Math.floor(Math.random() * 2) + 0))) {
-                    if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 1;
+                    ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = 1;
                   } else {
                     if ((!(Math.floor(Math.random() * 2) + 0))) {
-                      if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 2;
+                      ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = 2;
                     } else {
                       if ((!(Math.floor(Math.random() * 2) + 0))) {
-                        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 3;
+                        ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = 3;
                       } else {
                         if ((Math.floor(Math.random() * 3) + 0) > 0) {
-                          if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 4;
+                          ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = 4;
                         } else {
-                          if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 5;
+                          ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = 5;
                         }
                       }
                     }
@@ -61,24 +67,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
               }
               if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
+                (s as any).textSub = 'a guy';
               }
               if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 2) {
+                (s as any).textSub = 'two guys';
               }
               if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 3) {
+                (s as any).textSub = 'three guys';
               }
               if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 4) {
+                (s as any).textSub = 'four guys';
               }
               if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 5) {
+                (s as any).textSub = 'five guys';
               }
-              if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 1;
+              (s as any).textEvent = 'You see ' + ((s as any).textSub ?? 0) + ' walking through the park, holding a case of beer.';
+              ((s as any).placerParameter = (s as any).placerParameter ?? {})['recognize_status'] = 1;
               (s as any).met_someone = 1;
             } else {
               if (((s as any).encounter ?? 0) === 6) {
+                (s as any).textEvent = 'This part of the park is quiet and deserted. The only sign of life is a stray dog, sniffing around near a garbage bin.';
               } else {
                 if (((s as any).encounter ?? 0) === 7) {
+                  (s as any).textEvent = 'You see a man and woman walking in the park, holding each other\'s hands tightly. They\'re clearly in love.';
                 } else {
                   if (((s as any).encounter ?? 0) === 8) {
                     if (((s as any).hotelcouple ?? 0) === 1) {
+                      (s as any).location_type = 'public_indoors';
                       qspCall(s, 'stat', '');
                       scene.text(' after walking around the park for 10 minutes you decide to relax in the grass.');
                       scene.text('Suddenly you are approached by a couple. They come sit next to you.');
@@ -99,14 +114,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     }
                   } else {
                     if (((s as any).encounter ?? 0) === 9) {
-                      if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 5) + 2;
-                      if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 1;
+                      (s as any).textEvent = 'You see a group of teenagers sitting on a park bench, listening to some music.';
+                      ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 5) + 2;
+                      ((s as any).placerParameter = (s as any).placerParameter ?? {})['recognize_status'] = 1;
                       (s as any).met_someone = 1;
                     } else {
                       if (((s as any).encounter ?? 0) === 10) {
-                        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 4) + 3;
-                        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 2;
+                        ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 4) + 3;
+                        (s as any).textEvent = 'Some Gopniks are sitting on their haunches just off to the side of one of the main paths, drinking beer. The area around them is littered with empty bottles.';
+                        ((s as any).placerParameter = (s as any).placerParameter ?? {})['recognize_status'] = 2;
                         (s as any).met_someone = 1;
+                      } else {
+                        (s as any).textEvent = 'You see 2 women walking in the park, holding each other\'s hands tightly. They\'re clearly in love.';
                       }
                     }
                   }
@@ -203,15 +222,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  (s as any).textSomeone = ((s as any).placerStringParameter ?? 0)?.['text_someone'];
+  (s as any).textRefuse = ((s as any).placerStringParameter ?? 0)?.['text_friend_refuse'];
   if (((s as any).placerParameter ?? 0)?.['friend_index'] > 0) {
     // TODO-QSP: dynamic text: You arrive at one of the smaller plazas in the park, together with <<$placerStri...
     scene.text(`You arrive at one of the smaller plazas in the park, together with ${((s as any).placerStringParameter ?? 0)?.['ev_name_om'] ?? ''}. ${((s as any).textEvent || '')}`);
     if (((s as any).placerParameter ?? 0)?.['want_to_meet'] === 0) {
       if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1  &&  ((s as any).placerStringParameter ?? 0)?.['text_start_meet'] === '') {
-        if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
+        ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
       }
       if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1  &&  ((s as any).placerStringParameter ?? 0)?.['text_start_meet'] === '') {
-        if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
+        ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
       }
       if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 0) {
         // TODO-QSP: 'You give the <<$textSomeone>> a cute smile as you walk past. You don''t think you''ve ever seen him...
@@ -231,7 +252,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree to hang out', handler: (st: GameState) => {
     if (((s as any).placerParameter ?? 0)?.['friend_dom'] < 80) {
-      scene.actions([{ label: 'Continue', goto: ['placer_act', ''] }]);
+      qspGoto(s, 'placer_act', '');
     } else {
       if (((s as any).placerParameter ?? 0)?.['friend_dom'] >= 80) {
         qspCall(s, 'stat', '');
@@ -249,13 +270,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Leave with your friend', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['placer_end', ''] },
+    qspGoto(s, 'placer_end', '');
+  } },
           ]);
         }
         scene.actions([
           { label: 'Say goodbye to your friend and stay', handler: (st: GameState) => {
-    if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['friend_index'] = 0;
-  }, goto: ['placer_act', ''] },
+    ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_index'] = 0;
+    qspGoto(s, 'placer_act', '');
+  } },
         ]);
       }
     }
@@ -287,10 +310,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).placerParameter ?? 0)?.['want_to_meet'] === 0  &&  ((s as any).placerParameter ?? 0)?.['number_of_man'] > 0) {
           if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
-            if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
+            ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
           }
           if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1) {
-            if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
+            ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
           }
           // TODO-QSP: dynamic text: You give the <<$textSomeone>> a cute smile as you walk past.' & '<<$textRefuse>>
           scene.text(`You give the ${((s as any).textSomeone || '')} a cute smile as you walk past.' & '${((s as any).textRefuse || '')}`);

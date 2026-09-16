@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_library', '');
+  (s as any).location_type = 'public_indoors';
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -13,7 +14,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/library/gdkbibl.jpg');
   scene.text('For such a small town, the library is surprisingly large, containing many interesting books on a wide variety of subjects.');
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 19) {
-    scene.actions([{ label: 'Continue', goto: ['pav_library', ''] }]);
+    qspGoto(s, 'pav_library', '');
     scene.actions([
       { label: 'Wait for game night to start', handler: (st: GameState) => {
     (st as any).minut = 60;
@@ -36,18 +37,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
         if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
-          if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_day_check'] = ((s as any).daystart ?? 0);
+          ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['library_day_check'] = ((s as any).daystart ?? 0);
           if ((!(Math.floor(Math.random() * 4) + 0))) {
-            if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_day'] = ((s as any).daystart ?? 0);
+            ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['library_day'] = ((s as any).daystart ?? 0);
           }
         }
         if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
-          scene.text('You see your classmate <a href="exec: gt \'natalia_pavlova\',\'library\'">Natalia Pavlova</a> sitting alone at one of the tables.');
+          scene.text('You see your classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027natalia_pavlova\\u0027, \\u0027library\\u0027); return false;">Natalia Pavlova</a> sitting alone at one of the tables.');
         }
       }
     }
   }
-  scene.text('Between the bookshelves are some tables which can be used for studying. Some of them have <a href="exec: gs \'internet_mobile\', \'get_access\', \'free\', \'noporn\',\'nocamshow\' & gs \'internet_mobile\', \'add_limitation\', \'general\', \'On this public computer all adult content sites are blocked\' & gt \'komp\',\'start\'">computers</a> for public use.');
+  scene.text('Between the bookshelves are some tables which can be used for studying. Some of them have <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027internet_mobile\\u0027, \\u0027get_access\\u0027, \\u0027free\\u0027); return false;">computers</a> for public use.');
   if (((s as any).lernHome ?? 0) > 0) {
     scene.text('You could do your homework with the help of one of the computers.');
   }

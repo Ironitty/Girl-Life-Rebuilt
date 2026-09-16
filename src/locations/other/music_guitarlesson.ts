@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,9 +10,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   if (((s as any).age ?? 0) < 18) {
-    if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['lessoncost'] = 300;
+    ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['lessoncost'] = 300;
   } else {
-    if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['lessoncost'] = 500;
+    ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['lessoncost'] = 500;
   }
   scene.text('You follow the directions from the receptionist and reach the room where the guitar lessons take place.');
   scene.text('The door is half open, and peeking in you see a dark haired man in his thirties sitting at a table, scribbling in a note book.');
@@ -26,7 +26,7 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: He looks at you "So, <<$pcs_firstname>>, do you think you would be interested in...
   scene.text(`He looks at you "So, ${((s as any).pcs_firstname || '')}, do you think you would be interested in taking lessons?"`);
   qspCall(s, 'npc_relationship', 'set', 'ML1', 45);
-  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['enquired'] = 1;
+  ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['enquired'] = 1;
   // TODO-QSP: end
   scene.actions([
     { label: 'Sign up', handler: (st: GameState) => {
@@ -34,13 +34,13 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
     scene.text('The teacher pushes the book closer to you "I will need your name here, and the school and class you attend, and also, I need to see your passport, to confirm you are under 18." You write down the information, and show him your passport.');
     scene.text('"Eccellent, now, what day would you like to come for your first lesson?"');
     scene.text('Select your next lesson');
-    scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 1 & $ml_guitarlesson[\'lessonday\'] = \'Monday\' & gt \'music_guitarlesson\', \'goodbye\'">Monday</a>');
-    scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 2 & $ml_guitarlesson[\'lessonday\'] = \'Tuesday\' & gt \'music_guitarlesson\', \'goodbye\'">Tuesday</a>');
-    scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 3 & $ml_guitarlesson[\'lessonday\'] = \'Wednesday\' & gt \'music_guitarlesson\', \'goodbye\'">Wednesday</a>');
-    scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 4 & $ml_guitarlesson[\'lessonday\'] = \'Thursday\' & gt \'music_guitarlesson\', \'goodbye\'">Thursday</a>');
-    scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 5 & $ml_guitarlesson[\'lessonday\'] = \'Friday\' & gt \'music_guitarlesson\', \'goodbye\'">Friday</a>');
-    scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 6 & $ml_guitarlesson[\'lessonday\'] = \'Saturday\' & gt \'music_guitarlesson\', \'goodbye\'">Saturday</a>');
-    scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 8 & $ml_guitarlesson[\'lessonday\'] = \'None\' & gt \'music_guitarlesson\', \'goodbye\'">You don\'t know yet</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.1; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Monday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Monday</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.2; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Tuesday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Tuesday</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.3; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Wednesday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Wednesday</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.4; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Thursday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Thursday</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.5; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Friday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Friday</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.6; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Saturday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Saturday</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.8; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027None\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">You don\'t know yet</a>');
   } },
     { label: 'You have to think', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You hesitate for a moment "I would be, but I have to talk with my <<$npc_nicknam...
@@ -58,12 +58,12 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
 function enterSetlessonday(s: GameState, scene: SceneBuilder): void {
   scene.text('You meet the teacher and agree on your next lesson.');
   scene.text('Select your next lesson');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 1 & $ml_guitarlesson[\'lessonday\'] = \'Monday\' & gt \'music_guitarlesson\', \'goodbye\'">Monday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 2 & $ml_guitarlesson[\'lessonday\'] = \'Tuesday\' & gt \'music_guitarlesson\', \'goodbye\'">Tuesday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 3 & $ml_guitarlesson[\'lessonday\'] = \'Wednesday\' & gt \'music_guitarlesson\', \'goodbye\'">Wednesday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 4 & $ml_guitarlesson[\'lessonday\'] = \'Thursday\' & gt \'music_guitarlesson\', \'goodbye\'">Thursday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 5 & $ml_guitarlesson[\'lessonday\'] = \'Friday\' & gt \'music_guitarlesson\', \'goodbye\'">Friday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 6 & $ml_guitarlesson[\'lessonday\'] = \'Saturday\' & gt \'music_guitarlesson\', \'goodbye\'">Saturday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.1; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Monday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Monday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.2; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Tuesday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Tuesday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.3; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Wednesday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Wednesday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.4; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Thursday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Thursday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.5; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Friday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Friday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.6; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Saturday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Saturday</a>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t arrange a lesson day', goto: ['pav_commclubs', ''] },
@@ -72,15 +72,15 @@ function enterSetlessonday(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
+  qspGoto(s, 'music_guitarlesson', 'lesson');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterLesson(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', ml_guitarlesson['lessoncost']
-  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['nextlesson'] = 0;
-  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['lessoncount'] = ((s as any).ml_guitarlesson['lessoncount'] ?? 0) + (1);
+  ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['nextlesson'] = 0;
+  ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['lessoncount'] = ((s as any).ml_guitarlesson['lessoncount'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'npc_relationship', 'modify', 'ML1', 1);
   scene.img('images/locations/pavlovsk/community/guitarlesson/guitarteach_\'+ rand(1, 2) +\'.jpg');
@@ -92,20 +92,20 @@ function enterLesson(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend the next 45 minutes working on songs you have learned and improving some specific techniques.');
   }
   scene.text('Select your next lesson');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 1 & $ml_guitarlesson[\'lessonday\'] = \'Monday\' & gt \'music_guitarlesson\', \'goodbye\'">Monday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 2 & $ml_guitarlesson[\'lessonday\'] = \'Tuesday\' & gt \'music_guitarlesson\', \'goodbye\'">Tuesday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 3 & $ml_guitarlesson[\'lessonday\'] = \'Wednesday\' & gt \'music_guitarlesson\', \'goodbye\'">Wednesday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 4 & $ml_guitarlesson[\'lessonday\'] = \'Thursday\' & gt \'music_guitarlesson\', \'goodbye\'">Thursday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 5 & $ml_guitarlesson[\'lessonday\'] = \'Friday\' & gt \'music_guitarlesson\', \'goodbye\'">Friday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 6 & $ml_guitarlesson[\'lessonday\'] = \'Saturday\' & gt \'music_guitarlesson\', \'goodbye\'">Saturday</a>');
-  scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 8 & $ml_guitarlesson[\'lessonday\'] = \'None\' & gt \'music_guitarlesson\', \'goodbye\'">You don\'t know yet</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.1; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Monday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Monday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.2; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Tuesday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Tuesday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.3; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Wednesday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Wednesday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.4; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Thursday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Thursday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.5; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Friday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Friday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.6; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027Saturday\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">Saturday</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.ml_guitarlesson ??= {})\\u0027lessonday\\u0027 = s.8; /* TODO-QSP: $ml_guitarlesson[\\u0027lessonday\\u0027] = \\u0027None\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027music_guitarlesson\\u0027, \\u0027goodbye\\u0027); return false;">You don\'t know yet</a>');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGoodbye(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['nextlesson'] = ((s as any).daystart ?? 0) + ((((s as any).ml_guitarlesson ?? {})?.['lessonday'] ?? 0) + 7 - ((s as any).week ?? 0));
-  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['lessonhour'] = 15;
+  ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['nextlesson'] = ((s as any).daystart ?? 0) + ((((s as any).ml_guitarlesson ?? {})?.['lessonday'] ?? 0) + 7 - ((s as any).week ?? 0));
+  ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['lessonhour'] = 15;
   if (((s as any).ml_guitarlesson ?? 0)?.['lessonday'] < 8) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetdate(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: You agree to meet for your next lesson on <<$ml_guitarlesson['lessonday']>> at <...
@@ -122,7 +122,7 @@ function enterGoodbye(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdvertisement(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['advertisement'] = 1;
+  ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['advertisement'] = 1;
   scene.text('<center>As you pass by the community center door you see a new colour note screaming "Guitar Lessons!" in bright letters over the image of a guitar.<center>');
   scene.img('images/locations/shared/noticeboards/pav/flyer_music_guitar.jpg');
   // TODO-QSP: end

@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFameEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame_events', 'select', 'pav');
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }
@@ -25,7 +25,7 @@ function enterMinorProstitutes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -40,7 +40,7 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Browse her wares', handler: (st: GameState) => {
     // TODO-QSP: $streetev_title
@@ -67,9 +67,9 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       qspCall(s, 'money', 'pay', ((s as any).tovpay1 ?? 0), 'cash');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (Math.floor(Math.random() * 31) + 10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (Math.floor(Math.random() * 31) + 10);
       qspCall(s, 'stat', '');
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+      dynamicGoto(s, 'prevLoc');
     }
   } },
       { label: 'Buy the lip balm', handler: (st: GameState) => {
@@ -77,9 +77,9 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (20);
       qspCall(s, 'money', 'pay', ((s as any).tovpay2 ?? 0), 'cash');
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+      dynamicGoto(s, 'prevLoc');
     }
   } },
       { label: 'Buy the vitamins', handler: (st: GameState) => {
@@ -87,13 +87,13 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
       qspCall(s, 'money', 'pay', ((s as any).tovpay3 ?? 0), 'cash');
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+      dynamicGoto(s, 'prevLoc');
     }
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -110,7 +110,7 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Browse the wares', handler: (st: GameState) => {
     // TODO-QSP: $streetev_title
@@ -137,9 +137,9 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       qspCall(s, 'money', 'pay', ((s as any).tovpay1 ?? 0), 'cash');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (Math.floor(Math.random() * 31) + 10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (Math.floor(Math.random() * 31) + 10);
       qspCall(s, 'stat', '');
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+      dynamicGoto(s, 'prevLoc');
     }
   } },
       { label: 'Buy the lip balm', handler: (st: GameState) => {
@@ -147,9 +147,9 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (20);
       qspCall(s, 'money', 'pay', ((s as any).tovpay2 ?? 0), 'cash');
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+      dynamicGoto(s, 'prevLoc');
     }
   } },
       { label: 'Buy the vitamins', handler: (st: GameState) => {
@@ -157,13 +157,13 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
       qspCall(s, 'money', 'pay', ((s as any).tovpay3 ?? 0), 'cash');
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+      dynamicGoto(s, 'prevLoc');
     }
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -198,7 +198,7 @@ function enterMinorOlderWomenShaming(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();

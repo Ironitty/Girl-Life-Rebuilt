@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'ParkKafe', 'start');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   (s as any).park_food = (((s as any).pcs_ate ?? 0) + ((s as any).pcs_drank ?? 0));
@@ -20,13 +21,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the café', goto: ['parkKafe', 'end'] },
-    { label: 'Have a seat', goto: ['parkKafe', 'table'] },
+    { label: 'Have a seat', handler: (st: GameState) => {
+    qspGoto(s, 'parkKafe', 'table');
+  } },
     { label: 'Order take-out (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 350);
-      scene.actions([{ label: 'Continue', goto: ['food', 'fast_food'] }]);
+      qspGoto(s, 'food', 'fast_food');
     }
   } },
   ]);
@@ -41,25 +44,25 @@ function enterTable(s: GameState, scene: SceneBuilder): void {
   if (((s as any).park_food ?? 0) < (((s as any).pcs_ate ?? 0) + ((s as any).pcs_drank ?? 0))) {
     (s as any).pk_rand = Math.floor(Math.random() * 7) + 1;
     if (((s as any).pk_rand ?? 0) === 1) {
-      scene.text('Observing the people while enjoying your meal, you notice a <a href="exec:gt \'ParkKafe\', \'youth\'">group</a> of younger people making noise.');
+      scene.text('Observing the people while enjoying your meal, you notice a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ParkKafe\\u0027, \\u0027youth\\u0027); return false;">group</a> of younger people making noise.');
     }
     if (((s as any).pk_rand ?? 0) === 2) {
-      scene.text('Observing the people while enjoying your meal, you notice a younger lonely <a href="exec:gt \'ParkKafe\', \'the_boy\'">man</a> sitting by the table.');
+      scene.text('Observing the people while enjoying your meal, you notice a younger lonely <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ParkKafe\\u0027, \\u0027the_boy\\u0027); return false;">man</a> sitting by the table.');
     }
     if (((s as any).pk_rand ?? 0) === 3) {
-      scene.text('You\'re watching the world go by when you spot some <a href="exec:gt \'ParkKafe\', \'blacks\'">black men</a> laughing and chatting.');
+      scene.text('You\'re watching the world go by when you spot some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ParkKafe\\u0027, \\u0027blacks\\u0027); return false;">black men</a> laughing and chatting.');
     }
     if (((s as any).pk_rand ?? 0) === 4) {
-      scene.text('Observing the people while enjoying your meal, you notice a <a href="exec:gt \'ParkKafe\', \'woman\'">woman</a> who has just received her meal.');
+      scene.text('Observing the people while enjoying your meal, you notice a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ParkKafe\\u0027, \\u0027woman\\u0027); return false;">woman</a> who has just received her meal.');
     }
     if (((s as any).pk_rand ?? 0) === 5) {
-      scene.text('Observing the people while enjoying your meal, you notice a middle-aged <a href="exec:gt \'ParkKafe\', \'man\'">man</a> sitting and observing the people at the café.');
+      scene.text('Observing the people while enjoying your meal, you notice a middle-aged <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ParkKafe\\u0027, \\u0027man\\u0027); return false;">man</a> sitting and observing the people at the café.');
     }
     if (((s as any).pk_rand ?? 0) === 6) {
-      scene.text('Observing the people while enjoying your meal, you notice an <a href="exec:gt \'ParkKafe\', \'seniors\'">old man</a> walking back and forth outside the café.');
+      scene.text('Observing the people while enjoying your meal, you notice an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ParkKafe\\u0027, \\u0027seniors\\u0027); return false;">old man</a> walking back and forth outside the café.');
     }
     if (((s as any).pk_rand ?? 0) === 7) {
-      scene.text('Observing the people while enjoying your meal, you notice two <a href="exec:gt \'ParkKafe\', \'guys\'">sporty guys</a> sitting at a table drinking beer.');
+      scene.text('Observing the people while enjoying your meal, you notice two <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ParkKafe\\u0027, \\u0027guys\\u0027); return false;">sporty guys</a> sitting at a table drinking beer.');
     }
   }
   // TODO-QSP: end
@@ -77,14 +80,14 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hotcat ?? 0) < 5) {
     scene.text('You look at them intensely, but you don\'t think they notice you.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } else {
     if (((s as any).kloftimes ?? 0) > 0) {
       scene.text('You notice Jora and Semyon sitting a bit further away from you. They clearly notice you as one of them nods towards your general direction to the other one.');
       scene.text('In the end, they ignore you and continue drinking beer and talking to each other.');
       scene.actions([
-        { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+        { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
       ]);
     } else {
       scene.text('One of them notices you looking and approaches to ask if you would like to join them.');
@@ -101,7 +104,7 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    scene.actions([{ label: 'Continue', goto: ['parkKafe', 'end', '\'cafe\''] }]);
+    qspGoto(s, 'parkKafe', 'end', 'cafe');
   } },
         ]);
       }
@@ -180,7 +183,7 @@ function enterSeniors(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hotcat ?? 0) < 6) {
     scene.text('The old man keeps pacing up and down, but doesn\'t seem to pay any attention to you. He stops and starts to seemingly chat a very pretty looking young woman.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } else {
     scene.text('The old man suddenly stops in his tracks. "Hey, girl! You don\'t want to drink that piss that they serve. Come with me and I\'ll get you the real stuff…"');
@@ -205,7 +208,7 @@ function enterSeniors(s: GameState, scene: SceneBuilder): void {
     scene.text('He seems almost offended by your rejection. "Stupid girl! Fine! Drink this piss water then. I don\'t care."');
     scene.text('He stomps away angrily. You\'re still not really clear about what just happened…');
     scene.actions([
-      { label: 'Walk away', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Walk away', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       ]);
@@ -297,7 +300,7 @@ function enterSeniors(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Return to the café', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Return to the café', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     ]);
@@ -316,7 +319,7 @@ function enterSeniors(s: GameState, scene: SceneBuilder): void {
     scene.text('You flip them off and throw the bottle. It shatters on the ground as you start running away.');
     scene.text('"You fucking bitch!" you hear them yell after you.');
     scene.actions([
-      { label: 'Return to the café', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Return to the café', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     ]);
@@ -360,7 +363,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     scene.text('You look over towards the man, smile, and politely nod your thanks to him.');
     scene.text('The man probably expected a different outcome, but there\'s nothing he can do except smile and nod back.');
     scene.actions([
-      { label: 'Go back to your own', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Go back to your own', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       { label: 'Walk over to him', handler: (st: GameState) => {
@@ -443,6 +446,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re panting hard as your senses return. "That was amazing…"');
     scene.text('"You came quite hard there," he winks.');
     qspCall(s, 'arousal', 'cuni', 10);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Reward him', handler: (st: GameState) => {
@@ -536,6 +540,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     scene.text('Before you know it, your inner walls clamp down around his cock and your body starts shaking as you orgasm hard.');
     scene.text('He gives you a small breather before he continues fucking you rapidly, and recognizing the usual grunts, you know what\'s about to happen…');
     qspCall(s, 'arousal', 'vaginal', 15);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Cum inside me', handler: (st: GameState) => {
@@ -595,6 +600,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     scene.text('He then really picks up the pace and it doesn\'t take long before you reach climax. You forget all about him as your pussy walls clamp down around his cock and you have an amazing orgasm.');
     scene.text('He gives you a small breather before he continues fucking you rapidly. You recognize the usual grunts, so you know what\'s about to happen…');
     qspCall(s, 'arousal', 'vaginal', 15);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Cum inside me', handler: (st: GameState) => {
@@ -655,6 +661,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     scene.text('A few seconds later, you slam down on his cock once more and feel your inner walls clamp down around him as your legs shake, barely able to support you as your orgasm rocks your body.');
     scene.text('You take a small breather before continuing. It doesn\'t take long before you recognize the usual grunts and know what awaits…');
     qspCall(s, 'arousal', 'vaginal', 15, 'dom');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Cum inside me', handler: (st: GameState) => {
@@ -721,7 +728,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     scene.text('The man, noticing that he messed up, tries to save the situation. "That came out wrong! I didn\'t mean it like that!"');
     scene.text('"I see that ring on your finger," you tell him. "Go back to your wife instead of chasing girls, jerk!"');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     ]);
@@ -730,7 +737,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You stealthily glance at the man, but he doesn\'t seem to be that interested in you.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   }
   // TODO-QSP: end
@@ -754,7 +761,7 @@ function enterWoman(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'erotic_nudity', 5, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     { label: 'Look away', handler: (st: GameState) => {
@@ -764,7 +771,7 @@ function enterWoman(s: GameState, scene: SceneBuilder): void {
     scene.text('Not knowing what she wants, you look away and avoid making eye contact.');
     scene.text('Upon seeing that you\'re not budging, she quickly gives up and goes back to playing with her food.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
   ]);
@@ -778,7 +785,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hotcat ?? 0) < 6) {
     scene.text('You look at the group of snickering youths, but they don\'t pay attention to you and are mostly ignoring everyone around them.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } else {
     scene.text('As you take a seat, you notice a loud group of young people. Judging by the bottles on their table, you can tell that they\'ve been drinking for a while.');
@@ -804,7 +811,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
     scene.text('"Too bad… We would\'ve had lots of fun…" she says before she staggers back to her friends and tells them the bad news.');
     scene.text('They barely pay any attention to her and start partying once again as if nothing had happened.');
     scene.actions([
-      { label: 'Return to what you were doing', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Return to what you were doing', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       ]);
@@ -833,7 +840,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
     scene.text('"Do I look like some cheap whore to you?!" you yell back.');
     scene.text('Before they\'re able to answer, you jump up and head back to your table, fuming at what they just wanted you to do.');
     scene.actions([
-      { label: 'Return to your table', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Return to your table', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       { label: 'Accept', handler: (st: GameState) => {
@@ -898,7 +905,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
     scene.text('The next few minutes are spent putting your panties back on and chatting with the rest of the group. You can hear the girl describe how good you taste.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Walk away', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Walk away', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     ]);
@@ -950,7 +957,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
     scene.text('The next few minutes are spent putting your panties back on and chatting with the rest of the group. At the same time, you can hear the girl describe how good you taste.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Walk away', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Walk away', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     ]);
@@ -1006,7 +1013,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
     scene.text('The group start making a lot of noise, laughing as the man passes by.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Walk away', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Walk away', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     ]);
@@ -1048,7 +1055,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     scene.text('His friends laugh as he blushes. "Sorry, I just thought after last time… Anyway, we should get going."');
     scene.text('With that, he gets up to head for the door and his friends follow him.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       { label: 'Sit in his lap', handler: (st: GameState) => {
@@ -1063,7 +1070,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Accept', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
@@ -1101,7 +1108,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Decline', handler: (st: GameState) => {
-    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/reply.jpg');
     scene.text('You shake your head as you get up from your table. "No thank you."');
@@ -1110,7 +1117,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     scene.text('He turns and leaves to join his friends outside, but stops at the door. "Hey, if you want, why don\'t you stop by my dorm some time?"');
     scene.text('He tells you which building it is and which room is his before he heads outside and walks away with his friends.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     ]);
@@ -1123,7 +1130,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Accept', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
@@ -1159,7 +1166,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Decline', handler: (st: GameState) => {
-    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'dislike');
@@ -1174,13 +1181,13 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     scene.text('He turns and leaves to join his friends outside, but stops at the door. "Hey, if you want, why don\'t you stop by my dorm some time?"');
     scene.text('He tells you which building it is and which room is his before he heads outside and walks away with his friends.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       ]);
     } else {
       if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1  &&  ((s as any).pcs_hotcat ?? 0) >= 5) {
-        if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
+        ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['invite'] = 1;
         scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
         scene.text('Djibril gives you a huge grin and waves you over. As you approach their table, Djibril speaks and gestures to each of the others as he says their names. Some smile, or wave, while others look at you with that hungry sexual look.');
         // TODO-QSP: dynamic text: "Hello again <<$pcs_nickname>>, this is my dorm roommate, Farai. The rest are fr...
@@ -1242,13 +1249,13 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     scene.text('He turns and leaves to join his friends outside, but stops at the door. "Hey, if you want, why don\'t you stop by my dorm some time?"');
     scene.text('He tells you which building it is and which room is his before he heads outside and walks away with his friends.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
         ]);
       } else {
         if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
-          if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
+          ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['invite'] = 1;
           scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
           scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start talking amongst themselves.');
           // TODO-QSP: dynamic text: After a few minutes, Djibril heads over to your table as his friends head outsid...
@@ -1258,11 +1265,11 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
           scene.text('He turns and leaves to join his friends outside before stopping at the door. "Hey if you want, why don\'t you stop by my dorm some time?"');
           scene.text('He tells you which building it is and which room is his before he heads outside with his friends and they walk away.');
           scene.actions([
-            { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+            { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
           ]);
         } else {
           if (((s as any).pcs_hotcat ?? 0) >= 5) {
-            if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['meet'] = 1;
+            ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['meet'] = 1;
             scene.text('A few young African men sitting at another table see you and start talking amongst themselves. From the constant glances you receive, you\'re sure they\'re talking about you.');
             scene.text('Eventually, they all get up and come over to your table. One of them steps forward and introduces himself. "Hey, I\'m Djibril."');
             scene.text('As he speaks, he gestures to each of the others as he says their names. Some smile, or wave, while others look at you with that hungry sexual look. "This is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna, and Arendse. What\'s your name?"');
@@ -1285,7 +1292,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A244', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A245', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A246', 'like');
-    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/walktodorm.jpg');
     scene.text('You smile at them. "Sure, that sounds like fun."');
@@ -1315,7 +1322,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
               { label: 'Decline', handler: (st: GameState) => {
-    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'dislike');
@@ -1330,7 +1337,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     scene.text('He turns and leaves to join his friends outside, but stops at the door. "Hey, if you want, why don\'t you stop by my dorm some time?"');
     scene.text('He tells you which building it is and which room is his before he heads outside and walks away with his friends.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
             ]);
@@ -1338,7 +1345,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/city/centralpark/cafe/african_students.jpg');
             scene.text('You stealthily glance over at the black men, but it seems like they\'re not interested in you since they never look in your direction.');
             scene.actions([
-              { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+              { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
             ]);
           }
         }
@@ -1355,7 +1362,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big127.jpg');
     scene.text('The two of you exchange glances, but that\'s about all that happens. After a while, he finishes his meal and leaves the café without either of you saying anything to each other.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } else {
     if ((!((s as any).gosh ?? 0))) {
@@ -1403,7 +1410,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I'm sorry <<$pcs_nickname>>, but I've got to run! Hope to see you around again!...
     scene.text(`"I'm sorry ${((s as any).pcs_nickname || '')}, but I've got to run! Hope to see you around again!" He excuses himself and disappears.`);
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
         { label: 'Decline', handler: (st: GameState) => {
@@ -1418,7 +1425,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod. "I\'ll see you around, Gosha!"');
     scene.text('He says his goodbyes and quickly leaves the café.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       ]);
@@ -1461,7 +1468,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('You notice the disappointment on his face, but he can\'t do anything but accept it. "It\'s okay. I just thought you\'d like to see some really cool views was all."');
     scene.text('The two of you walk slowly back. You\'re afraid to say anything, and he seems to be a bit upset that you didn\'t want to go along with him. As you near the café, you say your goodbyes and he leaves.');
     scene.actions([
-      { label: 'Head back to the café', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Head back to the café', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       ]);
@@ -1513,7 +1520,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth', '127', 1);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Head back to the café', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Head back to the café', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       ]);
@@ -1539,7 +1546,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I need to go and meet a friend. It was good seeing you, <<$pcs_nickname>>…" He ...
     scene.text(`"I need to go and meet a friend. It was good seeing you, ${((s as any).pcs_nickname || '')}…" He gives you stand offish hug before he leaves.`);
     scene.actions([
-      { label: 'Head back to the café', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Head back to the café', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       ]);
@@ -1556,7 +1563,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', 15, 'sub', 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Head back to the café', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Head back to the café', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
     ]);
@@ -1578,13 +1585,13 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod. "I\'ll see you around, Gosha!"');
     scene.text('He says his goodbyes and quickly leaves the café.');
     scene.actions([
-      { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+      { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
   } },
       ]);
     }
   } },
-        { label: 'Leave', goto: ['parkKafe', 'end', '\'cafe\''] },
+        { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
       ]);
     }
   }
@@ -1596,12 +1603,12 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[1] ?? 0) === 'city_residential') {
-    scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+    qspGoto(s, 'city_residential', '');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'cafe') {
-      scene.actions([{ label: 'Continue', goto: ['parkKafe', 'start'] }]);
+      qspGoto(s, 'parkKafe', 'start');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+      qspGoto(s, 'city_park', 'start');
     }
   }
   // TODO-QSP: end

@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).CloTopCut = 4;
     }
   }
-  if ((String(((s as any).locArgs?.[0] ?? 0)).indexOf(String('swimsuit'))) + 1 <= 0  &&  (String(((s as any).locArgs?.[0] ?? 0)).indexOf(String('bikinis'))) + 1 <= 0) {
+  if (((String(((s as any).locArgs?.[0] ?? 0)).indexOf(String('swimsuit'))) + 1) <= 0  &&  ((String(((s as any).locArgs?.[0] ?? 0)).indexOf(String('bikinis'))) + 1) <= 0) {
     if (((s as any).CloCoverFront ?? 0) >= 4) {
       (s as any).CloInhibit = 50;
     } else {
@@ -65,10 +65,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).CloMaxStrength = ((s as any).CloStrength ?? 0);
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[0] ?? 0), qspUntranslated(s, "ARGS[1]", { location: "clothing_attributes" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: dynamic "
-    (s as any).CloDirt = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_dirt[qspUntranslated(s, \"ARGS[1]\", { location: \"clothing_attributes\" })]", { location: "clothing_attributes" });
-    (s as any).CloStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_h[qspUntranslated(s, \"ARGS[1]\", { location: \"clothing_attributes\" })]", { location: "clothing_attributes" });
+    (s as any).CloDirt = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_dirt[((s as any).locArgs?.[1] ?? 0)]", { location: "clothing_attributes" });
+    (s as any).CloStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_h[((s as any).locArgs?.[1] ?? 0)]", { location: "clothing_attributes" });
     // TODO-QSP: "
   }
   scene.build();

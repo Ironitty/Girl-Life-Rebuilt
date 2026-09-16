@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -57,21 +57,21 @@ function enterSisboyQWBedroom(s: GameState, scene: SceneBuilder): void {
         { label: 'Keep spying on them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     if ((!((s as any).sisterbfspy ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['sisterQW', 'spy1'] }]);
+      qspGoto(s, 'sisterQW', 'spy1');
     } else {
       if (((s as any).sisterbfspy ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['sisterQW', 'spy2'] }]);
+        qspGoto(s, 'sisterQW', 'spy2');
       } else {
         if (((s as any).sisterbfspy ?? 0) === 2) {
-          scene.actions([{ label: 'Continue', goto: ['sisterQW', 'spy3'] }]);
+          qspGoto(s, 'sisterQW', 'spy3');
         } else {
           if (((s as any).sisterbfspy ?? 0) === 3) {
-            scene.actions([{ label: 'Continue', goto: ['sisterQW', 'spy4'] }]);
+            qspGoto(s, 'sisterQW', 'spy4');
           } else {
             if (((s as any).sisterbfspy ?? 0) === 4) {
-              scene.actions([{ label: 'Continue', goto: ['sisterQW', 'spy5'] }]);
+              qspGoto(s, 'sisterQW', 'spy5');
             } else {
-              scene.actions([{ label: 'Continue', goto: ['sisterQW', 'spy6'] }]);
+              qspGoto(s, 'sisterQW', 'spy6');
             }
           }
         }
@@ -130,7 +130,8 @@ function enterSpy1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['sisterQW', 'caress'] },
+    qspGoto(s, 'sisterQW', 'caress');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -161,7 +162,8 @@ function enterSpy2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['sisterQW', 'caress'] },
+    qspGoto(s, 'sisterQW', 'caress');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -194,7 +196,8 @@ function enterSpy3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['sisterQW', 'caress'] },
+    qspGoto(s, 'sisterQW', 'caress');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -226,7 +229,8 @@ function enterSpy4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['sisterQW', 'caress'] },
+    qspGoto(s, 'sisterQW', 'caress');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -259,7 +263,8 @@ function enterSpy5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['sisterQW', 'caress'] },
+    qspGoto(s, 'sisterQW', 'caress');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -289,7 +294,8 @@ function enterSpy6(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['sisterQW', 'caress'] },
+    qspGoto(s, 'sisterQW', 'caress');
+  } },
     ]);
   }
   qspCall(s, 'willpower', 'voyeur', 'self', 'medium');
@@ -366,6 +372,7 @@ function enterCaress(s: GameState, scene: SceneBuilder): void {
   scene.text('You can\'t help yourself. You turn and press your back against the wall before pulling your panties down and rubbing your glistening wet pussy as you listen to the moans and groans coming from your room.');
   scene.text('You lick your finger before rhythmically caressing your swollen clit and caressing your breasts with your other hand. You\'re lost in the moment, oblivious to everything around you.');
   scene.text('Your muscles contract, your breath shortens. Realizing you\'ve hit your peak, you bite your lip to stifle your moans.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'exhibitionism');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -377,9 +384,9 @@ function enterCaress(s: GameState, scene: SceneBuilder): void {
 
 function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
   (s as any).blockBedrPar = 1;
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Anya'] = 15;
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Anya_rand1'] = ((s as any).daystart ?? 0);
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Anya_save1'] = ((s as any).locat ?? 0)?.['Anya'];
+  ((s as any).locat = (s as any).locat ?? {})['Anya'] = 15;
+  ((s as any).locat = (s as any).locat ?? {})['Anya_rand1'] = ((s as any).daystart ?? 0);
+  ((s as any).locat = (s as any).locat ?? {})['Anya_save1'] = ((s as any).locat ?? 0)?.['Anya'];
   if (((s as any).hour ?? 0) === 17) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'npc_relationship', 'modify', 'A33', (-10));
@@ -408,9 +415,9 @@ function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
     (s as any).sisboytrioQW = (-1);
     (s as any).sisboytrioDayOtkaz = ((s as any).daystart ?? 0) + 3;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['roma3block'] = 1;
+    ((s as any).sisterQW = (s as any).sisterQW ?? {})['roma3block'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A33', (-10));
-    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A33'] = 2;
+    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A33'] = 2;
     (s as any).sisThank = 0;
     qspCall(s, 'stat', '');
     scene.img('images/pc/activities/spy/peep4.jpg');
@@ -437,7 +444,7 @@ function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
         { label: 'Flash your breasts', goto: ['sisterQW', 'flash_boobs'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sisterQW', 'flash_boobs'] }]);
+      qspGoto(s, 'sisterQW', 'flash_boobs');
     }
   } },
     ]);

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'courtletter', '');
       if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 8  &&  ((s as any).NatbelQW ?? 0)?.['Isabella'] === 0  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 23) {
         if (((s as any).loc ?? 0) !== 'korrPar') {
-          scene.actions([{ label: 'Continue', goto: ['home_events', 'natbel'] }]);
+          qspGoto(s, 'home_events', 'natbel');
         } else {
           if (((s as any).NatbelQW ?? 0)?.['mother_talk'] === 2) {
-            scene.actions([{ label: 'Continue', goto: ['home_events', 'natbel_pav'] }]);
+            qspGoto(s, 'home_events', 'natbel_pav');
           }
         }
       }
@@ -47,7 +47,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You open the door and Grisha smiles. "I thought you were hiding from me. So, do you have my money?" You nod and pay him the money you owe.');
     scene.actions([
       { label: 'Close the door', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -56,14 +56,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).BurgerQW ?? 0)?.['IlyQW'] === 1  &&  ((s as any).BurgerQW ?? 0)?.['IlyQWDay'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21) {
-        scene.actions([{ label: 'Continue', goto: ['home_events', 'burgerIly1'] }]);
+        qspGoto(s, 'home_events', 'burgerIly1');
       } else {
         if (((s as any).BurgerQW ?? 0)?.['IlyQW'] === 3  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 21) {
-          scene.actions([{ label: 'Continue', goto: ['home_events', 'burgerIly3'] }]);
+          qspGoto(s, 'home_events', 'burgerIly3');
         }
       }
       if (((s as any).gopstop ?? 0) > 30) {
-        scene.actions([{ label: 'Continue', goto: ['police', '1'] }]);
+        qspGoto(s, 'police', '1');
       }
       if (((s as any).sick ?? 0) > 0  &&  ((s as any).doktorday ?? 0) !== ((s as any).daystart ?? 0)) {
         scene.actions([
@@ -71,7 +71,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).fightClubQW ?? 0)?.['story'] === 5  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) === 19) {
-        scene.text('<a href="exec:gt \'fightClub_intro\', \'ride\'">Sultan</a> shows up outside in a fancy BMW.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027fightClub_intro\\u0027, \\u0027ride\\u0027); return false;">Sultan</a> shows up outside in a fancy BMW.');
       }
     }
   }
@@ -149,12 +149,12 @@ function enterCallDoctor1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Answer the door', handler: (st: GameState) => {
     if (((s as any).ninelmet ?? 0) > 0  &&  ((s as any).sick ?? 0) <= 50) {
-      scene.actions([{ label: 'Continue', goto: ['housecall', 'ninel1'] }]);
+      qspGoto(s, 'housecall', 'ninel1');
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        scene.actions([{ label: 'Continue', goto: ['home_events', 'call_doctor2'] }]);
+        qspGoto(s, 'home_events', 'call_doctor2');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['housecall', 'ninel0'] }]);
+        qspGoto(s, 'housecall', 'ninel0');
       }
     }
   } },
@@ -177,6 +177,7 @@ function enterCallDoctor2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hello, doctor."');
   scene.text('"Hello, dear. I\'m the local doctor. Now please go back to bed and don\'t stand in this cold air."');
   // TODO-QSP: end
+  (s as any).ninel0 = 'gt \'home_events\', \'ninel0\'';
   scene.actions([
     { label: 'Go back to bed', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/drpp1.jpg');
@@ -210,7 +211,7 @@ function enterCallDoctor2(s: GameState, scene: SceneBuilder): void {
       { label: 'Roll over and lay on your stomach', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).sick = ((s as any).sick ?? 0) - (2);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) + (3);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) + (3);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/drpp5.jpg');
     scene.text('You whimper slightly as the doctor jabs a needle into your ass and injects the contents.');
@@ -409,7 +410,7 @@ function enterBurgerIly1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Open the door', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQW'] = 2;
+    ((s as any).BurgerQW = (s as any).BurgerQW ?? {})['IlyQW'] = 2;
     qspCall(s, 'stat', '');
     scene.text('You open the door, wondering what they want from you. There are several men in uniform and others in civilian clothes. A lean and skinny man with with a weeks worth of stubble and a pistol in a holster slung under his armpit speaks to you. "Please take a seat while we search the apartment. This is a warrant for your arrest and this is a search warrant for your apartment. You can read them." The men start searching your apartment and a few minutes later, one of them reappears. "Here are the keys. According to the description, these look like the keys to the office and the safe where the money was stolen." The detective frowns at you and nods at the officer, who pulls your hands behind your back and snaps the handcuffs around your wrists.');
     scene.text('You\'re escorted out of the building in handcuffs and pushed into a police car. After the door slams shut, the car starts up and drives through the city streets until it stops outside the police station and you\'re pulled out and brought into an interview room where the dectective is waiting for you. He takes the handcuffs off you and offers you a seat. You sit in a hard and uncomfortable chair while the detective turns the TV on and inserts a video tape. On the screen is footage from a security camera in Bystroeshke showing you appear in the corridor and enter the office before exiting a few minutes later holding a thick envelope. The detective takes the tape out and inserts another one.');
@@ -441,7 +442,7 @@ function enterBurgerIly1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQW'] = 4;
+  ((s as any).BurgerQW = (s as any).BurgerQW ?? {})['IlyQW'] = 4;
   if (qspFunc(s, 'money', 'can_afford', 650000) === 1) {
     qspCall(s, 'money', 'pay', 650000);
     (s as any).minut = ((s as any).minut ?? 0) + 120;
@@ -467,7 +468,7 @@ function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
       { label: 'Serve your time', handler: (st: GameState) => {
     (s as any).srok_kolvo = 1;
     (s as any).srok_otsidki = ((s as any).srok_otsidki ?? 0) + (5);
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = 10;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 10;
     (s as any).fat = 10;
     if ((!((s as any).defcurly ?? 0))) {
       (s as any).curly = 0;
@@ -480,9 +481,9 @@ function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_tan = 0;
     (s as any).pcs_leghair = 12;
     (s as any).pcs_pubes = 30;
-    if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_addict'] = 0;
-    if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 0;
-    if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['heroin_need'] = 0;
+    ((s as any).drugVars = (s as any).drugVars ?? {})['cocaine_addict'] = 0;
+    ((s as any).drugVars = (s as any).drugVars ?? {})['cocaine_system'] = 0;
+    ((s as any).drugVars = (s as any).drugVars ?? {})['heroin_need'] = 0;
     (s as any).tanwork = 0;
     (s as any).preg = 0;
     qspCall(s, 'jobs', 'terminate_all_jobs');
@@ -528,9 +529,9 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
     scene.text(`On arriving you spot ${((s as any).npc_usedname ?? 0)?.['A191'] ?? ''} slumped over the bar and go to help her home.`);
     scene.text('As you both take hold of her she starts mumbling and slurring. You can\'t make out a lot of it other than she had a date with a guy she fancied and they had a big argument following which she spent the rest of the evening drowning her sorrows.');
     scene.actions([
-      { label: 'Put <<$npc_usedname[\'A191\']>> to bed', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Put ' + String(((s as any).npc_usedname ?? 0)?.['A191'] ?? '' ?? '') + ' to bed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Isabella'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['Isabella'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images\\locations\\pavlovsk\\resident\\apartment\\natbelapt/natmomsleep3.jpg');
     // TODO-QSP: dynamic text: When you get back you both sit <<$npc_usedname['A191']>> on her bed and get her ...
@@ -582,9 +583,9 @@ function enterNatbelPav(s: GameState, scene: SceneBuilder): void {
     scene.text(`On arriving you spot ${((s as any).npc_usedname ?? 0)?.['A191'] ?? ''} slumped over the bar and go to help her home.`);
     scene.text('As you both take hold of her she starts mumbling and slurring. You can\'t make out a lot of it other than she had a date with a guy she fancied and they had a big argument following which she spent the rest of the evening drowning her sorrows.');
     scene.actions([
-      { label: 'Put <<$npc_usedname[\'A191\']>> to bed', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Put ' + String(((s as any).npc_usedname ?? 0)?.['A191'] ?? '' ?? '') + ' to bed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Isabella'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['Isabella'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images\\locations\\pavlovsk\\resident\\apartment\\natbelapt/natmomsleep3.jpg');
     // TODO-QSP: dynamic text: When you get back you both sit <<$npc_usedname['A191']>> on her bed and get her ...
@@ -596,7 +597,7 @@ function enterNatbelPav(s: GameState, scene: SceneBuilder): void {
     scene.text(`Natasha gives you a big hug as a silent thank you before you leave ${((s as any).npc_usedname ?? 0)?.['A191'] ?? ''}'s bedroom. "Okay Natasha I guess you can take it from here so I'll get home as it's getting late."`);
     scene.text('She sees you to the door and you share a kiss before you leave to return home.');
     scene.actions([
-      { label: 'Your <<$npc_nickname[\'A29\']>> is waiting for you', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Your ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' is waiting for you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     scene.img('images\\characters\\pavlovsk\\resident\\mom\\prost2.jpg');
@@ -630,11 +631,12 @@ function enterSetWashClothesAct(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic "
     // TODO-QSP: "
     scene.actions([
-      { label: 'Wash clothes (<<wash_time / 60>>:<<$mid(100 + wash_time mod 60, 2, 2)>>)', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Wash clothes (' + String(((s as any).wash_time ?? '') / 60 ?? '') + ':' + String((String(100 + ((s as any).wash_time ?? '') % 60).slice((2)-1, ((2)-1)+(2))) ?? '') + ')', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).wash_time ?? 0));
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
     qspCall(s, 'stat', '');
-  }, goto: ['home_events', 'wash_clothes'] },
+    qspGoto(s, 'home_events', 'wash_clothes');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -648,7 +650,7 @@ function enterWashClothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -732,10 +734,10 @@ function enterGoHomeNaked(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     (s as any).nakedrand = Math.floor(Math.random() * 10) + 1;
     if (((s as any).nakedrand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'two_boys'] }]);
+      qspGoto(s, 'pav_aptcourtev', 'two_boys');
     } else {
       if (((s as any).nakedrand ?? 0) === 2) {
-        scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'misha'] }]);
+        qspGoto(s, 'pav_aptcourtev', 'misha');
       }
     }
     qspCall(s, 'stat', '');

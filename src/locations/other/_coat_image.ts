@@ -7,26 +7,32 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoncheri(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/moncheri/coats/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterBomba(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/bomba/coats/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterCats(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/cats/coats/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterDolls(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/dolls/coats/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterGm(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/gm/coats/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   scene.build();
 }
 
 function enterDanilovich(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'images/pc/items/danilovich/coats/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   // TODO-QSP: end
   scene.build();
 }

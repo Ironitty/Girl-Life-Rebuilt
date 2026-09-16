@@ -82,7 +82,7 @@ function enterPeacock(s: GameState, scene: SceneBuilder): void {
     scene.text('Having thoroughly enjoyed your visit you feel nice and calm and maybe you\'ve learnt something today as you decide that it\'s probably time to be on your way.');
     scene.actions([
       { label: 'Return to visitor\'s entrance', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -112,7 +112,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
     scene.text('Having thoroughly enjoyed your visit you feel nice and calm and maybe you\'ve learnt something today as you decide that it\'s probably time to be on your way.');
     scene.actions([
       { label: 'Return to visitor\'s entrance', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -150,7 +150,7 @@ function enterHighlights(s: GameState, scene: SceneBuilder): void {
     scene.text('Having thoroughly enjoyed your visit you feel nice and calm and maybe you\'ve learnt something today as you decide that it\'s probably time to be on your way.');
     scene.actions([
       { label: 'Return to visitor\'s entrance', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -200,7 +200,7 @@ function enterRedRooms(s: GameState, scene: SceneBuilder): void {
     scene.text('Having thoroughly enjoyed your visit you feel nice and calm and maybe you\'ve learnt something today as you decide that it\'s probably time to be on your way.');
     scene.actions([
       { label: 'Return to visitor\'s entrance', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

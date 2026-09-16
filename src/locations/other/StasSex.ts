@@ -21,10 +21,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/stas/sex/sex.jpg');
     scene.text('During the kissing, he manages to get all your clothes off, as well as his own. He pushes your legs up till your knees are pulled up against your chest. He rubs the tip of his dick against your pussy, which is already wet with desire. You moan and try to lift yourself up to take him inside of you, but he keeps teasing you by just rubbing the tip against your pussy.');
     qspCall(s, 'shortgs', 'undress');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     // TODO-QSP: dynamic text: You feel like you almost can't take the teasing anymore when he fully pushes him...
     scene.text(`You feel like you almost can't take the teasing anymore when he fully pushes himself inside of you, his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick filling your pussy up. He gently fucks you, slowly working himself deeper into you while he continues to kiss you and kneed your breasts. You moan in deep pleasure as the two of you make love.`);
     qspCall(s, 'dinsex', 'vaginal_sex', 15, 'sub');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = '' + ((s as any).boydesc ?? 0) + ' groans, and you feel a jet of sperm spurt inside of your body, followed by several more.';
     qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
     qspCall(s, 'cuminsidereact', '', ((s as any).boydesc ?? 0));
     qspCall(s, 'stat', '');

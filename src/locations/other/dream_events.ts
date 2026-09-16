@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['dreams_active'] === 1) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).stepdadQW ?? 0) === 3) {
       // TODO-QSP: $sleep_events_priority[] = 'gs ''dream_events'', ''stepdad_dream'' '
     }
@@ -34,16 +34,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
       qspCall(s, 'blackmailer', 'blackmail_dream_events');
     }
-    scene.actions([{ label: 'Continue', goto: ['dream_events', 'mod_sleepevents'] }]);
+    qspGoto(s, 'dream_events', 'mod_sleepevents');
   }
-  scene.actions([{ label: 'Continue', goto: ['dream_events', 'continue'] }]);
+  qspGoto(s, 'dream_events', 'continue');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'dream_events', 'mod_sleepevents');
-  scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_handler'] }]);
+  qspGoto(s, 'dream_events', 'event_handler');
   // TODO-QSP: end
   scene.build();
 }
@@ -51,39 +51,41 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 1) {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
-      scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_handler2', '\'priority\''] }]);
+      qspGoto(s, 'dream_events', 'event_handler2', 'priority');
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
-        scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_handler2'] }]);
+        qspGoto(s, 'dream_events', 'event_handler2');
       }
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['dream_events', 'continue'] }]);
+  qspGoto(s, 'dream_events', 'continue');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
+    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
+    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   }
-  scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_end'] }]);
+  qspGoto(s, 'dream_events', 'event_end');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_handler'] }]);
+  qspGoto(s, 'dream_events', 'event_handler');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
   qspCall(s, 'wakeup', 'wear_bed_clothes');
   // TODO-QSP: end
@@ -91,9 +93,9 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
-  scene.actions([{ label: 'Continue', goto: ['sleep', 'post_dream'] }]);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
+  qspGoto(s, 'sleep', 'post_dream');
   // TODO-QSP: end
   scene.build();
 }
@@ -101,7 +103,7 @@ function enterContinue(s: GameState, scene: SceneBuilder): void {
 function enterStepdadDream(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/vladimir/sex/bath_voyer_1.jpg');
   scene.text('You had a very strange dream: You were blindfolded while having sex with a stranger. When you were done, you removed the blindfold to see your stepfather grinning at you.');
-  (s as any).pcs_horny = 0;
+  (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
   (s as any).stepdadQW = ((s as any).stepdadQW ?? 0) + (1);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -125,7 +127,7 @@ function enterSuccubusDream(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You have the same dream of absorbing energy from multiple partners.');
   }
-  (s as any).pcs_horny = 0;
+  (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -595,6 +597,9 @@ function enterSuccubDreams(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_rand ?? 0) === 3) {
         scene.img('images/shared/home/bedroom/dream/sucrandream3.jpg');
         if (((s as any).succublvl ?? 0) < 3) {
+          (s as any).sucselftmp = 'a personification of ' + ((s as any).sucself1 ?? 0) + ' in your core';
+        } else {
+          (s as any).sucselftmp = ((s as any).sucself1 ?? 0);
         }
         // TODO-QSP: dynamic text: You dream that you're arguing with <<$sucselftmp>>.
         scene.text(`You dream that you're arguing with ${((s as any).sucselftmp || '')}.`);

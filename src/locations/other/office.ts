@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
+  (s as any).sexloc = 'office';
+  (s as any).menu_loc = 'office';
+  (s as any).menu_arg = 'start';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Engineering company offices</b></center>');
@@ -109,6 +113,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWorkFloor(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
+  (s as any).sexloc = 'office';
+  (s as any).menu_loc = 'office';
+  (s as any).menu_arg = 'work_floor';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0  &&  qspFunc(s, 'jobs', 'is_work_time', 'city_office_secretary') === 1) {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -125,7 +133,8 @@ function enterWorkFloor(s: GameState, scene: SceneBuilder): void {
           { label: 'Go to work', handler: (st: GameState) => {
     (s as any).minut = 60 - ((s as any).minut ?? 0);
     qspCall(s, 'jobs', 'clock', 'city_office_secretary');
-  }, goto: ['office', 'secretary_office'] },
+    qspGoto(s, 'office', 'secretary_office');
+  } },
         ]);
       } else {
         if (qspFunc(s, 'jobs', 'is_work_time', 'city_office_secretary') === 1) {
@@ -136,7 +145,8 @@ function enterWorkFloor(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
     }
     qspCall(s, 'stat', '');
-  }, goto: ['office', 'work'] },
+    qspGoto(s, 'office', 'work');
+  } },
             ]);
           } else {
             scene.text('You\'re too late for work, so you\'re told to take the day off.');
@@ -147,7 +157,9 @@ function enterWorkFloor(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the break room', goto: ['office', 'break_room'] },
       { label: 'Go to restrooms', goto: ['office', 'restrooms'] },
-      { label: 'Resign', goto: ['office', 'resign'] },
+      { label: 'Resign', handler: (st: GameState) => {
+    qspGoto(s, 'office', 'resign');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -160,6 +172,8 @@ function enterWorkFloor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSecretaryOffice(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'office';
+  (s as any).menu_arg = 'secretary_office';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0  &&  qspFunc(s, 'jobs', 'is_work_time', 'city_office_secretary') === 1) {
   }
@@ -187,6 +201,10 @@ function enterSecretaryOffice(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBreakRoom(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'break_room';
+  (s as any).loc = 'office';
+  (s as any).menu_loc = 'office';
+  (s as any).menu_arg = 'break_room';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Break Room</b></center>');
@@ -197,7 +215,7 @@ function enterBreakRoom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Eat your lunch', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_sandwich'] = 0;
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_sandwich'] = 0;
     (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
     (s as any).cumspclnt = 2;
     qspCall(s, 'cum_cleanup', '');
@@ -213,7 +231,8 @@ function enterBreakRoom(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
     }
     qspCall(s, 'stat', '');
-  }, goto: ['office', 'work'] },
+    qspGoto(s, 'office', 'work');
+  } },
     ]);
   } },
     ]);
@@ -227,6 +246,8 @@ function enterBreakRoom(s: GameState, scene: SceneBuilder): void {
 
 function enterRestrooms(s: GameState, scene: SceneBuilder): void {
   (s as any).office_ladies_entry = 0;
+  (s as any).menu_loc = 'office';
+  (s as any).menu_arg = 'restrooms';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Office Restrooms</b></center>');
   scene.img('images/locations/city/citycenter/office/restrooms.jpg');
@@ -243,7 +264,8 @@ function enterRestrooms(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the mens restroom', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['office', 'mens_restrooms'] },
+    qspGoto(s, 'office', 'mens_restrooms');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -255,6 +277,10 @@ function enterRestrooms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWomensRestrooms(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'office';
+  (s as any).menu_arg = 'womens_restrooms';
+  (s as any).locM = 'office';
+  (s as any).locM_arg = 'womens_restrooms';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Women\'s Restrooms</b></center>');
   scene.img('images/locations/city/citycenter/office/womensbr.jpg');
@@ -276,6 +302,10 @@ function enterWomensRestrooms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMensRestrooms(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'office';
+  (s as any).menu_arg = 'mens_restrooms';
+  (s as any).locM = 'office';
+  (s as any).locM_arg = 'mens_restrooms';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Mens Restrooms</b></center>');
   if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -354,6 +384,8 @@ function enterMensRestrooms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'office';
+  (s as any).menu_arg = 'work';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0  &&  qspFunc(s, 'jobs', 'is_work_time', 'city_office_secretary') === 1) {
   }
   qspCall(s, 'stat', '');
@@ -424,7 +456,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).temp ?? 0) === 7) {
                   scene.img('images/locations/city/citycenter/office/work/takenotes\' + rand(1, 2) + \'.jpg');
                   scene.text('You spend most of your work period in a manager\'s office taking notes as he brainstorms out loud his plans for a new project the company is about to start soon.');
-                  scene.actions([{ label: 'Continue', goto: ['office', 'secretary_office'] }]);
+                  qspGoto(s, 'office', 'secretary_office');
                 } else {
                   if (((s as any).temp ?? 0) === 8) {
                     scene.img('images/locations/city/citycenter/office/work/workatdesk\' + rand(1, 7) + \'.jpg');

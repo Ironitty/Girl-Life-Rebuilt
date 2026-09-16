@@ -1,14 +1,19 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'start';
+  (s as any).loc = 'city_marketwork';
+  (s as any).menu_loc = 'city_marketwork';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Marketplace</b></center>');
   scene.img('images/locations/city/residential/market/rinok.jpg');
@@ -253,6 +258,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).talkrand = Math.floor(Math.random() * 3) + 0;
       if (((s as any).hour ?? 0) === 9) {
         if ((!((s as any).rintakrand ?? 0))) {
+          (s as any).rintak = 'Hassan unloads clothes in front of Nadia\'s stall.';
           scene.actions([
             { label: 'Watch Hassan and Nadia', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -272,6 +278,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).rintakrand ?? 0) === 1) {
+            (s as any).rintak = 'Abdul is talking loudly and giving clothes to Anna at the next stall over.';
             scene.actions([
               { label: 'Watch Abdul and Anna', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -291,6 +298,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).rintakrand ?? 0) === 2) {
+              (s as any).rintak = 'Abdul and Hassan stand beside your stall speaking to each other in their native language.';
               scene.actions([
                 { label: 'Watch them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -310,6 +318,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).rintakrand ?? 0) === 3) {
+                (s as any).rintak = 'Anna hangs clothes on her stall while shouting at Nadia.';
                 scene.actions([
                   { label: 'Chat with the girls', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) + (1);
@@ -327,6 +336,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).rintakrand ?? 0) === 4) {
+                  (s as any).rintak = 'Arthur is talking about something with Abdul.';
                   scene.actions([
                     { label: 'Watch them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -346,6 +356,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                   ]);
                 } else {
                   if (((s as any).rintakrand ?? 0) >= 5) {
+                    (s as any).rintak = 'Arthur, Abdul and Hassan are talking loudly to each other in their native language.';
                     scene.actions([
                       { label: 'View the Armenians', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -374,6 +385,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).hour ?? 0) === 10) {
           if ((!((s as any).rintakrand ?? 0))) {
+            (s as any).rintak = 'Hassan sits on a chair dejectedly chewing food and talking with his mouth full to his saleswoman Nadia.';
             scene.actions([
               { label: 'Watch', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -385,6 +397,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).rintakrand ?? 0) === 1) {
+              (s as any).rintak = 'Nadia sits in her stall doing crossword puzzles.';
               scene.actions([
                 { label: 'Chat with Nadia', handler: (st: GameState) => {
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) + (1);
@@ -397,6 +410,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).rintakrand ?? 0) === 2) {
+                (s as any).rintak = 'Customers are crowded around Nadia\'s stall. She fusses around before them laying out her goods.';
                 scene.actions([
                   { label: 'Chat with Nadia', handler: (st: GameState) => {
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) - (1);
@@ -409,6 +423,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).rintakrand ?? 0) === 3) {
+                  (s as any).rintak = 'Anna is drinking coffee in her stall.';
                   scene.actions([
                     { label: 'Chat with Anna', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) + (1);
@@ -421,6 +436,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                   ]);
                 } else {
                   if (((s as any).rintakrand ?? 0) === 4) {
+                    (s as any).rintak = 'Anna is in her stall, trying to interest customers in her goods.';
                     scene.actions([
                       { label: 'Chat with Anna', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) - (1);
@@ -433,6 +449,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                     ]);
                   } else {
                     if (((s as any).rintakrand ?? 0) >= 5) {
+                      (s as any).rintak = 'Anna is gossiping with Aunt Katya.';
                       scene.actions([
                         { label: 'Chat with Anna and Aunt Katya', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) + (1);
@@ -455,6 +472,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).hour ?? 0) === 11) {
             if ((!((s as any).rintakrand ?? 0))) {
+              (s as any).rintak = 'Nadia is approached by three Armenians who begin to molest her. She swears at them and tries to dodge their groping hands.';
               scene.actions([
                 { label: 'Look at Nadia and Armenians', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -466,13 +484,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).rintakrand ?? 0) === 1) {
+                (s as any).rintak = 'Nadia is eating cake in her stall.';
                 scene.actions([
                   { label: 'Chat with Nadia', handler: (st: GameState) => {
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     scene.text('Nadia finishes her cake and chats with you.');
     if (((s as any).job_hiring_step ?? 0)?.['city_office_cleaner'] === 0) {
-      if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_cleaner'] = 1;
+      ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['city_office_cleaner'] = 1;
       scene.text('Nadia tells you about an office building not too far away that is looking for a cleaner.');
     }
     scene.actions([
@@ -482,6 +501,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).rintakrand ?? 0) === 2) {
+                  (s as any).rintak = 'Customers are crowded around Nadia\'s stall. She fusses around before them laying out her goods.';
                   scene.actions([
                     { label: 'Chat with Nadia', handler: (st: GameState) => {
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) - (1);
@@ -494,6 +514,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                   ]);
                 } else {
                   if (((s as any).rintakrand ?? 0) === 3) {
+                    (s as any).rintak = 'Anna is reading a newspaper in her stall.';
                     scene.actions([
                       { label: 'Chat with Anna', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) + (1);
@@ -506,6 +527,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                     ]);
                   } else {
                     if (((s as any).rintakrand ?? 0) === 4) {
+                      (s as any).rintak = 'Anna is in her stall, trying to interest customers in her goods.';
                       scene.actions([
                         { label: 'Chat with Anna', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) - (1);
@@ -518,6 +540,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                       ]);
                     } else {
                       if (((s as any).rintakrand ?? 0) >= 5) {
+                        (s as any).rintak = 'Nadia is approached by three Armenians who begin to molest her. She swears at them and tries to dodge their groping hands.';
                         scene.actions([
                           { label: 'Look at Nadia and Armenians', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -538,6 +561,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).hour ?? 0) === 12) {
               if ((!((s as any).rintakrand ?? 0))) {
+                (s as any).rintak = 'Hassan has bought chebureki and is eating it while sitting behind Nadia in the stall.';
                 scene.actions([
                   { label: 'Chat with Nadia', handler: (st: GameState) => {
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) - (1);
@@ -550,6 +574,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).rintakrand ?? 0) === 1) {
+                  (s as any).rintak = 'Nadia is surrounded by customers.';
                   scene.actions([
                     { label: 'Chat with Nadia', handler: (st: GameState) => {
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) - (1);
@@ -562,6 +587,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                   ]);
                 } else {
                   if (((s as any).rintakrand ?? 0) === 2) {
+                    (s as any).rintak = 'Nadia is talking with Anna.';
                     scene.actions([
                       { label: 'Chat with the girls', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) + (1);
@@ -570,7 +596,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).talkrand ?? 0))) {
       scene.text('Anna tells you that her friend used to clean an office building not far from here and that they are looking for a new cleaner if you need to make some extra cash.');
       if (((s as any).job_hiring_step ?? 0)?.['city_office_cleaner'] === 0) {
-        if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_cleaner'] = 1;
+        ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['city_office_cleaner'] = 1;
       }
     } else {
       if (((s as any).talkrand ?? 0) === 1) {
@@ -584,6 +610,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                     ]);
                   } else {
                     if (((s as any).rintakrand ?? 0) === 3) {
+                      (s as any).rintak = 'Anna is selling clothing to customers.';
                       scene.actions([
                         { label: 'Chat with Anna', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) - (1);
@@ -596,6 +623,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                       ]);
                     } else {
                       if (((s as any).rintakrand ?? 0) === 4) {
+                        (s as any).rintak = 'Anna is drinking coffee while sitting at her stall.';
                         scene.actions([
                           { label: 'Chat with Anna', handler: (st: GameState) => {
     (s as any).annaQW = ((s as any).annaQW ?? 0) + (1);
@@ -608,6 +636,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                         ]);
                       } else {
                         if (((s as any).rintakrand ?? 0) >= 5) {
+                          (s as any).rintak = 'A bored looking Nadia is idly sitting in her stall looking for something to do.';
                           scene.actions([
                             { label: 'Chat with Nadia', handler: (st: GameState) => {
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) + (2);
@@ -629,14 +658,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).hour ?? 0) === 13) {
                 if ((!((s as any).rintakrand ?? 0))) {
+                  (s as any).rintak = 'Hassan begins to slowly collect goods from Nadia.';
                 } else {
                   if (((s as any).rintakrand ?? 0) === 1) {
+                    (s as any).rintak = 'Anya sits and calculates her profit for the day.';
                   } else {
                     if (((s as any).rintakrand ?? 0) === 2) {
+                      (s as any).rintak = 'Nadia calculates her days profit.';
                     } else {
                       if (((s as any).rintakrand ?? 0) === 3) {
+                        (s as any).rintak = 'Abdul begins collecting goods from Anna.';
                       } else {
                         if (((s as any).rintakrand ?? 0) === 4) {
+                          (s as any).rintak = 'Arthur walks past your stall.';
+                        } else {
+                          (s as any).rintak = 'Aunt Katya stops trading pies and leaves.';
                         }
                       }
                     }
@@ -651,6 +687,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).pokrand = Math.floor(Math.random() * 2) + 0;
       if ((!((s as any).pokrand ?? 0))) {
+        (s as any).pokup = 'You have no customers.';
         (s as any).pokupatel = 0;
         scene.text('');
         scene.text('Aunt Katya pushes her trolley through the market carrying cakes and coffee.');
@@ -658,27 +695,43 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         (s as any).pokupatel = 1;
         (s as any).poktiprand = Math.floor(Math.random() * 8) + 0;
         if ((!((s as any).poktiprand ?? 0))) {
+          (s as any).pokup = 'A middle-aged man approaches your stall.';
+          (s as any).poktip = 'The man';
           (s as any).pokti = 1;
         }
         if (((s as any).poktiprand ?? 0) === 1) {
+          (s as any).pokup = 'A young man approaches your stall.';
+          (s as any).poktip = 'The guy';
           (s as any).pokti = 2;
         }
         if (((s as any).poktiprand ?? 0) === 2) {
+          (s as any).pokup = 'A teenage boy approaches your stall.';
+          (s as any).poktip = 'The boy';
           (s as any).pokti = 3;
         }
         if (((s as any).poktiprand ?? 0) === 3) {
+          (s as any).pokup = 'A woman approaches your stall.';
+          (s as any).poktip = 'The woman';
           (s as any).pokti = 1;
         }
         if (((s as any).poktiprand ?? 0) === 4) {
+          (s as any).pokup = 'A girl approaches your stall.';
+          (s as any).poktip = 'The girl';
           (s as any).pokti = 2;
         }
         if (((s as any).poktiprand ?? 0) === 5) {
+          (s as any).pokup = 'A teenage girl approaches your stall.';
+          (s as any).poktip = 'The teenager';
           (s as any).pokti = 3;
         }
         if (((s as any).poktiprand ?? 0) === 6) {
+          (s as any).pokup = 'An old man approaches your stall.';
+          (s as any).poktip = 'The old man';
           (s as any).pokti = 0;
         }
         if (((s as any).poktiprand ?? 0) === 7) {
+          (s as any).pokup = 'An old woman approaches your stall.';
+          (s as any).poktip = 'The old woman';
           (s as any).pokti = 0;
         }
       }
@@ -727,7 +780,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Laze around (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-  }, goto: ['city_marketwork', 'start'] },
+    qspGoto(s, 'city_marketwork', 'start');
+  } },
         { label: 'Buy a snack (0:15)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
@@ -827,7 +881,7 @@ function enterTellprice(s: GameState, scene: SceneBuilder): void {
 function enterHaggling(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prodpay ?? 0) >= 1100) {
     scene.actions([
-      { label: 'Reduce the price by <<$func(\'money\', \'string_profit\', 100)>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Reduce the price by ' + String(qspFunc(s, 'money', 'string_profit', 100) ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You have reduced the price by <<$func('money', 'string_profit', 100)>>.
     scene.text(`You have reduced the price by ${qspFunc(s, 'money', 'string_profit', 100)}.`);
     (s as any).poknorand = (Math.floor(Math.random() * (100 + ((s as any).pcs_apprnc ?? 0)/4 - 1 + 1)) + (1));
@@ -847,7 +901,7 @@ function enterHaggling(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).prodpay ?? 0) >= 1050) {
       scene.actions([
-        { label: 'Reduce the price by <<$func(\'money\', \'string_profit\', 50)>>', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Reduce the price by ' + String(qspFunc(s, 'money', 'string_profit', 50) ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You have reduced the price by <<$func('money', 'string_profit', 50)>>.
     scene.text(`You have reduced the price by ${qspFunc(s, 'money', 'string_profit', 50)}.`);
     (s as any).poknorand = (Math.floor(Math.random() * (100 + ((s as any).pcs_apprnc ?? 0)/4 - 1 + 1)) + (1));

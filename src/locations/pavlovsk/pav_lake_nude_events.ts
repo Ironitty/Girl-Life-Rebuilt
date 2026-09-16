@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -242,7 +242,7 @@ function enterPavLakeNudeForestPiss(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act iif(zz_stage < 1, 'Peep at her', 'Further'): zz_stage += 1 & gs 'pav_lake_nude_events', 'pav_lak...
   } else {
     qspCall(s, 'arousal', 'end');
-    scene.actions([{ label: 'Continue', goto: ['pav_lake_nude', ''] }]);
+    qspGoto(s, 'pav_lake_nude', '');
   }
   // TODO-QSP: end
   scene.build();

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -25,16 +25,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 1) * ((s as any).people ?? 0));
     (s as any).people = 0;
     qspCall(s, 'stat', '');
-  }, goto: ['city_pharmacy', 'shop'] },
+    qspGoto(s, 'city_pharmacy', 'shop');
+  } },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
+    qspGoto(s, 'city_pharmacy', 'shop');
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterShop(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
+  (s as any).loc = 'city_pharmacy';
+  (s as any).loc_arg = 'shop';
+  (s as any).menu_loc = 'city_pharmacy';
+  (s as any).menu_arg = 'shop';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pharmacy</b></center>');
   if (((s as any).pharma_day ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -49,7 +55,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1050) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'buy_antifungal'] }]);
+      qspGoto(s, 'city_pharmacy', 'buy_antifungal');
     }
   } },
     ]);
@@ -78,9 +84,9 @@ function enterBuyAntifungal(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).Kandidoz ?? 0) < 30  &&  ((s as any).KandidozOnce ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
+      qspGoto(s, 'city_pharmacy', 'shop');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
+      qspGoto(s, 'city_pharmacy', 'shop');
     }
   }
   // TODO-QSP: end
@@ -88,6 +94,8 @@ function enterBuyAntifungal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_s = 'city_pharmacy';
+  (s as any).args_s = 'cart';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'chemist');
   qspCall(s, 'stat', '');

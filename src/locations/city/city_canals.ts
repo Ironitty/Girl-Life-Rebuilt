@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,28 +9,32 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_history = ((s as any).loc ?? 0);
+  (s as any).loc_args_history = ((s as any).loc_arg ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSetup(s: GameState, scene: SceneBuilder): void {
+  (s as any).region = 'city';
   if (((s as any).loc ?? 0) !== 'city_canals') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_canals', ((s as any).locArgs?.[1] ?? 0));
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + 'locations/city/canals/';
+  ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/city/canals/';
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 9) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + 'city_canals_day_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
+      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'city_canals_day_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
     } else {
-      scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + 'city_canals_night_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
+      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'city_canals_night_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
     }
   } else {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + 'w_city_canals_day_1.jpg');
+      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'w_city_canals_day_1.jpg');
     } else {
-      scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + 'w_city_canals_night_1.jpg');
+      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'w_city_canals_night_1.jpg');
     }
   }
   qspCall(s, 'core_library', 'stage_title');
@@ -42,18 +46,18 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'arts') {
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'island') {
-      scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
+      qspGoto(s, 'city_island', '');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'industrial') {
-        scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
+        qspGoto(s, 'city_industrial', '');
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'residential') {
-          scene.actions([{ label: 'Continue', goto: ['city_suburbs', 'start'] }]);
+          qspGoto(s, 'city_suburbs', 'start');
         } else {
           // TODO-QSP: gt $ARGS[1], $ARGS[2]
         }
@@ -65,7 +69,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterContent(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'St Petersburg Canals';
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'St Petersburg Canals';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'start']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 12) {
     scene.text('You stand gazing at St. Petersburg\'s famous Canals of the North, the hustle and bustle of people on the streets against a backdrop of elegant Russian buildings. You see the boatmen plying their trade on the waters below and working on their tour boats.');
@@ -126,7 +130,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a boat ride. Description of the boat tour goes here');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -157,7 +161,7 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
       (s as any).canals_ticket = ((s as any).daystart ?? 0);
       // TODO-QSP: dynamic text: You pay the boatman ' + $func('money', 'string_price', 100) + ' for your ticket.
       scene.text('You pay the boatman 100₽ for your ticket.');
-      scene.actions([{ label: 'Continue', goto: ['city_canals', 'start'] }]);
+      qspGoto(s, 'city_canals', 'start');
     }
   } },
   ]);
@@ -165,7 +169,7 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDates(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }

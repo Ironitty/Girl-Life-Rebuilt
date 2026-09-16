@@ -1,11 +1,13 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'secluded';
   qspCall(s, 'core_library', 'setloc', 'pav_lake_nude', '');
+  (s as any).locclass = 'beach';
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -60,7 +62,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_socialchg1', 'ivan_fedor_naked'] },
       ]);
     } else {
-      scene.text('You\'re walking down the secluded beach, enjoying the tranquility when you suddenly hear someone running up behind you. Expecting the worst, you turn around only to see a sweaty <a href="exec:ivanfedorseennaked = daystart & gt \'gschool_socialchg1\', \'tIvan\'">Ivan</a>, closely followed by <a href="exec:ivanfedorseennaked = daystart & gt \'gschool_socialchg1\', \'tFedor\'">Feodor</a>.');
+      scene.text('You\'re walking down the secluded beach, enjoying the tranquility when you suddenly hear someone running up behind you. Expecting the worst, you turn around only to see a sweaty <a href="#" onclick="window.__gameStore.setState((s) => { s.ivanfedorseennaked = s.daystart; return s; }); window.__gameStore.getState().doGoto(\\u0027gschool_socialchg1\\u0027, \\u0027tIvan\\u0027); return false;">Ivan</a>, closely followed by <a href="#" onclick="window.__gameStore.setState((s) => { s.ivanfedorseennaked = s.daystart; return s; }); window.__gameStore.getState().doGoto(\\u0027gschool_socialchg1\\u0027, \\u0027tFedor\\u0027); return false;">Feodor</a>.');
     }
   }
   if (((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) < 10) {
@@ -218,7 +220,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
           scene.text('You lie down on your towel and enjoy the warm rays of the sun on your body. You move your straps around to try and prevent tan lines on your back.');
         } else {
-          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+          ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
           scene.text('You apply sunscreen to yourself and lie down on the towel to work on your tan. You enjoy the warm rays of the sun on your body. You move your straps around to try and prevent tan lines on your back.');
         }
@@ -229,7 +231,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
           scene.text('You lie down on your towel and enjoy the warm rays of the sun on your naked body.');
         } else {
-          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+          ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
           scene.text('You apply sunscreen to yourself and lie down on the towel to work on your tan. You enjoy the warm rays of the sun on your naked body.');
         }
@@ -421,7 +423,8 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
           { label: 'Go to the beach', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['pav_lake_nude', ''] },
+    qspGoto(s, 'pav_lake_nude', '');
+  } },
         ]);
       }
     }

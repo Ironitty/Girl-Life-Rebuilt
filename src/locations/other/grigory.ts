@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -19,7 +19,7 @@ function enterDummy(s: GameState, scene: SceneBuilder): void {
 
 function enterMeet(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  if (!(s as any).npc_qw) (s as any).npc_qw = {}; (s as any).npc_qw['A221'] = 1;
+  ((s as any).npc_qw = (s as any).npc_qw ?? {})['A221'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big221.jpg');
   scene.text('When you near the fields you notice a man walking near your grandparents\' cows.');
@@ -119,7 +119,7 @@ function enterBarn(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Flirt', handler: (st: GameState) => {
-    if (!(s as any).npc_qw) (s as any).npc_qw = {}; (s as any).npc_qw['A221'] = 2;
+    ((s as any).npc_qw = (s as any).npc_qw ?? {})['A221'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
@@ -142,7 +142,8 @@ function enterBarn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['grigory', 'barn_closer'] },
+    qspGoto(s, 'grigory', 'barn_closer');
+  } },
       ]);
     }
     scene.actions([
@@ -219,7 +220,7 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).npc_qw) (s as any).npc_qw = {}; (s as any).npc_qw['A221'] = 3;
+    ((s as any).npc_qw = (s as any).npc_qw ?? {})['A221'] = 3;
     scene.text('For several minutes he fucks you with rapid thrusts that fill the air with the sounds of your bodies meeting.');
     scene.text('It\'s not long before you can feel his pace become irregular, then with one sudden lunge and a grunt, he presses deep before unloading his seed deep inside of you.');
     scene.text('Withdrawing, you can feel some of his cum, mingled with your virgin blood, drip from your freshly used pussy. He gives your ass a playful slap, then reaches for his clothes.');
@@ -252,7 +253,7 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['gad_gpbarn', ''] },
         ]);
       } else {
-        if (!(s as any).npc_qw) (s as any).npc_qw = {}; (s as any).npc_qw['A221'] = 3;
+        ((s as any).npc_qw = (s as any).npc_qw ?? {})['A221'] = 3;
         scene.text('You let the kiss linger and within moments his hands are roaming over your body as he begins to undress you. There\'s something animalistic in his movements, like a stud animal that can smell a mate.');
         scene.text('Once naked, he pushes you onto a pile of hay, the motion only somewhat playful. Within seconds, his own clothing joins yours on the ground at his feet.');
         scene.text('Moving towards you, he pauses, both affection and need clear in his expression. "I do care about you Kotenok," His expression becomes self conscious, "And I\'ve wanted this for a long time now."');
@@ -526,9 +527,9 @@ function enterFlower2(s: GameState, scene: SceneBuilder): void {
       scene.text('You feel your hymen break as Mitka penetrates you. Mitka looks down at you in surprise and says, "Wow, how were you still a virgin? If I had known, I would have savoured this moment longer!"');
     }
     scene.text('Breathing heavily, Mitka gets off of you and says, "Nice fuck!"');
-    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
     qspCall(s, 'boyStat', 'A63');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A63'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A63'] = 1;
     qspCall(s, 'arousal', 'vaginal', 10, 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -572,7 +573,7 @@ function enterFlower3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -589,7 +590,7 @@ function enterFlower4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

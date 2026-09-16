@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -130,7 +128,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               (s as any).pha_target = 1;
             } else {
               (s as any).pha_i = 2;
-              (s as any).pha_target = qspUntranslated(s, "ARGS[1]", { location: "pcs_has_attr" });
+              (s as any).pha_target = ((s as any).locArgs?.[1] ?? 0);
             }
             // TODO-QSP: :pha_XOR_loop
             if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {

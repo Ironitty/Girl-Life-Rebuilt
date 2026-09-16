@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -32,6 +32,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bbq/sex/1b.jpg');
     scene.text('When you arrive at a house, the guys begin to strip you almost as soon as you walk through the door. You also noticed there was several of them waiting at the house for their friends to return with you. All six of them proceed to fuck all of your holes, two or three at a time. They take turns and swap holes fairly randomly, for a good two hours.');
     scene.text('At least they were nice enough to all wear condoms and use lubricant, still six guys all taking turns, fucking each of your three holes leaves them aching and gaping.');
+    (s as any).orgasm_txt = 'You reach an orgasm throughout their rough treatment of you, and lay quivering while they continue to pound you mercilessly.';
     qspCall(s, 'arousal', 'bj', 120, 'sub', 'gangbang', 'prostitution');
     qspCall(s, 'arousal', 'anal', (-120), 'sub', 'gangbang', 'prostitution');
     qspCall(s, 'arousal', 'vaginal', (-120), 'sub', 'gangbang', 'prostitution');
@@ -53,7 +54,8 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get out of his car', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   } },
     ]);
@@ -77,6 +79,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
   scene.text('The older man gives you a dirty grin, and ogles your body for a few seconds before he says: "Very good, you will do. Follow me."');
   scene.text('You get into a van with the older man, and are a bit surprised when he enters a narrow side road that leads into the woods. You\'re in the middle of nowhere here!');
   scene.text('He stops the van, and tells you to get out of the van and undress. He lays you on your back in the open side door of his van. As soon as your legs are apart he shoves his old dick in your cunt and starts fucking it. He never says a word, or touches you in any other way, he just fucks your pussy.');
+  (s as any).orgasm_txt = 'The old man is a skillful lover, and he brings you to a spectacular orgasm. Since you\'re in the middle of the woods and no one can hear you anyway, you fully surrender yourself to him and moan loudly when he keeps fucking you throughout your orgasm, making it all the more intense.';
   qspCall(s, 'arousal', 'vaginal', 120, 'sub', 'prostitution');
   // TODO-QSP: end
   scene.actions([
@@ -92,7 +95,8 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get out of his van', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   } },
   ]);
@@ -117,6 +121,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
   scene.text('His friend\'s eyes light up, and he\'s all giddy with anticipation when the three of you leave the diner. The two of them lead you to a car and drive you to an apartment in the city industrial district.');
   scene.text('Both the men are upon you the second you walk through the door, pulling your clothes off you roughly enough to leave bruises. They push you down on the couch and one of them quickly shoves his dick in your pussy, not bothering to get your warmed up first. The other waits just long enough for his friend to get his dick in your pussy, when he roughly shoves his cock in your ass, the only lube he bothered to use was a bit of spit on the tip of his dick.');
   scene.text('They trade fucking your twat and ass back and forth, not seeming to care one bit, if dry fucking you hurts you in the slightest, in fact you think they are getting off on it.');
+  (s as any).orgasm_txt = 'The intensity at which they were fucking your pussy and ass at the same time makes your own orgasm all the more intense. Your loud groans cause some disturbed knocking on the walls, from neighbours complaining about the noise. Oops…';
   qspCall(s, 'arousal', 'anal', 120, ((s as any).npcID ?? 0), 'sub', 'group', 'prostitution', 'rough');
   qspCall(s, 'arousal', 'vaginal', (-120), ((s as any).npcID1 ?? 0), 'sub', 'group', 'prostitution', 'rough');
   qspCall(s, 'stat', '');
@@ -136,7 +141,8 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave the apartment building', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-  }, goto: ['city_industrial', ''] },
+    qspGoto(s, 'city_industrial', '');
+  } },
     ]);
   } },
   ]);
@@ -162,6 +168,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     scene.text('He acts like a director, telling you and the other girl to do all sorts of acts on one another while he watches, and then has the two of you please him together.');
     scene.text('He\'s particularly interested in your ass. "I hope you like anal, sweetie…" he whispers in your ear after a while. "Because my girlfriend won\'t take anything up there, you\'ll have to take it for the both of you!"');
     scene.text('Fortunately, he takes it slow, and it doesn\'t feel all that unpleasant. The girl is very fascinated by it all and asks you a few questions while she absent-mindedly rubs your clit and kisses your boobs as if you\'re doing her a huge favor. After all: as long as her boyfriend enjoys your ass, her\'s can remain unfucked.');
+    (s as any).orgasm_txt = 'You were already fairly turned on before going with them, and the girl turns out to be an expert at pleasing other women! She has you begging and moaning in no time, and licks you to an intense orgasm within moments.';
     qspCall(s, 'arousal', 'cuni', 120, 'sub', 'prostitution', 'lesbian');
     qspCall(s, 'arousal', 'vaginal_finger', (-120), 'sub', 'prostitution', 'lesbian');
     qspCall(s, 'arousal', 'anal', (-120), 'sub', 'prostitution');
@@ -181,7 +188,8 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave their apartment building', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   } },
     ]);
@@ -190,6 +198,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     scene.text('As you walk up to the couple, you remember them from before. The guy grins at you and the girl smiles. "Told you we would be back, are you ready to go?"');
     scene.text('They live in the residential area of the city, and it\'s a short drive there. You remember it from last time, they inform you, she is ready to try anal, but wants you to coach her through it and get her ready.');
     scene.text('Once inside he watches the two of you have fun. He waits until you bring his girlfriend to an orgasm.');
+    (s as any).orgasm_txt = 'You were already fairly turned on before going with them, and the girl turns out to be an expert at pleasing other women! She has you begging and moaning in no time, and licks you to an intense orgasm within moments.';
     qspCall(s, 'arousal', 'cuni_give', 60, 'sub', 'prostitution', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -215,7 +224,8 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave their apartment building', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   } },
     ]);
@@ -244,6 +254,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
     (s as any).orgasm = ((s as any).orgasm ?? 0) + (2);
     scene.text('Even though the girl had no prior experience with women, she touches you in all the right places and you reach an orgasm more than once during your session.');
   }
+  (s as any).orgasm_or = 'yes';
   if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     scene.text('You mostly focus on making this a pleasurable experience for her, and don\'t orgasm yourself. That\'s fine, though… the ecstatic look in her eyes when you gave her the third orgasm of the evening more than makes up for it!');
@@ -256,7 +267,8 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave her apartment', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
   ]);
   scene.build();
 }
@@ -274,6 +286,7 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
   scene.text('"My waitress, huh?" he laughs. "That\'s adorable!"');
   scene.text('He leads you to his car and drives to his house in the residential district. For the next hour and a half, he alternates between fucking your wet clit, and making you lick your own juices off his hard cock repeatedly. He doesn\'t go soft once during all this! Such stamina.');
   qspCall(s, 'arousal', 'bj', 90, 'sub', 'prostitution');
+  (s as any).orgasm_txt = 'The guy brings you to a mind-blowing orgasm! You wouldn\'t think it at first given his posture but he\'s a great and experienced lover, knowing exactly what he has to do to make a woman feel good.';
   qspCall(s, 'arousal', 'vaginal', (-90), 'sub', 'prostitution');
   // TODO-QSP: end
   scene.actions([
@@ -292,7 +305,8 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave his apartment', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   } },
   ]);

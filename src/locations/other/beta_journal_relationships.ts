@@ -11,11 +11,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_id = 'beta_journal_relationships';
+  (s as any).hot_link = ((s as any).loc_id ?? 0);
   qspCall(s, 'beta_journal', 'nav_construct');
   scene.text('<center>');
   if (((s as any).panel_show ?? 0) !== 1  ||  (!((s as any).panel_show ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 1 & gs '<<$loc_id>>', 'init'">Show Family</a>
-    scene.text(`<a href="exec:panel_show = 1 & gs '${((s as any).loc_id || '')}', 'init'">Show Family</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027${((s as any).loc_id || '')}\\u0027, \\u0027init\\u0027); return false;">Show Family</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 1) {
       scene.text('<i>Show Family</i>');
@@ -24,7 +26,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 2) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 2 & gs '<<$loc_id>>', 'init'">Show Pavlovsk NPCs</a>
-    scene.text(`<a href="exec:panel_show = 2 & gs '${((s as any).loc_id || '')}', 'init'">Show Pavlovsk NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.2; return s; }); window.__gameStore.getState().doGoto(\\u0027${((s as any).loc_id || '')}\\u0027, \\u0027init\\u0027); return false;">Show Pavlovsk NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 2) {
       scene.text('<i>Show Pavlovsk NPCs</i>');
@@ -33,7 +35,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 3) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 3 & gs '<<$loc_id>>', 'init'">Show Gadukino NPCs</a>
-    scene.text(`<a href="exec:panel_show = 3 & gs '${((s as any).loc_id || '')}', 'init'">Show Gadukino NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027${((s as any).loc_id || '')}\\u0027, \\u0027init\\u0027); return false;">Show Gadukino NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 3) {
       scene.text('<i>Show Gadukino NPCs</i>');
@@ -42,7 +44,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 4) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 4 & gs '<<$loc_id>>', 'init'">Show St Petersburg NPCs...
-    scene.text(`<a href="exec:panel_show = 4 & gs '${((s as any).loc_id || '')}', 'init'">Show St Petersburg NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.4; return s; }); window.__gameStore.getState().doGoto(\\u0027${((s as any).loc_id || '')}\\u0027, \\u0027init\\u0027); return false;">Show St Petersburg NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 4) {
       scene.text('<i>Show St Petersburg NPCs</i>');
@@ -51,7 +53,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 5) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 5 & gs '<<$loc_id>>', 'init'">Show Pushkin NPCs</a>
-    scene.text(`<a href="exec:panel_show = 5 & gs '${((s as any).loc_id || '')}', 'init'">Show Pushkin NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027${((s as any).loc_id || '')}\\u0027, \\u0027init\\u0027); return false;">Show Pushkin NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 5) {
       scene.text('<i>Show Pushkin NPCs</i>');
@@ -60,7 +62,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 6) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 6 & gs '<<$loc_id>>', 'init'">Show School NPCs</a>
-    scene.text(`<a href="exec:panel_show = 6 & gs '${((s as any).loc_id || '')}', 'init'">Show School NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.6; return s; }); window.__gameStore.getState().doGoto(\\u0027${((s as any).loc_id || '')}\\u0027, \\u0027init\\u0027); return false;">Show School NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 6) {
       scene.text('<i>Show Gadukino NPCs</i>');
@@ -295,7 +297,7 @@ function enterRelGadukino(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal', 'relindex', 'A174');
   }
   // TODO-QSP: dynamic text: <a href="exec:pavlovsk_show = 0 & gs '<<$loc_id>>', 'init'">Hide Gadukino NPCs</...
-  scene.text(`<a href="exec:pavlovsk_show = 0 & gs '${((s as any).loc_id || '')}', 'init'">Hide Gadukino NPCs</a>`);
+  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pavlovsk_show = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027${((s as any).loc_id || '')}\\u0027, \\u0027init\\u0027); return false;">Hide Gadukino NPCs</a>`);
   // TODO-QSP: end
   scene.build();
 }
@@ -309,10 +311,13 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     scene.text('<center><h2>Standings by Social Group</h2></center>');
     if (((s as any).grupTipe ?? 0) < 5  &&  ((s as any).grupvalue ?? 0)?.[String((s as any).grupTipe ?? 0)] > 700) {
+      (s as any).journal_school_standing = ' You are well respected and liked within your clique.';
     } else {
       if (((s as any).grupTipe ?? 0) < 5  &&  ((s as any).grupvalue ?? 0)?.[String((s as any).grupTipe ?? 0)] > 300) {
+        (s as any).journal_school_standing = ' You are in good standing with your clique.';
       } else {
         if (((s as any).grupTipe ?? 0) < 5) {
+          (s as any).journal_school_standing = 0;
         }
       }
     }
@@ -624,20 +629,23 @@ function enterNpcPreview(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/characters/shared/headshots_main/${((s as any).rel_id || '')}.jpg`);
   // TODO-QSP: dynamic text: <th width="30%"><<$npc_firstname['A<<rel_id>>']>> <<$npc_lastname['A<<rel_id>>']...
   scene.text(`<th width="30%">${qspUntranslated(s, "npc_firstname['A<<rel_id", { location: "beta_journal_relationships" })}']>> ${qspUntranslated(s, "npc_lastname['A<<rel_id", { location: "beta_journal_relationships" })}']>> (${qspUntranslated(s, "npc_nickname['A<<rel_id", { location: "beta_journal_relationships" })}']>>):`);
-  qspCall(s, 'journal', 'relindex', 'A' + qspUntranslated(s, "rel_id>", { location: "beta_journal_relationships" }) + '');
+  qspCall(s, 'journal', 'relindex', 'A' + ((s as any).rel_id ?? 0) + '');
   scene.text('</th><th align left>Events</th></tr>');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterVcard(s: GameState, scene: SceneBuilder): void {
+  (s as any).quest_id = 'A' + ((s as any).locArgs?.[1] ?? 0);
+  (s as any).loc_id = 'beta_journal_quests';
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: gt $loc_id, 'failure', 'id'
   }
   if (((s as any).npc_quest ?? 0)?.['q_next'] === '') {
     (s as any).qstage = 1;
   }
-  qspCall(s, 'quest_data_<<$quest_id>>', 'init');
+  qspCall(s, 'quest_data_' + ((s as any).quest_id ?? 0) + '', 'init');
+  (s as any).loc_id = 'beta_journal_quests';
   if (((s as any).npc_quest ?? 0)?.['body'] ==='') {
     // TODO-QSP: gt $loc_id, 'failure', 'quest_body'
   }
@@ -657,7 +665,7 @@ function enterVcard(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $vcard += '<ul style="margin:0; padding:0;">Home: ' + iif($npc_home['$quest_id'] = '', 'Not known', ...
   // TODO-QSP: $vcard += '<ul style="margin:0; padding:0;">Location: Unknown</ul>'
   if (((s as any).debug ?? 0)?.['code'] === 1) {
-    qspCall(s, 'quest_data_a<<ARGS[1]>>', 'debug');
+    qspCall(s, 'quest_data_a' + ((s as any).locArgs?.[1] ?? 0) + '', 'debug');
     // TODO-QSP: $vcard += '<ul style="margin:0; padding:0;">Debug Vars:<a href="exec:msg <<$npc_quest[''debug_data''...
   }
   // TODO-QSP: $vcard += '</p></div>'
@@ -682,8 +690,14 @@ function enterVcard(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $qsteps +=  '<div style="padding:5px; align: center;">'
   // TODO-QSP: $qsteps +=  '<center><h5>Quest History</h5></center>'
   if (((s as any).npc_quest ?? 0)?.['q_next'] === 'null') {
+    (s as any).next_nav = 'Current Stage';
+  } else {
+    (s as any).next_nav = '<a href="gs \'' + ((s as any).loc_id ?? 0) + '\', \'navigation\', \'next\' "" >Next Stage</a> <b>→</b>';
   }
   if (((s as any).npc_quest ?? 0)?.['q_back'] === 'null') {
+    (s as any).back_nav = 'Quest Start';
+  } else {
+    (s as any).back_nav = '<b>←</b> <a href="gs \'' + ((s as any).loc_id ?? 0) + '\', \'navigation\', \'back\' " >Previous Stage</a> ';
   }
   // TODO-QSP: $qsteps +=  '<center><<$back_nav>> | <<$next_nav>></center>'
   // TODO-QSP: $qsteps +=  '</div>'
@@ -696,8 +710,9 @@ function enterVcard(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNavigation(s: GameState, scene: SceneBuilder): void {
+  (s as any).nav_click = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((s as any).qstage ?? 0) === 1) {
-    if (!(s as any).npc_quest) (s as any).npc_quest = {}; (s as any).npc_quest['q_back'] = 'null';
+    ((s as any).npc_quest = (s as any).npc_quest ?? {})['q_back'] = 'null';
   } else {
     if (((s as any).qstage ?? 0) > 1  &&  ((s as any).nav_click ?? 0) === 'next') {
       (s as any).qstage = ((s as any).qstage ?? 0) + (1);
@@ -705,11 +720,11 @@ function enterNavigation(s: GameState, scene: SceneBuilder): void {
       if (((s as any).qstage ?? 0) >= 2  &&  ((s as any).nav_click ?? 0) ==='back') {
         (s as any).qstage = ((s as any).qstage ?? 0) - (1);
       } else {
-        if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['journal'] = 'Navigation failed to be set.';
+        ((s as any).debug = (s as any).debug ?? {})['journal'] = 'Navigation failed to be set.';
       }
     }
   }
-  qspCall(s, 'quest_data_<<$quest_id>>', 'init');
+  qspCall(s, 'quest_data_' + ((s as any).quest_id ?? 0) + '', 'init');
   qspCall(s, 'beta_journal_quests', 'init');
   // TODO-QSP: end
   scene.build();
@@ -762,7 +777,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const beta_journal_relationships: LocationDef = {
   name: 'beta_journal_relationships',
-  title: ' You have to work on your clique standing. You\'re in danger of being cast out.',
+  title: 'You have to work on your clique standing. You\'re in danger o',
   region: 'other',
   enter: enter,
 };

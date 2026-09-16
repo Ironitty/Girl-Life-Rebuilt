@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,45 +14,45 @@ function enterCustomers(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NikoSlut ?? 0) === 2  &&  ((s as any).NikoDiner ?? 0) > 0) {
     (s as any).NikoCust = Math.floor(Math.random() * 16) + 1;
     if (((s as any).NikoDinerSlut ?? 0) >= 18  &&  ((s as any).VKBikerAttack ?? 0) === 0  &&  ((s as any).VKWip ?? 0) === 100) {
-      scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Biker Attack'] }]);
+      qspGoto(s, 'NikoSlut', 'Biker Attack');
     } else {
       if (((s as any).NikoCust ?? 0) === 1  &&  ((s as any).NikoCust1 ?? 0) !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 1'] }]);
+        qspGoto(s, 'NikoSlut', 'Customer 1');
       } else {
         if (((s as any).NikoCust ?? 0) === 2  &&  ((s as any).NikoCust2 ?? 0) !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 2'] }]);
+          qspGoto(s, 'NikoSlut', 'Customer 2');
         } else {
           if (((s as any).NikoCust ?? 0) === 3  &&  ((s as any).NikoCust3 ?? 0) !== ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 3'] }]);
+            qspGoto(s, 'NikoSlut', 'Customer 3');
           } else {
             if (((s as any).NikoCust ?? 0) === 4  &&  ((s as any).NikoCust4 ?? 0) !== ((s as any).daystart ?? 0)) {
-              scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 4'] }]);
+              qspGoto(s, 'NikoSlut', 'Customer 4');
             } else {
               if (((s as any).NikoCust ?? 0) === 5  &&  ((s as any).NikoCust5 ?? 0) !== ((s as any).daystart ?? 0)) {
-                scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 5'] }]);
+                qspGoto(s, 'NikoSlut', 'Customer 5');
               } else {
                 if (((s as any).NikoCust ?? 0) === 6  &&  ((s as any).NikoCust6 ?? 0) !== ((s as any).daystart ?? 0)) {
-                  scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 6'] }]);
+                  qspGoto(s, 'NikoSlut', 'Customer 6');
                 } else {
                   if (((s as any).NikoCust ?? 0) === 7  &&  ((s as any).NikoCust7 ?? 0) !== ((s as any).daystart ?? 0)) {
-                    scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 7'] }]);
+                    qspGoto(s, 'NikoSlut', 'Customer 7');
                   } else {
                     if (((s as any).NikoCust ?? 0) === 8  &&  ((s as any).NikoCust8 ?? 0) !== ((s as any).daystart ?? 0)) {
-                      scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 8'] }]);
+                      qspGoto(s, 'NikoSlut', 'Customer 8');
                     } else {
                       if (((s as any).NikoCust ?? 0) === 9  &&  ((s as any).NikoCust9 ?? 0) !== ((s as any).daystart ?? 0)) {
-                        scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 9'] }]);
+                        qspGoto(s, 'NikoSlut', 'Customer 9');
                       } else {
                         if (((s as any).NikoCust ?? 0) === 10  &&  ((s as any).NikoCust10 ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).VKWip ?? 0) === 100) {
-                          scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 10'] }]);
+                          qspGoto(s, 'NikoSlut', 'Customer 10');
                         } else {
                           if (((s as any).NikoCust ?? 0) === 11  &&  ((s as any).NikoCust11 ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).VKWip ?? 0) === 100) {
-                            scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customer 11'] }]);
+                            qspGoto(s, 'NikoSlut', 'Customer 11');
                           } else {
                             if (((s as any).NikoCust ?? 0) >= 12) {
-                              scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'No Customers'] }]);
+                              qspGoto(s, 'NikoSlut', 'No Customers');
                             } else {
-                              scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customers'] }]);
+                              qspGoto(s, 'NikoSlut', 'Customers');
                             }
                           }
                         }
@@ -67,7 +67,7 @@ function enterCustomers(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Diner Exit'] }]);
+    qspGoto(s, 'NikoSlut', 'Diner Exit');
   }
   // TODO-QSP: end
   scene.build();
@@ -1346,7 +1346,7 @@ function enterNoCustomers(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/highway/borisdiner/interior1.jpg');
   scene.text('You and Niko wait for a few minutes, but no one approaches, so you continue chatting while trying to pass the time.');
   if (((s as any).NikoProfit ?? 0) >= 1) {
-    scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customers'] }]);
+    qspGoto(s, 'NikoSlut', 'Customers');
     scene.actions([
       { label: 'Leave early', handler: (st: GameState) => {
     (st as any).NikoDiner = 0;
@@ -1390,7 +1390,7 @@ function enterBikerAttack(s: GameState, scene: SceneBuilder): void {
     scene.text('You slowly approach Yurik and slowly place your hand on his shoulder. Yurik quickly turns, causing you to flinch and brace yourself, but to your relief he doesn\'t hit you and climbs off the biker. He takes a few seconds to catch his breath and looks at his brother on the floor before quickly kicking the downed biker one last time. "If I ever see you around here again, I will bury you alive." The biker seems to be unconscious, so you turn to see Niko trying to get up.');
     scene.actions([
       { label: 'Help Niko up', handler: (st: GameState) => {
-    if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A189'] = 600;
+    ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A189'] = 600;
     (s as any).NikoEv = 21;
     (s as any).NikoSlut = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1444,18 +1444,18 @@ function enterDinerExterior(s: GameState, scene: SceneBuilder): void {
 
 function enterDinerInterior(s: GameState, scene: SceneBuilder): void {
   if (((s as any).YurikEv ?? 0)?.['Name'] === '') {
-    if (!(s as any).YurikEv) (s as any).YurikEv = {}; (s as any).YurikEv['Name'] = 'a burly bearded man';
+    ((s as any).YurikEv = (s as any).YurikEv ?? {})['Name'] = 'a burly bearded man';
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/interior1.jpg');
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 17  &&  ((s as any).hour ?? 0) !== ((s as any).BorisDiner ?? 0)?.['Trucker']) {
-    scene.text('You see a row of stools along the counter and booths along the walls next to the windows. A few waitresses work behind the counter and carry food out to the booths, while a large man works in the back as a cook. A <a href="exec:gt \'NikoSlut\', \'Truckers\'">trucker</a> is sitting on a stool enjoying his meal.');
+    scene.text('You see a row of stools along the counter and booths along the walls next to the windows. A few waitresses work behind the counter and carry food out to the booths, while a large man works in the back as a cook. A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Truckers\\u0027); return false;">trucker</a> is sitting on a stool enjoying his meal.');
   } else {
     if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 17  &&  ((s as any).hour ?? 0) === ((s as any).BorisDiner ?? 0)?.['Trucker']) {
       scene.text('You see a row of stools along the counter and booths along the walls next to the windows. A few waitresses work behind the counter and carry food out to the booths, while a large man works in the back as a cook. A trucker sits on a stool enjoying his meal.');
     } else {
       if (((s as any).hour ?? 0) !== ((s as any).BorisDiner ?? 0)?.['Biker']) {
-        scene.text('You see a row of stools along the counter and booths along the walls next to the windows. A few waitresses work behind the counter and carry food out to the booths, while a large man works in the back as a cook. The stools and counters are nearly empty, but you can see some <a href="exec:gt \'NikoSlut\', \'Bikers\'">bikers</a> sitting at the tables chatting and drinking beer.');
+        scene.text('You see a row of stools along the counter and booths along the walls next to the windows. A few waitresses work behind the counter and carry food out to the booths, while a large man works in the back as a cook. The stools and counters are nearly empty, but you can see some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Bikers\\u0027); return false;">bikers</a> sitting at the tables chatting and drinking beer.');
       } else {
         scene.text('You see a row of stools along the counter and booths along the walls next to the windows. A few waitresses work behind the counter and carry food out to the booths, while a large man works in the back as a cook. The stools and counters are nearly empty but you can see some bikers sitting at the tables chatting and drinking beer.');
       }
@@ -1463,9 +1463,9 @@ function enterDinerInterior(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) === 18) {
     if (((s as any).YurikEv ?? 0)?.['Name'] === 'Yurik') {
-      scene.text('You see <a href="exec:gt \'NikoSlut\', \'Yurik In\'">Yurik</a> sitting in the corner of the bar eating some dinner.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Yurik In\\u0027); return false;">Yurik</a> sitting in the corner of the bar eating some dinner.');
     } else {
-      scene.text('You see <a href="exec:gt \'NikoSlut\', \'Yurik In\'">a burly bearded man</a> sitting in the corner of the bar eating some dinner.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Yurik In\\u0027); return false;">a burly bearded man</a> sitting in the corner of the bar eating some dinner.');
     }
   }
   // TODO-QSP: end
@@ -1476,28 +1476,28 @@ function enterDinerInterior(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Meal 1'] }]);
+      qspGoto(s, 'NikoSlut', 'Meal 1');
     }
   } },
     { label: 'Order a salad', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Salad'] }]);
+      qspGoto(s, 'NikoSlut', 'Salad');
     }
   } },
     { label: 'Order a burger', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Meal 2'] }]);
+      qspGoto(s, 'NikoSlut', 'Meal 2');
     }
   } },
     { label: 'Order fried chicken', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Meal 3'] }]);
+      qspGoto(s, 'NikoSlut', 'Meal 3');
     }
   } },
     { label: 'Leave diner', goto: ['NikoSlut', 'Diner Exterior'] },
@@ -1582,10 +1582,16 @@ function enterSalad(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMensRestroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'Mens Restroom';
+  (s as any).loc = 'NikoSlut';
+  (s as any).locM_arg = 'Mens Restroom';
+  (s as any).locM = 'NikoSlut';
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/m_restroom.jpg');
-  scene.text('This restroom has a <a href="exec:gt \'NikoSlut\', \'Wash\'">sink</a>, 3 urinals and a <a href="exec:gt \'mirror\', \'start\'">mirror</a>. A pretty funky smell fills the room and judging by the stains on the wall, the guys who use this restroom aren\'t very good at aiming.');
+  scene.text('This restroom has a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Wash\\u0027); return false;">sink</a>, 3 urinals and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>. A pretty funky smell fills the room and judging by the stains on the wall, the guys who use this restroom aren\'t very good at aiming.');
   if (((s as any).NikoSlut ?? 0) === 2) {
     scene.actions([
       { label: 'Return to Niko', goto: ['NikoSlut', 'Customers'] },
@@ -1600,10 +1606,16 @@ function enterMensRestroom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLadiesRestroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'Ladies Restroom';
+  (s as any).loc = 'NikoSlut';
+  (s as any).locM_arg = 'Ladies Restroom';
+  (s as any).locM = 'NikoSlut';
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/l_restroom.jpg');
-  scene.text('This restroom has 5 <a href="exec:gt \'NikoSlut\', \'Wash\'">sink</a>, 5 <a href="exec:gt \'mirror\', \'start\'">mirrors</a> and 3 stalls. It\'s very clean and looks pretty unused, likely because very few women visit the diner.');
+  scene.text('This restroom has 5 <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Wash\\u0027); return false;">sink</a>, 5 <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a> and 3 stalls. It\'s very clean and looks pretty unused, likely because very few women visit the diner.');
   if (((s as any).NikoSlut ?? 0) === 2) {
     scene.actions([
       { label: 'Return to Niko', goto: ['NikoSlut', 'Customers'] },
@@ -1639,7 +1651,7 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Dry off', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -1649,7 +1661,7 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
 
 function enterTruckers(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).BorisDiner) (s as any).BorisDiner = {}; (s as any).BorisDiner['Trucker'] = ((s as any).hour ?? 0);
+  ((s as any).BorisDiner = (s as any).BorisDiner ?? {})['Trucker'] = ((s as any).hour ?? 0);
   qspCall(s, 'stat', '');
   (s as any).VK = 0;
   if (((s as any).VK ?? 0) === 1) {
@@ -1728,7 +1740,7 @@ function enterTruckers(s: GameState, scene: SceneBuilder): void {
 
 function enterBikers(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).BorisDiner) (s as any).BorisDiner = {}; (s as any).BorisDiner['Biker'] = ((s as any).hour ?? 0);
+  ((s as any).BorisDiner = (s as any).BorisDiner ?? {})['Biker'] = ((s as any).hour ?? 0);
   qspCall(s, 'stat', '');
   (s as any).VK = 0;
   if (((s as any).VK ?? 0) === 1) {
@@ -1789,8 +1801,10 @@ function enterFriendlyMeal(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (60);
   (s as any).cumspclnt = 2;
   if (((s as any).VKPartner ?? 0) === 1) {
+    (s as any).VKPartner_text = 'trucker';
   }
   if (((s as any).VKPartner ?? 0) === 2) {
+    (s as any).VKPartner_text = 'biker';
   }
   qspCall(s, 'stat', '');
   scene.img('images/shared/food/boris_meal2.jpg');
@@ -1848,7 +1862,7 @@ function enterYurikOut(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Walk away', goto: ['road', '<<nroad>>'] },
+    { label: 'Walk away', goto: ['road', '' + ((s as any).nroad ?? 0) + ''] },
   ]);
   scene.build();
 }

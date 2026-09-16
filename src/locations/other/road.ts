@@ -1,21 +1,21 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   if (((s as any).locArgs?.[0] ?? 0) === ''  ||  !isNaN(((s as any).locArgs?.[0] ?? 0)) && ((s as any).locArgs?.[0] ?? 0) !== '') {
     if (((s as any).locArgs?.[0] ?? 0) !== ''  &&  !isNaN(((s as any).locArgs?.[0] ?? 0)) && ((s as any).locArgs?.[0] ?? 0) !== '') {
-      (s as any).nroad = qspUntranslated(s, "val(ARGS[0])", { location: "road" });
+      (s as any).nroad = parseFloat(((s as any).locArgs?.[0] ?? 0));
     } else {
       // TODO-QSP: $ARGS[0] = '<<nroad>>'
     }
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     }
     qspCall(s, 'core_library', 'setloc', 'road', ((s as any).locArgs?.[0] ?? 0));
+    (s as any).region = 'other';
     qspCall(s, 'stat', '');
     scene.text('<center><h2>Main road between St. Petersburg and Pavlovsk</h2></center>');
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
@@ -31,7 +31,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'You parked <a href="exec:gs ''carF'', ''start''">your <<$car[''name'']>></a>'+iif(prostitute['road'...
     }
     if ((!((s as any).nroad ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
+      qspGoto(s, 'city_industrial', '');
       scene.actions([
         { label: 'Walk to the City Industrial Region (0:15)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -46,7 +46,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).nroad ?? 0) === 16) {
-      scene.actions([{ label: 'Continue', goto: ['obekt', ''] }]);
+      qspGoto(s, 'obekt', '');
       scene.actions([
         { label: 'Check out the construction site (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -80,10 +80,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Walk towards Pavlovsk (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'road', 'mistake_check')) {
-      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_mistake', '\'Pavlovsk\''] }]);
+      qspGoto(s, 'road', 'autostop_mistake', 'Pavlovsk');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
-      scene.actions([{ label: 'Continue', goto: ['road', '<<nroad + 1>>'] }]);
+      qspGoto(s, 'road', '' + ((s as any).nroad ?? 0) + 1 + '');
     }
   } },
       ]);
@@ -92,10 +92,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Walk towards St. Petersburg (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'road', 'mistake_check')) {
-      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_mistake', '\'St. Petersburg\''] }]);
+      qspGoto(s, 'road', 'autostop_mistake', 'St. Petersburg');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
-      scene.actions([{ label: 'Continue', goto: ['road', '<<nroad - 1>>'] }]);
+      qspGoto(s, 'road', '' + ((s as any).nroad ?? 0) - 1 + '');
     }
   } },
       ]);
@@ -108,7 +108,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).gorand = Math.floor(Math.random() * 100) + 1;
     (s as any).picrand = Math.floor(Math.random() * 3) + 1;
     if (qspFunc(s, 'road', 'mistake_check')) {
-      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_mistake', '\'Pavlovsk\''] }]);
+      qspGoto(s, 'road', 'autostop_mistake', 'Pavlovsk');
     } else {
       if (((s as any).gorand ?? 0) <= 60) {
         scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
@@ -116,7 +116,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('You try to catch the attention of people driving towards Pavlovsk, but everyone just rushes by, ignoring you completely.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -125,12 +125,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).nroad ?? 0) < 10) {
             scene.actions([
               { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
+    (s as any).road_textrand0 = 'Gadukino';
     // TODO-QSP: gt 'road', 'autostop_money', 0, picrand
   } },
             ]);
           }
           scene.actions([
             { label: 'Ask the driver to take you to Pavlovsk', handler: (st: GameState) => {
+    (s as any).road_textrand0 = 'Pavlovsk';
     // TODO-QSP: gt 'road', 'autostop_money', 0, picrand
   } },
           ]);
@@ -144,7 +146,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).gorand = Math.floor(Math.random() * 100) + 1;
     (s as any).picrand = Math.floor(Math.random() * 3) + 1;
     if (qspFunc(s, 'road', 'mistake_check')) {
-      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_mistake', '\'St. Petersburg\''] }]);
+      qspGoto(s, 'road', 'autostop_mistake', 'St. Petersburg');
     } else {
       if (((s as any).gorand ?? 0) <= 60) {
         scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
@@ -152,7 +154,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('You try to catch the attention of people driving towards St. Petersburg, but everyone just rushes by, ignoring you completely.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -161,12 +163,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).nroad ?? 0) > 10) {
             scene.actions([
               { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
+    (s as any).road_textrand0 = 'Gadukino';
     // TODO-QSP: gt 'road', 'autostop_money', 0, picrand
   } },
             ]);
           }
           scene.actions([
             { label: 'Ask the driver to take you to St. Petersburg', handler: (st: GameState) => {
+    (s as any).road_textrand0 = 'St. Petersburg';
     // TODO-QSP: gt 'road', 'autostop_money', 0, picrand
   } },
           ]);
@@ -179,18 +183,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).nroad ?? 0))) {
       scene.text('You\'re on the outskirts of St. Petersburg. You see a number of crudely made huts near the trees. A bunch of homeless people must have sought shelter here.');
       // TODO-QSP: dynamic text: A <a href="exec:minut += 5 & gt 'furi'">lorry</a> is parked next to the road. Th...
-      scene.text('A <a href="exec:minut += 5 & gt \'furi\'">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or Pavlovsk, for a price…');
+      scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027furi\\u0027, \\u0027\\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or Pavlovsk, for a price…');
     } else {
       if (((s as any).nroad ?? 0) === 1) {
         // TODO-QSP: dynamic text: You're not very far from St. Petersburg. You see a bunch of <a href="exec:minut ...
-        scene.text('You\'re not very far from St. Petersburg. You see a bunch of <a href="exec:minut += 15 & gt \'city_suburbs\',\'start\'">luxury houses</a> not far from the road. That settlement looks like it\'s very expensive to live in.');
+        scene.text('You\'re not very far from St. Petersburg. You see a bunch of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027city_suburbs\\u0027, \\u0027start\\u0027); return false;">luxury houses</a> not far from the road. That settlement looks like it\'s very expensive to live in.');
       } else {
         if (((s as any).nroad ?? 0) === 2) {
           scene.text('');
         } else {
           if (((s as any).nroad ?? 0) === 3) {
             // TODO-QSP: dynamic text: You see a sign pointing towards a <a href="exec:minut += 15 & gt 'graveyard'">ce...
-            scene.text('You see a sign pointing towards a <a href="exec:minut += 15 & gt \'graveyard\'">cemetery</a>, hidden between lots of trees. You think it\'d be a 15 minute walk from here.');
+            scene.text('You see a sign pointing towards a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027graveyard\\u0027, \\u0027\\u0027); return false;">cemetery</a>, hidden between lots of trees. You think it\'d be a 15 minute walk from here.');
             scene.actions([
               { label: 'Walk to the bus station (0:01)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -202,7 +206,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).nroad ?? 0) === 5) {
                 // TODO-QSP: dynamic text: You see a <a href="exec:gt 'train', 'communal'">railway platform</a> not far fro...
-                scene.text('You see a <a href="exec:gt \'train\', \'communal\'">railway platform</a> not far from the road. A bit further away, someone built <a href="exec:minut += 15 & gt \'dachi\'">a bunch of cottages</a>. Some of them are for sale. This must be a nice place to stay at in the summer!');
+                scene.text('You see a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027train\\u0027, \\u0027communal\\u0027); return false;">railway platform</a> not far from the road. A bit further away, someone built <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027dachi\\u0027, \\u0027\\u0027); return false;">a bunch of cottages</a>. Some of them are for sale. This must be a nice place to stay at in the summer!');
               } else {
                 if (((s as any).nroad ?? 0) === 6) {
                   scene.text('');
@@ -220,27 +224,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                           (s as any).display_bb = 1;
                           qspCall(s, 'stat', '');
                           // TODO-QSP: dynamic text: You see a <a href="exec:gt 'train', 'gadukino'">railway platform</a> not far fro...
-                          scene.text('You see a <a href="exec:gt \'train\', \'gadukino\'">railway platform</a> not far from the road. In the same direction, a dirt road leads to the village of <a href="exec:minut += 15 & gt \'gadukino\'">Gadukino</a>.');
+                          scene.text('You see a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027train\\u0027, \\u0027gadukino\\u0027); return false;">railway platform</a> not far from the road. In the same direction, a dirt road leads to the village of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027gadukino\\u0027, \\u0027\\u0027); return false;">Gadukino</a>.');
                           // TODO-QSP: dynamic text: A <a href="exec:minut += 5 & gt 'furi'">lorry</a> is parked next to the road. Th...
-                          scene.text('A <a href="exec:minut += 5 & gt \'furi\'">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Pavlovsk or St. Petersburg, for a price…');
+                          scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027furi\\u0027, \\u0027\\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Pavlovsk or St. Petersburg, for a price…');
                           if (((s as any).MiraVars ?? 0)?.['QW'] > 15) {
-                            scene.text('Mira <a href="exec:gt \'gad_prostitutes\', \'start\'">prostitutes</a> herself around here.');
+                            scene.text('Mira <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_prostitutes\\u0027, \\u0027start\\u0027); return false;">prostitutes</a> herself around here.');
                           }
                           if (qspFunc(s, 'car_funcs', 'is_here')) {
                             // TODO-QSP: dynamic text: You parked <a href="exec:gs 'carF', 'start'">your <<$car['name']>></a> in a quie...
-                            scene.text(`You parked <a href="exec:gs 'carF', 'start'">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> in a quieter spot on the side road to Gadukin.`);
+                            scene.text(`You parked <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> in a quieter spot on the side road to Gadukin.`);
                           }
                           if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).prostitute ?? 0)?.['gadukino'] === 1) {
                             qspCall(s, 'prostitution_functions', 'work_clothes');
                             if (((s as any).prostitute ?? 0)?.['work_clothes']) {
                               if (qspFunc(s, 'car_funcs', 'is_here')  &&  ((s as any).prostitute ?? 0)?.['changed_for_work']) {
                                 scene.actions([
-                                  { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', '\'car\''] },
+                                  { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'car'] },
                                 ]);
                               } else {
                                 if (((s as any).prostitute ?? 0)?.['changed_for_work']) {
                                   scene.actions([
-                                    { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', '\'road_side\''] },
+                                    { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'road_side'] },
                                   ]);
                                 }
                               }
@@ -251,11 +255,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).prostitute ?? 0)?.['work_clothes'] === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
                               if (qspFunc(s, 'car_funcs', 'is_here')) {
                                 scene.actions([
-                                  { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', '\'car\''] },
+                                  { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'car'] },
                                 ]);
                               } else {
                                 scene.actions([
-                                  { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', '\'road_side\''] },
+                                  { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'road_side'] },
                                 ]);
                               }
                             }
@@ -264,24 +268,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                               qspCall(s, 'prostitution_functions', 'work_clothes');
                               if (((s as any).prostitute ?? 0)?.['work_clothes'] === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
                                 if (qspFunc(s, 'car_funcs', 'is_here')) {
+                                  (s as any).loc_desc = 'You change into some more appropriate clothing in your car, then walk down the road a little to catch the attention of passing cars.';
                                   scene.actions([
-                                    { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', '\'car\''] },
+                                    { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'car'] },
                                   ]);
                                 } else {
+                                  (s as any).loc_desc = 'You change into some more appropriate clothing behind the bushes, then walk down the road a little to catch the attention of passing cars.';
                                   scene.actions([
-                                    { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', '\'road_side\''] },
+                                    { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'road_side'] },
                                   ]);
                                 }
                               } else {
                                 if (((s as any).prostitute ?? 0)?.['work_clothes']) {
                                   if (qspFunc(s, 'car_funcs', 'is_here')  &&  ((s as any).prostitute ?? 0)?.['changed_for_work']) {
                                     scene.actions([
-                                      { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', '\'car\''] },
+                                      { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'car'] },
                                     ]);
                                   } else {
                                     if (((s as any).prostitute ?? 0)?.['changed_for_work']) {
                                       scene.actions([
-                                        { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', '\'road_side\''] },
+                                        { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'road_side'] },
                                       ]);
                                     }
                                   }
@@ -306,7 +312,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((s as any).nroad ?? 0) === 12) {
                               // TODO-QSP: dynamic text: You see a <a href="exec:minut += 15 & gt 'motel'">trucker motel</a> near the roa...
-                              scene.text('You see a <a href="exec:minut += 15 & gt \'motel\'">trucker motel</a> near the road. You have no business there. You\'re no trucker!');
+                              scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027motel\\u0027, \\u0027\\u0027); return false;">trucker motel</a> near the road. You have no business there. You\'re no trucker!');
                             } else {
                               if (((s as any).nroad ?? 0) === 13) {
                                 scene.text('');
@@ -333,21 +339,21 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                                         } else {
                                           if (((s as any).nroad ?? 0) === 19) {
                                             // TODO-QSP: dynamic text: You are on the outskirts of the <a href="exec:minut += 5 & gt 'pushkin'">old tow...
-                                            scene.text('You are on the outskirts of the <a href="exec:minut += 5 & gt \'pushkin\'">old town</a> district of Pavlovsk. About five minutes down a cobblestone road is the old town center. It\'s a fairly popular place for tourists to explore with much of its old architecture still intact.');
+                                            scene.text('You are on the outskirts of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027pushkin\\u0027, \\u0027\\u0027); return false;">old town</a> district of Pavlovsk. About five minutes down a cobblestone road is the old town center. It\'s a fairly popular place for tourists to explore with much of its old architecture still intact.');
                                           } else {
                                             if (((s as any).nroad ?? 0) === 20) {
                                               scene.text('The main road ends at the provincial town of Pavlovsk. You can see the castle in the distance.');
                                               // TODO-QSP: dynamic text: A <a href="exec:minut += 5 & gt 'furi'">lorry</a> is parked next to the road. Th...
-                                              scene.text('A <a href="exec:minut += 5 & gt \'furi\'">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or St. Petersburg, for a price…');
-                                              scene.text('A small road leads to an almost hidden old <a href="exec:gt \'brothel\', \'lobby\'">hotel</a>. Usually tourists use it when passing by or when visiting the old town of Pavlovsk.');
+                                              scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027furi\\u0027, \\u0027\\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or St. Petersburg, for a price…');
+                                              scene.text('A small road leads to an almost hidden old <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brothel\\u0027, \\u0027lobby\\u0027); return false;">hotel</a>. Usually tourists use it when passing by or when visiting the old town of Pavlovsk.');
                                               if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 17) {
-                                                scene.text('You can see a bunch of trucks around the <a href="exec:gt \'NikoSlut\', \'Diner Exterior\'">Boris diner</a>, which is a diner that is frequently visited by both truckers and bikers.');
+                                                scene.text('You can see a bunch of trucks around the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Diner Exterior\\u0027); return false;">Boris diner</a>, which is a diner that is frequently visited by both truckers and bikers.');
                                               } else {
-                                                scene.text('You can see a bunch of motorcycles around the <a href="exec:gt \'NikoSlut\', \'Diner Exterior\'">Boris diner</a>, which is a diner that is frequently visited by both truckers and bikers.');
+                                                scene.text('You can see a bunch of motorcycles around the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Diner Exterior\\u0027); return false;">Boris diner</a>, which is a diner that is frequently visited by both truckers and bikers.');
                                               }
                                               if (((s as any).hour ?? 0) === 22  &&  ((s as any).NikoEv ?? 0) < 21) {
                                                 // TODO-QSP: dynamic text: You can see <a href="exec:gt 'NikoSlut', 'Yurik Out'">' + iif($YurikEv['Name'] =...
-                                                scene.text('You can see <a href="exec:gt \'NikoSlut\', \'Yurik Out\'">\' + iif($YurikEv[\'Name\'] = \'Yurik\', \'Yurik\', \'a big burly man\') + \'</a>, clearly drunk, stumbling along the highway with a beer bottle in his hand.');
+                                                scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoSlut\\u0027, \\u0027Yurik Out\\u0027); return false;">\' + iif($YurikEv[\'Name\'] = \'Yurik\', \'Yurik\', \'a big burly man\') + \'</a>, clearly drunk, stumbling along the highway with a beer bottle in his hand.');
                                               }
                                             }
                                           }
@@ -374,12 +380,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'prostitution_functions', 'work_clothes');
       if (((s as any).prostitute ?? 0)?.['work_clothes'] === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
         if (qspFunc(s, 'car_funcs', 'is_here')) {
+          (s as any).loc_desc = 'You change into some more appropriate clothing in your car, then walk down the road a little to catch the attention of passing cars.';
           scene.actions([
-            { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', '\'car\''] },
+            { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'car'] },
           ]);
         } else {
+          (s as any).loc_desc = 'You change into some more appropriate clothing behind the bushes, then walk down the road a little to catch the attention of passing cars.';
           scene.actions([
-            { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', '\'road_side\''] },
+            { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'road_side'] },
           ]);
         }
       } else {
@@ -387,11 +395,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).prostitute ?? 0)?.['changed_for_work']) {
             if (qspFunc(s, 'car_funcs', 'is_here')) {
               scene.actions([
-                { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', '\'car\''] },
+                { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'car'] },
               ]);
             } else {
               scene.actions([
-                { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', '\'road_side\''] },
+                { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'road_side'] },
               ]);
             }
           }
@@ -406,6 +414,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDriveSex1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   qspCall(s, 'npcgeneratec', '', 0, 'truck driver', Math.floor(Math.random() * 9) + 14);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'stat', '');
@@ -417,12 +426,16 @@ function enterDriveSex1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
   }
   if (((s as any).dick ?? 0) >= 14  &&  ((s as any).dick ?? 0) < 16) {
+    (s as any).road_text_sex = 'a normal size';
   }
   if (((s as any).dick ?? 0) >= 16  &&  ((s as any).dick ?? 0) < 18) {
+    (s as any).road_text_sex = 'a bit larger than average';
   }
   if (((s as any).dick ?? 0) >= 18  &&  ((s as any).dick ?? 0) < 20) {
+    (s as any).road_text_sex = 'quite large';
   }
   if (((s as any).dick ?? 0) >= 20) {
+    (s as any).road_text_sex = 'huge';
   }
   // TODO-QSP: dynamic text: You gently massage his cock between your fingers while the man gets comfortable....
   scene.text(`You gently massage his cock between your fingers while the man gets comfortable. It's ${((s as any).road_text_sex || '')}, roughly ${((s as any).dick || '')} centimeters long and quite girthy. You manage to massage him to a full erection in no time at all, and lower your head to take it between your lips.`);
@@ -443,6 +456,7 @@ function enterDriveSex1(s: GameState, scene: SceneBuilder): void {
 
 function enterDriveSex2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
+  (s as any).location_type = 'event_outdoors';
   qspCall(s, 'npcgeneratec', '', 0, 'truck driver', Math.floor(Math.random() * 9) + 14);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'stat', '');
@@ -451,12 +465,16 @@ function enterDriveSex2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/highway/sex/hj (1).mp4');
   scene.text('When you get in the car, you immediately reach for his pants and take out his semi-erect cock. That\'s what you promised him after all. You feel it slowly hardening between your fingers as the man drives off.');
   if (((s as any).dick ?? 0) >= 14  &&  ((s as any).dick ?? 0) < 16) {
+    (s as any).road_text_sex = 'a normal size';
   }
   if (((s as any).dick ?? 0) >= 16  &&  ((s as any).dick ?? 0) < 18) {
+    (s as any).road_text_sex = 'a bit larger than average';
   }
   if (((s as any).dick ?? 0) >= 18  &&  ((s as any).dick ?? 0) < 20) {
+    (s as any).road_text_sex = 'quite large';
   }
   if (((s as any).dick ?? 0) >= 20) {
+    (s as any).road_text_sex = 'huge';
   }
   // TODO-QSP: dynamic text: You gently massage his cock between your fingers while the man gets comfortable....
   scene.text(`You gently massage his cock between your fingers while the man gets comfortable. It's ${((s as any).road_text_sex || '')}, roughly ${((s as any).dick || '')} centimeters long and quite girthy. You manage to massage him to a full erection in no time at all, and begin to jerk him off while he drives, rubbing your fingertips over his glans.`);
@@ -472,6 +490,7 @@ function enterDriveSex2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAutostopDrive(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'money', 'pay', autostop_price * 100, 'cash'
   if (((s as any).road_textrand0 ?? 0) === 'Gadukino') {
@@ -502,7 +521,7 @@ function enterAutostopDrive(s: GameState, scene: SceneBuilder): void {
     if (((s as any).prostitute ?? 0)?.['active'] === 1) {
       scene.text('Which you are, in all honesty, but it still caught you by surprise. However, this means that maybe you could work along the highway. You definitely saw some girls working but mostly near the entrance to Pavlovsk or St. Petersburg.');
       scene.text('You put the idea aside for now, but maybe you should check it at some point.');
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['highway_idea'] = 2;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['highway_idea'] = 2;
       qspCall(s, 'prostitution_functions', 'set_highway_prostitute');
     } else {
       if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
@@ -510,43 +529,47 @@ function enterAutostopDrive(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('You are still a bit shaken and wonder why did you even ask him to give you a ride, but then shrug it off. He thought you were a hooker. As if…');
       }
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['highway_idea'] = 2;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['highway_idea'] = 2;
       qspCall(s, 'prostitution_functions', 'set_highway_prostitute');
     }
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Get out of the car', goto: ['road', '<<nroad>>'] },
+    { label: 'Get out of the car', goto: ['road', '' + ((s as any).nroad ?? 0) + ''] },
   ]);
   scene.build();
 }
 
 function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   (s as any).autostop_price = Math.floor(Math.random() * 4) + 3;
   (s as any).textrand = Math.floor(Math.random() * 3) + 1;
   if (((s as any).textrand ?? 0) === 1) {
+    (s as any).road_textrand4 = 'I\'ll take you there for ' + qspFunc(s, 'money', 'string_price', ((s as any).autostop_price ?? 0)*100) + '.';
   }
   if (((s as any).textrand ?? 0) === 2) {
+    (s as any).road_textrand4 = '' + qspFunc(s, 'money', 'string_price', ((s as any).autostop_price ?? 0)*100) + '. Take it or leave it.';
   }
   if (((s as any).textrand ?? 0) === 3) {
+    (s as any).road_textrand4 = '' + qspFunc(s, 'money', 'string_price', ((s as any).autostop_price ?? 0)*100) + '.';
   }
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     if (((s as any).truck_drive ?? 0) === 1) {
-      scene.img(`images/locations/highway/truck_guy (${qspUntranslated(s, "ARGS[2]", { location: "road" })}).jpg`);
+      scene.img(`images/locations/highway/truck_guy (${((s as any).locArgs?.[2] ?? '')}).jpg`);
     } else {
       if (((s as any).bandit_drive ?? 0) === 1) {
         scene.img('images/locations/highway/guy (1).jpg');
       } else {
-        scene.img(`images/locations/highway/guy (${qspUntranslated(s, "ARGS[2]", { location: "road" })}).jpg`);
+        scene.img(`images/locations/highway/guy (${((s as any).locArgs?.[2] ?? '')}).jpg`);
       }
     }
     // TODO-QSP: dynamic text: You approach the driver and say, "Hello, sir! I need a ride to <<$road_textrand0...
     scene.text(`You approach the driver and say, "Hello, sir! I need a ride to ${((s as any).road_textrand0 || '')}, can you help me?"`);
     scene.text('The driver gives you another appraising look.');
   } else {
-    scene.img(`images/locations/highway/guy (${qspUntranslated(s, "ARGS[2]", { location: "road" })}).jpg`);
+    scene.img(`images/locations/highway/guy (${((s as any).locArgs?.[2] ?? '')}).jpg`);
     // TODO-QSP: dynamic text: You take a small step back, "I think, there is a mistake, sir, I'm just trying t...
     scene.text(`You take a small step back, "I think, there is a mistake, sir, I'm just trying to get to ${((s as any).road_textrand0 || '')}, can you help me?`);
     scene.text('The driver gives you another appraising look.');
@@ -557,7 +580,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     scene.text('The man laughs and shifts a bit in his seat. He says, "You\'re a grown-up girl with a nice body! Surely you can think of something?"');
     scene.actions([
       { label: 'Offer a blowjob', handler: (st: GameState) => {
-    if (!(s as any).drive_sex) (s as any).drive_sex = {}; (s as any).drive_sex[1] = 1;
+    ((s as any).drive_sex = (s as any).drive_sex ?? {})[1] = 1;
     scene.text('You bite your lip for a second, quickly going through your options. Then you say, "I really do need this ride, sir! Would a blowjob be okay?"');
     scene.text('The guy grins greedily and says, "Excellent, I knew we would find a way to help each other out! Get in."');
     scene.actions([
@@ -565,7 +588,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Offer a handjob', handler: (st: GameState) => {
-    if (!(s as any).drive_sex) (s as any).drive_sex = {}; (s as any).drive_sex[2] = 1;
+    ((s as any).drive_sex = (s as any).drive_sex ?? {})[2] = 1;
     scene.text('You bite your lip for a second, quickly going through your options. Then you say, "I really do need this ride, sir! Would a handjob be okay?"');
     scene.text('The guy gives you a slightly disappointed look and frowns, "What? Only a handjob?"');
     scene.text('You really don\'t want to go further than that! Your cheeks turn a deep red and you begin to stumble, "I\'m sorry. I don\'t normally do this…"');
@@ -579,7 +602,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you sir, but I will just wait for someone else, I\'m sorry for holding you up." you say and step away from the car. The man shrugs and drives off.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -592,24 +615,27 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).autostop_price ?? 0) * 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_drive'] }]);
+      qspGoto(s, 'road', 'autostop_drive');
     }
   } },
       { label: 'Decline his offer', handler: (st: GameState) => {
     scene.text('"I\'m sorry, sir. I can\'t afford that," you apologize and step away from the car. The man shrugs and drives off.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
       { label: 'Ask for a lower price', handler: (st: GameState) => {
     (s as any).textrand = Math.floor(Math.random() * 3) + 1;
     if (((s as any).textrand ?? 0) === 1) {
+      (s as any).road_textrand5 = 'Please, sir! I\'m nearly broke… would you please do a girl a favor? I\'d be so grateful!';
     }
     if (((s as any).textrand ?? 0) === 2) {
+      (s as any).road_textrand5 = 'Maybe we can work something out?';
     }
     if (((s as any).textrand ?? 0) === 3) {
+      (s as any).road_textrand5 = 'Oh no, I don\'t have that much! Could you lower your price? Maybe a bit, just for me?';
     }
     // TODO-QSP: dynamic text: You twirl your hair between your fingers and give the man a cute look, hoping he...
     scene.text(`You twirl your hair between your fingers and give the man a cute look, hoping he will have pity on you and lower the price. "${((s as any).road_textrand5 || '')}" you ask him sweetly.`);
@@ -620,7 +646,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
       scene.text('The man laughs and shifts a bit in his seat. He says, "You\'re a grown-up girl with a nice body! Surely you can think of something?"');
       scene.actions([
         { label: 'Offer a blowjob', handler: (st: GameState) => {
-    if (!(s as any).drive_sex) (s as any).drive_sex = {}; (s as any).drive_sex[1] = 1;
+    ((s as any).drive_sex = (s as any).drive_sex ?? {})[1] = 1;
     scene.text('You bite your lip for a second, quickly going through your options. Then you say, "I really do need this ride, sir! Would a blowjob be okay?"');
     scene.text('The guy grins greedily and says, "Excellent, I knew we would find a way to help each other out! Get in."');
     scene.actions([
@@ -628,7 +654,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Offer a handjob', handler: (st: GameState) => {
-    if (!(s as any).drive_sex) (s as any).drive_sex = {}; (s as any).drive_sex[2] = 1;
+    ((s as any).drive_sex = (s as any).drive_sex ?? {})[2] = 1;
     scene.text('You bite your lip for a second, quickly going through your options. Then you say, "I really do need this ride, sir! Would a handjob be okay?"');
     scene.text('The guy gives you a slightly disappointed look and says, "What? Only a handjob?"');
     scene.text('You really don\'t want to go further than that! Your cheeks turn a deep red and you begin to stumble, "I\'m sorry. I don\'t normally do this…"');
@@ -648,19 +674,19 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).autostop_price ?? 0)*100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_drive'] }]);
+      qspGoto(s, 'road', 'autostop_drive');
     }
   } },
         { label: 'Decline his offer', handler: (st: GameState) => {
     scene.text('"I\'m sorry, sir. I still can\'t afford that," you apologize and step away from the car. The man shrugs and drives off.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
         { label: 'Offer him a blowjob instead', handler: (st: GameState) => {
-    if (!(s as any).drive_sex) (s as any).drive_sex = {}; (s as any).drive_sex[1] = 1;
+    ((s as any).drive_sex = (s as any).drive_sex ?? {})[1] = 1;
     scene.text('You bite your lip, as if you are ashamed of what you\'re about to say next. In a weak voice, you offer, "I can\'t pay you money, sir. But… I could give you a blowjob? Would that be okay?"');
     scene.text('You lick your lips seductively and offer him a weak smile, hoping that maybe he\'ll feel bad for you and just take you with him for free.');
     scene.text('The man grins from ear to ear, and says, "You know what, girl? I was kinda hoping you\'d say that. Get in."');
@@ -681,40 +707,55 @@ function enterAutostopD(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).truck_drive = 0;
   (s as any).bandit_drive = 0;
-  if (!(s as any).drive_sex) (s as any).drive_sex = {}; (s as any).drive_sex[1] = 0;
-  if (!(s as any).drive_sex) (s as any).drive_sex = {}; (s as any).drive_sex[2] = 0;
+  ((s as any).drive_sex = (s as any).drive_sex ?? {})[1] = 0;
+  ((s as any).drive_sex = (s as any).drive_sex ?? {})[2] = 0;
   (s as any).textrand = Math.floor(Math.random() * 5) + 1;
   if (((s as any).textrand ?? 0) === 1) {
+    (s as any).road_textrand1 = 'Hey there, darling! Where are you going?';
   }
   if (((s as any).textrand ?? 0) === 2) {
+    (s as any).road_textrand1 = 'What\'s a gorgeous girl like you doing all alone on a road like this?';
   }
   if (((s as any).textrand ?? 0) === 3) {
+    (s as any).road_textrand1 = 'Hey girl, need a ride?';
   }
   if (((s as any).textrand ?? 0) === 4) {
+    (s as any).road_textrand1 = 'Hey beauty, going somewhere?';
   }
   if (((s as any).textrand ?? 0) === 5) {
-  }
-  (s as any).textrand = Math.floor(Math.random() * 5) + 1;
-  if (((s as any).textrand ?? 0) === 1) {
-  }
-  if (((s as any).textrand ?? 0) === 2) {
-  }
-  if (((s as any).textrand ?? 0) === 3) {
-  }
-  if (((s as any).textrand ?? 0) === 4) {
-  }
-  if (((s as any).textrand ?? 0) === 5) {
+    (s as any).road_textrand1 = 'Darling, you shouldn\'t be out here all alone! Do you need a ride?';
   }
   (s as any).textrand = Math.floor(Math.random() * 5) + 1;
   if (((s as any).textrand ?? 0) === 1) {
+    (s as any).road_textrand2 = 'perfectly clean and shiny';
   }
   if (((s as any).textrand ?? 0) === 2) {
+    (s as any).road_textrand2 = 'dirty';
   }
   if (((s as any).textrand ?? 0) === 3) {
+    (s as any).road_textrand2 = 'dusty';
   }
   if (((s as any).textrand ?? 0) === 4) {
+    (s as any).road_textrand2 = 'slightly dusty';
   }
   if (((s as any).textrand ?? 0) === 5) {
+    (s as any).road_textrand2 = 'very dirty';
+  }
+  (s as any).textrand = Math.floor(Math.random() * 5) + 1;
+  if (((s as any).textrand ?? 0) === 1) {
+    (s as any).road_textrand3 = 'black';
+  }
+  if (((s as any).textrand ?? 0) === 2) {
+    (s as any).road_textrand3 = 'white';
+  }
+  if (((s as any).textrand ?? 0) === 3) {
+    (s as any).road_textrand3 = 'red';
+  }
+  if (((s as any).textrand ?? 0) === 4) {
+    (s as any).road_textrand3 = 'blue';
+  }
+  if (((s as any).textrand ?? 0) === 5) {
+    (s as any).road_textrand3 = 'grey';
   }
   (s as any).ivrand = Math.floor(Math.random() * 2) + 1;
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
@@ -775,52 +816,73 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).textrand = Math.floor(Math.random() * 5) + 1;
   if (((s as any).textrand ?? 0) === 1) {
+    (s as any).road_textrand1 = 'perfectly clean and shiny';
   }
   if (((s as any).textrand ?? 0) === 2) {
+    (s as any).road_textrand1 = 'dirty';
   }
   if (((s as any).textrand ?? 0) === 3) {
+    (s as any).road_textrand1 = 'dusty';
   }
   if (((s as any).textrand ?? 0) === 4) {
+    (s as any).road_textrand1 = 'slightly dusty';
   }
   if (((s as any).textrand ?? 0) === 5) {
+    (s as any).road_textrand1 = 'very dirty';
   }
   (s as any).textrand = Math.floor(Math.random() * 5) + 1;
   if (((s as any).textrand ?? 0) === 1) {
+    (s as any).road_textrand2 = 'black';
   }
   if (((s as any).textrand ?? 0) === 2) {
+    (s as any).road_textrand2 = 'white';
   }
   if (((s as any).textrand ?? 0) === 3) {
+    (s as any).road_textrand2 = 'red';
   }
   if (((s as any).textrand ?? 0) === 4) {
+    (s as any).road_textrand2 = 'blue';
   }
   if (((s as any).textrand ?? 0) === 5) {
+    (s as any).road_textrand2 = 'grey';
   }
   (s as any).textrand = Math.floor(Math.random() * 5) + 1;
   (s as any).actrand = Math.floor(Math.random() * 6) + 1;
   if (((s as any).actrand ?? 0) === 1) {
+    (s as any).act_text = 'how much for a blowjob?"';
   }
   if (((s as any).actrand ?? 0) === 2) {
+    (s as any).act_text = 'what do you charge for a blowjob?"';
   }
   if (((s as any).actrand ?? 0) === 3) {
+    (s as any).act_text = 'you give me head, I give you some money, fair deal."';
   }
   if (((s as any).actrand ?? 0) === 4) {
+    (s as any).act_text = 'how much for spreading your legs?"';
   }
   if (((s as any).actrand ?? 0) === 5) {
+    (s as any).act_text = 'what do you charge for a ride?"';
   }
   if (((s as any).actrand ?? 0) === 6) {
+    (s as any).act_text = 'how much for anal?"';
   }
   if (((s as any).textrand ?? 0) === 1) {
+    (s as any).road_textrand3 = '"Hey there, darling! What is your price? I really need to relax, ' + ((s as any).act_text ?? 0) + '';
   }
   if (((s as any).textrand ?? 0) === 2) {
+    (s as any).road_textrand3 = '"Hey gorgeous, I was just looking for you. My balls are really full, ' + ((s as any).act_text ?? 0) + '';
   }
   if (((s as any).textrand ?? 0) === 3) {
+    (s as any).road_textrand3 = '"Hey girl, just what I need, ' + ((s as any).act_text ?? 0) + '';
   }
   if (((s as any).textrand ?? 0) === 4) {
+    (s as any).road_textrand3 = '"Hey beauty, just what I need, ' + ((s as any).act_text ?? 0) + '';
   }
   if (((s as any).textrand ?? 0) === 5) {
+    (s as any).road_textrand3 = '"Darling, where are your girlfriends, being busy?" he glances over you again "Don\'t be sad, I\'ll make you busy too, ' + ((s as any).act_text ?? 0) + '';
   }
   if (((s as any).prostitute ?? 0)?.['road'] === 0) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['highway_idea'] = 1;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['highway_idea'] = 1;
   }
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
   (s as any).picrand = Math.floor(Math.random() * 3) + 2;
@@ -834,12 +896,14 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nroad ?? 0) > 10) {
       scene.actions([
         { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
+    (s as any).road_textrand0 = 'Gadukino';
     // TODO-QSP: gt 'road', 'autostop_money', 1, picrand
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask the driver to take you to St. Petersburg', handler: (st: GameState) => {
+    (s as any).road_textrand0 = 'St. Petersburg';
     // TODO-QSP: gt 'road', 'autostop_money', 1, picrand
   } },
     ]);
@@ -847,12 +911,14 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nroad ?? 0) < 10) {
       scene.actions([
         { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
+    (s as any).road_textrand0 = 'Gadukino';
     // TODO-QSP: gt 'road', 'autostop_money', 1, picrand
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask the driver to take you to Pavlovsk', handler: (st: GameState) => {
+    (s as any).road_textrand0 = 'Pavlovsk';
     // TODO-QSP: gt 'road', 'autostop_money', 1, picrand
   } },
     ]);

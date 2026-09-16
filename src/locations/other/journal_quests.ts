@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'questtab';
   qspCall(s, 'journal', 'journalmenu');
   scene.text('<center><h2>Quests</h2></center>');
   if (((s as any).university ?? 0)?.['diploma'] === 0) {

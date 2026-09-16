@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -18,7 +18,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Drive her off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['Nudelake', ''] },
+    qspGoto(s, 'Nudelake', '');
+  } },
     ]);
   }
   scene.actions([
@@ -133,6 +134,7 @@ function enterBanal(s: GameState, scene: SceneBuilder): void {
 function enterUbvag(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/sex/vnlake1/vnlake9.jpg');
   scene.text('The girl puts the bottle in your pussy. She moves it back and forth while constantly turning it. It feels really good and just keeps getting better. You start to fantasize about having sex with a stranger as your body shudders in orgasm.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'lesbian');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
@@ -176,6 +178,7 @@ function enterUbsit(s: GameState, scene: SceneBuilder): void {
 function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/sex/vnlake1/vnlake12.jpg');
   scene.text('You sit across from each other, your legs interwoven so your pussies touch, and start to move your hips while caressing each other. You carry on doing this while kissing and touching each other until the wave of pleasure covers you both.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'trib', 10, 'lesbian');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end

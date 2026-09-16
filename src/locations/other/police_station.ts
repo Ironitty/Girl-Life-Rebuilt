@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'police_station', 'start');
+  (s as any).region = 'city';
   scene.text('<center><b>Police Station Entrance</b></center>');
   scene.img('images/locations/city/citycenter/police/cityext.jpg');
   scene.text('The St. Petersburg police station has definitely seen better days, but continues to stand the test of time. While not as large as other police stations, it still strikes fear into any criminal that passes through its doors.');
@@ -23,6 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterReception(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'police_station', 'reception');
+  (s as any).region = 'city';
   scene.img('images/locations/city/citycenter/police/cityrec.jpg');
   scene.text('Upon entering the station, you\'re welcomed by a reception desk. The officers sitting here are protected by thick glass and you see several monitors and computers keeping an eye on everything that\'s happening inside and outside the building.');
   if (((s as any).rape_count ?? 0) > 0  &&  ((s as any).daystart ?? 0) < ((s as any).rape_day ?? 0) + 2) {
@@ -151,9 +153,9 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
 
 function enterBooking(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'court_functions', 'get_total_arrests') === 1) {
-    scene.actions([{ label: 'Continue', goto: ['police_station', 'booking1'] }]);
+    qspGoto(s, 'police_station', 'booking1');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['police_station', 'booking2'] }]);
+    qspGoto(s, 'police_station', 'booking2');
   }
   // TODO-QSP: end
   scene.build();
@@ -181,7 +183,7 @@ function enterBooking1(s: GameState, scene: SceneBuilder): void {
 
 function enterBooking1PlayAlong(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
   (s as any).book_response = 1;
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: "That's right… <<$pcs_firstname>> <<$pcs_lastname>>," you cautiously answer.
@@ -229,7 +231,7 @@ function enterBooking1PlayAlong(s: GameState, scene: SceneBuilder): void {
 
 function enterBooking1Brash(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) - (2);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) - (2);
   (s as any).book_response = 2;
   qspCall(s, 'stat', '');
   scene.text('"My name is <i>go fuck yourself, pig</i>," you brashly answer.');
@@ -284,7 +286,7 @@ function enterBooking1Brash(s: GameState, scene: SceneBuilder): void {
 
 function enterBooking1Weasel(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (5);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (5);
   (s as any).book_response = 3;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/police/booking0.jpg');
@@ -455,7 +457,7 @@ function enterBooking2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBooking2Follow(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
   (s as any).book_response = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
@@ -486,7 +488,7 @@ function enterBooking2Follow(s: GameState, scene: SceneBuilder): void {
 
 function enterBooking2Brash(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) - (2);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) - (2);
   (s as any).book_response = 2;
   qspCall(s, 'stat', '');
   scene.text('"You again?" you ask rudely.');
@@ -525,7 +527,7 @@ function enterBooking2Brash(s: GameState, scene: SceneBuilder): void {
 
 function enterBooking2Flirt(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (5);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (5);
   (s as any).book_response = 3;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/police/booking0.jpg');
@@ -576,7 +578,7 @@ function enterBooking2Flirt(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) - (5);
+    ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) - (5);
     (s as any).book_response = 5;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -617,7 +619,7 @@ function enterBooking2Flirt(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Offer him a blowjob', handler: (st: GameState) => {
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
+    ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
     qspCall(s, 'arousal', 'bj', 5, 'exhibitionism', 'sub');
     qspCall(s, 'stat', '');
     (s as any).picrand = Math.floor(Math.random() * 4) + 2;
@@ -666,7 +668,7 @@ function enterBooking2Flirt(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Offer him your pussy', handler: (st: GameState) => {
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
+    ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
     qspCall(s, 'arousal', 'vaginal', 10, 'exhibitionism', 'sub');
     qspCall(s, 'stat', '');
     (s as any).picrand = Math.floor(Math.random() * 3) + 1;
@@ -802,53 +804,53 @@ function enterInterrogation(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).book_response ?? 0) === 1) {
       if (((s as any).detecrand ?? 0) >= 86) {
-        if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'easy';
-        scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'easy\''] }]);
+        ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'easy';
+        qspGoto(s, 'court_arrest_events', 'interrogation_start', 'easy');
       } else {
         if (((s as any).detecrand ?? 0) >= 16) {
-          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'norm';
-          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'text\''] }]);
+          ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'norm';
+          qspGoto(s, 'court_arrest_events', 'interrogation_start', 'text');
         } else {
-          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'hard';
-          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'hard\''] }]);
+          ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'hard';
+          qspGoto(s, 'court_arrest_events', 'interrogation_start', 'hard');
         }
       }
     } else {
       if (((s as any).book_response ?? 0) === 2) {
         if (((s as any).detecrand ?? 0) >= 91) {
-          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'easy';
-          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'easy\''] }]);
+          ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'easy';
+          qspGoto(s, 'court_arrest_events', 'interrogation_start', 'easy');
         } else {
           if (((s as any).detecrand ?? 0) >= 71) {
-            if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'norm';
-            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'text\''] }]);
+            ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'norm';
+            qspGoto(s, 'court_arrest_events', 'interrogation_start', 'text');
           } else {
-            if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'hard';
-            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'hard\''] }]);
+            ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'hard';
+            qspGoto(s, 'court_arrest_events', 'interrogation_start', 'hard');
           }
         }
       } else {
         if (((s as any).book_response ?? 0) === 3) {
           if (((s as any).detecrand ?? 0) >= 31) {
-            if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'easy';
-            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'easy\''] }]);
+            ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'easy';
+            qspGoto(s, 'court_arrest_events', 'interrogation_start', 'easy');
           } else {
             if (((s as any).detecrand ?? 0) >= 11) {
-              if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'norm';
-              scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'text\''] }]);
+              ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'norm';
+              qspGoto(s, 'court_arrest_events', 'interrogation_start', 'text');
             } else {
-              if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'hard';
-              scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'hard\''] }]);
+              ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'hard';
+              qspGoto(s, 'court_arrest_events', 'interrogation_start', 'hard');
             }
           }
         } else {
           if (((s as any).book_response ?? 0) === 4) {
-            if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'easy';
-            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'easy\''] }]);
+            ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'easy';
+            qspGoto(s, 'court_arrest_events', 'interrogation_start', 'easy');
           } else {
             if (((s as any).book_response ?? 0) === 5) {
-              if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['detective_type'] = 'hard';
-              scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', '\'hard\''] }]);
+              ((s as any).policeQW = (s as any).policeQW ?? {})['detective_type'] = 'hard';
+              qspGoto(s, 'court_arrest_events', 'interrogation_start', 'hard');
             }
           }
         }

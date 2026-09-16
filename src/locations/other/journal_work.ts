@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'worktab';
   qspCall(s, 'journal', 'journalmenu');
   scene.text('<center><h2>Work</h2></center>');
   if (Object.keys((s as any).evt_event ?? {}).length !== 0) {

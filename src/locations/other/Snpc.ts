@@ -9,6 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinnpc', '');
   qspCall(s, 'stat', '');
+  (s as any).static_num = 'A' + ((s as any).numnpc ?? 0) + '';
   scene.text(`<center><b>${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "Snpc" })}']>> ${qspUntranslated(s, "npc_lastname['A<<numnpc", { location: "Snpc" })}']>></b></center>`);
   scene.img(`images/characters/shared/headshots_main/big${((s as any).numnpc || '')}.jpg`);
   // TODO-QSP: $func('npc_notes', numnpc)
@@ -35,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -75,7 +76,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -86,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const Snpc: LocationDef = {
   name: 'Snpc',
-  title: '<<$npc_firstname[\'A<<numnpc>>\']>> <<$npc_lastname[\'A<<numnpc>>\']>>',
+  title: '\']>> \']>>',
   region: 'other',
   description: ['They really don\'t like you.'],
   enter: enter,

@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'vanr', '');
+  (s as any).location_type = 'bathroom';
+  (s as any).bathtype = 'bathtub shower';
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -25,15 +27,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   if ((!((s as any).remvanr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/vanr.jpg');
-    scene.text('Your bathroom is old and in a bad state. The suite is unattractive and stained, but at least the <a href="exec:gt \'mirror\',\'start\'">mirror</a> is reasonably new.');
+    scene.text('Your bathroom is old and in a bad state. The suite is unattractive and stained, but at least the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> is reasonably new.');
   } else {
     if (((s as any).remvanr ?? 0) === 1) {
       scene.img('images/locations/shared/bathroom/vanr2.jpg');
-      scene.text('Your bathroom is new and in good condition. The suite is modern, your <a href="exec:gt \'mirror\',\'start\'">mirror</a> is perfect and everything looks clean and fresh.');
+      scene.text('Your bathroom is new and in good condition. The suite is modern, your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> is perfect and everything looks clean and fresh.');
     }
   }
   // TODO-QSP: dynamic text: Your ' + iif(pcs_hairbsh < 1, '<a href="exec:gt 'mirror','brush'">brush</a>', 'b...
-  scene.text('Your \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' sits on the small shelf, below the mirror.');
+  scene.text('Your \' + iif(pcs_hairbsh < 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' sits on the small shelf, below the mirror.');
   qspCall(s, 'selfplay', 'suction_dildo');
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'din_van', 'misery');

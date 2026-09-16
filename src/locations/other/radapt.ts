@@ -9,9 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'radapt', 'home');
+  (s as any).location_type = 'private';
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -20,7 +22,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'radomir_popov_schedule', '');
   if (((s as any).radomirQW ?? 0)?.['home_day'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['home_day'] = ((s as any).daystart ?? 0);
+    ((s as any).radomirQW = (s as any).radomirQW ?? {})['home_day'] = ((s as any).daystart ?? 0);
   }
   scene.img('images/locations/pavlovsk/resident/apartment/aptdoor.jpg');
   scene.text('You walk up to the front door and knock.');
@@ -83,7 +85,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).locat ?? 0)?.['A154'] === 24) {
-                if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
+                ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
                 qspCall(s, 'calendar', 'add', 'band_practice_event');
                 scene.img('images/locations/pavlovsk/resident/apartment/radapt/anfisa.jpg');
                 scene.text('She gives you a friendly smile. "Yes, dear?"');
@@ -122,7 +124,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and Anushka walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
     if (((s as any).npc_rel ?? 0)?.['A154'] >= 60) {
-      if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['nush_visit'] = 2;
+      ((s as any).radomirQW = (s as any).radomirQW ?? {})['nush_visit'] = 2;
       qspCall(s, 'npc_relationship', 'modify', 'A144', 'hate');
       scene.text('She pauses when she sees you, her eyes narrowing slightly before she picks up her pace and brushes past you, slightly bumping her shoulder into you as she does.');
       scene.text('Radomir steps out before you can say anything and call out to Anushka. "Later, babe!"');
@@ -151,13 +153,13 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                       } else {
                         scene.actions([
                           { label: 'Enter', handler: (st: GameState) => {
-    if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['nush_visit'] = 1;
+    ((s as any).radomirQW = (s as any).radomirQW ?? {})['nush_visit'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and Anushka walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
     if (((s as any).npc_rel ?? 0)?.['A154'] >= 60) {
-      if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['nush_visit'] = 2;
+      ((s as any).radomirQW = (s as any).radomirQW ?? {})['nush_visit'] = 2;
       qspCall(s, 'npc_relationship', 'modify', 'A144', 'hate');
       // TODO-QSP: dynamic text: She pauses when she sees you and looks surprised to see you. "What are you doing...
       scene.text(`She pauses when she sees you and looks surprised to see you. "What are you doing here, ${((s as any).pcs_nickname || '')}?"`);
@@ -310,6 +312,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'radapt', 'hallway');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Entrance hall</b></center>');
@@ -331,11 +334,12 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'core_library', 'setloc', 'radapt', 'bathroom');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/bathroom.jpg');
   scene.text('The bathroom is spotless. The porcelain of the sink is so clean you can almost see your reflection in it. There\'s also a nice tub next to the sink, with a toilet across from it.');
-  scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -587,6 +591,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     (s as any).livingev = 0;
   }
   qspCall(s, 'core_library', 'setloc', 'radapt', 'livingroom');
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living room</b></center>');
@@ -607,6 +612,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'core_library', 'setloc', 'radapt', 'kitchen');
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   qspCall(s, 'kit_din', '');
   scene.text('<center><b>Kitchen</b></center>');
@@ -631,23 +637,37 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).radbeer_count ?? 0) === 2) {
+    (s as any).rad_beer = ' 2 beers,';
   } else {
     if (((s as any).radbeer_count ?? 0) === 1) {
+      (s as any).rad_beer = ' 1 beer,';
+    } else {
+      (s as any).rad_beer = '';
     }
   }
   if (((s as any).radvodka_count ?? 0) === 5) {
+    (s as any).rad_vodka = ' a full bottle of vodka,';
   } else {
     if (((s as any).radvodka_count ?? 0) === 3) {
+      (s as any).rad_vodka = ' a half-empty bottle of vodka,';
     } else {
       if (((s as any).radvodka_count ?? 0) === 1) {
+        (s as any).rad_vodka = ' a nearly empty bottle of vodka,';
+      } else {
+        (s as any).rad_vodka = '';
       }
     }
   }
   if (((s as any).radsup_count ?? 0) >= 1) {
+    (s as any).rad_sup = ' some left overs';
+  } else {
+    (s as any).rad_sup = '';
   }
   if (((s as any).radbeer_count ?? 0) === 0  &&  ((s as any).radvodka_count ?? 0) === 0  &&  (!((s as any).radsup_count ?? 0))) {
+    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holodpusto.jpg"></center><br><font color = red>empty shelves.</font>';
   }
   if (((s as any).radbeer_count ?? 0) > 0  &&  ((s as any).radvodka_count ?? 0) > 0  &&  ((s as any).radsup_count ?? 0) > 0) {
+    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holod\'+rand(1, 3)+\'.jpg"></center>';
   }
   // TODO-QSP: dynamic text: You open the fridge and see:<<$rad_vodka>><<$rad_beer>><<$rad_sup>><<$r_pusto>>
   scene.text(`You open the fridge and see:${((s as any).rad_vodka || '')}${((s as any).rad_beer || '')}${((s as any).rad_sup || '')}${((s as any).r_pusto || '')}`);
@@ -781,6 +801,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRadroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).locclass = 'bedr';
+  (s as any).track_loop = '';
   (s as any).music_loop = 1;
   qspCall(s, 'core_library', 'setloc', 'radapt', 'radroom');
   qspCall(s, 'internet_mobile', 'remove_limitation', 'noporn');
@@ -789,8 +811,8 @@ function enterRadroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Radomir\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rads_room.jpg');
-  scene.text('The room is surprisingly clean, other than a few things lying on the floor as if they were recently tossed or dropped there. The walls are covered with pictures and posters of famous female models or bands with a few other decorations, while the room is skillfully decorated with a red and black theme to it. In the center of the room, near the window, is a <a href="exec:gt \'radapt\', \'bed\'">bed</a>. On one side of the bed is a desk with a <a href="exec:gt \'radapt\', \'computer\'">laptop</a> on it.');
-  scene.text('On the other side of the bed is a sound system, with a speaker spaced about the room. Against the wall opposite the bed is a dresser with a flatscreen TV on it. On the last wall are several guitar stands with guitars in them, including an <a href="exec:gt \'radapt\', \'guitar\'">acoustic guitar</a>. Right in front of that is an amp and a speaker, along with a black beanbag chair with a skull face on it.');
+  scene.text('The room is surprisingly clean, other than a few things lying on the floor as if they were recently tossed or dropped there. The walls are covered with pictures and posters of famous female models or bands with a few other decorations, while the room is skillfully decorated with a red and black theme to it. In the center of the room, near the window, is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027bed\\u0027); return false;">bed</a>. On one side of the bed is a desk with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027computer\\u0027); return false;">laptop</a> on it.');
+  scene.text('On the other side of the bed is a sound system, with a speaker spaced about the room. Against the wall opposite the bed is a dresser with a flatscreen TV on it. On the last wall are several guitar stands with guitars in them, including an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027guitar\\u0027); return false;">acoustic guitar</a>. Right in front of that is an amp and a speaker, along with a black beanbag chair with a skull face on it.');
   if (((s as any).locat ?? 0)?.['A154'] === 20) {
     scene.text('<br>Radomir is sitting on the beanbag, looking at you.');
     scene.actions([
@@ -811,7 +833,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'internet_mobile', 'add_limitation', 'noporn', 'You can\'t watch porn with radomir in the room!');
     qspCall(s, 'internet_mobile', 'add_limitation', 'nocamshow', 'You can\'t do a camshow with radomir in the room!');
     if (((s as any).radomirQW ?? 0)?.['computer_use'] === 0) {
-      if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['computer_use'] = 1;
+      ((s as any).radomirQW = (s as any).radomirQW ?? {})['computer_use'] = 1;
       scene.text('<center><b>Radomir\'s Room</b></center>');
       scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/laptop.jpg');
       scene.text('You point towards his laptop. "You\'re so lucky to have your own computer."');
@@ -972,25 +994,26 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A154'] = 20;
+  ((s as any).locat = (s as any).locat ?? {})['A154'] = 20;
   if (((s as any).hour ?? 0) < 16) {
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['154_rand1'] = ((s as any).daystart ?? 0);
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['154_save1'] = ((s as any).locat ?? 0)?.['154'];
+    ((s as any).locat = (s as any).locat ?? {})['154_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat = (s as any).locat ?? {})['154_save1'] = ((s as any).locat ?? 0)?.['154'];
   } else {
     if (((s as any).hour ?? 0) < 18) {
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['154_rand2'] = ((s as any).daystart ?? 0);
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['154_save2'] = ((s as any).locat ?? 0)?.['154'];
+      ((s as any).locat = (s as any).locat ?? {})['154_rand2'] = ((s as any).daystart ?? 0);
+      ((s as any).locat = (s as any).locat ?? {})['154_save2'] = ((s as any).locat ?? 0)?.['154'];
     } else {
       if (((s as any).hour ?? 0) < 20) {
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['154_rand3'] = ((s as any).daystart ?? 0);
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['154_save3'] = ((s as any).locat ?? 0)?.['154'];
+        ((s as any).locat = (s as any).locat ?? {})['154_rand3'] = ((s as any).daystart ?? 0);
+        ((s as any).locat = (s as any).locat ?? {})['154_save3'] = ((s as any).locat ?? 0)?.['154'];
       } else {
         if (((s as any).hour ?? 0) < 22) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['154_rand4'] = ((s as any).daystart ?? 0);
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['154_save4'] = ((s as any).locat ?? 0)?.['154'];
+          ((s as any).locat = (s as any).locat ?? {})['154_rand4'] = ((s as any).daystart ?? 0);
+          ((s as any).locat = (s as any).locat ?? {})['154_save4'] = ((s as any).locat ?? 0)?.['154'];
         }
       }
     }
@@ -1069,7 +1092,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     scene.text('Radomir rolls his eyes while his brother just laughs even more. Now that you\'ve see them all together, it\'s obvious that Radomir takes after his mother a lot more than his father, while his brother looks just like a younger version of his father.');
     scene.actions([
       { label: 'Watch it play out', handler: (st: GameState) => {
-    if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['first_visit'] = 1;
+    ((s as any).radomirQW = (s as any).radomirQW ?? {})['first_visit'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rostislav.jpg');

@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'buklinik', 'start');
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -64,6 +65,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterHoll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'buklinik', 'holl');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -74,31 +76,31 @@ function enterHoll(s: GameState, scene: SceneBuilder): void {
     scene.text('You can volunteer here on the weekends.');
   } else {
     if (((s as any).bumtolik ?? 0) > 4) {
-      scene.text('The <a href="exec:gt \'buklinik\', \'sklad\'">storage</a> room is locked.');
+      scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik\\u0027, \\u0027sklad\\u0027); return false;">storage</a> room is locked.');
     }
     if (((s as any).bumtolik ?? 0) > 5) {
-      scene.text('The <a href="exec:gt \'buklinik\', \'registr3\'">office</a> door is right by the entrance.');
+      scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik\\u0027, \\u0027registr3\\u0027); return false;">office</a> door is right by the entrance.');
     }
     if (((s as any).bumtolik ?? 0) > 5) {
-      scene.text('Opposite the office door you see the <a href="exec:gt \'buklinik\', \'olga2\'">accountants\'</a> office door sign.');
+      scene.text('Opposite the office door you see the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik\\u0027, \\u0027olga2\\u0027); return false;">accountants\'</a> office door sign.');
     }
     if (((s as any).bumtolik ?? 0) > 5) {
-      scene.text('Furthest down the corridor, are the <a href="exec:gt \'buklinik\', \'shower\'">showers</a>.');
+      scene.text('Furthest down the corridor, are the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik\\u0027, \\u0027shower\\u0027); return false;">showers</a>.');
     }
     if (((s as any).bumtolik ?? 0) === 6) {
-      scene.text('There are several doors leading into the <a href="exec:gt \'buklinik\', \'spal\'">dormitory</a>.');
+      scene.text('There are several doors leading into the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik\\u0027, \\u0027spal\\u0027); return false;">dormitory</a>.');
     }
     if (((s as any).bumtolik ?? 0) > 6) {
       scene.text('I shouldn\'t interact with the people staying there right now…');
     }
     if (((s as any).bumtolik ?? 0) > 5) {
-      scene.text('The <a href="exec:gt \'buklinik\', \'stol\'">canteen</a> is located opposite the dormitories.');
+      scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik\\u0027, \\u0027stol\\u0027); return false;">canteen</a> is located opposite the dormitories.');
     }
     if (((s as any).bumtolik ?? 0) > 5) {
-      scene.text('Behind a solid wooden door is the <a href="exec:gt \'buklinik\', \'sec\'">Managers\'</a> office.');
+      scene.text('Behind a solid wooden door is the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik\\u0027, \\u0027sec\\u0027); return false;">Managers\'</a> office.');
     }
     if (((s as any).bumtolik ?? 0) > 5) {
-      scene.text('The <a href="exec:gt \'buklinik\', \'dir\'">coordinators\'</a> office is next to the canteen.');
+      scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik\\u0027, \\u0027dir\\u0027); return false;">coordinators\'</a> office is next to the canteen.');
     }
   }
   if ((((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).bumtolik ?? 0) === 0)  ||  ((s as any).bumtolik ?? 0) === 4) {
@@ -354,40 +356,40 @@ function enterOlga2(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).bumtolik ?? 0) >= 7  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I need your help in the <a href="exec:gt 'buklinik_event', '...
-    scene.text(`"${((s as any).pcs_nickname || '')}, I need your help in the <a href="exec:gt 'buklinik_event', 'pos6'">canteen</a> today."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, I need your help in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027pos6\\u0027); return false;">canteen</a> today."`);
   }
   if (((s as any).bumtolik ?? 0) >= 8  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, here is the address to one the <a href="exec:gt 'buklinik_ev...
-    scene.text(`"${((s as any).pcs_nickname || '')}, here is the address to one the <a href="exec:gt 'buklinik_event','pos8'">elderly gentlemen</a> we're helping out. Would you be so kind and help him out with some housework?`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, here is the address to one the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027pos8\\u0027); return false;">elderly gentlemen</a> we're helping out. Would you be so kind and help him out with some housework?`);
   }
   if (((s as any).bumtolik ?? 0) === 9  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I'll need some help to persuade an alcoholic to stop wanderi...
-    scene.text(`"${((s as any).pcs_nickname || '')}, I'll need some help to persuade an alcoholic to stop wandering the streets, and stay <a href="exec:gt 'buklinik_event','pos9'">here</a>."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, I'll need some help to persuade an alcoholic to stop wandering the streets, and stay <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027pos9\\u0027); return false;">here</a>."`);
   }
   if (((s as any).bumtolik ?? 0) === 10  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.text('"We need a babysitter for one very <a href="exec:gt \'buklinik_event\',\'event0\'">weird</a> man. Don\'t worry, he\'s totally harmless."');
+    scene.text('"We need a babysitter for one very <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027event0\\u0027); return false;">weird</a> man. Don\'t worry, he\'s totally harmless."');
   }
   if (((s as any).bumtolik ?? 0) === 11  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, would you be kind and visit <a href="exec:gt 'buklinik_event...
-    scene.text(`"${((s as any).pcs_nickname || '')}, would you be kind and visit <a href="exec:gt 'buklinik_event','entrance',0">Michael</a>?"`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, would you be kind and visit <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027entrance\\u0027, String(window.__gameStore.getState().0 ?? \\u0027\\u0027)); return false;">Michael</a>?"`);
   }
   if (((s as any).bumtolik ?? 0) === 12  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<a href="exec:gt 'buklinik_event','entrance',1">Michael</a> is asking for you, ...
-    scene.text(`"<a href="exec:gt 'buklinik_event','entrance',1">Michael</a> is asking for you, ${((s as any).pcs_nickname || '')}. You must've made some impression."`);
+    scene.text(`"<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027entrance\\u0027, String(window.__gameStore.getState().1 ?? \\u0027\\u0027)); return false;">Michael</a> is asking for you, ${((s as any).pcs_nickname || '')}. You must've made some impression."`);
   }
   if (((s as any).bumtolik ?? 0) === 13  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, <a href="exec:gt 'buklinik_event','entrance',2">Michael</a> ...
-    scene.text(`"${((s as any).pcs_nickname || '')}, <a href="exec:gt 'buklinik_event','entrance',2">Michael</a> won't stop nagging us about you… Could you please visit him?"`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027entrance\\u0027, String(window.__gameStore.getState().2 ?? \\u0027\\u0027)); return false;">Michael</a> won't stop nagging us about you… Could you please visit him?"`);
   }
   if (((s as any).bumtolik ?? 0) === 14  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, <a href="exec:gt 'buklinik_event','entrance',3">Michael</a> ...
-    scene.text(`"${((s as any).pcs_nickname || '')}, <a href="exec:gt 'buklinik_event','entrance',3">Michael</a> is expecting you."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027entrance\\u0027, String(window.__gameStore.getState().3 ?? \\u0027\\u0027)); return false;">Michael</a> is expecting you."`);
   }
   if (((s as any).bumtolik ?? 0) === 15  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.text('"Why the hell is <a href="exec:gt \'buklinik_event\',\'entrance\',4">Michael</a> always asking for you?');
+    scene.text('"Why the hell is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027entrance\\u0027, String(window.__gameStore.getState().4 ?? \\u0027\\u0027)); return false;">Michael</a> always asking for you?');
   }
   if (((s as any).bumtolik ?? 0) === 16  &&  ((s as any).week ?? 0) === 1  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.text('"Guess who is asking for you… You guessed it, <a href="exec:gt \'buklinik_event\',\'entrance\',5">Michael</a>."');
+    scene.text('"Guess who is asking for you… You guessed it, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027entrance\\u0027, String(window.__gameStore.getState().5 ?? \\u0027\\u0027)); return false;">Michael</a>."');
   }
   if (((s as any).bumtolik ?? 0) === 5) {
     (s as any).bumtolik = 6;

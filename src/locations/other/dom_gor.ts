@@ -1,15 +1,20 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'dom_gor';
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).locM = 'dom_gor';
+  (s as any).locM_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Your room</b></center>');
   scene.img('images/locations/pavlovsk/resident/vitekhome/kotovkom.jpg');
-  scene.text('Your room in a hostel. The room is small, leaving only the bare minimum. 2 <a href="exec:gt \'bed\', \'start\'">beds</a>, a <a href="exec:gt \'mirror\', \'start\'">mirror</a>, a <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a>, and a <a href="exec:gt \'TV\', \'start\'">TV</a>.');
+  scene.text('Your room in a hostel. The room is small, leaving only the bare minimum. 2 <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">beds</a>, a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a>, and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027start\\u0027); return false;">TV</a>.');
   if (((s as any).teacher ?? 0)?.['level'] > 20  &&  ((s as any).parkrunday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).hour ?? 0) > 6) {
     if (((s as any).clothing ?? 0)?.['sports'] === 0) {
       scene.text('You could go for a jog around the park if you were wearing sports clothing and shoes.');
@@ -124,14 +129,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Go out onto the street', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed.</b></center>');
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
+      dynamicGoto(s, 'curloc');
     } else {
       if (((s as any).sick ?? 0) > 72) {
         scene.text('<center><b>You feel too ill to travel through the streets.</b></center>');
-        scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
+        dynamicGoto(s, 'curloc');
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 15;
-        scene.actions([{ label: 'Continue', goto: ['pav_commercial', ''] }]);
+        qspGoto(s, 'pav_commercial', '');
       }
     }
   } },

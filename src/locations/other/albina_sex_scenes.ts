@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,9 +11,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   if (((s as any).region ?? 0) === 'city') {
-    scene.actions([{ label: 'Continue', goto: ['albina_dorm', 'start'] }]);
+    qspGoto(s, 'albina_dorm', 'start');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['albinahome', 'bedroom'] }]);
+    qspGoto(s, 'albinahome', 'bedroom');
   }
   // TODO-QSP: end
   scene.build();
@@ -68,6 +68,7 @@ function enter69ing_1(s: GameState, scene: SceneBuilder): void {
 
 function enterVirginTake1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'D3', 'a');
+  (s as any).orgasm_or = 'no';
   scene.text('"Albina..." you murmur.');
   scene.text('"What is it?" she smiles up at you.');
   // TODO-QSP: end
@@ -181,7 +182,7 @@ function enterVirginTake3(s: GameState, scene: SceneBuilder): void {
       scene.text('"Are you okay?" Albina asks worriedly. "Do you want to pause for a second?"');
       scene.actions([
         { label: 'It hurts', handler: (st: GameState) => {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['big_dildo_hurt'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['big_dildo_hurt'] = 1;
     scene.text('"It hurts," you whimper.');
     scene.text('"This is why I warned you against a big one for your first time," she says sadly, not attempting to gloat at all about her ignored advice. "Let\'s just wait here for a minute, okay?"');
     scene.text('You nod back and Albina stays where she is, still as a statue as your pussy starts to adjust.');
@@ -205,7 +206,7 @@ function enterVirginTake3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'It feels good', handler: (st: GameState) => {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['big_dildo_enjoy'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['big_dildo_enjoy'] = 1;
     scene.text('"It... It feels... <i>So good</i>," you say in awe. It\'s just the head, but you can feel your pussy stretching to accommodate. The good stretch of a sore, overworked muscle, but even better.');
     scene.text('Albina seems even more surprised than you are. "Well, if you\'re okay then... This is going to be the hard part. It\'s going to hurt. Are you ready?"');
     scene.text('You nod once and Albina puts her hands on either side of your head.');
@@ -404,6 +405,7 @@ function enterVirginTake6(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Cum!', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'yes';
     scene.img('images/shared/sex/lesbian/strapon/miss/orgasm1.mp4');
     scene.text('"<i>Ahhhhhh~!</i>"');
     scene.text('A wordless cry escapes your lips as pleasure explodes from within, releasing all the pent up pressure inside you. Albina thrusts the whole strapon inside you, keeping you filled to the brim as your pussy clenches down on it and you helplessly spasm around its length.');
@@ -609,7 +611,7 @@ function enterWearStrapon(s: GameState, scene: SceneBuilder): void {
       { label: 'Fuck her with the strapon', goto: ['albina_sex_scenes', 'fuck_albina'] },
     ]);
   } else {
-    qspCall(s, 'npcStat', 'D<<strapNumber>>', 'a');
+    qspCall(s, 'npcStat', 'D' + ((s as any).strapNumber ?? 0) + '', 'a');
     scene.text('Just as you\'re about to slide the harness on, the thought of using Penis Envy occurs to you, but it would be too suspicious to use Albina\'s dildo.');
     scene.text('"Do you mind if we use my dildo instead?" you ask, and seeing the curious look in her eye, you continue. "My dildo has fake cum and I think it would be fun to use it."');
     scene.text('"Fake cum?" she replies curiously. "Okay, that does sound fun."');
@@ -655,8 +657,8 @@ function enterWearStrapon(s: GameState, scene: SceneBuilder): void {
 
 function enterFuckAlbina(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A23');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/bj.jpg');
   scene.text('With the strapon firmly in place, you stand next to the bed and hold the huge dildo in place as you pull her head down. "Suck my dick, loser!" you giggle.');
@@ -695,8 +697,8 @@ function enterFuckAlbina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckAlbinaMagic(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/bj.jpg');
   if (((s as any).dick_width1 ?? 0) >= 14) {
@@ -782,6 +784,8 @@ function enterFuckAlbinaMagic(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/lesbian/strapon/miss/orgasm1.mp4');
     scene.text('You thrust fast and deep into Albina\'s wet pussy and she cries out loudly in pleasure as you sense your magic starting to take hold of her mind.');
     scene.text('It only takes a few more seconds before Albina has an explosive orgasm; you feel her pussy tighten around your cock and she cries out as a stream of her juices squirt from her pussy and splash over the two of you before she grows weak and lies back on the bed, panting loudly in satisfaction as you keep pounding her.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You quickly pull out of her before you feel the sudden release. You moan loudly as you shoot several loads of cum over her stomach, stroking your dick as you milk every last drop out of it. You find yourself panting as the feeling of release makes for an amazing afterglow.';
     qspCall(s, 'arousal', 'magicd_vaginal', 2, 'dom');
     scene.text('You flop down next to her and you both lie panting in post-orgasmic bliss before your magic wears off and Albina gathers enough strength to drag herself into her en-suite bathroom to clean herself up. You slide the harness off and clean the dildo before putting it away and getting dressed. Albina soon returns and dresses in fresh clothes.');
     scene.text('"That was one of the best fucks I\'ve ever had! I can\'t remember the last time I came so hard!" she smiles. "We should do it again sometime."');
@@ -797,6 +801,8 @@ function enterFuckAlbinaMagic(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/lesbian/strapon/miss/orgasm1.mp4');
     scene.text('You thrust fast and deep into Albina\'s pussy and she cries out loudly in pleasure as you sense your magic starting to take hold of her mind.');
     scene.text('It only takes a few more seconds before Albina has an explosive orgasm; you feel her pussy tighten around your cock and she cries out as a stream of her juices squirts from her pussy and splashes over the two of you before she grows weak and lies back on the bed, panting loudly in satisfaction as you keep pounding her.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You ignore the notion to pull out and thrust as deep as you can, grunting loudly as you pump shot after shot of cum into Albina\'s pussy. It\'s a strange, but very pleasurable experience and you find yourself panting as the feeling of release makes for an amazing afterglow.';
     qspCall(s, 'arousal', 'magicd_vaginal', 2, 'dom');
     scene.text('You pull out and flop down next to her as you both lie panting in post-orgasmic bliss before your magic wears off and Albina gathers enough strength to drag herself into her en-suite bathroom to clean herself up. You slide the harness off and clean the dildo before putting it away and getting dressed. Albina soon returns and dresses in fresh clothes.');
     scene.text('"That was one of the best fucks I\'ve ever had! I can\'t remember the last time I came so hard!" she smiles. "I might even forgive you for blowing your load inside me."');
@@ -817,8 +823,8 @@ function enterFuckAlbinaMagic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckAlbinaAss(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/anal1.jpg');
   scene.text('You grab the bottle of lube and squirt some onto the dildo, rubbing it up and down the shaft before spreading her ass cheeks and applying a generous amount onto her asshole. You grab her ass in your hand and appreciate how firm it feels in your grip.');
@@ -847,7 +853,7 @@ function enterFuckAlbinaAss(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckAlbinaAssMagic(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/anal1.jpg');
   if (((s as any).dick_width1 ?? 0) >= 11) {
@@ -878,6 +884,8 @@ function enterFuckAlbinaAssMagic(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum in her ass', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/analcreampie/doggy_drip1.mp4');
     scene.text('You pick up the pace as you continue fucking Albina, pounding her ass as she rides out her orgasm beneath you. You feel your magic slowly overwhelming her mind.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You soon reach climax and thrust yourself as deep as you can before you blow your load. You moan softly as you feel yourself pumping shot after shot of cum into Albina\'s asshole. It\'s a strange, but very pleasurable experience and you find yourself panting as the feeling of release makes for an amazing afterglow.';
     qspCall(s, 'arousal', 'magicd_anal', 2, 'dom');
     scene.text('Once you\'re done, you pull out of her and watch as your cum starts leaking out of her asshole and dribbling down her pussy.');
     scene.text('As your magic wears off, Albina reaches up and fingers her asshole, your cum stuck to her fingers when she pulls them out. She sucks them clean before rolling off the bed and slowly stumbling into her en-suite bathroom.');
@@ -896,10 +904,10 @@ function enterFuckAlbinaAssMagic(s: GameState, scene: SceneBuilder): void {
 
 function enterReceiveStrapon(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'D3', 'a');
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['bj'] === 0) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/bj.jpg');
     // TODO-QSP: dynamic text: Albina notices you staring at the dildo as she tightens the straps firmly around...
@@ -950,8 +958,8 @@ function enterReceiveStrapon(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbinaFucksYou(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/getvag1.jpg');
   scene.text('"Lie on your back and spread your legs."');
@@ -1025,8 +1033,8 @@ function enterAlbinaFucksYouVirgin(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Get your cherry popped', handler: (st: GameState) => {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+    ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/getvag1.jpg');
     scene.text('You give her an awkward smile in return. "I... I want you to... take me. My... virginity that is..." you tell her as your cheeks burn bright red.');
@@ -1050,8 +1058,8 @@ function enterAlbinaFucksYouVirgin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbinaAssFucksYou(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/anal1.jpg');
   scene.text('As you get on all fours, you glance back and see her applying lube to the dildo. She squirts some on the dildo and strokes the shaft with it before she massages a generous amount into your asshole with her fingers. You and the dildo now lubed up, she moves behind you, and you feel the dildo pressing against your asshole, the pressure building until the tip pops into your ass, causing you to groan slightly in pain. Next, she slowly slips the dildo up your ass, steadily working it deeper.');
   qspCall(s, 'arousal', 'anal_strap', 2, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian');
@@ -1133,8 +1141,8 @@ function enterAlbinaAssFucksYouOnlyFist(s: GameState, scene: SceneBuilder): void
 }
 
 function enterFirstAnal(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
   scene.text('"Y-yes, I would. Just promise you\'ll be gentle," you reply, and Albina smiles.');
   scene.text('"I will. Get on all fours and bring your ass up as high as possible."');
@@ -1171,8 +1179,8 @@ function enterFirstAnal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstAnal1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
   scene.text('"Yes, I would," you reply, and Albina smiles.');
   scene.text('"Okay, get on all fours and bring your ass up as high as possible."');
@@ -1220,8 +1228,8 @@ function enterAnalRefuse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStraponFinish(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/aftermath.jpg');
   if ((!(Math.floor(Math.random() * 4) + 0))) {
@@ -1394,6 +1402,7 @@ function enterAlbinaShowerPussy(s: GameState, scene: SceneBuilder): void {
     scene.text('Once it passes, you flop down on the ottoman as Albina smiles up at you in satisfaction. Once you recover, you both get dressed.');
     qspCall(s, 'arousal', 'rimming', 3, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'vaginal_finger', (-3), 'lesbian', 'no_orgasm_msg');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1424,6 +1433,7 @@ function enterAlbinaShowerAss(s: GameState, scene: SceneBuilder): void {
     scene.text('Once it passes, you flop down on the ottoman as Albina smiles up at you in satisfaction. Once you recover, you both get dressed.');
     qspCall(s, 'arousal', 'rimming', 3, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'vaginal_finger', (-3), 'lesbian', 'no_orgasm_msg');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1461,8 +1471,9 @@ function enterPussyEatingContest(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['pussy_contest_win'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['pussy_contest_win'] = 1;
     qspCall(s, 'arousal', 'cuni', (-5), 'lesbian', 'no_orgasm_msg');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/pussy_contest1.jpg');
     scene.text('As much as you desire your release, you also want to win. Biting your lip, you manage to hold out under the teasing of her tongue for a few more minutes until the pleasure eventually proves too much and you orgasm <i>hard</i>.');
@@ -1479,6 +1490,7 @@ function enterPussyEatingContest(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Cum!', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'cuni', (-5), 'lesbian', 'no_orgasm_msg');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/pussy_contest1.jpg');
     scene.text('You try your best to hold out, but Albina\'s expert teasing of your clit proves too much and you cry out in pleasure as you cum <i>hard</i>.');
@@ -1509,7 +1521,7 @@ function enterPussyEatingContest1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Sorry about nearly drowing you there <<$pcs_nickname>>, but I've been holding t...
   scene.text(`"Sorry about nearly drowing you there ${((s as any).pcs_nickname || '')}, but I've been holding that one in for a while," she happily grins. "It felt good to finally let it out."`);
   if (((s as any).AlbinaQW ?? 0)?.['pussy_contest_win'] === 1) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['pussy_contest_win'] = 0;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['pussy_contest_win'] = 0;
     scene.text('You grin at her as her juices drip from your chin. "I think it\'s safe to say that I won our little contest here."');
     scene.text('"I don\'t know," she grins back while panting heavily. "I think me having the bigger orgasm makes me the winner..."');
     scene.text('"That just makes my victory even sweeter than you taste..." you grin as you lick your lips.');
@@ -1554,9 +1566,9 @@ function enterPussyContestEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterLazarStart(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['lazar_cum'] = 'anal_creampie';
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['lazar_cum'] = 'anal_creampie';
   } else {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['lazar_cum'] = 'facial';
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['lazar_cum'] = 'facial';
   }
   scene.img('images/locations/pavlovsk/resident/albinahome/maid.jpg');
   if (((s as any).AlbinaQW ?? 0)?.['Lazar_Sex'] === 0) {
@@ -1587,7 +1599,8 @@ function enterLazarStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['albina_sex_scenes', 'join'] },
+    qspGoto(s, 'albina_sex_scenes', 'join');
+  } },
         ]);
       }
     }
@@ -1602,7 +1615,7 @@ function enterLazarStart(s: GameState, scene: SceneBuilder): void {
 
 function enterLazarDoorFirst(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/doors.jpg');
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Lazar_Sex'] = 1;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Lazar_Sex'] = 1;
   scene.text('<b><i>"OH FUCK! JUST LIKE THAT! FUCK MY TIGHT LITTLE PUSSY! MAKE ME CUM!"</i></b>');
   scene.text('You jump in surprise as Albina\'s screaming voice blasts right through the closed door, clear into the hallway.');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 0  ||  ((s as any).stat ?? 0)?.['vaginal'] > 0) {
@@ -1619,7 +1632,8 @@ function enterLazarDoorFirst(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['albina_sex_scenes', 'join'] },
+    qspGoto(s, 'albina_sex_scenes', 'join');
+  } },
       ]);
     }
   }
@@ -1660,7 +1674,8 @@ function enterLazarPeek1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['albina_sex_scenes', 'join'] },
+    qspGoto(s, 'albina_sex_scenes', 'join');
+  } },
       ]);
     }
   }
@@ -1699,7 +1714,8 @@ function enterLazarPeek2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['albina_sex_scenes', 'join'] },
+    qspGoto(s, 'albina_sex_scenes', 'join');
+  } },
         ]);
       }
     }
@@ -1807,7 +1823,8 @@ function enterLazarAfter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['albinahome', 'bedroom'] },
+    qspGoto(s, 'albinahome', 'bedroom');
+  } },
     ]);
   } },
   ]);
@@ -1971,7 +1988,7 @@ function enterLazarThreesome(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes, Lazar gets up. "I need to get going, girls," he says and starts getting dressed. Once he finishes, he leans over and gives Albina a kiss on the forehead. "This was great! We should do again sometime," he says and points at both of you with a smirk.');
     scene.text('Albina teases him by licking your pussy as he leaves, causing him to grin. Once he leaves, you both clean up and get dressed.');
     (s as any).cumspclnt = 12;
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
     qspCall(s, 'cum_cleanup', '');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -2017,7 +2034,7 @@ function enterLazarThreesome(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes, Lazar gets up. "I need to get going, girls," he says and starts getting dressed. Once he finishes, he leans over and gives Albina a kiss on the forehead. "This was great! We should do again sometime," he says and points at both of you with a smirk.');
     scene.text('Albina teases him by licking your pussy as he leaves, causing him to grin. Once he leaves, you both clean up and get dressed.');
     (s as any).cumspclnt = 3;
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
     qspCall(s, 'cum_cleanup', '');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -2207,6 +2224,8 @@ function enterWatchPorn(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You\'re now feeling extremely horny, and the thought of someone catching you turns you on even more. You put your phone to the side and start fondling away at your engorged clit with one hand while using the other to slide some fingers into your wet hole and start finger banging yourself.');
     }
+    (s as any).orgasm_txt = 'A few minutes of this is enough to bring you to climax and you pull your fingers out and clamp your hand against your mouth as you keeping vigorously rubbing your clit and bring yourself to orgasm, hoping your muffled cries of pleasure don\'t draw any attention.';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'clit_finger', (-5), 'masturbate');
     qspCall(s, 'stat', '');
     scene.text('When your orgasm ends, you hear the sound of Albina\'s door closing and someone walking away down the hall.');

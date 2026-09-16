@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -58,6 +58,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
 
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'hallway');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Entrance hall</b></center>');
@@ -78,12 +79,13 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'bathroom');
+  (s as any).location_type = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Downstairs bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/halfbath.jpg');
   scene.text('You enter a half bathroom with a large sink area and hardwood floors. The toilet sits along the far wall. It all looks very spotless. The main bathroom with the tub and shower must be upstairs, you assume.');
-  scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'din_van', 'prvt_pee');
   // TODO-QSP: end
   scene.actions([
@@ -94,6 +96,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'livingroom');
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living room</b></center>');
@@ -108,6 +111,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'kitchen');
+  (s as any).locclass = 'kitr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kitchen</b></center>');
@@ -146,16 +150,16 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).met_DimkaDad ?? 0))) {
       scene.text('You see Dimka\'s father Leonid sitting behind a beautiful polished large wooden desk. He is well dressed and not bad looking, for an older guy. He seems to be working on something, you don\'t think he has noticed you yet.');
       if (((s as any).pcs_hotcat ?? 0) >= 7) {
-        scene.actions([{ label: 'Continue', goto: ['dimaHome', 'study1'] }]);
+        qspGoto(s, 'dimaHome', 'study1');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['dimaHome', 'study2'] }]);
+        qspGoto(s, 'dimaHome', 'study2');
       }
     } else {
       scene.text('You see Dimka\'s father Leonid sitting behind a beautiful polished large wooden desk. He is well dressed and not bad looking, for an older guy. He seems to be working on something, you don\'t think he has noticed you yet.');
       if (((s as any).pcs_hotcat ?? 0) >= 7) {
-        scene.actions([{ label: 'Continue', goto: ['dimaHome', 'study3'] }]);
+        qspGoto(s, 'dimaHome', 'study3');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['dimaHome', 'study4'] }]);
+        qspGoto(s, 'dimaHome', 'study4');
       }
     }
   }
@@ -165,6 +169,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
 
 function enterHallway2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'hallway2');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Entrance hall</b></center>');
@@ -183,12 +188,14 @@ function enterHallway2(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'bathroom2');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Upstairs bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/bathroom.jpg');
   scene.text('This restroom has a large sink area and tile floors. The toilet sits along the far wall. You also notice a walk-in shower and large bathtub. You imagine how luxurious it must feel to bathe in here.');
-  scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] > 0) {
     scene.actions([
@@ -234,8 +241,11 @@ function enterBathroom2(s: GameState, scene: SceneBuilder): void {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_vibe', (-10), 'masturbate');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_vibe', (-10), 'masturbate');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'clit_vibe', 10, 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -269,7 +279,7 @@ function enterDimkaroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Dimka\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/dimkaroom.jpg');
   if (((s as any).dimaFilm ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['dimaEv', 'blackmail'] }]);
+    qspGoto(s, 'dimaEv', 'blackmail');
   } else {
     scene.text('Dimka\'s room is surprisingly clean and organized for a boy, you think. The decorations are fairly tasteful and every object has an air of quality about it. Along one wall next to the bed is a wardrobe with mirrored doors, a small zebra pattern love seat sits along a wall near the bed. Next to the love seat is a mini fridge and just above that on a shelf is a high-end stereo system. There is also a fancy, masculine desk with a top-of-the-line computer setup on it and a laptop lying nearby as well. You can\'t help but wonder how expensive it all is. Sitting at the desk is Dimka, he turns to face you as you enter the room.');
     scene.actions([
@@ -298,6 +308,7 @@ function enterDimkaroom(s: GameState, scene: SceneBuilder): void {
 
 function enterDimkaparents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'dimkaparents');
+  (s as any).locclass = 'bedr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Dimka\'s parent\'s room</b></center>');
@@ -322,12 +333,14 @@ function enterDimkaparents(s: GameState, scene: SceneBuilder): void {
 
 function enterDimkaMasterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'dimka_master_bathroom');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Master bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/masterbath.jpg');
   scene.text('The master bathroom is a huge space with a large sink area and tile floors. The toilet sits along the far wall. You can\'t help but feel impressed by the size of the walk-in shower and deep bathtub. It all looks very expensive.');
-  scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] === 0) {
     scene.text('You\'ve run out of shampoo and will have to buy some more before you can wash yourself.');
@@ -385,6 +398,7 @@ function enterDimkaMasterBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterGuest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'guest');
+  (s as any).locclass = 'bedr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Guest Room</b></center>');
@@ -714,11 +728,11 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   if (((s as any).dimaFilm ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['dimaEv', 'blackmail'] }]);
+    qspGoto(s, 'dimaEv', 'blackmail');
   }
   (s as any).dima_chat_counter = ((s as any).dima_chat_counter ?? 0) + (1);
   if (((s as any).dima_chat_counter ?? 0) > 4) {
-    scene.actions([{ label: 'Continue', goto: ['dimaHome', 'dimka_seduce'] }]);
+    qspGoto(s, 'dimaHome', 'dimka_seduce');
   }
   scene.text('<center><b>Dimka\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/dimkadesk.jpg');
@@ -991,6 +1005,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
         scene.text('You tell him. "I have a boyfriend you know, I\'m dating Fedor."');
         scene.text('He busts out laughing. "Fedor? Oh god I thought you had more sense than that. I mean if it was Lazar or Ivan, maybe. Fedor is just a hanger on, you know you could do much better than that, don\'t you?" He says as he strokes your hair.');
       } else {
+        (s as any).temp_npcID = qspFunc(s, 'lover', 'draw_random_from', 'boyfriend');
         // TODO-QSP: dynamic text: You tell him. "I have a boyfriend you know, I'm dating <<$npc_usedname[$temp_npc...
         scene.text(`You tell him. "I have a boyfriend you know, I'm dating ${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcID ?? 0)] ?? ''}."`);
         // TODO-QSP: dynamic text: He busts out laughing. "<<$npc_usedname[$temp_npcID]>>? Oh god I thought you had...

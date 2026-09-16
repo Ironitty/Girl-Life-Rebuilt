@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -25,21 +25,25 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A10', '1');
     qspCall(s, 'npcStat', 'A11', '2');
     if (((s as any).PCloSkirt ?? 0) > 0) {
+      (s as any).cgd_clothes = ' shirt, skirt, socks, bra, panties';
       (s as any).cgd_cs = Math.floor(Math.random() * 5) + 1;
     } else {
       if (((s as any).PCloPants ?? 0) > 2) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
+          (s as any).cgd_clothes = ' shirt, pants, socks, bra, panties';
           (s as any).cgd_cs = Math.floor(Math.random() * 2) + 6;
         } else {
+          (s as any).cgd_clothes = ' shirt, jeans, socks, bra, panties';
           (s as any).cgd_cs = Math.floor(Math.random() * 7) + 8;
         }
       } else {
+        (s as any).cgd_clothes = ' shirt, shorts, socks, bra, panties';
         (s as any).cgd_cs = Math.floor(Math.random() * 6) + 15;
       }
     }
-    if (!(s as any).cgd_clothes) (s as any).cgd_clothes = {}; (s as any).cgd_clothes['A11'] = ' shirt, shorts, socks, briefs';
-    if (!(s as any).cgd_clothes) (s as any).cgd_clothes = {}; (s as any).cgd_clothes['A10'] = ' track jacket, tracksuit pants, socks, briefs';
-    if (!(s as any).cgd_clothes) (s as any).cgd_clothes = {}; (s as any).cgd_clothes['A9'] = ' shirt, jeans, socks, briefs';
+    ((s as any).cgd_clothes = (s as any).cgd_clothes ?? {})['A11'] = ' shirt, shorts, socks, briefs';
+    ((s as any).cgd_clothes = (s as any).cgd_clothes ?? {})['A10'] = ' track jacket, tracksuit pants, socks, briefs';
+    ((s as any).cgd_clothes = (s as any).cgd_clothes ?? {})['A9'] = ' shirt, jeans, socks, briefs';
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/durak.jpg');
     scene.text('"Cards? We can deal you in, but only if you want to play strip poker", Vitek grins. "The loser does whatever the winner wants them to do. Because you\'re a girl, you\'ll get one extra piece of clothing to start with. Sound fair?"');
     // TODO-QSP: dynamic text: Your game statistics: You've won <<card_game_durak_win>> times, lost <<card_game...
@@ -57,7 +61,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['vasilyhome', 'livingroom'] },
+    qspGoto(s, 'vasilyhome', 'livingroom');
+  } },
       ]);
     }
     scene.actions([
@@ -78,27 +83,35 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
+  (s as any).cgdp_pc_state = ((((s as any).cgd_clothes ?? 0)==='') ? ('You are naked!') : ('You are wearing:' + ((s as any).cgd_clothes ?? 0) + '.'));
+  (s as any).cgdp_A11_state = ((((s as any).cgd_clothes ?? 0)?.['A11']==='') ? ('Vasily is naked!') : ('Vasily is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A11'] + '.'));
+  (s as any).cgdp_A10_state = ((((s as any).cgd_clothes ?? 0)?.['A10']==='') ? ('Dan is naked!') : ('Dan is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A10'] + '.'));
+  (s as any).cgdp_A9_state = ((((s as any).cgd_clothes ?? 0)?.['A9']==='') ? ('Vitek is naked!') : ('Vitek is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A9'] + '.'));
   scene.text('<center><b>You\'re playing strip poker with the guys. The game will continue until one of you is completely naked.</b></center>');
   scene.img(`images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/${((s as any).cgd_cs || '')}-${6-(3+(String(((s as any).cgd_clothes || '')).length))/7}.jpg`);
   // TODO-QSP: dynamic text: <br><<$cgdp_pc_state>><br><<$cgdp_A11_state>><br><<$cgdp_A10_state>><br><<$cgdp_...
   scene.text(`<br>${((s as any).cgdp_pc_state || '')}<br>${((s as any).cgdp_A11_state || '')}<br>${((s as any).cgdp_A10_state || '')}<br>${((s as any).cgdp_A9_state || '')}<br>`);
   if (((s as any).cgd_clothes ?? 0) === '') {
-    scene.actions([{ label: 'Continue', goto: ['cardgame_durak', 'card_game_lost'] }]);
+    qspGoto(s, 'cardgame_durak', 'card_game_lost');
   } else {
     if (((s as any).cgd_clothes ?? 0)?.['A11'] === ''  ||  ((s as any).cgd_clothes ?? 0)?.['A10'] === ''  ||  ((s as any).cgd_clothes ?? 0)?.['A9'] === '') {
       if (((s as any).cgd_clothes ?? 0)?.['A11'] === '') {
         qspCall(s, 'npcStat', 'A11');
+        (s as any).loss_npc_img = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/school/boy/vasya/vasya.jpg"></center>';
       } else {
         if (((s as any).cgd_clothes ?? 0)?.['A10'] === '') {
           qspCall(s, 'npcStat', 'A10');
+          (s as any).loss_npc_img = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/school/boy/dan/dan.jpg"></center>';
         } else {
           qspCall(s, 'npcStat', 'A9');
+          (s as any).loss_npc_img = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/school/boy/vitek/vitek.jpg"></center>';
         }
       }
-      scene.actions([{ label: 'Continue', goto: ['cardgame_durak', 'card_game_won'] }]);
+      (s as any).loss_npc_name = ((s as any).boydesc ?? 0);
+      qspGoto(s, 'cardgame_durak', 'card_game_won');
     } else {
-      (s as any).temp_alko = 0;
-      (s as any).temp_durak_trying = ((s as any).ARGS ?? 0)[1] * (Math.floor(Math.random() * 11) + 10);
+      (s as any).temp_alko = Math.min(((s as any).alko ?? 0), 11);
+      (s as any).temp_durak_trying = ((s as any).locArgs?.[1] ?? 0) * (Math.floor(Math.random() * 11) + 10);
       (s as any).temp_durak_win_chance = 50 - 2 * ((s as any).temp_alko ?? 0) + ((s as any).temp_durak_trying ?? 0);
       (s as any).temp_durak_not_lose_chance = ((s as any).temp_durak_win_chance ?? 0) + 20 - ((s as any).temp_alko ?? 0);
       (s as any).temp_durak_result = Math.floor(Math.random() * 100) + 1;
@@ -106,12 +119,16 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
         (s as any).card_game_durak_win = ((s as any).card_game_durak_win ?? 0) + (1);
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
         qspCall(s, 'mood', 'raise', 'tiny');
-        if ((String(((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)]).indexOf(String('socks'))) + 1 > 0) {
+        (s as any).cgd_name_npc = 'A' + 9 + (Math.floor(Math.random() * 3) + 0) + '';
+        if (((String(((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)]).indexOf(String('socks'))) + 1) > 0) {
+          (s as any).clo_str = ' socks';
           // TODO-QSP: $cgd_clothes[$cgd_name_npc] = $replace($cgd_clothes[$cgd_name_npc], ' socks,', '')
         } else {
-          if ((String(((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)]).indexOf(String(','))) + 1 > 0) {
+          if (((String(((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)]).indexOf(String(','))) + 1) > 0) {
+            (s as any).clo_str = (String(qspUntranslated(s, "$\u00000\u0000", { location: "cardgame_durak" })).slice((1)-1, ((1)-1)+(((String(qspUntranslated(s, "$\u00001\u0000", { location: "cardgame_durak" })).indexOf(String(','))) + 1) - 1)));
             // TODO-QSP: $cgd_clothes[$cgd_name_npc] = $replace($cgd_clothes[$cgd_name_npc], '<<$clo_str>>,', '')
           } else {
+            (s as any).clo_str = ((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)];
             // TODO-QSP: $cgd_clothes[$cgd_name_npc] = ''
           }
         }
@@ -151,9 +168,16 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
           scene.text('That was close, but you get to keep your clothes on for now!');
         } else {
           (s as any).card_game_durak_loss = ((s as any).card_game_durak_loss ?? 0) + (1);
-          if ((String(((s as any).cgd_clothes ?? 0)).indexOf(String('socks'))) + 1 > 0) {
+          if (((String(((s as any).cgd_clothes ?? 0)).indexOf(String('socks'))) + 1) > 0) {
+            (s as any).clo_str = ' socks';
+            (s as any).cgd_clothes = qspUntranslated(s, "replace(cgd_clothes, ' socks,', '')", { location: "cardgame_durak" });
           } else {
-            if ((String(((s as any).cgd_clothes ?? 0)).indexOf(String(','))) + 1 > 0) {
+            if (((String(((s as any).cgd_clothes ?? 0)).indexOf(String(','))) + 1) > 0) {
+              (s as any).clo_str = (String(((s as any).cgd_clothes ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).cgd_clothes ?? 0)).indexOf(String(','))) + 1) - 1)));
+              (s as any).cgd_clothes = qspUntranslated(s, "replace(cgd_clothes, '<<clo_str>>,', '')", { location: "cardgame_durak" });
+            } else {
+              (s as any).clo_str = ((s as any).cgd_clothes ?? 0);
+              (s as any).cgd_clothes = '';
             }
           }
           scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/card1.jpg');
@@ -175,6 +199,7 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).cgd_clothes ?? 0) !== ''  &&  ((s as any).cgd_clothes ?? 0)?.['A11'] !== ''  &&  ((s as any).cgd_clothes ?? 0)?.['A10'] !== ''  &&  ((s as any).cgd_clothes ?? 0)?.['A9'] !== '') {
+        (s as any).temp_will_difficulty = ((((s as any).alko ?? 0) < 6) ? (((((s as any).alko ?? 0) < 4) ? ('easy') : ('medium'))) : ('hard'));
         qspCall(s, 'willpower', 'misc', 'self', ((s as any).temp_will_difficulty ?? 0));
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
@@ -188,7 +213,8 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', ((s as any).temp_will_difficulty ?? 0));
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['cardgame_durak', 'card_game_durak_play', '1'] },
+    qspGoto(s, 'cardgame_durak', 'card_game_durak_play', '1');
+  } },
           ]);
         }
         scene.actions([
@@ -216,7 +242,7 @@ function enterCardGameLost(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A9', 2);
   qspCall(s, 'npc_relationship', 'modify', 'A10', 2);
   qspCall(s, 'npc_relationship', 'modify', 'A11', 2);
-  qspCall(s, 'npcStat', 'A<<9+RAND(0,2)>>');
+  qspCall(s, 'npcStat', 'A' + 9+(Math.floor(Math.random() * 3) + 0) + '');
   scene.text('<b>The game is over! You have no clothes left, you lose!</b>');
   // TODO-QSP: dynamic text: Winner: <b><<$boydesc>>.</b>
   scene.text(`Winner: <b>${((s as any).boydesc || '')}.</b>`);
@@ -277,18 +303,25 @@ function enterCardGameNosex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp_rand = Math.floor(Math.random() * 7) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).card_game_texta = 'I want you to suck me off.';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).card_game_texta = 'I want you to masturbate in front of us.';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).card_game_texta = 'I want you to give my dick a kiss.';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).card_game_texta = 'I want to touch your tits.';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).card_game_texta = 'I want to fuck you.';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).card_game_texta = 'I want to touch your pussy.';
   }
   if (((s as any).temp_rand ?? 0) === 6) {
+    (s as any).card_game_texta = 'I want a boob job from you.';
   }
   if (((s as any).boy ?? 0) === 'A11') {
     scene.img('images/characters/pavlovsk/school/boy/vasya/vasya.jpg');
@@ -349,10 +382,10 @@ function enterCardGameNosexDance(s: GameState, scene: SceneBuilder): void {
 function enterCardGameGroupSex(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A9'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A10'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A11'] = 1;
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sex/gsex/ev1_1.jpg');
   // TODO-QSP: dynamic text: "Now that you've lost… how about we all get naked, and then see what we will do ...
@@ -383,6 +416,8 @@ function enterCardGameGroupSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You hesitantly lean towards Vasily\'s cock and lick the head of his cock testively, before taking it into your mouth. Meanwhile Dan grabs your wrist and guides your hand to his cock, and he begins to play with your breasts once you get the message and masturbate him gently.');
     scene.text('Wow, the three of them are making you feel really good! You do your best to repay them by giving Vasily and Dan a good blowjob, taking their cocks as far as possible in your mouth in turns while you masturbate the other.');
     if (((s as any).pcs_horny ?? 0) >= 70) {
+      (s as any).orgasm_or = 'yes';
+      (s as any).orgasm_txt = 'Vitek\'s constant rubbing on your clit brings you to a thunderous orgasm, and you moan and groan loudly despite the penis that\'s lodged deeply into your mouth.';
       // TODO-QSP: gs 'arousal', 'vaginal_finger', 6, $npcID[3], 'gangbang', 'exhibitionism'
       scene.text('For a moment you feel ashamed, your orgasm was very obvious to the guys and was met with loud cheers. Then you relax and just give in, why should you feel bad about them making you feel great?');
     }
@@ -449,7 +484,7 @@ function enterCardGameGroupSex(s: GameState, scene: SceneBuilder): void {
 function enterCardGameRoughSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'deepthroat', 'sub');
   qspCall(s, 'stat', '');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/bj\' + rand(1, 10) + \'.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> unceremoniously moves up to you, and thrusts his erect dick into yo...
   scene.text(`${((s as any).boydesc || '')} unceremoniously moves up to you, and thrusts his erect dick into your mouth without saying a word.`);
@@ -487,20 +522,20 @@ function enterCardGameRoughSex(s: GameState, scene: SceneBuilder): void {
     scene.text(`Then ${((s as any).boydesc || '')} shoots his load inside your ass, and says with a grin: "Who's next? If we want her to be a good little butt slut for us in the future, she's going to need more training! Stretch that hole, guys!"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'npcStat', '', ((s as any).boy ?? 0), 'c');
     if (((s as any).boy ?? 0) === 'A9') {
       qspCall(s, 'npcStat', 'A10', 'a\' else gs \'npcStat', 'A9', 'a');
     }
     qspCall(s, 'arousal', 'anal', 8, ((s as any).npcID1 ?? 0), 'gangbang');
     qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0), 1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy1 ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy1 ?? 0)] = 1;
     if (((s as any).boy ?? 0) === 'A11') {
       qspCall(s, 'npcStat', 'A10', 'b\' else gs \'npcStat', 'A11', 'b');
     }
     qspCall(s, 'arousal', 'anal', 8, ((s as any).npcID2 ?? 0), 'gangbang');
     qspCall(s, 'cum_call', 'anus', ((s as any).npcID2 ?? 0), 1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy2 ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy2 ?? 0)] = 1;
     qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID3 ?? 0), 'gangbang');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/sex2_\' + rand(1, 10) + \'.mp4');
     // TODO-QSP: dynamic text: You were about to get up once <<$boydesc3>> finished in you, but his friends sto...
@@ -511,6 +546,8 @@ function enterCardGameRoughSex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The guys use your asshole as they see fit for the next twenty minutes, not reall...
     scene.text(`The guys use your asshole as they see fit for the next twenty minutes, not really paying any attention to your feelings. When his friends finish ${((s as any).boydesc3 || '')}'s cock is hard again, and he eagerly fucks you again while he still can.`);
     if (((s as any).pcs_horny ?? 0) >=70) {
+      (s as any).orgasm_or = 'yes';
+      (s as any).orgasm_txt = 'Your pussy is drenched by the time ' + ((s as any).boydesc3 ?? 0) + ' fucks you again. The guys haven\'t shown any interest in it today, fully focusing on fucking your ass as if you\'re just a rubber doll. You feel greatly aroused despite (or maybe because of?) the way they\'re treating you, and gently masturbate yourself while ' + ((s as any).boydesc3 ?? 0) + ' fucks you. You stifle your moans and have a quiet orgasm, trying to not let the guys find out.';
       qspCall(s, 'arousal', 'masturbate', 2, 'exhibitionism');
     }
     // TODO-QSP: dynamic text: "Almost done, whore. Show us your ass", <<$boydesc3>> smirks with contempt.
@@ -562,9 +599,10 @@ function enterCardGameCasualSex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 23) + 18);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).npclastgenerated ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).npclastgenerated ?? 0)] = 1;
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/sexbj1.mp4');
@@ -575,6 +613,7 @@ function enterCardGameCasualSex(s: GameState, scene: SceneBuilder): void {
     scene.text('"I got a good slut today. Bend over so I can fuck you doggie!" The man commands you.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal', 10);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/sex1.mp4');
@@ -583,6 +622,8 @@ function enterCardGameCasualSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You grasp that he is excited with such talk and you decide to play along.');
     scene.text('"Yes, they use my body every day, I get off and letting guys fuck me like a whore. The more I can find to fuck me, the happier I am."');
     if (((s as any).pcs_horny ?? 0) >=70) {
+      (s as any).orgasm_or = 'yes';
+      (s as any).orgasm_txt = 'You are overcome by surging emotions and your body convulses with waves of pleasure. You let out a loud moan. "Oh! More… don\'t stop. Oh yeah! Oh!"';
       qspCall(s, 'arousal', 'masturbate', 2, 'exhibitionism');
       scene.text('"The guy is surprised by your stormy climax and he says with a grin: "You cum like a wild cat, I love nymphos like you. Could you give me your phone number?"');
       scene.text('"Maybe, but first you should finish", You answer with a smirk.');
@@ -612,17 +653,18 @@ function enterCardGameWon(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'force', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Make <<$loss_npc_name>> expose himself to a random girl', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' expose himself to a random girl', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Make <<$loss_npc_name>> expose himself to a random girl', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' expose himself to a random girl', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['cardgame_durak', 'card_game_won_expose_penis'] },
+    qspGoto(s, 'cardgame_durak', 'card_game_won_expose_penis');
+  } },
     ]);
   }
   (s as any).temp_fame = qspFunc(s, 'cardgame_durak', 'get_mod_fame');
@@ -630,17 +672,18 @@ function enterCardGameWon(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'force', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Make <<$loss_npc_name>> cum on a random girl', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' cum on a random girl', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Make <<$loss_npc_name>> cum on a random girl', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' cum on a random girl', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'mast', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['cardgame_durak', 'card_game_won_cum_on_girl'] },
+    qspGoto(s, 'cardgame_durak', 'card_game_won_cum_on_girl');
+  } },
       ]);
     }
   }
@@ -648,17 +691,18 @@ function enterCardGameWon(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'cuni', 'force', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Make <<$loss_npc_name>> lick your pussy', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' lick your pussy', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Make <<$loss_npc_name>> lick your pussy', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' lick your pussy', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cuni', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['cardgame_durak', 'card_game_won_lick_my_pussy'] },
+    qspGoto(s, 'cardgame_durak', 'card_game_won_lick_my_pussy');
+  } },
       ]);
     }
   }
@@ -666,23 +710,24 @@ function enterCardGameWon(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'anal', 'force', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Make <<$loss_npc_name>> fuck your ass', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' fuck your ass', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Make <<$loss_npc_name>> fuck your ass', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' fuck your ass', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'anal', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['cardgame_durak', 'card_game_won_fuck_my_ass'] },
+    qspGoto(s, 'cardgame_durak', 'card_game_won_fuck_my_ass');
+  } },
       ]);
     }
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Make <<$loss_npc_name>> expose a random girl', goto: ['cardgame_durak', 'card_game_won_expose_girl'] },
+    { label: '', labelFn: (s: GameState) => 'Make ' + String(((s as any).loss_npc_name || '') ?? '') + ' expose a random girl', goto: ['cardgame_durak', 'card_game_won_expose_girl'] },
   ]);
   scene.build();
 }
@@ -784,7 +829,7 @@ function enterCardGameWonCumOnGirl(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 10);
     qspCall(s, 'stat', '');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     // TODO-QSP: dynamic text: After a few minutes, you find someone. "Alright, <<$loss_npc_name>>, come here",...
     scene.text(`After a few minutes, you find someone. "Alright, ${((s as any).loss_npc_name || '')}, come here", you whisper to him as you drag him out of view.`);
     scene.text('You quickly drop to your knees and take his cock in your mouth, giving him a skillful blowjob. The other guys are actually a bit jealous when they see you on your knees before your friend, and pull out their phones to record you:');
@@ -814,7 +859,7 @@ function enterCardGameWonCumOnGirl(s: GameState, scene: SceneBuilder): void {
 
 function enterCardGameWonLickMyPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   (s as any).cg_pussy_licked = ((s as any).cg_pussy_licked ?? 0) + (1);
   if (((s as any).boy ?? 0) === 'A11') {
     // TODO-QSP: dynamic text: <<$loss_npc_img>>
@@ -840,11 +885,14 @@ function enterCardGameWonLickMyPussy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'cuni', 8);
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sex/lick\'+rand(1, 6)+\'.jpg');
     // TODO-QSP: dynamic text: For the next ten minutes, <<$boydesc>> does his best to bring you to orgasm with...
     scene.text(`For the next ten minutes, ${((s as any).boydesc || '')} does his best to bring you to orgasm with his tongue and lips.`);
     if (((s as any).pcs_horny ?? 0) >= 70) {
+      (s as any).orgasm_or = 'yes';
+      (s as any).orgasm_txt = 'He does a fantastic job of it, and within minutes you\'re mewling and breathing in short gasps as you hover on the edge of your orgasm. When you finally have to yield, his friends cheer loudly and even ' + ((s as any).boydesc ?? 0) + ' has a smug look on his face when he continues to lick you. Rules are rules, after all; you didn\'t say he was done.';
       qspCall(s, 'arousal', 'cuni', 2);
     } else {
       if (((s as any).pcs_horny ?? 0) < 70) {
@@ -864,7 +912,7 @@ function enterCardGameWonLickMyPussy(s: GameState, scene: SceneBuilder): void {
 
 function enterCardGameWonFuckMyAss(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   if (((s as any).boy ?? 0) === 'A11') {
     // TODO-QSP: dynamic text: <<$loss_npc_img>>
     scene.text(`${((s as any).loss_npc_img || '')}`);
@@ -890,6 +938,8 @@ function enterCardGameWonFuckMyAss(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
+    (s as any).temp1 = (String('0117 1917 3717 5518 7421 9622').slice((5*(Math.floor(Math.random() * 6) + 0) + 1)-1, ((5*(Math.floor(Math.random() * 6) + 0) + 1)-1)+(4)));
+    (s as any).temp2 = (String('104cumass/cumass5 204cumass/cumass4 304cumass/cumass6 504cumass/cumass13 614cumbelly/cumbelly4 714cumbelly/cumbelly10').slice((parseFloat(0))-1, ((parseFloat(0))-1)+(parseFloat(0))));
     qspCall(s, 'arousal', 'anal', 10);
     scene.img(`images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sex/sex${qspUntranslated(s, "mid(temp2,1,1)", { location: "cardgame_durak" })}.jpg`);
     // TODO-QSP: dynamic text: <<$boydesc>> fucks you in the ass, like you demanded of him. He's surprisingly c...
@@ -900,7 +950,7 @@ function enterCardGameWonFuckMyAss(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).sexpartkno = 1;
-    (s as any).spafinloc = 0;
+    (s as any).spafinloc = parseFloat(0);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'cum_manage', '');
     qspCall(s, 'arousal', 'end');

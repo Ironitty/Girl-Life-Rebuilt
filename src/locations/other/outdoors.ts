@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSetWeather_TempFall(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).month ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).month ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     (s as any).weatherMeanTemp = (-48);
@@ -109,11 +109,11 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).weatherDay = ((s as any).daystart ?? 0);
   if (((s as any).totminut ?? 0) < ((s as any).sunWeather ?? 0)[1]-240) {
-    if (!(s as any).sunWeather) (s as any).sunWeather = {}; (s as any).sunWeather[1] = ((s as any).totminut ?? 0);
+    ((s as any).sunWeather = (s as any).sunWeather ?? {})[1] = ((s as any).totminut ?? 0);
     // TODO-QSP: !! Time cheat
   }
   if (((s as any).totminut ?? 0) > ((s as any).sunWeather ?? 0)[1]) {
-    if (!(s as any).sunWeather) (s as any).sunWeather = {}; (s as any).sunWeather[1] = ((s as any).totminut ?? 0) + (Math.floor(Math.random() * 121) + 30);
+    ((s as any).sunWeather = (s as any).sunWeather ?? {})[1] = ((s as any).totminut ?? 0) + (Math.floor(Math.random() * 121) + 30);
     (s as any).sunWeather = (((Math.floor(Math.random() * 100) + 0) < ((s as any).weatherFall ?? 0)) ? (0) : (1));
   }
   (s as any).temper = (((s as any).totminut ?? 0) % 1440);
@@ -127,21 +127,30 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temper = ((s as any).weatherTemper ?? 0) + (((s as any).weatherTempDelta ?? 0) * ((s as any).temper ?? 0)) / 360;
-  if (!(s as any).temper) (s as any).temper = {}; (s as any).temper[1] = ((s as any).temper ?? 0) % 10;
+  ((s as any).temper = (s as any).temper ?? {})[1] = ((s as any).temper ?? 0) % 10;
   if (((s as any).temper ?? 0)[1] < 0) {
     // TODO-QSP: temper[1] *= -1
   }
-  if (!(s as any).temper) (s as any).temper = {}; (s as any).temper[0] = ((s as any).temper ?? 0) / 10;
+  ((s as any).temper = (s as any).temper ?? {})[0] = ((s as any).temper ?? 0) / 10;
   if (((s as any).temper ?? 0) < -5) {
     if (((s as any).weatherFall ?? 0) < 30) {
       if (((s as any).sunWeather ?? 0) === 1) {
+        (s as any).osadki = 'Clear and cloudless.';
+      } else {
+        (s as any).osadki = 'Clear sky, but light snow falls.';
       }
     } else {
       if (((s as any).weatherFall ?? 0) < 60) {
         if (((s as any).sunWeather ?? 0) === 1) {
+          (s as any).osadki = 'Partly cloudy and light breeze.';
+        } else {
+          (s as any).osadki = 'Clouds and it is snowing.';
         }
       } else {
         if (((s as any).sunWeather ?? 0) === 1) {
+          (s as any).osadki = 'Clouds all over the sky and a sharp cold wind.';
+        } else {
+          (s as any).osadki = 'Strong snow with wind.';
         }
       }
     }
@@ -149,54 +158,85 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temper ?? 0) < 5) {
       if (((s as any).weatherFall ?? 0) < 30) {
         if (((s as any).sunWeather ?? 0) === 1) {
+          (s as any).osadki = 'Clear and cloudless.';
+        } else {
+          (s as any).osadki = 'Slightly wet snow.';
         }
       } else {
         if (((s as any).weatherFall ?? 0) < 60) {
           if (((s as any).sunWeather ?? 0) === 1) {
+            (s as any).osadki = 'Partly cloudy and light breeze.';
+          } else {
+            (s as any).osadki = 'Clouds and wet snow.';
           }
         } else {
           if (((s as any).sunWeather ?? 0) === 1) {
+            (s as any).osadki = 'Clouds all over the sky and a sharp wind.';
+          } else {
+            (s as any).osadki = 'Heavy snow, sticking wet snow.';
           }
         }
       }
     } else {
       if (((s as any).weatherFall ?? 0) < 30) {
         if (((s as any).sunWeather ?? 0) === 1) {
+          (s as any).osadki = 'Clear and cloudless.';
+        } else {
+          (s as any).osadki = 'Light mushroom rain.';
         }
       } else {
         if (((s as any).weatherFall ?? 0) < 60) {
           if (((s as any).sunWeather ?? 0) === 1) {
+            (s as any).osadki = 'Partly cloudy skies.';
+          } else {
+            (s as any).osadki = 'It is raining.';
           }
         } else {
           if (((s as any).sunWeather ?? 0) === 1) {
+            (s as any).osadki = 'Clouds all over the sky and a sharp wind.';
+          } else {
+            (s as any).osadki = 'Heavy rain and wind.';
           }
         }
       }
     }
   }
+  (s as any).temperature = qspFunc(s, 'outdoors', 'get_temp_string', qspUntranslated(s, "temper[0]", { location: "outdoors" }), qspUntranslated(s, "temper[1]", { location: "outdoors" }));
   if (((s as any).month ?? 0) === 1) {
+    (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>There is snow on the street.';
   } else {
     if (((s as any).month ?? 0) === 2) {
+      (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>There is snow on the street.';
     } else {
       if (((s as any).month ?? 0) === 3) {
+        (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>There is snow on the street.';
       } else {
         if (((s as any).month ?? 0) === 4) {
+          (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>The snow melts on the street.';
         } else {
           if (((s as any).month ?? 0) === 5) {
+            (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>Puddles in the street left by snow, winter has covered everything in dirt and debris, some places where new grass grows are pleasantly green.';
           } else {
             if (((s as any).month ?? 0) === 6) {
+              (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>Green grass lines the streets.';
             } else {
               if (((s as any).month ?? 0) === 7) {
+                (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>Green grass lines the streets.';
               } else {
                 if (((s as any).month ?? 0) === 8) {
+                  (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>The grass is green, the leaves in the trees are already turning yellow.';
                 } else {
                   if (((s as any).month ?? 0) === 9) {
+                    (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>Streets lined with green grass, visible yellow leaves.';
                   } else {
                     if (((s as any).month ?? 0) === 10) {
+                      (s as any).weather = '' + ((s as any).osadki ?? 0) + ' Temperature is ' + ((s as any).temperature ?? 0) + '.<br>The grass is fading and patchy, yellow and brown leaves fall from the trees, mud and puddles dot the street.';
                     } else {
                       if (((s as any).month ?? 0) === 11) {
+                        (s as any).weather = '' + ((s as any).osadki ?? 0) + ' Temperature is ' + ((s as any).temperature ?? 0) + '.<br>The street is dirty with a thin snow cover.';
                       } else {
                         if (((s as any).month ?? 0) === 12) {
+                          (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>The street is covered in snow.';
                         }
                       }
                     }
@@ -214,31 +254,45 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetTempString(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_sd_scale = ((Object.keys((s as any).ARGS ?? {}).length <= 3) ? (((s as any).stat_cfg ?? 0)?.['temp_scale']) : (qspUntranslated(s, "ARGS[3]", { location: "outdoors" })));
+  (s as any).temp_sd_scale = ((Object.keys((s as any).ARGS ?? {}).length <= 3) ? (((s as any).stat_cfg ?? 0)?.['temp_scale']) : (((s as any).locArgs?.[3] ?? 0)));
   if ((!((s as any).temp_sd_scale ?? 0))) {
+    (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '.' + ((s as any).locArgs?.[2] ?? 0) + '°C';
   } else {
     if (((s as any).temp_sd_scale ?? 0) === 1) {
+      (s as any).result = '' + (1625 + 90*((s as any).locArgs?.[1] ?? 0) + 9*((s as any).locArgs?.[2] ?? 0))/50 + '°F';
     } else {
       if (((s as any).temp_sd_scale ?? 0) === 2) {
+        (s as any).result = '' + (((s as any).locArgs?.[1] ?? 0)*10 + ((s as any).locArgs?.[2] ?? 0) + 2732)/10 + '.' + (((s as any).locArgs?.[1] ?? 0)*10 + ((s as any).locArgs?.[2] ?? 0) + 2732) % 10 + ' K';
       } else {
         if (((s as any).temp_sd_scale ?? 0) === 3) {
+          (s as any).result = '' + (1000 - ((s as any).locArgs?.[1] ?? 0)*10 - ((s as any).locArgs?.[2] ?? 0))*3/20 + '°De';
         } else {
           if (((s as any).temp_sd_scale ?? 0) === 4) {
             if (((s as any).locArgs?.[1] ?? 0) < -10) {
+              (s as any).result = '❄️🧊';
             } else {
               if (((s as any).locArgs?.[1] ?? 0) < -5) {
+                (s as any).result = '🥶😬';
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) < 5) {
+                  (s as any).result = '🌨️😐';
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) < 15) {
+                    (s as any).result = '🌤️🙂';
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) < 22) {
+                      (s as any).result = '☀️😊';
                     } else {
                       if (((s as any).locArgs?.[1] ?? 0) < 28) {
+                        (s as any).result = '🌞😅';
                       } else {
                         if (((s as any).locArgs?.[1] ?? 0) < 33) {
+                          (s as any).result = '🔆😤';
                         } else {
                           if (((s as any).locArgs?.[1] ?? 0) < 38) {
+                            (s as any).result = '🔥😡';
+                          } else {
+                            (s as any).result = '☢️🤬';
                           }
                         }
                       }
@@ -248,18 +302,26 @@ function enterGetTempString(s: GameState, scene: SceneBuilder): void {
               }
             }
             return;
+          } else {
+            (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '.' + ((s as any).locArgs?.[2] ?? 0) + '°C';
           }
         }
       }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
+    (s as any).result = qspFunc(s, 'wrap', 'accent', ((s as any).result ?? 0));
   } else {
     if (((s as any).locArgs?.[1] ?? 0) < 10) {
+      (s as any).result = qspFunc(s, 'wrap', 'v_pos', ((s as any).result ?? 0));
     } else {
       if (((s as any).locArgs?.[1] ?? 0) < 20) {
+        (s as any).result = qspFunc(s, 'wrap', 'pos', ((s as any).result ?? 0));
       } else {
         if (((s as any).locArgs?.[1] ?? 0) < 30) {
+          (s as any).result = qspFunc(s, 'wrap', 'neg', ((s as any).result ?? 0));
+        } else {
+          (s as any).result = qspFunc(s, 'wrap', 'v_neg', ((s as any).result ?? 0));
         }
       }
     }
@@ -270,6 +332,7 @@ function enterGetTempString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
+  (s as any).weatherImage = '<img height = ' + ((s as any).stat_cfg ?? 0)?.['weather_height'] + ' src="images/system/weather/wthr' + ((s as any).DayStage ?? 0) + '';
   if (((s as any).temper ?? 0) < -10) {
     // TODO-QSP: $weatherImage += '1'
   } else {
@@ -299,7 +362,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $weatherImage += '.jpg">'
   if (((s as any).location_type ?? 0) === 'public_outdoors'  ||  ((s as any).location_type ?? 0) === 'secluded'  ||  ((s as any).location_type ?? 0) === 'event_outdoors') {
-    if (!(s as any).location_type) (s as any).location_type = {}; (s as any).location_type['is_outdoors'] = 1;
+    ((s as any).location_type = (s as any).location_type ?? {})['is_outdoors'] = 1;
     qspCall(s, 'themes', 'outdoors');
     if (((s as any).sunWeather ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['umbrella'] === 0) {
       // TODO-QSP: *NL 'It is raining and you do not have an umbrella.'
@@ -439,7 +502,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (!(s as any).location_type) (s as any).location_type = {}; (s as any).location_type['is_outdoors'] = 0;
+    ((s as any).location_type = (s as any).location_type ?? {})['is_outdoors'] = 0;
     qspCall(s, 'themes', 'indoors');
   }
   // TODO-QSP: end
@@ -469,7 +532,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const outdoors: LocationDef = {
   name: 'outdoors',
-  title: 'You have blood flowing down your legs and staining your clothes.',
+  title: 'You have blood flowing down your legs and staining your clot',
   region: 'other',
   locationType: 'public_outdoors',
   enter: enter,

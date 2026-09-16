@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_market', '');
+  (s as any).region = 'pav';
+  (s as any).location_type = 'public_outdoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
       if (((s as any).hour ?? 0) >= 8) {
@@ -31,14 +33,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: Pavlovsk's modest train station is situated near the Pavlovsk Market Square. You...
-  scene.text('Pavlovsk\'s modest train station is situated near the Pavlovsk Market Square. You can enter the central hall of the <a href="exec:minut += 3 & gt \'pav_train_hall\'">train station</a> from here. Down the street from the train station is the <a href="exec:minut += 5 & gt \'gkafe\'">Borislav\'s cafe</a>\' + iif($start_type[\'loc\'] = \'sg\', \' where your mother works\', \') + \'. Next to the train station is the <a href="exec:minut += 5 & gt \'pav_station\', \'station_outside\'">Pavlovsk police station</a>, where you can find Pavlovsk\'s finest.');
+  scene.text('Pavlovsk\'s modest train station is situated near the Pavlovsk Market Square. You can enter the central hall of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_train_hall\\u0027, \\u0027\\u0027); return false;">train station</a> from here. Down the street from the train station is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027gkafe\\u0027, \\u0027\\u0027); return false;">Borislav\'s cafe</a>\' + iif($start_type[\'loc\'] = \'sg\', \' where your mother works\', \') + \'. Next to the train station is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_station\\u0027, \\u0027station_outside\\u0027); return false;">Pavlovsk police station</a>, where you can find Pavlovsk\'s finest.');
   // TODO-QSP: dynamic text: On the other side of the train station is a large square where you can find a <a...
-  scene.text('On the other side of the train station is a large square where you can find a <a href="exec:minut += 1 & gt \'pav_train_market\', \'start\'">market</a> on most days.');
+  scene.text('On the other side of the train station is a large square where you can find a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_train_market\\u0027, \\u0027start\\u0027); return false;">market</a> on most days.');
   // TODO-QSP: dynamic text: A rather run-down <a href="exec: minut += 1 & gt 'pav_hotel'">hotel</a> is just ...
-  scene.text(`A rather run-down <a href="exec: minut += 1 & gt 'pav_hotel'">hotel</a> is just across the square${((((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] > 0) ? ('; the manager is always looking for maids among the local young girls') : (''))}. Due to its frequent use by local prostitutes, most people prefer to stay at the middle-class hotel by the main road.`);
+  scene.text(`A rather run-down <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_hotel\\u0027, \\u0027\\u0027); return false;">hotel</a> is just across the square${((((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] > 0) ? ('; the manager is always looking for maids among the local young girls') : (''))}. Due to its frequent use by local prostitutes, most people prefer to stay at the middle-class hotel by the main road.`);
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked in the par...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the parking lot in front of the train station.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the parking lot in front of the train station.`);
   }
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
@@ -47,24 +49,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute ?? 0)?.['wl_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['full_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['gas_station'] === 1) {
     if (qspFunc(s, 'money', 'can_afford', 75) === 1) {
       // TODO-QSP: dynamic text: A bus terminal is situated next to the train station. Here you can catch the bus...
-      scene.text('A bus terminal is situated next to the train station. Here you can catch the bus that will take you to <a href="exec:minut += 87 & gs \'money\', \'pay\', 75 & gt \'gas_station_gp_117\', \'outside\'">the gas station on the M11</a>.');
+      scene.text('A bus terminal is situated next to the train station. Here you can catch the bus that will take you to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.87; return s; }); window.__gameStore.getState().doGoto(\\u0027money\\u0027, \\u0027pay\\u0027, String(window.__gameStore.getState().75 ?? \\u0027\\u0027)); return false;">the gas station on the M11</a>.');
     } else {
       scene.text('A bus terminal is situated next to the train station. Here you can catch the bus that would take you to the gas station on the M11. Unfortunately, you don\'t have enough money for the ticket.');
     }
   }
   qspCall(s, 'lover', 'lover_events');
   if (((s as any).dimaRevChoice ?? 0) === 5  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  (!((s as any).dimaTrain ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
+    qspGoto(s, 'dimaRevenge', '', 'dimaRevenge');
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).monthKidalo ?? 0) !== ((s as any).month ?? 0)) {
     if ((!((s as any).kidaloa ?? 0))) {
       if ((Math.floor(Math.random() * 6) + 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 5000) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['pav_market', 'kidaloa'] }]);
+        qspGoto(s, 'pav_market', 'kidaloa');
       }
     }
     if ((!((s as any).kidalob ?? 0))) {
       if ((Math.floor(Math.random() * 6) + 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 1  &&  (((s as any).clothingworntype ?? 0) === 'moncheri_dress'  ||  ((s as any).clothingworntype ?? 0) === 'moncheri_gown'  ||  ((s as any).clothingworntype ?? 0) === 'fashionista_dress')) {
-        scene.actions([{ label: 'Continue', goto: ['pav_market', 'kidalob'] }]);
+        qspGoto(s, 'pav_market', 'kidalob');
       }
     }
   }
@@ -296,7 +298,8 @@ function enterKidalob(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_market', ''] },
+    qspGoto(s, 'pav_market', '');
+  } },
       ]);
     }
     scene.actions([
@@ -305,6 +308,7 @@ function enterKidalob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'clothing', 'dispose');
     qspCall(s, 'clothing', 'add_item', 'gm_dress', 52);
     qspCall(s, 'clothing', 'wear', 'gm_dress', 52);
+    (s as any).lastwornclothingtype = 'nude';
     (s as any).lastwornclothingnumber = 0;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You quickly get into the car and put on the dress the man gave you. You give you...

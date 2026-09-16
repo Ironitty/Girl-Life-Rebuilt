@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/aurora/front.jpg');
   scene.text('"Hello, welcome to the Aurora Female Talent Agency! How may I help you?"');
   if (((s as any).casting ?? 0) === 3  &&  ((s as any).hour ?? 0) <= 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0)) {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = 3;
+    ((s as any).audition = (s as any).audition ?? {})['room'] = 3;
     scene.text('"Oh? Are you here for the SMTV commercial? Please go to interview room 3. They\'re waiting for you inside.');
   } else {
     if (((s as any).casting ?? 0) === 3  &&  ((((s as any).hour ?? 0) > 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0))  ||  ((s as any).SMTV_commercial ?? 0) < ((s as any).daystart ?? 0))) {
@@ -46,7 +46,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterRoom1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).audition ?? 0)?.['room'] !== 1  ||  ((s as any).audition ?? 0)?.['day'] !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['talent_agency', 'wrong_room'] }]);
+    qspGoto(s, 'talent_agency', 'wrong_room');
   } else {
     scene.text('Woops, this content doesn\'t exist yet!');
     scene.actions([
@@ -59,7 +59,7 @@ function enterRoom1(s: GameState, scene: SceneBuilder): void {
 
 function enterRoom2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).audition ?? 0)?.['room'] !== 2  ||  ((s as any).audition ?? 0)?.['day'] !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['talent_agency', 'wrong_room'] }]);
+    qspGoto(s, 'talent_agency', 'wrong_room');
   } else {
     scene.text('Woops, this content doesn\'t exist yet!');
     scene.actions([
@@ -72,10 +72,10 @@ function enterRoom2(s: GameState, scene: SceneBuilder): void {
 
 function enterRoom3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).casting ?? 0) === 3  &&  ((s as any).hour ?? 0) <= 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['talent_agency', 'SMTV_intro'] }]);
+    qspGoto(s, 'talent_agency', 'SMTV_intro');
   } else {
     if (((s as any).audition ?? 0)?.['room'] !== 3  ||  ((s as any).audition ?? 0)?.['day'] !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['talent_agency', 'wrong_room'] }]);
+      qspGoto(s, 'talent_agency', 'wrong_room');
     } else {
       scene.text('Woops, this content doesn\'t exist yet!');
       scene.actions([
@@ -89,7 +89,7 @@ function enterRoom3(s: GameState, scene: SceneBuilder): void {
 
 function enterRoom4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).audition ?? 0)?.['room'] !== 4  ||  ((s as any).audition ?? 0)?.['day'] !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['talent_agency', 'wrong_room'] }]);
+    qspGoto(s, 'talent_agency', 'wrong_room');
   } else {
     scene.text('Woops, this content doesn\'t exist yet!');
     scene.actions([
@@ -102,7 +102,7 @@ function enterRoom4(s: GameState, scene: SceneBuilder): void {
 
 function enterRoom5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).audition ?? 0)?.['room'] !== 5  ||  ((s as any).audition ?? 0)?.['day'] !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['talent_agency', 'wrong_room'] }]);
+    qspGoto(s, 'talent_agency', 'wrong_room');
   } else {
     scene.text('Woops, this content doesn\'t exist yet!');
     scene.actions([
@@ -115,10 +115,10 @@ function enterRoom5(s: GameState, scene: SceneBuilder): void {
 
 function enterRoom6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).audition ?? 0)?.['room'] > 0  &&  ((s as any).audition ?? 0)?.['room'] <= 5) {
-    scene.actions([{ label: 'Continue', goto: ['talent_agency', 'wrong_room2'] }]);
+    qspGoto(s, 'talent_agency', 'wrong_room2');
   } else {
     if (((s as any).audition ?? 0)?.['role'] === ''  &&  ((s as any).audition ?? 0)?.['day'] !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['talent_agency', 'wrongday'] }]);
+      qspGoto(s, 'talent_agency', 'wrongday');
     } else {
       scene.text('Woops, this content doesn\'t exist yet!');
       scene.actions([
@@ -132,7 +132,7 @@ function enterRoom6(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', ((s as any).actpayfin ?? 0));
-  scene.actions([{ label: 'Continue', goto: ['talent_agency', ''] }]);
+  qspGoto(s, 'talent_agency', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -168,8 +168,8 @@ function enterWrongRoom2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSMTVIntro(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).actresslife) (s as any).actresslife = {}; (s as any).actresslife['Yanovich'] = 1;
-  if (!(s as any).actresslife) (s as any).actresslife = {}; (s as any).actresslife['SMTV_commercial'] = 1;
+  ((s as any).actresslife = (s as any).actresslife ?? {})['Yanovich'] = 1;
+  ((s as any).actresslife = (s as any).actresslife ?? {})['SMTV_commercial'] = 1;
   scene.img('images/locations/city/citycenter/aurora/auditions/room.jpg');
   scene.text('You enter the interview room, and someone is there waiting for you.');
   // TODO-QSP: dynamic text: "Ahh! Hello! You must be Miss <<$pcs_lastname>>. I'm Artur Yanovich. But you can...
@@ -290,7 +290,7 @@ function enterSMTVShy(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>Holy crap! Acting is some serious money!</i>');
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (20);
     (s as any).casting = 1;
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = 0;
+    ((s as any).audition = (s as any).audition ?? {})['room'] = 0;
     scene.actions([
       { label: 'Leave', goto: ['talent_agency', 'end'] },
     ]);
@@ -388,7 +388,7 @@ function enterSMTVConfident(s: GameState, scene: SceneBuilder): void {
     scene.text(`Looking over at the desk, you see a wad of cash. You rush over, and when you finish counting, you realize that it's ${qspFunc(s, 'money', 'string_profit', ((s as any).actpayfin || ''))}!`);
     scene.text('<i>Holy crap! Acting is some serious money!</i>');
     (s as any).casting = 1;
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = 0;
+    ((s as any).audition = (s as any).audition ?? {})['room'] = 0;
     scene.actions([
       { label: 'Leave', goto: ['talent_agency', 'end'] },
     ]);

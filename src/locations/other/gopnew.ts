@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -17,13 +17,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gopwho', '');
   qspCall(s, 'goplust', '');
   if (((s as any).gopnew ?? 0)?.['feed'] >= 1) {
-    scene.actions([{ label: 'Continue', goto: ['gopnew', 'succubus_1'] }]);
+    qspGoto(s, 'gopnew', 'succubus_1');
   } else {
     if (((s as any).gopnew ?? 0)?.['fight'] > 0) {
-      scene.actions([{ label: 'Continue', goto: ['gopnew', 'mistress_1'] }]);
+      qspGoto(s, 'gopnew', 'mistress_1');
     } else {
       if (((s as any).gnewQW ?? 0) === 0  &&  ((s as any).gopnew ?? 0)?.['ran'] >= 1) {
-        scene.actions([{ label: 'Continue', goto: ['gopnew', 'coward_1'] }]);
+        qspGoto(s, 'gopnew', 'coward_1');
       } else {
         if ((!((s as any).gnewQW ?? 0))) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart0(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -95,7 +95,7 @@ function enterStart0(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Squirm free and run away', handler: (st: GameState) => {
-    if (!(s as any).gopnew) (s as any).gopnew = {}; (s as any).gopnew['ran'] = ((s as any).gopnew['ran'] ?? 0) + (1);
+    ((s as any).gopnew = (s as any).gopnew ?? {})['ran'] = ((s as any).gopnew['ran'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('You do your best to wrestle yourself free, but his grip is too tight. Deciding you need to get out of there at any cost, you knee him hard in the groin and run as he lets you go with a grunt of pain. His friends start after you, but weren\'t ready for it, and your fear gives you the speed you need to make it out of the alley and disappear into the crowd.');
@@ -120,7 +120,8 @@ function enterStart0(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fight_npcdata', 'gopnews_3', 'opp');
     qspCall(s, 'fight_npcdata', 'gopnews_4', 'opp');
     (s as any).fightEnding = 21;
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
     ]);
   } },
     ]);
@@ -154,7 +155,8 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     scene.actions([
@@ -188,7 +190,8 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     scene.actions([
@@ -275,7 +278,8 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     scene.actions([
@@ -291,25 +295,35 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
   (s as any).gnewQW = 5;
   (s as any).gtalkrand = Math.floor(Math.random() * 5) + 0;
   if ((!((s as any).gtalkrand ?? 0))) {
+    (s as any).goptalk = 'slut';
   }
   if (((s as any).gtalkrand ?? 0) === 1) {
+    (s as any).goptalk = 'bitch';
   }
   if (((s as any).gtalkrand ?? 0) === 2) {
+    (s as any).goptalk = 'skank';
   }
   if (((s as any).gtalkrand ?? 0) === 3) {
+    (s as any).goptalk = 'whore';
   }
   if (((s as any).gtalkrand ?? 0) === 4) {
+    (s as any).goptalk = '' + ((s as any).pcs_nickname ?? 0) + '';
   }
   (s as any).gtalkrand = Math.floor(Math.random() * 5) + 0;
   if ((!((s as any).gtalkrand ?? 0))) {
+    (s as any).goptalk2 = 'How many cocks have you sucked today?';
   }
   if (((s as any).gtalkrand ?? 0) === 1) {
+    (s as any).goptalk2 = 'Need some cock in you?';
   }
   if (((s as any).gtalkrand ?? 0) === 2) {
+    (s as any).goptalk2 = 'Why so quiet? Is your mouth full of cum or something?';
   }
   if (((s as any).gtalkrand ?? 0) === 3) {
+    (s as any).goptalk2 = 'Which hole did you get fucked in more recently, ass or pussy?';
   }
   if (((s as any).gtalkrand ?? 0) === 4) {
+    (s as any).goptalk2 = 'Want to put that tongue of yours to work?';
   }
   // TODO-QSP: dynamic text: <<$gopnik>>
   scene.text(`${((s as any).gopnik || '')}`);
@@ -452,7 +466,8 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
     scene.actions([
@@ -590,7 +605,7 @@ function enterPivas(s: GameState, scene: SceneBuilder): void {
               scene.text(`${((s as any).gopnik || '')}`);
               if (((s as any).gnewQW ?? 0) > 1) {
                 if (((s as any).VasanTut ?? 0) === 2  ||  ((s as any).BerezaTut ?? 0) === 2  ||  ((s as any).VitekTut ?? 0) === 2  ||  ((s as any).KostilTut ?? 0) === 2  ||  ((s as any).UdmurtTut ?? 0) === 2  ||  ((s as any).SeriTut ?? 0) === 2) {
-                  scene.actions([{ label: 'Continue', goto: ['gopnew', 'sexstart'] }]);
+                  qspGoto(s, 'gopnew', 'sexstart');
                 }
               }
               scene.actions([
@@ -649,7 +664,7 @@ function enterPivas(s: GameState, scene: SceneBuilder): void {
                 scene.text(`${((s as any).gopnik || '')}`);
                 if (((s as any).gnewQW ?? 0) > 1) {
                   if (((s as any).VasanTut ?? 0) === 2  ||  ((s as any).BerezaTut ?? 0) === 2  ||  ((s as any).VitekTut ?? 0) === 2  ||  ((s as any).KostilTut ?? 0) === 2  ||  ((s as any).UdmurtTut ?? 0) === 2  ||  ((s as any).SeriTut ?? 0) === 2) {
-                    scene.actions([{ label: 'Continue', goto: ['gopnew', 'sexstart'] }]);
+                    qspGoto(s, 'gopnew', 'sexstart');
                   }
                 }
                 scene.actions([
@@ -806,7 +821,7 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
 
 function enterRapebj(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   scene.img('images/locations/city/residential/street/sex/rapebj.jpg');
   scene.text('Vasan pulls his unwashed cock out of his pants, and waves it in front of your face. When he notices you\'re not opening your mouth quick enough, he growls: "Don\'t pretend you forgot what to do with these, whore! Start sucking!"');
   qspCall(s, 'willpower', 'bj', 'resist', 'hard');
@@ -859,7 +874,7 @@ function enterRapebj(s: GameState, scene: SceneBuilder): void {
       (s as any).vasansex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
     scene.img('images/locations/city/residential/street/sex/rapebj2.jpg');
     scene.text('You open your mouth but don\'t take his cock in your mouth. Instead you run your tongue up and down his shaft repeatedly, without much enthusiasm.');
     scene.text('"What is this garbage? Put some effort into it, slut! Or else…" he grunts.');
@@ -978,7 +993,8 @@ function enterDolg(s: GameState, scene: SceneBuilder): void {
     (s as any).gnewQW = 6;
     (s as any).gopdolg = 0;
     (s as any).VasanTut = 3;
-  }, goto: ['gopnew', 'sexstart'] },
+    qspGoto(s, 'gopnew', 'sexstart');
+  } },
     ]);
   } },
     ]);
@@ -995,10 +1011,10 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexboy(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).GLust ?? 0) === 2  ||  ((s as any).GLust ?? 0) === 3) {
-      scene.actions([{ label: 'Continue', goto: ['gopnew', '2'] }]);
+      qspGoto(s, 'gopnew', '2');
     }
     if (((s as any).GLust ?? 0) > 3) {
-      scene.actions([{ label: 'Continue', goto: ['gopnew', '3'] }]);
+      qspGoto(s, 'gopnew', '3');
     }
   } else {
     if ((((s as any).opusk ?? 0) === 0  &&  ((s as any).sipovka ?? 0) === 0)  ||  ((s as any).gnewQW ?? 0) > 5) {
@@ -1123,45 +1139,51 @@ function enterSexboy(s: GameState, scene: SceneBuilder): void {
       (s as any).vasansex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A102';
   }
   if (((s as any).BerezaTut ?? 0) === 2) {
     if ((!((s as any).berezasex ?? 0))) {
       (s as any).berezasex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A103';
   }
   if (((s as any).VitekTut ?? 0) === 2) {
     if ((!((s as any).viteksex ?? 0))) {
       (s as any).viteksex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A104';
   }
   if (((s as any).KostilTut ?? 0) === 2) {
     if ((!((s as any).kostilsex ?? 0))) {
       (s as any).kostilsex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A105';
   }
   if (((s as any).UdmurtTut ?? 0) === 2) {
     if ((!((s as any).udmurtsex ?? 0))) {
       (s as any).udmurtsex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A106';
   }
   if (((s as any).SeriTut ?? 0) === 2) {
     if ((!((s as any).serisex ?? 0))) {
       (s as any).serisex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A107';
   }
   (s as any).gsbrand = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).gsbrand ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['gopnew', '1'] }]);
+    qspGoto(s, 'gopnew', '1');
   } else {
     if (((s as any).gsbrand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['gopnew', '11'] }]);
+      qspGoto(s, 'gopnew', '11');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gopnew', '12'] }]);
+      qspGoto(s, 'gopnew', '12');
     }
   }
   // TODO-QSP: end
@@ -1174,36 +1196,42 @@ function enterSexboy1(s: GameState, scene: SceneBuilder): void {
       (s as any).vasansex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A102';
   }
   if (((s as any).BerezaTut ?? 0) === 3) {
     if ((!((s as any).berezasex ?? 0))) {
       (s as any).berezasex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A103';
   }
   if (((s as any).VitekTut ?? 0) === 3) {
     if ((!((s as any).viteksex ?? 0))) {
       (s as any).viteksex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A104';
   }
   if (((s as any).KostilTut ?? 0) === 3) {
     if ((!((s as any).kostilsex ?? 0))) {
       (s as any).kostilsex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A105';
   }
   if (((s as any).UdmurtTut ?? 0) === 3) {
     if ((!((s as any).udmurtsex ?? 0))) {
       (s as any).udmurtsex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A106';
   }
   if (((s as any).SeriTut ?? 0) === 3) {
     if ((!((s as any).serisex ?? 0))) {
       (s as any).serisex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
+    (s as any).guygop = 'A107';
   }
   // TODO-QSP: end
   scene.actions([
@@ -1232,6 +1260,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     scene.text('You were not satisfied.');
   } else {
+    (s as any).orgasm_or = 'yes';
     scene.text('You orgasm with him, holding your hand over your mouth to stop yourself from crying out.');
   }
   // TODO-QSP: dynamic text: <<$boydesc>> wipes his cock on your ass cheeks and tucks it back into his pants....
@@ -1334,6 +1363,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     scene.text('He doesn\'t care about your pleasure, and you\'re nowhere near satisfied by the time he finishes.');
   } else {
+    (s as any).orgasm_or = 'yes';
     scene.text('You orgasm with him, holding your hand over your mouth to stop yourself from crying out.');
   }
   // TODO-QSP: dynamic text: <<$boydesc>> pulls out right before he orgasms, and ends up spraying his sperm a...
@@ -1447,6 +1477,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
         scene.text('The guys don\'t care about your pleasure, and you\'re nowhere near satisfied by the time they all finish.');
       } else {
+        (s as any).orgasm_or = 'yes';
         scene.text('You orgasm during their relentless pounding, holding your hand over your mouth to stop yourself from crying out loud.');
       }
       scene.text('The guys just cum wherever they feel like while they\'re fucking you, giving you no warning. By the time they all finish, you\'re a mess. You should probably go take a shower…');
@@ -1507,6 +1538,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     scene.text('The guys don\'t care about your pleasure, and you\'re nowhere near satisfied by the time they all finish.');
   } else {
+    (s as any).orgasm_or = 'yes';
     scene.text('You orgasm during their relentless pounding, holding your hand over your mouth to stop yourself from crying out loud.');
   }
   qspCall(s, 'arousal', 'bj', (-15), 'sub', 'humiliation', 'gangbang');
@@ -1580,7 +1612,7 @@ function enterChoice_1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Flee', handler: (st: GameState) => {
-    if (!(s as any).gopnew) (s as any).gopnew = {}; (s as any).gopnew['ran'] = ((s as any).gopnew['ran'] ?? 0) + (1);
+    ((s as any).gopnew = (s as any).gopnew ?? {})['ran'] = ((s as any).gopnew['ran'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('desc');
@@ -1602,7 +1634,8 @@ function enterChoice_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fight_npcdata', 'gopnews_5', 'opp');
     qspCall(s, 'fight_npcdata', 'gopnews_6', 'opp');
     (s as any).fightEnding = 21;
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -1611,8 +1644,9 @@ function enterSuccubusOption(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'succubus', 'active', 5)) {
     scene.actions([
       { label: 'Feed off of them  [+$func(\'wrap\', \'neg\', \'(Succubus)\')]', handler: (st: GameState) => {
-    if (!(s as any).gopnew) (s as any).gopnew = {}; (s as any).gopnew['feed'] = 1;
-  }, goto: ['gopnew', 'succubus_1'] },
+    ((s as any).gopnew = (s as any).gopnew ?? {})['feed'] = 1;
+    qspGoto(s, 'gopnew', 'succubus_1');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1620,7 +1654,7 @@ function enterSuccubusOption(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuccubus_1(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+  qspGoto(s, 'city_residential', '');
   // TODO-QSP: end
   scene.build();
 }
@@ -1663,7 +1697,7 @@ function enterCoward_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFightWin(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gopnew) (s as any).gopnew = {}; (s as any).gopnew['fight'] = 1;
+  ((s as any).gopnew = (s as any).gopnew ?? {})['fight'] = 1;
   qspCall(s, 'money', 'earn', Math.floor(Math.random() * 51) + 50, 'cash');
   qspCall(s, 'stat', '');
   scene.text('The last one goes down, unable to stand up to you. With a shrug, you start going through their pockets, pocketing any money you find. Finished, you saunter out of the alley, feeling like nothing can stop you today!');
@@ -1675,7 +1709,7 @@ function enterFightWin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFightLost(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gopnew) (s as any).gopnew = {}; (s as any).gopnew['fight'] = (-1);
+  ((s as any).gopnew = (s as any).gopnew ?? {})['fight'] = (-1);
   qspCall(s, 'stat', '');
   scene.text('You hit the ground hard, the guys stand over you looking down, and you know you\'re in trouble now! Carefully you get to your feet, clinging to the hope you can escape but knowing this won\'t end well.');
   // TODO-QSP: end

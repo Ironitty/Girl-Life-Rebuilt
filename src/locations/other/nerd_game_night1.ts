@@ -95,7 +95,7 @@ function enterMansionEntrance(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
   (s as any).temp = Math.floor(Math.random() * 20) + 1;
   if (((s as any).temp ?? 0) === 20) {
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['know_succubus_trap'] = 1;
+    ((s as any).nerd_game = (s as any).nerd_game ?? {})['know_succubus_trap'] = 1;
     scene.text('Petka rolls the dice and the 20 comes up. He pumps his fist as Feofan continues narrating.');
     scene.text('"With your expert skills in magic, you\'re able to sense and remove the dark magic charm in place to reveal that the \'mansion\' is actually a large rocky cave nestled amongst rotten trees and sickly vines. You see a faint glow of light escaping from the mouth of the cave and realize that it\'s shaped like a human skull."');
     scene.text('"It seems like Artem and Petka were right," Gerasim says. "This place isn\'t what it appears to be, but we should still investigate that cave. There could be people who don\'t know the house is an illusion trapped inside there, possibly with the undead."');
@@ -184,7 +184,7 @@ function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
         scene.text('More dice are rolled and you discover that, while there are no more arrows, Julia has been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
         scene.text('"Just as you\'re about to give up hope, a secret door opens and Julia\'s cleric hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.');
       } else {
-        if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['lust_curse'] = 1;
+        ((s as any).nerd_game = (s as any).nerd_game ?? {})['lust_curse'] = 1;
         scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
         scene.text('"Distracted by the trap you\'re caught in, you fail to notice the arrow launcher hidden in the wall and flinch as a small arrow pierces your armor. It has an immediate effect on you."');
         scene.text('"What the hell was that?" Petka asks. "Is there any more of those things?"');
@@ -245,7 +245,7 @@ function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
         scene.text('More dice are rolled and you discover that, while there are no more arrows, Julia has been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
         scene.text('"Just as you\'re about to give up hope, a secret door opens and Julia\'s cleric hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.');
       } else {
-        if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['lust_curse'] = 1;
+        ((s as any).nerd_game = (s as any).nerd_game ?? {})['lust_curse'] = 1;
         scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
         scene.text('"Distracted by the trap you\'re caught in, you fail to notice the arrow launcher hidden in the wall and flinch as a small arrow pierces your armor. It has an immediate effect on you."');
         scene.text('"What the hell was that?" Petka asks. "Is there any more of those things?"');
@@ -647,7 +647,7 @@ function enterSuccubusFight(s: GameState, scene: SceneBuilder): void {
         scene.text('"Your magic might be powerful, demon, but you\'ll never break us!" Julia proclaims triumphantly.');
         scene.text('"We\'ll see about that once my boys are done with you!" the succubus snarls.');
       } else {
-        if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['sveta_slave'] = 1;
+        ((s as any).nerd_game = (s as any).nerd_game ?? {})['sveta_slave'] = 1;
         scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
         // TODO-QSP: dynamic text: "Despite her best efforts, the voice is victorious and takes control of <<$pcs_n...
         scene.text(`"Despite her best efforts, the voice is victorious and takes control of ${((s as any).pcs_nickname || '')}'s mind. She obediently walks over and kneels at the feet of the smirking succubus, joining the other mindless slaves surrounding you."`);
@@ -751,7 +751,7 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Kill her', handler: (st: GameState) => {
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['succubus_dead'] = 1;
+    ((s as any).nerd_game = (s as any).nerd_game ?? {})['succubus_dead'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     scene.text('"You don\'t listen to the creature\'s pleas and reluctantly slash your dagger across her throat, causing her lifeless corpse to fall to the floor as her blood soaks into her blonde hair," Feofan narrates.');
@@ -803,7 +803,7 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Kill her', handler: (st: GameState) => {
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['succubus_dead'] = 1;
+    ((s as any).nerd_game = (s as any).nerd_game ?? {})['succubus_dead'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     scene.text('"You don\'t listen to the creature\'s pleas and reluctantly slash your dagger across her throat, causing her lifeless corpse to fall to the floor as her blood soaks into her blonde hair," Feofan narrates.');
@@ -844,7 +844,7 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['succubus_dead'] = 1;
+    ((s as any).nerd_game = (s as any).nerd_game ?? {})['succubus_dead'] = 1;
     qspCall(s, 'stat', '');
     if (((s as any).loc ?? 0) === 'city_coffee_hole') {
       scene.img('images/locations/city/island/coffe_hole/nerd_game_night.jpg');
@@ -983,7 +983,7 @@ function enterCursedVillage1a(s: GameState, scene: SceneBuilder): void {
     scene.text('"We should head to this forge and then leave. There\'s not much left for us to do here," Artem states and the group all agree.');
     scene.actions([
       { label: 'Head to the forge', handler: (st: GameState) => {
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['group_forge_gear'] = 1;
+    ((s as any).nerd_game = (s as any).nerd_game ?? {})['group_forge_gear'] = 1;
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     scene.text('"Arriving at the forge, you find it abandoned in the state it was in when the chaos descended. You half expect a blacksmith to just walk in and continue his work," Feofan explains.');
     scene.text('"This place is almost untouched," Gerasim says. "With the right people, they could continue the work here as if… you know, <i>that</i> never happened."');
@@ -993,7 +993,7 @@ function enterCursedVillage1a(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re told that both options are good, but one set of armor has slightly better stats at the expense of being slightly more revealing.');
     scene.actions([
       { label: 'Take the weaker armor', handler: (st: GameState) => {
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['sveta_modest_armor'] = 1;
+    ((s as any).nerd_game = (s as any).nerd_game ?? {})['sveta_modest_armor'] = 1;
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     scene.text('You roll your eyes. "Seriously, Feofan? Screw the better stats, I\'m not wearing that skimpy armor! How is armor that exposes my midriff even superior to begin with?" you firmly state.');
     scene.text('A somewhat flustered Feofan accepts your choice and you take the weaker, but more modest armor for your character. Julia and Zinadia give you nods of approval while Petka, unsurprisingly, seems very disappointed.');
@@ -1003,7 +1003,7 @@ function enterCursedVillage1a(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Take the skimpy armor', handler: (st: GameState) => {
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['sveta_skimpy_armor'] = 1;
+    ((s as any).nerd_game = (s as any).nerd_game ?? {})['sveta_skimpy_armor'] = 1;
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     scene.text('"I don\'t care if this armor makes me look like a tavern wench. I want those better stats," you firmly state.');
     scene.text('Feofan accepts your choice and you take the skimpier, but more powerful armor for your character. Julia and Zinadia both shake their heads in disapproval while Petka, unsurprisingly, seems very pleased with your choice.');

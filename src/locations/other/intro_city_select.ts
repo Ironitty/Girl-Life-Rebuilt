@@ -1,3 +1,5 @@
+import { qspGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -7,57 +9,57 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'start'] }]);
+  qspGoto(s, 'intro_character_creation', 'start');
   scene.build();
 }
 
 function enterStart2(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'start2'] }]);
+  qspGoto(s, 'intro_character_creation', 'start2');
   scene.build();
 }
 
 function enterCharselect(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'charselect'] }]);
+  qspGoto(s, 'intro_character_creation', 'charselect');
   scene.build();
 }
 
 function enterCharselectNerd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'charselect_nerd'] }]);
+  qspGoto(s, 'intro_character_creation', 'charselect_nerd');
   scene.build();
 }
 
 function enterRandomStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'random_start'] }]);
+  qspGoto(s, 'intro_character_creation', 'random_start');
   scene.build();
 }
 
 function enterNerdinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'nerd\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'nerd');
   scene.build();
 }
 
 function enterJockinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'jock\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'jock');
   scene.build();
 }
 
 function enterPopularinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'cool\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'cool');
   scene.build();
 }
 
 function enterGopnikinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'gopnik\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'gopnik');
   scene.build();
 }
 
 function enterOutcastinfo(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'outcast\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'outcast');
   scene.build();
 }
 
 function enterNerd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'nerd\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'nerd');
   scene.build();
 }
 
@@ -82,7 +84,7 @@ function enterChessplayer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJock(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'jock\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'jock');
   scene.build();
 }
 
@@ -107,7 +109,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCool(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'cool\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'cool');
   scene.build();
 }
 
@@ -132,7 +134,7 @@ function enterBimbo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopnik(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'gopnik\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'gopnik');
   scene.build();
 }
 
@@ -157,7 +159,7 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOutcast(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'outcast\''] }]);
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'outcast');
   scene.build();
 }
 

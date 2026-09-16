@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,7 +13,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A143', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'drugs', 'alcohol', 'beer');
   qspCall(s, 'stat', '');
@@ -30,7 +30,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_park', 'deeper_park'] },
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -52,7 +53,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_park', 'deeper_park'] },
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
       ]);
     }
     scene.actions([
@@ -73,7 +75,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_park', 'deeper_park'] },
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
       ]);
     }
     scene.actions([
@@ -158,8 +161,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).park) (s as any).park = {}; (s as any).park['girl_eatlera'] = 2;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).park = (s as any).park ?? {})['girl_eatlera'] = 2;
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You sigh and give in to the peer pressure. "Okay fine, but I don\'t know why I\'m always the one on her knees."');
     scene.text('The girls are all excited. With her pussy already out, Lera is apparently going to be first while the rest eagerly wait their turn.');
@@ -180,8 +183,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).park) (s as any).park = {}; (s as any).park['girl_eatlera'] = 2;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).park = (s as any).park ?? {})['girl_eatlera'] = 2;
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You sigh and give in to the peer pressure. "Okay fine, but I don\'t know why I\'m always the one on her knees."');
     scene.text('The girls are all excited. With her pussy already out, Lera is apparently going to be first while the rest eagerly wait their turn.');
@@ -251,8 +254,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).park) (s as any).park = {}; (s as any).park['girl_eatlera'] = ((s as any).park['girl_eatlera'] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).park = (s as any).park ?? {})['girl_eatlera'] = ((s as any).park['girl_eatlera'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You sigh and give in to the peer pressure. "Okay fine, but I don\'t know why I\'m always the one on her knees."');
     scene.text('The girls are all excited. Lera, with her pussy already out, is apparently going to be first while the rest eagerly wait their turn. "Shut up and put that tongue to good use for a change," she snarls.');
@@ -272,8 +275,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).park) (s as any).park = {}; (s as any).park['girl_eatlera'] = ((s as any).park['girl_eatlera'] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).park = (s as any).park ?? {})['girl_eatlera'] = ((s as any).park['girl_eatlera'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You sigh and give in to the peer pressure. "Okay fine, but I don\'t know why I\'m always the one on her knees."');
     scene.text('The girls are all excited. Lera, with her pussy already out, is apparently going to be first while the rest eagerly wait their turn.');
@@ -339,8 +342,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).park) (s as any).park = {}; (s as any).park['girl_eatlera'] = 1;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).park = (s as any).park ?? {})['girl_eatlera'] = 1;
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You sigh and give in to the peer pressure. "Okay fine, I\'ll eat you out for a beer."');
     scene.text('The girls are all excited. "Well, hurry up and eat me then," Lera replies.');
@@ -367,7 +370,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Threaten Lera', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-2));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'willpower', 'drink', 'force', 'hard');
@@ -392,8 +395,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 2);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).park) (s as any).park = {}; (s as any).park['girl_eatlera'] = 1;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).park = (s as any).park ?? {})['girl_eatlera'] = 1;
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You sigh and give in to the peer pressure. "Okay fine, I\'ll eat you out for a beer."');
     scene.text('The girls are all excited. "Well, hurry up and eat me then," Lera replies.');
@@ -436,7 +439,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A143', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A144', (-3));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/no.jpg');
@@ -451,7 +454,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    if (!(s as any).park) (s as any).park = {}; (s as any).park['girl_bet'] = ((s as any).park['girl_bet'] ?? 0) + (1);
+    ((s as any).park = (s as any).park ?? {})['girl_bet'] = ((s as any).park['girl_bet'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You\'re feeling confident. "Fine, you got a bet."');
     scene.text('The girls laugh while Lena hands out beers. "Okay, start drinking when I say."');
@@ -464,8 +467,9 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (2);
     qspCall(s, 'stat', '');
+    (s as any).drink_winner = qspFunc(s, 'pav_parkev1', 'drinking_game');
     scene.img(`images/locations/pavlovsk/park/event/gopnik/gop_girls_naked${Math.floor(Math.random() * 2) + 1}.jpg`);
     scene.text('You start guzzling the beer, as do the other girls. You\'re all trying to poke each other in the stomach as you drink while trying not to laugh. It turns out to be more challenging than you thought with all the horse-playing.');
     if (((s as any).drink_winner ?? 0) === 'lena') {
@@ -524,7 +528,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Make bet', handler: (st: GameState) => {
-    if (!(s as any).park) (s as any).park = {}; (s as any).park['girl_bet'] = ((s as any).park['girl_bet'] ?? 0) + (1);
+    ((s as any).park = (s as any).park ?? {})['girl_bet'] = ((s as any).park['girl_bet'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/resident/apartment/events/beer\' + rand(1, 2) + \'.jpg');
     scene.text('You\'re feeling confident. "Fine, you got a bet."');
     scene.text('The girls laugh while Lena hands you and Alyona a beer. "Okay, start drinking when I say."');
@@ -549,7 +553,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A143', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A144', (-3));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/no.jpg');
@@ -568,7 +572,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'flash', 5);
@@ -603,7 +607,7 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A156', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A157', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A189', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'drugs', 'alcohol', 'beer');
   qspCall(s, 'stat', '');
@@ -620,7 +624,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_park', 'deeper_park'] },
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -642,7 +647,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_park', 'deeper_park'] },
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
       ]);
     }
     scene.actions([
@@ -684,7 +690,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_park', 'deeper_park'] },
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
           ]);
         }
         if (((s as any).NikoVolkovQW ?? 0) >= 5) {
@@ -738,31 +745,31 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
         { label: 'Hang out some more', handler: (st: GameState) => {
     if ((!((s as any).svetafall ?? 0))) {
       if (((s as any).braworntype ?? 0) !== 'none') {
-        scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_bra'] }]);
+        qspGoto(s, 'pav_park_sex', 'pressured_for_bra');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_tits'] }]);
+        qspGoto(s, 'pav_park_sex', 'pressured_for_tits');
       }
     } else {
       if (((s as any).svetafall ?? 0) === 1) {
         if (((s as any).pantyworntype ?? 0) !== 'none') {
-          scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_panties'] }]);
+          qspGoto(s, 'pav_park_sex', 'pressured_for_panties');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_pussy'] }]);
+          qspGoto(s, 'pav_park_sex', 'pressured_for_pussy');
         }
       } else {
         if (((s as any).svetafall ?? 0) === 2) {
-          scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_tits'] }]);
+          qspGoto(s, 'pav_park_sex', 'pressured_for_tits');
         } else {
           if (((s as any).svetafall ?? 0) === 3) {
-            scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_pussy'] }]);
+            qspGoto(s, 'pav_park_sex', 'pressured_for_pussy');
           } else {
             if (((s as any).svetafall ?? 0) === 4) {
-              scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_blowjob'] }]);
+              qspGoto(s, 'pav_park_sex', 'pressured_for_blowjob');
             } else {
               if (((s as any).svetafall ?? 0) === 5) {
-                scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_oral_gb'] }]);
+                qspGoto(s, 'pav_park_sex', 'pressured_for_oral_gb');
               } else {
-                scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_gangbang'] }]);
+                qspGoto(s, 'pav_park_sex', 'pressured_for_gangbang');
               }
             }
           }
@@ -906,31 +913,31 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
               { label: 'Hang out some more', handler: (st: GameState) => {
     if ((!((s as any).svetafall ?? 0))) {
       if (((s as any).braworntype ?? 0) !== 'none') {
-        scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_bra'] }]);
+        qspGoto(s, 'pav_park_sex', 'pressured_for_bra');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_tits'] }]);
+        qspGoto(s, 'pav_park_sex', 'pressured_for_tits');
       }
     } else {
       if (((s as any).svetafall ?? 0) === 1) {
         if (((s as any).pantyworntype ?? 0) !== 'none') {
-          scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_panties'] }]);
+          qspGoto(s, 'pav_park_sex', 'pressured_for_panties');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_pussy'] }]);
+          qspGoto(s, 'pav_park_sex', 'pressured_for_pussy');
         }
       } else {
         if (((s as any).svetafall ?? 0) === 2) {
-          scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_tits'] }]);
+          qspGoto(s, 'pav_park_sex', 'pressured_for_tits');
         } else {
           if (((s as any).svetafall ?? 0) === 3) {
-            scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_pussy'] }]);
+            qspGoto(s, 'pav_park_sex', 'pressured_for_pussy');
           } else {
             if (((s as any).svetafall ?? 0) === 4) {
-              scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_blowjob'] }]);
+              qspGoto(s, 'pav_park_sex', 'pressured_for_blowjob');
             } else {
               if (((s as any).svetafall ?? 0) === 5) {
-                scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_oral_gb'] }]);
+                qspGoto(s, 'pav_park_sex', 'pressured_for_oral_gb');
               } else {
-                scene.actions([{ label: 'Continue', goto: ['pav_park_sex', 'pressured_for_gangbang'] }]);
+                qspGoto(s, 'pav_park_sex', 'pressured_for_gangbang');
               }
             }
           }
@@ -989,7 +996,7 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A157', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A158', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A189', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'drugs', 'alcohol', 'beer');
   qspCall(s, 'stat', '');
@@ -1007,8 +1014,9 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-  }, goto: ['pav_park', 'deeper_park'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1034,7 +1042,8 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_park', 'deeper_park'] },
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
       ]);
     }
     scene.actions([
@@ -1076,7 +1085,8 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_park', 'deeper_park'] },
+    qspGoto(s, 'pav_park', 'deeper_park');
+  } },
           ]);
         }
         if (((s as any).NikoVolkovQW ?? 0) >= 5) {
@@ -1100,6 +1110,7 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
       { label: 'Listen to Radomir sing', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/rad_nush_park1.mp3';
       (s as any).volume = 100;
       (s as any).music_loop = 1;
     }
@@ -1116,10 +1127,11 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
       { label: 'Listen to Anushka', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/nushunplugged8.mp3';
       (s as any).volume = 100;
       (s as any).music_loop = 1;
     }
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['park_music'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['park_music'] = 1;
     scene.img('images/locations/pavlovsk/park/event/gopnik/nushplay2.jpg');
     scene.text('She smirks. "Okay. Well, I\'ve been working on a new cover song, something to play at the graduation party for all my classmates."');
     scene.text('You can see that she\'s got a few of them curious as she strums the guitar before she starts to play and sing "Whore" by In this Moment. As the words sing in, a few of the gopniks exchange glances.');
@@ -1570,17 +1582,22 @@ function enterDrinkingGame(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).highest = ((s as any).player_time ?? 0);
+  (s as any).result = 'player';
   if (((s as any).nush_time ?? 0) > ((s as any).highest ?? 0)) {
     (s as any).highest = ((s as any).nush_time ?? 0);
+    (s as any).result = 'nush';
   }
   if (((s as any).lera_time ?? 0) > ((s as any).highest ?? 0)) {
     (s as any).highest = ((s as any).lera_time ?? 0);
+    (s as any).result = 'lera';
   }
   if (((s as any).lena_time ?? 0) > ((s as any).highest ?? 0)) {
     (s as any).highest = ((s as any).lena_time ?? 0);
+    (s as any).result = 'lena';
   }
   if (((s as any).alyona_time ?? 0) > ((s as any).highest ?? 0)) {
     (s as any).highest = ((s as any).alyona_time ?? 0);
+    (s as any).result = 'alyona';
   }
   // TODO-QSP: end
   scene.build();

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -118,7 +118,8 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['balkon2', 'palec1'] },
+    qspGoto(s, 'balkon2', 'palec1');
+  } },
       ]);
     }
     scene.actions([
@@ -138,7 +139,8 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['balkon2', 'demo1'] },
+    qspGoto(s, 'balkon2', 'demo1');
+  } },
       ]);
     }
     scene.actions([
@@ -162,6 +164,8 @@ function enterMasopt(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/city/residential/apartment/sex/balcony_dildo${Math.floor(Math.random() * 2) + 1}.jpg`);
     scene.text('You start rubbing yourself, gradually building up a wetness between your legs. Feeling aroused enough, you take out your dildo and start teasing your clit by gently rubbing it.');
     scene.text('You then slowly push the head inside your pussy and start slowly fucking yourself, gradually picking up the pace. The feeling of your pussy being stretched out is overwhelming and you let out a quiet whimper as you continue fucking yourself.');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'After pleasuring yourself intensely with the dildo for a few minutes, you try to keep your voice down as you reach orgasm.';
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'exhibitionism');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -181,6 +185,8 @@ function enterMasopt(s: GameState, scene: SceneBuilder): void {
     scene.text('As you\'re pleasuring yourself with your finger, you grab your dildo and start sucking it, trying to lube it as much as you can.');
     scene.text('Not able to contain yourself, you remove your finger and slowly insert the dildo into your ass. You feel discomfort at first, but the pleasant feeling of the dildo penetrating you makes you forget all about it.');
     scene.text('As your anus relaxes, you start thrusting the dildo at a faster speed, gradually feeling your arousal growing.');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'Within seconds, an orgasm overwhelms you in an intense wave of pure pleasure.';
     qspCall(s, 'arousal', 'anal_dildo', 5, 'exhibitionism');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -195,7 +201,8 @@ function enterMasopt(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Masturbate', handler: (st: GameState) => {
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', Math.floor(Math.random() * 2) + 0);
-  }, goto: ['balkon2', 'finger'] },
+    qspGoto(s, 'balkon2', 'finger');
+  } },
   ]);
   scene.build();
 }
@@ -210,6 +217,7 @@ function enterFinger(s: GameState, scene: SceneBuilder): void {
     { label: 'Rub your clit', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-2.jpg');
     scene.text('You run your wet fingers down your body and stop at your pussy lips. You slowly start rubbing your clit as you feel the first surge of pleasure consuming you.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -217,6 +225,7 @@ function enterFinger(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-3.jpg');
     scene.text('Your clit is now swelling with desire, and you can\'t ignore it any longer. You take your middle finger and insert it into your pussy.');
     scene.text('As you ease into it, you close your eyes as you speed up your movements.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'masturbate', 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -229,6 +238,8 @@ function enterFinger(s: GameState, scene: SceneBuilder): void {
         { label: 'Give him a show', goto: ['balkon2', 'finger_solo'] },
       ]);
     } else {
+      (s as any).orgasm_or = 'yes';
+      (s as any).orgasm_txt = 'Overtaken by the thrill of the risk of being caught in such a compromising act and the diligent work of your skilled fingers, you bring yourself to to an intense orgasm. You grip the railing for support as your juices squirt out of you.';
       scene.text('Your orgasm is so intense that you\'re seeing stars and it almost feels like you\'re going to pass out. You somehow manage to keep your composure before you quickly head back inside.');
       qspCall(s, 'arousal', 'clit_finger', 2, 'masturbate');
       qspCall(s, 'arousal', 'end');
@@ -250,6 +261,7 @@ function enterFinger(s: GameState, scene: SceneBuilder): void {
 function enterFingerSolo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-5.jpg');
   scene.text('Ignoring everything around you, you re-focus on yourself once again and start teasing yourself, pressing your fingers on your already throbbing clit. It doesn\'t take long before you slide your fingers inside your pussy, causing you to squirm at the sensation.');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'exhibitionism');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -257,29 +269,35 @@ function enterFingerSolo(s: GameState, scene: SceneBuilder): void {
     { label: 'Keep it up', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-6.jpg');
     scene.text('Slowly pacing the speed at which your fingers enter your pussy, you feel your tight walls becoming wet and sticky with your own juices as they drip onto the ground.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Faster', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-7.jpg');
     scene.text('You pick up the pace as you fantasize about being taken like this in the open, your finger frantically sliding in and out of your soaking wet pussy with ease.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Faster', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-8.jpg');
     scene.text('You\'re way too horny to pace yourself now and insert another finger, expanding the pleasant feeling.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Just a little more', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-9.jpg');
     scene.text('By now, you\'re loudly moaning, not caring if anyone hears you as your fingers hit your g-spot. You make one last effort and thrust your fingers deep inside you as you feel a…');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Climax', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_orgasm.jpg');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'Within seconds, your toes curl as you feel a wave of ecstasy sweeping all over your body, your legs and hands shaking in delight of a possibility that someone might have noticed you.';
     scene.text('After a few seconds, you remove your fingers from your pussy, which is still pulsating from the intense orgasm.');
     qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
     qspCall(s, 'arousal', 'end');

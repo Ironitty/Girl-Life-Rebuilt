@@ -80,6 +80,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('You lower your head in submission and Dan quickly turns you around and unbuttons his pants before sliding his dick into your ass, causing a sharp pain to shoot through you. Dan wastes no time and starts fucking your ass, gradually picking up the pace. He continues fucking your ass when his phone starts ringing.');
     // TODO-QSP: dynamic text: He doesn't stop fucking you as he answers his phone. "I can't right now. I'm too...
     scene.text(`He doesn't stop fucking you as he answers his phone. "I can't right now. I'm too busy fucking ${((s as any).pcs_nickname || '')}'s ass." Your eyes widen as Dan continues. "Yeah, I'm in the locker room. Sure, you can come."`);
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -89,6 +90,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('He starts fucking you harder as you try to speak. "Why… mmmmm… Why\'d you… mmmm… tell him abo…"');
     scene.text('Dan wraps his hand around your neck, bringing your head to his face. "He\'s my friend and I believe in sharing. Don\'t you?"');
     scene.text('You suddenly hear the locker room door open and turn to see who it is.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -111,6 +113,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
       scene.text('"Please don\'t. I need to get back to…" you plead, but Vitek wraps his hand around your throat.');
       scene.text('"That can wait, now get sucking." Dan pulls out of you, causing a moan to escape your mouth. Vitek immediately takes advantage of this and shoves his dick into your mouth.');
     }
+    (s as any).orgasm_txt = '';
     qspCall(s, 'cum_call', 'anus', 'A10', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'arousal', 'bj', (-5), 'sub');
@@ -346,7 +349,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
 function enterExposed(s: GameState, scene: SceneBuilder): void {
   (s as any).school_lunch = 0;
   (s as any).NikoEv = 10;
-  if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A189'] = 600;
+  ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A189'] = 600;
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (10);
   qspCall(s, 'arousal', 'flash', 5, 'sub', 'humiliation', 'exhibitionism');
   qspCall(s, 'stat', '');
@@ -613,18 +616,18 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNoEscape(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).VKGroup) (s as any).VKGroup = {}; (s as any).VKGroup[1] = qspUntranslated(s, "grupvalue[1]", { location: "NikoWhore" });
-  if (!(s as any).VKGroup) (s as any).VKGroup = {}; (s as any).VKGroup[2] = qspUntranslated(s, "grupvalue[2]", { location: "NikoWhore" });
-  if (!(s as any).VKGroup) (s as any).VKGroup = {}; (s as any).VKGroup[3] = qspUntranslated(s, "grupvalue[3]", { location: "NikoWhore" });
-  if (!(s as any).VKGroup) (s as any).VKGroup = {}; (s as any).VKGroup[4] = qspUntranslated(s, "grupvalue[4]", { location: "NikoWhore" });
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 0;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 0;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 0;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = 0;
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[1] = 0;
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[2] = 0;
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[3] = 0;
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = 0;
+  ((s as any).VKGroup = (s as any).VKGroup ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "NikoWhore" });
+  ((s as any).VKGroup = (s as any).VKGroup ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "NikoWhore" });
+  ((s as any).VKGroup = (s as any).VKGroup ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "NikoWhore" });
+  ((s as any).VKGroup = (s as any).VKGroup ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "NikoWhore" });
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 0;
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 0;
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 0;
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 0;
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = 0;
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = 0;
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = 0;
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = 0;
   if (((s as any).grupTipe ?? 0) === 1) {
     (s as any).VKGroup = 1;
     (s as any).grupTipe = 5;
@@ -656,6 +659,7 @@ function enterNoEscape(s: GameState, scene: SceneBuilder): void {
     scene.text('Once Anushka and Alyona leave, Radomir steps up to you and starts fingering your pussy. "I want to fuck her first."');
     scene.text('Dan laughs. "You mean second, right?" He turns you around and spreads your ass cheeks, causing his cum to leak out of your ass.');
     scene.text('Radomir laughs. "Shit, she really is a filthy whore! I\'m still fucking her though." He grabs you by the hair and unbuttons his pants before lying down and pulling you on top of him.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'sub', 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -665,6 +669,7 @@ function enterNoEscape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock1.mp4');
     scene.text('You feel your pussy stretching as your weight pushes his cock completely inside you. Knowing that it\'s too late to go back, you start riding Radomir. You can hear the boys cheering as they enjoy the show. Pauline continues recording you and you can see the malicious smirks on the other girls\' faces.');
+    (s as any).orgasm_txt = '';
     scene.actions([
       { label: 'Make him cum', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'feet', 'A158', 1);
@@ -672,6 +677,7 @@ function enterNoEscape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum7.mp4');
     scene.text('Radomir pulls out of you and starts cumming on your feet as you milk him. You use the comfort of his warm cum to distract you from your racing thoughts.');
+    (s as any).orgasm_txt = '';
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'exhibitionism', 'humiliation', 'gangbang');
@@ -691,6 +697,7 @@ function enterNoEscape(s: GameState, scene: SceneBuilder): void {
     scene.text('"I wonder how many she can fit in there?" Lena adds.');
     scene.text('"I\'m sure we\'ll soon find out," Pauline laughs.');
     scene.text('The girls laugh before you suddenly hear someone shouting. "Eww, what the fuck is this!?"');
+    (s as any).orgasm_txt = '';
     scene.actions([
       { label: 'Turn to see who it was', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
@@ -734,6 +741,7 @@ function enterNoEscape(s: GameState, scene: SceneBuilder): void {
     scene.text('"I wonder how many she can fit in there?" Lena adds.');
     scene.text('"I\'m sure we\'ll soon find out," Pauline laughs.');
     scene.text('The girls laugh before you suddenly hear someone shouting. "Eww, what the fuck is this!?"');
+    (s as any).orgasm_txt = '';
     scene.actions([
       { label: 'Turn to see who it was', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
@@ -762,6 +770,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock2.mp4');
   // TODO-QSP: dynamic text: As soon as you reach the locker room, Dan shoves you into the crowd. Roman catch...
   scene.text(`As soon as you reach the locker room, Dan shoves you into the crowd. Roman catches you and turns you around. You feel his dick entering your pussy and his pace begins increasing as he holds onto your waist, pushing you against his crotch. Roman leans forward and whispers in your ear. "How does my dick feel ${((s as any).pcs_nickname || '')}? Isn't it the biggest dick you've ever had?"`);
+  (s as any).orgasm_txt = '';
   // TODO-QSP: end
   scene.actions([
     { label: 'Nod', handler: (st: GameState) => {
@@ -770,6 +779,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You meekly nod, not wanting to upset him. After a few more seconds, Roman pulls ...
     scene.text(`You meekly nod, not wanting to upset him. After a few more seconds, Roman pulls out of you and groans as he covers your back in his cum. He finishes by giving your ass a firm smack. "Damn ${((s as any).pcs_nickname || '')}, you have a tight pussy. We have to do this again sometime."`);
     scene.text('"Don\'t hog her to yourself!" Arkadi suddenly shouts out and Roman laughs as he pulls up his pants and pushes you toward the other boys, causing you to fall on your knees in front of them.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'cum_call', 'back', 'A157', 1);
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(s, 'stat', '');
@@ -800,6 +810,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock4.mp4');
     scene.text('After a few seconds, Vitek lifts you up by the shoulders. "Enough warm up. Who\'s ready to fuck this bitch?"');
     scene.text('Dan waves his hand. "I could go for seconds." Vitek gives him an approving nod as he lowers you on top of Dan\'s cock. You let out a loud moan as his cock enters you. You start riding Dan, feeling him pushing deeper inside you before you look around and see a few of the nerds peeking in from the doorway. They\'re rubbing their crotches while looking around to make sure no one notices them. "Get ready for another facial, slut!" Dan suddenly shouts out.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -818,6 +829,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock5.mp4');
     // TODO-QSP: dynamic text: Vasily spreads your legs and pushes his dick inside you, causing a wave of pleas...
     scene.text(`Vasily spreads your legs and pushes his dick inside you, causing a wave of pleasure to shoot through you. He stares you in the eyes with a very sad look on his face. "I wish things ended up differently ${((s as any).pcs_nickname || '')}, but there's no turning back now," he softly whispers before he starts fucking you, his frown disappearing as he starts getting into it.`);
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'vaginal', 5, 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -826,6 +838,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You continue staring into Vasily's eyes as you hear him groan. He pulls out of y...
     scene.text(`You continue staring into Vasily's eyes as you hear him groan. He pulls out of you and shoots his cum over your chest as you instinctively stroke his cock. He takes a few seconds to catch his breath before whispering in your ear. "You're so beautiful ${((s as any).pcs_nickname || '')}. Too bad it had to come to this, but you'll get used to it."`);
     scene.text('He climbs off you and pulls his pants up, giving Vitek a high five before leaving the locker room. Vitek then lifts you up. "You better be ready bitch, because I\'m ready for seconds." He pushes you onto your knees and has you lube his dick before he shoves it into your ass.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'cum_call', 'breasts', 'A11', 1);
     qspCall(s, 'arousal', 'vaginal', (-5), 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(s, 'stat', '');
@@ -835,10 +848,12 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/rought/dog9.mp4');
     scene.text('Vitek fucks your ass slowly at first, but then picks up the pace. You let out high pitch squeals as you feel his cock pushing its way deeper inside you as he firmly grips your hair. You feel completely at his mercy as he continues to ram his cock into your sore asshole.');
+    (s as any).orgasm_txt = '';
     scene.actions([
       { label: 'Close your eyes', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/analcreampie/cumanal2.mp4');
     scene.text('After a few more seconds, Vitek laughs at you. "This is what a whore like you deserves." You feel a sudden warmth fill your ass as he cums deep inside you before pulling out, causing his cum to drip out of your ass. "You better get used to this, bitch. This is your life now," he firmly states before he pulls up his pants and leaves the locker room.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'cum_call', 'anus', 'A9', 1);
     qspCall(s, 'arousal', 'anal', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(s, 'arousal', 'end');
@@ -848,6 +863,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Valentin walks up to you. "I guess I'm up. Don't worry <<$pcs_nickname>>, I'll m...
     scene.text(`Valentin walks up to you. "I guess I'm up. Don't worry ${((s as any).pcs_nickname || '')}, I'll make this quick." He pushes his cock inside your pussy, causing a jolt of pain as your sore pussy is once again used. Valentin continuously rams his cock into your pussy, slamming the head of his dick against your g-spot. You don't have enough breath to moan, but with Valentin's rough thrusts, you can feel Vitek's cum leaking out of your ass as you hear Lera say "Damn, look at this dirty bitch leaking like an overfilled water balloon!"`);
     scene.text('The girls giggle as Valentin pulls out of you. "Open your mouth, slut!"');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -884,12 +900,14 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
       { label: 'See what they do', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock7.mp4');
     scene.text('One starts fondling your breasts as another spreads your legs, pulls out his dick and lines it up with your pussy. You groan as you feel his dick entering your sore pussy, lying in silence as he starts fucking you. Barely able to feel anything anymore, you look around the room and only see the three boys, Lena, Lera and Pauline. Pauline continues filming you as the others watch you get fucked. His pace increases as he gets more excited and you can hear his balls slapping against your ass.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang', 'prostitution');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'See what he does', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/cum/facial7.mp4');
     scene.text('He suddenly pulls out of you and his cum splatters over your stomach. Satisfied, he buttons his pants and gives you a light kiss on the cheek before leaving the room. You suddenly hear heavy breathing over you and look up to see another boy standing over you with his dick in his hand, stroking it over your face. He then suddenly groans as he cums over your face. Once he\'s finished, he storms out of the room as the last boy pushes his dick inside you.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'cum_call', 'stomach', 'A2', 1);
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang', 'prostitution');
     qspCall(s, 'cum_call', 'face', 'A159', 1);
@@ -898,13 +916,14 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock8.mp4');
     scene.text('He starts fucking you, thrusting at an increased pace as he holds your legs open to give himself easier access. You have no fight left; your strength is gone, your entire body is numb and you feel nothing as he continues using your body.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'cum_call', 'stomach', 'A6', 1);
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang', 'prostitution');
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: '…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoWhore" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     // TODO-QSP: dynamic text: You can feel your consciousness fading in and out. You can hear some words, but ...
     scene.text(`You can feel your consciousness fading in and out. You can hear some words, but they too seem to fade in and out… "You'll be a star, ${((s as any).pcs_nickname || '')}. An even bigger whore than Sonia."… "You look all tuckered out. Had a good time?…" "I think we broke our new toy already…" … "It looks like she passed out… Too much fun maybe."…`);
     scene.text('You hear footsteps as they leave the room and everything starts to fade until you hear… "How could they do this to her?"…"Oh wow, she looks… Sticky."…" This isn\'t the time for jokes, Vicky! We need to do something! We can\'t just leave her like this!" …');
@@ -956,8 +975,9 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'pav', 'sex', 100);
   qspCall(s, 'fame', 'pav', 'sex', 100);
   qspCall(s, 'fame', 'pav', 'sex', 100);
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
-  if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A189'] = 4;
+  ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A189'] = 4;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/hallway/wos1.jpg');
@@ -975,7 +995,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept his offer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoWhore" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     scene.text('You meekly nod and his eyes light up. "Great! Let\'s get going." He grabs your arm and guides you to the restroom.');
     scene.actions([
       { label: 'Follow him to the restroom', handler: (st: GameState) => {
@@ -1167,6 +1187,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
@@ -1179,7 +1200,7 @@ function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
     (s as any).NikoEv = 11;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoWhore" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     scene.text('You let out your tears, submitting to your own sorrow.');
     scene.actions([
       { label: 'Embrace him', handler: (st: GameState) => {
@@ -1249,6 +1270,7 @@ function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeaveWithNush(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');

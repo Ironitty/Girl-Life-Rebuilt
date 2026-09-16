@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -12,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterModify(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    (s as any).npcRelSetVal = qspUntranslated(s, "ARGS[2]", { location: "npc_relationship" });
+    (s as any).npcRelSetVal = ((s as any).locArgs?.[2] ?? 0);
   } else {
     if (((s as any).locArgs?.[2] ?? 0) === 'like') {
       (s as any).npcRelSetVal = Math.floor(Math.random() * 2) + 1;
@@ -89,7 +87,7 @@ function enterModify(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModifyExact(s: GameState, scene: SceneBuilder): void {
-  (s as any).npcRelSetVal = ((s as any).npc_rel ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ((s as any).ARGS ?? 0)[2];
+  (s as any).npcRelSetVal = ((s as any).npc_rel ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ((s as any).locArgs?.[2] ?? 0);
   if (((s as any).npcRelSetVal ?? 0) > 100) {
     (s as any).npcRelSetVal = 100;
   }
@@ -106,7 +104,7 @@ function enterModifyExact(s: GameState, scene: SceneBuilder): void {
 
 function enterSet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    (s as any).npcRelSetVal = qspUntranslated(s, "ARGS[2]", { location: "npc_relationship" });
+    (s as any).npcRelSetVal = ((s as any).locArgs?.[2] ?? 0);
   } else {
     if (((s as any).locArgs?.[2] ?? 0) === 'unknown') {
       (s as any).npcRelSetVal = 0;
@@ -145,7 +143,7 @@ function enterSet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheck(s: GameState, scene: SceneBuilder): void {
-  (s as any).npcRelSetVal = qspUntranslated(s, "ARGS[1]", { location: "npc_relationship" });
+  (s as any).npcRelSetVal = ((s as any).locArgs?.[1] ?? 0);
   (s as any).npc_rel_check = 0;
   (s as any).i = 2;
   // TODO-QSP: :npcRelCheck000
@@ -221,7 +219,7 @@ function enterDefaultfriendship(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 1  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 2  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 3  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 4  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 5  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 6) {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + ((s as any).r ?? 0) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
@@ -235,7 +233,7 @@ function enterDefaultnotschool(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop2
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 0) {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + ((s as any).r ?? 0) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
@@ -248,7 +246,7 @@ function enterDefaultnotschool(s: GameState, scene: SceneBuilder): void {
 function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop3
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + ((s as any).r ?? 0) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
     // TODO-QSP: jump 'default_friendship_loop3'

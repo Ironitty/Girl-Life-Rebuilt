@@ -134,7 +134,7 @@ function enterBVikaPresentBlow1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBVikaPresentSex1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (6);
+  ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (6);
   (s as any).pcs_hairbsh = 0;
   if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
     (s as any).pcs_makeup = 0;
@@ -151,7 +151,7 @@ function enterBVikaPresentSex1(s: GameState, scene: SceneBuilder): void {
     (s as any).lubonus = 2;
     scene.text('He starts playing around your anus. As there\'s no lubricant to be found, he spits on his finger and slowly spreads it around, making it somewhat easier for penetration.');
   } else {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     (s as any).lubonus = 10;
     scene.text('One of the men standing in the background hands over a bottle of lube to the guy playing with your anus. You feel the cold liquid land on your bare ass before he uses his fingers to rub the lube around and into your anus.');
   }

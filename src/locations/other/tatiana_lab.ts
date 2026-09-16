@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -32,10 +30,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     if ((!((s as any).sucbypass ?? 0))) {
       if (((s as any).sucpcinfo ?? 0) < 2) {
-        scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctraining'] }]);
+        qspGoto(s, 'tatiana_lab', 'suctraining');
       } else {
         if (((s as any).sucpcinfo ?? 0) >= 6  &&  ((s as any).sucskill ?? 0) < 3  &&  ((s as any).sctrainprep ?? 0) === 1) {
-          scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctraining'] }]);
+          qspGoto(s, 'tatiana_lab', 'suctraining');
         }
       }
     } else {
@@ -49,7 +47,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A175');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'gustav');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
     ]);
   }
   if (((s as any).tatianasparday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -59,7 +58,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A176');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'tatiana');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
     ]);
   }
   (s as any).TatianaMissionTotal = 3;
@@ -141,15 +141,20 @@ function enterGustavDevelop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBodyModActuate(s: GameState, scene: SceneBuilder): void {
-  (s as any).bodyModMana = qspUntranslated(s, "ARGS[1]", { location: "tatiana_lab" });
-  (s as any).bodyModTime = qspUntranslated(s, "ARGS[2]", { location: "tatiana_lab" });
-  (s as any).bodyModVal = qspUntranslated(s, "ARGS[4]", { location: "tatiana_lab" });
+  (s as any).bodyModMana = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).bodyModTime = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).bodyModStat = ((s as any).locArgs?.[3] ?? 0);
+  (s as any).bodyModVal = ((s as any).locArgs?.[4] ?? 0);
+  (s as any).bodyModDesc = ((s as any).locArgs?.[5] ?? 0);
+  (s as any).bodyModType = ((s as any).locArgs?.[6] ?? 0);
+  (s as any).bodyModPain = ((s as any).locArgs?.[7] ?? 0);
+  (s as any).bodyModExtra = ((s as any).locArgs?.[8] ?? 0);
   if (((s as any).pcs_mana ?? 0) >= ((s as any).bodyModMana ?? 0)) {
     // TODO-QSP: dynamic "<<$bodyModStat>> = <<bodyModVal>>"
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (((s as any).bodyModMana ?? 0));
     qspCall(s, 'arousal', 'flash', (-30));
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).bodyModTime ?? 0));
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain[String((s as any).bodyModPain ?? 0)] = 100;
+    ((s as any).pain = (s as any).pain ?? {})[String((s as any).bodyModPain ?? 0)] = 100;
     qspCall(s, 'body', 'UpdateBodyMeasurement');
     qspCall(s, 'AppearanceSystem', 'UpdateBaseAppearance');
     qspCall(s, 'body', 'Update_Appearance');
@@ -163,122 +168,158 @@ function enterBodyModActuate(s: GameState, scene: SceneBuilder): void {
 
 function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'hair_color') {
+    (s as any).bodyModType = 'Hair Color';
     (s as any).bodyModMana = 500;
     (s as any).bodyModTime = 60;
-    if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'black';
-    if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 0;
-    if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[1] = 'brown';
-    if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[1] = 1;
-    if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[2] = 'red';
-    if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[2] = 2;
-    if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[3] = 'blonde';
-    if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[3] = 3;
+    (s as any).bodyModStat = 'pcs_haircol';
+    (s as any).bodyModPain = 'hair';
+    (s as any).bodyModExtra = 'nathcol = bodyModVal';
+    ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'black';
+    ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 0;
+    ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[1] = 'brown';
+    ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[1] = 1;
+    ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[2] = 'red';
+    ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[2] = 2;
+    ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[3] = 'blonde';
+    ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[3] = 3;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'hair_length') {
+      (s as any).bodyModType = 'Hair Length';
       (s as any).bodyModMana = 200;
       (s as any).bodyModTime = 120;
-      if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'extremely short';
-      if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 5;
-      if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[1] = 'pixie-cut';
-      if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[1] = 31;
-      if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[2] = 'medium';
-      if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[2] = 81;
-      if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[3] = 'shoulder-length';
-      if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[3] = 161;
-      if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[4] = 'long';
-      if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[4] = 261;
-      if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[5] = 'very long';
-      if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[5] = 401;
-      if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[6] = 'extremely long';
-      if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[6] = 601;
+      (s as any).bodyModStat = 'pcs_hairlng';
+      (s as any).bodyModPain = 'hair';
+      (s as any).bodyModExtra = '';
+      ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'extremely short';
+      ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 5;
+      ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[1] = 'pixie-cut';
+      ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[1] = 31;
+      ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[2] = 'medium';
+      ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[2] = 81;
+      ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[3] = 'shoulder-length';
+      ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[3] = 161;
+      ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[4] = 'long';
+      ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[4] = 261;
+      ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[5] = 'very long';
+      ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[5] = 401;
+      ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[6] = 'extremely long';
+      ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[6] = 601;
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'eye_color') {
+        (s as any).bodyModType = 'Eye Color';
         (s as any).bodyModMana = 300;
         (s as any).bodyModTime = 120;
-        if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'brown';
-        if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 0;
-        if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[1] = 'grey';
-        if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[1] = 1;
-        if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[2] = 'green';
-        if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[2] = 2;
-        if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[3] = 'blue';
-        if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[3] = 3;
+        (s as any).bodyModStat = 'pcs_eyecol';
+        (s as any).bodyModPain = 'eye';
+        (s as any).bodyModExtra = '';
+        ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'brown';
+        ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 0;
+        ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[1] = 'grey';
+        ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[1] = 1;
+        ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[2] = 'green';
+        ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[2] = 2;
+        ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[3] = 'blue';
+        ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[3] = 3;
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'eye_lashes') {
+          (s as any).bodyModType = 'Eye Lashes';
           (s as any).bodyModMana = 100;
           (s as any).bodyModTime = 30;
-          if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'short';
-          if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 0;
-          if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[1] = 'average';
-          if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[1] = 1;
-          if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[2] = 'long';
-          if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[2] = 2;
-          if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[3] = 'lavish';
-          if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[3] = 3;
-          if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[4] = 'show-stealing';
-          if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[4] = 4;
-          if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[5] = 'long, jewel-dusted';
-          if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[5] = 5;
+          (s as any).bodyModStat = 'pcs_lashes';
+          (s as any).bodyModPain = 'eye';
+          (s as any).bodyModExtra = '';
+          ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'short';
+          ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 0;
+          ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[1] = 'average';
+          ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[1] = 1;
+          ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[2] = 'long';
+          ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[2] = 2;
+          ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[3] = 'lavish';
+          ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[3] = 3;
+          ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[4] = 'show-stealing';
+          ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[4] = 4;
+          ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[5] = 'long, jewel-dusted';
+          ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[5] = 5;
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 'lip_size') {
+            (s as any).bodyModType = 'Lip Size';
             (s as any).bodyModMana = 300;
             (s as any).bodyModTime = 120;
-            if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'thin';
-            if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 0;
-            if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[1] = 'normal';
-            if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[1] = 1;
-            if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[2] = 'plump';
-            if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[2] = 2;
-            if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[3] = 'pouty';
-            if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[3] = 3;
-            if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[4] = 'pillowy';
-            if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[4] = 4;
+            (s as any).bodyModStat = 'pcs_lip';
+            (s as any).bodyModPain = 'lip';
+            (s as any).bodyModExtra = '';
+            ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'thin';
+            ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 0;
+            ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[1] = 'normal';
+            ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[1] = 1;
+            ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[2] = 'plump';
+            ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[2] = 2;
+            ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[3] = 'pouty';
+            ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[3] = 3;
+            ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[4] = 'pillowy';
+            ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[4] = 4;
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 'breast_size') {
+              (s as any).bodyModType = 'Breast Size';
               (s as any).bodyModMana = 1000;
               (s as any).bodyModTime = 240;
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'AA';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 3 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[1] = 'A';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[1] = 8 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[2] = 'B';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[2] = 13 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[3] = 'C';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[3] = 18 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[4] = 'D';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[4] = 23 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[5] = 'E';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[5] = 28 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[6] = 'F';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[6] = 33 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[7] = 'G';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[7] = 38 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[8] = 'H';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[8] = 43 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[9] = 'I';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[9] = 48 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[10] = 'J';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[10] = 53 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
-              if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[11] = 'K';
-              if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[11] = 58 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              (s as any).bodyModStat = 'bodyVars[\'bust_magic\']';
+              (s as any).bodyModPain = 'breasts';
+              (s as any).bodyModExtra = '';
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'AA';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 3 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[1] = 'A';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[1] = 8 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[2] = 'B';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[2] = 13 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[3] = 'C';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[3] = 18 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[4] = 'D';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[4] = 23 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[5] = 'E';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[5] = 28 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[6] = 'F';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[6] = 33 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[7] = 'G';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[7] = 38 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[8] = 'H';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[8] = 43 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[9] = 'I';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[9] = 48 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[10] = 'J';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[10] = 53 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
+              ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[11] = 'K';
+              ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[11] = 58 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 'skin') {
+                (s as any).bodyModType = 'Skin';
                 (s as any).bodyModMana = 1000;
                 (s as any).bodyModTime = 240;
-                if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'clear';
-                if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 1000;
+                (s as any).bodyModStat = 'pcs_skin';
+                (s as any).bodyModPain = 'head';
+                (s as any).bodyModExtra = '';
+                ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'clear';
+                ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 1000;
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 'virgin') {
+                  (s as any).bodyModType = 'Virginity';
                   (s as any).bodyModMana = 1000;
                   (s as any).bodyModTime = 120;
-                  if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'renewed';
-                  if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 20;
+                  (s as any).bodyModStat = 'pcs_vag';
+                  (s as any).bodyModPain = 'vaginal';
+                  (s as any).bodyModExtra = 'tatiana[\'virginity_restore\'] = 1 & killvar \'virgin_stats\'';
+                  ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'renewed';
+                  ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 20;
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 'silicone') {
+                    (s as any).bodyModType = 'Boobs';
                     (s as any).bodyModMana = 1000;
                     (s as any).bodyModTime = 240;
-                    if (!(s as any).bodyModDesc) (s as any).bodyModDesc = {}; (s as any).bodyModDesc[0] = 'natural again';
-                    if (!(s as any).bodymodValue) (s as any).bodymodValue = {}; (s as any).bodymodValue[0] = 0;
+                    (s as any).bodyModStat = 'fillimplant';
+                    (s as any).bodyModPain = 'breasts';
+                    (s as any).bodyModExtra = 'brSurTemp = 0 & stringimplant = 0';
+                    ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'natural again';
+                    ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 0;
                   }
                 }
               }
@@ -295,11 +336,15 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
 function enterListBuilder(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterBodyModValues(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (Object.keys((s as any).bodyModDesc ?? {}).length > 0) {
+    (s as any).ListStr = '<b>' + ((s as any).bodyModType ?? 0) + '</b><br>';
+  } else {
+    (s as any).ListStr = '';
   }
   if (Object.keys((s as any).bodyModDesc ?? {}).length > 0) {
     (s as any).i = 0;
     // TODO-QSP: :BodyModLoop
     (s as any).bodymodValueX = ((s as any).bodymodValue ?? 0)?.[String((s as any).i ?? 0)];
+    (s as any).bodyModDescX = ((s as any).bodyModDesc ?? 0)?.[String((s as any).i ?? 0)];
     // TODO-QSP: $ListStr += "<a href=""EXEC:gs 'tatiana_lab', 'BodyModActuate', <<bodyModMana>>, <<bodyModTime>>, '<...
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) < Object.keys((s as any).bodyModDesc ?? {}).length) {
@@ -307,6 +352,7 @@ function enterListBuilder(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'BodyModLoop'
     }
   }
+  (s as any).result = ((s as any).ListStr ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -368,7 +414,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).tatisucsex ?? 0) !== 0  &&  ((s as any).tatisucsexask ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'Tatianasucsexask'] }]);
+      qspGoto(s, 'tatiana_lab', 'Tatianasucsexask');
       scene.actions([
         { label: 'Ask if she wants to have sex', handler: (st: GameState) => {
     (st as any).tatianasucsexask = ((st as any).daystart ?? 0);
@@ -387,23 +433,15 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     scene.text('"Tatiana, I\'m having problems with my body image. I\'m not happy and was hoping that you might be able to help me."');
     scene.text('"It\'s possible, but I will have to draw on your magical energy. It will cost some of your mana to perform a spell."');
     scene.text('"Also, this will be painful. The magic will force your flesh into new shapes."');
-    // TODO-QSP: <table CELLPADDING = '5'>
-    // TODO-QSP: <tr>
-    // TODO-QSP: <td VALIGN='top'><<$SkinTab>></td>
-    // TODO-QSP: <td VALIGN='top'><<$VirginTab>></td>
-    // TODO-QSP: <td VALIGN='top'><<$SiliconeTab>></td>
-    // TODO-QSP: </tr>
-    // TODO-QSP: <tr>
-    // TODO-QSP: <td VALIGN='top'><<$HairColorTab>></td>
-    // TODO-QSP: <td VALIGN='top'><<$EyeColorTab>></td>
-    // TODO-QSP: <td VALIGN='top'><<$BreastTab>></td>
-    // TODO-QSP: </tr>
-    // TODO-QSP: <tr>
-    // TODO-QSP: <td VALIGN='top'><<$HairLengthTab>></td>
-    // TODO-QSP: <td VALIGN='top'><<$EyeLashTab>></td>
-    // TODO-QSP: <td VALIGN='top'><<$LipTab>></td>
-    // TODO-QSP: </tr>
-    // TODO-QSP: </table>
+    (s as any).HairColorTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'hair_color');
+    (s as any).HairLengthTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'hair_length');
+    (s as any).EyeColorTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'eye_color');
+    (s as any).EyeLashTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'eye_lashes');
+    (s as any).LipTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'lip_size');
+    (s as any).BreastTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'breast_size');
+    (s as any).SkinTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'skin');
+    (s as any).VirginTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'virgin');
+    (s as any).SiliconeTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'silicone');
     // TODO-QSP: </center>"
     scene.actions([
       { label: 'No, no, I\'ve changed my mind. Thank you.', goto: ['tatiana_lab', 'Tatiana'] },
@@ -553,7 +591,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
         { label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctrainsex'] }]);
+      qspGoto(s, 'tatiana_lab', 'suctrainsex');
     }
   } },
       ]);
@@ -587,7 +625,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('Then her eyes snap open, and you feel arousal suddenly flooding the link!');
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctrainsex'] }]);
+      qspGoto(s, 'tatiana_lab', 'suctrainsex');
     }
   } },
         ]);
@@ -626,7 +664,8 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   } },
         { label: 'Not Yet', goto: ['tatiana_lab', 'Tatiana'] },
@@ -655,7 +694,8 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   } },
         { label: 'Not Yet', goto: ['tatiana_lab', 'Tatiana'] },
@@ -687,7 +727,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     scene.text('As you\'re finishing, you notice Tatiana has her eyes closed and is visibly trying to get ahold of herself.');
     if (((s as any).tatisucsexday ?? 0) < ((s as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 100) + 1) > 95) {
       scene.text('Then her eyes snap open, and you feel arousal suddenly flooding the link!');
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctrainsex'] }]);
+      qspGoto(s, 'tatiana_lab', 'suctrainsex');
     } else {
       scene.text('After several moments, she pulls herself together, opens her eyes, smiles at you, and says, "There, I knew I could do it!"');
       scene.text('She then stands up and goes back to her studying.');
@@ -824,7 +864,7 @@ function enterTeach(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'teach_strip'] }]);
+    qspGoto(s, 'tatiana_lab', 'teach_strip');
   }
   // TODO-QSP: end
   scene.build();
@@ -870,6 +910,7 @@ function enterSaddle(s: GameState, scene: SceneBuilder): void {
   scene.text('Sighing slightly at the sensation, you reach for the controller, and after a moment and with a soft "BRRRR" the machine comes alive, stimulating in only one move all of your pussy. You close your eyes as soft moans escape your mouth.');
   scene.text('You barely manage to stay over the machine. Your sweaty hands grab the controller, and push it for more power, steadily increasing the vibration as your voice and the machine sound compete to fill the room with their chorus.');
   scene.text('Finally, the controller slips from your clenching fingers as your magical climax triggers, taking your breath and self-control away and sending wave after wave of magically enhanced pleasure pulsing through your body.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_vibe', 30, 'no_orgasm_msg', 'self');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -879,9 +920,9 @@ function enterSaddle(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
         (s as any).tatiana_teach_escalation = ((s as any).tatiana_teach_escalation ?? 0) + (1);
       }
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'lesson<<tat_lesson_number>>'] }]);
+      qspGoto(s, 'tatiana_lab', 'lesson' + ((s as any).tat_lesson_number ?? 0) + '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'Escalation1'] }]);
+      qspGoto(s, 'tatiana_lab', 'Escalation1');
     }
   } },
   ]);
@@ -903,7 +944,7 @@ function enterEscalation1(s: GameState, scene: SceneBuilder): void {
     { label: '"I think I will pass for now"', goto: ['tatiana_lab', 'start'] },
     { label: 'One of the dildoed power-tools(Anal)', goto: ['tatiana_lab', 'teach_dildo_anal'] },
     { label: 'One of the dildoed power-tools(Vaginal)', goto: ['tatiana_lab', 'teach_dildo_vag'] },
-    { label: 'Why choose only one?(????)', goto: ['tatiana_lab', 'teach_dildo_vag', '\'teach_full\''] },
+    { label: 'Why choose only one?(????)', goto: ['tatiana_lab', 'teach_dildo_vag', 'teach_full'] },
   ]);
   scene.build();
 }
@@ -914,6 +955,7 @@ function enterTeachDildoAnal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npcStat', 'D3');
   qspCall(s, 'arousal', 'auto_lube', 'anal', 'self');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'anal_dildo', 30, 'self');
   qspCall(s, 'arousal', 'end');
   scene.img('images/characters/city/tatiana/sex/ass.jpg');
@@ -939,9 +981,9 @@ function enterTeachDildoAnal(s: GameState, scene: SceneBuilder): void {
     { label: 'Time for a lesson', handler: (st: GameState) => {
     if (((s as any).tatiana_teach_escalation ?? 0) < 4) {
       (s as any).tatiana_teach_escalation = ((s as any).tatiana_teach_escalation ?? 0) + (1);
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'lesson<<tat_lesson_number>>'] }]);
+      qspGoto(s, 'tatiana_lab', 'lesson' + ((s as any).tat_lesson_number ?? 0) + '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'Escalation2'] }]);
+      qspGoto(s, 'tatiana_lab', 'Escalation2');
     }
   } },
   ]);
@@ -954,6 +996,7 @@ function enterTeachDildoVag(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npcStat', 'D3');
   qspCall(s, 'arousal', 'auto_lube', 'vag', 'self');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_dildo', 30, 'self');
   qspCall(s, 'arousal', 'end');
   scene.img('images/characters/city/tatiana/sex/vag.jpg');
@@ -979,9 +1022,9 @@ function enterTeachDildoVag(s: GameState, scene: SceneBuilder): void {
     { label: 'Time for a lesson', handler: (st: GameState) => {
     if (((s as any).tatiana_teach_escalation ?? 0) < 4) {
       (s as any).tatiana_teach_escalation = ((s as any).tatiana_teach_escalation ?? 0) + (1);
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'lesson<<tat_lesson_number>>'] }]);
+      qspGoto(s, 'tatiana_lab', 'lesson' + ((s as any).tat_lesson_number ?? 0) + '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'Escalation2'] }]);
+      qspGoto(s, 'tatiana_lab', 'Escalation2');
     }
   } },
   ]);
@@ -1060,6 +1103,7 @@ function enterTeachFull(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'D3');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_dildo', 30, 'self');
     qspCall(s, 'arousal', 'anal_dildo', (-30), 'self');
     qspCall(s, 'arousal', 'dildo_suck', (-30), 'self');
@@ -1088,7 +1132,7 @@ function enterTeachFull(s: GameState, scene: SceneBuilder): void {
     scene.text('Your arousal grows little by little as your holes are pounded, Tatiana\'s magic quickly feeding into your mana and putting your nerves on fire, inducing intensities that <i>mundane</i> sex can\'t match, making your mind lose focus as something warm grows in your core.');
     scene.text('Finally, there is a sexual climax that makes you scream in delight as your magical core liberates your mana, causing it to course through your nerves, eliciting wave after wave of orgasmic bliss and causing you to collapse on the mat in a heaving mess.');
     scene.actions([
-      { label: 'Time for a lesson', goto: ['tatiana_lab', 'lesson<<tat_lesson_number>>'] },
+      { label: 'Time for a lesson', goto: ['tatiana_lab', 'lesson' + ((s as any).tat_lesson_number ?? 0) + ''] },
     ]);
   } },
     ]);
@@ -1284,7 +1328,7 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).tatisucsex ?? 0) === 0  &&  ((s as any).tatisucsexask ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'Tatianasucsexask'] }]);
+    qspGoto(s, 'tatiana_lab', 'Tatianasucsexask');
     scene.actions([
       { label: 'Ask Tatiana if she wants to try Succubus Sex', handler: (st: GameState) => {
     (st as any).tatisucsexask = ((st as any).daystart ?? 0);
@@ -1386,6 +1430,9 @@ function enterTatianasucsexask(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).tatisucsexday ?? 0) - ((s as any).daystart ?? 0) > 1) {
+          (s as any).scsextmp = 'days';
+        } else {
+          (s as any).scsextmp = 'day';
         }
         scene.text('She looks at you with a sad smile and says,');
         // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_nickname>>, I need at least <<tatisucsexday - daystart>> more...
@@ -1425,6 +1472,7 @@ function enterSuctrainsex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 100) {
     scene.text('You\'re so shocked at this you suddenly feel a powerful orgasm rush through you, causing you to cry out even as it rushes down the link to Tatiana, giving her a powerful orgasm as well!');
     scene.text('Then, you feel your control slip…');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['succubus', 'tatianasex'] },
@@ -1432,6 +1480,8 @@ function enterSuctrainsex(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).scfwon = 2;
     (s as any).scpopt = 1;
+    (s as any).sclocrt = 'tatiana_lab';
+    (s as any).scargrt = 'Tatianasexreject';
     // TODO-QSP: dynamic text: You only have moments to decide, do you give in and let <<$sucself1>> go or do y...
     scene.text(`You only have moments to decide, do you give in and let ${((s as any).sucself1 || '')} go or do you reign it in?`);
     scene.actions([
@@ -1498,13 +1548,17 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   } },
         ]);
       } else {
         if (((s as any).tatisucsexday ?? 0) > ((s as any).daystart ?? 0)  &&  ((s as any).tatisucsexday ?? 0) - 5 < ((s as any).daystart ?? 0)) {
           if (((s as any).tatisucsexday ?? 0) - ((s as any).daystart ?? 0) > 1) {
+            (s as any).scsextmp = 'days';
+          } else {
+            (s as any).scsextmp = 'day';
           }
           // TODO-QSP: dynamic text: You attempt to enter Tatiana's lab, but an invisible barrier stops you. Tatiana ...
           scene.text(`You attempt to enter Tatiana's lab, but an invisible barrier stops you. Tatiana apparently heard you as she shouts from across the lab, "I've already taken the first potion, so I can't come anywhere near you, come back all charged up in ${((s as any).tatisucsexday ?? '') - ((s as any).daystart ?? '')} ${((s as any).scsextmp || '')}!"`);
@@ -1512,7 +1566,8 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
           ]);
         } else {
           if (((s as any).tatisucsexday ?? 0) === ((s as any).daystart ?? 0)  ||  ((s as any).tatisucsexday ?? 0) === ((s as any).daystart ?? 0) - 1) {
@@ -1567,7 +1622,7 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).sucbypass = 1;
-  scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'start', '\'no_time\''] }]);
+  qspGoto(s, 'tatiana_lab', 'start', 'no_time');
   // TODO-QSP: end
   scene.build();
 }
@@ -1717,12 +1772,12 @@ function enterSMSConditions(s: GameState, scene: SceneBuilder): void {
 
 function enterAddSMS(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'A176');
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['0'] = 'It\'s Tatiana, I need you to swing by the lab';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a1'] = 'There is a spell I think you would want to learn';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['a2'] = 'There are some spells I think you would want to learn';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['b'] = 'We should talk about your succubus issue';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['c'] = 'I have a mission for you';
-  if (!(s as any).SMSTree) (s as any).SMSTree = {}; (s as any).SMSTree['q'] = 'Add Tatiana to your contacts';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'It\'s Tatiana, I need you to swing by the lab';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a1'] = 'There is a spell I think you would want to learn';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a2'] = 'There are some spells I think you would want to learn';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b'] = 'We should talk about your succubus issue';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['c'] = 'I have a mission for you';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['q'] = 'Add Tatiana to your contacts';
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
   if (((s as any).locArgs?.[1] ?? 0) % 10 === 3) {

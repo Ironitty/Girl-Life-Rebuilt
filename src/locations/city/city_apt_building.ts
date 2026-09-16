@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -42,10 +40,11 @@ function enterFloor_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_1');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>First Floor</center>');
   scene.img('images/locations/city/residential/apartment/stairs/stairs1.jpg');
-  scene.text('There is a short staircase down to the basement maintenance area and a short staircase up to the first floor, where there is a <a href="exec: gt \'city_apt_building\', \'housemates\'">list</a> of the people who live here on the wall. There is a series of mailboxes for each apartment, two halls going off to each wing of the building, and more stairs going up. The area is fairly clean and well maintained.');
+  scene.text('There is a short staircase down to the basement maintenance area and a short staircase up to the first floor, where there is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_apt_building\\u0027, \\u0027housemates\\u0027); return false;">list</a> of the people who live here on the wall. There is a series of mailboxes for each apartment, two halls going off to each wing of the building, and more stairs going up. The area is fairly clean and well maintained.');
   scene.text('The stairwell is empty.');
   // TODO-QSP: end
   scene.actions([
@@ -55,7 +54,7 @@ function enterFloor_1(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_2'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_1\''] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_1'] },
   ]);
   scene.build();
 }
@@ -66,6 +65,7 @@ function enterFloor_2(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor2Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_2');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>Second Floor</center>');
   scene.img('images/locations/city/residential/apartment/stairs/stairs2.jpg');
@@ -79,7 +79,7 @@ function enterFloor_2(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the third floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_3', 'from_second_floor'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_2\''] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_2'] },
   ]);
   scene.build();
 }
@@ -87,9 +87,10 @@ function enterFloor_2(s: GameState, scene: SceneBuilder): void {
 function enterFloor_3(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor3_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor3_event_time ?? 0) - 1440)) {
     (s as any).floor3_event_time = ((s as any).totminut ?? 0);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + qspUntranslated(s, "ARGS[1]>", { location: "city_apt_building" }) + '']; enterFloor3Events(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + ((s as any).locArgs?.[1] ?? 0) + '']; enterFloor3Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_3');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>Third Floor</center>');
   scene.img('images/locations/city/residential/apartment/stairs/stairs3.jpg');
@@ -110,7 +111,7 @@ function enterFloor_3(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the fourth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_4'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_3\''] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_3'] },
   ]);
   scene.build();
 }
@@ -121,6 +122,7 @@ function enterFloor_4(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor4Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_4');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>Fourth Floor</center>');
   scene.img('images/locations/city/residential/apartment/stairs/stairs3.jpg');
@@ -134,7 +136,7 @@ function enterFloor_4(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the fifth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_5'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_4\''] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_4'] },
   ]);
   scene.build();
 }
@@ -145,6 +147,7 @@ function enterFloor_5(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor5Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_5');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>Fifth Floor</center>');
   scene.img('images/locations/city/residential/apartment/stairs/stairs3.jpg');
@@ -158,7 +161,7 @@ function enterFloor_5(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the roof', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'roof'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_5\''] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_5'] },
     { label: 'Apartment 49: Your home', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['korr', ''] },
@@ -168,6 +171,7 @@ function enterFloor_5(s: GameState, scene: SceneBuilder): void {
 
 function enterRoof(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'roof');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.text('<center>Roof</center>');
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
@@ -189,7 +193,8 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       { label: 'Change back into your clothes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'outfit', 'restore', 'swim');
-  }, goto: ['city_apt_building', 'roof'] },
+    qspGoto(s, 'city_apt_building', 'roof');
+  } },
     ]);
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).daystage ?? 0) < 4  &&  ((s as any).sunWeather ?? 0) === 1) {
@@ -222,7 +227,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You strip out of your clothes and lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You strip out of your clothes, put sunblock on your body and lie down on the roof to sunbathe.');
       }
@@ -249,7 +254,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You put sunblock on your body and lie down on the roof to sunbathe.');
       }
@@ -265,10 +270,10 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go down to the fifth floor', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['city_apt_building', 'roof'] }]);
+      qspGoto(s, 'city_apt_building', 'roof');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['city_apt_building', 'floor_5'] }]);
+      qspGoto(s, 'city_apt_building', 'floor_5');
     }
   } },
   ]);
@@ -283,11 +288,11 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
   scene.text('The elevator in the apartment building was renovated at some point, but is still fairly old. It\'s in good working order though.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Push button: Floor 1', goto: ['city_apt_building', 'floor_1', '\'from_lift\''] },
-    { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', '\'from_lift\''] },
-    { label: 'Push button: Floor 3', goto: ['city_apt_building', 'floor_3', '\'from_lift\''] },
-    { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', '\'from_lift\''] },
-    { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', '\'from_lift\''] },
+    { label: 'Push button: Floor 1', goto: ['city_apt_building', 'floor_1', 'from_lift'] },
+    { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', 'from_lift'] },
+    { label: 'Push button: Floor 3', goto: ['city_apt_building', 'floor_3', 'from_lift'] },
+    { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', 'from_lift'] },
+    { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', 'from_lift'] },
   ]);
   scene.build();
 }
@@ -311,7 +316,7 @@ function enterLiftEvent_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['city_apt_building', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -325,7 +330,7 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['city_apt_building', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -339,7 +344,7 @@ function enterLiftEvent_3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['city_apt_building', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -366,7 +371,7 @@ function enterLiftEvent_4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['city_apt_building', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -380,7 +385,7 @@ function enterLiftEvent_5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['city_apt_building', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -401,7 +406,7 @@ function enterLiftEvent_6(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['city_apt_building', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -415,7 +420,7 @@ function enterLiftEvent_7(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
+    { label: 'Leave', goto: ['city_apt_building', '' + ((s as any).locArgs?.[1] ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -446,7 +451,8 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['city_apt_building', 'floor_2'] },
+    qspGoto(s, 'city_apt_building', 'floor_2');
+  } },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'from_lift') {
@@ -457,10 +463,10 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/apartment/stairs/lift.jpg');
     scene.text('You get back in the elevator and decide to take it to another floor.');
     scene.actions([
-      { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', '\'from_lift\''] },
-      { label: 'Push button: Floor 3', goto: ['city_apt_building', 'floor_3', '\'from_lift\''] },
-      { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', '\'from_lift\''] },
-      { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', '\'from_lift\''] },
+      { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', 'from_lift'] },
+      { label: 'Push button: Floor 3', goto: ['city_apt_building', 'floor_3', 'from_lift'] },
+      { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', 'from_lift'] },
+      { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', 'from_lift'] },
     ]);
   } },
       ]);
@@ -468,7 +474,8 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
   }
@@ -501,7 +508,7 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_2'] },
-      { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_1\''] },
+      { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_1'] },
     ]);
   } },
   ]);
@@ -781,7 +788,8 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['city_apt_building', 'floor_2'] },
+    qspGoto(s, 'city_apt_building', 'floor_2');
+  } },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'from_lift') {
@@ -792,10 +800,10 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/apartment/stairs/lift.jpg');
     scene.text('<center>You get back in the elevator and decide to take it to another floor.');
     scene.actions([
-      { label: 'Push button: Floor 1', goto: ['city_apt_building', 'floor_1', '\'from_lift\''] },
-      { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', '\'from_lift\''] },
-      { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', '\'from_lift\''] },
-      { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', '\'from_lift\''] },
+      { label: 'Push button: Floor 1', goto: ['city_apt_building', 'floor_1', 'from_lift'] },
+      { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', 'from_lift'] },
+      { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', 'from_lift'] },
+      { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', 'from_lift'] },
     ]);
   } },
       ]);
@@ -803,7 +811,8 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['city_apt_building', 'floor_4'] },
+    qspGoto(s, 'city_apt_building', 'floor_4');
+  } },
       ]);
     }
   }
@@ -836,7 +845,7 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
       { label: 'Go up to the fourth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_4'] },
-      { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_3\''] },
+      { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_3'] },
     ]);
   } },
   ]);
@@ -927,7 +936,7 @@ function enterFloor3Event_11(s: GameState, scene: SceneBuilder): void {
 
 function enterFloor3Event_12(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  if (!(s as any).porn_studio) (s as any).porn_studio = {}; (s as any).porn_studio['know_alli_home'] = 1;
+  ((s as any).porn_studio = (s as any).porn_studio ?? {})['know_alli_home'] = 1;
   scene.img('images/locations/city/residential/apartment/stairs/event/floor3_nudedoor.jpg');
   if (((s as any).film ?? 0) > 0) {
     scene.text('As you get to the stairwell landing, the door of one of the apartments suddenly opens and you see a naked Alli standing there, her perky breasts and neatly trimmed bush on full display.');
@@ -1187,7 +1196,7 @@ function enterFloor4Event_13(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/tryndin/tryndin_stairs.jpg');
   if (((s as any).tryndinQW ?? 0)?.['stairwell_chat'] === 1) {
-    scene.text('Your neighbor, <a href="exec:gt \'tryndin\'">Tryndin</a>, is in the hallway smoking a cigarette and flicking the ashes into a jar. He gives you a nod when he notices you. "Hello."');
+    scene.text('Your neighbor, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027tryndin\\u0027, \\u0027\\u0027); return false;">Tryndin</a>, is in the hallway smoking a cigarette and flicking the ashes into a jar. He gives you a nod when he notices you. "Hello."');
     scene.actions([
       { label: 'Say "hello" and leave', goto: ['city_apt_building', 'floor_4'] },
       { label: 'Have a chat with Tryndin', goto: ['tryndin', 'stairwell_chat'] },
@@ -1196,14 +1205,14 @@ function enterFloor4Event_13(s: GameState, scene: SceneBuilder): void {
     scene.text('You see a young man, around your sister\'s age, in the hallway. You can\'t help but notice that he\'s pretty good looking. He looks up at you as you get close and gives you a pleasant smile. "You\'ve moved into apartment 69, right?"');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    if (!(s as any).tryndinQW) (s as any).tryndinQW = {}; (s as any).tryndinQW['stairwell_chat'] = ((s as any).tryndinQW['stairwell_chat'] ?? 0) + (1);
+    ((s as any).tryndinQW = (s as any).tryndinQW ?? {})['stairwell_chat'] = ((s as any).tryndinQW['stairwell_chat'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big77.jpg');
     scene.text('You nod. "Yeah?"');
     scene.text('The guy looks visibly delighted. "Wonderful, it\'s always nice meeting new people. By the way, I\'m Tryndin. You are?"');
     scene.actions([
-      { label: '<<$pcs_nickname>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname || '') ?? ''), handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big77.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.

@@ -5,6 +5,8 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_trademission';
+  (s as any).menu_arg = '';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Trade Representative</b></center>');
   scene.img('images/locations/city/residential/office/clener.jpg');
@@ -115,16 +117,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'Agree', handler: (st: GameState) => {
     scene.text('You smile, "I would love to start dating you." He jumps for joy and promises to call you soon to set up a date.');
     (s as any).TPmainQW = 2;
-    if (!(s as any).npc_height) (s as any).npc_height = {}; (s as any).npc_height['A50'] = 181;
-    if (!(s as any).npc_weight) (s as any).npc_weight = {}; (s as any).npc_weight['A50'] = 58;
-    if (!(s as any).npc_haircol) (s as any).npc_haircol = {}; (s as any).npc_haircol['A50'] = 3;
-    if (!(s as any).npc_finance) (s as any).npc_finance = {}; (s as any).npc_finance['A50'] = 1;
-    if (!(s as any).npc_pervert) (s as any).npc_pervert = {}; (s as any).npc_pervert['A50'] = 0;
+    ((s as any).npc_height = (s as any).npc_height ?? {})['A50'] = 181;
+    ((s as any).npc_weight = (s as any).npc_weight ?? {})['A50'] = 58;
+    ((s as any).npc_haircol = (s as any).npc_haircol ?? {})['A50'] = 3;
+    ((s as any).npc_finance = (s as any).npc_finance ?? {})['A50'] = 1;
+    ((s as any).npc_pervert = (s as any).npc_pervert ?? {})['A50'] = 0;
     (s as any).figurBoy = Math.floor(Math.random() * 3) + 0;
     (s as any).titBoy = Math.floor(Math.random() * 3) + 0;
     (s as any).hairBoy = Math.floor(Math.random() * 4) + 0;
     qspCall(s, 'npcStat', 'A50');
+    (s as any).npcheight = 'high';
+    (s as any).npcbuild = 'thin';
+    (s as any).npchair = 'blond';
     (s as any).vneshBoy = 1;
+    (s as any).npcClo = 'jeans and a sweater';
     qspCall(s, 'lover', 'add_boyfriend', 'A50');
     (s as any).stopboy = 0;
     (s as any).boyonceA = 1;

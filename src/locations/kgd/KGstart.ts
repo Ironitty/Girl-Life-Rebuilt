@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -25,9 +25,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You can now create a character!');
       scene.actions([
         { label: 'Create a character', handler: (st: GameState) => {
+    (s as any).KGOLname = 0;
     if (((s as any).KGOLname ?? 0) === '') {
       // TODO-QSP: msg 'Please enter a valid name!'
-      scene.actions([{ label: 'Continue', goto: ['KGstart', ''] }]);
+      qspGoto(s, 'KGstart', '');
     }
     // TODO-QSP: dynamic text: Your character's name is: <<$KGOLname>>
     scene.text(`Your character's name is: ${((s as any).KGOLname || '')}`);
@@ -53,7 +54,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 1000, 'bank');
       (s as any).KFOnLineReaga = ((s as any).KFOnLineReaga ?? 0) + (30);
-      scene.actions([{ label: 'Continue', goto: ['KGstart', ''] }]);
+      qspGoto(s, 'KGstart', '');
     }
   } },
       { label: 'Buy game coins', handler: (st: GameState) => {
@@ -66,7 +67,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'money', 'pay', ((s as any).KGOLdonat ?? 0), 'bank');
         (s as any).KGOLmoney = ((s as any).KGOLmoney ?? 0) + (((s as any).KGOLdonat ?? 0));
       }
-      scene.actions([{ label: 'Continue', goto: ['KGstart', ''] }]);
+      qspGoto(s, 'KGstart', '');
     }
   } },
     ]);
@@ -81,7 +82,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 1000, 'bank');
       (s as any).KFOnLineReaga = ((s as any).KFOnLineReaga ?? 0) + (30);
-      scene.actions([{ label: 'Continue', goto: ['KGstart', ''] }]);
+      qspGoto(s, 'KGstart', '');
     }
   } },
     ]);

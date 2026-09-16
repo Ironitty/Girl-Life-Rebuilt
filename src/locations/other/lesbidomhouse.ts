@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).menu_loc = 'lesbidomhouse';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   if ((!(Math.floor(Math.random() * 3) + 0))) {
     scene.text('You ring the doorbell several times, but no one comes to answer the door. When you try to look inside through the windows, you don\'t see any movement either.');
@@ -17,6 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_residential', ''] },
     ]);
   } else {
+    (s as any).location_type = 'public_indoors';
     scene.text('You ring the doorbell several times, and eventually hear an electronic *click*. The door slowly swings open, even though no one came to answer it.');
     if (((s as any).lesbiQW ?? 0) === 1) {
       scene.actions([
@@ -24,37 +27,37 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).lesbiQW ?? 0) === 2) {
-        scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW2'] }]);
+        qspGoto(s, 'lesbidomhouse', 'QW2');
       } else {
         if (((s as any).lesbiQW ?? 0) === 3) {
-          scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW3'] }]);
+          qspGoto(s, 'lesbidomhouse', 'QW3');
         } else {
           if (((s as any).lesbiQW ?? 0) === 4) {
-            scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW4'] }]);
+            qspGoto(s, 'lesbidomhouse', 'QW4');
           } else {
             if (((s as any).lesbiQW ?? 0) === 5) {
-              scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW5'] }]);
+              qspGoto(s, 'lesbidomhouse', 'QW5');
             } else {
               if (((s as any).lesbiQW ?? 0) === 6) {
-                scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW6'] }]);
+                qspGoto(s, 'lesbidomhouse', 'QW6');
               } else {
                 if (((s as any).lesbiQW ?? 0) === 7) {
-                  scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW7'] }]);
+                  qspGoto(s, 'lesbidomhouse', 'QW7');
                 } else {
                   if (((s as any).lesbiQW ?? 0) === 8) {
-                    scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW8'] }]);
+                    qspGoto(s, 'lesbidomhouse', 'QW8');
                   } else {
                     if (((s as any).lesbiQW ?? 0) === 9) {
-                      scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW9'] }]);
+                      qspGoto(s, 'lesbidomhouse', 'QW9');
                     } else {
                       if (((s as any).lesbiQW ?? 0) === 10) {
-                        scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW10'] }]);
+                        qspGoto(s, 'lesbidomhouse', 'QW10');
                       } else {
                         if (((s as any).lesbiQW ?? 0) === 11) {
-                          scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW11'] }]);
+                          qspGoto(s, 'lesbidomhouse', 'QW11');
                         } else {
                           if (((s as any).lesbiQW ?? 0) === 12) {
-                            scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW12'] }]);
+                            qspGoto(s, 'lesbidomhouse', 'QW12');
                           }
                         }
                       }
@@ -655,7 +658,7 @@ function enterQW5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Thank her', handler: (st: GameState) => {
     (s as any).pcs_horny = 0;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     if (((s as any).analPlugIn ?? 0) === 1) {
       qspCall(s, 'boyStat', 'D4');
@@ -752,6 +755,7 @@ function enterQW5(s: GameState, scene: SceneBuilder): void {
       scene.text('You cum violently as Mistress fucks you with her giant dildo. You instinctively clasp your legs around her hips, allowing her even easier access to the depths of your pussy. "Next time ask for permission first, slave!" she scolds while continuing to thrust the dildo even harder as punishment.');
     }
     scene.text('Finally, Mistress becomes too tired to continue and climbs off you. She grabs you by the hair and forces your face down towards her crotch while sliding the strap-on harness down with her other hand.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_strap', 20, 'sub', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -762,6 +766,7 @@ function enterQW5(s: GameState, scene: SceneBuilder): void {
       scene.text('The idea of pleasing Mistress with your mouth pushes you over the edge, and you orgasm powerfully. Meanwhile you continue to work Mistress\' vagina with your tongue, knowing all that matters is her satisfaction. "Did you just have an orgasm, slave? Next time, ask permission first!" she scolds you.');
     }
     scene.text('A few minutes later, Mistress shudders when she climaxes. "Not bad, slave. I was having my doubts, but maybe I\'ll keep you after all," she groans happily, after which she woozily sends you on your way. You wince when you get up from the bed. She was quite rough and you\'re probably going to be sensitive down there for a while.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni_give', 10, 'sub', 'lesbian');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
@@ -965,6 +970,7 @@ function enterQW7(s: GameState, scene: SceneBuilder): void {
     scene.text('Mistress grins. "Don\'t worry Masha, she\'s fine. Maybe just a little bit tipsy. Come, sit! I\'ll get us some drinks."');
     scene.text('You and Masha get acquainted while Mistress heads to the bar to get another round. Half-way in, the vibrator starts up again. It\'s on full blast now, and you know you won\'t last long.');
     scene.text('Doing the best you can to answer Masha\'s questions, you try your best to hold back your orgasm. You bite your lip while your whole body trembles, and let out a cute moan when you orgasm intensely. Masha looks at you questioningly. "Are you sure you\'re okay? You seem a bit off…"');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_vibe', 10, 'sub', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1337,7 +1343,8 @@ function enterQW10a(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Get dressed and leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     } else {
       if (((s as any).analPlugIn ?? 0) === 1) {
@@ -1374,7 +1381,8 @@ function enterQW10a(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Get dressed and leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
   }
@@ -1385,12 +1393,12 @@ function enterQW10a(s: GameState, scene: SceneBuilder): void {
 function enterQW10b(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).temp ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW10b1'] }]);
+    qspGoto(s, 'lesbidomhouse', 'QW10b1');
   } else {
     if (((s as any).temp ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW10b2'] }]);
+      qspGoto(s, 'lesbidomhouse', 'QW10b2');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW10b3'] }]);
+      qspGoto(s, 'lesbidomhouse', 'QW10b3');
     }
   }
   // TODO-QSP: end
@@ -1410,7 +1418,7 @@ function enterQW10b1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0) === 1) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).pcs_horny = 0;
+    (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
     (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (1);
     if (((s as any).pcs_vag ?? 0) < 30  &&  ((s as any).pcs_vag ?? 0) >= 20) {
       qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
@@ -1431,6 +1439,7 @@ function enterQW10b1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mistress, may I please cum? Please, I\'m begging you! Please let me cum!" you beg, but Mistress is adamant.');
     scene.text('She leans over and whispers in your ear. "Told you I would make you beg, slave. But I\'ll give you credit, you lasted longer than I thought you would. Nice try." She pulls out and exits the room, leaving you quivering. You feel your wetness running down your thighs, and when you shift your hips you actually hear your pussy squelching from how soaked it is.');
     scene.text('Mistress comes back a minute later and undoes your binds, dismissively stating that you can go. She smirks when she notices your discomfort, but walks away before you can say anything.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_strap', 40, 'sub', 'lesbian', 'bound');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -1587,6 +1596,7 @@ function enterQW10b2(s: GameState, scene: SceneBuilder): void {
     scene.text('Just when you were no longer expecting it, you feel the dildo being rammed inside you again. It\'s vibrating now! The stimulation it\'s giving you is overwhelming and your orgasm hits you almost instantly, making you quiver and drool in your tight binds.');
     scene.text('"Oh my, does my little slave enjoy that?" Mistress asks with a smirk on her face. You thank her profusely while she lowers you and begins to undo your binds, eventually making you pull the item in your ass out yourself. It\'s an anal hook, and you gulp when you see the size of the bulb at the end. That was in your ass the whole time!?');
     scene.text('Your legs are still trembling slightly when Mistress tells you to undo the rest of the ropes yourself in the hallway on your way out. You nod, unable to hide your thoroughly satisfied smile.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_dildo', 45, 'sub', 'lesbian', 'bound');
     qspCall(s, 'arousal', 'anal_dildo', (-45), 'sub', 'bound');
     qspCall(s, 'stat', '');
@@ -2048,7 +2058,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Refuse to sign', handler: (st: GameState) => {
     (s as any).lesbiQW = (-1);
-    if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['unlocked'] = 1;
+    ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['unlocked'] = 1;
     scene.img('images/characters/city/natalya/sex/sub199.jpg');
     scene.text('You quickly browse through the contract, and the decision is not hard to make: there\'s no way you\'re signing this.');
     scene.text('Mistress looks disappointed, but complacent. "I… was afraid you would say that. That\'s too bad."');
@@ -2119,7 +2129,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Decline', handler: (st: GameState) => {
     (s as any).lesbiQW = (-1);
-    if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['unlocked'] = 1;
+    ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['unlocked'] = 1;
     scene.img('images/characters/city/natalya/sex/sub199.jpg');
     scene.text('You shake your head. "I\'m sorry, Mistress. Six months is still too long. I don\'t think I can commit to this, it doesn\'t feel right."');
     // TODO-QSP: dynamic text: Mistress is clearly disappointed. "That's too bad, <<$pcs_nickname>>. I really t...
@@ -2136,7 +2146,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Refuse to sign', handler: (st: GameState) => {
     (s as any).lesbiQW = (-1);
-    if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['unlocked'] = 1;
+    ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['unlocked'] = 1;
     scene.img('images/characters/city/natalya/sex/sub199.jpg');
     scene.text('You\'ve given it enough thought; you wouldn\'t mind visiting her more, but you\'re not signing a contract for it.');
     // TODO-QSP: dynamic text: When you tell Mistress that, she's clearly disappointed. "That's too bad, <<$pcs...

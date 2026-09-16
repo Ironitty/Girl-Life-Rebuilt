@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
+  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -89,6 +90,10 @@ function enterIntercom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStudy(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'study';
+  (s as any).loc = 'alexandriaHome';
+  (s as any).locM_arg = 'study';
+  (s as any).locM = 'alexandriaHome';
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/alexandria/alexstudy.jpg');
   scene.text('This is Aleksei\'s studio, complete with desk and chairs, where he seems to spend most of his time. The room is full of wall to wall bookcases with carefully organized tomes of knowledge waiting to be consulted. In a corner of the room, you see a table of weird-looking trinkets.');

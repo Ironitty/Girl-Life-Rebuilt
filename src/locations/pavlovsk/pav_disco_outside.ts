@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,15 +10,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterRoutingMatrix(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] >= 2) {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'hotel_pre'] }]);
+    qspGoto(s, 'pav_disco_sex', 'hotel_pre');
   } else {
     if ((Math.floor(Math.random() * 1000) + 0) < ((s as any).fame ?? 0)?.['pav_slut']) {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'slut_invite'] }]);
+      qspGoto(s, 'pav_disco_outside', 'slut_invite');
     } else {
       if (((s as any).temp ?? 0)?.['drunk_guy'] === 1) {
-        scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'invite_beer'] }]);
+        qspGoto(s, 'pav_disco_outside', 'invite_beer');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'invite_chat'] }]);
+        qspGoto(s, 'pav_disco_outside', 'invite_chat');
       }
     }
   }
@@ -74,7 +74,8 @@ function enterInviteBeer(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: <<$npcdesc>> offers you a disarming smile. "Alright, no problem! We can just cha...
     scene.text(`${((s as any).npcdesc || '')} offers you a disarming smile. "Alright, no problem! We can just chat!"`);
-  }, goto: ['pav_disco_outside', 'chat_menu'] },
+    qspGoto(s, 'pav_disco_outside', 'chat_menu');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -87,9 +88,9 @@ function enterInviteBeer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You accept the beer and chat with <<$npcdesc>> as you drink it. He's amusing and...
     scene.text(`You accept the beer and chat with ${((s as any).npcdesc || '')} as you drink it. He's amusing and tells you some hilarious stories.`);
     if ((Math.floor(Math.random() * 10) + 1) <= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  (Math.floor(Math.random() * 1000) + 1) < ((s as any).fame ?? 0)?.['pav_slut']) {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_options'] }]);
+      qspGoto(s, 'pav_disco_outside', 'boysex_options');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'chat_menu'] }]);
+      qspGoto(s, 'pav_disco_outside', 'chat_menu');
     }
   } },
   ]);
@@ -105,16 +106,18 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I thought maybe we could just talk for a bit," he smiles at you. "I'm <<$npcdes...
     scene.text(`"I thought maybe we could just talk for a bit," he smiles at you. "I'm ${((s as any).npcdesc || '')}. What's your name?"`);
     scene.actions([
-      { label: 'I\'m <<$pcs_firstname>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'I\'m ' + String(((s as any).pcs_firstname || '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: $pcs_usedname[$npcID] = $pcs_firstname
     // TODO-QSP: dynamic text: "I'm <<$pcs_firstname>>," you smile back.
     scene.text(`"I'm ${((s as any).pcs_firstname || '')}," you smile back.`);
-  }, goto: ['pav_disco_outside', 'chat_menu'] },
-      { label: 'I\'m <<$pcs_nickname>>', handler: (st: GameState) => {
+    qspGoto(s, 'pav_disco_outside', 'chat_menu');
+  } },
+      { label: '', labelFn: (s: GameState) => 'I\'m ' + String(((s as any).pcs_nickname || '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: $pcs_usedname[$npcID] = $pcs_nickname
     // TODO-QSP: dynamic text: "I'm <<$pcs_nickname>>," you smile back.
     scene.text(`"I'm ${((s as any).pcs_nickname || '')}," you smile back.`);
-  }, goto: ['pav_disco_outside', 'chat_menu'] },
+    qspGoto(s, 'pav_disco_outside', 'chat_menu');
+  } },
     ]);
   } else {
     // TODO-QSP: dynamic text: You leave the disco with <<$npcdesc>> and walk into a quiet garden area.
@@ -131,11 +134,11 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"Lead the way," you smile and let him drag you off.');
     if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
       scene.actions([
-        { label: 'Go back to <<$npcdesc>>\'s', goto: ['sex_ev_start', 'hotel_start'] },
+        { label: '', labelFn: (s: GameState) => 'Go back to ' + String(((s as any).npcdesc || '') ?? '') + '\'s', goto: ['sex_ev_start', 'hotel_start'] },
       ]);
     } else {
       scene.actions([
-        { label: 'Go back to <<$npcdesc>>\'s', goto: ['sex_ev_start', 'npc_home_start'] },
+        { label: '', labelFn: (s: GameState) => 'Go back to ' + String(((s as any).npcdesc || '') ?? '') + '\'s', goto: ['sex_ev_start', 'npc_home_start'] },
       ]);
     }
   } },
@@ -150,7 +153,7 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: "It's good to see you again," <<$npcdesc>> says, giving you a small smile.
       scene.text(`"It's good to see you again," ${((s as any).npcdesc || '')} says, giving you a small smile.`);
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'chat_menu'] }]);
+      qspGoto(s, 'pav_disco_outside', 'chat_menu');
     }
   }
   // TODO-QSP: end
@@ -159,7 +162,7 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
 
 function enterChatMenu(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_options'] }]);
+    qspGoto(s, 'pav_disco_outside', 'boysex_options');
   }
   if (((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] !== ((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]) {
     scene.actions([
@@ -169,7 +172,8 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s your name by the way?"');
     // TODO-QSP: dynamic text: "I'm <<$npc_firstname>>," he tells you.
     scene.text(`"I'm ${((s as any).npc_firstname || '')}," he tells you.`);
-  }, goto: ['pav_disco_outside', 'chat_menu'] },
+    qspGoto(s, 'pav_disco_outside', 'chat_menu');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -178,7 +182,7 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'You go to the disco a lot?', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOutsideImg(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('"So, do you come out here a lot? To the disco I mean."');
-    if ((String('I').indexOf(String(((s as any).npc_perstype ?? 0)?.[String((s as any).npcID ?? 0)]))) + 1 > 0) {
+    if (((String('I').indexOf(String(((s as any).npc_perstype ?? 0)?.[String((s as any).npcID ?? 0)]))) + 1) > 0) {
       if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex') {
         if (((s as any).npc_misogynist ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
           scene.text('"More often than I\'d like to," he says with a wry smile. "But it\'s the best way to find sluts to fuck."');
@@ -215,7 +219,8 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['pav_disco_outside', 'chat_menu'] },
+    qspGoto(s, 'pav_disco_outside', 'chat_menu');
+  } },
     { label: 'Make a move', handler: (st: GameState) => {
     // TODO-QSP: xgt 'pav_disco_outside', 'move_menu'
   } },
@@ -247,7 +252,7 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept', handler: (st: GameState) => {
     scene.text('"That sounds nice," you smile at him. After sprucing yourself up a bit, you follow him back to his apartment.');
     scene.actions([
-      { label: 'Go to his place', goto: ['date_hangout', 'start', '\'disco\''] },
+      { label: 'Go to his place', goto: ['date_hangout', 'start', 'disco'] },
     ]);
   } },
         ]);
@@ -257,13 +262,15 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
           { label: 'Refuse', handler: (st: GameState) => {
     scene.text('"I just don\'t see this turning into anything like that," you shake your head. "Sorry."');
     scene.text('With that, you leave him alone.');
-  }, goto: ['pav_disco_outside', 'exit_options'] },
+    qspGoto(s, 'pav_disco_outside', 'exit_options');
+  } },
           { label: 'Give him your number', handler: (st: GameState) => {
     scene.text('"Sure," you smile back. "I\'d like that."');
     qspCall(s, 'lover', 'add_dating', ((s as any).npcID ?? 0));
     qspCall(s, 'stat', '');
     scene.text('Taking his phone, you input your contact information into it before waving goodbye and parting ways.');
-  }, goto: ['pav_disco_outside', 'exit_options'] },
+    qspGoto(s, 'pav_disco_outside', 'exit_options');
+  } },
         ]);
       }
     } else {
@@ -280,7 +287,8 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lover', 'add_dating', ((s as any).npcID ?? 0));
     qspCall(s, 'stat', '');
     scene.text('Taking his phone, you input your contact information into it before waving goodbye and parting ways.');
-  }, goto: ['pav_disco_outside', 'exit_options'] },
+    qspGoto(s, 'pav_disco_outside', 'exit_options');
+  } },
       ]);
     }
   }
@@ -290,14 +298,14 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_options'] }]);
+    qspGoto(s, 'pav_disco_outside', 'boysex_options');
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     if (((s as any).temp ?? 0)?.['curr_action'] !== 'kissing') {
-      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['curr_action'] = 'kissing';
+      ((s as any).temp = (s as any).temp ?? {})['curr_action'] = 'kissing';
       scene.text('<i>Fuck it,</i> you think and surge forward to press your lips against his.');
       if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex') {
         // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> matches your energy instantly, immediately responding ...
@@ -310,7 +318,8 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You keep making out with <<$npcdesc>>.
       scene.text(`You keep making out with ${((s as any).npcdesc || '')}.`);
     }
-  }, goto: ['pav_disco_outside', 'move_menu'] },
+    qspGoto(s, 'pav_disco_outside', 'move_menu');
+  } },
     { label: 'Reach for his cock', handler: (st: GameState) => {
     if (((s as any).temp ?? 0)?.['curr_action'] === 'kissing') {
       // TODO-QSP: dynamic text: Reach down into <<$npcdesc>>'s pants, you feel a stiff, <<$npc_dick_desc[$npcID]...
@@ -319,7 +328,8 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You reach down into <<$npcdesc>>'s pants, feeling a stiff, <<$npc_dick_desc[$npc...
       scene.text(`You reach down into ${((s as any).npcdesc || '')}'s pants, feeling a stiff, ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} shaft inside. You pull, releasing it from its confines and stroking it to diamond hardness`);
     }
-  }, goto: ['pav_disco_sex', 'handjob'] },
+    qspGoto(s, 'pav_disco_sex', 'handjob');
+  } },
     { label: 'Squat down (and blow him)', handler: (st: GameState) => {
     // TODO-QSP: xgt 'pav_disco_sex', 'blowjob'
   } },
@@ -353,7 +363,8 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Need to go', handler: (st: GameState) => {
     scene.text('"I need to get out of here," you say, hurrying away.');
-  }, goto: ['pav_disco_outside', 'exit_options'] },
+    qspGoto(s, 'pav_disco_outside', 'exit_options');
+  } },
       { label: 'It\'s okay', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOutsideImg(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('"It\'s okay," you say, taking a deep breath and calming down. "It was just... too fast, y\'know?"');
@@ -397,7 +408,7 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
     scene.text('"Come on then. Let\'s go."');
     if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'pav_residential') {
       scene.actions([
-        { label: 'Go back to <<$npcdesc>>\'s place', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Go back to ' + String(((s as any).npcdesc || '') ?? '') + '\'s place', handler: (st: GameState) => {
     // TODO-QSP: gt 'sex_ev_start', 'npc_home_start', iif($npc_rel_type[$npcI...
   } },
       ]);
@@ -466,7 +477,7 @@ function enterCallitanight(s: GameState, scene: SceneBuilder): void {
         { label: 'Sure', handler: (st: GameState) => {
     scene.text('"That sounds nice," you smile at him. After sprucing yourself up a bit, you follow him back to his apartment.');
     scene.actions([
-      { label: 'Go to his place', goto: ['date_hangout', 'start', '\'disco\''] },
+      { label: 'Go to his place', goto: ['date_hangout', 'start', 'disco'] },
     ]);
   } },
       ]);
@@ -540,7 +551,7 @@ function enterPcAskcoffee(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "That could be nice," <<$npcdesc>> smiles and leads you back to his apartment.
       scene.text(`"That could be nice," ${((s as any).npcdesc || '')} smiles and leads you back to his apartment.`);
       scene.actions([
-        { label: 'Go to <<$npcdesc>>\'s apartment', goto: ['date_hangout', 'start', '\'disco\''] },
+        { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npcdesc || '') ?? '') + '\'s apartment', goto: ['date_hangout', 'start', 'disco'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: "Only if we get to fuck after," <<$npcdesc>> grins, leering openly at you.
@@ -554,7 +565,7 @@ function enterPcAskcoffee(s: GameState, scene: SceneBuilder): void {
         { label: 'We\'ll see', handler: (st: GameState) => {
     scene.text('"I\'m not saying no, but we\'ll have to see about it first," you reply, a wry smirk on your face.');
     scene.text('"I\'ll take those odds," he continues to grin and leads you back to his place.');
-    scene.actions([{ label: 'Continue', goto: ['date_hangout', 'start', '\'disco\''] }]);
+    qspGoto(s, 'date_hangout', 'start', 'disco');
   } },
       ]);
     }
@@ -573,9 +584,9 @@ function enterBoysexOptions(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).npc_gentle_lover ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_sensual_lover ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_titslip'] }]);
+      qspGoto(s, 'pav_disco_outside', 'boysex_titslip');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_handjob'] }]);
+      qspGoto(s, 'pav_disco_outside', 'boysex_handjob');
     }
   } },
   ]);
@@ -614,19 +625,19 @@ function enterBoysexTitslip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoysexTitsuck(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['curr_action'] = 'titsuck';
+  ((s as any).temp = (s as any).temp ?? {})['curr_action'] = 'titsuck';
   scene.img('images/locations/pavlovsk/community/tits.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pops your nipple into his mouth and starts sucking, rolling his ton...
   scene.text(`${((s as any).npcdesc || '')} pops your nipple into his mouth and starts sucking, rolling his tongue across the tip and around your areola. His free hand releases your other breast from ' + iif(PCloDress > 0, 'your dress ', 'your top ') + 'to palm it, gently squeezing it in a pulsing pattern while he sucks on your other tit.`);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', goto: ['pav_disco_outside', 'sex_route', '\'tit_suck\''] },
+    { label: 'Continue', goto: ['pav_disco_outside', 'sex_route', 'tit_suck'] },
   ]);
   scene.build();
 }
 
 function enterBoysexHandjob(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['curr_action'] = 'handjob';
+  ((s as any).temp = (s as any).temp ?? {})['curr_action'] = 'handjob';
   if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.img('images/shared/sex/handjob/hj.jpg');
     // TODO-QSP: dynamic text: "Feel how hard I am for you," <<$npcdesc>> growls in your ear, taking your hand ...
@@ -666,9 +677,9 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
           scene.text(`You hear the sound of ${((s as any).npcdesc || '')}'s buckle coming loose. As you glance downward to confirm it, you feel a hand on your shoulder trying to push you down to your knees.`);
         }
       }
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'blowjob_pre'] }]);
+      qspGoto(s, 'pav_disco_outside', 'blowjob_pre');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'bend_over'] }]);
+      qspGoto(s, 'pav_disco_outside', 'bend_over');
     }
   } else {
     if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'pav_residential') {
@@ -684,7 +695,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>My parents aren\'t home tonight...</i>"');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
         ]);
@@ -697,7 +708,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
     scene.text('"How about you come back to my place instead?" you ask. "My housemates won\'t mind."');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the Meynold\'s house together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
         ]);
@@ -707,12 +718,13 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/handjob/hj.jpg');
     scene.text('You reach down his pants, grab hold of his erection and pull it out.');
     scene.text('"Why wait?" you grin, steadily stroking him.');
-  }, goto: ['pav_disco_sex', 'handjob'] },
+    qspGoto(s, 'pav_disco_sex', 'handjob');
+  } },
         { label: 'Sure', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOutsideImg(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You pull your clothes back into place before letting him drag you away.');
     scene.actions([
-      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
       ]);
@@ -729,7 +741,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>My parents aren\'t home tonight...</i>"');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
         ]);
@@ -742,7 +754,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
     scene.text('"How about you come back to my place instead?" you ask. "My housemates won\'t mind."');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the Meynold\'s house together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
         ]);
@@ -753,7 +765,8 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/handjob/hj.jpg');
     scene.text('You reach down his pants, grab hold of his erection and pull it out.');
     scene.text('"That\'s way too far," you grin, steadily stroking him.');
-  }, goto: ['pav_disco_sex', 'handjob'] },
+    qspGoto(s, 'pav_disco_sex', 'handjob');
+  } },
         { label: 'Sure', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOutsideImg(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).npc_car ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -762,7 +775,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
       scene.text('You pull your clothes back into place as you let him drag you away to catch a cab.');
     }
     scene.actions([
-      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
       ]);
@@ -781,7 +794,7 @@ function enterBlowjobPre(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wait," you stop suddenly, looking around. "I don\'t want to do this here. Would you wanna come back to my place instead?" you ask. "My housemates won\'t mind."');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the Meynold\'s house together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
     ]);
@@ -796,7 +809,7 @@ function enterBlowjobPre(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>My parents aren\'t home tonight...</i>"');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
       ]);
@@ -840,7 +853,7 @@ function enterBlowjobPre(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wait," you stop suddenly, looking around. "Not here. Maybe we could... go back to your place?"');
     scene.text('"That works for me," he grins. Then, pulling his pants back up, he rushes you to a nearby apartment complex, and you head inside.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
   ]);
@@ -858,7 +871,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
     scene.text('"How about you come back to my place instead?" you ask. "My housemates won\'t mind."');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the Meynold\'s house together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
     ]);
@@ -873,7 +886,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>My parents aren\'t home tonight...</i>"');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
       ]);
@@ -893,7 +906,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I don\'t want to have sex', handler: (st: GameState) => {
-    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['fuck'] = 2;
+    ((s as any).gdk = (s as any).gdk ?? {})['fuck'] = 2;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOutsideImg(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('"I just don\'t want to!"');
     if (((s as any).pav_disco_bj ?? 0)?.[String((s as any).npcID ?? 0)] >= ((s as any).totminut ?? 0) - 20) {
@@ -943,7 +956,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
         { label: 'Go with him', handler: (st: GameState) => {
     scene.text('"Well... a bed <i>does</i> sound nice," you smile. Taking that as acceptance, he pulls up his pants and grabs you by the arm, leading you back to a nearby apartment complex.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
       ]);
@@ -952,14 +965,14 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Bend over (sex)', goto: ['pav_disco_sex', 'insert'] },
-    { label: 'Let it happen (sex)', goto: ['pav_disco_sex', 'insert', '\'compliance\''] },
-    { label: 'Ask him to use a condom', goto: ['pav_disco_sex', 'insert', '\'condom_request\''] },
+    { label: 'Let it happen (sex)', goto: ['pav_disco_sex', 'insert', 'compliance'] },
+    { label: 'Ask him to use a condom', goto: ['pav_disco_sex', 'insert', 'condom_request'] },
     { label: 'Not here (suggest his place)', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
     scene.text('"Wait!" you cry, looking around. "Not here. Maybe we could... go back to your place?"');
     scene.text('"That works for me," he grins. Then, pulling his pants back up, he rushes you to a nearby apartment complex, and you head inside.');
     scene.actions([
-      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Continue', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
   ]);
@@ -1013,7 +1026,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/money.jpg');
     scene.text('You recoil in shock and disgust.');
     // TODO-QSP: '"I''m not a hooker!" you hiss. ' + iif(npc_prostitution_count[$npcID] = 0, '', '"I only did that wi...
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prostitution_offer'] = 500;
+    ((s as any).temp = (s as any).temp ?? {})['prostitution_offer'] = 500;
     if (((s as any).npc_prostitution_count ?? 0)?.[String((s as any).npcID ?? 0)] >= 5) {
       if (((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
         // TODO-QSP: dynamic text: "You let me fuck you for money a whole lot more than 'one' time," <<$npcdesc>> g...
@@ -1070,7 +1083,8 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"I said I\'m not a hooker!" you snarl and stomp off.');
-  }, goto: ['pav_disco_outside', 'exit_options'] },
+    qspGoto(s, 'pav_disco_outside', 'exit_options');
+  } },
       ]);
     }
     scene.actions([
@@ -1078,13 +1092,13 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/take_money.jpg');
     scene.text('A long moment goes by as you stare at the notes in his hand before temptation overcomes you and you snatch it from his fingers.');
     scene.text('"Fine," you sigh in resignation. "What do you want?"');
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'slut_accept_route', '\'paid\''] }]);
+    qspGoto(s, 'pav_disco_outside', 'slut_accept_route', 'paid');
   } },
       { label: 'Wryly accept', handler: (st: GameState) => {
     scene.img('images/shared/misc/take_money.jpg');
     scene.text('A long moment goes by with the two of you staring at each other before a you sigh in resignation.');
     scene.text('"Fine," you smile wryly as you take the notes from him. "I thought I might be able to outrun my rep but who am I kidding? What do you want?"');
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'slut_accept_route', '\'paid\''] }]);
+    qspGoto(s, 'pav_disco_outside', 'slut_accept_route', 'paid');
   } },
       { label: 'Do it for free', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOutsideImg(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1102,7 +1116,8 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"I\'m not going to do it for money," you smile wryly. "I\'m not a hooker, but that doesn\'t mean I\'m not down to have some fun. So, what do you want to do?"');
-  }, goto: ['pav_disco_outside', 'slut_accept_route'] },
+    qspGoto(s, 'pav_disco_outside', 'slut_accept_route');
+  } },
     ]);
   } },
   ]);
@@ -1145,9 +1160,9 @@ function enterSlutAcceptRoute(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Bend over', goto: ['pav_disco_sex', 'insert', '\'not_inside\''] },
+      { label: 'Bend over', goto: ['pav_disco_sex', 'insert', 'not_inside'] },
       { label: '"Just don\'t cum inside me"', goto: ['pav_disco_sex', 'insert'] },
-      { label: 'Ask him to use a condom', goto: ['pav_disco_sex', 'insert', '\'condom_request\''] },
+      { label: 'Ask him to use a condom', goto: ['pav_disco_sex', 'insert', 'condom_request'] },
     ]);
   }
   // TODO-QSP: end

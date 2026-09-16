@@ -6,14 +6,15 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  (s as any).boydesc2 = ((s as any).boydesc ?? 0);
   if ((!((s as any).podvalrape ?? 0))) {
     scene.text('You try to focus your view, to see where you are. It looks like a basement… there are no windows anywhere, and the room is rather dark. The guys push you down onto a dirty mattress in the room. Other than a lot of empty bottles and the mattress you\'re on, the room is empty. You guess this is where they often take girls they meet in the park.');
     // TODO-QSP: dynamic text: The <<$placerStringParameter['text_someone']>> are discussing among themselves: ...
     scene.text(`The ${((s as any).placerStringParameter ?? 0)?.['text_someone'] ?? ''} are discussing among themselves: "Alright guys, we got the slut here. I'm surprised she came so readily. Anyway… who gets to go first this time?"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     (s as any).podvalrape = 1;
     qspCall(s, 'sweat', 'add', 10);
     (s as any).guy = ((s as any).guy ?? 0) + (((s as any).placerParameter ?? 0)?.['number_of_man']);
@@ -24,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 10, 'group', 'sub');
     qspCall(s, 'arousal', 'vaginal', (-10), 'group', 'sub');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'curloc');
+    dynamicGoto(s, 'curloc');
   } },
     ]);
   } else {

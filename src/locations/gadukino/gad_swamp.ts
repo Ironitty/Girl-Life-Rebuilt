@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_swamp', 'start');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Swamp</h4></center>');
@@ -26,13 +27,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk to the hunters\' cabin (0:15)', handler: (st: GameState) => {
     if (((s as any).DayStage ?? 0) < 4) {
       if ((!(Math.floor(Math.random() * 10) + 0))) {
-        scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
+        qspGoto(s, 'gad_swamp_yard', 'start');
       } else {
         (s as any).swamp_stuck = 0;
-        scene.actions([{ label: 'Continue', goto: ['gad_swamp', 'stuck', '\'swamp\''] }]);
+        qspGoto(s, 'gad_swamp', 'stuck', 'swamp');
       }
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', '\'swamp\''] }]);
+      qspGoto(s, 'gad_forest_lost', 'wolves', 'swamp');
     }
   } },
     ]);
@@ -49,6 +50,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterStuck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_bushcraft ?? 0) < 80  &&  ((s as any).pcs_agil ?? 0) < 70  &&  ((s as any).pcs_stren ?? 0) < 70) {
     qspCall(s, 'core_library', 'setloc', 'gad_swamp', 'stuck');
+    (s as any).location_type = 'secluded';
     qspCall(s, 'gadukino_event', 'sound');
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Swamp</h4></center>');

@@ -1,25 +1,26 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'saveposition', '');
-  scene.actions([{ label: 'Continue', goto: ['adverts_manager', 'show'] }]);
+  qspGoto(s, 'adverts_manager', 'show');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) > 8) {
-    if (!(s as any).adv_chance) (s as any).adv_chance = {}; (s as any).adv_chance['guitar'] = 50;
+    ((s as any).adv_chance = (s as any).adv_chance ?? {})['guitar'] = 50;
   }
   // TODO-QSP: end
   scene.build();
@@ -27,6 +28,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'pav_commercial') {
+    (s as any).adv_locationImg = 'images/locations/shared/noticeboards/pav_commercial.jpg';
     if (((s as any).adv_pav_commercial ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
       (s as any).adv_location_result = 1;
     } else {
@@ -34,6 +36,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).loc ?? 0) === 'pav_commcenter') {
+      (s as any).adv_locationImg = 'images/locations/shared/noticeboards/pav_commcenter.jpg';
       if (((s as any).adv_pav_commcenter ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
         (s as any).adv_location_result = 1;
       } else {
@@ -41,6 +44,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).loc ?? 0) === 'city_industrial') {
+        (s as any).adv_locationImg = 'images/locations/shared/noticeboards/city_industrial.jpg';
         if (((s as any).adv_city_industrial ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
           (s as any).adv_location_result = 1;
         } else {
@@ -48,6 +52,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).loc ?? 0) === 'city_residential') {
+          (s as any).adv_locationImg = 'images/locations/shared/noticeboards/city_residential.jpg';
           if (((s as any).adv_city_residential ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
             (s as any).adv_location_result = 1;
           } else {
@@ -55,12 +60,14 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).loc ?? 0) === 'city_center') {
+            (s as any).adv_locationImg = 'images/locations/shared/noticeboards/city_citycenter.jpg';
             if (((s as any).adv_city_center ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
               (s as any).adv_location_result = 1;
             } else {
               (s as any).adv_location_result = 0;
             }
           } else {
+            (s as any).adv_locationImg = 'images/locations/shared/noticeboards/pav_residential.jpg';
             (s as any).adv_location_result = 2;
           }
         }
@@ -84,6 +91,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Noticeboard</b></center>');
+  (s as any).adv_Text = '<center>You look at the noticeboard to see if any advert will peak your interest.<br>';
   if (((s as any).adv_unknownCount ?? 0) === 0  &&  (!((s as any).adv_knownCount ?? 0))) {
     // TODO-QSP: $adv_Text += 'There is no advert today. Maybe I should come back next week?<br>'
   } else {
@@ -146,9 +154,9 @@ function enterAppearanceChance(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :appearance_loop
     if (((s as any).adv_chance ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] > (Math.floor(Math.random() * 100) + 0)) {
-      if (!(s as any).adv_appearance) (s as any).adv_appearance = {}; (s as any).adv_appearance[String((s as any).i ?? 0)] = 1;
+      ((s as any).adv_appearance = (s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 1;
     } else {
-      if (!(s as any).adv_appearance) (s as any).adv_appearance = {}; (s as any).adv_appearance[String((s as any).i ?? 0)] = 0;
+      ((s as any).adv_appearance = (s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 0;
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0)) {
@@ -160,6 +168,7 @@ function enterAppearanceChance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowAdverts(s: GameState, scene: SceneBuilder): void {
+  (s as any).adv_table_adverts = '<center><table>';
   (s as any).i = 1;
   // TODO-QSP: :show_adverts_loop
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckLocation(s, scene); (s as any).locArgs = __savedLocArgs; }

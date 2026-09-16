@@ -14,11 +14,11 @@ function enterRegularUpdate(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).dounspell ?? 0))) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateBodyMeasurement(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).temp_weight = qspFunc(s, 'body', 'CalcWeight2');
-    if (!(s as any).pcs_weight) (s as any).pcs_weight = {}; (s as any).pcs_weight[0] = ((s as any).temp_weight ?? 0) / 10;
-    if (!(s as any).pcs_weight) (s as any).pcs_weight = {}; (s as any).pcs_weight[1] = ((s as any).temp_weight ?? 0) % 10;
+    ((s as any).pcs_weight = (s as any).pcs_weight ?? {})[0] = ((s as any).temp_weight ?? 0) / 10;
+    ((s as any).pcs_weight = (s as any).pcs_weight ?? {})[1] = ((s as any).temp_weight ?? 0) % 10;
     (s as any).temp_bmi = qspFunc(s, 'body', 'CalcBMI2');
-    if (!(s as any).pcs_bmi) (s as any).pcs_bmi = {}; (s as any).pcs_bmi[0] = ((s as any).temp_bmi ?? 0) / 10;
-    if (!(s as any).pcs_bmi) (s as any).pcs_bmi = {}; (s as any).pcs_bmi[1] = ((s as any).temp_bmi ?? 0) % 10;
+    ((s as any).pcs_bmi = (s as any).pcs_bmi ?? {})[0] = ((s as any).temp_bmi ?? 0) / 10;
+    ((s as any).pcs_bmi = (s as any).pcs_bmi ?? {})[1] = ((s as any).temp_bmi ?? 0) % 10;
   }
   if (((s as any).pcs_skin ?? 0) > 1000) {
     (s as any).pcs_skin = 1000;
@@ -78,9 +78,9 @@ function enterCalcBMI2(s: GameState, scene: SceneBuilder): void {
 
 function enterCalcOptBodyMass(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 225;
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 225;
   }
-  (s as any).result = ((((s as any).pcs_hgt ?? 0) * ((s as any).pcs_hgt ?? 0) * ((s as any).ARGS ?? 0)[1]) - 2820000 - 70000 * (((s as any).pcs_hgt ?? 0) - 165)) / (550 * (60 + (((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0)));
+  (s as any).result = ((((s as any).pcs_hgt ?? 0) * ((s as any).pcs_hgt ?? 0) * ((s as any).locArgs?.[1] ?? 0)) - 2820000 - 70000 * (((s as any).pcs_hgt ?? 0) - 165)) / (550 * (60 + (((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0)));
   return;
   // TODO-QSP: end
   scene.build();
@@ -112,7 +112,7 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate_Hair(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate_PubesAndLeghair(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mc_inventory ?? 0)?.['scrunchies'] > 0  &&  (Math.floor(Math.random() * 100) + 1) <= 8) {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) - (1);
   }
   if (((s as any).skinDailyPenalty ?? 0)  < 0) {
     (s as any).skinDailyPenalty = 0;
@@ -157,9 +157,9 @@ function enterUpdate_Appearance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUpdateBodyImage(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['desc'] = qspFunc(s, 'body_structure', 'body_desc');
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bmi_desc'] = qspFunc(s, 'body_structure', 'bmi_desc');
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['img'] = qspFunc(s, 'body_structure', 'body_img');
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['desc'] = qspFunc(s, 'body_structure', 'body_desc');
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['bmi_desc'] = qspFunc(s, 'body_structure', 'bmi_desc');
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['img'] = qspFunc(s, 'body_structure', 'body_img');
   return;
   // TODO-QSP: end
   scene.build();
@@ -227,14 +227,14 @@ function enterUpdate_Hair(s: GameState, scene: SceneBuilder): void {
 function enterUpdate_PubesAndLeghair(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_pubecol ?? 0)[2] !== ((s as any).pcs_pubecol ?? 0)[0]) {
     if (((s as any).pcs_pubecol ?? 0)[3] > 0) {
-      if (!(s as any).pcs_pubecol) (s as any).pcs_pubecol = {}; (s as any).pcs_pubecol[3] = ((s as any).pcs_pubecol[3] ?? 0) - (1);
+      ((s as any).pcs_pubecol = (s as any).pcs_pubecol ?? {})[3] = ((s as any).pcs_pubecol[3] ?? 0) - (1);
     }
     if (((s as any).pcs_pubecol ?? 0)[3] === 0) {
-      if (!(s as any).pcs_pubecol) (s as any).pcs_pubecol = {}; (s as any).pcs_pubecol[2] = qspUntranslated(s, "pcs_pubecol[0]", { location: "body" });
+      ((s as any).pcs_pubecol = (s as any).pcs_pubecol ?? {})[2] = qspUntranslated(s, "pcs_pubecol[0]", { location: "body" });
     }
   }
   if (((s as any).pcs_pubes ?? 0) < 2) {
-    if (!(s as any).pcs_pubecol) (s as any).pcs_pubecol = {}; (s as any).pcs_pubecol[2] = qspUntranslated(s, "pcs_pubecol[0]", { location: "body" });
+    ((s as any).pcs_pubecol = (s as any).pcs_pubecol ?? {})[2] = qspUntranslated(s, "pcs_pubecol[0]", { location: "body" });
   }
   if (((s as any).age ?? 0) < 18  &&  (Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).pcs_leghair ?? 0) > 0) {
     (s as any).pcs_leghair = ((s as any).pcs_leghair ?? 0) - (1);
@@ -253,17 +253,17 @@ function enterUpdate_Teeth(s: GameState, scene: SceneBuilder): void {
     if (((s as any).teeth ?? 0)?.['smoked'] > 1) {
       (s as any).tempteeth = ((s as any).tempteeth ?? 0) + (1);
     }
-    (s as any).tempteeth = ((s as any).tempteeth ?? 0) - (qspUntranslated(s, "min(teeth['brushed'], 3)", { location: "body" }));
-    if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['degradation'] = ((s as any).teeth['degradation'] ?? 0) + (0);
-    if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['caffe_or_tea'] = 0;
-    if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['smoked'] = 0;
-    if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['brushed'] = 0;
+    (s as any).tempteeth = ((s as any).tempteeth ?? 0) - (Math.min(((s as any).teeth ?? 0)?.['brushed'], 3));
+    ((s as any).teeth = (s as any).teeth ?? {})['degradation'] = ((s as any).teeth['degradation'] ?? 0) + (Math.max(0, ((s as any).tempteeth ?? 0)));
+    ((s as any).teeth = (s as any).teeth ?? {})['caffe_or_tea'] = 0;
+    ((s as any).teeth = (s as any).teeth ?? {})['smoked'] = 0;
+    ((s as any).teeth = (s as any).teeth ?? {})['brushed'] = 0;
     if (((s as any).teeth ?? 0)?.['degradation'] > 60) {
-      if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['degradation'] = 0;
+      ((s as any).teeth = (s as any).teeth ?? {})['degradation'] = 0;
       (s as any).pcs_teeth = 0;
     } else {
       if (((s as any).teeth ?? 0)?.['degradation'] < 0) {
-        if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['degradation'] = 0;
+        ((s as any).teeth = (s as any).teeth ?? {})['degradation'] = 0;
       }
     }
   }
@@ -274,38 +274,38 @@ function enterUpdate_Teeth(s: GameState, scene: SceneBuilder): void {
 
 function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate_StatBuffs(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body_last'] = ((s as any).pcs_mass ?? 0)?.['body'];
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_last'] = ((s as any).pcs_mass ?? 0)?.['body'];
   if (((s as any).bodyresetflag ?? 0) === 1  ||  ((s as any).cheatVars ?? 0)?.['fat'] === 1) {
     (s as any).fat = 0;
   } else {
     if (((s as any).pregChem ?? 0) >= 800  &&  (((s as any).pregChem ?? 0) - 800)*(((s as any).pregChem ?? 0) - 800) >= ((s as any).bodyVars ?? 0)?.['pchem_next']) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['preg'] = ((s as any).pcs_mass['preg'] ?? 0) + (1);
-      if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['pchem_next'] = ((s as any).bodyVars['pchem_next'] ?? 0) + (1166400);
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['preg'] = ((s as any).pcs_mass['preg'] ?? 0) + (1);
+      ((s as any).bodyVars = (s as any).bodyVars ?? {})['pchem_next'] = ((s as any).bodyVars['pchem_next'] ?? 0) + (1166400);
     } else {
       if (((s as any).pcs_mass ?? 0)?.['preg'] > 0  &&  (((s as any).recovH ?? 0) <= ((s as any).bodyVars ?? 0)?.['recovH']  &&  (((s as any).pregChem ?? 0) < 800  ||  ((s as any).bodyVars ?? 0)?.['pchem_next'] - 1166400 >= (((s as any).pregChem ?? 0) - 800)*(((s as any).pregChem ?? 0) - 800)))) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['preg'] = ((s as any).pcs_mass['preg'] ?? 0) - (1);
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['preg'] = ((s as any).pcs_mass['preg'] ?? 0) - (1);
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
         }
         if (((s as any).pcs_mass ?? 0)?.['preg'] > 0) {
-          if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['pchem_next'] = ((s as any).bodyVars['pchem_next'] ?? 0) - (1166400);
-          if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['recovH_next'] = (((s as any).bodyVars ?? {})?.['recovH_next'] ?? 0) * ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0) - 1) / (((s as any).pcs_mass ?? {})?.['preg'] ?? 0);
+          ((s as any).bodyVars = (s as any).bodyVars ?? {})['pchem_next'] = ((s as any).bodyVars['pchem_next'] ?? 0) - (1166400);
+          ((s as any).bodyVars = (s as any).bodyVars ?? {})['recovH_next'] = (((s as any).bodyVars ?? {})?.['recovH_next'] ?? 0) * ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0) - 1) / (((s as any).pcs_mass ?? {})?.['preg'] ?? 0);
         }
       } else {
         if (((s as any).pcs_mass ?? 0)?.['preg'] <= 0) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['preg'] = 0;
-          if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['pchem_next'] = 0;
-          if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['recovH_next'] = 0;
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['preg'] = 0;
+          ((s as any).bodyVars = (s as any).bodyVars ?? {})['pchem_next'] = 0;
+          ((s as any).bodyVars = (s as any).bodyVars ?? {})['recovH_next'] = 0;
         }
       }
     }
     if (((s as any).pregChem ?? 0) >= 800) {
       if (((s as any).fat ?? 0) > (15 + ((s as any).vitalbuf ?? 0) / 20)) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
         (s as any).fat = 0;
       } else {
         if (((s as any).fat ?? 0) < -(10 + ((s as any).vitalbuf ?? 0) / 10)) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
           (s as any).fat = 0;
         } else {
           if (((s as any).fat ?? 0) < 0) {
@@ -317,11 +317,11 @@ function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).fat ?? 0) > (20 + ((s as any).vitalbuf ?? 0) / 10)) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
         (s as any).fat = 0;
       } else {
         if (((s as any).fat ?? 0) < -(5 + ((s as any).vitalbuf ?? 0) / 10)) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
           (s as any).fat = 0;
         } else {
           // TODO-QSP: fat /= 4
@@ -330,7 +330,7 @@ function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pcs_mass ?? 0)?.['body'] > 200) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = 200;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 200;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFindWaistToHipRatio(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFindBandToWaistRatio(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -338,14 +338,14 @@ function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRedistribute_Mass(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).pcs_mass ?? 0)?.['body'] < 1  &&  ((s as any).succubusflag ?? 0) === 1) {
     (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (1);
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (3);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (3);
   }
   if (((s as any).pcs_mass ?? 0)?.['body'] < 1  &&  ((s as any).fat ?? 0) >= 1) {
     if (((s as any).fat ?? 0) + ((s as any).pcs_mass ?? 0)?.['body'] >= 1) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = 1;
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 1;
       (s as any).fat = ((s as any).fat ?? 0) - (1 - (((s as any).pcs_mass ?? {})?.['body'] ?? 0));
     } else {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (((s as any).fat ?? 0));
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (((s as any).fat ?? 0));
       (s as any).fat = 0;
     }
   }
@@ -353,27 +353,27 @@ function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_stren ?? 0) + ((s as any).pcs_vital ?? 0) > 0) {
       qspCall(s, 'exp_deg', 'stren', 1000);
       qspCall(s, 'exp_deg', 'vital', 1000);
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = 1;
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 1;
     } else {
       qspCall(s, 'gameover', 'check', 3);
       // TODO-QSP: pl '<font color=red><b>You starved to death, but Cheat Mode keeps you Alive.</b></font>'
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = 1;
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 1;
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateVhips(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).temp_total_mass = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
   if (((s as any).temp_total_mass ?? 0) <= ((s as any).pcs_mass ?? 0)?.['body_message'] - 6) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['weight_warning'] = 1;
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body_message'] = ((s as any).temp_total_mass ?? 0);
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['weight_warning'] = 1;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_message'] = ((s as any).temp_total_mass ?? 0);
   } else {
     if (((s as any).temp_total_mass ?? 0) >= ((s as any).pcs_mass ?? 0)?.['body_message'] + 6) {
-      if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['weight_warning'] = 2;
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body_message'] = ((s as any).temp_total_mass ?? 0);
+      ((s as any).bodyVars = (s as any).bodyVars ?? {})['weight_warning'] = 2;
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_message'] = ((s as any).temp_total_mass ?? 0);
     }
   }
   (s as any).temp_bmi = qspFunc(s, 'body', 'CalcBMI2');
-  if (!(s as any).pcs_bmi) (s as any).pcs_bmi = {}; (s as any).pcs_bmi[0] = ((s as any).temp_bmi ?? 0) / 10;
-  if (!(s as any).pcs_bmi) (s as any).pcs_bmi = {}; (s as any).pcs_bmi[1] = ((s as any).temp_bmi ?? 0) % 10;
+  ((s as any).pcs_bmi = (s as any).pcs_bmi ?? {})[0] = ((s as any).temp_bmi ?? 0) / 10;
+  ((s as any).pcs_bmi = (s as any).pcs_bmi ?? {})[1] = ((s as any).temp_bmi ?? 0) % 10;
   if (((s as any).pcs_magik ?? 0) >= 5  &&  ((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  (!((s as any).magf2bdo ?? 0))) {
     if (((s as any).tits ?? 0) < 10  &&  ((s as any).pcs_mass ?? 0)?.['body'] > ((s as any).pcs_mass ?? 0)?.['body_last']  &&  ((s as any).pcs_bmi ?? 0) > 17) {
       if (((s as any).mgf2bnocnt ?? 0) < 3) {
@@ -420,18 +420,18 @@ function enterUpdateDailyBodyOther(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bodyVars ?? 0)?.['bust_other'] !== 0) {
     if (((s as any).daystart ?? 0) % 10 === 0) {
       if (((s as any).bodyVars ?? 0)?.['bust_other'] > 0) {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_other'] = ((s as any).bodyVars['bust_other'] ?? 0) - (1);
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_other'] = ((s as any).bodyVars['bust_other'] ?? 0) - (1);
       } else {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_other'] = ((s as any).bodyVars['bust_other'] ?? 0) + (1);
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_other'] = ((s as any).bodyVars['bust_other'] ?? 0) + (1);
       }
     }
   }
   if (((s as any).bodyVars ?? 0)?.['butt_other'] !== 0) {
     if (((s as any).daystart ?? 0) % 15 === 0) {
       if (((s as any).bodyVars ?? 0)?.['butt_other'] > 0) {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['butt_other'] = ((s as any).bodyVars['butt_other'] ?? 0) - (1);
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['butt_other'] = ((s as any).bodyVars['butt_other'] ?? 0) - (1);
       } else {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['butt_other'] = ((s as any).bodyVars['butt_other'] ?? 0) + (1);
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['butt_other'] = ((s as any).bodyVars['butt_other'] ?? 0) + (1);
       }
     }
   }
@@ -443,22 +443,22 @@ function enterUpdateDailyBodyOther(s: GameState, scene: SceneBuilder): void {
 function enterFindWaistToHipRatio(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_wratio = (2 * ((s as any).vitalbuf ?? 0) + ((s as any).strenbuf ?? 0) + ((s as any).agilbuf ?? 0)) / 4;
   if (((s as any).temp_wratio ?? 0) < 11) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['wratio'] = 85 + (11 - (((s as any).vitalbuf ?? 0) + ((s as any).strenbuf ?? 0) + ((s as any).agilbuf ?? 0)) / 3);
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['wratio'] = 85 + (11 - (((s as any).vitalbuf ?? 0) + ((s as any).strenbuf ?? 0) + ((s as any).agilbuf ?? 0)) / 3);
   } else {
     if (((s as any).temp_wratio ?? 0) < 20) {
-      if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['wratio'] = 85;
+      ((s as any).bodyVars = (s as any).bodyVars ?? {})['wratio'] = 85;
     } else {
       if (((s as any).temp_wratio ?? 0) < 35) {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['wratio'] = 85 - (((s as any).temp_wratio ?? 0) - 20) / 3;
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['wratio'] = 85 - (((s as any).temp_wratio ?? 0) - 20) / 3;
       } else {
         if (((s as any).temp_wratio ?? 0) < 55) {
-          if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['wratio'] = 80 - (((s as any).temp_wratio ?? 0) - 35) / 4;
+          ((s as any).bodyVars = (s as any).bodyVars ?? {})['wratio'] = 80 - (((s as any).temp_wratio ?? 0) - 35) / 4;
         } else {
           if (((s as any).temp_wratio ?? 0) < 80) {
-            if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['wratio'] = 75 - (((s as any).temp_wratio ?? 0) - 55) / 5;
+            ((s as any).bodyVars = (s as any).bodyVars ?? {})['wratio'] = 75 - (((s as any).temp_wratio ?? 0) - 55) / 5;
           } else {
             if (((s as any).temp_wratio ?? 0) >= 80) {
-              if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['wratio'] = 70;
+              ((s as any).bodyVars = (s as any).bodyVars ?? {})['wratio'] = 70;
             }
           }
         }
@@ -466,10 +466,10 @@ function enterFindWaistToHipRatio(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((((s as any).vitalbuf ?? 0) + ((s as any).strenbuf ?? 0) + ((s as any).agilbuf ?? 0)) / 3 > 100) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['wratio'] = ((s as any).bodyVars['wratio'] ?? 0) + ((2 * ((s as any).agilbuf ?? 0) - ((s as any).vitalbuf ?? 0) - ((s as any).strenbuf ?? 0)) / 10);
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['wratio'] = ((s as any).bodyVars['wratio'] ?? 0) + ((2 * ((s as any).agilbuf ?? 0) - ((s as any).vitalbuf ?? 0) - ((s as any).strenbuf ?? 0)) / 10);
   }
   if (((s as any).bodyVars ?? 0)?.['wratio'] < 65) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['wratio'] = 65;
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['wratio'] = 65;
   }
   return;
   scene.build();
@@ -478,15 +478,15 @@ function enterFindWaistToHipRatio(s: GameState, scene: SceneBuilder): void {
 function enterFindBandToWaistRatio(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_bratio = (2 * ((s as any).strenbuf ?? 0) + ((s as any).vitalbuf ?? 0) + ((s as any).agilbuf ?? 0)) / 4;
   if (((s as any).temp_bratio ?? 0) < 10) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bratio'] = 105;
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['bratio'] = 105;
   } else {
     if (((s as any).temp_bratio ?? 0) <= 23) {
-      if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bratio'] = 106;
+      ((s as any).bodyVars = (s as any).bodyVars ?? {})['bratio'] = 106;
     } else {
       if (((s as any).temp_bratio ?? 0) <= 80) {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bratio'] = 106 + (((s as any).temp_bratio ?? 0) - 23) / 3;
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['bratio'] = 106 + (((s as any).temp_bratio ?? 0) - 23) / 3;
       } else {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bratio'] = 125;
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['bratio'] = 125;
       }
     }
   }
@@ -497,18 +497,18 @@ function enterFindBandToWaistRatio(s: GameState, scene: SceneBuilder): void {
 function enterFindHipToHeightRatio(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_hratio = (2 * ((s as any).agilbuf ?? 0) + ((s as any).vitalbuf ?? 0) + ((s as any).strenbuf ?? 0)) / 4;
   if (((s as any).temp_hratio ?? 0) < 35) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['hratio'] = 60;
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['hratio'] = 60;
   } else {
     if (((s as any).temp_hratio ?? 0) < 45) {
-      if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['hratio'] = 59;
+      ((s as any).bodyVars = (s as any).bodyVars ?? {})['hratio'] = 59;
     } else {
       if (((s as any).temp_hratio ?? 0) < 60) {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['hratio'] = 58;
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['hratio'] = 58;
       } else {
         if (((s as any).temp_hratio ?? 0) < 80) {
-          if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['hratio'] = 57;
+          ((s as any).bodyVars = (s as any).bodyVars ?? {})['hratio'] = 57;
         } else {
-          if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['hratio'] = 56;
+          ((s as any).bodyVars = (s as any).bodyVars ?? {})['hratio'] = 56;
         }
       }
     }
@@ -532,12 +532,12 @@ function enterCalcSalocat(s: GameState, scene: SceneBuilder): void {
 function enterRedistribute_Mass(s: GameState, scene: SceneBuilder): void {
   if (((s as any).titreduc ?? 0) === 1) {
     if (((s as any).pcs_mass ?? 0)?.['bust_gen'] > ((s as any).pcs_mass ?? 0)?.['bust']) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_gen'] = (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + 2 - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) % 5;
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + 2 - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) % 5;
     }
   }
   if (((s as any).assreduc ?? 0) === 1) {
     if (((s as any).pcs_mass ?? 0)?.['butt_gen'] > ((s as any).pcs_mass ?? 0)?.['butt']) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_gen'] = (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) + 2 - (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) % 5;
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) + 2 - (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) % 5;
     }
   }
   if (((s as any).salobustdo ?? 0) === 0  &&  ((s as any).cheatVars ?? 0)?.['body_staticAssets'] === 0) {
@@ -552,23 +552,23 @@ function enterRedistribute_Mass(s: GameState, scene: SceneBuilder): void {
 
 function enterRedistribute_Mass_Inner(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).magf2bdo ?? 0) === 1  &&  ((s as any).daystart ?? 0) > ((s as any).pcs_mass ?? 0)?.['magic_day']  &&  ((s as any).pcs_mana ?? 0) >= ((s as any).manamax ?? 0) / 2) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_magic'] = ((s as any).bodyVars['bust_magic'] ?? 0) + (1);
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_magic'] = ((s as any).bodyVars['bust_magic'] ?? 0) + (1);
     if (((s as any).pcs_mass ?? 0)?.['body'] >= 80) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (3);
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (3);
     }
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['magic_day'] = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 8) + 7);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['magic_day'] = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 8) + 7);
     if (((s as any).bodyVars ?? 0)?.['bust_magic'] >= 2 + ((s as any).magtarcup ?? 0) * 5) {
       (s as any).magf2bdo = 0;
     }
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (Math.max(100, 2000 / ((s as any).pcs_magik ?? 0)));
   }
   if (((s as any).pcs_mass ?? 0)?.['body'] < 10) {
-    (s as any).temp_diff = qspUntranslated(s, "min(pcs_mass['bust'], 3)", { location: "body" });
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = ((s as any).pcs_mass['bust'] ?? 0) - (((s as any).temp_diff ?? 0));
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (((s as any).temp_diff ?? 0));
-    (s as any).temp_diff = qspUntranslated(s, "min(pcs_mass['butt'], 3)", { location: "body" });
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = ((s as any).pcs_mass['butt'] ?? 0) - (((s as any).temp_diff ?? 0));
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (((s as any).temp_diff ?? 0));
+    (s as any).temp_diff = Math.min(((s as any).pcs_mass ?? 0)?.['bust'], 3);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass['bust'] ?? 0) - (((s as any).temp_diff ?? 0));
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (((s as any).temp_diff ?? 0));
+    (s as any).temp_diff = Math.min(((s as any).pcs_mass ?? 0)?.['butt'], 3);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass['butt'] ?? 0) - (((s as any).temp_diff ?? 0));
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (((s as any).temp_diff ?? 0));
     return;
   }
   (s as any).temp_total_mass = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
@@ -576,18 +576,18 @@ function enterRedistribute_Mass_Inner(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mass_bust = ((((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) * ((s as any).temp_total_mass ?? 0)) / ((s as any).temp_tot_gen_mass ?? 0);
   if (((s as any).temp_total_mass ?? 0) >= ((s as any).temp_tot_gen_mass ?? 0) - 10  &&  ((s as any).pcs_mass ?? 0)?.['bust'] < ((s as any).pcs_mass ?? 0)?.['bust_gen']) {
     (s as any).temp_diff = Math.min((((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0), 2);
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = ((s as any).pcs_mass['bust'] ?? 0) + (((s as any).temp_diff ?? 0));
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (((s as any).temp_diff ?? 0));
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass['bust'] ?? 0) + (((s as any).temp_diff ?? 0));
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (((s as any).temp_diff ?? 0));
   } else {
     if (((s as any).temp_total_mass ?? 0) >= ((s as any).temp_tot_gen_mass ?? 0) - 10  &&  ((s as any).temp_total_mass ?? 0) <= ((s as any).temp_tot_gen_mass ?? 0)  &&  ((s as any).pcs_mass ?? 0)?.['bust'] === ((s as any).pcs_mass ?? 0)?.['bust_gen']) {
     } else {
       if (((s as any).temp_mass_bust ?? 0) > ((s as any).pcs_mass ?? 0)?.['bust']) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = ((s as any).pcs_mass['bust'] ?? 0) + (1);
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass['bust'] ?? 0) + (1);
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
       } else {
         if (((s as any).temp_mass_bust ?? 0) < ((s as any).pcs_mass ?? 0)?.['bust']  &&  ((s as any).pcs_mass ?? 0)?.['bust'] > 0) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = ((s as any).pcs_mass['bust'] ?? 0) - (1);
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass['bust'] ?? 0) - (1);
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
         }
       }
     }
@@ -595,18 +595,18 @@ function enterRedistribute_Mass_Inner(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mass_ass = ((((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0) * ((s as any).temp_total_mass ?? 0)) / ((s as any).temp_tot_gen_mass ?? 0);
   if (((s as any).temp_total_mass ?? 0) >= ((s as any).temp_tot_gen_mass ?? 0) - 10  &&  ((s as any).pcs_mass ?? 0)?.['butt'] < ((s as any).pcs_mass ?? 0)?.['butt_gen']) {
     (s as any).temp_diff = Math.min((((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0) - (((s as any).pcs_mass ?? {})?.['butt'] ?? 0), 2);
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = ((s as any).pcs_mass['butt'] ?? 0) + (((s as any).temp_diff ?? 0));
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (((s as any).temp_diff ?? 0));
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass['butt'] ?? 0) + (((s as any).temp_diff ?? 0));
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (((s as any).temp_diff ?? 0));
   } else {
     if (((s as any).temp_total_mass ?? 0) >= ((s as any).temp_tot_gen_mass ?? 0) - 10  &&  ((s as any).temp_total_mass ?? 0) <= ((s as any).temp_tot_gen_mass ?? 0)  &&  ((s as any).pcs_mass ?? 0)?.['butt'] === ((s as any).pcs_mass ?? 0)?.['butt_gen']) {
     } else {
       if (((s as any).temp_mass_ass ?? 0) > ((s as any).pcs_mass ?? 0)?.['butt']) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = ((s as any).pcs_mass['butt'] ?? 0) + (1);
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass['butt'] ?? 0) + (1);
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
       } else {
         if (((s as any).temp_mass_ass ?? 0) < ((s as any).pcs_mass ?? 0)?.['butt']  &&  ((s as any).pcs_mass ?? 0)?.['butt'] > 0) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = ((s as any).pcs_mass['butt'] ?? 0) - (1);
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass['butt'] ?? 0) - (1);
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (1);
         }
       }
     }
@@ -618,18 +618,18 @@ function enterRedistribute_Mass_Inner(s: GameState, scene: SceneBuilder): void {
 
 function enterRedistribute_MassSetMessage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bodyresetflag ?? 0) !== 0) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
     return;
   }
   if (((s as any).pcs_mass ?? 0)?.['bust'] > ((s as any).pcs_mass ?? 0)?.['bust_message'] + 3) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
     if (((s as any).pcs_mass ?? 0)?.['butt'] > ((s as any).pcs_mass ?? 0)?.['butt_message'] + 3) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
       scene.text('<b>Your breasts and ass seem fuller</b>');
     } else {
       if (((s as any).pcs_mass ?? 0)?.['butt'] < ((s as any).pcs_mass ?? 0)?.['butt_message'] - 3) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
         scene.text('<b>Your breasts seem fuller and ass seems to be getting smaller</b>');
       } else {
         scene.text('<b>Your breasts seem fuller</b>');
@@ -637,13 +637,13 @@ function enterRedistribute_MassSetMessage(s: GameState, scene: SceneBuilder): vo
     }
   } else {
     if (((s as any).pcs_mass ?? 0)?.['bust'] < ((s as any).pcs_mass ?? 0)?.['bust_message'] - 3) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
       if (((s as any).pcs_mass ?? 0)?.['butt'] > ((s as any).pcs_mass ?? 0)?.['butt_message'] + 3) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
         scene.text('<b>Your breasts seem to be getting smaller and your ass seems fuller</b>');
       } else {
         if (((s as any).pcs_mass ?? 0)?.['butt'] < ((s as any).pcs_mass ?? 0)?.['butt_message'] - 3) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
           scene.text('<b>Your breasts and ass seem to be getting smaller</b>');
         } else {
           scene.text('<b>Your breasts seem to be getting smaller</b>');
@@ -651,11 +651,11 @@ function enterRedistribute_MassSetMessage(s: GameState, scene: SceneBuilder): vo
       }
     } else {
       if (((s as any).pcs_mass ?? 0)?.['butt'] > ((s as any).pcs_mass ?? 0)?.['butt_message'] + 3) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
         scene.text('<b>Your ass seems fuller</b>');
       } else {
         if (((s as any).pcs_mass ?? 0)?.['butt'] < ((s as any).pcs_mass ?? 0)?.['butt_message'] - 3) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
           scene.text('<b>Your ass seem to be getting smaller</b>');
         }
       }
@@ -670,29 +670,29 @@ function enterResetMassDistribution(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_total_mass = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
   (s as any).temp_total_gen_mass = 60 + (((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0);
   if (((s as any).temp_total_mass ?? 0) >= ((s as any).temp_total_gen_mass ?? 0) - 10  &&  ((s as any).temp_total_mass ?? 0) <= ((s as any).temp_total_gen_mass ?? 0)) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = ((s as any).pcs_mass ?? 0)?.['butt_gen'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass ?? 0)?.['butt_gen'];
   } else {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = ((((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) * ((s as any).temp_total_mass ?? 0)) / ((s as any).temp_total_gen_mass ?? 0);
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = ((((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0) * ((s as any).temp_total_mass ?? 0)) / ((s as any).temp_total_gen_mass ?? 0);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) * ((s as any).temp_total_mass ?? 0)) / ((s as any).temp_total_gen_mass ?? 0);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0) * ((s as any).temp_total_mass ?? 0)) / ((s as any).temp_total_gen_mass ?? 0);
   }
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).temp_total_mass ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) - (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body_message'] = ((s as any).temp_total_mass ?? 0);
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vhips'] = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).temp_total_mass ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) - (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_message'] = ((s as any).temp_total_mass ?? 0);
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterResetPregMass(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['pchem_next'] = 0;
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['preg'] = 0;
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['pchem_next'] = 0;
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['preg'] = 0;
   // TODO-QSP: :set_preg_body_loop
   if (((s as any).pregChem ?? 0) >= 800  &&  (((s as any).pregChem ?? 0) - 800) * (((s as any).pregChem ?? 0) - 800) >= ((s as any).bodyVars ?? 0)?.['pchem_next']) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['pchem_next'] = ((s as any).bodyVars['pchem_next'] ?? 0) + (1166400 & 1080 * 1080);
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['preg'] = ((s as any).pcs_mass['preg'] ?? 0) + (1);
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['pchem_next'] = ((s as any).bodyVars['pchem_next'] ?? 0) + (1166400 & 1080 * 1080);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['preg'] = ((s as any).pcs_mass['preg'] ?? 0) + (1);
     // TODO-QSP: jump 'set_preg_body_loop'
   }
   return;
@@ -701,25 +701,25 @@ function enterResetPregMass(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetMassDistributionUsingBody(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = qspUntranslated(s, "ARGS[1]", { location: "body" });
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).locArgs?.[1] ?? 0) >= 50  &&  ((s as any).locArgs?.[1] ?? 0) <= 60) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = ((s as any).pcs_mass ?? 0)?.['butt_gen'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass ?? 0)?.['butt_gen'];
   } else {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = ((((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) * (((s as any).pcs_mass ?? {})?.['body'] ?? 0)) / 60;
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = ((((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0) * (((s as any).pcs_mass ?? {})?.['body'] ?? 0)) / 60;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) * (((s as any).pcs_mass ?? {})?.['body'] ?? 0)) / 60;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0) * (((s as any).pcs_mass ?? {})?.['body'] ?? 0)) / 60;
   }
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vhips'] = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body_message'] = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_message'] = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
   if ((!((s as any).dounspell ?? 0))) {
     (s as any).temp_weight = qspFunc(s, 'body', 'CalcWeight2');
-    if (!(s as any).pcs_weight) (s as any).pcs_weight = {}; (s as any).pcs_weight[0] = ((s as any).temp_weight ?? 0) / 10;
-    if (!(s as any).pcs_weight) (s as any).pcs_weight = {}; (s as any).pcs_weight[1] = ((s as any).temp_weight ?? 0) % 10;
+    ((s as any).pcs_weight = (s as any).pcs_weight ?? {})[0] = ((s as any).temp_weight ?? 0) / 10;
+    ((s as any).pcs_weight = (s as any).pcs_weight ?? {})[1] = ((s as any).temp_weight ?? 0) % 10;
     (s as any).temp_bmi = qspFunc(s, 'body', 'CalcBMI2');
-    if (!(s as any).pcs_bmi) (s as any).pcs_bmi = {}; (s as any).pcs_bmi[0] = ((s as any).temp_bmi ?? 0) / 10;
-    if (!(s as any).pcs_bmi) (s as any).pcs_bmi = {}; (s as any).pcs_bmi[1] = ((s as any).temp_bmi ?? 0) % 10;
+    ((s as any).pcs_bmi = (s as any).pcs_bmi ?? {})[0] = ((s as any).temp_bmi ?? 0) / 10;
+    ((s as any).pcs_bmi = (s as any).pcs_bmi ?? {})[1] = ((s as any).temp_bmi ?? 0) % 10;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateVhips(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'AppearanceSystem', 'UpdateBaseAppearance');
@@ -733,19 +733,19 @@ function enterSetMassDistributionUsingBody(s: GameState, scene: SceneBuilder): v
 function enterUpdateVhips(s: GameState, scene: SceneBuilder): void {
   (s as any).vhtmp = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
   if (((s as any).bodyresetflag ?? 0) === 1) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vhips'] = ((s as any).vhtmp ?? 0);
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((s as any).vhtmp ?? 0);
   } else {
     if (((s as any).vhtmp ?? 0) < ((s as any).bodyVars ?? 0)?.['vhips']) {
-      if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vhips'] = ((s as any).bodyVars['vhips'] ?? 0) - (1);
+      ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((s as any).bodyVars['vhips'] ?? 0) - (1);
     } else {
       if (((s as any).vhtmp ?? 0) > ((s as any).bodyVars ?? 0)?.['vhips']) {
-        if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vhips'] = ((s as any).bodyVars['vhips'] ?? 0) + (1);
+        ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((s as any).bodyVars['vhips'] ?? 0) + (1);
       }
     }
   }
   (s as any).temp_vhips2 = (((s as any).bodyVars ?? {})?.['vhips'] ?? 0) - (((s as any).pcs_hgt ?? 0) * (72 - (((s as any).bodyVars ?? {})?.['hratio'] ?? 0))) / 100;
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vofat'] = Math.max(0, ((s as any).temp_vhips2 ?? 0) / 2);
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vhips'] = ((s as any).bodyVars['vhips'] ?? 0) - (2 * (((s as any).bodyVars ?? {})?.['vofat'] ?? 0));
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['vofat'] = Math.max(0, ((s as any).temp_vhips2 ?? 0) / 2);
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((s as any).bodyVars['vhips'] ?? 0) - (2 * (((s as any).bodyVars ?? {})?.['vofat'] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -770,7 +770,7 @@ function enterSkinGain(s: GameState, scene: SceneBuilder): void {
 
 function enterSkinLoss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'Smoke'  &&  ((s as any).bodyVars ?? 0)?.['smoke_skin_penalty_day'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['smoke_skin_penalty_day'] = ((s as any).daystart ?? 0);
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['smoke_skin_penalty_day'] = ((s as any).daystart ?? 0);
     (s as any).skinDailyPenalty = ((s as any).skinDailyPenalty ?? 0) + (1);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'MakeUpSleep') {
@@ -800,7 +800,7 @@ function enterSoftreset(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate_Appearance(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateBodyImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).bodyresetflag = 0;
-  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['weight_warning'] = 0;
+  ((s as any).bodyVars = (s as any).bodyVars ?? {})['weight_warning'] = 0;
   return;
   // TODO-QSP: end
   scene.build();
@@ -810,7 +810,7 @@ function enterHardreset(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dounspell ?? 0) !== 1  ||  (!((s as any).dounsplkil ?? 0))) {
     scene.text('If you\'re seeing this, something odd happened. Please make a bug report that the body shape hard reset improperly triggered and what you were doing.');
   } else {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = 12;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 12;
     (s as any).fat = 0;
     (s as any).agilbuf = ((s as any).pcs_agil ?? 0);
     (s as any).strenbuf = ((s as any).pcs_stren ?? 0);
@@ -819,33 +819,33 @@ function enterHardreset(s: GameState, scene: SceneBuilder): void {
     (s as any).bodyresetflag = 1;
     (s as any).normbuffpick = (-1);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate_Body(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = 60 + (2 * ((s as any).pcs_hips ?? 0)) - (((s as any).pcs_hgt ?? 0) * (((s as any).bodyVars ?? {})?.['hratio'] ?? 0)) / 50;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 60 + (2 * ((s as any).pcs_hips ?? 0)) - (((s as any).pcs_hgt ?? 0) * (((s as any).bodyVars ?? {})?.['hratio'] ?? 0)) / 50;
     if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === 0) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_gen'] = 20;
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 20;
     }
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vhips'] = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
     if (((s as any).pcs_mass ?? 0)?.['bust_gen'] === 0) {
       if (((s as any).pcs_mass ?? 0)?.['bust'] >= 27) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_gen'] = 27;
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 27;
       } else {
         if (((s as any).pcs_mass ?? 0)?.['bust'] > 0) {
-          if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_gen'] = 2 + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) % 5;
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 2 + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) % 5;
         } else {
           if (((s as any).bodyVars ?? 0)?.['bust_silicone'] >= 20) {
-            if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_gen'] = 12;
-            if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = 12;
-            if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_silicone'] = ((s as any).bodyVars['bust_silicone'] ?? 0) - (10);
+            ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 12;
+            ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = 12;
+            ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_silicone'] = ((s as any).bodyVars['bust_silicone'] ?? 0) - (10);
           }
         }
       }
     }
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body_message'] = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_message'] = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
     qspCall(s, 'body', 'reset_preg_mass');
     (s as any).bodyresetflag = 0;
     (s as any).normbuffpick = 0;
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['weight_warning'] = 0;
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['weight_warning'] = 0;
     (s as any).magf2bdo = 0;
     (s as any).newbdsp = 1;
     (s as any).dounspell = 0;
@@ -860,10 +860,10 @@ function enterHardreset(s: GameState, scene: SceneBuilder): void {
 
 function enterInitial(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_mass ?? 0)?.['bust_gen'] === 0) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_gen'] = 12;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 12;
   }
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === 0) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_gen'] = 20;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 20;
   }
   // TODO-QSP: gs 'body', 'Set_mass_distribution_using_body', pcs_mass['body']
   (s as any).strenbuf = ((s as any).pcs_stren ?? 0);
@@ -876,8 +876,8 @@ function enterInitial(s: GameState, scene: SceneBuilder): void {
   (s as any).magf2bdo = 0;
   (s as any).newbdsp = 1;
   (s as any).temp_bmi = qspFunc(s, 'body', 'CalcBMI2');
-  if (!(s as any).pcs_bmi) (s as any).pcs_bmi = {}; (s as any).pcs_bmi[0] = ((s as any).temp_bmi ?? 0) / 10;
-  if (!(s as any).pcs_bmi) (s as any).pcs_bmi = {}; (s as any).pcs_bmi[1] = ((s as any).temp_bmi ?? 0) % 10;
+  ((s as any).pcs_bmi = (s as any).pcs_bmi ?? {})[0] = ((s as any).temp_bmi ?? 0) / 10;
+  ((s as any).pcs_bmi = (s as any).pcs_bmi ?? {})[1] = ((s as any).temp_bmi ?? 0) % 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate_Appearance(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateBodyImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;

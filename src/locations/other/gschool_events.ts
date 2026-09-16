@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -259,11 +259,11 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
 function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).break_rand ?? 0)[1] + (Math.floor(Math.random() * 6) + 5) < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50) {
-    if (!(s as any).break_rand) (s as any).break_rand = {}; (s as any).break_rand[1] = ((s as any).daystart ?? 0);
+    ((s as any).break_rand = (s as any).break_rand ?? {})[1] = ((s as any).daystart ?? 0);
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['gossips', 'school', '\'boys_slutrep\''] }]);
+      qspGoto(s, 'gossips', 'school', 'boys_slutrep');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gossips', 'school', '\'girls_slutrep\''] }]);
+      qspGoto(s, 'gossips', 'school', 'girls_slutrep');
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -290,9 +290,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/events/skirtupfront.jpg');
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       qspCall(s, 'flash', 'panties', 'indoors', 1, 1);
@@ -325,9 +325,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).school_static_num ?? 0), (-5));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     // TODO-QSP: dynamic text: The moment the hand makes contact with your ass, you jump mid-stride and squeal ...
@@ -351,8 +351,8 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/events/tease.jpg');
     // TODO-QSP: dynamic text: You turn to face <<$rand_boy>>, who is standing there with a huge grin on his fa...
@@ -366,9 +366,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ignore it', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     scene.img('images/locations/pavlovsk/school/events/ignore.jpg');
     scene.text('After a brief shock and a slight jump on the moment of impact, you decide that such an act does not even dignify a response from you and continue walking as if nothing happened, although your cheeks are visibly flushed.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -386,7 +386,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       if (((s as any).break_rand ?? 0) <= 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 200  &&  ((s as any).grupTipe ?? 0) !== 4) {
         scene.img('images/characters/shared/headshots_main/big9.jpg');
         if (((s as any).AlbinaQW ?? 0)?.['Friends'] >= 1  &&  ((s as any).SchoolGossip ?? 0) > 0  &&  (!(Math.floor(Math.random() * 2) + 0))) {
-          if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Protect'] = 1;
+          ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Protect'] = 1;
           (s as any).minut = ((s as any).minut ?? 0) + 60;
           // TODO-QSP: dynamic text: During the break, you're approached by Vitek and some other gopniks. "I know why...
           scene.text(`During the break, you're approached by Vitek and some other gopniks. "I know why you look so glum, ${((s as any).pcs_nickname || '')}. You miss our cocks! Don't worry, you can come with us and we'll give you all the dick you want."`);
@@ -413,7 +413,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'fame', 'pav', 'sex', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-5));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     scene.text('"Let me go or I\'ll scream! Then you\'ll have to explain to the teachers what you were trying to do to me!" you say, causing Vitek to suddenly grab you by the throat and slam you up against the wall, squeezing until you can\'t breathe.');
     scene.text('"You threatening me, bitch? I should beat the shit out of you for that!" he growls as you struggle in his grip, but his friends notice everyone starting to stare and grab him by the arm.');
     scene.text('"Come on Vitek, we can deal with the bitch later! Let\'s go!" He jerks free from them, but does let you go and you collapse to the floor, gasping for air.');
@@ -433,7 +433,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck Vitek\'s dick', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 50;
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A9'] = 1;
     qspCall(s, 'cum_call', 'mouth_swallow', 'A9', 1);
     qspCall(s, 'arousal', 'bj', 10);
     qspCall(s, 'arousal', 'end');
@@ -493,7 +493,8 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'fame', 'pav', 'sex', 5);
     }
-  }, goto: ['gschool_sex', 'lunch_bj'] },
+    qspGoto(s, 'gschool_sex', 'lunch_bj');
+  } },
           ]);
         } else {
           if (((s as any).break_rand ?? 0) <= 9  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 200  &&  ((s as any).soniaQW ?? 0)?.['slut'] >= 3) {
@@ -555,7 +556,8 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'fame', 'pav', 'sex', 5);
     }
-  }, goto: ['gschool_sex', 'lunch_sex'] },
+    qspGoto(s, 'gschool_sex', 'lunch_sex');
+  } },
     ]);
   } },
               ]);
@@ -578,9 +580,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A152', (-5));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     if (((s as any).mesec ?? 0) > 0) {
       scene.text('It\'s bad enough he did it, but it\'s worse because you\'re on your period. "You fucking pervert!" you shout angrily and slap him across the face as hard as you can.');
@@ -610,9 +612,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A152', (-10));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy8.jpg');
     scene.text('You kick Feofan in the balls, sending him and all of his classmates the message that you will not put up with this kind of behavior.');
     scene.text('You watch him writhe in pain on the floor for a second before collecting your things and making your way to your next class.');
@@ -634,10 +636,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A152', 5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     qspCall(s, 'arousal', 'flash', (-5));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
@@ -663,10 +665,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (50);
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A152', 3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy4.jpg');
     scene.text('You\'re so horny you decide to tease him and see if you can push him into doing more. You put your finger in your mouth and give him a flirty smirk.');
@@ -688,10 +690,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A152', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/characters/shared/headshots_main/big152.jpg');
     scene.text('You turn away and keep walking, ignoring what just happened.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -728,9 +730,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A149', (-5));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     if (((s as any).mesec ?? 0) > 0) {
       scene.text('It\'s bad enough he did it, but it\'s worse because you\'re on your period. "You fucking pervert!" you shout angrily and slap him across the face as hard as you can. You shake the stinging out of your hand while he clutches his cheek in agony, the outline of your hand clearly visible. That\'s going to leave a bruise.');
@@ -759,9 +761,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A149', (-10));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy8.jpg');
     scene.text('You kick Lazar in the balls, sending him and all of his classmates the message that you will not put up with this kind of behavior.');
     scene.text('You watch him writhe in pain on the floor for a second before collecting your things and making your way to your next class.');
@@ -783,10 +785,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A149', 5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     qspCall(s, 'arousal', 'flash', (-5));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
@@ -813,10 +815,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (50);
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A149', 3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy4.jpg');
     scene.text('You\'re so horny you decide to tease him and see if you can push him into doing more. You put your finger in your mouth and give him a flirty smirk.');
@@ -838,10 +840,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A149', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/characters/shared/headshots_main/big149.jpg');
     scene.text('You turn away and keep walking, ignoring what just happened.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -873,9 +875,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A157', (-5));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'pain', '', 4, 'cheeks', 'slap');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     if (((s as any).mesec ?? 0) > 0) {
@@ -907,10 +909,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A157', 5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     qspCall(s, 'arousal', 'flash', (-5));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
@@ -937,10 +939,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (50);
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A157', 3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy4.jpg');
     scene.text('You\'re so horny you decide to tease him and see if you can push him into doing more. You put your finger in your mouth and give him a flirty smirk.');
@@ -962,10 +964,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
                     scene.actions([
                       { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A157', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/characters/shared/headshots_main/big157.jpg');
     scene.text('You turn away from him and keep walking, ignoring what just happened.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1001,10 +1003,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'socialgroup_setting_boys', 3, 3, 0, 3, 3, 0);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (4);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (6);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (4);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (6);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'arousal', 'flash', (-5));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
@@ -1032,10 +1034,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (50);
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'socialgroup_setting_boys', 2, 2, 0, 2, 2, 0);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'fame', 'pav', 'sex', 2);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy4.jpg');
     scene.text('You\'re so horny you decide to tease them and see if you can push them into doing more. You put your finger in your mouth and give them a flirty smirk.');
@@ -1056,10 +1058,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
                       }
                       scene.actions([
                         { label: 'Give them a derogatory look', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/pc/reactions/glare.jpg');
     scene.text('You look at the guys and give them the stink eye, then turn away and keep walking, ignoring what just happened.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1256,7 +1258,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
                                                 scene.actions([
                                                   { label: 'Ignore it', goto: ['gschool_events', 'leave_break_events2'] },
                                                   { label: 'Avoid eye contact', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/events/nastymessage2.jpg');
     scene.text('Keeping your eyes on the floor, you try to walk by but she notices you.');
     // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. Somebody took the artwork off your locker, so I added it...
@@ -1265,7 +1267,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
                                                   { label: 'Yell at her', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
     scene.img('images/characters/shared/headshots_main/big18.jpg');
     scene.text('You head straight at her. "What the fuck, Christina?!" you yell, causing other students to start drifting in your direction, sensing a fight is about to happen.');
     // TODO-QSP: dynamic text: "Oh, hey <<$pcs_nickname>>. Somebody took the artwork off your locker, so I adde...
@@ -1344,10 +1346,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
                                                             scene.text('You\'re sure they\'re enjoying making the other students lives harder by just being in their way.');
                                                           } else {
                                                             if (((s as any).break_rand ?? 0) <= 35  &&  ((s as any).month ?? 0) !== 9  &&  ((s as any).cheerleaders_on ?? 0) === 1  &&  ((s as any).cheerleadingQW ?? 0)?.['quest_stage'] === 0  &&  ((s as any).cheerleadingQW ?? 0)?.['gossip'] === 4  &&  ((s as any).cheerleadingQW ?? 0)?.['gossip_day'] < ((s as any).daystart ?? 0)) {
-                                                              scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'poster'] }]);
+                                                              qspGoto(s, 'gschool_cheerleading', 'poster');
                                                             } else {
                                                               if (((s as any).break_rand ?? 0) <= 35  &&  ((s as any).cheerleaders_on ?? 0) === 1  &&  ((s as any).cheerleadingQW ?? 0)?.['quest_stage'] === -1  &&  ((s as any).cheerleadingQW ?? 0)?.['reject'] + 30 >= ((s as any).daystart ?? 0)) {
-                                                                scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'poster_repeat'] }]);
+                                                                qspGoto(s, 'gschool_cheerleading', 'poster_repeat');
                                                               } else {
                                                                 if (((s as any).break_rand ?? 0) <= 36 + ((s as any).lernHome ?? 0)*2 + ((s as any).petkaQW ?? 0)?.['homework']*(Math.floor(Math.random() * 11) + 10)  &&  ((s as any).petka_homework_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).week ?? 0) > 1) {
                                                                   (s as any).petka_homework_day = ((s as any).daystart ?? 0);
@@ -1375,7 +1377,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
                                                                     { label: 'Leave', goto: ['gschool_events', 'leave_break_events2'] },
                                                                   ]);
                                                                 } else {
-                                                                  scene.actions([{ label: 'Continue', goto: ['gschool_events', 'leave_break_events2'] }]);
+                                                                  qspGoto(s, 'gschool_events', 'leave_break_events2');
                                                                 }
                                                               }
                                                             }
@@ -1421,16 +1423,16 @@ function enterLeaveBreakEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterLeaveBreakEvents2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).eventtype ?? 0) === 'before_school') {
-    scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'morning'] }]);
+    qspGoto(s, 'gschool_lessons', 'morning');
   } else {
     if (((s as any).eventtype ?? 0) === 'lunch') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'lunch'] }]);
+      qspGoto(s, 'gschool_lunch', 'lunch');
     } else {
       if (((s as any).eventtype ?? 0) === 'long_break') {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'break'] }]);
+        qspGoto(s, 'gschool_lunch', 'break');
       } else {
         if (((s as any).eventtype ?? 0) === 'after_school') {
-          scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+          qspGoto(s, 'gschool_grounds', 'main');
         }
       }
     }
@@ -1442,7 +1444,7 @@ function enterLeaveBreakEvents2(s: GameState, scene: SceneBuilder): void {
 function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).christinaQW ?? 0)?.['subpath'] === 0  &&  ((s as any).christinaQW ?? 0)?.['blackmail'] === 0  &&  ((s as any).christinaQW ?? 0)?.['fight'] === 0  &&  (Math.floor(Math.random() * 4) + 1) === 4) {
-    scene.actions([{ label: 'Continue', goto: ['Zvereva_events', 'christina_bu_2'] }]);
+    qspGoto(s, 'Zvereva_events', 'christina_bu_2');
   } else {
     (s as any).break_rand = Math.floor(Math.random() * 32) + 1;
     if (((s as any).break_rand ?? 0) === 1) {
@@ -1469,7 +1471,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
           { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A143', (-2));
     scene.img('images/locations/pavlovsk/school/events/afterschool/alyona2.jpg');
     scene.text('You shake your head and don\'t take the offered bottle. "No thanks."');
@@ -1484,7 +1486,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take a drink', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 1);
     scene.img('images/pc/activities/drinking/alcohol.jpg');
     scene.text('You take the offered bottle and take a swig of it. This is some of the cheapest vodka you\'ve ever tasted and it burns as it goes down.');
@@ -1517,7 +1519,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take another swig', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A143', 2);
     scene.img('images/locations/pavlovsk/school/events/afterschool/alyona3.jpg');
     scene.text('You take the bottle and take another swig. It burns a little less this time. "If I drink much more of this, I won\'t be able to walk home!"');
@@ -1815,11 +1817,11 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'mood', 'raise', 'small');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (2);
     if (((s as any).grupTipe ?? 0) === 4) {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     }
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/afterschool/upset.jpg');
@@ -1871,7 +1873,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
                                   { label: 'Back off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (2);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/lunch/buttflash.mp4');
     scene.text('You snort at him and look at his friends before looking back at him. ');
@@ -1885,7 +1887,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
                               }
                               scene.actions([
                                 { label: 'Go with them', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'fame', 'pav', 'sex', 2);
     scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
     scene.text('You agree and they lead you to the men\'s room, where they all crowd around you in a circle and unzip their pants.');
@@ -2003,7 +2005,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
                                     { label: 'Take a peek', goto: ['gschool_events', 'afterschool_classroom_events'] },
                                   ]);
                                 } else {
-                                  scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+                                  qspGoto(s, 'gschool_grounds', 'main');
                                 }
                               }
                             }
@@ -2272,7 +2274,11 @@ function enterSweet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandBoyArg(s: GameState, scene: SceneBuilder): void {
+  (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 0, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
+    (s as any).rand_boy = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
+  } else {
+    (s as any).rand_boy = 'boy you don\'t know';
   }
   // TODO-QSP: end
   scene.build();
@@ -2280,17 +2286,25 @@ function enterRandBoyArg(s: GameState, scene: SceneBuilder): void {
 
 function enterRandBoyArg1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :rnd_boy1_loop
+  (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 0, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
+    (s as any).rand_boy1 = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
     if (((s as any).rand_boy ?? 0) === ((s as any).rand_boy1 ?? 0)) {
       // TODO-QSP: jump 'rnd_boy1_loop'
     }
+  } else {
+    (s as any).rand_boy1 = 'boy you don\'t know';
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterRandGirlArg(s: GameState, scene: SceneBuilder): void {
+  (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 1, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
+    (s as any).rand_girl = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
+  } else {
+    (s as any).rand_girl = 'girl you don\'t know';
   }
   // TODO-QSP: end
   scene.build();
@@ -2298,18 +2312,27 @@ function enterRandGirlArg(s: GameState, scene: SceneBuilder): void {
 
 function enterRandGirlArg1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :rnd_girl1_loop
+  (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 1, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
+    (s as any).rand_girl1 = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
     if (((s as any).rand_girl ?? 0) === ((s as any).rand_girl1 ?? 0)) {
       // TODO-QSP: jump 'rnd_girl1_loop'
     }
+  } else {
+    (s as any).rand_girl1 = 'girl you don\'t know';
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterRandTeacherArg(s: GameState, scene: SceneBuilder): void {
+  (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 0, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
+    (s as any).rand_teacher = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
+  } else {
+    (s as any).rand_teacher = 'Tsarev';
   }
+  (s as any).rand_teacher = 0;
   // TODO-QSP: end
   scene.build();
 }
@@ -2317,6 +2340,7 @@ function enterRandTeacherArg(s: GameState, scene: SceneBuilder): void {
 function enterRandomPers(s: GameState, scene: SceneBuilder): void {
   (s as any).tmpArrIdx = 0;
   // TODO-QSP: :rand_pers_fill_loop
+  (s as any).school_static_num = ((s as any).school_static_num ?? 0)?.[String((s as any).tmpArrIdx ?? 0)];
   if (((s as any).schoolenable ?? 0)?.[String((s as any).school_static_num ?? 0)] === 1  &&  (((s as any).locArgs?.[1] ?? 0) === -1  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).school_static_num ?? 0)] === ((s as any).locArgs?.[1] ?? 0))  &&  (((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === ((s as any).locArgs?.[2] ?? 0)  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === ((s as any).locArgs?.[3] ?? 0)*2  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === ((s as any).locArgs?.[4] ?? 0)*3  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === ((s as any).locArgs?.[5] ?? 0)*4  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === ((s as any).locArgs?.[6] ?? 0)*5  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === ((s as any).locArgs?.[7] ?? 0)*6)) {
     // TODO-QSP: $tmpCandidateArr[] = $school_static_num
   }
@@ -2325,6 +2349,9 @@ function enterRandomPers(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'rand_pers_fill_loop'
   }
   if (Object.keys((s as any).tmpCandidateArr ?? {}).length > 0) {
+    (s as any).result = ((s as any).tmpCandidateArr ?? 0)[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('tmpCandidateArr') -1)];
+  } else {
+    (s as any).result = 'A0';
   }
   // TODO-QSP: end
   scene.build();

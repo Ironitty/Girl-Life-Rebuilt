@@ -9,9 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'ludahome', 'home');
+  (s as any).location_type = 'public_indoors';
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -166,7 +168,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                     ]);
                   } else {
                     if (((s as any).OluQW ?? 0)?.['met'] === 0) {
-                      if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['met'] = 1;
+                      ((s as any).OluQW = (s as any).OluQW ?? {})['met'] = 1;
                       scene.text('You stand outside your aunt\'s apartment, knocking on the door. The door is answered by a domineering African man.');
                       scene.text('"Can I help you?" he asks in heavily accented Russian.');
                       scene.text('You return his smile. "Yes. Is my Aunt Luda home?"');
@@ -253,7 +255,7 @@ function enterTextanya(s: GameState, scene: SceneBuilder): void {
   scene.text('The two of you sit on the couch while you text Anya. "Hey, what are you doing?"');
   qspCall(s, 'family_schedule', '');
   if (((s as any).locat ?? 0)?.['Anya'] < 9  ||  ((s as any).locat ?? 0)?.['Anya'] > 15) {
-    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anya_busy'] = ((s as any).daystart ?? 0);
+    ((s as any).OluQW = (s as any).OluQW ?? {})['anya_busy'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).OluQW ?? 0)?.['anya_busy'] === ((s as any).daystart ?? 0)) {
     scene.text('You wait a few minutes before you get a reply. "Busy, why?"');
@@ -282,7 +284,7 @@ function enterTextanya(s: GameState, scene: SceneBuilder): void {
   }, goto: ['olu', 'olusex1'] },
     ]);
   } else {
-    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anya_busy'] = ((s as any).daystart ?? 0);
+    ((s as any).OluQW = (s as any).OluQW ?? {})['anya_busy'] = ((s as any).daystart ?? 0);
     scene.text('You wait a few minutes before you get a reply. "Nothing. Why?"');
     scene.text('You smile as you reply back. "Want to come up to Aunt Luda\'s and have some fun with Olu?"');
     scene.text('"Sure! Be right up."');
@@ -302,7 +304,7 @@ function enterTextnush(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/activities/phone/text_indoor.jpg');
   scene.text('The two of you sit on the couch while you text Anushka. "Hey, what are you doing?"');
   if (((s as any).hour ?? 0) < 8  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 14)  ||  ((s as any).week ?? 0) === 3  ||  ((s as any).week ?? 0) === 5  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 18)  ||  (Math.floor(Math.random() * 4) + 0) > 0) {
-    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nush_busy'] = ((s as any).daystart ?? 0);
+    ((s as any).OluQW = (s as any).OluQW ?? {})['nush_busy'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).OluQW ?? 0)?.['nush_busy'] === ((s as any).daystart ?? 0)) {
     scene.text('You wait a few minutes before you get a reply. "In the middle of something right now. What\'s up bitch?"');
@@ -331,7 +333,7 @@ function enterTextnush(s: GameState, scene: SceneBuilder): void {
   }, goto: ['olu', 'olusex1'] },
     ]);
   } else {
-    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nush_busy'] = ((s as any).daystart ?? 0);
+    ((s as any).OluQW = (s as any).OluQW ?? {})['nush_busy'] = ((s as any).daystart ?? 0);
     scene.text('You wait a little bit before you get a reply, "Why, you got something fun going on?"');
     scene.text('You smile as you reply back. "Want to come to my Aunt Luda\'s and have some fun with Olu?"');
     scene.text('"Olu? Who\'s that?"');
@@ -350,7 +352,7 @@ function enterTextnatasha(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/activities/phone/text_indoor.jpg');
   scene.text('The two of you sit on the couch while you text Natasha. "Hey, what are you doing?"');
   if (((s as any).hour ?? 0) < 8  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).week ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 18)  ||  (Math.floor(Math.random() * 4) + 0) > 0) {
-    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nat_busy'] = ((s as any).daystart ?? 0);
+    ((s as any).OluQW = (s as any).OluQW ?? {})['nat_busy'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).OluQW ?? 0)?.['nat_busy'] === ((s as any).daystart ?? 0)) {
     scene.text('You wait a few minutes before you get a reply. "Kind of wamped with stuff. What did you need?"');
@@ -379,7 +381,7 @@ function enterTextnatasha(s: GameState, scene: SceneBuilder): void {
   }, goto: ['olu', 'olusex1'] },
     ]);
   } else {
-    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nat_busy'] = ((s as any).daystart ?? 0);
+    ((s as any).OluQW = (s as any).OluQW ?? {})['nat_busy'] = ((s as any).daystart ?? 0);
     scene.text('You wait a little bit before you get a reply, "Just reading. What\'s up?"');
     scene.text('You smile and reply, "Come over to my Aunt\'s and work off some of your debt."');
     scene.text('You wait long enough that you\'re about to send another text when you finally get a reply. "Okay. Be there in a few minutes."');
@@ -396,6 +398,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'ludahome', 'hallway');
+  (s as any).location_type = 'public_indoors';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -414,13 +417,20 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'ludahome';
+  (s as any).menu_arg = 'bathroom';
+  (s as any).loc_arg = 'bathroom';
+  (s as any).loc = 'ludahome';
+  (s as any).locM_arg = 'bathroom';
+  (s as any).locM = 'ludahome';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
+  (s as any).location_type = 'bathroom';
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/ludahome/bathroom.jpg');
   scene.text('The first you notice the god-awful pea-green tiles, with a white sink just in front of a large shelf and mirror. You don\'t know who picked it, but they clearly don\'t have any good taste. Other than that, it\'s a reasonably typical bathroom.');
-  scene.text('You can do your hair and makeup in the <a href="exec: gt \'mirror\', \'start\'">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -449,6 +459,15 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLudaroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'ludahome';
+  (s as any).menu_arg = 'ludaroom';
+  (s as any).locM_arg = 'ludaroom';
+  (s as any).locM = 'ludahome';
+  (s as any).loc_arg = 'ludaroom';
+  (s as any).loc = 'ludahome';
+  (s as any).location_type = 'public_indoors';
+  (s as any).locclass = 'bedr';
+  (s as any).track_loop = '';
   (s as any).music_loop = 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -464,7 +483,15 @@ function enterLudaroom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'ludahome';
+  (s as any).menu_arg = 'livingroom';
+  (s as any).locM_arg = 'livingroom';
+  (s as any).locM = 'ludahome';
+  (s as any).loc_arg = 'livingroom';
+  (s as any).loc = 'ludahome';
+  (s as any).location_type = 'public_indoors';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living room</b></center>');
@@ -547,7 +574,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
         scene.text('You remain seated next to Olu. He keeps intently watching the game, and you often wonder if he even remembers that you\'re here. He keeps yelling at the TV regardless of whether the team he likes does well or poorly.');
         scene.actions([
           { label: 'Stop watching TV', goto: ['ludahome', 'livingroom'] },
-          { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', '\'Olu\''] },
+          { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', 'Olu'] },
         ]);
       }
     } else {
@@ -568,7 +595,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
           scene.text('You remain seated next to your aunt and watch TV with them for another half an hour. Olu seems pretty focused on the show and doesn\'t speak. On the other hand, Luda periodically makes small talk with you about a variety of things, seemingly only half paying attention to the show.');
           scene.actions([
             { label: 'Stop watching TV', goto: ['ludahome', 'livingroom'] },
-            { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', '\'OluLuda\''] },
+            { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', 'OluLuda'] },
           ]);
         }
       }
@@ -579,8 +606,16 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'kitchen';
+  (s as any).locM = 'ludahome';
+  (s as any).loc_arg = 'kitchen';
+  (s as any).loc = 'ludahome';
+  (s as any).menu_loc = 'ludahome';
+  (s as any).menu_arg = 'kitchen';
+  (s as any).location_type = 'public_indoors';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   qspCall(s, 'kit_din', '');
   scene.text('<center><b>Kitchen</b></center>');
@@ -590,7 +625,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Mother'] === 20) {
     // TODO-QSP: 'Luda and your <<$npc_nickname[''A29'']>> sit at the kitchen table, chatting and drinking tea.'+iif(...
     if (((s as any).LudaQW ?? 0)?.['tea_day'] !== ((s as any).daystart ?? 0)) {
-      if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['tea_day'] = ((s as any).daystart ?? 0);
+      ((s as any).LudaQW = (s as any).LudaQW ?? {})['tea_day'] = ((s as any).daystart ?? 0);
       return;
       scene.actions([
         { label: 'No thanks', handler: (st: GameState) => {
@@ -682,11 +717,11 @@ function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
 function enterFridge(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   if (((s as any).LudaQW ?? 0)?.['food_day'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['soup_count'] = 1;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['leftover_count'] = 1;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['water_count'] = 1;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['tea_count'] = 1;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['sandwich_count'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['soup_count'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['leftover_count'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['water_count'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['tea_count'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['sandwich_count'] = 1;
   }
   qspCall(s, 'stat', '');
   if (((s as any).LudaQW ?? 0)?.['leftover_count'] > 0) {
@@ -711,8 +746,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Eat some leftovers', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['leftover_count'] = ((s as any).LudaQW['leftover_count'] ?? 0) - (1);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['leftover_count'] = ((s as any).LudaQW['leftover_count'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/leftovers.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -738,8 +773,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Have some tea', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['tea_count'] = ((s as any).LudaQW['tea_count'] ?? 0) - (1);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['tea_count'] = ((s as any).LudaQW['tea_count'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/drinks/tea.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -764,8 +799,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Have some water', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['water_count'] = ((s as any).LudaQW['water_count'] ?? 0) - (1);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['water_count'] = ((s as any).LudaQW['water_count'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/waterbottle1.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -789,8 +824,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Have some soup', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['soup_count'] = ((s as any).LudaQW['soup_count'] ?? 0) - (1);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['soup_count'] = ((s as any).LudaQW['soup_count'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/soup.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -816,8 +851,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Make a sandwich', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['food_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['sandwich_count'] = ((s as any).LudaQW['sandwich_count'] ?? 0) - (1);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['food_day'] = ((s as any).daystart ?? 0);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['sandwich_count'] = ((s as any).LudaQW['sandwich_count'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/reuben.jpg');
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -847,7 +882,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big30.jpg');
   scene.text('Once you\'re both comfortable on the couch, she waits for you to decide what you want to talk about.');
   if (((s as any).LudaQW ?? 0)?.['olu_offer'] === 1  &&  ((s as any).LudaQW ?? 0)?.['olu_offer_day'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['olu_offer_day'] = ((s as any).daystart ?? 0);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['olu_offer_day'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
@@ -857,7 +892,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t want to put you on the spot, but… have you decided yet?" she asks with that same glimmer of hope in her eyes that you left her with the last time.');
     scene.actions([
       { label: 'Agree to help with Olu', handler: (st: GameState) => {
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['olu_offer'] = 2;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['olu_offer'] = 2;
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     scene.text('You nod. It sounds like it can be fun. "Sure. As long as you\'re okay with it, I wouldn\'t mind helping out with his sexual energy," you say with a wink.');
     scene.text('She laughs. "I\'ll let him know. Also, I should warn you. He likes butts, but don\'t worry, I keep a large stockpile of lube in the apartment." Then, seeing your face at the thought of a man described as hung like a horse fucking your ass, she quickly adds, "Don\'t worry, it might hurt the first time, but you quickly get used to it, and it even starts feeling good after a while."');
@@ -878,7 +913,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Refuse', handler: (st: GameState) => {
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['olu_offer'] = (-1);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['olu_offer'] = (-1);
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     scene.text('"I\'m sorry, aunt Luda. I thought about it, but I can\'t. It\'s just too weird," you tell her.');
     scene.text('"Oh, okay then… I understand. Don\'t give it another thought," she says and then changes the subject.');
@@ -891,7 +926,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).LudaQW ?? 0)?.['olu_offer'] === 2  &&  ((s as any).OluQW ?? 0)?.['sex'] === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
-      if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['olu_offer'] = 3;
+      ((s as any).LudaQW = (s as any).LudaQW ?? {})['olu_offer'] = 3;
       qspCall(s, 'stat', '');
       scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
       scene.text('Luda pats the seat and sits close to you. "Olu told me you had sex. I want to know all about it."');
@@ -929,7 +964,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'You have an open relationship?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['open_rel'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['open_rel'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A30', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
@@ -942,7 +977,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
       scene.text('She giggles a little at your comment. "Well, since he finds you cute and I\'m pretty sure you\'re sexually active, if you want to spend some time with him and help burn off his sexual energy, then I won\'t mind. I have to warn you though, he\'s hung like a horse."');
       scene.actions([
         { label: 'Agree to spend time with Olu', handler: (st: GameState) => {
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['olu_offer'] = 2;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['olu_offer'] = 2;
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     scene.text('You nod. It sounds like it can be fun. "Sure. As long as you\'re okay with it, I wouldn\'t mind helping out with his sexual energy," you say with a wink.');
     scene.text('She laughs at that. "I\'ll let him know. Also, I should warn you. He likes butts, but don\'t worry, I keep a large stockpile of lube in the apartment." Then, seeing your face at the thought of a man described as hung like a horse fucking your ass, she quickly adds, "Don\'t worry, it might hurt the first time, but you quickly get used to it, and it even starts feeling good after a while."');
@@ -954,8 +989,8 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Decline', handler: (st: GameState) => {
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['olu_offer'] = 1;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['olu_offer_day'] = ((s as any).daystart ?? 0);
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['olu_offer'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['olu_offer_day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     scene.text('This is not what you thought you would be doing today. "No way! You can\'t ask me to be some black guy\'s sex toy!"');
     // TODO-QSP: dynamic text: Aunt Luda looks a little taken aback. "I'm sorry, <<$pcs_nickname>>. I shouldn't...
@@ -1001,7 +1036,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop talking', goto: ['ludahome', 'livingroom'] },
     ]);
   } },
-        { label: 'Talk about your <<$npc_nickname[\'A29\']>>', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Talk about your ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'npc_relationship', 'modify', 'A30', 'like');
     qspCall(s, 'stat', '');
@@ -1010,7 +1045,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     scene.text(`You ask Luda about your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and what she was like growing up, and she shares a few stories about their childhood and some of the stuff they both got up to. It sounds like she started to get boy crazy in her late teens from your aunt's stories.`);
     if (((s as any).momslut ?? 0) >= 1) {
       scene.actions([
-        { label: '<<$npc_nickname[\'A29\']>> is a slut', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' is a slut', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'npc_relationship', 'modify', 'A30', 'like');
     qspCall(s, 'stat', '');
@@ -1031,7 +1066,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).motherrumor ?? 0) === 1) {
         scene.actions([
-          { label: 'Rumors about your <<$npc_nickname[\'A29\']>>', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Rumors about your ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'npc_relationship', 'modify', 'A30', 'like');
     qspCall(s, 'stat', '');
@@ -1159,7 +1194,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Talk about boys', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).LudaQW) (s as any).LudaQW = {}; (s as any).LudaQW['boytalk'] = 1;
+    ((s as any).LudaQW = (s as any).LudaQW ?? {})['boytalk'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A30', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
@@ -1265,6 +1300,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     // TODO-QSP: :lover_looop
     if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+      (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
         // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''ludahome'', ''tell_about_generic_boyfrei...
       }
@@ -1352,7 +1388,7 @@ function enterTellAboutGenericBoyfreind(s: GameState, scene: SceneBuilder): void
 
 function enterChatOlu(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['talked'] = 1;
+  ((s as any).OluQW = (s as any).OluQW ?? {})['talked'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big55.jpg');
   scene.text('You sit and talk with Olu about various topics. Or rather: you\'re doing most of the talking, and Olu is mostly listening to you talk. Occasionally, he comments or asks a question, but seems content to just let you talk.');

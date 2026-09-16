@@ -5,10 +5,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.build();
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '1';
+  (s as any).loc = 'NormPR';
   (s as any).prosti = 0;
   (s as any).protect = 1;
   qspCall(s, 'stat', '');
@@ -35,6 +38,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '2';
+  (s as any).loc = 'NormPR';
   (s as any).prosti = 0;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/shared/sex/car/sexcar${((s as any).picpRand || '')}.jpg`);
@@ -55,6 +60,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       scene.text('You quickly do as he says, and let out a soft moan when he rubs his cock against your pussy lips.');
     }
   }
+  (s as any).orgasm_or = 'custom';
+  (s as any).orgasm_txt = '';
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'unknown', 'prostitution');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end

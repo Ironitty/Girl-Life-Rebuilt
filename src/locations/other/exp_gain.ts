@@ -21,53 +21,53 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInhib(s: GameState, scene: SceneBuilder): void {
-  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "exp_gain" }));
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: gs 'exp_notification', 'track_exp', 'inhib', ARGS[1]
   return;
   // TODO-QSP: end
-  if ((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1 > 0) {
-    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['statName'] = 'vball';
-    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
+  if (((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) > 0) {
+    ((s as any).expgainVars = (s as any).expgainVars ?? {})['statName'] = 'vball';
+    ((s as any).expgainVars = (s as any).expgainVars ?? {})['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
   } else {
     if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
-      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
-      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
+      ((s as any).expgainVars = (s as any).expgainVars ?? {})['statName'] = ((s as any).locArgs?.[0] ?? 0);
+      ((s as any).expgainVars = (s as any).expgainVars ?? {})['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
     } else {
       if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attrArray'] = '';
+        ((s as any).expgainVars = (s as any).expgainVars ?? {})['statName'] = ((s as any).locArgs?.[0] ?? 0);
+        ((s as any).expgainVars = (s as any).expgainVars ?? {})['attrArray'] = '';
       } else {
         scene.text(`Error in gs 'exp_gain': ${((s as any).locArgs?.[0] ?? '')} is neither a skill nor an attribute`);
         return;
       }
     }
   }
-  if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = qspFunc(s, '_difficulty', 'get_exp_gain');
-  if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['trait_index'] = 0;
+  ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = qspFunc(s, '_difficulty', 'get_exp_gain');
+  ((s as any).expgainVars = (s as any).expgainVars ?? {})['trait_index'] = 0;
   // TODO-QSP: :trait_loop
-  if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['trait'] = qspUntranslated(s, "traitattskl[expgainVars['trait_index']]", { location: "exp_gain" });
+  ((s as any).expgainVars = (s as any).expgainVars ?? {})['trait'] = qspUntranslated(s, "traitattskl[expgainVars['trait_index']]", { location: "exp_gain" });
   if (((s as any).expgainVars ?? 0)?.['trait'] !== '') {
-    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[(((s as any).expgainVars ?? {})?.['trait'] ?? 0) + '-' + (((s as any).expgainVars ?? {})?.['statName'] ?? 0) + '-exp_gain']);
-    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-\' + $expgainVars[\'statName\'] + \'-exp_gain']);
+    ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).expgainVars ?? 0)?.['trait'] + '-' + ((s as any).expgainVars ?? 0)?.['statName'] + '-exp_gain']);
+    ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-' + ((s as any).expgainVars ?? 0)?.['statName'] + '-exp_gain']);
   }
-  if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['trait_index'] = ((s as any).expgainVars['trait_index'] ?? 0) + (1);
+  ((s as any).expgainVars = (s as any).expgainVars ?? {})['trait_index'] = ((s as any).expgainVars['trait_index'] ?? 0) + (1);
   if (((s as any).expgainVars ?? 0)?.['trait_index'] < Object.keys((s as any).traitattskl ?? {}).length) {
     // TODO-QSP: jump 'trait_loop'
   }
   if (((s as any).pcs_stam ?? 0) <= 0) {
     if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 50 / 400;
+      ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 50 / 400;
     } else {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 100 / 400;
+        ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 100 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 150 / 400;
+          ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 150 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 180 / 400;
+            ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 180 / 400;
           } else {
-            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 200 / 400;
+            ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 200 / 400;
           }
         }
       }
@@ -75,36 +75,36 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 75 / 400;
+        ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 75 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 150 / 400;
+          ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 150 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 225 / 400;
+            ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 225 / 400;
           } else {
             if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 270 / 400;
+              ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 270 / 400;
             } else {
-              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 300 / 400;
+              ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 300 / 400;
             }
           }
         }
       }
     } else {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 100 / 400;
+        ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 100 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 200 / 400;
+          ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 200 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 300 / 400;
+            ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 300 / 400;
           } else {
             if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 360 / 400;
+              ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 360 / 400;
             } else {
-              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 400 / 400;
+              ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 400 / 400;
             }
           }
         }
@@ -116,7 +116,7 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$expgainVars['statName']>>_exp_frac += <<ARGS[1]>> * expgainVars['exp_gain_mult']
-  // TODO-QSP: expgainVars['exp_gain'] = <<$expgainVars['statName']>>_exp_frac / 100
+  ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain'] = ((s as any)[((s as any).expgainVars ?? {})['statName'] + '_exp_frac'] ?? 0) / 100;
   // TODO-QSP: <<$expgainVars['statName']>>_exp_frac = <<$expgainVars['statName']>>_exp_frac mod 100
   // TODO-QSP: "
   if (((s as any).expgainVars ?? 0)?.['exp_gain'] <= 0) {
@@ -134,21 +134,21 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_bonus') : -1) < 0) {
     }
     if (((s as any).expgainVars ?? 0)?.['attrArray'] !== '') {
-      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['i'] = 0;
-      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['maxi'] = 0;
+      ((s as any).expgainVars = (s as any).expgainVars ?? {})['i'] = 0;
+      ((s as any).expgainVars = (s as any).expgainVars ?? {})['maxi'] = 0;
       if (((s as any).expgainVars ?? 0)?.['maxi'] > 0) {
         // TODO-QSP: :attrib_loop
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attr'] = 0;
+        ((s as any).expgainVars = (s as any).expgainVars ?? {})['attr'] = 0;
         if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).expgainVars ?? 0)?.['attr']) : -1) >= 0) {
           // TODO-QSP: dynamic "
-          if (((s as any).expgainVars ?? 0)?.['attr']((s as any)._lvl ?? 0) < 100 + ((s as any).expgainVars ?? 0)?.['attr']((s as any)._muta ?? 0)) {
+          if (((s as any)[((s as any).expgainVars ?? {})['attr'] + '_lvl'] ?? 0) < 100 + ((s as any)[((s as any).expgainVars ?? {})['attr'] + '_muta'] ?? 0)) {
             // TODO-QSP: <<$expgainVars['attr']>>_exp_skill_derived += 40 * <<expgainVars['exp_gain']>> / expgainVars['maxi']
           } else {
-            qspCall(s, 'exp_deg', '', '' + qspUntranslated(s, "expgainVars['attr']>", { location: "exp_gain" }) + '', 'reset');
+            qspCall(s, 'exp_deg', '', '' + ((s as any).expgainVars ?? 0)?.['attr'] + '', 'reset');
           }
           // TODO-QSP: "
         }
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['i'] = ((s as any).expgainVars['i'] ?? 0) + (1);
+        ((s as any).expgainVars = (s as any).expgainVars ?? {})['i'] = ((s as any).expgainVars['i'] ?? 0) + (1);
         if (((s as any).expgainVars ?? 0)?.['i'] < ((s as any).expgainVars ?? 0)?.['maxi']) {
           // TODO-QSP: jump 'attrib_loop'
         }
@@ -172,7 +172,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const exp_gain: LocationDef = {
   name: 'exp_gain',
-  title: 'Error in gs \'exp_gain\': <<$ARGS[0]>> is neither a skill nor an attribute',
+  title: 'Error in gs \'exp_gain\':  is neither a skill nor an attribute',
   region: 'other',
   enter: enter,
 };

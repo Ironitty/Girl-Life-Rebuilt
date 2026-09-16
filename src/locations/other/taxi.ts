@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,6 +8,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hail taxi', handler: (st: GameState) => {
+    (s as any).menu_loc = 'taxi';
+    (s as any).menu_arg = '';
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/locations/shared/taxi/base\'+rand(1, 5)+\'.jpg');
     scene.text('Seeing a taxi coming down the road, you raise your arm and wave him down. When he stops, you get in.');
@@ -51,7 +53,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get out', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -62,37 +64,65 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterLocations(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) !== 'city_residential') {
     scene.actions([
-      { label: 'Go to the city\'s residential area', goto: ['taxi', 'trip'] },
+      { label: 'Go to the city\'s residential area', handler: (st: GameState) => {
+    (s as any).loc = 'city_residential';
+    (s as any).loc_arg = '';
+    qspGoto(s, 'taxi', 'trip');
+  } },
     ]);
   }
   if (((s as any).loc ?? 0) !== 'city_center') {
     scene.actions([
-      { label: 'Go to the city center', goto: ['taxi', 'trip'] },
+      { label: 'Go to the city center', handler: (st: GameState) => {
+    (s as any).loc = 'city_center';
+    (s as any).loc_arg = '';
+    qspGoto(s, 'taxi', 'trip');
+  } },
     ]);
   }
   if (((s as any).loc ?? 0) !== 'city_industrial'  ||  ((s as any).loc_arg ?? 0) !== 'redlight') {
     scene.actions([
-      { label: 'Go to the city\'s red light district', goto: ['taxi', 'trip'] },
+      { label: 'Go to the city\'s red light district', handler: (st: GameState) => {
+    (s as any).loc = 'city_redlight';
+    (s as any).loc_arg = 'start';
+    qspGoto(s, 'taxi', 'trip');
+  } },
     ]);
   }
   if (((s as any).loc ?? 0) !== 'city_industrial'  ||  ((s as any).loc_arg ?? 0) === 'redlight') {
     scene.actions([
-      { label: 'Go to the city\'s industrial region', goto: ['taxi', 'trip'] },
+      { label: 'Go to the city\'s industrial region', handler: (st: GameState) => {
+    (s as any).loc = 'city_industrial';
+    (s as any).loc_arg = '';
+    qspGoto(s, 'taxi', 'trip');
+  } },
     ]);
   }
   if (((s as any).loc ?? 0) !== 'city_island') {
     scene.actions([
-      { label: 'Go to the island', goto: ['taxi', 'trip'] },
+      { label: 'Go to the island', handler: (st: GameState) => {
+    (s as any).loc = 'city_island';
+    (s as any).loc_arg = '';
+    qspGoto(s, 'taxi', 'trip');
+  } },
     ]);
   }
   if (((s as any).loc ?? 0) !== 'bdsm_mansion'  &&  ((s as any).bdsmclub ?? 0)?.['unlocked'] === 1) {
     scene.actions([
-      { label: 'Go to the BDSM club', goto: ['taxi', 'trip'] },
+      { label: 'Go to the BDSM club', handler: (st: GameState) => {
+    (s as any).loc = 'bdsm_mansion';
+    (s as any).loc_arg = 'taxi';
+    qspGoto(s, 'taxi', 'trip');
+  } },
     ]);
   }
   if (((s as any).loc ?? 0) !== 'city_suburbs') {
     scene.actions([
-      { label: 'Go to the city suburbs', goto: ['taxi', 'trip'] },
+      { label: 'Go to the city suburbs', handler: (st: GameState) => {
+    (s as any).loc = 'city_suburbs';
+    (s as any).loc_arg = 'start';
+    qspGoto(s, 'taxi', 'trip');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -100,17 +130,19 @@ function enterLocations(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRide(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['taxi_sex_pay'] = ((s as any).stat['taxi_sex_pay'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['taxi_sex_pay'] = ((s as any).stat['taxi_sex_pay'] ?? 0) + (1);
   qspCall(s, 'fame', 'city', 'prostitute', 2);
   qspCall(s, 'stat', '');
   qspCall(s, 'npcgeneratec', '', 0, 'Taxi Driver', Math.floor(Math.random() * 17) + 30);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  (s as any).temp = qspFunc(s, 'sexprefrand', '');
   scene.img('images/locations/shared/taxi/showtits.jpg');
   scene.text('"I don\'t have any money," you blurt out once seated in the back seat.');
   scene.text('The driver turns and glares back at you. "Why did you wave me down then? Get out!"');
   scene.text('You quickly pull your top down, showing him your breasts. "Maybe we can work something out?"');
   scene.text('He looks you over for a minute before nodding. "Okay, you give me a ride, then I\'ll give you a ride," he says with a leer, driving you back to his garage.');
   if (((s as any).stat ?? 0)?.['vaginal'] === 0) {
+    (s as any).temp = 'bj\' & \'"I\'m still a virgin, but we can still have fun in other ways," you say with a sweet smile when he stops in his garage. He just grunts and nods, accepting your conditions.';
   } else {
     scene.actions([
       { label: 'Suggest he fuck you', goto: ['taxi', 'vag1'] },
@@ -122,18 +154,18 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
     { label: 'Suggest anal', goto: ['taxi', 'anal'] },
     { label: 'Let him decide', handler: (st: GameState) => {
     if (((s as any).temp ?? 0) === 'bj') {
-      scene.actions([{ label: 'Continue', goto: ['taxi', 'bj'] }]);
+      qspGoto(s, 'taxi', 'bj');
     }
     if (((s as any).temp ?? 0) === 'vaginal') {
-      scene.actions([{ label: 'Continue', goto: ['taxi', 'vag1'] }]);
+      qspGoto(s, 'taxi', 'vag1');
     }
     if (((s as any).temp ?? 0) === 'anal') {
-      scene.actions([{ label: 'Continue', goto: ['taxi', 'anal'] }]);
+      qspGoto(s, 'taxi', 'anal');
     }
   } },
     { label: 'Chicken out', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['taxi_sex_pay'] = ((s as any).stat['taxi_sex_pay'] ?? 0) - (1);
-    dynamicGoto(st, 'loc', 'loc_arg');
+    ((s as any).stat = (s as any).stat ?? {})['taxi_sex_pay'] = ((s as any).stat['taxi_sex_pay'] ?? 0) - (1);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -319,7 +351,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).taxioffer = 0;
     }
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).taxi_pay = 0;
     qspCall(s, 'npcgeneratec', '', 0, 'Taxi Driver', Math.floor(Math.random() * 17) + 30);
@@ -431,15 +463,15 @@ function enterAlleyanal(s: GameState, scene: SceneBuilder): void {
 
 function enterRandom(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 4) + 0))) {
-    scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+    qspGoto(s, 'city_residential', '');
   } else {
     if ((!(Math.floor(Math.random() * 3) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+      qspGoto(s, 'city_center', '');
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
+        qspGoto(s, 'city_island', '');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
+        qspGoto(s, 'city_industrial', '');
       }
     }
   }

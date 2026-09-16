@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,8 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['stage'] = 25;
-  if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['day'] = ((s as any).daystart ?? 0);
+  ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 25;
+  ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vladimir</b></center>');
   scene.img('images/characters/city/vladimir/001.jpg');
@@ -31,15 +31,20 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You make the order and the waiter whisks the menu away. At the table, an awkward...
     scene.text(`You make the order and the waiter whisks the menu away. At the table, an awkward silence descends. Vladimir pauses for a moment and asks. "So ${((s as any).pcs_nickname || '')} who do you work for?"`);
     if (((s as any).job_status ?? 0)?.['city_market_saleswoman'] === 'employed') {
+      (s as any).qwvladwork = 'I work in the market.';
     } else {
       if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'employed') {
+        (s as any).qwvladwork = 'I work in a store.';
       } else {
         if (((s as any).job_status ?? 0)?.['city_cafe_waitress'] === 'employed') {
+          (s as any).qwvladwork = 'I work as a waitress in a cafe.';
+        } else {
+          (s as any).qwvladwork = 'By and large, nothing.';
         }
       }
     }
     scene.actions([
-      { label: '<<$qwvladwork>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).qwvladwork || '') ?? ''), handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: "<<$qwvladwork>>" You tell him.
@@ -77,10 +82,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Give a kiss on the cheek', handler: (st: GameState) => {
     scene.text('You move towards Vladimir and give his cheek a brief, chaste, kiss.');
-  }, goto: ['vladimirQW_meet', 'qwmeetdy'] },
+    qspGoto(s, 'vladimirQW_meet', 'qwmeetdy');
+  } },
       { label: 'Kiss on the lips', handler: (st: GameState) => {
     scene.text('You kiss Vladimir on the mouth, his strong, firm, lips pressing hard against your pliant mouth.');
-  }, goto: ['vladimirQW_meet', 'qwmeetdy'] },
+    qspGoto(s, 'vladimirQW_meet', 'qwmeetdy');
+  } },
     ]);
   } },
     ]);
@@ -134,13 +141,15 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/glory/002.jpg');
     scene.text('You take a seat next to the driver\'s. Glory comes to the door and slams it shut before walking over to his seat and sitting behind the wheel. Glory again speeds through the city, paying little heed to traffic lights, signs and other cars.');
-  }, goto: ['vladimirQW_meet', 'qwslavady'] },
+    qspGoto(s, 'vladimirQW_meet', 'qwslavady');
+  } },
     { label: 'Sit on the back seat', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/glory/002.jpg');
     scene.text('You defiantly took a backseat and Glory mutely shut the door behind you before he walked over to his seat and sat behind the wheel. Glory again sped through the city, paying little heed to traffic lights, signs and other cars.');
-  }, goto: ['vladimirQW_meet', 'qwslavady'] },
+    qspGoto(s, 'vladimirQW_meet', 'qwslavady');
+  } },
   ]);
   scene.build();
 }
@@ -330,7 +339,7 @@ function enterQwpaluba(s: GameState, scene: SceneBuilder): void {
 
 function enterQwbereg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A108');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.text('<center><b>The boat</b></center>');
@@ -371,6 +380,8 @@ function enterQwbereg(s: GameState, scene: SceneBuilder): void {
     scene.text('Vladimir starts to remove your clothes to get to your pussy. He begins to lick and caress your pussy with his tongue.');
     if (((s as any).pcs_horny ?? 0) >= 90) {
       qspCall(s, 'mood', 'raise', 'small');
+      (s as any).orgasm_or = 'custom';
+      (s as any).orgasm_txt = 'The skillful tongue of Vladimir makes you orgasm.';
     } else {
       scene.text('Vladimir\'s tongue and actions are quite exciting, but it\'s not enough.');
     }
@@ -466,8 +477,8 @@ function enterQwbereg(s: GameState, scene: SceneBuilder): void {
 
 function enterQwbereg2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['day'] = ((s as any).daystart ?? 0);
-  if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['stage'] = 35;
+  ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+  ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 35;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/vladimir/car.jpg');
   scene.text('After you\'ve finished fucking with Vladimir, you notice the familiar Audi drive up. Glory comes out of it and invites you to get in the car.');
@@ -502,13 +513,15 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       (s as any).slavaQW = 1;
       scene.text('While you drive through the city, Glory tells you that he spends much of his spare time in the bar called "Rabotnik" in the city industrial region of the city.');
     }
-  }, goto: ['vladimirQW_meet', 'qwmeetdin'] },
+    qspGoto(s, 'vladimirQW_meet', 'qwmeetdin');
+  } },
     { label: 'Sit on the back seat', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/glory/002.jpg');
     scene.text('You defiantly take a backseat and Glory mutely shuts the door behind you before he walks over to his seat and sits behind the wheel. Glory again speeds through the city, paying little heed to traffic lights, signs and other cars.');
-  }, goto: ['vladimirQW_meet', 'qwmeetdin'] },
+    qspGoto(s, 'vladimirQW_meet', 'qwmeetdin');
+  } },
   ]);
   scene.build();
 }
@@ -521,8 +534,8 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     (s as any).pcs_energy = 100;
     (s as any).pcs_hydra = 100;
-    if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['stage'] = 35;
+    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 35;
     qspCall(s, 'stat', '');
     scene.text('The restaurant is the same one from your last meeting with Vladimir. He takes you to a specially reserved table. You drink and eat with Vladimir, who speaks little, mostly restrainting himself to complimenting you.');
     if ((!((s as any).VladimirKnowAboutHusband ?? 0))) {
@@ -531,18 +544,19 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Invite', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (s as any).nameV = 'Vladimir';
     qspCall(s, 'boyStat', 'A108');
     (s as any).NoGuy = 1;
     (s as any).InYouHome = 1;
-    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 1;
-    if (!(s as any).npc_finance) (s as any).npc_finance = {}; (s as any).npc_finance[String((s as any).boy ?? 0)] = 2;
+    ((s as any).npc_gentle = (s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_finance = (s as any).npc_finance ?? {})[String((s as any).boy ?? 0)] = 2;
     if (((s as any).vladimirQW ?? 0)?.['money_given'] === 0) {
       (s as any).temp_money = 5000;
     } else {
       (s as any).temp_money = 2000;
     }
     qspCall(s, 'money', 'earn', ((s as any).temp_money ?? 0), 'cash');
-    if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['money_given'] = ((s as any).vladimirQW['money_given'] ?? 0) + (((s as any).temp_money ?? 0));
+    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['money_given'] = ((s as any).vladimirQW['money_given'] ?? 0) + (((s as any).temp_money ?? 0));
     // TODO-QSP: dynamic text: You walk with Vladimir into the bedroom. Vladimir sceptically cast his gaze abou...
     scene.text(`You walk with Vladimir into the bedroom. Vladimir sceptically cast his gaze about your humble abode and takes out his wallet. "I hope you will not mind if I give you some money?" He hands you ${qspFunc(s, 'money', 'string_profit', ((s as any).temp_money || ''))}. You take the money you are offered.`);
     scene.actions([
@@ -576,10 +590,11 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (s as any).nameV = 'Vladimir';
     qspCall(s, 'boyStat', 'A108');
     (s as any).NoGuy = 1;
-    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 1;
-    if (!(s as any).npc_finance) (s as any).npc_finance = {}; (s as any).npc_finance[String((s as any).boy ?? 0)] = 2;
+    ((s as any).npc_gentle = (s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_finance = (s as any).npc_finance ?? {})[String((s as any).boy ?? 0)] = 2;
     (s as any).GoToGuy = 2;
     scene.text('Glory drives you to an apartment Vladimir rents. You get out of the car and go up to the apartment.');
     scene.text('Once through the door you go with Vladimir to the bedroom.');

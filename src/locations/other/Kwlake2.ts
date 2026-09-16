@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -34,7 +34,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'That\'s enough! Leave before this gets out of hand', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['Nudelake', ''] },
+    qspGoto(s, 'Nudelake', '');
+  } },
       ]);
     }
     scene.actions([
@@ -53,7 +54,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
     scene.img('images/locations/city/residential/lake/sex/kwlake2/kwlake4.jpg');
     scene.text('After a few minutes the man pulls away from you. He makes you lie down on the sand, so he can fuck you.');
     scene.text('Kat is all for the idea and encourages you to do what he says. Meanwhile the man helps you down and brings his cock to your snatch, penetrating you with one fierce thrust.');
@@ -70,6 +71,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You can barely hold yourself from smothering Kat as you ride her face, getting very close to your own orgasm as well. At that moment, the man demands your full attention again shoves his cock back into your mouth. Mere seconds later, he fills your mouth with his sperm while Kat licks you to an amazing orgasm.');
     scene.text('After you recover, you kiss Kat on the mouth, sharing the stranger\'s sperm with her.');
     scene.text('She gives you another light kiss on the cheek when you\'re finished dressing again, and whispers: "It\'s fun, having a friend who enjoys sex as much as I do…"');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'cum_call', 'mouth_swallow', 'Unknown guy');

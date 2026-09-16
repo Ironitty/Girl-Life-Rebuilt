@@ -173,7 +173,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).KGOLdist ?? 0) < 3) {
         if (((s as any).KGOLspell ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell ?? 0) * 10) {
           scene.actions([
-            { label: 'Powerful Strike (<<KGOLspell * 10>> mana)', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Powerful Strike (' + String(((s as any).KGOLspell ?? '') * 10 ?? '') + ' mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell ?? 0));
     (s as any).KGOLpower = ((s as any).KGOLstren ?? 0) + ((s as any).KGOLwpower ?? 0)+(((s as any).KGOLspell ?? 0) * 100);
     qspCall(s, 'KGOLexpa', 'KGOLatk');
@@ -187,7 +187,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).KGOLspell2 ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell2 ?? 0) * 10) {
           scene.actions([
-            { label: 'Multiple Blows (<<KGOLspell2 * 10>> mana)', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Multiple Blows (' + String(((s as any).KGOLspell2 ?? '') * 10 ?? '') + ' mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell2 ?? 0));
     (s as any).KGOLpower = ((s as any).KGOLstren ?? 0) + ((s as any).KGOLwpower ?? 0);
     (s as any).KGLOloop = ((s as any).KGOLspell2 ?? 0) + 1;
@@ -202,7 +202,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).KGOLspell3 ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell3 ?? 0) * 10  &&  ((s as any).KGOLcooldown ?? 0) <= 0) {
           scene.actions([
-            { label: 'Increase Armor (<<KGOLspell3 * 10>> mana)', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Increase Armor (' + String(((s as any).KGOLspell3 ?? '') * 10 ?? '') + ' mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell3 ?? 0));
     (s as any).KGOLbronaMod = ((s as any).KGOLbronaMod ?? 0) + (((s as any).KGOLspell3 ?? 0) * 5);
     (s as any).KGOLtimer = ((s as any).KGOLtimer ?? 0) + (((s as any).KGOLspell3 ?? 0) + 1);
@@ -232,7 +232,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).KGOLdist ?? 0) < 5) {
           if (((s as any).KGOLspell4 ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell4 ?? 0) * 10) {
             scene.actions([
-              { label: 'Stealth Strike (<<KGOLspell4 * 10>> mana)', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Stealth Strike (' + String(((s as any).KGOLspell4 ?? '') * 10 ?? '') + ' mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell4 ?? 0));
     (s as any).KGOLpower = ((s as any).KGOLstren ?? 0) + ((s as any).KGOLwpower ?? 0)+(((s as any).KGOLspell5 ?? 0) * 100);
     qspCall(s, 'KGOLexpa', 'KGOLatk');
@@ -246,7 +246,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).KGOLspell5 ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell5 ?? 0) * 10) {
             scene.actions([
-              { label: 'Poison Blade (<<KGOLspell5 * 10>>mana)', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Poison Blade (' + String(((s as any).KGOLspell5 ?? '') * 10 ?? '') + 'mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell5 ?? 0));
     (s as any).KGOLpower = ((s as any).KGOLstren ?? 0) + ((s as any).KGOLwpower ?? 0);
     qspCall(s, 'KGOLexpa', 'KGOLatkPoison');
@@ -260,7 +260,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).KGOLspell6 ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell6 ?? 0) * 10  &&  ((s as any).KGOLcooldown ?? 0) <= 0) {
             scene.actions([
-              { label: 'Invisibility (<<KGOLspell6 * 10>> mana)', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Invisibility (' + String(((s as any).KGOLspell6 ?? '') * 10 ?? '') + ' mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell6 ?? 0));
     (s as any).unvis = ((s as any).unvis ?? 0) + (((s as any).KGOLspell6 ?? 0) + 1);
     (s as any).KGOLcooldown = ((s as any).KGOLcooldown ?? 0) + (((s as any).KGOLspell6 ?? 0) + 3);
@@ -288,7 +288,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).KGOLklass ?? 0) === 'Mage') {
           if (((s as any).KGOLspell7 ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell7 ?? 0) * 10) {
             scene.actions([
-              { label: 'Fireball (<<KGOLspell7 * 10>> mana)', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Fireball (' + String(((s as any).KGOLspell7 ?? '') * 10 ?? '') + ' mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell7 ?? 0));
     (s as any).KGOLpower = (Math.floor(Math.random() * (((s as any).KGOLspell7 ?? 0) * 200 - ((s as any).KGOLspell7 ?? 0) * 100 + 1)) + (((s as any).KGOLspell7 ?? 0) * 100));
     qspCall(s, 'KGOLexpa', 'KGOLatkFB');
@@ -302,7 +302,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).KGOLspell8 ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell8 ?? 0) * 10) {
             scene.actions([
-              { label: 'Kinetic Pulse (<<KGOLspell5 * 10>> mana)', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Kinetic Pulse (' + String(((s as any).KGOLspell5 ?? '') * 10 ?? '') + ' mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell5 ?? 0));
     (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) + ((Math.floor(Math.random() * (((s as any).KGOLspell5 ?? 0) * 50 - ((s as any).KGOLspell5 ?? 0) * 10 + 1)) + (((s as any).KGOLspell5 ?? 0) * 10)));
     // TODO-QSP: dynamic text: A wave of energy bursts from within you, throwing the enemy back. The distance b...
@@ -317,7 +317,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).KGOLspell9 ?? 0) > 0  &&  ((s as any).KGMana ?? 0) >= ((s as any).KGOLspell9 ?? 0) * 10  &&  ((s as any).KGOLcooldown ?? 0) <= 0) {
             scene.actions([
-              { label: 'Circle of Fire (<<KGOLspell9 * 10>> mana)', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Circle of Fire (' + String(((s as any).KGOLspell9 ?? '') * 10 ?? '') + ' mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell9 ?? 0));
     (s as any).firecircle = ((s as any).firecircle ?? 0) + (((s as any).KGOLspell9 ?? 0) + 1);
     (s as any).KGOLcooldown = ((s as any).KGOLcooldown ?? 0) + (((s as any).KGOLspell9 ?? 0) + 3);
@@ -392,7 +392,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Run towards the enemy', handler: (st: GameState) => {
     (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) - ((Math.floor(Math.random() * (((s as any).KGOLspeed ?? 0)/10 - ((s as any).KGOLspeed ?? 0)/20 + 1)) + (((s as any).KGOLspeed ?? 0)/20)));
-    dynamicGoto(st, 'curloc');
+    dynamicGoto(s, 'curloc');
   } },
       ]);
     }
@@ -401,7 +401,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Drink a health potion', handler: (st: GameState) => {
     (s as any).KGOLpotionH = ((s as any).KGOLpotionH ?? 0) - (1);
     (s as any).KGHP = ((s as any).KGHP ?? 0) + (100);
-    dynamicGoto(st, 'curloc');
+    dynamicGoto(s, 'curloc');
   } },
       ]);
     }
@@ -410,14 +410,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Drink a mana potion', handler: (st: GameState) => {
     (s as any).KGOLpotionM = ((s as any).KGOLpotionM ?? 0) - (1);
     (s as any).KGMana = ((s as any).KGMana ?? 0) + (100);
-    dynamicGoto(st, 'curloc');
+    dynamicGoto(s, 'curloc');
   } },
       ]);
     }
     scene.actions([
       { label: 'Flee from the enemy', handler: (st: GameState) => {
     (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) + ((Math.floor(Math.random() * (((s as any).KGOLspeed ?? 0)/10 - ((s as any).KGOLspeed ?? 0)/20 + 1)) + (((s as any).KGOLspeed ?? 0)/20)));
-    dynamicGoto(st, 'curloc');
+    dynamicGoto(s, 'curloc');
   } },
     ]);
   } else {

@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,10 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).exhibitionQW = 1;
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] < 1) {
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist_exp'] = qspUntranslated(s, "max(trait_vars['exhibitionist_exp'], 10)", { location: "kseniyaQW" });
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max(((s as any).trait_vars ?? 0)?.['exhibitionist_exp'], 10);
     qspCall(s, 'traits', 'level', 'exhibitionist', 1);
   }
   qspCall(s, 'stat', '');
@@ -28,7 +27,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish walk', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -39,13 +38,13 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Find the flashing woman', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) <= 18  &&  (!(Math.floor(Math.random() * 4) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event2'] }]);
+      qspGoto(s, 'kseniyaQW', 'event2');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       scene.text('You look around the park but can\'t find her.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -56,13 +55,13 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Search for Ksenya', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) <= 18  &&  (!(Math.floor(Math.random() * 4) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event3'] }]);
+      qspGoto(s, 'kseniyaQW', 'event3');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       scene.text('You look around the park but can\'t find her.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -75,10 +74,11 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent2(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).exhibitionQW = 2;
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] < 2) {
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist_exp'] = qspUntranslated(s, "max(trait_vars['exhibitionist_exp'], 50)", { location: "kseniyaQW" });
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max(((s as any).trait_vars ?? 0)?.['exhibitionist_exp'], 50);
     qspCall(s, 'traits', 'level', 'exhibitionist', 2);
   }
   qspCall(s, 'stat', '');
@@ -125,7 +125,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     scene.text('She walks over to you now wearing her sheer dress, and takes her phone back. "These are cute," she says looking at them. "Ever thought of doing photography?" she says and then gives you a kiss on your cheek before she runs off with a wave and a final word "See you around"');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -140,6 +140,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent3(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>ksenya</b></center>');
@@ -154,7 +155,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s OK, we all lose our nerve sometimes. When you are ready come and find me again."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -162,7 +163,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).exhibitionQW = 3;
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] < 2) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist_exp'] = qspUntranslated(s, "max(trait_vars['exhibitionist_exp'], 50)", { location: "kseniyaQW" });
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max(((s as any).trait_vars ?? 0)?.['exhibitionist_exp'], 50);
       qspCall(s, 'traits', 'level', 'exhibitionist', 2);
     }
     qspCall(s, 'stat', '');
@@ -197,6 +198,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`"It's OK ${((s as any).pcs_firstname || '')}, I can take the pictures on my phone and message them to you. What's your number?"`);
   scene.text('You give her your phone number and she quickly types the number into her phone, "Cool, firstly that bag is not going to look good in the shot."');
   scene.text('She looks around quickly. "There\'s nowhere safe to stash them, but it\'s OK, I can carry them."');
+  (s as any).orgasm_or = 'no';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'flash', (-10));
   qspCall(s, 'stat', '');
@@ -267,7 +269,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You look at the card again, "Simply Salacious" just off Pushkin Okhlopkov Square. Open Mon-Sat, 8:00 - 18:00');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

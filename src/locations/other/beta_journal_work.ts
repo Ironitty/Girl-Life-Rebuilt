@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_id = 'beta_journal_work';
+  (s as any).hot_link = ((s as any).loc_id ?? 0);
   qspCall(s, 'beta_journal', 'nav_construct');
   if (Object.keys((s as any).evt_event ?? {}).length !== 0) {
     qspCall(s, 'jobs_gigs', 'disp_evt', 2);

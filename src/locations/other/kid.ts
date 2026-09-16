@@ -1,10 +1,13 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).breastfeed = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
   scene.img('images/pc/body/tits/breast_feed.jpg');
@@ -29,6 +32,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: You gently lay <<$kidname[ks]>> back <<$babyloc>>.
   scene.text(`You gently lay ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} back ${((s as any).babyloc || '')}.`);
+  (s as any).playWithKid = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
   scene.img('images/pc/activities/baby_play.jpg');
@@ -39,6 +43,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('After a while you get up and straighten your clothes before going on with your day.');
   qspCall(s, 'mood', 'raise', 'small');
   (s as any).minut = ((s as any).minut ?? 0) + 20;
+  (s as any).totplay = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
   scene.img('images/pc/activities/tot_play.jpg');
@@ -52,6 +57,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('You get up, straighten up your clothes, laugh, and move on with your day');
   qspCall(s, 'mood', 'raise', 'small');
   (s as any).minut = ((s as any).minut ?? 0) + 20;
+  (s as any).tottv = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
   scene.img('images/shared/home/tv/kid_tv.jpg');
@@ -60,6 +66,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('You watch a cartoon featuring a Rabbit, a Duck, and a Pig that is quite silly');
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).minut = ((s as any).minut ?? 0) + 60;
+  (s as any).kidtv = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
   scene.img('images/shared/home/tv/kid_tv2.jpg');
@@ -71,6 +78,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Well I am gonna watch with you." You reply, followed by tickling ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} to open up a spot on the couch for you to sit.`);
   scene.text('You watch a kids TV show about two American teenagers that barely catches your interest.');
   (s as any).minut = ((s as any).minut ?? 0) + 60;
+  (s as any).homework = qspUntranslated(s, "{", { location: "kid" });
   if (((s as any).polkid ?? 0)?.[String((s as any).k ?? 0)] === 0) {
     // TODO-QSP: $kidPosPronn[ks] = 'her'
   } else {
@@ -93,20 +101,33 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You really wish you had paid more attention in school. The homework is not overly complex but is still not the easiest thing for you.');
   }
-  if (!(s as any).homework) (s as any).homework = {}; (s as any).homework[String((s as any).ks ?? 0)] = ((s as any).daystart ?? 0);
+  ((s as any).homework = (s as any).homework ?? {})[String((s as any).ks ?? 0)] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 51) + 30);
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
     if (((s as any).pcs_mothername ?? 0) === '') {
+      (s as any).pcs_mothername = 0;
       if (((s as any).pcs_mothername ?? 0) === '') {
+        (s as any).pcs_mothername = 'Mom';
       }
     }
-  }, goto: ['kid', 'start'] },
-    { label: 'Done', goto: ['kid', 'start'] },
-    { label: 'Done', goto: ['kid', 'start'] },
-    { label: 'Done', goto: ['kid', 'start'] },
-    { label: 'Done', goto: ['kid', 'start'] },
-    { label: 'Done', goto: ['kid', 'start'] },
+    qspGoto(s, 'kid', 'start');
+  } },
+    { label: 'Done', handler: (st: GameState) => {
+    qspGoto(s, 'kid', 'start');
+  } },
+    { label: 'Done', handler: (st: GameState) => {
+    qspGoto(s, 'kid', 'start');
+  } },
+    { label: 'Done', handler: (st: GameState) => {
+    qspGoto(s, 'kid', 'start');
+  } },
+    { label: 'Done', handler: (st: GameState) => {
+    qspGoto(s, 'kid', 'start');
+  } },
+    { label: 'Done', handler: (st: GameState) => {
+    qspGoto(s, 'kid', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -114,7 +135,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_mothername ?? 0) === '') {
+    (s as any).pcs_mothername = 0;
     if (((s as any).pcs_mothername ?? 0) === '') {
+      (s as any).pcs_mothername = 'Mom';
     }
   }
   if (((s as any).kid ?? 0) > 0) {
@@ -133,7 +156,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text(`Child Selected: ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''}`);
   if (((s as any).ks ?? 0) < (((s as any).kid ?? 0) - 1)) {
     // TODO-QSP: dynamic text: <a href="exec:ks += 1& gt 'kid', 'start' ">Select Next Child</a>
-    scene.text('<a href="exec:ks += 1& gt \'kid\', \'start\' ">Select Next Child</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027kid\\u0027, \\u0027start\\u0027); return false;">Select Next Child</a>');
     scene.actions([
       { label: 'Select Next Child', handler: (st: GameState) => {
     (st as any).ks = ((st as any).ks ?? 0) + (1);
@@ -141,7 +164,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).ks ?? 0) > 0) {
-    scene.text('<a href="exec:ks -= 1& gt \'kid\', \'start\' ">Select Previous Child</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks -=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027kid\\u0027, \\u0027start\\u0027); return false;">Select Previous Child</a>');
     scene.actions([
       { label: 'Select Previous Child', handler: (st: GameState) => {
     (st as any).ks = ((st as any).ks ?? 0) - (1);
@@ -151,7 +174,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -161,7 +184,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kidage ?? 0)?.[String((s as any).k ?? 0)] < 1) {
     if (((s as any).yearkid ?? 0)?.[String((s as any).k ?? 0)] === ((s as any).year ?? 0)) {
       if ((((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)]) < 1  &&  (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)]) < 7) {
-        if (!(s as any).kiddaycalc) (s as any).kiddaycalc = {}; (s as any).kiddaycalc[String((s as any).k ?? 0)] = ((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)];
+        ((s as any).kiddaycalc = (s as any).kiddaycalc ?? {})[String((s as any).k ?? 0)] = ((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)];
         if (((s as any).kiddaycalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> day old'
         } else {
@@ -169,14 +192,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if ((((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)]) < 1) {
-          if (!(s as any).kiddaycalc) (s as any).kiddaycalc = {}; (s as any).kiddaycalc[String((s as any).k ?? 0)] = (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)]) / 7;
+          ((s as any).kiddaycalc = (s as any).kiddaycalc ?? {})[String((s as any).k ?? 0)] = (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)]) / 7;
           if (((s as any).kiddaycalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
             // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> week old'
           } else {
             // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> weeks old'
           }
         } else {
-          if (!(s as any).kidmonthcalc) (s as any).kidmonthcalc = {}; (s as any).kidmonthcalc[String((s as any).k ?? 0)] = (((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)]);
+          ((s as any).kidmonthcalc = (s as any).kidmonthcalc ?? {})[String((s as any).k ?? 0)] = (((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)]);
           if (((s as any).kidmonthcalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
             // TODO-QSP: $kidagetext[k] = '<<kidmonthcalc[k]>> month old'
           } else {
@@ -187,7 +210,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).month ?? 0) === 1  &&  ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] === 12) {
         if (31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0) < 7) {
-          if (!(s as any).kiddaycalc) (s as any).kiddaycalc = {}; (s as any).kiddaycalc[String((s as any).k ?? 0)] = 31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0);
+          ((s as any).kiddaycalc = (s as any).kiddaycalc ?? {})[String((s as any).k ?? 0)] = 31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0);
           if (((s as any).kiddaycalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
             // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> day old'
           } else {
@@ -195,7 +218,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0) >= 7) {
-            if (!(s as any).kiddaycalc) (s as any).kiddaycalc = {}; (s as any).kiddaycalc[String((s as any).k ?? 0)] = 31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0) / 7;
+            ((s as any).kiddaycalc = (s as any).kiddaycalc ?? {})[String((s as any).k ?? 0)] = 31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0) / 7;
             if (((s as any).kiddaycalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
               // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> week old'
             } else {
@@ -209,9 +232,9 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] - ((s as any).day ?? 0) <= 0) {
-          if (!(s as any).kidmonthcalc) (s as any).kidmonthcalc = {}; (s as any).kidmonthcalc[String((s as any).k ?? 0)] = (12 - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).month ?? 0));
+          ((s as any).kidmonthcalc = (s as any).kidmonthcalc ?? {})[String((s as any).k ?? 0)] = (12 - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).month ?? 0));
         } else {
-          if (!(s as any).kidmonthcalc) (s as any).kidmonthcalc = {}; (s as any).kidmonthcalc[String((s as any).k ?? 0)] = (11 - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).month ?? 0));
+          ((s as any).kidmonthcalc = (s as any).kidmonthcalc ?? {})[String((s as any).k ?? 0)] = (11 - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).month ?? 0));
         }
         if (((s as any).kidmonthcalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[k] = '<<kidmonthcalc[k]>> month old'
@@ -258,15 +281,18 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).kidage ?? 0)?.[String((s as any).k ?? 0)] < 1) {
     if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18) {
+      (s as any).babyloc = 'onto the blanket';
       // TODO-QSP: dynamic text: <<$kidname[k]>></a> is laying on a blanket
       scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).k ?? 0)] ?? ''}</a> is laying on a blanket`);
     } else {
+      (s as any).babyloc = 'into the crib';
       // TODO-QSP: dynamic text: <<$kidname[k]>> is asleep, lying in <<$kidPosPro[k]>> crib.
       scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).k ?? 0)] ?? ''} is asleep, lying in ${((s as any).kidPosPro ?? 0)?.[String((s as any).k ?? 0)] ?? ''} crib.`);
     }
   } else {
     if (((s as any).kidage ?? 0)?.[String((s as any).k ?? 0)] >= 1  &&  ((s as any).kidage ?? 0)?.[String((s as any).k ?? 0)] < 7) {
       if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).rkidloc ?? 0) < 8) {
+        (s as any).totloc = 'playing with toys on the floor';
         // TODO-QSP: dynamic text: <<$kidname[k]>> is playing with toys.
         scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).k ?? 0)] ?? ''} is playing with toys.`);
       } else {
@@ -274,6 +300,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$kidname[k]>> is asleep in <<$kidPosPro[k]>> bed.
           scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).k ?? 0)] ?? ''} is asleep in ${((s as any).kidPosPro ?? 0)?.[String((s as any).k ?? 0)] ?? ''} bed.`);
         } else {
+          (s as any).totloc = 'watching TV';
           // TODO-QSP: dynamic text: <<$kidname[k]>> is watching TV.
           scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).k ?? 0)] ?? ''} is watching TV.`);
         }
@@ -293,9 +320,11 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
               scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).k ?? 0)] ?? ''} is at school.`);
             } else {
               if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).homework ?? 0)?.[String((s as any).k ?? 0)] < ((s as any).daystart ?? 0)) {
+                (s as any).kidloc = 'working on homework';
                 // TODO-QSP: dynamic text: <<$kidname[k]>> is working on homework.
                 scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).k ?? 0)] ?? ''} is working on homework.`);
               } else {
+                (s as any).kidloc = 'watching TV';
                 // TODO-QSP: dynamic text: <<$kidname[k]>> is watching TV.
                 scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).k ?? 0)] ?? ''} is watching TV.`);
               }
@@ -308,14 +337,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kid ?? 0) > 0  &&  ((s as any).kidage ?? 0)?.[String((s as any).ks ?? 0)] < 1) {
     if (((s as any).lactation ?? 0)?.['active'] > 0) {
       scene.actions([
-        { label: 'Breast Feed <<$kidname[ks]>>', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Breast Feed ' + String(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '' ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dyneval($breastfeed)
   } },
       ]);
     }
     if (((s as any).babyloc ?? 0) === 'onto the blanket') {
       scene.actions([
-        { label: 'Play with <<$kidname[ks]>> (0:20)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Play with ' + String(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '' ?? '') + ' (0:20)', handler: (st: GameState) => {
     // TODO-QSP: dyneval($playWithKid)
   } },
       ]);
@@ -324,14 +353,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kid ?? 0) > 0  &&  ((s as any).kidage ?? 0)?.[String((s as any).ks ?? 0)] >= 1  &&  ((s as any).kidage ?? 0)?.[String((s as any).ks ?? 0)] < 7) {
     if (((s as any).totloc ?? 0) === 'playing with toys on the floor') {
       scene.actions([
-        { label: 'Play with <<$kidname[ks]>>(0:30)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Play with ' + String(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '' ?? '') + '(0:30)', handler: (st: GameState) => {
     // TODO-QSP: dyneval($totplay)
   } },
       ]);
     } else {
       if (((s as any).totloc ?? 0) === 'watching tv') {
         scene.actions([
-          { label: 'Watch TV with <<$kidname[ks]>>(1:00)', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Watch TV with ' + String(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '' ?? '') + '(1:00)', handler: (st: GameState) => {
     // TODO-QSP: dyneval($tottv)
   } },
         ]);
@@ -341,14 +370,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kid ?? 0) > 0  &&  ((s as any).kidage ?? 0)?.[String((s as any).ks ?? 0)] >= 7  &&  ((s as any).kidage ?? 0)?.[String((s as any).ks ?? 0)] < 18) {
     if (((s as any).kidloc ?? 0) === 'watching TV') {
       scene.actions([
-        { label: 'Watch TV with <<$kidname[ks]>> (1:00)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Watch TV with ' + String(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '' ?? '') + ' (1:00)', handler: (st: GameState) => {
     // TODO-QSP: dyneval($kidtv)
   } },
       ]);
     } else {
       if (((s as any).kidloc ?? 0) === 'working on homework') {
         scene.actions([
-          { label: 'Help <<$kidname[ks]>> with homework.', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Help ' + String(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '' ?? '') + ' with homework.', handler: (st: GameState) => {
     // TODO-QSP: dyneval($homework)
   } },
         ]);
@@ -377,7 +406,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const kid: LocationDef = {
   name: 'kid',
-  title: '<<$kidname[ks]>> <<$pcs_lastname>>',
   region: 'other',
   description: ['After a while you get up and straighten your clothes before going on with your day.'],
   enter: enter,

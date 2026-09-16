@@ -1,11 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).camGirl) (s as any).camGirl = {}; (s as any).camGirl['MFC_lastrequest'] = ((s as any).totminut ?? 0);
+  ((s as any).camGirl = (s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'komp_cam_functions', 'check_available_vaginal_dildo');
   if (((s as any).temp_camVars ?? 0)?.['vaginal_available']) {
@@ -37,11 +37,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetGiganticVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
-        { label: 'Can\'t find a suitable toy or you changed your mind', goto: ['komp_cam_MFC_main', 'waitclients'] },
+        { label: 'Can\'t find a suitable toy or you changed your mind', handler: (st: GameState) => {
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
       ]);
     } else {
       scene.actions([
-        { label: 'Lose your virginity in front of <<camGirl[\'MFC_Viewers\']>> people', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Lose your virginity in front of ' + String(((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? '' ?? '') + ' people', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(s, 'npcStat', 'D1');
     scene.img('images/pc/items/accessories/computer/camwhore22.jpg');
@@ -77,7 +79,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
       ]);
     }
     scene.actions([
@@ -109,7 +112,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'komp_cam_MFC_requests_anal', 'set_gigantic_act');
     }
     scene.actions([
-      { label: 'Can\'t find a suitable toy or you changed your mind', goto: ['komp_cam_MFC_main', 'waitclients'] },
+      { label: 'Can\'t find a suitable toy or you changed your mind', handler: (st: GameState) => {
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
     ]);
   } },
     ]);
@@ -133,7 +138,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
         ]);
       }
       scene.actions([
@@ -145,7 +151,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'re still a virgin! He\'ll probably like it if you finger your ass instead…');
       scene.text('Without saying a word you turn your ass to the camera and lick your finger before slowly working it past your tight sphincter. When your entire finger is inside you, you slowly begin to fuck your ass with it.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('Your viewer can tell you\'re not very experienced having things up your ass, and enjoys you fingering yourself. He quickly donates some tokens as promised, and you thrust your finger in a few more times before returning to your chair.');
+      } else {
+        (s as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+        (s as any).orgasm_or = 'custom';
       }
     } else {
       if (((s as any).pcs_ass ?? 0) < 15) {
@@ -153,7 +163,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('You\'re still a virgin! He\'ll probably like it if you finger your ass instead…');
         scene.text('Without saying a word you turn your ass to the camera and lick your fingers before slowly working one in past your tight sphincter. Then you add a second! With the two fingers inside you, you gradually begin to move your hand back and forth, slowly fucking your ass with them.');
         if (((s as any).pcs_horny ?? 0) < 100) {
+          (s as any).orgasm_or = 'no';
           scene.text('Your viewer can tell you\'re not very experienced having things up your ass yet and enjoys you fingering yourself. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
+        } else {
+          (s as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+          (s as any).orgasm_or = 'custom';
         }
       } else {
         if (((s as any).pcs_ass ?? 0) < 25) {
@@ -161,7 +175,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('You\'re still a virgin! He\'ll probably like it if you finger your ass instead…');
           scene.text('Without saying a word you turn your ass to the camera and lick your fingers before slowly working one in past your tight sphincter. Then you add a second! And a third! With the three fingers firmly inside you, you slowly begin to move your hand back and forth, slowly fucking your ass with them.');
           if (((s as any).pcs_horny ?? 0) < 100) {
+            (s as any).orgasm_or = 'no';
             scene.text('Your viewer enjoys you fingering yourself, eager to have finally found a girl that isn\'t too squeamish to take some fingers in her ass without crying about it. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
+          } else {
+            (s as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+            (s as any).orgasm_or = 'custom';
           }
         } else {
           if (((s as any).pcs_ass ?? 0) < 35) {
@@ -170,14 +188,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             scene.text('Without saying a word you turn your ass to the camera and lick your fingers before slowly working one in past your tight sphincter. Then you add a second! And a third! And even a fourth!');
             scene.text('With four fingers firmly inside you, you slowly begin to move your hand back and forth, fucking your ass with them. It\'s only a matter of time before your whole hand will fit in now, they\'re going to love that!');
             if (((s as any).pcs_horny ?? 0) < 100) {
+              (s as any).orgasm_or = 'no';
               scene.text('Your viewer enjoys you fingering yourself, eager to have finally found a girl that isn\'t too squeamish to take some fingers in her ass without crying about it. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
+            } else {
+              (s as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+              (s as any).orgasm_or = 'custom';
             }
           } else {
             scene.img('images/pc/items/accessories/computer/camwhore48.jpg');
             scene.text('You\'re still a virgin! He\'ll probably like it if you finger your ass instead…');
             scene.text('Without saying a word you turn your ass to the camera and lick your fingers before slowly working one in past your tight sphincter. Then you add a second! And a third! And even a fourth! The chat explodes when you work your thumb in too, and even manage to go in a bit further. That\'s right… you\'re practically fisting yourself, in front of an audience!');
             if (((s as any).pcs_horny ?? 0) < 100) {
+              (s as any).orgasm_or = 'no';
               scene.text('Your viewers are absolutely ecstatic and are extremely impressed with the ease at which you take large objects (such as your hand) in your ass. A few of them donate some tokens, hoping you\'ll use their money to buy the biggest dildo you can find.');
+            } else {
+              (s as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+              (s as any).orgasm_or = 'custom';
             }
           }
         }
@@ -200,7 +226,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You quickly look around you, trying to find something you can stick up your ass to make the viewer happy. Ah, your hair brush!');
       scene.text('Even though the handle doesn\'t look particularly big, you\'re still careful as you spit on the handle a few times before guiding it to your ass, slowly pushing it inside you.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('Fucking yourself with the brush feels nice, but you knew from the start you weren\'t going to orgasm like this. After a while, when you feel you earned all the donations you\'re going to get out of this, you put the hair brush away with a smile and get back to chatting with your viewers.');
+      } else {
+        (s as any).orgasm_txt = 'To your shame you have to admit, this feels great! If you keep this up, you might not be able to ever look at your hair brush again without getting aroused…<br>Mere seconds later, you\'re unable to resist the urge any longer and eagerly rub your clit while you fuck yourself with your brush, moaning loudly into the microphone when you orgasm. Who knew using a hair brush could be so much fun!?';
+        (s as any).orgasm_or = 'custom';
       }
     } else {
       if (((s as any).pcs_ass ?? 0) < 15) {
@@ -211,7 +241,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('You\'re not that experienced with taking things up your ass yet, but can\'t help but laugh at the viewers typing: "ALL OF THEM!!!11"');
         scene.text('Even though you give it your best shot, you have to yield at 3. For now… this could be fun as a recurring challenge!');
         if (((s as any).pcs_horny ?? 0) < 100) {
+          (s as any).orgasm_or = 'no';
           scene.text('The sharpies stretch your anus nicely, but you\'re not horny enough to orgasm from this. You make an effort of trying to add a fourth in front of the camera, but take them out and return to your seat once you think you won\'t get any more donations.');
+        } else {
+          (s as any).orgasm_txt = 'You were already quite horny, and the extra sensation of your anus being stretched by those Sharpies puts you over the edge. You rub your clit without even really realizing it, and gasp in surprise when an orgasm suddenly hits you!<br>Your ass squeezes out the sharpies one by one from the spasms, while the chat is singing your praises. They all love a girl that can orgasm from anal sex…';
+          (s as any).orgasm_or = 'custom';
         }
       } else {
         if (((s as any).pcs_ass ?? 0) < 25) {
@@ -220,7 +254,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('You quickly look around you, trying to find something you can stick up your ass to make the viewer happy. How about that remote?');
           scene.text('The remote feels a bit uncomfortable, with its angular shape and sharp edges, but you still manage to get nearly half of it inside your ass.');
           if (((s as any).pcs_horny ?? 0) < 100) {
+            (s as any).orgasm_or = 'no';
             scene.text('The remote stretches your anus nicely, but you\'re not horny enough to orgasm from this. You make an effort of fucking yourself with it in front of the camera, but take it out and return to your seat once you think you won\'t get any more donations.');
+          } else {
+            (s as any).orgasm_txt = 'You were already quite horny, and the extra sensation of your anus being stretched by the remote puts you over the edge. You rub your clit without even really realizing it, and gasp in surprise when an orgasm suddenly hits you!<br>Your ass clasps tightly around the emote, while the chat is singing your praises. They all love a girl that can orgasm from anal sex…';
+            (s as any).orgasm_or = 'custom';
           }
         } else {
           if (((s as any).pcs_ass ?? 0) < 35) {
@@ -229,7 +267,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             scene.text('You quickly look around you, trying to find something you can stick up your ass to make the viewer happy. Then you ponder: "How about the phone in the hallway?"');
             scene.text('The horn doesn\'t go in very easily, with the earpiece being the widest part of the whole thing! However, you eventually manage to work it past your sphincter and let out a happy sigh. Is there anything you won\'t do for your viewers?');
             if (((s as any).pcs_horny ?? 0) < 100) {
+              (s as any).orgasm_or = 'no';
               scene.text('The phone stretches your anus nicely, but you\'re not horny enough to orgasm from this. You make an effort of fucking yourself with it in front of the camera, but take it out and return to your seat once you think you won\'t get any more donations. You smile to yourself, hoping you\'ll remember to clean it before you make a phone call…');
+            } else {
+              (s as any).orgasm_txt = 'Just when the bulbous part of the horn penetrates you, your body suddenly trembles intensely and you orgasm without even touching your clit! Wow, that was intense…';
+              (s as any).orgasm_or = 'custom';
             }
           } else {
             qspCall(s, 'npcStat', 'D5');
@@ -238,7 +280,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             scene.text('With a lewd smile on your face, you pretend to stroke the can for a moment, while you tell your viewers: "Pretend that this is your cock, right now…"');
             scene.text('Then you guide it to your anus and penetrate yourself with it, moaning lewdly while you thrust it in deeper and deeper.');
             if (((s as any).pcs_horny ?? 0) < 100) {
+              (s as any).orgasm_or = 'no';
               scene.text('You masturbate furiously while you slowly fuck yourself with the canister, much to the enthusiasm of your chat. They\'re all encouraging you by now, and cheer amongst themselves when they see you fake an orgasm on their screens. Several of them donate some tokens to you. You didn\'t actually orgasm, but you know what your viewers want to see!');
+            } else {
+              (s as any).orgasm_txt = 'You masturbate furiously while you slowly fuck yourself with the canister, much to the enthusiasm of your chat. They\'re all encouraging you by now, and cheer amongst themselves when they see you orgasm on their screens. Several of them donate some tokens to you.';
+              (s as any).orgasm_or = 'custom';
             }
           }
         }
@@ -263,7 +309,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'d rather be riding your dick right now, but since you\'re not here…" you tell the viewer, guiding your hand to your snatch while you wink at the camera.');
       scene.text('You slowly work a finger inside your tight snatch and begin to fuck yourself with it, while the viewer who originally requested you do this is encouraging you to go on.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('You stimulate yourself for a few minutes, nearly forgetting about the camera pointed at you. While you gain your breath you blow a kiss at the camera and let the person who posted the request know that was just for him. He readily donates some extra tokens, appreciating the personal touch.');
+      } else {
+        (s as any).orgasm_txt = 'You can\'t stop yourself even if you wanted to! You orgasm eagerly in front of the camera, leaving a slight blush on your face. "I wish that were you!" you wink at the person who posted the request, who readily donates some extra tokens.';
+        (s as any).orgasm_or = 'custom';
       }
       qspCall(s, 'arousal', 'vaginal_finger', (-5));
       qspCall(s, 'stat', '');
@@ -273,7 +323,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('"I\'d rather be riding your dick right now, but since you\'re not here…" you tell the viewer, guiding your hand to your snatch while you wink at the camera.');
         scene.text('You slowly work two fingers inside your vagina and begin to fuck yourself with them, while the viewer who originally requested you do this is encouraging you to go on.');
         if (((s as any).pcs_horny ?? 0) < 100) {
+          (s as any).orgasm_or = 'no';
           scene.text('You stimulate yourself for a few minutes, nearly forgetting about the camera pointed at you. While you gain your breath you blow a kiss at the camera and let the person who posted the request know that was just for him. He readily donates some extra tokens, appreciating the personal touch.');
+        } else {
+          (s as any).orgasm_txt = 'You can\'t stop yourself even if you wanted to! You orgasm eagerly in front of the camera, leaving a slight blush on your face. "I wish that were you!" you wink at the person who posted the request, who readily donates some extra tokens.';
+          (s as any).orgasm_or = 'custom';
         }
         qspCall(s, 'arousal', 'vaginal_finger', (-5));
       } else {
@@ -282,7 +336,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('"I\'d rather be riding your dick right now, but since you\'re not here…" you tell the viewer, guiding your hand to your snatch while you wink at the camera.');
           scene.text('You slowly work your entire hand inside your vagina, while the chat explodes! The viewer who originally requested you do this is encouraging you along with the rest, thoroughly impressed with your show.');
           if (((s as any).pcs_horny ?? 0) < 100) {
+            (s as any).orgasm_or = 'no';
             scene.text('After you please yourself for a while, you realize you could probably get more tokens out of your viewers by not cumming just yet. You carefully remove your hand with an apologetic smile, hoping some of them will get the hint and donate more.');
+          } else {
+            (s as any).orgasm_txt = 'You were already so horny, it doesn\'t take much for you to bring yourself to an orgasm in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. You feel your vaginal muscles squeezing your hand tightly while you cum, and smile apologetically at the camera when you realize you didn\'t move for a while. Wow, that orgasm was intense!';
+            (s as any).orgasm_or = 'custom';
           }
           qspCall(s, 'arousal', 'vaginal_fist', (-5));
         } else {
@@ -290,7 +348,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('"I\'d rather be riding your dick right now, but since you\'re not here…" you tell the viewer, guiding your hand to your snatch while you wink at the camera.');
           scene.text('They get even more restless when you tease your anus with your free hand.');
           if (((s as any).pcs_horny ?? 0) < 100) {
+            (s as any).orgasm_or = 'no';
             scene.text('After you please yourself for a while, you realize you could probably get more tokens out of your viewers by not cumming just yet. You carefully remove your hands with an apologetic smile, hoping some of them will get the hint and donate more.');
+          } else {
+            (s as any).orgasm_txt = 'You were already so horny, it doesn\'t take much for you to bring yourself to an orgasm in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. You feel your vaginal muscles squeezing your hand tightly while you gently tease your anus as you cum, and smile apologetically at the camera when you realize you didn\'t move for a while. Wow, that orgasm was intense!';
+            (s as any).orgasm_or = 'custom';
           }
           qspCall(s, 'arousal', 'vaginal_fist', (-5));
         }
@@ -324,7 +386,11 @@ function enterSetVibrAnalAct(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You turn on the vibrator and make a show of fucking your ass with it, hoping to please the customer despite it not being what he initially asked for.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('When you put the vibrator aside after a few minutes of fun, you notice you received several donations during your little show.');
+      } else {
+        (s as any).orgasm_txt = 'The vibration is so powerful, you orgasm without even touching your vagina! Your chat loves it…';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'anal_vibe', (-5), 'dick_length', 'masturbation');
@@ -353,7 +419,11 @@ function enterSetSmallAnalAct(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You take the 10cm long dildo and slip it inside your ass with one firm motion. It\'s not very big, and feels quite enjoyable inside your ass.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('When you put the dildo aside after a few minutes of fun, you notice you received several donations during your little show.');
+      } else {
+        (s as any).orgasm_txt = 'The dildo feels so good, you can\'t help but masturbate and orgasm when you rub your clit with one hand while you thrust the dildo inside your ass with the other. Your chat loves it, making all sorts of comments about how slutty you are…';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
@@ -382,7 +452,11 @@ function enterSetNormalAnalAct(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You take the 15cm long dildo and put it on the floor so you can ride it. After you slip it inside your ass with one firm motion, you hump it enthusiastically, making a nice show of it stretching your anus in the process.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('When you put the dildo aside after a few minutes of fun, you notice you received several donations during your little show.');
+      } else {
+        (s as any).orgasm_txt = 'The dildo feels so good, you can\'t help but masturbate and orgasm when you rub your clit with one hand while you ride the dildo. Your chat loves it, making all sorts of comments about how slutty you are…';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
@@ -411,7 +485,11 @@ function enterSetBigAnalAct(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You take the 20cm long dildo and put it on the floor so you can ride it. After you slip it inside your ass with one firm motion, you hump it enthusiastically. You\'re used to this size and make a nice show of it stretching your anus in the process.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('When you put the dildo aside after a few minutes of fun, you notice you received several donations during your little show.');
+      } else {
+        (s as any).orgasm_txt = 'The dildo feels so good, you can\'t help but masturbate and orgasm when you rub your clit with one hand while you ride the dildo. Your chat loves it, making all sorts of comments about how slutty you are…';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
@@ -440,7 +518,11 @@ function enterSetLargeAnalAct(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You relax on your bed and lift your pelvis for easier access. You don\'t bother to lubricate the dildo first and just guide it to your anus, knowing you\'re loose enough back there to be okay without. Your viewers seem very impressed by this, and compliment your sluttiness while they watch the dildo slowly being swallowed by your hungry anus.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('When you put the dildo aside after a few minutes of fun, you notice you received several donations during your little show.');
+      } else {
+        (s as any).orgasm_txt = 'The sensation of fullness you\'re getting from the dildo is too much! You frantically rub your pussy while you squeeze your sphincter tightly around the large dildo in your ass, and reach an orgasm in no time.';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
@@ -469,7 +551,11 @@ function enterSetHugeAnalAct(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You lie down on your back and throw your legs behind your head. Knowing you can take its size comfortably, you skewer yourself with the dildo. You moan eagerly while you fuck your ass with it for a while, giving your viewers a nice show.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('A few minutes later your muscles begin to ache and you decide to stop. You give the camera a weak smile, hoping you fulfilled your viewer\'s request.');
+      } else {
+        (s as any).orgasm_txt = 'The frictions so close to your pussy make it so your free hand is immediately drawn to your clitoris, and you can\'t stop from rubbing yourself to a thunderous orgasm. Your sphincter contracted lewdly around the dildo while you were cumming, which your audience enjoys greatly.';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
@@ -498,7 +584,11 @@ function enterSetEnormousAnalAct(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You roll to your side, looking at the enormous dildo for a second before you decide to shove it inside you. You\'re used to taking things this large up your ass, and moan softly while you thrust the dildo in and out of you.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('Even though it feels nice, you are not quite horny enough to reach orgasm this way.');
+      } else {
+        (s as any).orgasm_txt = 'In the process you cum violently.';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
@@ -529,7 +619,11 @@ function enterSetGiganticAnalAct(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You take your largest dildo and put it on the floor, and then spit on your fingers a few times and rub it across your sphincter habitually. Taking things up the ass is nothing new to you, and you slowly let yourself sink down on the humongous dildo with a satisfied sigh. Your chat loves it, calling you their anal queen.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('The rubber phallus stretches your anal ring nicely, and makes your vagina poke out lewdly with every thrust. The knowledge that you\'re still a virgin makes your customers all the hornier, knowing that a sweet virgin girl such as yourself is taking such a huge dildo up her ass at the same time…');
+      } else {
+        (s as any).orgasm_txt = 'You\'re so excited that you can\'t stop yourself from masturbating, and quickly rub an orgasm out.';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
@@ -558,7 +652,11 @@ function enterSetVibrVagAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You turn on the vibrator and make a show of fucking your pussy with it, thrusting it inside yourself eagerly and enjoying its vibrations.');
     }
     if (((s as any).pcs_horny ?? 0) < 100) {
+      (s as any).orgasm_or = 'no';
       scene.text('When you put the vibrator aside after a few minutes of fun, you notice you received several donations during your little show.');
+    } else {
+      (s as any).orgasm_txt = 'You orgasm violently from the sudden stimulation, which is met with a lot of enthusiasm in your chat.';
+      (s as any).orgasm_or = 'custom';
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(s, 'stat', '');
@@ -586,7 +684,11 @@ function enterSetSmallVagAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You choose your small dildo and make a show of fucking your pussy with it, after you refocus the camera onto your crotch. For the next few minutes you moan lewdly into the camera mic, letting them know how good this dildo makes you feel.');
     }
     if (((s as any).pcs_horny ?? 0) < 100) {
+      (s as any).orgasm_or = 'no';
       scene.text('When you put the dildo aside after a few minutes of fun, you notice you received several donations during your little show.');
+    } else {
+      (s as any).orgasm_txt = 'Feeling overwhelmed by the sudden sensations the dildo is giving you, you orgasm right in front of the camera. It\'s only a short distance away from your sopping pussy, and all your viewers get an excellent view on your pussy spasming and squeezing the dildo tightly.';
+      (s as any).orgasm_or = 'custom';
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(s, 'stat', '');
@@ -614,7 +716,11 @@ function enterSetNormalVagAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You take your medium dildo and roll onto your back, lifting your legs up in the air. The dildo fits inside your pussy easily, and you let out an eager moan when you begin to fuck yourself quite roughly with it.');
     }
     if (((s as any).pcs_horny ?? 0) < 100) {
+      (s as any).orgasm_or = 'no';
       scene.text('When you put the dildo aside after a few minutes of fun, you notice you received several donations during your little show.');
+    } else {
+      (s as any).orgasm_txt = 'You cum within the minute, your body rocking and spasming while you try your best to stay in the camera frame. Your spectators loved it, and shower you with comments in the chat afterwards.';
+      (s as any).orgasm_or = 'custom';
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(s, 'stat', '');
@@ -640,12 +746,20 @@ function enterSetBigVagAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You lie back on your bed and adjust the camera angle so everyone can see your body. The dildo isn\'t small, and you\'re a bit hesitant to thrust it inside you. This may have been a mistake…');
       scene.text('Figuring you can\'t back out of your show now, you slowly penetrate yourself with the dildo, wincing when it stretches your pussy uncomfortably far.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('Luckily the viewers can\'t see your face, and you quickly wipe a tear away while you gently move inside you for a moment, until you realize you\'ve done enough to meet the viewer\'s request and quickly take it out of you.');
+      } else {
+        (s as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
+        (s as any).orgasm_or = 'custom';
       }
     } else {
       scene.text('You lie back on your bed and adjust the camera angle so everyone can see your body. The dildo isn\'t small, but enters you easily and you slam it inside you eagerly, coaxing a lot of lewd comments out of your viewers. They want to take its place so badly…');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('The size of this particular dildo is no challenge for your vagina, and you don\'t gain a whole lot of pleasure from fucking yourself with it. The viewers enjoyed it though; when you put the dildo aside after a few minutes of fun, you notice you received several donations during your little show.');
+      } else {
+        (s as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. Your own horny thoughts make you fuck yourself even harder, and you orgasm noisily in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
@@ -672,13 +786,21 @@ function enterSetLargeVagAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You smile nervously when your customers tell you to use the 25cm dildo… that\'s going to hurt! A lot! Your pussy isn\'t used to accommodating objects that large… Nevertheless, the customer is king. You won\'t get anywhere in this business if you don\'t do what your viewers want you to do.');
       scene.text('After some thought on what the best angle would be, you decide to put the camera on the ground and stand over it with your legs wide. The chat goes wild when you slide the head of the large dildo between your wet folds, and slowly attempt to work the rest in with a painful groan. Damn, maybe you should\'ve said no…');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('After a few minutes you have to stop; your poor pussy aches too much to continue! You try to give your viewers a sweet smile, but several of them point out the grimace on your face. You received some tips during your show regardless.');
+      } else {
+        (s as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
+        (s as any).orgasm_or = 'custom';
       }
     } else {
       scene.text('You smile confidently when your customers tell you to use the 25cm dildo. They might think they\'re challenging you, but you can take that easily!');
       scene.text('After some thought on what the best angle would be, you decide to put the camera on the ground and stand over it with your legs wide. The chat goes wild when you slide the head of the large dildo between your wet folds, and continue to thrust most of its length in with a satisfied sigh.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('After a few minutes of thrusting the dildo inside you, your legs get tired. You decide to stop, and blow a sweet kiss to the camera. Your viewer lets you know that he is very satisfied with your performance, and that he\'d love to take the dildo\'s place one day.');
+      } else {
+        (s as any).orgasm_txt = 'While you penetrate yourself over and over with the dildo, you feel your pussy getting wetter and wetter, and small rivulets of your girlcum drip down your thighs when you orgasm on the large rubber dong. You fall back onto your bed with a satisfied sigh, leaving your audience with nothing but your ceiling to look at for a little while. They can still hear you though, and comment on your loud panting and breathing.';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
@@ -705,13 +827,21 @@ function enterSetHugeVagAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You smile nervously when your customers tell you to use the 25cm dildo… that\'s going to hurt! A lot! Your pussy isn\'t used to accommodate objects that large! Nevertheless, the customer is king. You won\'t get anywhere in this business if you don\'t do what your paying viewers want you to do.');
       scene.text('You rest the dildo on the bed and slowly lower yourself on top of it, making sure you mention the viewer\'s name as you do. Biting your lip you try to stifle your moans of pain when you slowly feel it stretching you beyond your limits… damn, this thing is too big!');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('After a few minutes you have to stop; your poor pussy aches too much to continue! You try to give your viewers a sweet smile, but several of them point out the grimace on your face. You received some tips during your show regardless.');
+      } else {
+        (s as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
+        (s as any).orgasm_or = 'custom';
       }
     } else {
       scene.text('You smile to the camera as you take the huge dildo in your hand - it\'s so large, you can\'t even fully close your fingers around the shaft! You know your pussy will be able to handle it though, and your viewers will love it!');
       scene.text('You rest the dildo on the bed and slowly lower yourself on top of it, making sure you mention the viewer\'s name as you do.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('You ride the artificial phallus enthusiastically for a few minutes, and show off your gaping tunnel of a cunt to the camera once you take it out.');
+      } else {
+        (s as any).orgasm_txt = 'You slowly ride the dildo, enjoying the fullness of it in your wet slit very much. You cum suddenly, moaning loudly while you have a large part of the dildo deep inside you. Your pussy gapes lewdly when your vaginal muscles squeeze out the intruder eventually, without you even really noticing it. Your viewers must be taking screenshots of your gaping cunt, which is still quivering a bit from the orgasm you just had… this will definitely be a show to remember for them!';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
@@ -739,13 +869,21 @@ function enterSetEnormousVagAct(s: GameState, scene: SceneBuilder): void {
       scene.text('Some of your viewers must be noticing your hesitation, because they begin to encourage you: "Come on, you can take it!"');
       scene.text('The dildo is too big for you as you expected, but the encouragement of your fans makes you go through with it anyway. You show off your well-stretched cunt to the camera, with the dildo lodged deep inside you.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('You decide to give it all you have and ride the dildo carefully, but stop after a few minutes when the friction of the dildo against your vaginal walls becomes too much to bear. Damn, that\'s going to feel sore for a while…');
+      } else {
+        (s as any).orgasm_txt = 'You decide to give it all you have and ride the dildo carefully, bringing yourself to an unexpected orgasm. Your pussy lips are stretched quite far around the dildo\'s very wide shaft, which gets you several compliments from your more dedicated viewers.';
+        (s as any).orgasm_or = 'custom';
       }
     } else {
       scene.text('You smile at the camera confidently as you grab hold of the enormous dildo and spit on the suction cup before you slap it onto the floor in front of your bed.');
       scene.text('Slowly guiding the head to your pussy, you wink at the camera as the tip penetrates your well-used cunt, and you lower yourself on the dildo as far as it will go. You\'re practically pinned to the ground with its enormous size inside you, but you slowly begin to ride it while you squeeze your nipples gently, making sure they look nice and erect for your viewers.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('You decide to give it all you have and ride the dildo furiously, but eventually have to stop when your legs get tired.');
+      } else {
+        (s as any).orgasm_txt = 'You decide to give it all you have and ride the dildo furiously, bringing yourself to an unexpected orgasm. Your pussy lips are stretched quite far around the dildo\'s very wide shaft, which gets you several compliments from your more dedicated viewers.';
+        (s as any).orgasm_or = 'custom';
       }
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
@@ -773,15 +911,23 @@ function enterSetGiganticVagAct(s: GameState, scene: SceneBuilder): void {
       scene.text('Some of your viewers must be noticing your hesitation, because they begin to encourage you: "Come on, you can take it!"');
       scene.text('The dildo is too big for you as you expected, but the encouragement of your fans makes you go through with it anyway. You show off your well-stretched cunt to the camera, with the dildo lodged deep inside you.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('after a few minutes, you have to stop; your poor pussy aches too much to continue! You try to give your viewers a sweet smile, but several of them point out the grimace on your face. You received some tips during your show regardless.');
+      } else {
+        (s as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
+        (s as any).orgasm_or = 'custom';
       }
     } else {
       scene.img('images/pc/items/accessories/computer/camwhore42.jpg');
       scene.text('"You know what? I can do better!" you smile lewdly when your viewer tells you to use the biggest dildo you have. You grab two smaller ones and show them to the camera. Combined, they\'re definitely larger than the biggest dildo you have.');
       scene.text('Not giving the chat any chance to influence your decision, you immediately guide the both of them inside you and ride them expertly. They definitely fill you up, but not to the point where it becomes uncomfortable.');
       if (((s as any).pcs_horny ?? 0) < 100) {
+        (s as any).orgasm_or = 'no';
         scene.text('Then you realize: "How am I fucking myself with two dildos at once!?"');
         scene.text('The dildos feel very pleasant inside you, even though they can\'t bring you to an orgasm. You squirm in ecstasy, carefully humping the two dildos while your chat makes all sorts of lewd comments about you.');
+      } else {
+        (s as any).orgasm_or = 'custom';
+        (s as any).orgasm_txt = 'Then you realize: "How am I fucking myself with two dildos at once!?" and orgasm almost immediately after. If you didn\'t know you were a size queen before this, you definitely realize it now!<br>The chat loves their size queen, and showers you with donations while your body is still quivering on the bed.';
       }
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');

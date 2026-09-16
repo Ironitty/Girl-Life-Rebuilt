@@ -1,14 +1,13 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + 'locations/gadukino';
+  ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/gadukino';
   qspCall(s, 'core_library', 'setloc', 'gad_gpbarn', '');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Grandparents\' Barn</h4></center>');
@@ -35,15 +34,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['vintage_card'] > 0) {
     scene.actions([
       { label: 'View your vintage porn cards', handler: (st: GameState) => {
+    (s as any).card_loc = 'gad_gpbarn';
     (s as any).card_deck = 0;
-  }, goto: ['card', ''] },
+    qspGoto(s, 'card', '');
+  } },
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['card'] > 0) {
     scene.actions([
       { label: 'View your new porn cards', handler: (st: GameState) => {
+    (s as any).card_loc = 'gad_gpbarn';
     (s as any).card_deck = 1;
-  }, goto: ['card', ''] },
+    qspGoto(s, 'card', '');
+  } },
     ]);
   }
   if (((s as any).pcs_horny ?? 0) >= 50) {
@@ -73,7 +76,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSearch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_qw ?? 0)?.['A221'] > 0  &&  ((s as any).grigory_barn ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 12) {
-    scene.actions([{ label: 'Continue', goto: ['grigory', 'barn'] }]);
+    qspGoto(s, 'grigory', 'barn');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
@@ -97,7 +100,7 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).mc_inventory ?? 0)?.['vintage_card'] === 0  &&  ((s as any).vcard_trash ?? 0) === 0  &&  (Math.floor(Math.random() * 11) + 0) >= 8) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vintage_card'] = 1;
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vintage_card'] = 1;
         qspCall(s, 'exp_gain', 'observ', 3);
         qspCall(s, 'stat', '');
         scene.img('images/locations/gadukino/village/vcards.jpg');
@@ -188,15 +191,16 @@ function enterBoar(s: GameState, scene: SceneBuilder): void {
 
 function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_gpbarn', 'barn_room');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['tobiQW', 'start'] }]);
+    qspGoto(s, 'tobiQW', 'start');
   }
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'music_actions', 'clear_restrictions');
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Guest Room';
-  scene.img('images/' + '' + qspUntranslated(s, "setloc['imagepath']>", { location: "gad_gpbarn" }) + '/gp_dacha/gad_room.jpg');
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Guest Room';
+  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + '/gp_dacha/gad_room.jpg');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('A small rustic loft space converted from your grandparents barn. A pair of sleeping pallets of dubious comfort is laid out for guests. The room walls are whitewashed with some clothes lines to dry your clothes with some farming tools. It\'s not much to look at but it\'s somewhere you can call home and have some privacy.');
   qspCall(s, 'library_functions', 'set_home_read_acts');
@@ -207,7 +211,7 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['vintage_card'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['card', ''] }]);
+    qspGoto(s, 'card', '');
     scene.actions([
       { label: 'View your vintage porn cards', handler: (st: GameState) => {
     (st as any).card_deck = 0;
@@ -215,7 +219,7 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['card'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['card', ''] }]);
+    qspGoto(s, 'card', '');
     scene.actions([
       { label: 'View your new porn cards', handler: (st: GameState) => {
     (st as any).card_deck = 1;
@@ -223,17 +227,17 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'music_actions', 'start');
-  scene.text('At the foot of your bed is a small <a href="exec:gt \'wardrobe\', \'start\'">chest</a> containing some of your clothes.');
+  scene.text('At the foot of your bed is a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">chest</a> containing some of your clothes.');
   scene.text('<table><tr><td valign="top">');
   // TODO-QSP: func('alarmclock', 'base_alarmclock_text')
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-    scene.text('Your <a href="exec:gt \'stol\', \'bc\'">birth control</a> are hidden a small nook, as are your <a href="exec:gt \'stol\', \'bc\'">condoms</a>.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027bc\\u0027); return false;">birth control</a> are hidden a small nook, as are your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027bc\\u0027); return false;">condoms</a>.');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0) {
-      scene.text('Your <a href="exec:gt \'stol\', \'bc\'">birth control</a> are hidden in a small box under your pallet.');
+      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027bc\\u0027); return false;">birth control</a> are hidden in a small box under your pallet.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-        scene.text('Your <a href="exec:gt \'stol\', \'bc\'">condoms</a> are hidden behind a loose brick.');
+        scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027bc\\u0027); return false;">condoms</a> are hidden behind a loose brick.');
       }
     }
   }
@@ -241,24 +245,24 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
     (s as any).detention_warning = ((s as any).daystart ?? 0);
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
-    scene.text('Your <a href="exec: gt \'komp\',\'start\'">computer</a> is on your desk.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> is on your desk.');
   }
   // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go to the yard</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['gad_gpyard', 'start'] }]);
+      qspGoto(s, 'gad_gpyard', 'start');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_gpbarn', 'barn_room'] }]);
+      qspGoto(s, 'gad_gpbarn', 'barn_room');
     }
   } },
     { label: '<b>Leave and enter the dacha</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+      qspGoto(s, 'gad_gphouse', 'main');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_gpbarn', 'barn_room'] }]);
+      qspGoto(s, 'gad_gpbarn', 'barn_room');
     }
   } },
     { label: 'Relax on your bed', goto: ['bed', 'start'] },

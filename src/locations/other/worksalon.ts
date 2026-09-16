@@ -1,24 +1,24 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'worksalon', 'start');
+  (s as any).sexloc = 'worksalon';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Beauty Salon</b></center>');
   scene.img('images/locations/city/citycenter/mall/salon/salonwork.jpg');
   scene.text('You show up to work and see your coworkers already working. You give them a friendly wave as you head over to your work station.');
   (s as any).salonjobrand = Math.floor(Math.random() * 11) + 0;
   if (((s as any).salonjobrand ?? 0) === 2  &&  ((s as any).pcs_apprnc ?? 0) > 80  &&  (!((s as any).alla ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['worksalon', '2'] }]);
+    qspGoto(s, 'worksalon', '2');
   } else {
     if (((s as any).salonjobrand ?? 0) === 3  &&  ((s as any).salonslut ?? 0) === 1) {
       scene.text('As you head over to your work station, your boss comes over and leans close to you. "Go into my office and take your clothes off, then bend over my desk. I will be there shortly." He says to you as he gives your ass a slap.');
@@ -74,6 +74,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/masha/sex/s10.jpg');
     scene.text('Several relaxing minutes later, you feel much better from the massage. Turning over, you spread your legs. Masha smiles. You don\'t even have to say a word. Her mouth seeks out your pussy, and she begins to lick you.');
     scene.text('She alternates between sliding her tongue inside of you, flicking your clit with her tongue, licking your pussy all over, or just sucking on your clit, causing you to moan in pleasure.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 30, 'dom', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -84,6 +85,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/masha/sex/s11.jpg');
     scene.text('You roll over once more and get on your hands and knees. Once more, Masha knows exactly what to do and starts to lick your asshole with her tongue. Moments later, she slides her tongue inside of your ass while her hand massages your clit.');
     scene.text('You moan louder, your pussy becoming soaking wet as Masha massages it and tongue fucks your ass. Within minutes, you feel your body spasm, and you orgasm hard. After your orgasm as you catch your breath, Masha licks all your pussy juices off you, leaving you clean.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 30, 'dom', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -97,6 +99,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/masha/sex/s10.jpg');
     scene.text('You take off your clothes, but instead of lying on your stomach, you lie on your back and spread your legs. Masha smiles. You don\'t even have to say a word. Her mouth seeks out your pussy, and she begins to lick you.');
     scene.text('She alternates between sliding her tongue inside of you, flicking your clit with her tongue, licking your pussy all over, or just sucking on your clit, causing you to moan in pleasure.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 30, 'dom', 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -107,6 +110,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/masha/sex/s11.jpg');
     scene.text('You take off your clothes, but instead of lying on your stomach, you get on your hands and knees. Masha knows exactly what to do and starts to lick your asshole with her tongue. Moments later, she slides her tongue inside of your ass while her hand massages your clit.');
     scene.text('You moan louder, your pussy becoming soaking wet as Masha massages it and tongue fucks your ass. Within minutes, you feel your body spasm, and you orgasm hard. After your orgasm as you catch your breath, Masha licks all your pussy juices off you, leaving you clean.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 30, 'dom', 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -167,6 +171,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Spread your legs', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/s6.jpg');
     scene.text('You just spread your legs. Masha smiles. You don\'t even have to say a word. Her mouth seeks out your pussy, and she begins to lick you. She alternates between sliding her tongue inside of you, flicking your clit with her tongue, licking your pussy all over, or just sucking on your clit, causing you to moan in pleasure.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 30, 'dom', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -203,6 +208,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/city/masha/sex/s3.jpg');
     scene.text('You smile. Getting on all fours, you tell her, "Lick my pussy." Her mouth seeks it out, and she begins to do as she\'s been told. She alternates between sliding her tongue inside of you, flicking your clit with her tongue, licking your pussy all over, or just sucking on your clit, causing you to moan in pleasure.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 30, 'dom', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -239,6 +245,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('After coming to this realization, you decide to give her a new order. "Alright then, lick my ass."');
     scene.text('Moments later she slides her tongue inside of your ass while her hand massages your clit. You moan louder, your pussy becoming soaking wet as Masha massages your pussy and tongue fucks your ass.');
     scene.text('Within minutes, you feel your body spasm and you orgasm hard. After your orgasm as you catch your breath, Masha licks all your pussy juices off you, leaving you clean.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 30, 'dom', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -307,16 +314,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).masstime = ((s as any).hour ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     if ((!((s as any).salonjobrand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['worksalon', '0'] }]);
+      qspGoto(s, 'worksalon', '0');
     }
     if (((s as any).salonjobrand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['worksalon', '1'] }]);
+      qspGoto(s, 'worksalon', '1');
     }
     if (((s as any).salonjobrand ?? 0) > 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (60);
     }
     scene.text('You give a client a massage.');
-  }, goto: ['worksalon', 'start'] },
+    qspGoto(s, 'worksalon', 'start');
+  } },
     { label: 'Have a snack (0:05)', handler: (st: GameState) => {
     qspCall(st, 'food', 'snack');
   } },
@@ -354,12 +362,13 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Suck him off', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at ' + qspUntranslated(s, "monthName>", { location: "worksalon" }) + ' <<day>>, <<masstime>>h', Math.floor(Math.random() * 23) + 18);
+    qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at ' + ((s as any).monthName ?? 0) + ' ' + ((s as any).day ?? 0) + ', ' + ((s as any).masstime ?? 0) + 'h', Math.floor(Math.random() * 23) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).sexstart = 1;
     (s as any).sexvar = 6;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
-  }, goto: ['sex', 'minet'] },
+    qspGoto(s, 'sex', 'minet');
+  } },
   ]);
   scene.build();
 }
@@ -375,7 +384,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'earn', 1000);
     scene.img('images/locations/city/citycenter/mall/salon/wmass5.jpg');
     scene.text('You think for a moment and then smile to him and nod. "Be right back." Then you leave and fetch Masha. Once you start to undress, she does as well, following your lead. You both crawl on him, rubbing your breasts against him all over while you take turns jerking him off.');
-    qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at ' + qspUntranslated(s, "monthName>", { location: "worksalon" }) + ' <<day>>, <<masstime>>h', Math.floor(Math.random() * 23) + 18);
+    qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at ' + ((s as any).monthName ?? 0) + ' ' + ((s as any).day ?? 0) + ', ' + ((s as any).masstime ?? 0) + 'h', Math.floor(Math.random() * 23) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'willpower', 'bj', 'force');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -408,7 +417,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('He begins to moan quickly, and it doesn\'t take long before he is blowing his load in your mouth. Hot spurts of semen shoot into your mouth. You quickly swallow it all down, lifting your head up and sticking out your tongue to show him.');
     scene.text('With a grin, he pulls out the money and gives it to you. "Well worth the price."');
     qspCall(s, 'arousal', 'bj', 20, 'sub');
-  }, goto: ['podrsex', 'suck'] },
+    qspGoto(s, 'podrsex', 'suck');
+  } },
     ]);
   } },
   ]);
@@ -428,6 +438,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/salon/sex/ira2.jpg');
     scene.text('When you don\'t object, she gets up and pushes you down in the chair. Pulling your clothes off, she exposes your pussy and pushes your legs apart. Dropping down to her hands and knees, her face goes between your legs, and her tongue darts out and starts licking you.');
     scene.text('She is amazing, and whatever she is doing with her tongue is beyond description. You feel yourself orgasm within moments. Within ten minutes, you have had several rolling orgasms. Finally, she licks you clean and gets up, handing you a business card with the name Alla and a number. Without a word, she turns and walks away.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 30, 'dom', 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([

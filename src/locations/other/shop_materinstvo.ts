@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,9 +6,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shoplocation ?? 0) === 'items') {
-    scene.actions([{ label: 'Continue', goto: ['shop_materinstvo', 'items'] }]);
+    qspGoto(s, 'shop_materinstvo', 'items');
   }
   qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'start');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'shop_materinstvo', 'config');
@@ -26,7 +27,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterItems(s: GameState, scene: SceneBuilder): void {
+  (s as any).shoplocation = 'items';
   qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'items');
+  (s as any).loc_s = 'shop_materinstvo';
+  (s as any).args_s = 'items';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/mommy/shop1.jpg');
   qspCall(s, 'themes', 'indoors');
@@ -41,6 +45,7 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
 
 function enterClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'clothes');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Mommy Style clothing</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -54,7 +59,8 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_materinstvo', 'start'] },
+    qspGoto(s, 'shop_materinstvo', 'start');
+  } },
   ]);
   scene.build();
 }

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
+  (s as any).menu_loc = 'gdktoilet_mens';
+  (s as any).menu_arg = 'mens_entrance_events';
   qspCall(s, 'stat', '');
   (s as any).temp = Math.floor(Math.random() * 100) + 1;
   if (((s as any).temp ?? 0) >= 80) {
@@ -46,6 +49,7 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (15);
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 25);
     qspCall(s, 'stat', '');
     if (((s as any).pcs_hotcat ?? 0) < 4) {
@@ -78,7 +82,8 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/pc/reactions/fuckoff2.jpg');
     scene.text('Not wanting to fuck this guy, you quickly get dressed before telling him to fuck off!');
-  }, goto: ['gdktoilet', 'start'] },
+    qspGoto(s, 'gdktoilet', 'start');
+  } },
           ]);
         }
         scene.actions([
@@ -105,7 +110,8 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/pc/reactions/fuckoff2.jpg');
     scene.text('Not wanting to fuck this guy, you push him off you and quickly get dressed before telling him to fuck off!');
-  }, goto: ['gdktoilet', 'start'] },
+    qspGoto(s, 'gdktoilet', 'start');
+  } },
           ]);
         }
         scene.actions([
@@ -283,7 +289,8 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['gdktoilet', 'start'] },
+    qspGoto(s, 'gdktoilet', 'start');
+  } },
                 ]);
               }
               scene.actions([
@@ -306,13 +313,14 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (15);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A1'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A1'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'cum_call', 'anus', 'A1', 1);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Community Center - Men\'s Restroom</b></center>');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/threesomeanalcum.jpg');
     scene.text('Starting to pound your ass harder, Dimka starts to grunt as he shoots his load in your ass. Pulling out his warm liquid flows out your ass spilling onto the girls face. He takes his dick and puts it in her mouth saying, "Clean the rest of this up slut and don\'t forget to clean my bitch too." The girl starts to lick your ass clean. She is really good at it and you begin to have another orgasm. You finish and decide to get up and get dressed. Dimka pleased with your behaviour tells you, "You should come by my house more often, slave."');
+    (s as any).orgasm_or = 'yes';
     (s as any).cumspclnt = 15;
     qspCall(s, 'cum_cleanup', '');
     qspCall(s, 'arousal', 'end');
@@ -329,7 +337,7 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
           } else {
             (s as any).minut = ((s as any).minut ?? 0) + 1;
             (s as any).temp = Math.floor(Math.random() * 2) + 1;
-            scene.actions([{ label: 'Continue', goto: ['gdktoilet_mens', 'mens'] }]);
+            qspGoto(s, 'gdktoilet_mens', 'mens');
           }
         }
       }
@@ -340,16 +348,24 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMens(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
+  (s as any).loc_arg = 'mens';
+  (s as any).loc = 'gdktoilet_mens';
+  (s as any).menu_loc = 'gdktoilet_mens';
+  (s as any).menu_arg = 'mens';
+  (s as any).locM = 'gdktoilet_mens';
+  (s as any).locM_arg = 'mens';
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >=20  &&  ((s as any).hour ?? 0) <=23) {
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/komb.mp3';
       (s as any).volume = 50;
       (s as any).music_loop = 1;
     }
   }
   scene.text('<center><b>Community Center - Men\'s Restroom</b></center>');
   scene.img('images/locations/pavlovsk/community/bathroom/mens/bathroom_mens.jpg');
-  scene.text('You peek around the corner. Inside this room, stalls line the right side, with urinals on the far wall and rows of sinks and <a href="exec:gt \'mirror\', \'start\'">mirrors</a> to the left. The room has a smell of disinfectant and stale piss. As you look around you notice a hole in the wall.');
+  scene.text('You peek around the corner. Inside this room, stalls line the right side, with urinals on the far wall and rows of sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a> to the left. The room has a smell of disinfectant and stale piss. As you look around you notice a hole in the wall.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
@@ -377,6 +393,7 @@ function enterMens(s: GameState, scene: SceneBuilder): void {
           { label: 'Masturbate', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'mast', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
     qspCall(s, 'stat', '');
     scene.text('You walk into one of the men\'s stalls.');
@@ -409,10 +426,12 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_horny ?? 0) <= 60) {
     scene.text('You are starting to feel warm and you insert your finger in your pussy.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 2, 'masturbate');
     qspCall(s, 'stat', '');
   } else {
     scene.text('You are starting to feel warm and you insert your finger in your pussy. You keep fingering your pussy and before long you are breathing heavily and start to moan.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 2, 'masturbate');
     qspCall(s, 'stat', '');
   }
@@ -426,6 +445,8 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/mensmast1.jpg');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'As your pussy gets wet you start to rub your clit vigorously. You start to feel more intense pleasure with every second. Within a few moments a powerful orgasm takes control of your body. You can hear your moans echo through the restroom, your orgasm finally stops. Leaving you gasping and trembling as you recover.';
     qspCall(s, 'arousal', 'clit_finger', 2, 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -436,7 +457,7 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
     scene.text('You grab some toilet paper and clean off your now wet clit. You think to yourself, "I hope nobody heard that."');
     if ((Math.floor(Math.random() * 100) + 1) >= 75) {
       qspCall(s, 'npcgeneratec', '', 0, 'guy from the men\'s bathroom', Math.floor(Math.random() * 27) + 19);
-      if (!(s as any).npc_dick) (s as any).npc_dick = {}; (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = Math.floor(Math.random() * 15) + 10;
+      ((s as any).npc_dick = (s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = Math.floor(Math.random() * 15) + 10;
       qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
       // TODO-QSP: dynamic text: You look up and notice the stall door opens. Right then a man in an orange jumps...
       scene.text(`You look up and notice the stall door opens. Right then a man in an orange jumpsuit walks in. He tells you, "Do you know where you are?" Unable to respond after your intense orgasm the man unzips his jumpsuit and takes out his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}cm dick and places it near your mouth.`);
@@ -486,6 +507,8 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/mensmast4.jpg');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You continue to rub your clit more and more when all of a sudden you explode into another orgasm. The man tells you he\'s about to cum and you stop sucking his dick. The second you stop sucking he cums around your mouth.';
     qspCall(s, 'arousal', 'clit_finger', 2);
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -545,7 +568,7 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
 function enterMensglory(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'guy from the men\'s bathroom', Math.floor(Math.random() * 27) + 19);
   // TODO-QSP: $npc_thdick[$npclastgenerated] = 'massive'
-  if (!(s as any).npc_dick) (s as any).npc_dick = {}; (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = 20;
+  ((s as any).npc_dick = (s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = 20;
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/1kissing.jpg');
@@ -573,6 +596,7 @@ function enterMensglory(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/4standmiss.mp4');
     // TODO-QSP: dynamic text: He suddenly pulls out of you and roughly turns you back around, and picks you up...
     scene.text(`He suddenly pulls out of you and roughly turns you back around, and picks you up. You spread your legs and he lowers you back down, till you feel his ${((s as any).dick_girth || '')} dick slide back inside of your pussy. He carries you, fucking you the whole time, you are impressed by his strength, as he manages to not only carry you, but fuck you at the same time. He slams your back roughly but not painfully onto an open stall door and presses your body against it, then he starts fucking you in harder. It seems he is nowhere near ready to cum.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([

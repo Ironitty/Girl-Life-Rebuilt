@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,12 +6,13 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bedrPar2', '');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'family_schedule', '');
   scene.text('<center><b>Master bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar2.jpg');
-  scene.text('The room in which your parents sleep. Their large bed, <a href="exec: gt \'bedrPar2\',\'parents_wardrobe\'">wardrobe</a> and other closets take up most of the space.');
+  scene.text('The room in which your parents sleep. Their large bed, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bedrPar2\\u0027, \\u0027parents_wardrobe\\u0027); return false;">wardrobe</a> and other closets take up most of the space.');
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
     if (((s as any).locat ?? 0)?.['Mother'] === 1  &&  ((s as any).locat ?? 0)?.['Stepdad'] === 1) {
       scene.text('Your mother and stepfather are sleeping on the bed.');
@@ -27,7 +28,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1  ||  (((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) < 21)) {
     if (((s as any).kamasutra_day ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.text('You notice a <a href="exec: gt \'bedrPar2\',\'kamasutra\'">book laying on the bed</a>.');
+      scene.text('You notice a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bedrPar2\\u0027, \\u0027kamasutra\\u0027); return false;">book laying on the bed</a>.');
     }
     if (((s as any).prezikday ?? 0) !== ((s as any).daystart ?? 0)) {
       if (((s as any).prezikProver ?? 0) >= 3) {
@@ -37,10 +38,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 5);
     qspCall(s, 'stat', '');
     if ((!((s as any).preziktype ?? 0))) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
     if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
     (s as any).prezikday = ((s as any).daystart ?? 0);
     (s as any).prezikProver = 0;
@@ -71,7 +72,7 @@ function enterKamasutra(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Read', handler: (st: GameState) => {
     (st as any).kamasutra_page = 0;
@@ -94,7 +95,7 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Close the book', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -106,7 +107,7 @@ function enterParentsWardrobe(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave ', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Rummage', goto: ['bedrPar2', 'wardrobe_search'] },
   ]);
@@ -120,7 +121,7 @@ function enterWardrobeSearch(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave ', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -139,7 +140,7 @@ function enterWardrobeSearch(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Close the cabinet', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -157,12 +158,13 @@ function enterMomtoyPlay(s: GameState, scene: SceneBuilder): void {
       { label: 'Play with it', handler: (st: GameState) => {
     (s as any).dildohand = 10;
     (s as any).selfmomtoyplay = 1;
-  }, goto: ['selfplay', 'start'] },
+    qspGoto(s, 'selfplay', 'start');
+  } },
       { label: 'Steal the dildo and leave', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_small'] = 1;
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_small'] = 1;
     (s as any).tookmomdildo = 1;
     (s as any).selfmomtoyplay = 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -170,7 +172,7 @@ function enterMomtoyPlay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Put it back', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

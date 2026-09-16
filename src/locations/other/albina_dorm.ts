@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,6 +12,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'albina_dorm', 'start');
+  (s as any).locclass = 'livingr';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Albina\'s Dorm Room</b></center>');
@@ -141,7 +143,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstRoomVisit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['first_room_visit'] = 1;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['first_room_visit'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/albinaroom/room.jpg');
   scene.text('You\'re not surprised to find that Albina\'s dorm room is as tastefully decorated as you would imagine. Along the left of the room sits a lofted bed that you\'re fairly certain isn\'t university standard given that it looks nothing like the empty bed on the other side of the room.');
@@ -179,7 +181,7 @@ function enterDressing(s: GameState, scene: SceneBuilder): void {
 function enterYoga(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).AlbinaQW ?? 0)?.['saw_dorm_yoga'] === 0) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['saw_dorm_yoga'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['saw_dorm_yoga'] = 1;
     scene.img('images/locations/city/island/university/dorm/albinaroom/room.jpg');
     scene.text('She stands aside to let you enter her room before closing the door behind you. When you turn around to greet her, you\'re surprised to see that she\'s completely naked.');
     scene.text('Your gaze can\'t help but glance down at her tight body, her toned muscles swollen from exertion as beads of sweat cover her skin and run down her breasts. Looking behind you, you spot a pile of damp clothes dumped in a pile on the floor.');
@@ -267,7 +269,8 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Say goodbye and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['uni_dorm', 'seventh_floor'] },
+    qspGoto(s, 'uni_dorm', 'seventh_floor');
+  } },
     ]);
   } },
         ]);
@@ -328,7 +331,8 @@ function enterPlaygame(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Say goodbye and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['uni_dorm', 'seventh_floor'] },
+    qspGoto(s, 'uni_dorm', 'seventh_floor');
+  } },
     ]);
   } },
       ]);
@@ -342,7 +346,7 @@ function enterPlaygame(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameBet(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['gamebet'] = 1;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['gamebet'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 0);
@@ -423,7 +427,7 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
 
 function enterAlbinaNotHereErmiasStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) !== ((s as any).AlbinaQW ?? 0)?.['not_dorm_sms_day']) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['not_dorm_sms_day'] = ((s as any).daystart ?? 0);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['not_dorm_sms_day'] = ((s as any).daystart ?? 0);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbinaNotHereErmias_SMS(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2) {
       scene.text('You send her a text, but get no reply. You wonder if she\'s upstairs with Ermias right now.');
@@ -445,7 +449,7 @@ function enterAlbinaNotHereErmias_SMS(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'telefon', 'AddContact', 'A23', 'images/characters/shared/headshots_main/23.jpg', 0);
   } else {
     if (((s as any).contactAnon ?? 0)?.[String((s as any).temp_index ?? 0)] !== 0) {
-      if (!(s as any).contactAnon) (s as any).contactAnon = {}; (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
+      ((s as any).contactAnon = (s as any).contactAnon ?? {})[String((s as any).temp_index ?? 0)] = 0;
     }
   }
   qspCall(s, 'SMStext_builder', 'start');
@@ -456,7 +460,7 @@ function enterAlbinaNotHereErmias_SMS(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'end');
   if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2) {
     if ((!(Math.floor(Math.random() * 3) + 0))) {
-      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['SMSID'] = ((s as any).temp_SMSID ?? 0);
+      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['SMSID'] = ((s as any).temp_SMSID ?? 0);
       // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A23', "gs 'albina_dorm', 'albina_not_here_ermias_SMS_response'", ...
     }
   }
@@ -479,7 +483,7 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
     qspCall(s, 'SMStext_builder', 'receive', 'Gotta go! Wish my pussy luck!');
   } else {
     if (((s as any).temp_rand ?? 0) === 1) {
-      qspCall(s, 'SMStext_builder', 'receive', qspUntranslated(s, "\"<<npc_usedname['A23']>> is a little busy right now\"", { location: "albina_dorm" }));
+      qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' is a little busy right now');
       qspCall(s, 'SMStext_builder', 'send', 'Who is this?');
       // TODO-QSP: gs 'SMStext_builder', 'receive', "A friend. Like I said, she is busy"
       qspCall(s, 'SMStext_builder', 'send', 'Doing what?');
@@ -488,14 +492,14 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
       qspCall(s, 'SMStext_builder', 'receive', 'See?');
     } else {
       if (((s as any).temp_rand ?? 0) === 2) {
-        qspCall(s, 'SMStext_builder', 'receive', qspUntranslated(s, "\"<<npc_usedname['A23']>> cannot use her phone right now\"", { location: "albina_dorm" }));
+        qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' cannot use her phone right now');
         qspCall(s, 'SMStext_builder', 'send', 'What? Who is this?');
         // TODO-QSP: gs 'SMStext_builder', 'receive', "A friend. Like I said, she cannot talk right now"
         qspCall(s, 'SMStext_builder', 'send', 'What do you mean?');
         qspCall(s, 'SMStext_builder', 'receive', 'She is using her mouth for other things right now');
         qspCall(s, 'SMStext_builder', 'receive_img', 'images/characters/pavlovsk/school/girl/albina/selfies/bbc_selfie2.jpg');
       } else {
-        qspCall(s, 'SMStext_builder', 'receive', qspUntranslated(s, "\"<<npc_usedname['A23']>> cannot come to the phone right now\"", { location: "albina_dorm" }));
+        qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' cannot come to the phone right now');
         qspCall(s, 'SMStext_builder', 'send', 'What? Who is this?');
         // TODO-QSP: gs 'SMStext_builder', 'receive', "A friend. Like I said, she is busy right now"
         qspCall(s, 'SMStext_builder', 'send', 'Doing what?');

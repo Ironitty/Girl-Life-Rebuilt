@@ -1,4 +1,6 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).divmastr = qspUntranslated(s, "{", { location: "divan" });
   if (((s as any).pcs_sweat ?? 0) < 25) {
     qspCall(s, 'sweat', 'add', 5);
   }
@@ -22,6 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/mast/divmas.jpg');
   scene.text('You lie down on the sofa and began to fondle your chest with one hand while you slide the other hand down your stomach and across your mound.');
   scene.text('With your middle finger you start rubbing and stroking your clit, which responds to the touch by bringing a sensual warmth to your entire body.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'clit_finger', 15, 'masturbate');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
@@ -29,7 +33,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You lie down on the sofa.');
   if (((s as any).mc_inventory ?? 0)?.['tech_tv'] >= 1  ||  ((s as any).mc_inventory ?? 0)?.['plasma_tv'] >= 1  &&  ((s as any).loc ?? 0) !== 'dachain') {
     scene.actions([
-      { label: 'Watch TV', goto: ['TV', 'start'] },
+      { label: 'Watch TV', handler: (st: GameState) => {
+    qspGoto(s, 'TV', 'start');
+  } },
     ]);
   }
   qspCall(s, 'library_functions', 'set_home_read_acts');
@@ -51,7 +57,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFin(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }

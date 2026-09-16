@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -43,27 +43,28 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearVars(s, scene); (s as any).locArgs = __savedLocArgs; }
               (s as any).abonement = 30;
               (s as any).nichWork = 0;
-              if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 0;
-              if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckCounter'] = 0;
-              scene.actions([{ label: 'Continue', goto: ['havana', 'start'] }]);
+              ((s as any).nichTanya = (s as any).nichTanya ?? {})['Relationship'] = 0;
+              ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckCounter'] = 0;
+              qspGoto(s, 'havana', 'start');
             } else {
               if (((s as any).locArgs?.[2] ?? 0) === 'getHired') {
                 (s as any).nichWork = 0;
-                if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 1;
+                ((s as any).nichTanya = (s as any).nichTanya ?? {})['Relationship'] = 1;
                 (s as any).nichJobRefused = 0;
-                if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckCounter'] = 10;
+                ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckCounter'] = 10;
                 (s as any).hour = 16;
-                scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+                qspGoto(s, 'city_center', '');
               } else {
                 if (((s as any).locArgs?.[2] ?? 0) === 'tanyaDate100') {
                   (s as any).nichWork = 2;
-                  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 1;
-                  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckCounter'] = 10;
-                  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Dominance'] = 30;
-                  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Strapon'] = 0;
+                  ((s as any).nichTanya = (s as any).nichTanya ?? {})['Relationship'] = 1;
+                  ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckCounter'] = 10;
+                  ((s as any).nichTanya = (s as any).nichTanya ?? {})['Dominance'] = 30;
+                  ((s as any).nichTanya = (s as any).nichTanya ?? {})['Strapon'] = 0;
                   (s as any).nichGalaKnowsPT = 0;
                   (s as any).hour = 16;
-                  scene.actions([{ label: 'Continue', goto: ['nichTanya', 'bedroomTanya'] }]);
+                  (s as any).loc = 'nichBedroomTanja';
+                  qspGoto(s, 'nichTanya', 'bedroomTanya');
                 } else {
                   if (((s as any).locArgs?.[2] ?? 0) === 'nichGentleclubE1') {
                     (s as any).nichWork = 2;
@@ -71,7 +72,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
                     (s as any).hour = 18;
                     (s as any).nichGentleclubDayE1 = ((s as any).daystart ?? 0);
                     (s as any).nichGentleclubE1 = 1;
-                    scene.actions([{ label: 'Continue', goto: ['nichApartment', ''] }]);
+                    qspGoto(s, 'nichApartment', '');
                   } else {
                     if (((s as any).locArgs?.[2] ?? 0) === 'galaContract') {
                       (s as any).nichGalaTraining = 1;
@@ -81,7 +82,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
                       (s as any).nichGalaContract = 0;
                       (s as any).minut = 0;
                       (s as any).hour = 18;
-                      scene.actions([{ label: 'Continue', goto: ['nichApartment', ''] }]);
+                      qspGoto(s, 'nichApartment', '');
                     }
                   }
                 }
@@ -95,60 +96,60 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nicholas\' Apartment Storyline Debug</b></center>');
   scene.text('<i><b>Debug mode</b>: display debug messages and force random events to fire as often as possible</i>');
   if (((s as any).nichDebug ?? 0) === 1) {
-    scene.text('Debug mode: <a href="exec: gt \'nichUtil\', \'debug\', \'debugToggle\'">Enabled</a>');
+    scene.text('Debug mode: <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027debugToggle\\u0027); return false;">Enabled</a>');
   } else {
-    scene.text('Debug mode: <a href="exec: gt \'nichUtil\', \'debug\', \'debugToggle\'">Disabled</a>');
+    scene.text('Debug mode: <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027debugToggle\\u0027); return false;">Disabled</a>');
   }
   scene.text('<i><b>Shortcuts</b></i>');
   scene.text('<i>The following options will set and change a whole bunch of variables and might transport you to another place. Important: every shortcut has been created with a debug scenario in mind and won\'t set/reset every storyline-variable. Expect weird behavior.</i>');
-  scene.text('<a href="exec: gt \'nichUtil\', \'debug\',\'shortcut\',\'meetTanya\'">Meet Tanya</a>: Sets you up to meet Tanya. Go to the dressing room. She is the \'cute girl\'. Meeting her has a random chance unless you have activated debug mode.');
-  scene.text('<a href="exec: gt \'nichUtil\', \'debug\',\'shortcut\',\'getHired\'">Get hired</a>: You visited Tanya often enough for her to offer you the job as the live-in maid.');
-  scene.text('<a href="exec: gt \'nichUtil\', \'debug\',\'shortcut\',\'tanyaDate100\'">Tanya Special Date 1</a>: Tanya became somewhat dominant. Ask her for a date and let her decide where to go.');
-  scene.text('<a href="exec: gt \'nichUtil\', \'debug\',\'shortcut\',\'nichGentleclubE1\'">Nicholas Club Event 1</a>: Nicholas has a special guest over. Meet him at his study.');
-  scene.text('<a href="exec: gt \'nichUtil\', \'debug\',\'shortcut\',\'galaContract\'">Gala Contract</a>: Gala offers a special contract. Meet her in the living room.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027shortcut\\u0027); return false;">Meet Tanya</a>: Sets you up to meet Tanya. Go to the dressing room. She is the \'cute girl\'. Meeting her has a random chance unless you have activated debug mode.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027shortcut\\u0027); return false;">Get hired</a>: You visited Tanya often enough for her to offer you the job as the live-in maid.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027shortcut\\u0027); return false;">Tanya Special Date 1</a>: Tanya became somewhat dominant. Ask her for a date and let her decide where to go.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027shortcut\\u0027); return false;">Nicholas Club Event 1</a>: Nicholas has a special guest over. Meet him at his study.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027shortcut\\u0027); return false;">Gala Contract</a>: Gala offers a special contract. Meet her in the living room.');
   scene.text('<i><b>Job performance</b></i>');
   // TODO-QSP: dynamic text: Overall performance (higher=better): <<nichPerformance>>
   scene.text(`Overall performance (higher=better): ${((s as any).nichPerformance || '')}`);
-  scene.text('<a href="exec: gt \'nichUtil\', \'debug\', \'evaluation\', \'silent\'">Get silent performance evaluation</a>');
-  scene.text('<a href="exec: gt \'nichNicholas\', \'evaluation\'">Get detailed performance evaluation</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027evaluation\\u0027); return false;">Get silent performance evaluation</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichNicholas\\u0027, \\u0027evaluation\\u0027); return false;">Get detailed performance evaluation</a>');
   scene.text('<i><b>Chore state</b>: higher numbers are worse</i>');
   // TODO-QSP: dynamic text: Hallway: <<nichChoreState[0]>> <a href="exec: gt 'nichUtil', 'debug', 'chore', 0...
-  scene.text(`Hallway: ${qspUntranslated(s, "nichChoreState[0]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 0, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 0, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 0, '5'">+5</a>`);
+  scene.text(`Hallway: ${qspUntranslated(s, "nichChoreState[0]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Guest cloakroom: <<nichChoreState[1]>> <a href="exec: gt 'nichUtil', 'debug', 'c...
-  scene.text(`Guest cloakroom: ${qspUntranslated(s, "nichChoreState[1]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 1, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 1, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 1, '5'">+5</a>`);
+  scene.text(`Guest cloakroom: ${qspUntranslated(s, "nichChoreState[1]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Maid bedroom: <<nichChoreState[2]>> <a href="exec: gt 'nichUtil', 'debug', 'chor...
-  scene.text(`Maid bedroom: ${qspUntranslated(s, "nichChoreState[2]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 2, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 2, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 2, '5'">+5</a>`);
+  scene.text(`Maid bedroom: ${qspUntranslated(s, "nichChoreState[2]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Maid bathroom: <<nichChoreState[3]>> <a href="exec: gt 'nichUtil', 'debug', 'cho...
-  scene.text(`Maid bathroom: ${qspUntranslated(s, "nichChoreState[3]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 3, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 3, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 3, '5'">+5</a>`);
+  scene.text(`Maid bathroom: ${qspUntranslated(s, "nichChoreState[3]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Laundry: <<nichChoreState[4]>> <a href="exec: gt 'nichUtil', 'debug', 'chore', 4...
-  scene.text(`Laundry: ${qspUntranslated(s, "nichChoreState[4]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 4, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 4, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 4, '5'">+5</a>`);
+  scene.text(`Laundry: ${qspUntranslated(s, "nichChoreState[4]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Tanya bedroom: <<nichChoreState[5]>> <a href="exec: gt 'nichUtil', 'debug', 'cho...
-  scene.text(`Tanya bedroom: ${qspUntranslated(s, "nichChoreState[5]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 5, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 5, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 5, '5'">+5</a>`);
+  scene.text(`Tanya bedroom: ${qspUntranslated(s, "nichChoreState[5]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Master bathroom: <<nichChoreState[6]>> <a href="exec: gt 'nichUtil', 'debug', 'c...
-  scene.text(`Master bathroom: ${qspUntranslated(s, "nichChoreState[6]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 6, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 6, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 6, '5'">+5</a>`);
+  scene.text(`Master bathroom: ${qspUntranslated(s, "nichChoreState[6]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Master bedroom: <<nichChoreState[7]>> <a href="exec: gt 'nichUtil', 'debug', 'ch...
-  scene.text(`Master bedroom: ${qspUntranslated(s, "nichChoreState[7]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 7, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 7, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 7, '5'">+5</a>`);
+  scene.text(`Master bedroom: ${qspUntranslated(s, "nichChoreState[7]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Living room: <<nichChoreState[8]>> <a href="exec: gt 'nichUtil', 'debug', 'chore...
-  scene.text(`Living room: ${qspUntranslated(s, "nichChoreState[8]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 8, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 8, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 8, '5'">+5</a>`);
+  scene.text(`Living room: ${qspUntranslated(s, "nichChoreState[8]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Kitchen: <<nichChoreState[9]>> <a href="exec: gt 'nichUtil', 'debug', 'chore', 9...
-  scene.text(`Kitchen: ${qspUntranslated(s, "nichChoreState[9]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 9, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 9, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 9, '5'">+5</a>`);
+  scene.text(`Kitchen: ${qspUntranslated(s, "nichChoreState[9]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Study: <<nichChoreState[10]>> <a href="exec: gt 'nichUtil', 'debug', 'chore', 10...
-  scene.text(`Study: ${qspUntranslated(s, "nichChoreState[10]", { location: "nichUtil" })} <a href="exec: gt 'nichUtil', 'debug', 'chore', 10, 'min'">min</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 10, '1'">+1</a> <a href="exec: gt 'nichUtil', 'debug', 'chore', 10, '5'">+5</a>`);
+  scene.text(`Study: ${qspUntranslated(s, "nichChoreState[10]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027chore\\u0027); return false;">+5</a>`);
   scene.text('<i><b>NPCs</b></i>');
   scene.text('The following settings are meant for debugging only. Touching them will influence the intended progression in the story.');
   scene.text('<b>Gala</b>');
   if (((s as any).nichGalaTraining ?? 0) === 1) {
-    scene.text('Gala Training: <a href="exec: gt \'nichUtil\', \'debug\', \'galaTrainingToggle\'">Enabled</a>');
+    scene.text('Gala Training: <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027galaTrainingToggle\\u0027); return false;">Enabled</a>');
   } else {
-    scene.text('Gala Training: <a href="exec: gt \'nichUtil\', \'debug\', \'galaTrainingToggle\'">Disabled</a>');
+    scene.text('Gala Training: <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027, \\u0027galaTrainingToggle\\u0027); return false;">Disabled</a>');
   }
   scene.text('<b>Tanya</b>');
   scene.text('Set relationship to:');
-  scene.text('-<a href="exec: nichTanya[\'Relationship\'] = 0 & nichTanya[\'RelationshipState\'] = 0 & gt \'nichUtil\', \'debug\'">Not together (and never have been)</a>');
-  scene.text('-<a href="exec: nichTanya[\'Relationship\'] = 0 & nichTanya[\'RelationshipState\'] = 1000 & gt \'nichUtil\', \'debug\'">Not together (you broke up)</a>');
-  scene.text('-<a href="exec: nichTanya[\'Relationship\'] = 0 & nichTanya[\'RelationshipState\'] = 1010 & gt \'nichUtil\', \'debug\'">Not together (Tanya broke up)</a>');
-  scene.text('-<a href="exec: nichTanya[\'Relationship\'] = 1 & nichTanya[\'RelationshipState\'] = 10 & gt \'nichUtil\', \'debug\'">Casually dating</a>');
-  scene.text('-<a href="exec: nichTanya[\'Relationship\'] = 1 & nichTanya[\'RelationshipState\'] = 20 & gt \'nichUtil\', \'debug\'">In a relationship</a>');
+  scene.text('-<a href="#" onclick="window.__gameStore.setState((s) => { (s.nichTanya ??= {})\\u0027Relationship\\u0027 = s.0; (s.nichTanya ??= {})\\u0027RelationshipState\\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027); return false;">Not together (and never have been)</a>');
+  scene.text('-<a href="#" onclick="window.__gameStore.setState((s) => { (s.nichTanya ??= {})\\u0027Relationship\\u0027 = s.0; (s.nichTanya ??= {})\\u0027RelationshipState\\u0027 = s.1000; return s; }); window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027); return false;">Not together (you broke up)</a>');
+  scene.text('-<a href="#" onclick="window.__gameStore.setState((s) => { (s.nichTanya ??= {})\\u0027Relationship\\u0027 = s.0; (s.nichTanya ??= {})\\u0027RelationshipState\\u0027 = s.1010; return s; }); window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027); return false;">Not together (Tanya broke up)</a>');
+  scene.text('-<a href="#" onclick="window.__gameStore.setState((s) => { (s.nichTanya ??= {})\\u0027Relationship\\u0027 = s.1; (s.nichTanya ??= {})\\u0027RelationshipState\\u0027 = s.10; return s; }); window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027); return false;">Casually dating</a>');
+  scene.text('-<a href="#" onclick="window.__gameStore.setState((s) => { (s.nichTanya ??= {})\\u0027Relationship\\u0027 = s.1; (s.nichTanya ??= {})\\u0027RelationshipState\\u0027 = s.20; return s; }); window.__gameStore.getState().doGoto(\\u0027nichUtil\\u0027, \\u0027debug\\u0027); return false;">In a relationship</a>');
   // TODO-QSP: dynamic text: You fucked Tanya <<nichTanya['FuckCounter']>> times
   scene.text(`You fucked Tanya ${((s as any).nichTanya ?? 0)?.['FuckCounter'] ?? ''} times`);
   // TODO-QSP: dynamic text: The last time you fucked Tanya was '+(daystart-nichTanya['FuckLast'])+' days ago
@@ -211,19 +212,19 @@ function enterStartWorkday(s: GameState, scene: SceneBuilder): void {
       (s as any).nichEvaluationLastReq = ((s as any).daystart ?? 0);
     }
   }
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[0] = ((s as any).nichChoreState[0] ?? 0) + (5);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[1] = ((s as any).nichChoreState[1] ?? 0) + (5);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[2] = ((s as any).nichChoreState[2] ?? 0) + (5);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[3] = ((s as any).nichChoreState[3] ?? 0) + (5);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[4] = ((s as any).nichChoreState[4] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[0] = ((s as any).nichChoreState[0] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[1] = ((s as any).nichChoreState[1] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[2] = ((s as any).nichChoreState[2] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[3] = ((s as any).nichChoreState[3] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[4] = ((s as any).nichChoreState[4] ?? 0) + (5);
   if (((s as any).nichTanya ?? 0)?.['Room'] === 0) {
-    if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[5] = ((s as any).nichChoreState[5] ?? 0) + (5);
+    ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[5] = ((s as any).nichChoreState[5] ?? 0) + (5);
   }
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[6] = ((s as any).nichChoreState[6] ?? 0) + (5);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[7] = ((s as any).nichChoreState[7] ?? 0) + (5);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[8] = ((s as any).nichChoreState[8] ?? 0) + (5);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[9] = ((s as any).nichChoreState[9] ?? 0) + (5);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[10] = ((s as any).nichChoreState[10] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[6] = ((s as any).nichChoreState[6] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[7] = ((s as any).nichChoreState[7] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[8] = ((s as any).nichChoreState[8] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[9] = ((s as any).nichChoreState[9] ?? 0) + (5);
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[10] = ((s as any).nichChoreState[10] ?? 0) + (5);
   if (((s as any).day ?? 0) === 1) {
     (s as any).nichSalaryOutstanding = ((s as any).nichSalaryOutstanding ?? 0) + (((s as any).nichSalaryNext ?? 0));
     (s as any).nichSalaryNext = ((s as any).nichSalaryBase ?? 0);
@@ -277,7 +278,9 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'set_terminated', 'nich_maid');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearVarsQuit(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
-      { label: 'Take your belongings and leave the apartment', goto: ['city_center', ''] },
+      { label: 'Take your belongings and leave the apartment', handler: (st: GameState) => {
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   } },
   ]);
@@ -306,9 +309,9 @@ function enterHired(s: GameState, scene: SceneBuilder): void {
   (s as any).nichMaidLivingItems = 0;
   (s as any).nichMaidLivingWindows = 0;
   (s as any).nichLastInspepection = (-1);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[0] = 0;
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[0] = 0;
   (s as any).nichSalaryBase = 10000;
-  if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A52'] = 'Master '+(((s as any).npc_firstname ?? {})?.['A52'] ?? 0);
+  ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A52'] = 'Master ' + ((s as any).npc_firstname ?? 0)?.['A52'];
   // TODO-QSP: end
   scene.build();
 }
@@ -335,7 +338,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
   (s as any).nichMaidLivingItems = 0;
   (s as any).nichMaidLivingWindows = 0;
   (s as any).nichLastInspepection = (-1);
-  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[0] = 0;
+  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[0] = 0;
   (s as any).nichSalaryBase = 10000;
   // TODO-QSP: end
   scene.build();
@@ -352,42 +355,43 @@ function enterCheckOutfit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichTempPic = qspFunc(s, 'nichUtil', 'cleanPic', ((s as any).nichChoreType ?? 0), ((s as any).nichChoreLoc ?? 0));
   if ((!((s as any).nichOutfitState ?? 0))) {
     scene.text('<b><font color = red>You have to change into an appropriate outfit before cleaning up.</font></b>');
   } else {
     if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0) {
       scene.actions([
-        { label: '(<<nichtTimeQuick>> minutes) Clean quickly', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichtTimeQuick || '') ?? '') + ' minutes) Clean quickly', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic || '')}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
-    if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
+    ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (0, 1)
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
     ]);
   } },
-        { label: '(<<nichTimeNormal>> minutes) Clean normally', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichTimeNormal || '') ?? '') + ' minutes) Clean normally', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic || '')}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
-    if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
+    ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 3)
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
     ]);
   } },
-        { label: '(<<nichTimeDiligently>> minutes) Clean diligently', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichTimeDiligently || '') ?? '') + ' minutes) Clean diligently', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic || '')}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeDiligently ?? 0));
-    if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
+    ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
     ]);
   } },
@@ -397,7 +401,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t clean', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -475,6 +479,9 @@ function enterCleanPic(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (Object.keys((s as any).nichTempPic ?? {}).length === 0) {
+    (s as any).RESULT = 'images/pc/activities/maidCleaning/maid0.jpg';
+  } else {
+    (s as any).RESULT = 'images/pc/activities/maidCleaning/'+((s as any).nichTempPic ?? 0)[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('nichTempPic')-1)];
   }
   if (((s as any).nichDebug ?? 0) === 1) {
     // TODO-QSP: 'Debug: Picture '+$RESULT
@@ -484,17 +491,23 @@ function enterCleanPic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTanyaPic(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichTempFolder = 'images/characters/city/tanya/';
   if (((s as any).locArgs?.[1] ?? 0) === 'idle') {
+    (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'idle/idle' + Math.floor(Math.random() * 6) + 0 + '.jpg';
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'cuddle') {
+    (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'sex/cuddle' + Math.floor(Math.random() * 5) + 0 + '.jpg';
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'sexH') {
     if (((s as any).locArgs?.[2] ?? 0) === 'spy') {
       if (((s as any).locArgs?.[3] ?? 0) === ''  ||  ((s as any).locArgs?.[3] ?? 0) === 'nicholas') {
+        (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'sexNich/nich' + Math.floor(Math.random() * 6) + 0 + '.jpg';
       } else {
         if (((s as any).locArgs?.[3] ?? 0) === 'bf1') {
+          (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'sexBf/bf1/sex' + Math.floor(Math.random() * 5) + 0 + '.jpg';
         } else {
           if (((s as any).locArgs?.[3] ?? 0) === 'bf2') {
+            (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'sexBf/bf2/sex' + Math.floor(Math.random() * 3) + 0 + '.jpg';
           }
         }
       }
@@ -750,6 +763,7 @@ function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).RESULT = qspUntranslated(s, "nichNpcActArr[0]", { location: "nichUtil" });
   (s as any).nichNpcActC = 0;
   // TODO-QSP: :nichNpcActivityLoop
   if (((s as any).nichNpcActTime ?? 0)?.[String((s as any).nichNpcActC ?? 0)] <= ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0)) {
@@ -758,29 +772,41 @@ function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'nichNpcActivityLoop'
     }
   }
+  (s as any).RESULT = ((s as any).nichNpcActArr ?? 0)?.[String((s as any).nichNpcActC ?? 0)];
   // TODO-QSP: end
   scene.build();
 }
 
 function enterWhereIs(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'unknown';
   if (((s as any).locArgs?.[1] ?? 0) === 'nicholas') {
+    (s as any).nichTemp = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
     if (((s as any).nichTemp ?? 0) === 'sleep'  ||  ((s as any).nichTemp ?? 0) === 'gala') {
+      (s as any).RESULT = 'masterBedroom';
     } else {
       if (((s as any).nichTemp ?? 0) === 'bathMorning'  ||  ((s as any).nichTemp ?? 0) === 'bathClub'  ||  ((s as any).nichTemp ?? 0) === 'bathEvening') {
+        (s as any).RESULT = 'masterBathroom';
       } else {
         if (((s as any).nichTemp ?? 0) === 'breakfast'  ||  ((s as any).nichTemp ?? 0) === 'living'  ||  ((s as any).nichTemp ?? 0) === 'dinner') {
+          (s as any).RESULT = 'living';
         } else {
           if (((s as any).nichTemp ?? 0) === 'leaveWork'  ||  ((s as any).nichTemp ?? 0) === 'returnWork'  ||  ((s as any).nichTemp ?? 0) === 'leaveShopping'  ||  ((s as any).nichTemp ?? 0) === 'returnShopping'  ||  ((s as any).nichTemp ?? 0) === 'leaveClub'  ||  ((s as any).nichTemp ?? 0) === 'returnClub') {
+            (s as any).RESULT = 'hallway';
           } else {
             if (((s as any).nichTemp ?? 0) === 'work') {
+              (s as any).RESULT = 'work';
             } else {
               if (((s as any).nichTemp ?? 0) === 'study') {
+                (s as any).RESULT = 'study';
               } else {
                 if (((s as any).nichTemp ?? 0) === 'tanya') {
+                  (s as any).RESULT = 'bedroomTanya';
                 } else {
                   if (((s as any).nichTemp ?? 0) === 'club') {
+                    (s as any).RESULT = 'club';
                   } else {
                     if (((s as any).nichTemp ?? 0) === 'shopping') {
+                      (s as any).RESULT = 'shopping';
                     }
                   }
                 }
@@ -792,17 +818,24 @@ function enterWhereIs(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'gala') {
+      (s as any).nichTemp = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
       if (((s as any).nichTemp ?? 0) === 'sleep'  ||  ((s as any).nichTemp ?? 0) === 'snooze'  ||  ((s as any).nichTemp ?? 0) === 'nicholas'  ||  ((s as any).nichTemp ?? 0) === 'prepareClub') {
+        (s as any).RESULT = 'masterBedroom';
       } else {
         if (((s as any).nichTemp ?? 0) === 'bathMorning'  ||  ((s as any).nichTemp ?? 0) === 'bathEvening') {
+          (s as any).RESULT = 'masterBathroom';
         } else {
           if (((s as any).nichTemp ?? 0) === 'breakfast'  ||  ((s as any).nichTemp ?? 0) === 'living'  ||  ((s as any).nichTemp ?? 0) === 'dinner') {
+            (s as any).RESULT = 'living';
           } else {
             if (((s as any).nichTemp ?? 0) === 'leaveSpa'  ||  ((s as any).nichTemp ?? 0) === 'returnSpa'  ||  ((s as any).nichTemp ?? 0) === 'leaveFriend'  ||  ((s as any).nichTemp ?? 0) === 'returnFriend'  ||  ((s as any).nichTemp ?? 0) === 'leaveClub'  ||  ((s as any).nichTemp ?? 0) === 'returnClub') {
+              (s as any).RESULT = 'hallway';
             } else {
               if (((s as any).nichTemp ?? 0) === 'club') {
+                (s as any).RESULT = 'club';
               } else {
                 if (((s as any).nichTemp ?? 0) === 'friend') {
+                  (s as any).RESULT = 'friend';
                 }
               }
             }
@@ -811,23 +844,33 @@ function enterWhereIs(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'tanya') {
+        (s as any).nichTemp = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
         if (((s as any).nichTemp ?? 0) === 'sleep'  ||  ((s as any).nichTemp ?? 0) === 'nicholas'  ||  ((s as any).nichTemp ?? 0) === 'tanya'  ||  ((s as any).nichTemp ?? 0) === 'boyfriend') {
+          (s as any).RESULT = 'bedroomTanya';
         } else {
           if (((s as any).nichTemp ?? 0) === 'bathMorning'  ||  ((s as any).nichTemp ?? 0) === 'bathEvening'  ||  ((s as any).nichTemp ?? 0) === 'prepareClub') {
+            (s as any).RESULT = 'masterBathroom';
           } else {
             if (((s as any).nichTemp ?? 0) === 'breakfast'  ||  ((s as any).nichTemp ?? 0) === 'living'  ||  ((s as any).nichTemp ?? 0) === 'dinner') {
+              (s as any).RESULT = 'living';
             } else {
               if (((s as any).nichTemp ?? 0) === 'leaveUni'  ||  ((s as any).nichTemp ?? 0) === 'returnUni'  ||  ((s as any).nichTemp ?? 0) === 'leaveBallet'  ||  ((s as any).nichTemp ?? 0) === 'returnBallet'  ||  ((s as any).nichTemp ?? 0) === 'leaveFriend'  ||  ((s as any).nichTemp ?? 0) === 'returnFriend'  ||  ((s as any).nichTemp ?? 0) === 'leaveShopping'  ||  ((s as any).nichTemp ?? 0) === 'returnShopping'  ||  ((s as any).nichTemp ?? 0) === 'leaveClub'  ||  ((s as any).nichTemp ?? 0) === 'returnClub') {
+                (s as any).RESULT = 'hallway';
               } else {
                 if (((s as any).nichTemp ?? 0) === 'uni') {
+                  (s as any).RESULT = 'uni';
                 } else {
                   if (((s as any).nichTemp ?? 0) === 'ballet') {
+                    (s as any).RESULT = 'ballet';
                   } else {
                     if (((s as any).nichTemp ?? 0) === 'friend') {
+                      (s as any).RESULT = 'friend';
                     } else {
                       if (((s as any).nichTemp ?? 0) === 'shopping') {
+                        (s as any).RESULT = 'shopping';
                       } else {
                         if (((s as any).nichTemp ?? 0) === 'club') {
+                          (s as any).RESULT = 'club';
                         }
                       }
                     }
@@ -840,6 +883,7 @@ function enterWhereIs(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'cook') {
           if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20) {
+            (s as any).RESULT = 'kitchen';
           }
         }
       }
@@ -850,6 +894,7 @@ function enterWhereIs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichTemp = qspFunc(s, 'nichUtil', 'whereIs', ((s as any).locArgs?.[1] ?? 0));
   (s as any).RESULT = 0;
   if (((s as any).nichTemp ?? 0) === 'masterBedroom'  ||  ((s as any).nichTemp ?? 0) === 'masterBathroom'  ||  ((s as any).nichTemp ?? 0) === 'bedroomTanya'  ||  ((s as any).nichTemp ?? 0) === 'bedroomServant'  ||  ((s as any).nichTemp ?? 0) === 'bathroomServant'  ||  ((s as any).nichTemp ?? 0) === 'bedroomGuest'  ||  ((s as any).nichTemp ?? 0) === 'study'  ||  ((s as any).nichTemp ?? 0) === 'living'  ||  ((s as any).nichTemp ?? 0) === 'kitchen') {
     (s as any).RESULT = 1;
@@ -859,9 +904,16 @@ function enterIsHome(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsAlone(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichTempC1 = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).nichTempC1 ?? 0) === 'nicholas') {
+    (s as any).nichTempC2 = 'gala';
+    (s as any).nichTempC3 = 'tanya';
   } else {
+    (s as any).nichTempC2 = 'nicholas';
     if (((s as any).nichTempC1 ?? 0) === 'gala') {
+      (s as any).nichTempC3 = 'tanya';
+    } else {
+      (s as any).nichTempC3 = 'gala';
     }
   }
   if (qspFunc(s, 'nichUtil', 'isPresent', ((s as any).nichTempC1 ?? 0), ((s as any).locArgs?.[2] ?? 0)) === 0) {
@@ -878,6 +930,7 @@ function enterIsAlone(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsPresent(s: GameState, scene: SceneBuilder): void {
+  (s as any).npcLocation = qspFunc(s, 'nichUtil', 'whereIs', ((s as any).locArgs?.[1] ?? 0));
   if (((s as any).npcLocation ?? 0) === ((s as any).locArgs?.[2] ?? 0)) {
     (s as any).RESULT = 1;
   } else {
@@ -918,7 +971,7 @@ function enterOnArouse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFreeDay(s: GameState, scene: SceneBuilder): void {
-  (s as any).nichTempFree = ((((s as any).locArgs?.[1] ?? 0)>0) ? (qspUntranslated(s, "ARGS[1]", { location: "nichUtil" })) : (1));
+  (s as any).nichTempFree = ((((s as any).locArgs?.[1] ?? 0)>0) ? (((s as any).locArgs?.[1] ?? 0)) : (1));
   if (((s as any).nichVactionTil ?? 0) < ((s as any).daystart ?? 0) + ((s as any).nichTempFree ?? 0) - 1) {
     (s as any).nichVacationFrom = ((s as any).daystart ?? 0);
     (s as any).nichVactionTil = ((s as any).daystart ?? 0) + ((s as any).nichTempFree ?? 0) - 1;

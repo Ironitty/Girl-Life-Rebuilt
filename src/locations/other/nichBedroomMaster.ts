@@ -1,19 +1,30 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '';
+  (s as any).loc = 'nichBedroomMaster';
+  (s as any).sexloc = 'nichBedroomMaster';
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
+  (s as any).menu_loc = 'nichBedroomMaster';
+  (s as any).nichLoc = 'masterBedroom';
+  (s as any).menu_arg = '';
   qspCall(s, 'stat', '');
   (s as any).sexpartkno = 1;
   qspCall(s, 'boyStat', 'A52');
   qspCall(s, 'boyStat', 'A161', 'a');
+  (s as any).nichGalaAct = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
+  (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
+  (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
   (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'masterBedroom');
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'masterBedroom');
   (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'masterBedroom');
   if (((s as any).nichGalaAct ?? 0) === 'snooze'  &&  (!((s as any).evtGalaMast1 ?? 0))) {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+    dynamicGoto(s, 'prevLoc');
   }
   scene.text('<center><b>Nicholas\' Master Bedroom</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bedroomMaster.jpg');
@@ -38,7 +49,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('With Nicholas being present it wouldn\'t be appropriate to clean this room now.');
       scene.actions([
         { label: 'Don\'t clean', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
       ]);
     } else {
@@ -46,7 +57,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('With Gala being present it wouldn\'t be appropriate to clean this room now.');
         scene.actions([
           { label: 'Don\'t clean', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
         ]);
       } else {
@@ -54,7 +65,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('With Tanya being present it wouldn\'t be appropriate to clean this room now.');
           scene.actions([
             { label: 'Don\'t clean', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
           ]);
         } else {
@@ -66,10 +77,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichApartment', ''] },
+    qspGoto(s, 'nichApartment', '');
+  } },
     { label: 'Go to the master bathroom', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichBathMaster', ''] },
+    qspGoto(s, 'nichBathMaster', '');
+  } },
   ]);
   scene.build();
 }
@@ -78,7 +91,9 @@ function enterEvtGalaMast1(s: GameState, scene: SceneBuilder): void {
   scene.text('Just before you enter the master bedroom you hear a moan. It sounds like Gala is having fun.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['nichApartment', ''] },
+    { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichApartment', '');
+  } },
     { label: 'Spy', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/masturbation/mast1.jpg');
     (s as any).evtGalaMast1 = 1;
@@ -99,22 +114,34 @@ function enterEvtGalaMast1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/gala/masturbation/mast3.jpg');
     scene.text('Gala opens her eyes and briefly looks in your direction. It only lasts for a split second but you feel as if she might know that you watched her masturbating.');
     scene.actions([
-      { label: 'Leave', goto: ['nichApartment', 'return'] },
+      { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichApartment', 'return');
+  } },
     ]);
   } },
-      { label: 'Leave', goto: ['nichApartment', 'return'] },
+      { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichApartment', 'return');
+  } },
     ]);
   } },
-      { label: 'Leave', goto: ['nichApartment', 'return'] },
+      { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichApartment', 'return');
+  } },
     ]);
   } },
-      { label: 'Leave', goto: ['nichApartment', 'return'] },
+      { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichApartment', 'return');
+  } },
     ]);
   } },
-      { label: 'Leave', goto: ['nichApartment', 'return'] },
+      { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichApartment', 'return');
+  } },
     ]);
   } },
-      { label: 'Leave', goto: ['nichApartment', 'return'] },
+      { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichApartment', 'return');
+  } },
     ]);
   } },
   ]);

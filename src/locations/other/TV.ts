@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Turn off the TV and get up', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -64,7 +64,7 @@ function enterNokable(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['TV', 'nokable'] },
     { label: 'Turn off TV and get up', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -85,7 +85,7 @@ function enterKable(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['TV', 'kable'] },
     { label: 'Turn off the TV and get up', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -97,14 +97,14 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     (s as any).tvtime = 1;
     qspCall(s, 'stat', '');
     if (((s as any).locat ?? 0)?.['Mother'] === 24  &&  ((s as any).loc ?? 0) === 'sitrPar') {
-      scene.actions([{ label: 'Continue', goto: ['sitrPar', 'mom_floor_sweeping'] }]);
+      qspGoto(s, 'sitrPar', 'mom_floor_sweeping');
     } else {
       if (((s as any).locat ?? 0)?.['Kolka'] === 1  &&  ((s as any).loc ?? 0) === 'sitrPar') {
         scene.img('images/locations/gadukino/grandparents/tv/oldtvon.mp4');
-        scene.text('<a href="exec:gt \'brother\', \'start\'">Kolka</a> is sleeping soundly on the sofa. You can\'t watch TV without disturbing him.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> is sleeping soundly on the sofa. You can\'t watch TV without disturbing him.');
         scene.actions([
           { label: 'Do something else', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -120,16 +120,16 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'mood', 'raise', 'tiny');
       qspCall(s, 'stat', '');
       if (((s as any).locat ?? 0)?.['Mother'] === 24  &&  ((s as any).loc ?? 0) === 'sitrPar') {
-        scene.actions([{ label: 'Continue', goto: ['sitrPar', 'mom_floor_sweeping'] }]);
+        qspGoto(s, 'sitrPar', 'mom_floor_sweeping');
       } else {
         if (((s as any).locat ?? 0)?.['Kolka'] === 1  &&  ((s as any).loc ?? 0) === 'sitrPar') {
           (s as any).tvtime = 0;
           scene.img('images/locations/gadukino/grandparents/tv/tv_turn_off_effect.mp4');
-          scene.text('You notice <a href="exec:gt \'brother\', \'start\'">Kolka</a> sleeping on the sofa. You can\'t continue watching TV without disturbing him.');
+          scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> sleeping on the sofa. You can\'t continue watching TV without disturbing him.');
           scene.text('With a sigh, you turn off the TV. The image collapses into a bright horizontal line that shrinks into a tiny white dot before slowly fading away. The speakers emit a high-pitched squawk as the power cuts off.');
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);
         } else {
@@ -145,7 +145,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     scene.text('You press the power button and the image immediately collapses into a bright horizontal line across the center of the screen. The line quickly shrinks into a tiny white dot that gradually fades away. As the power cuts off, the speakers protest with a sharp, high-pitched squawk.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -184,7 +184,7 @@ function enterGad(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn off the television. The image immediately collapses in on itself, forming a bright horizontal line that quickly shrinks into a small white dot before fading completely. The ancient speakers emit a shrill squawk in protest as the power cuts off.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -222,7 +222,7 @@ function enterMeyhome(s: GameState, scene: SceneBuilder): void {
     scene.text('With a click of the remote, the screen goes black and the sound fades away. You stand up and stretch, feeling refreshed after enjoying some quality entertainment.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

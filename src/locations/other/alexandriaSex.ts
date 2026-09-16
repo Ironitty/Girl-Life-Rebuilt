@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,11 +6,13 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
+  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
 function enterNice1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A241');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/alexandria/sex/N1.jpg');
@@ -38,6 +40,7 @@ function enterNice1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '"Stop teasing me!"', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/alexandria/sex/N3.jpg');
@@ -117,6 +120,7 @@ function enterNice1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGrumpy1(s: GameState, scene: SceneBuilder): void {
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'npcStat', 'A241');
   qspCall(s, 'arousal', 'massage', 5, 'sub', 'lesbian');
   qspCall(s, 'arousal', 'BDSM', 5, 'sub', 'lesbian');
@@ -148,6 +152,7 @@ function enterGrumpy1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'The torture continues', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'BDSM', 5, 'sub', 'lesbian');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'sub', 'lesbian', 'no_orgasm_msg');
     scene.img('images/characters/city/alexandria/sex/G3.jpg');
     scene.text('Finally, after who knows how long, Aleksei breaks away from you and stands up, looking down at you with a critical eye as he drags slowly on a cigarette, the silence eternalizing as you kneel before him.');
@@ -185,18 +190,18 @@ function enterGrumpy1(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).AlexandriaQW = 8;
     qspCall(s, 'spellList', 'addAvailableSpells', 'electSpells');
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['back'] = ((s as any).pain['back'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
     (s as any).girl = ((s as any).girl ?? 0) + (1);
     if (((s as any).succubusflag ?? 0) === 1) {
       (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
@@ -235,21 +240,21 @@ function enterLong(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).AlexandriaQW ?? 0) < 12) {
     if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'nL1'] }]);
+      qspGoto(s, 'alexandriaSex', 'nL1');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gL1'] }]);
+      qspGoto(s, 'alexandriaSex', 'gL1');
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((s as any).random_event ?? 0) < 4) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'nL1'] }]);
+      qspGoto(s, 'alexandriaSex', 'nL1');
     } else {
       if (((s as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((s as any).random_event ?? 0) > 3) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'nL2'] }]);
+        qspGoto(s, 'alexandriaSex', 'nL2');
       } else {
         if (((s as any).npc_rel ?? 0)?.['A241'] === 2  &&  ((s as any).random_event ?? 0) < 4) {
-          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gL1'] }]);
+          qspGoto(s, 'alexandriaSex', 'gL1');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gL2'] }]);
+          qspGoto(s, 'alexandriaSex', 'gL2');
         }
       }
     }
@@ -264,25 +269,25 @@ function enterShort(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) < 12) {
     if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
       if (((s as any).random_event ?? 0) < 3) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns1'] }]);
+        qspGoto(s, 'alexandriaSex', 'ns1');
       } else {
         if (((s as any).random_event ?? 0) < 5) {
-          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns2'] }]);
+          qspGoto(s, 'alexandriaSex', 'ns2');
         } else {
           if (((s as any).random_event ?? 0) < 7) {
-            scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns3'] }]);
+            qspGoto(s, 'alexandriaSex', 'ns3');
           }
         }
       }
     } else {
       if (((s as any).random_event ?? 0) < 3) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs1'] }]);
+        qspGoto(s, 'alexandriaSex', 'gs1');
       } else {
         if (((s as any).random_event ?? 0) < 5) {
-          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs2'] }]);
+          qspGoto(s, 'alexandriaSex', 'gs2');
         } else {
           if (((s as any).random_event ?? 0) < 7) {
-            scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs3'] }]);
+            qspGoto(s, 'alexandriaSex', 'gs3');
           }
         }
       }
@@ -290,22 +295,22 @@ function enterShort(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
       if (((s as any).random_event ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns1'] }]);
+        qspGoto(s, 'alexandriaSex', 'ns1');
       } else {
         if (((s as any).random_event ?? 0) === 2) {
-          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns2'] }]);
+          qspGoto(s, 'alexandriaSex', 'ns2');
         } else {
           if (((s as any).random_event ?? 0) === 3) {
-            scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns3'] }]);
+            qspGoto(s, 'alexandriaSex', 'ns3');
           } else {
             if (((s as any).random_event ?? 0) === 4) {
-              scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns4'] }]);
+              qspGoto(s, 'alexandriaSex', 'ns4');
             } else {
               if (((s as any).random_event ?? 0) === 5) {
-                scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns5'] }]);
+                qspGoto(s, 'alexandriaSex', 'ns5');
               } else {
                 if (((s as any).random_event ?? 0) === 6) {
-                  scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns6'] }]);
+                  qspGoto(s, 'alexandriaSex', 'ns6');
                 }
               }
             }
@@ -314,22 +319,22 @@ function enterShort(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).random_event ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs1'] }]);
+        qspGoto(s, 'alexandriaSex', 'gs1');
       } else {
         if (((s as any).random_event ?? 0) === 2) {
-          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs2'] }]);
+          qspGoto(s, 'alexandriaSex', 'gs2');
         } else {
           if (((s as any).random_event ?? 0) === 3) {
-            scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs3'] }]);
+            qspGoto(s, 'alexandriaSex', 'gs3');
           } else {
             if (((s as any).random_event ?? 0) === 4) {
-              scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs4'] }]);
+              qspGoto(s, 'alexandriaSex', 'gs4');
             } else {
               if (((s as any).random_event ?? 0) === 5) {
-                scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs5'] }]);
+                qspGoto(s, 'alexandriaSex', 'gs5');
               } else {
                 if (((s as any).random_event ?? 0) === 6) {
-                  scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs6'] }]);
+                  qspGoto(s, 'alexandriaSex', 'gs6');
                 }
               }
             }
@@ -352,7 +357,9 @@ function enterNs1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_sweat = 0;
   (s as any).pcs_breath = 1;
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 25, 'lesbian');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -388,7 +395,9 @@ function enterNs2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_sweat = 0;
   (s as any).pcs_breath = 1;
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 45, 'lesbian');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -422,8 +431,11 @@ function enterNs3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_sweat = 0;
   (s as any).pcs_breath = 1;
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 30, 'lesbian');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'cuni_give', 15, 'lesbian');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -453,19 +465,21 @@ function enterGs1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) < 12) {
     (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
   }
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['back'] = ((s as any).pain['back'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 50, 'lesbian');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_finger', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -498,19 +512,21 @@ function enterGs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) < 12) {
     (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
   }
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['back'] = ((s as any).pain['back'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 45, 'lesbian', 'no_orgasm_msg', 'bound');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -540,19 +556,21 @@ function enterGs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) < 12) {
     (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
   }
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['back'] = ((s as any).pain['back'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 45, 'lesbian', 'no_orgasm_msg', 'bound');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -607,7 +625,9 @@ function enterNL1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     (s as any).pcs_sweat = 0;
     (s as any).pcs_breath = 1;
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 40, 'lesbian', 'no_orgasm_msg');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -666,19 +686,21 @@ function enterGL1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).AlexandriaQW ?? 0) < 12) {
       (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
     }
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['back'] = ((s as any).pain['back'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 45, 'lesbian', 'no_orgasm_msg', 'bound');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -893,16 +915,16 @@ function enterGrumpy2(s: GameState, scene: SceneBuilder): void {
     (s as any).AlexandriaQW = 20;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'spellList', 'addAvailableSpells', 'electSpells');
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
     if (((s as any).succubusflag ?? 0) === 1) {
       (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
@@ -968,7 +990,9 @@ function enterNL2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     (s as any).pcs_sweat = 0;
     (s as any).pcs_breath = 1;
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 35, 'lesbian', 'no_orgasm_msg');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -1023,17 +1047,19 @@ function enterGL2(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     }
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 50, 'lesbian', 'bound', 'no_orgasm_msg');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -1070,7 +1096,9 @@ function enterNs4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_sweat = 0;
   (s as any).pcs_breath = 1;
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 35, 'lesbian', 'no_orgasm_msg');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -1105,7 +1133,9 @@ function enterNs5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_sweat = 0;
   (s as any).pcs_breath = 1;
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 35, 'lesbian', 'no_orgasm_msg');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -1139,7 +1169,9 @@ function enterNs6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_sweat = 0;
   (s as any).pcs_breath = 1;
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 35, 'lesbian', 'no_orgasm_msg');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -1166,17 +1198,19 @@ function enterGs4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) < 23) {
     (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
   }
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 50, 'lesbian', 'bound', 'no_orgasm_msg');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -1204,17 +1238,19 @@ function enterGs5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) < 23) {
     (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
   }
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 50, 'lesbian', 'bound', 'no_orgasm_msg');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
@@ -1244,17 +1280,19 @@ function enterGs6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) < 23) {
     (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
   }
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  ((s as any).pain = (s as any).pain ?? {})['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 50, 'lesbian', 'bound', 'no_orgasm_msg');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {

@@ -1,10 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.build();
 }
 
@@ -26,7 +27,7 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Decide to give it a try', handler: (st: GameState) => {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = 1;
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = 1;
     if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
       scene.text('"I\'m one of them. They would be mad to not at least consider me! Those nerds and their rumors are just jealous losers!" you think to yourself as you decide to attend the tryouts and show them that you deserve that spot.');
     } else {
@@ -36,8 +37,8 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'leave_break_events');
   } },
     { label: 'This doesn\'t interest you', handler: (st: GameState) => {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['reject'] = ((s as any).daystart ?? 0);
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = (-1);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['reject'] = ((s as any).daystart ?? 0);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = (-1);
     if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
       scene.text('Even though you\'re capable enough to try out, prancing around on the field to amuse people doesn\'t sound fun to you at all. You shake your head and continue on your way.');
     } else {
@@ -95,7 +96,7 @@ function enterPosterRepeat(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: act iif(cheerleadingQW['try_count'] > 0, 'Decide to try one more time', 'Decide to give it a try thi...
-  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = 1;
+  ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = 1;
   if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
     scene.text('"I\'m one of them. They would be mad to not at least consider me! Those nerds and their rumors are just jealous losers!" you think to yourself as you decide to attend the tryouts and show them that you deserve that spot.');
   } else {
@@ -105,7 +106,7 @@ function enterPosterRepeat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_events', 'leave_break_events');
   // TODO-QSP: end
   // TODO-QSP: act iif(cheerleadingQW['try_count'] > 0, 'It''s not worth the hassle ', 'Ignore the poster ') + $fun...
-  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = (-2);
+  ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = (-2);
   if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
     scene.text('Even though you\'re capable enough to try out, prancing around on the field to amuse people doesn\'t sound fun to you at all. You shake your head and continue on your way.');
   } else {
@@ -118,13 +119,13 @@ function enterPosterRepeat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTryouts(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['try_count'] = ((s as any).cheerleadingQW['try_count'] ?? 0) + (1);
+  ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['try_count'] = ((s as any).cheerleadingQW['try_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/tryouts.jpg');
   if (((s as any).grupTipe ?? 0) === 5) {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = (-1);
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['reject'] = ((s as any).daystart ?? 0);
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['grupTipe'] = ((s as any).grupTipe ?? 0);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = (-1);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['reject'] = ((s as any).daystart ?? 0);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['grupTipe'] = ((s as any).grupTipe ?? 0);
     scene.text('Albina and the other girls grow silent and just stare at you as you enter. You feel very awkward and self-conscious as Albina walks up to you with a puzzled glare. "What are <i>you</i> doing here?"');
     // TODO-QSP: dynamic text: Christina laughs as she walks up to you. "Oh my god, does this ' + iif(pcs_hotca...
     scene.text('Christina laughs as she walks up to you. "Oh my god, does this \' + iif(pcs_hotcat < 6, \'hidious hag\', \'social reject\') + \' actually think she can become a cheerleader? Everyone would be too busy laughing to focus on the game!"');
@@ -136,9 +137,9 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).grupTipe ?? 0) === 4) {
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = (-1);
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['reject'] = ((s as any).daystart ?? 0);
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['grupTipe'] = ((s as any).grupTipe ?? 0);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = (-1);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['reject'] = ((s as any).daystart ?? 0);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['grupTipe'] = ((s as any).grupTipe ?? 0);
       scene.text('The other girls grow silent and just stare at you as you enter and Albina walks up to you with a cold glare on her face. "You\'re mistaken if you think I\'m even going to give someone like <i>you</i> a chance. Now fuck off," she says while pointing to the door.');
       // TODO-QSP: dynamic text: Christina laughs as she walks up to you. "Oh my god, does this specimen actually...
       scene.text('Christina laughs as she walks up to you. "Oh my god, does this specimen actually think she can become a cheerleader? Isn\'t there some \'+iif(gopnik_slut = 1, \'dirty gopnik cock waiting for you somewhere to suck it?\', \'drugs waiting somewhere for you to snort them?\')+\'" she asks mockingly, which causes Bella to let out a loud laugh.');
@@ -154,15 +155,15 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Try to follow Albina\'s example', handler: (st: GameState) => {
     qspCall(s, 'exercise', 'tier2', 30, 'agil', 'vital', 'cheer', 'cheer', 'danc');
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['try_physical'] = ((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_danc ?? 0) + ((s as any).pcs_cheer ?? 0);
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['try_social'] = ((s as any).npc_rel ?? 0)?.['A23'];
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['try_physical'] = ((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_danc ?? 0) + ((s as any).pcs_cheer ?? 0);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['try_social'] = ((s as any).npc_rel ?? 0)?.['A23'];
     if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['try_social'] = ((s as any).cheerleadingQW['try_social'] ?? 0) + (100);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['try_social'] = ((s as any).cheerleadingQW['try_social'] ?? 0) + (100);
     } else {
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['try_social'] = ((s as any).cheerleadingQW['try_social'] ?? 0) + (((s as any).grupvalue ?? 0)[(((s as any).npc_grupTipe ?? {})?.['A23'] ?? 0)]/2);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['try_social'] = ((s as any).cheerleadingQW['try_social'] ?? 0) + (((s as any).grupvalue ?? 0)[(((s as any).npc_grupTipe ?? {})?.['A23'] ?? 0)]/2);
     }
     if (((s as any).cheerleadingQW ?? 0)?.['try_physical'] + ((s as any).cheerleadingQW ?? 0)?.['try_social'] >= 250) {
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['day'] = ((s as any).daystart ?? 0);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['day'] = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/lineup.jpg');
       if (((s as any).cheerleadingQW ?? 0)?.['try_physical'] < ((s as any).cheerleadingQW ?? 0)?.['try_social']) {
@@ -172,14 +173,14 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('After you finish, they line the group up and start moving along, rejecting those who weren\'t good enough until only you and one other girl remain.');
       if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
-        if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = 3;
+        ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = 3;
         qspCall(s, 'calendar', 'pack', 'add', 'cheerleading_practice');
         qspCall(s, 'calendar', 'pack', 'add', 'cheerleading_games');
         // TODO-QSP: dynamic text: "You, <<$pcs_nickname>>, you actually impressed us'+iif(cheerleadingQW['try_coun...
         scene.text(`"You, ${((s as any).pcs_nickname || '')}, you actually impressed us'+iif(cheerleadingQW['try_count'] > 1, ' this time', ')+'. '+iif(cheerleadingQW['try_physical'] < cheerleadingQW['try_social'], 'Sure, you were a bumbling idiot in your execution, but we have a good feeling about you.', 'I didn't think you had it in you, but those moves really were something!')+' I expect to see you on time at our next practice session!"`);
         scene.text('You barely have time to react before Albina and the other girls walk away. You ignore the jealous stares you receive from the others and get ready to leave.');
       } else {
-        if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = 2;
+        ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = 2;
         qspCall(s, 'calendar', 'pack', 'add', 'cheerleading_practice');
         // TODO-QSP: dynamic text: Albina and the other girls whisper among themselves before she turns and talks t...
         scene.text(`Albina and the other girls whisper among themselves before she turns and talks to you. "I like your moves ${((s as any).pcs_nickname || '')}, but I can't let someone like you on my squad. I've got a reputation to uphold." She looks back at the others and they all give her wide smiles and giggles before she turns back to you. "However, we are in need of someone who can cover for one of us on <i>very rare</i> occasions, so how does being our backup sound?"`);
@@ -190,9 +191,9 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
         scene.text('You swallow, feeling somewhat intimidated by her warning.');
       }
     } else {
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = ((s as any).cheerleadingQW['quest_stage'] ?? 0) - (1);
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['reject'] = ((s as any).daystart ?? 0);
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['grupTipe'] = ((s as any).grupTipe ?? 0);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = ((s as any).cheerleadingQW['quest_stage'] ?? 0) - (1);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['reject'] = ((s as any).daystart ?? 0);
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['grupTipe'] = ((s as any).grupTipe ?? 0);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/lineup.jpg');
@@ -220,7 +221,7 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAfterschoolPractice(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['day'] = ((s as any).daystart ?? 0);
+  ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/gymdoors.jpg');
   // TODO-QSP: dynamic text: You're standing next to the doors leading to the PE hall. You have cheerleading ...
@@ -247,9 +248,10 @@ function enterAfterschoolPractice(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Skip practice', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['skipped'] = ((s as any).cheerleadingQW['skipped'] ?? 0) + (1);
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['skipped_ev'] = 1;
-  }, goto: ['gschool_grounds', 'main'] },
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['skipped'] = ((s as any).cheerleadingQW['skipped'] ?? 0) + (1);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['skipped_ev'] = 1;
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -261,7 +263,7 @@ function enterAfterschoolPractice(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAfterschoolGame(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['day'] = ((s as any).daystart ?? 0);
+  ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['day'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/pavlovsk/school/grounds/field.jpg');
   // TODO-QSP: dynamic text: There is a football game at '+func('time', 'get_time_string', 14, 15)+' on the s...
   scene.text('There is a football game at 14:15 on the sports field behind the school today.');
@@ -287,9 +289,10 @@ function enterAfterschoolGame(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Skip the game', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['skipped'] = ((s as any).cheerleadingQW['skipped'] ?? 0) + (1);
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['skipped_g_ev'] = 1;
-  }, goto: ['gschool_grounds', 'main'] },
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['skipped'] = ((s as any).cheerleadingQW['skipped'] ?? 0) + (1);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['skipped_g_ev'] = 1;
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -304,13 +307,13 @@ function enterPractice(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if ((qspFunc(s, 'body_din', 'pregnancyVisibility') === 1)  ||  (((s as any).grupTipe ?? 0) === 5)) {
     if (qspFunc(s, 'body_din', 'pregnancyVisibility') === 1) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'cheerleaders_react'] }]);
+      qspGoto(s, 'gschool_cheerleading', 'cheerleaders_react');
     }
     if (((s as any).grupTipe ?? 0) === 5) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'cheerleader_end'] }]);
+      qspGoto(s, 'gschool_cheerleading', 'cheerleader_end');
     }
   } else {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['practice_count'] = ((s as any).cheerleadingQW['practice_count'] ?? 0) + (1);
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['practice_count'] = ((s as any).cheerleadingQW['practice_count'] ?? 0) + (1);
     qspCall(s, 'outfit', 'backup', 'cheer');
     qspCall(s, 'clothing', 'wear', 'danilovich_outfits', 161, 'borrowed');
     qspCall(s, 'stat', '');
@@ -342,7 +345,7 @@ function enterPractice(s: GameState, scene: SceneBuilder): void {
         if ((((s as any).cheerleadingQW ?? 0)?.['game_count'] > 6  &&  (Math.floor(Math.random() * 4) + 0) === 0)  ||  ((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
           // TODO-QSP: dynamic text: As you enter the hall, Albina walks up to you, looking strangely cheerful. "Hey ...
           scene.text(`As you enter the hall, Albina walks up to you, looking strangely cheerful. "Hey ${((s as any).pcs_nickname || '')}, I've been talking with the girls and, since you've proven yourself capable, we're <i>mostly</i> in agreement that you deserve a spot on the squad. I'll sort you out with a uniform in due time, but you're part of the squad now. So… welcome, I guess?" she says before walking away to prepare the rest of the squad for practice. You contain your excitement as you take your place among the other girls, overjoyed that you actually made it onto the squad!`);
-          if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = 3;
+          ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = 3;
           qspCall(s, 'calendar', 'pack', 'add', 'cheerleading_games');
         } else {
           scene.text('The squad is already out practicing when you arrive at the locker room and change. You don\'t have the privilege of owning a uniform and instead train in your sports clothing.');
@@ -379,7 +382,7 @@ function enterPractice(s: GameState, scene: SceneBuilder): void {
         scene.text('You head into the hall and into your corner. You watch the girls closely and copy their moves. You feel like you\'re getting better with each training session and Albina seems to think so too, even giving you a smile a few times as she observes you.');
         if ((!(Math.floor(Math.random() * 10) + 0))) {
           if (((s as any).cheerleadingQW ?? 0)?.['practice_count'] > 4  &&  ((s as any).week ?? 0) === 4  &&  (((s as any).daystart ?? 0) - (((s as any).daystart ?? 0) % 7)) % 2 === 1) {
-            if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['backup_game'] = 1;
+            ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['backup_game'] = 1;
             qspCall(s, 'calendar', 'add', 'cheerleading_game_tomorrow');
             // TODO-QSP: dynamic text: You finish practicing the last of your moves as Albina heads your way. "<<$pcs_n...
             scene.text(`You finish practicing the last of your moves as Albina heads your way. "${((s as any).pcs_nickname || '')}, one of the girls has just gone and busted her ankle. I need you to stand in for her at the game tomorrow. Don't get ahead of yourself, you're only serving your purpose. So be here tomorrow after school."`);
@@ -389,7 +392,7 @@ function enterPractice(s: GameState, scene: SceneBuilder): void {
         } else {
           if ((!(Math.floor(Math.random() * 9) + 0))) {
             if (((s as any).cheerleadingQW ?? 0)?.['practice_count'] > 4  &&  ((s as any).week ?? 0) === 4  &&  (((s as any).daystart ?? 0) - (((s as any).daystart ?? 0) % 7)) % 2 === 1) {
-              if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['backup_game'] = 1;
+              ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['backup_game'] = 1;
               qspCall(s, 'calendar', 'add', 'cheerleading_game_tomorrow');
               // TODO-QSP: dynamic text: As you finish practicing on your own, Vicky cheerfully bounces up and greets you...
               scene.text(`As you finish practicing on your own, Vicky cheerfully bounces up and greets you. "Hey ${((s as any).pcs_nickname || '')}, today is your lucky day! You get to replace me tomorrow!"`);
@@ -530,13 +533,13 @@ function enterPractice(s: GameState, scene: SceneBuilder): void {
 
 function enterGame(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['game_count'] = ((s as any).cheerleadingQW['game_count'] ?? 0) + (1);
+  ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['game_count'] = ((s as any).cheerleadingQW['game_count'] ?? 0) + (1);
   qspCall(s, 'outfit', 'backup', 'cheer');
   qspCall(s, 'clothing', 'wear', 'danilovich_outfits', 161, 'borrowed');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/changing.jpg');
   if (((s as any).pregtime ?? 0) >= 90) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'cheerleaders_react'] }]);
+    qspGoto(s, 'gschool_cheerleading', 'cheerleaders_react');
   } else {
     scene.text('Heading into the locker room, you see Albina and the rest of the squad have already arrived and are in various states of changing into their uniforms while chatting to each other.');
     // TODO-QSP: dynamic text: You head to your locker and strip down before pulling your uniform out and getti...
@@ -553,7 +556,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
         if (((s as any).cheerleadingQW ?? 0)?.['cold_weather'] === 0) {
           scene.text('There\'s a chill in the air and you shudder as you step outside in your thin outfit that does little to protect you from the elements. Despite the girls\' pleas, the football teams prefer the outdoor field to playing indoors and you\'re forced to perform outside, even during cold weather.');
           scene.text('Thankfully, performing your routine and then cheering from the sidelines helps keep you somewhat warm as you persevere with the vicious cold.');
-          if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['cold_weather'] = 1;
+          ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['cold_weather'] = 1;
         } else {
           scene.text('The cold chill in the air stings with a bitter fury as you step outside. For whatever reason, a few of your fellow cheerleaders have chosen not to wear a bra and their solid nipples are poking through the thin fabric of their outfits.');
           scene.text('You soldier through the biting cold and perform your routine before cheering from the sidelines for the rest of the game, which helps keep you somewhat warm.');
@@ -564,7 +567,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
         if (((s as any).cheerleadingQW ?? 0)?.['basketball'] === 0) {
           scene.text('Thankfully, the football team is on its winter break and you\'re now safely in the warm indoors performing for the basketball team. While performing your opening routine, you notice some of the players and spectators checking you and the other girls out. Some of them are just appreciating the show while others are hungrily undressing you with their eyes.');
           scene.text('They continue eying you up for the rest of the game as you cheer from the sidelines. You ignore them as best as you can, thankful that you\'re indoors and warm at least.');
-          if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['basketball'] = 1;
+          ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['basketball'] = 1;
         } else {
           scene.text('You head out into the hall and perform your opening routine for the crowd before the game starts and you cheer from the sidelines. You notice a few guys checking you and the other girls out, some of them undressing you with their eyes. You try your best to ignore them as the game continues.');
         }
@@ -572,7 +575,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
         if (((s as any).month ?? 0) === 4) {
           if (((s as any).cheerleadingQW ?? 0)?.['spring_match'] === 0) {
             scene.text('Football has started back up and you\'re thankful that the weather has somewhat improved. You\'re no longer chilled to the bone, but the temperature picking up means that you sweat a little more doing your routines. You\'re grateful for the bottles of refreshing cold water being passed out as you quench your thirst.');
-            if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['spring_match'] = 1;
+            ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['spring_match'] = 1;
           }
         }
       }
@@ -595,7 +598,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Once in the locker room, you strip from your uniform and head into the showers.');
     if (((s as any).cheerleadingQW ?? 0)?.['backup_game'] === 1) {
-      if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['backup_game'] = 0;
+      ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['backup_game'] = 0;
       // TODO-QSP: dynamic text: After the game, Albina comes over to you. "I'll give it to you <<$pcs_nickname>>...
       scene.text(`After the game, Albina comes over to you. "I'll give it to you ${((s as any).pcs_nickname || '')}, you didn't embarrass us as much as I thought you would. Don't go taking that uniform by the way, you haven't earned it."`);
       scene.text('She leaves you to walk back to the locker room yourself. Maybe you\'ll earn her respect and this uniform one day if you keep this up?');
@@ -636,7 +639,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
     ]);
   } },
     { label: 'Stay in the shower a little longer', handler: (st: GameState) => {
@@ -659,7 +663,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
         { label: 'Watch', handler: (st: GameState) => {
@@ -679,7 +684,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
     ]);
   } },
       { label: 'Help her out', handler: (st: GameState) => {
@@ -697,7 +703,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Oh that's good ${((s as any).pcs_nickname || '')}, but you need some too!" she says as she has you lie down beside her. She then climbs on top of you and buries her face in your crotch, her glistening pussy sitting before you.`);
     scene.text('You feel her pull your lips apart to expose your clit before she gently starts circling her tongue over it. You moan in immense pleasure before you return the favor, causing her to moan into your pussy.');
     qspCall(s, 'npc_relationship', 'modify', 'A19', 1);
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A19'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A19'] = 1;
     qspCall(s, 'arousal', 'cuni_give', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -720,7 +726,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
     ]);
   } },
     ]);
@@ -747,7 +754,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
             { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
           ]);
         } else {
           scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/sex/cowgirl.jpg');
@@ -762,7 +770,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
             { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
           ]);
         }
       } else {
@@ -801,14 +810,15 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
     ]);
   } },
             ]);
           } else {
             scene.actions([
               { label: 'Submit', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/christina_ambush.jpg');
     scene.text('The idea of submitting to her and letting her do whatever she wants with you sounds appealing to you. "What do you want me to do?" you ask in your most submissive tone.');
     // TODO-QSP: dynamic text: She looks at you with a satisfied smirk. "Be a good little bitch, get on your kn...
@@ -831,7 +841,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
       ]);
     } else {
       scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/albina_rescue.jpg');
@@ -843,7 +854,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'She forced me', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/albina_rescue.jpg');
     // TODO-QSP: dynamic text: "She's lying!" you exclaim while looking up pleadingly at Albina. "She stole my ...
@@ -863,12 +874,13 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk home with Albina', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
     ]);
   } },
         { label: 'I wanted to do it', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
     qspCall(s, 'arousal', 'cuni_give', 5);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/sex/christina_force.jpg');
@@ -891,14 +903,15 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
     ]);
   } },
       ]);
     }
   } },
               { label: 'Refuse', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/christina_ambush.jpg');
     scene.text('"Fuck you, I\'m not one of your little lapdogs that jumps to do your bidding!" you retort in defiance, which causes her to smile.');
     scene.text('"It\'s nice having people do what you tell them, like you will right now. Albina isn\'t here to save you now and you won\'t be telling her a damn thing if you want to keep your place on the squad. Right now, your place is between my legs eating my pussy!"');
@@ -911,7 +924,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
     ]);
   } },
             ]);
@@ -937,12 +951,13 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish getting dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
     ]);
   } },
                 { label: 'Accept', handler: (st: GameState) => {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['lazar_threesome'] = 1;
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['lazar_threesome'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
     qspCall(s, 'boyStat', 'A154');
     qspCall(s, 'arousal', 'vaginal_finger', (-5));
     qspCall(s, 'arousal', 'bj', 5);
@@ -959,7 +974,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.text('"Best. Blowjob. Ever…" he says softly.');
     scene.actions([
       { label: 'Get your pussies fucked', handler: (st: GameState) => {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'arousal', 'vaginal', 5);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/sex/threesome1.mp4');
@@ -1003,12 +1018,13 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.text('You gulp down the sticky fluid and Lazar grins. "You two were amazing! We need to do this again sometime!"');
     scene.text('Albina playfully giggles. "Maybe we will, maybe we won\'t…" she teases him and you all laugh before getting dressed.');
     scene.text('You then all leave the room and go your separate ways.');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
     ]);
@@ -1034,12 +1050,13 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.text('You gulp down the sticky fluid and Lazar grins. "You two were amazing! We need to do this again sometime!"');
     scene.text('Albina playfully giggles. "Maybe we will, maybe we won\'t…" she teases him and you all laugh before getting dressed.');
     scene.text('You then all leave the room and go your separate ways.');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
     ]);
@@ -1065,11 +1082,12 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish getting dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
     ]);
   } },
                 { label: 'Accept', handler: (st: GameState) => {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A23'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A23'] = 1;
     qspCall(s, 'boyStat', 'A154');
     scene.text('You give her a sly little smile. "Yeah, okay. I\'m in."');
     scene.text('She smiles and types a message on her phone. "Okay, get dressed and follow me."');
@@ -1088,7 +1106,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get your pussies fucked', handler: (st: GameState) => {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/sex/threesome1.mp4');
     scene.text('He then stands up. "Time to get fucked, girls," he says and Albina obediently gets on all fours on the bench before presenting her large ass to Lazar.');
     // TODO-QSP: dynamic text: "Get up there beside her, <<$pcs_nickname>>! I want to see both those asses high...
@@ -1132,12 +1150,13 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.text('You gulp down the sticky fluid and Lazar grins. "Until next time, girls."');
     scene.text('Albina teases him by bending over and wiggling her naked ass at him, showing off her still slightly gaping anus.');
     scene.text('You all get dressed before leaving the room and going your separate ways.');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
     ]);
@@ -1163,12 +1182,13 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.text('You gulp down the sticky fluid and Lazar grins. "Until next time, girls."');
     scene.text('Albina teases him by bending over and wiggling her naked ass at him, showing off her still slightly gaping anus.');
     scene.text('You all get dressed before leaving the room and going your separate ways.');
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Lazar_Threesome'] = ((s as any).AlbinaQW['Lazar_Threesome'] ?? 0) + (1);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
     ]);
@@ -1191,9 +1211,10 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'cheer');
     qspCall(s, 'outfit', 'remove_backup', 'cheer');
     if ((!(Math.floor(Math.random() * 6) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'bella'] }]);
+      qspGoto(s, 'gschool_cheerleading', 'bella');
     }
-  }, goto: ['gschool_grounds', 'change_room'] },
+    qspGoto(s, 'gschool_grounds', 'change_room');
+  } },
             ]);
           }
         }
@@ -1412,9 +1433,9 @@ function enterSkippedEv(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).cheerleadingQW ?? 0)?.['skipped'] === 3) {
         qspCall(s, 'npc_relationship', 'modify', 'A23', (-20));
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
         qspCall(s, 'mood', 'lower', 'large');
         scene.text('You\'re walking down the hallway when you clock a furious Albina heading straight for you. You barely have time to react before she grabs your shirt and forcefully pins you against the lockers, silencing the hall as everyone looks at you.');
         // TODO-QSP: dynamic text: Albina glares directly into your eyes. "ARE YOU DOING THIS TO MOCK ME, YOU FUCKI...
@@ -1427,12 +1448,12 @@ function enterSkippedEv(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', 'A22', 'dislike');
         qspCall(s, 'npc_relationship', 'modify', 'A13', 'dislike');
         qspCall(s, 'npc_relationship', 'modify', 'A19', 'dislike');
-        if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = (-2);
+        ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = (-2);
         qspCall(s, 'calendar', 'pack', 'remove', 'cheerleading_practice');
         qspCall(s, 'calendar', 'pack', 'remove', 'cheerleading_games');
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (7);
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (10);
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (7);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (10);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
         qspCall(s, 'mood', 'lower', 'huge');
         scene.text('As you walk down the hallway, you hear your name echo off the walls and the angry stomping of heels as you see an absolutely livid Albina, fists clenched, storming down the hallway at you, Vicky following close behind.');
         scene.text('"You think this is funny, don\'t you? Well, you\'re FUCKING DONE!!" Vicky stops her from attacking you in a fit of rage.');
@@ -1443,10 +1464,10 @@ function enterSkippedEv(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).cheerleadingQW ?? 0)?.['skipped_ev'] === 1) {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['skipped_ev'] = 0;
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['skipped_ev'] = 0;
   }
   if (((s as any).cheerleadingQW ?? 0)?.['skipped_g_ev'] === 1) {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['skipped_g_ev'] = 0;
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['skipped_g_ev'] = 0;
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1462,10 +1483,11 @@ function enterCheerleadersReact(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A23'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A23'] = 1;
     qspCall(s, 'calendar', 'pack', 'remove', 'cheerleading_practice');
     qspCall(s, 'calendar', 'pack', 'remove', 'cheerleading_games');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
   ]);
   scene.build();
 }
@@ -1479,10 +1501,11 @@ function enterCheerleaderEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = 0;
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = 0;
     qspCall(s, 'calendar', 'pack', 'remove', 'cheerleading_practice');
     qspCall(s, 'calendar', 'pack', 'remove', 'cheerleading_games');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
   ]);
   scene.build();
 }
@@ -1508,10 +1531,11 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['quest_stage'] = 0;
+    ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['quest_stage'] = 0;
     qspCall(s, 'calendar', 'pack', 'remove', 'cheerleading_practice');
     qspCall(s, 'calendar', 'pack', 'remove', 'cheerleading_games');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
     { label: 'Change your mind', handler: (st: GameState) => {

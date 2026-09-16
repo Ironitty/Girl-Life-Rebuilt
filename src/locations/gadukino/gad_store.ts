@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_store', '');
+  (s as any).location_type = 'public_indoors';
   (s as any).frost = 0;
   scene.text('<center><b>Village Shop</b></center>');
   scene.img('images/locations/gadukino/village/market.jpg');
@@ -23,6 +24,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_s = 'gad_store';
+  (s as any).args_s = 'cart';
   if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) > 20) {
     scene.text('The shop is currently closed.');
     return;

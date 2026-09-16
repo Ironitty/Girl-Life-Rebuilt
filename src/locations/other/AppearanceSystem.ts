@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -134,7 +132,7 @@ function enterCalcBodyShapeBonus(s: GameState, scene: SceneBuilder): void {
           (s as any).result = ((s as any).result ?? 0) - (4);
         }
       }
-      (s as any).result = ((s as any).result ?? 0) - (qspUntranslated(s, "max(0, bodyVars['vofat'])", { location: "AppearanceSystem" }));
+      (s as any).result = ((s as any).result ?? 0) - (Math.max(0, ((s as any).bodyVars ?? 0)?.['vofat']));
     }
   }
   return;
@@ -227,9 +225,9 @@ function enterCalcGroomingPenalty(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCalcAppearance(s: GameState, scene: SceneBuilder): void {
-  (s as any).superNaturalBonus = qspUntranslated(s, "ARGS[1]", { location: "AppearanceSystem" });
+  (s as any).superNaturalBonus = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_apprnc = ((s as any).pcs_apprncbase ?? 0) + ((s as any).clothingBonus ?? 0) + ((s as any).accessoriesBonus ?? 0) + ((s as any).groomingBonus ?? 0) - ((s as any).groomingPenalty ?? 0);
-  (s as any).result = Math.max(0, 0) + ((s as any).superNaturalBonus ?? 0);
+  (s as any).result = Math.max(0, Math.min(((s as any).temp_apprnc ?? 0), 200)) + ((s as any).superNaturalBonus ?? 0);
   return;
   // TODO-QSP: end
   scene.build();
@@ -279,7 +277,7 @@ function enterConvertToHotcat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdjustFromBMI(s: GameState, scene: SceneBuilder): void {
-  (s as any).tempValue = qspUntranslated(s, "ARGS[1]", { location: "AppearanceSystem" });
+  (s as any).tempValue = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_bs_class = qspFunc(s, 'body_structure', 'get_class') % 1000;
   if (((s as any).temp_bs_class ?? 0) < 100) {
     (s as any).result = ((s as any).tempValue ?? 0) * 50 / 100;

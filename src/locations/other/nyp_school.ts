@@ -10,8 +10,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).alkoblock = 1;
+  (s as any).menu_loc = 'nyp_school';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/newyear.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -27,6 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (60);
     qspCall(s, 'stat', '');
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/newyear.mp3';
       (s as any).volume = 100;
       (s as any).music_loop = 1;
     }
@@ -188,6 +192,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/newyear.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -418,6 +423,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/newyear.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -602,6 +608,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/newyear.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -985,6 +992,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/newyear.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -1164,6 +1172,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck him off', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/sex/snybj.jpg');
     scene.text('You kneel down in front of Vasily and start sucking his cock. After a few minutes, you hear the door open and a few guys from your class wander in. Before you know it, all the boys in your class except Vitek, who was rumored to have already passed out, are surrounding you. You hear someone unzipping their fly and pulling out their cock. Shortly thereafter, the others follow suit.');
+    (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A9'];
     qspCall(s, 'fame', 'pav', 'sex', 60);
     qspCall(s, 'npcStat', 'A11', 1);
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub'
@@ -1220,7 +1229,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_boy_arg1', 1, 1, 1, 1, 0, 0);
     qspCall(s, 'npcStat', '', ((s as any).school_static_num ?? 0));
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Keep sucking', handler: (st: GameState) => {

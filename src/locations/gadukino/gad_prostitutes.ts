@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_prostitutes', 'start');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'schedule', 'A60');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
@@ -27,11 +28,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
       if (((s as any).MiraVars ?? 0)?.['pimp'] === 1  &&  (((s as any).npc_QW ?? 0)?.['A63'] >= 11  ||  ((s as any).GadBoy ?? 0)?.['river_gang'] === 2)) {
-        scene.actions([{ label: 'Continue', goto: ['gad_prostitutes', 'mira_rebels'] }]);
+        qspGoto(s, 'gad_prostitutes', 'mira_rebels');
       }
       scene.text('You see Mira standing below a streetlight a little way down the road.');
       if (((s as any).MiraVars ?? 0)?.['pimp'] === 0  &&  ((s as any).npc_QW ?? 0)?.['A63'] < 11  &&  ((s as any).GadBoy ?? 0)?.['river_gang'] === 0) {
-        scene.actions([{ label: 'Continue', goto: ['gad_prostitutes', 'pimp_mira'] }]);
+        qspGoto(s, 'gad_prostitutes', 'pimp_mira');
       }
       scene.actions([
         { label: 'Watch Mira prostitute herself', goto: ['gad_prostitutes', 'just_mira'] },
@@ -64,7 +65,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Make Mira your prostitute', handler: (st: GameState) => {
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['pimp'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['pimp'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'misc', 'force', 'hard');
     qspCall(s, 'willpower', 'pay', 'force');
@@ -95,7 +96,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiraRebels(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['pimp'] = 2;
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['pimp'] = 2;
   qspCall(s, 'prostitution_functions', 'set_gadukino_prostitute');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -131,9 +132,9 @@ function enterJustMira(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).temp_gadpro = Math.floor(Math.random() * 10) + 1;
     if (((s as any).temp_gadpro ?? 0) > 5) {
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['prostitute'] = ((s as any).MiraVars['prostitute'] ?? 0) + (1);
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['prostitute'] = ((s as any).MiraVars['prostitute'] ?? 0) + (1);
       if (((s as any).MiraVars ?? 0)?.['QW'] < 20) {
-        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
       }
       scene.img('images/characters/gadukino/mira/miraprost.jpg');
       scene.text('It isn\'t long before a customer pulls up in a flashy car. Mira approaches the vehicle and starts talking to the driver.');
@@ -168,14 +169,18 @@ function enterWatchMira(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/gadukino/mira/sex/miraprost1.mp4');
     scene.text('You walk up and look into the car. You see Mira giving one hell of a blowjob to her customer. Her head is bobbing up and down on his cock.');
     scene.actions([
-      { label: 'Hide', goto: ['gad_prostitutes', 'watch_from_hiding'] },
+      { label: 'Hide', handler: (st: GameState) => {
+    qspGoto(s, 'gad_prostitutes', 'watch_from_hiding');
+  } },
     ]);
   } else {
     if (((s as any).temp_gadpro ?? 0) === 1) {
       scene.img('images/characters/gadukino/mira/miraprost2.mp4');
       scene.text('You walk up and look into the van. You see Mira showing her customer her tits and rubbing her pussy, and you see a hungry gleam in the guy\'s eyes, which Mira returns.');
       scene.actions([
-        { label: 'Keep watching', goto: ['gad_prostitutes', 'watch_close'] },
+        { label: 'Keep watching', handler: (st: GameState) => {
+    qspGoto(s, 'gad_prostitutes', 'watch_close');
+  } },
       ]);
     }
   }
@@ -203,7 +208,8 @@ function enterWatchFromHiding(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'money', 'earn', 200, 'cash');
     }
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gad_prostitutes', 'just_mira'] },
+    qspGoto(s, 'gad_prostitutes', 'just_mira');
+  } },
     ]);
   } },
   ]);
@@ -229,7 +235,8 @@ function enterWatchClose(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'money', 'earn', 200, 'cash');
     }
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gad_prostitutes', 'just_mira'] },
+    qspGoto(s, 'gad_prostitutes', 'just_mira');
+  } },
     ]);
   } },
   ]);
@@ -237,7 +244,7 @@ function enterWatchClose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['gad_prostitutes', 'work_alone'] }]);
+  qspGoto(s, 'gad_prostitutes', 'work_alone');
   // TODO-QSP: end
   scene.build();
 }
@@ -246,13 +253,14 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'gad_prostitutes', 'work');
+  (s as any).prostitution_location = 'gadukino';
   qspCall(s, 'stat', '');
   qspCall(s, 'prostitution_functions', 'parameters');
   if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
     scene.text('If you want, you can tell your clients a different name.');
     // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
-      if (!(s as any).prostitute_names) (s as any).prostitute_names = {}; (s as any).prostitute_names[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
+      ((s as any).prostitute_names = (s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
@@ -282,17 +290,19 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Look for a client (0:30)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['prostitution_car_negotiation', 'look_client'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'look_client');
+  } },
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0  &&  (((s as any).prostitute ?? 0)?.['cum_dressed'] === 1  ||  ((s as any).prostitute ?? 0)?.['cum_undressed'] === 1  ||  ((s as any).prostitute ?? 0)?.['cum_vaginal_mod'] === 1  ||  ((s as any).prostitute ?? 0)?.['cum_anal_mod'] === 1)) {
     scene.actions([
       { label: 'Remove the cum from your body (0:02)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
     (s as any).cumspclnt = 20;
     qspCall(s, 'cum_cleanup', '');
-  }, goto: ['gad_prostitutes', 'work'] },
+    qspGoto(s, 'gad_prostitutes', 'work');
+  } },
     ]);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] === 0) {

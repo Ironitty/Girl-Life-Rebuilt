@@ -7,34 +7,42 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoncheri(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'Mon Chéri shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
   scene.build();
 }
 
 function enterCats(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'Pussy Cats shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
   scene.build();
 }
 
 function enterBomba(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'Tsar Bomba shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
   scene.build();
 }
 
 function enterDolls(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'Patchwork Dolls shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
   scene.build();
 }
 
 function enterEroto(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'Erotomaniac shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
   scene.build();
 }
 
 function enterScandalicious(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'Scandalicious shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
   scene.build();
 }
 
 function enterGm(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'G&M shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
   scene.build();
 }
 
 function enterDanilovich(s: GameState, scene: SceneBuilder): void {
+  (s as any).RESULT = 'Training shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
   // TODO-QSP: end
   scene.build();
 }

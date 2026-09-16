@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -108,7 +108,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                     (s as any).pcs_health = 100;
                   }
                   if (qspFunc(s, 'succubus', 'active', 4)) {
-                    scene.actions([{ label: 'Continue', goto: ['succubus', 'RapistFight'] }]);
+                    qspGoto(s, 'succubus', 'RapistFight');
                   }
                   (s as any).fightEnding = 0;
                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
@@ -116,10 +116,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                     (s as any).rikudo = ((s as any).rikudo ?? 0) - (10);
                   }
                   if (((s as any).loc ?? 0) === 'pav_park'  ||  ((s as any).loc ?? 0) === 'city_park') {
-                    scene.actions([{ label: 'Continue', goto: ['rape_events', 'park_rape_solo'] }]);
+                    qspGoto(s, 'rape_events', 'park_rape_solo');
                   } else {
                     if (((s as any).region ?? 0) === 'pav'  ||  ((s as any).region ?? 0) === 'city') {
-                      scene.actions([{ label: 'Continue', goto: ['rape_events', 'urban_fight_rape'] }]);
+                      qspGoto(s, 'rape_events', 'urban_fight_rape');
                     }
                   }
                 } else {
@@ -151,7 +151,9 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                     if ((Math.floor(Math.random() * 80) + 1) <= ((s as any).temp_thresh ?? 0)) {
                       scene.text('Your assailant knocks you down with one final hit, and you pass out.');
                       scene.actions([
-                        { label: 'Pass out', goto: ['abduction', 'abdCarTrunk'] },
+                        { label: 'Pass out', handler: (st: GameState) => {
+    qspGoto(s, 'abduction', 'abdCarTrunk');
+  } },
                       ]);
                     } else {
                       qspCall(s, 'money', 'set', 0, 'cash');
@@ -159,7 +161,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                       scene.text('He knocks you down with one final hit. The moment he puts you out of commission, he grabs your money and runs away.');
                       scene.actions([
                         { label: 'Get back on your feet', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                       ]);
                     }
@@ -170,7 +172,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                         (s as any).pcs_health = 100;
                       }
                       (s as any).fightEnding = 0;
-                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+                      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
                       if (((s as any).Loss ?? 0) < 0) {
                         (s as any).Loss = 0;
                       }
@@ -203,9 +205,9 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                             (s as any).pcs_health = 100;
                           }
                           (s as any).fightEnding = 0;
-                          if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['fight'] = (-1);
-                          if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['pre_fight'] = 0;
-                          if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
+                          ((s as any).christinaQW = (s as any).christinaQW ?? {})['fight'] = (-1);
+                          ((s as any).christinaQW = (s as any).christinaQW ?? {})['pre_fight'] = 0;
+                          ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 2;
                           (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                           (s as any).minut = ((s as any).minut ?? 0) + 10;
                           qspCall(s, 'stat', '');
@@ -248,7 +250,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                               scene.actions([
                                 { label: 'Leave', handler: (st: GameState) => {
     (st as any).streetrand = (-1);
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
                               ]);
                             } else {
@@ -258,7 +260,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                 }
                                 (s as any).fightEnding = 0;
                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                                if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['fight'] = (-1);
+                                ((s as any).slyQW = (s as any).slyQW ?? {})['fight'] = (-1);
                                 qspCall(s, 'mood', 'lower', 'large');
                                 qspCall(s, 'pain', '', 5, 'cheeks', 'hit');
                                 qspCall(s, 'stat', '');
@@ -274,9 +276,9 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                   }
                                   (s as any).fightEnding = 0;
                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-                                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (5);
-                                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
+                                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+                                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (5);
+                                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
                                   qspCall(s, 'mood', 'lower', 'medium');
                                   scene.img('images/locations/shared/street/lostfight.jpg');
                                   scene.text('You groan on pain as the frozen ground reaches for you. Damm. That wasn\'t your best idea now that you see it, especially because the police have just arrived to break up the brawl turned riot.');
@@ -347,12 +349,12 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
     (s as any).dummy = Math.floor(Math.random() * 100) + 1;
     qspCall(s, 'stat', '');
     if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase3'] }]);
+      qspGoto(s, 'alexandriaEv', 'anachase3');
     } else {
       if (((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).dummy ?? 0) >= 90) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anacrash1'] }]);
+        qspGoto(s, 'alexandriaEv', 'anacrash1');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase4'] }]);
+        qspGoto(s, 'alexandriaEv', 'anachase4');
       }
     }
   } },
@@ -384,7 +386,8 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                               { label: 'Will you to cast Heal.', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['alexandriaEv', 'heal2'] },
+    qspGoto(s, 'alexandriaEv', 'heal2');
+  } },
                                             ]);
                                           }
                                         }
@@ -418,7 +421,8 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                                 { label: 'Will you to cast Heal.', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['alexandriaEv', 'heal4'] },
+    qspGoto(s, 'alexandriaEv', 'heal4');
+  } },
                                               ]);
                                             }
                                           }
@@ -435,7 +439,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                             (s as any).fightEnding = 0;
                                             (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                             qspCall(s, 'mood', 'lower', 'large');
-                                            scene.actions([{ label: 'Continue', goto: ['gopnew', 'fight_lost'] }]);
+                                            qspGoto(s, 'gopnew', 'fight_lost');
                                           } else {
                                             if (((s as any).fightEnding ?? 0) === 22) {
                                               if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
@@ -468,12 +472,12 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                                 qspCall(s, 'mood', 'lower', 'large');
                                                 if (((s as any).fight ?? 0)?.['rape_loc'] === 'city_park'  ||  ((s as any).fight ?? 0)?.['rape_loc'] === 'pav_park') {
                                                   if (((s as any).fight ?? 0)?.['rape_type'] === 'gang') {
-                                                    scene.actions([{ label: 'Continue', goto: ['rape_events', 'park_gangrape_fight_loss'] }]);
+                                                    qspGoto(s, 'rape_events', 'park_gangrape_fight_loss');
                                                   } else {
                                                     qspCall(s, 'rape_events', 'park_rape_solo');
                                                   }
                                                 } else {
-                                                  scene.actions([{ label: 'Continue', goto: ['rape_events', 'urban_fight_rape'] }]);
+                                                  qspGoto(s, 'rape_events', 'urban_fight_rape');
                                                 }
                                               } else {
                                                 if (((s as any).fightEnding ?? 0) === 24) {
@@ -484,9 +488,9 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                                   qspCall(s, 'mood', 'lower', 'large');
                                                   if (((s as any).opp_health ?? 0)[0] < 30) {
-                                                    scene.actions([{ label: 'Continue', goto: ['gopnik_fight_night', 'barely_lose'] }]);
+                                                    qspGoto(s, 'gopnik_fight_night', 'barely_lose');
                                                   } else {
-                                                    scene.actions([{ label: 'Continue', goto: ['gopnik_fight_night', 'badly_lose'] }]);
+                                                    qspGoto(s, 'gopnik_fight_night', 'badly_lose');
                                                   }
                                                 }
                                               }
@@ -588,9 +592,11 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).fightEnding ?? 0) === 8  ||  ((s as any).fightEnding ?? 0) === 9) {
                 if (qspFunc(s, 'succubus', 'active', 4)  &&  ((s as any).scpopt ?? 0) < 2) {
+                  (s as any).sclocrt = 'ender';
+                  (s as any).scargrt = 'win';
                   (s as any).scfwon = 1;
                   (s as any).scpopt = 1;
-                  scene.actions([{ label: 'Continue', goto: ['succubus', 'RapistFight'] }]);
+                  qspGoto(s, 'succubus', 'RapistFight');
                 }
                 scene.img('images/locations/shared/street/rapist_defeat.jpg');
                 // TODO-QSP: dynamic text: You defeat the '+iif(fightEnding = 8, 'rapist', 'thief')+' and empty his wallet ...
@@ -605,14 +611,14 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                 return;
                 scene.actions([
                   { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                 ]);
               } else {
                 if (((s as any).fightEnding ?? 0) === 10) {
                   qspCall(s, 'money', 'earn', 10000);
                   (s as any).fightEnding = 0;
-                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
                   (s as any).Win = ((s as any).Win ?? 0) + (1);
                   scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/girlbeatsguy1.jpg');
                   scene.text('You kick Dimka a few more times as he lies on the ground. "Keep spreading shit about me and I\'ll beat your sorry ass even harder next time!"');
@@ -640,10 +646,10 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).fightEnding ?? 0) === 12) {
                       if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
-                        if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
+                        ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 4;
                       }
-                      if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['fight'] = 1;
-                      if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['pre_fight'] = 0;
+                      ((s as any).christinaQW = (s as any).christinaQW ?? {})['fight'] = 1;
+                      ((s as any).christinaQW = (s as any).christinaQW ?? {})['pre_fight'] = 0;
                       (s as any).Win = ((s as any).Win ?? 0) + (1);
                       (s as any).fightEnding = 0;
                       scene.img('images/characters/pavlovsk/school/girl/christina/school/win.jpg');
@@ -673,14 +679,14 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                           scene.actions([
                             { label: 'Leave', handler: (st: GameState) => {
     (st as any).streetrand = (-1);
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
                           ]);
                         } else {
                           if (((s as any).fightEnding ?? 0) === 15) {
                             (s as any).fightEnding = 0;
                             (s as any).Win = ((s as any).Win ?? 0) + (1);
-                            if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['fight'] = 1;
+                            ((s as any).slyQW = (s as any).slyQW ?? {})['fight'] = 1;
                             qspCall(s, 'mood', 'raise', 'small');
                             scene.img('images/characters/shared/headshots_main/big248.jpg');
                             scene.text('Christina is a hell of a fighter. She is fast, hits harder than most boys and knows what she is doing. Yet despite all that she just isn\'t a match for you. You finally land a few hard blows and she goes down gasping for breath, holding up her hand in surrender. You smirk as she lies beaten at your feet. You reach down and pull her phone out of her pocket and then toss it as far as you can out into the lake where it plops into the water.');
@@ -692,9 +698,9 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).fightEnding ?? 0) === 16) {
                               (s as any).fightEnding = 0;
                               (s as any).Win = ((s as any).Win ?? 0) + (1);
-                              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-                              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (100);
-                              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (50);
+                              ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+                              ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (100);
+                              ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (50);
                               qspCall(s, 'npc_relationship', 'modify', 'A165', 5);
                               qspCall(s, 'npc_relationship', 'modify', 'A14', (-5));
                               qspCall(s, 'mood', 'raise', 'small');
@@ -716,7 +722,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                                 (s as any).Win = ((s as any).Win ?? 0) + (1);
                                 qspCall(s, 'npc_relationship', 'modify', 'A241', 1);
                                 qspCall(s, 'mood', 'raise', 'small');
-                                scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission2E'] }]);
+                                qspGoto(s, 'tatiana_missions', 'mission2E');
                               } else {
                                 if (((s as any).fightEnding ?? 0) === 18) {
                                   (s as any).fightEnding = 0;
@@ -749,12 +755,12 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
     (s as any).dummy = Math.floor(Math.random() * 100) + 1;
     qspCall(s, 'stat', '');
     if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase3'] }]);
+      qspGoto(s, 'alexandriaEv', 'anachase3');
     } else {
       if (((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).dummy ?? 0) >= 90) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anacrash1'] }]);
+        qspGoto(s, 'alexandriaEv', 'anacrash1');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase4'] }]);
+        qspGoto(s, 'alexandriaEv', 'anachase4');
       }
     }
   } },
@@ -800,7 +806,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                                         (s as any).fightEnding = 0;
                                         (s as any).Win = ((s as any).Win ?? 0) + (1);
                                         qspCall(s, 'mood', 'raise', 'medium');
-                                        scene.actions([{ label: 'Continue', goto: ['gopnew', 'fight_win'] }]);
+                                        qspGoto(s, 'gopnew', 'fight_win');
                                       } else {
                                         if (((s as any).fightEnding ?? 0) === 22) {
                                           (s as any).Win = ((s as any).Win ?? 0) + (1);
@@ -821,16 +827,16 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                                             (s as any).fightEnding = 0;
                                             (s as any).Win = ((s as any).Win ?? 0) + (1);
                                             qspCall(s, 'mood', 'raise', 'medium');
-                                            scene.actions([{ label: 'Continue', goto: ['rape_events', 'fight_win'] }]);
+                                            qspGoto(s, 'rape_events', 'fight_win');
                                           } else {
                                             if (((s as any).fightEnding ?? 0) === 24) {
                                               (s as any).fightEnding = 0;
                                               (s as any).Win = ((s as any).Win ?? 0) + (1);
                                               qspCall(s, 'mood', 'raise', 'medium');
                                               if (((s as any).pcs_health ?? 0) < 40) {
-                                                scene.actions([{ label: 'Continue', goto: ['gopnik_fight_night', 'barely_win'] }]);
+                                                qspGoto(s, 'gopnik_fight_night', 'barely_win');
                                               } else {
-                                                scene.actions([{ label: 'Continue', goto: ['gopnik_fight_night', 'easily_win'] }]);
+                                                qspGoto(s, 'gopnik_fight_night', 'easily_win');
                                               }
                                             }
                                           }
@@ -975,7 +981,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                     (s as any).pcs_health = 100;
                   }
                   if (qspFunc(s, 'succubus', 'active', 4)) {
-                    scene.actions([{ label: 'Continue', goto: ['succubus', 'RapistFight'] }]);
+                    qspGoto(s, 'succubus', 'RapistFight');
                   }
                   (s as any).fightEnding = 0;
                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
@@ -983,10 +989,10 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                     (s as any).rikudo = ((s as any).rikudo ?? 0) - (10);
                   }
                   if (((s as any).loc ?? 0) === 'pav_park'  ||  ((s as any).loc ?? 0) === 'city_park') {
-                    scene.actions([{ label: 'Continue', goto: ['rape_events', 'park_rape_solo'] }]);
+                    qspGoto(s, 'rape_events', 'park_rape_solo');
                   } else {
                     if (((s as any).region ?? 0) === 'pav'  ||  ((s as any).region ?? 0) === 'city') {
-                      scene.actions([{ label: 'Continue', goto: ['rape_events', 'urban_fight_rape'] }]);
+                      qspGoto(s, 'rape_events', 'urban_fight_rape');
                     }
                   }
                 } else {
@@ -1011,13 +1017,13 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                     return;
                     scene.actions([
                       { label: 'Get back on your feet', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                     ]);
                   } else {
                     if (((s as any).fightEnding ?? 0) === 10) {
                       (s as any).fightEnding = 0;
-                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+                      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
                       if (((s as any).Loss ?? 0) < 0) {
                         (s as any).Loss = 0;
                       }
@@ -1064,9 +1070,9 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).fightEnding ?? 0) === 12) {
                           (s as any).fightEnding = 0;
-                          if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['fight'] = (-1);
-                          if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['pre_fight'] = 0;
-                          if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
+                          ((s as any).christinaQW = (s as any).christinaQW ?? {})['fight'] = (-1);
+                          ((s as any).christinaQW = (s as any).christinaQW ?? {})['pre_fight'] = 0;
+                          ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 2;
                           (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                           (s as any).minut = ((s as any).minut ?? 0) + 10;
                           qspCall(s, 'stat', '');
@@ -1130,7 +1136,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                               scene.actions([
                                 { label: 'Leave', handler: (st: GameState) => {
     (st as any).streetrand = (-1);
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
                               ]);
                             } else {
@@ -1140,7 +1146,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                 }
                                 (s as any).fightEnding = 0;
                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                                if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['fight'] = (-1);
+                                ((s as any).slyQW = (s as any).slyQW ?? {})['fight'] = (-1);
                                 qspCall(s, 'mood', 'lower', 'large');
                                 qspCall(s, 'pain', '', 5, 'cheeks', 'hit');
                                 qspCall(s, 'stat', '');
@@ -1156,9 +1162,9 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                   }
                                   (s as any).fightEnding = 0;
                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (10);
-                                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-                                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+                                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (10);
+                                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+                                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
                                   qspCall(s, 'mood', 'lower', 'medium');
                                   scene.img('images/locations/shared/street/girlgang.jpg');
                                   scene.text('Oh shit! This was obviously a bad idea, and the girls surrounding you with murder in their eyes are more than willing to show you your error, so… you retreat and lift your hands in defeat, waiting for some mercy…');
@@ -1222,12 +1228,12 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
     (s as any).dummy = Math.floor(Math.random() * 100) + 1;
     qspCall(s, 'stat', '');
     if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase3'] }]);
+      qspGoto(s, 'alexandriaEv', 'anachase3');
     } else {
       if (((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).dummy ?? 0) >= 90) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anacrash1'] }]);
+        qspGoto(s, 'alexandriaEv', 'anacrash1');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase4'] }]);
+        qspGoto(s, 'alexandriaEv', 'anachase4');
       }
     }
   } },
@@ -1300,7 +1306,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                             (s as any).fightEnding = 0;
                                             (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                             qspCall(s, 'mood', 'lower', 'medium');
-                                            scene.actions([{ label: 'Continue', goto: ['gopnew', 'fight_lost'] }]);
+                                            qspGoto(s, 'gopnew', 'fight_lost');
                                           } else {
                                             if (((s as any).fightEnding ?? 0) === 22) {
                                               (s as any).fightEnding = 0;
@@ -1340,13 +1346,13 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                                 (s as any).fightEnding = 0;
                                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                                 qspCall(s, 'mood', 'lower', 'large');
-                                                scene.actions([{ label: 'Continue', goto: ['rape_events', 'park_gangrape_fight_surrender'] }]);
+                                                qspGoto(s, 'rape_events', 'park_gangrape_fight_surrender');
                                               } else {
                                                 if (((s as any).fightEnding ?? 0) === 24) {
                                                   (s as any).fightEnding = 0;
                                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                                   qspCall(s, 'stat', '');
-                                                  scene.actions([{ label: 'Continue', goto: ['gopnik_fight_night', 'surrender'] }]);
+                                                  qspGoto(s, 'gopnik_fight_night', 'surrender');
                                                 }
                                               }
                                             }

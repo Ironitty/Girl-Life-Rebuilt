@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -19,6 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterOccupants(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'occupants');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/housemates.jpg');
@@ -36,7 +37,7 @@ function enterOccupants(s: GameState, scene: SceneBuilder): void {
 
 function enterLeaveBuilding(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 4  ||  ((s as any).motherWorry ?? 0) !== 0  ||  ((s as any).age ?? 0) >= 18  ||  qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0) {
-    scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+    qspGoto(s, 'pav_complex', 'start');
   }
   scene.text('<font color=red>Are you sure? Your mother will worry if you go out at this time.</font>');
   qspCall(s, 'willpower', 'misc', 'self', 'easy');
@@ -50,13 +51,14 @@ function enterLeaveBuilding(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Yes, go outside', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'No, stay inside', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -64,6 +66,7 @@ function enterLeaveBuilding(s: GameState, scene: SceneBuilder): void {
 
 function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_1');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
@@ -71,10 +74,10 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/podezd2.jpg');
   scene.text('<center>A dirty and poorly maintained stairwell, the same as any other in your town.</center>');
   if (((s as any).shared_apt ?? 0)?.['seenAd'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'advertNo30'] }]);
+    qspGoto(s, 'pav_shared_apt', 'advertNo30');
   }
-  scene.text('There\'s a <a href="exec: gt \'pod_ezd\', \'occupants\'">list</a> of the people who live here on the wall.');
-  scene.text('Someone put up some <a href="exec:gt \'pod_ezd\',\'pod_objava\'">advertisements</a> on the wall, near the entrance.');
+  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pod_ezd\\u0027, \\u0027occupants\\u0027); return false;">list</a> of the people who live here on the wall.');
+  scene.text('Someone put up some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pod_ezd\\u0027, \\u0027pod_objava\\u0027); return false;">advertisements</a> on the wall, near the entrance.');
   if (((s as any).ArtemBeInHome ?? 0) > 0  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0) {
     scene.actions([
       { label: 'Apartment 2: Artem Chebotarev', goto: ['artemhome', 'home'] },
@@ -88,7 +91,7 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_2'] },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_1\''] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_1'] },
   ]);
   scene.build();
 }
@@ -99,6 +102,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor2Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_2');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>2nd floor of the apartment building</center>');
   if (((s as any).pod_whore_countQW ?? 0) <= 15) {
@@ -106,7 +110,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>The second floor stairwell is clean and well maintained. It was renovated not long ago, and the inhabitants do their best to keep it clean.</center>');
   } else {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj2_whore.jpg');
-    scene.text('<center>The second floor stairwell was renovated not long ago, but some hoodlums already sprayed graffiti on the walls, telling the world what a whore you are. You could <a href="exec: gt \'pod_ezd\', \'etaj2_paint\'">cover it up</a> if you want to.</center>');
+    scene.text('<center>The second floor stairwell was renovated not long ago, but some hoodlums already sprayed graffiti on the walls, telling the world what a whore you are. You could <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pod_ezd\\u0027, \\u0027etaj2_paint\\u0027); return false;">cover it up</a> if you want to.</center>');
   }
   scene.text('<br>The stairwell is empty.');
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
@@ -154,7 +158,8 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
               { label: 'Enter', handler: (st: GameState) => {
     (s as any).mishahouse_day = ((s as any).daystart ?? 0);
     (s as any).mishahouse_count = ((s as any).mishahouse_count ?? 0) - (1);
-  }, goto: ['misha', '1'] },
+    qspGoto(s, 'misha', '1');
+  } },
             ]);
           } else {
             if (((s as any).mishahouse_count ?? 0) <= 0  &&  ((s as any).dyadyamishaevent ?? 0) >= 1  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 23  ||  ((s as any).mishahouse_count ?? 0) <= 0  &&  ((s as any).dyadyamishaevent ?? 0) >= 1  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 23) {
@@ -171,7 +176,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
     ]);
   } },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_2\''] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_2'] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -181,6 +186,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
 
 function enterEtaj2Paint(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj2_paint');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj2_whore.jpg');
   scene.text('You look at the graffiti and sigh: "Maybe I should get some paint and cover that up, it\'s attracting a lot of people to our home."');
@@ -217,6 +223,7 @@ function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor3Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_3');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>3rd floor of the apartment building</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj3.jpg');
@@ -236,7 +243,7 @@ function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_4'] },
     { label: 'Apartment 13: Vasily and Sergei Shulgin', goto: ['vasilyhome', 'home'] },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_3\''] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_3'] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -250,6 +257,7 @@ function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor4Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_4');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>4th floor of the apartment building</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj4.jpg');
@@ -270,7 +278,7 @@ function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_5'] },
     { label: 'Apartment 21: Aunt Luda', goto: ['ludahome', 'home'] },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_4\''] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_4'] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -284,6 +292,7 @@ function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor5Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_5');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center>Floor #5</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj5.jpg');
@@ -297,7 +306,7 @@ function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the roof', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'roof'] },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_5\''] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_5'] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -324,7 +333,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       { label: 'Smoke a joint', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'joint');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -333,7 +342,8 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       { label: 'Change back into clothes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'outfit', 'restore', 'swim');
-  }, goto: ['pod_ezd', 'roof'] },
+    qspGoto(s, 'pod_ezd', 'roof');
+  } },
       { label: 'Change clothes', goto: ['changingroom', ''] },
     ]);
   }
@@ -358,7 +368,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You lay down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You put the sunblock on your body and lay down on the roof to sunbathe.');
       }
@@ -374,10 +384,10 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go down to the fifth floor', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'roof'] }]);
+      qspGoto(s, 'pod_ezd', 'roof');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'etaj_5'] }]);
+      qspGoto(s, 'pod_ezd', 'etaj_5');
     }
   } },
   ]);
@@ -388,7 +398,7 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLiftEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator.jpg');
-  scene.text('<center>The elevator in the apartment building is quite old. The building supervisor does his best to keep it running, but it breaks down a lot. Someone put up a <a href="exec:gt \'pod_ezd\',\'elev_objava\',$ARGS[1]">notification</a> in the elevator.</center>');
+  scene.text('<center>The elevator in the apartment building is quite old. The building supervisor does his best to keep it running, but it breaks down a lot. Someone put up a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pod_ezd\\u0027, \\u0027elev_objava\\u0027, String(window.__gameStore.getState().ARGS ?? \\u0027\\u0027)); return false;">notification</a> in the elevator.</center>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Push button: floor 1', goto: ['pod_ezd', 'etaj_1'] },
@@ -403,10 +413,10 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
 function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).pod_lift_ev = Math.floor(Math.random() * 11) + 0;
   if (((s as any).pod_lift_ev ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'lift_event_1'] }]);
+    qspGoto(s, 'pod_ezd', 'lift_event_1');
   } else {
     if (((s as any).pod_lift_ev ?? 0) <= 5  ||  ((s as any).liftnotwork_count ?? 0) <=0) {
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'lift_event_2'] }]);
+      qspGoto(s, 'pod_ezd', 'lift_event_2');
     }
   }
   // TODO-QSP: end
@@ -473,22 +483,22 @@ function enterPodObjava(s: GameState, scene: SceneBuilder): void {
 function enterFloor2Events(s: GameState, scene: SceneBuilder): void {
   (s as any).floor2 = Math.floor(Math.random() * 12) + 1;
   if (((s as any).floor2 ?? 0) < 6  &&  (((s as any).hour ?? 0) >= 19  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10))) {
-    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_1'] }]);
+    qspGoto(s, 'pod_ezd', 'floor2_event_1');
   } else {
     if (((s as any).floor2 ?? 0) < 9) {
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_2'] }]);
+      qspGoto(s, 'pod_ezd', 'floor2_event_2');
     } else {
       if (((s as any).floor2 ?? 0) === 9) {
-        scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_3'] }]);
+        qspGoto(s, 'pod_ezd', 'floor2_event_3');
       } else {
         if (((s as any).floor2 ?? 0) === 10) {
-          scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_4'] }]);
+          qspGoto(s, 'pod_ezd', 'floor2_event_4');
         } else {
           if (((s as any).floor2 ?? 0) === 11) {
-            scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_5'] }]);
+            qspGoto(s, 'pod_ezd', 'floor2_event_5');
           } else {
             if (((s as any).floor2 ?? 0) === 12) {
-              scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_6'] }]);
+              qspGoto(s, 'pod_ezd', 'floor2_event_6');
             }
           }
         }
@@ -655,31 +665,31 @@ function enterFloor2Event_6(s: GameState, scene: SceneBuilder): void {
 function enterFloor3Events(s: GameState, scene: SceneBuilder): void {
   (s as any).floor3 = Math.floor(Math.random() * 22) + 1;
   if ((((s as any).floor3 ?? 0) <= 3  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)))) {
-    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_event_1'] }]);
+    qspGoto(s, 'pod_ezd', 'gopnik_event_1');
   } else {
     if ((((s as any).floor3 ?? 0) <= 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)) {
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_event_2'] }]);
+      qspGoto(s, 'pod_ezd', 'gopnik_event_2');
     } else {
       if ((((s as any).floor3 ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)) {
-        scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_event_3'] }]);
+        qspGoto(s, 'pod_ezd', 'gopnik_event_3');
       } else {
         if ((((s as any).floor3 ?? 0) <= 11  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)) {
-          scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_event_4'] }]);
+          qspGoto(s, 'pod_ezd', 'gopnik_event_4');
         } else {
           if (((s as any).floor3 ?? 0) > 11  &&  ((s as any).floor3 ?? 0) <= 14  &&  ((s as any).hour ?? 0) >= 15) {
-            scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_5'] }]);
+            qspGoto(s, 'pod_ezd', 'floor3_event_5');
           } else {
             if (((s as any).floor3 ?? 0) === 17) {
-              scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_6'] }]);
+              qspGoto(s, 'pod_ezd', 'floor3_event_6');
             } else {
               if (((s as any).floor3 ?? 0) === 18  &&  ((((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20))) {
-                scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_7'] }]);
+                qspGoto(s, 'pod_ezd', 'floor3_event_7');
               } else {
                 if (((s as any).floor3 ?? 0) === 19  ||  ((s as any).floor3 ?? 0) === 20) {
-                  scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_8'] }]);
+                  qspGoto(s, 'pod_ezd', 'floor3_event_8');
                 } else {
                   if (((s as any).floor3 ?? 0) === 21  ||  ((s as any).floor3 ?? 0) === 22) {
-                    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_9'] }]);
+                    qspGoto(s, 'pod_ezd', 'floor3_event_9');
                   }
                 }
               }
@@ -825,27 +835,27 @@ function enterFloor3Event_9(s: GameState, scene: SceneBuilder): void {
 function enterFloor4Events(s: GameState, scene: SceneBuilder): void {
   (s as any).floor4 = Math.floor(Math.random() * 15) + 1;
   if (((s as any).floor4 ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_1'] }]);
+    qspGoto(s, 'pod_ezd', 'floor4_event_1');
   } else {
     if (((s as any).floor4 ?? 0) < 6) {
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_2'] }]);
+      qspGoto(s, 'pod_ezd', 'floor4_event_2');
     } else {
       if (((s as any).floor4 ?? 0) === 6) {
-        scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_3'] }]);
+        qspGoto(s, 'pod_ezd', 'floor4_event_3');
       } else {
         if (((s as any).floor4 ?? 0) === 7) {
-          scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_4'] }]);
+          qspGoto(s, 'pod_ezd', 'floor4_event_4');
         } else {
           if (((s as any).floor4 ?? 0) < 10) {
-            scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_5'] }]);
+            qspGoto(s, 'pod_ezd', 'floor4_event_5');
           } else {
             if (((s as any).floor4 ?? 0) < 12) {
-              scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_6'] }]);
+              qspGoto(s, 'pod_ezd', 'floor4_event_6');
             } else {
               if (((s as any).floor4 ?? 0) < 14) {
-                scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_7'] }]);
+                qspGoto(s, 'pod_ezd', 'floor4_event_7');
               } else {
-                scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_8'] }]);
+                qspGoto(s, 'pod_ezd', 'floor4_event_8');
               }
             }
           }
@@ -902,7 +912,8 @@ function enterFloor4Event_3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hide and watch them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['pod_ezd', 'lena_show'] },
+    qspGoto(s, 'pod_ezd', 'lena_show');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -976,22 +987,22 @@ function enterFloor4Event_8(s: GameState, scene: SceneBuilder): void {
 function enterFloor5Events(s: GameState, scene: SceneBuilder): void {
   (s as any).floor5 = Math.floor(Math.random() * 7) + 1;
   if (((s as any).floor5 ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_1'] }]);
+    qspGoto(s, 'pod_ezd', 'floor5_event_1');
   } else {
     if (((s as any).floor5 ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_2'] }]);
+      qspGoto(s, 'pod_ezd', 'floor5_event_2');
     } else {
       if (((s as any).floor5 ?? 0) === 3) {
-        scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_3'] }]);
+        qspGoto(s, 'pod_ezd', 'floor5_event_3');
       } else {
         if (((s as any).floor5 ?? 0) === 4) {
-          scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_4'] }]);
+          qspGoto(s, 'pod_ezd', 'floor5_event_4');
         } else {
           if (((s as any).floor5 ?? 0) < 7  &&  ((((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 20))) {
-            scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_5'] }]);
+            qspGoto(s, 'pod_ezd', 'floor5_event_5');
           } else {
             if (((s as any).floor5 ?? 0) === 7) {
-              scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_6'] }]);
+              qspGoto(s, 'pod_ezd', 'floor5_event_6');
             }
           }
         }
@@ -1019,7 +1030,8 @@ function enterFloor5Event_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Hide and keep watching', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['pod_ezd', 'home_movie1'] },
+    qspGoto(s, 'pod_ezd', 'home_movie1');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1046,7 +1058,8 @@ function enterFloor5Event_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Hide and keep watching', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['pod_ezd', 'home_movie2'] },
+    qspGoto(s, 'pod_ezd', 'home_movie2');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1073,7 +1086,8 @@ function enterFloor5Event_3(s: GameState, scene: SceneBuilder): void {
       { label: 'Hide and keep watching', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['pod_ezd', 'home_movie3'] },
+    qspGoto(s, 'pod_ezd', 'home_movie3');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1100,7 +1114,8 @@ function enterFloor5Event_4(s: GameState, scene: SceneBuilder): void {
       { label: 'Hide and keep watching', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['pod_ezd', 'home_movie4'] },
+    qspGoto(s, 'pod_ezd', 'home_movie4');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1122,7 +1137,7 @@ function enterFloor5Event_5(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       // TODO-QSP: gt 'pod_ezd', 'gopnik_events', rand(1, 4)
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_group_chat'] }]);
+      qspGoto(s, 'pod_ezd', 'gopnik_group_chat');
     }
   } },
   ]);
@@ -1153,9 +1168,9 @@ function enterFloor5Event_6(s: GameState, scene: SceneBuilder): void {
 function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  qspCall(s, 'boyStat', 'A<<rand(122,126)>>', 1);
+  qspCall(s, 'boyStat', 'A' + Math.floor(Math.random() * 5) + 122 + '', 1);
   // TODO-QSP: :ssboyloop
-  qspCall(s, 'boyStat', 'A<<rand(122,126)>>', 2);
+  qspCall(s, 'boyStat', 'A' + Math.floor(Math.random() * 5) + 122 + '', 2);
   if (((s as any).boy ?? 0)[1] === ((s as any).boy ?? 0)[2]) {
     // TODO-QSP: jump 'ssboyloop'
   }
@@ -1200,7 +1215,8 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept and fuck them', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).rnd_money_sex ?? 0));
     qspCall(s, 'fame', 'pav', 'prostitute', Math.floor(Math.random() * 7) + 3);
-  }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
+    qspGoto(s, 'pod_ezd', 'sex_ev' + Math.floor(Math.random() * 3) + 1 + '');
+  } },
         ]);
       } else {
         qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
@@ -1233,7 +1249,8 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave before they get any ideas', goto: ['pod_ezd', 'smoke_loc'] },
           { label: 'Keep smoking', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 2);
-  }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
+    qspGoto(s, 'pod_ezd', 'sex_ev' + Math.floor(Math.random() * 3) + 1 + '');
+  } },
         ]);
       }
     }
@@ -1274,8 +1291,9 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept and fuck them', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).rnd_money_sex ?? 0));
     qspCall(s, 'fame', 'pav', 'prostitute', Math.floor(Math.random() * 7) + 3);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
-  }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
+    ((s as any).stat = (s as any).stat ?? {})['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+    qspGoto(s, 'pod_ezd', 'sex_ev' + Math.floor(Math.random() * 3) + 1 + '');
+  } },
         ]);
       } else {
         qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
@@ -1877,7 +1895,7 @@ function enterGopnikGroupChat(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Decline the beer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
@@ -1892,7 +1910,7 @@ function enterGopnikGroupChat(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take the beer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
@@ -2249,7 +2267,8 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pull away and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pod_ezd', 'etaj_2'] },
+    qspGoto(s, 'pod_ezd', 'etaj_2');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -2272,7 +2291,8 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Pull away and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pod_ezd', 'etaj_2'] },
+    qspGoto(s, 'pod_ezd', 'etaj_2');
+  } },
       ]);
     }
     scene.actions([
@@ -2288,7 +2308,7 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['tampons'] === 1) {
       scene.text('He runs his hand over your ass and down to your pussy, feeling the string from the tampon he pulls his hand away. "Fuck man, she\'s got a tampon plugging up her twat." You feel yourself blushing. His friend looks over, shrugs and says. "She\'s got another hole, use that one." The one standing behind you slaps you hard on the ass. "Hell yeah! You hear that slut? We\'re going to fuck you up the ass," he says as he gives your ass another hard slap.');
       if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
         scene.text('You realize he\'s going to fuck your ass!');
         scene.text('You quickly interrupt him: "Wait! I have some lubricant in my purse, use that! It\'ll feel better for both of us!" you say in a pleading voice.');
         // TODO-QSP: dynamic text: <<$boydesc[2]>> grunts and grabs the lube out of your purse and he spreads some ...
@@ -2302,7 +2322,7 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
       }
       qspCall(s, 'arousal', 'anal_finger', 3, 'sub');
       qspCall(s, 'stat', '');
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'sex_ev1_anal'] }]);
+      qspGoto(s, 'pod_ezd', 'sex_ev1_anal');
     }
     // TODO-QSP: dynamic text: With you bent over, <<$boydesc[2]>> does not waste any time, and immediately ram...
     scene.text(`With you bent over, ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} does not waste any time, and immediately rams his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} into your pussy before it is hardly wet. He drives his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} balls deep as he begins to roughly fuck your pussy.`);
@@ -2310,7 +2330,7 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
     scene.text(`After a couple of minutes of fucking you roughly, ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} turns to his friend and says, "Man, I'm not feeling anything, it's so loose. It feels like her pussy has been ploughed by every cock in town."`);
     scene.text('His friend walks over to you and roughly grabs your chin with his hand, forcing you to look up at him as he asks you in a firm voice, "Do you fuck guys every day?" Without waiting for an answer, he nods and absentmindedly waves his hand at his friend, "Try her other hole, it should be tighter."');
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       (s as any).pod_ezd_lube = 1;
       scene.text('You realize he\'s going to fuck your ass!');
       scene.text('You quickly interrupt him: "Wait! I have some lubricant in my purse, use that! It\'ll feel better for both of us!" you say in a pleading voice.');
@@ -2448,7 +2468,8 @@ function enterSexEv2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pull away and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pod_ezd', 'etaj_2'] },
+    qspGoto(s, 'pod_ezd', 'etaj_2');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -2483,7 +2504,8 @@ function enterSexEv2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Pull away and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pod_ezd', 'etaj_2'] },
+    qspGoto(s, 'pod_ezd', 'etaj_2');
+  } },
       ]);
     }
     scene.actions([
@@ -2584,7 +2606,8 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pull away and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pod_ezd', 'etaj_2'] },
+    qspGoto(s, 'pod_ezd', 'etaj_2');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -2606,7 +2629,8 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Pull away and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pod_ezd', 'etaj_2'] },
+    qspGoto(s, 'pod_ezd', 'etaj_2');
+  } },
       ]);
     }
     scene.actions([
@@ -2634,7 +2658,7 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
       scene.text('He closes his fingers around your butt plug and gives it a few exploratory tugs, before pulling it out slowly. He mutters, "I hope this thing didn\'t loosen your ass too much, whore."');
     }
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       (s as any).agape = 1;
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
       scene.text('You quickly interrupt him: "Wait! I have some lubricant, use that! It\'ll feel better for both of us!"');
@@ -2655,6 +2679,8 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
       scene.text('<br><font color = red><b>Even though the sex feels good, you\'re still on your period. The menstrual blood slowly flows from your vagina as you get your ass fucked and the blood on your fingers makes you feel disgusted to the point that you no longer want to stimulate yourself.</b></font>');
     } else {
       if (((s as any).mesec ?? 0) <= 0  &&  ((s as any).pcs_horny ?? 0) >=70) {
+        (s as any).orgasm_or = 'yes';
+        (s as any).orgasm_txt = 'You really don\'t want to let the guys see you\'re close to having your own orgasm from their rough fucking and try to hold it back as long as you can. You fail, and moan loudly as you orgasm while he savagely fucks your ass.';
         qspCall(s, 'arousal', 'anal', 3);
         // TODO-QSP: dynamic text: The boys laugh. "<<$pcs_nickname>> even orgasms from anal sex, amazing! She real...
         scene.text(`The boys laugh. "${((s as any).pcs_nickname || '')} even orgasms from anal sex, amazing! She really must be the biggest slut in Pavlovsk!"`);
@@ -2672,6 +2698,8 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
       scene.text('<br><font color = red><b>Even though the sex feels good, you\'re still on your period. The menstrual blood slowly flows from your vagina as you get your ass fucked and the blood on your fingers makes you feel disgusted to the point that you no longer want to stimulate yourself.</b></font>');
     } else {
       if (((s as any).mesec ?? 0) <= 0  &&  ((s as any).pcs_horny ?? 0) >=70) {
+        (s as any).orgasm_or = 'yes';
+        (s as any).orgasm_txt = 'You move one hand down to your soaking pussy and begin to masturbate furiously, completely forgetting about the situation you\'re in. Without holding back at all, you loudly moan as your body spasms. Your ass is squeezing the guy\'s dick tightly, there\'s no way he did not notice you orgasming just now.';
         qspCall(s, 'arousal', 'masturbate', (-3));
         // TODO-QSP: dynamic text: The guy groans at his friend. "Whoa dude, she's orgasming from getting fucked in...
         scene.text(`The guy groans at his friend. "Whoa dude, she's orgasming from getting fucked in her ass!" he calls out while continuing to ram his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick into your ass.`);

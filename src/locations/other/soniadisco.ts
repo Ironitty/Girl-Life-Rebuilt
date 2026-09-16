@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,15 +11,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).soniaQW ?? 0)?.['slut'] === 0  &&  ((s as any).month ?? 0) > 9  &&  ((s as any).daystart ?? 0) >= ((s as any).soniaQW ?? 0)?.['fallday'] + 6) {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] < 7) {
-      if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallday'] = ((s as any).daystart ?? 0) -1;
-      if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall'] = ((s as any).soniaQW['soniafall'] ?? 0) + (1);
+      ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallday'] = ((s as any).daystart ?? 0) -1;
+      ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall'] = ((s as any).soniaQW['soniafall'] ?? 0) + (1);
     } else {
-      if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 1;
-      if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallenangel'] = 1;
-      if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallday'] = ((s as any).daystart ?? 0);
-      if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slutdays'] = ((s as any).daystart ?? 0);
-      if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A25'] = 5;
-      if (!(s as any).npcGoSchool) (s as any).npcGoSchool = {}; (s as any).npcGoSchool['A25'] = '<a href="exec:gt \'gschool_outcast_chats\', \'\' + $lcase($npc_usedname[\'A25\']) + \'\'">' + qspUntranslated(s, "npc_usedname[\"A25\"]>", { location: "soniadisco" }) + '</a>';
+      ((s as any).soniaQW = (s as any).soniaQW ?? {})['slut'] = 1;
+      ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallenangel'] = 1;
+      ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallday'] = ((s as any).daystart ?? 0);
+      ((s as any).soniaQW = (s as any).soniaQW ?? {})['slutdays'] = ((s as any).daystart ?? 0);
+      ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A25'] = 5;
+      ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_outcast_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
     }
   }
   // TODO-QSP: end
@@ -30,14 +28,14 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) >= ((s as any).soniaQW ?? 0)?.['fallday'] + 6) {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallday'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallday'] = ((s as any).daystart ?? 0);
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 0) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'disco0'] }]);
+      qspGoto(s, 'soniadisco', 'disco0');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'disco'] }]);
+      qspGoto(s, 'soniadisco', 'disco');
     }
   } else {
-    scene.actions([{ label: 'Continue', goto: ['soniadisco', 'disco0'] }]);
+    qspGoto(s, 'soniadisco', 'disco0');
   }
   // TODO-QSP: end
   scene.build();
@@ -45,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterDisco0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['soniafall'] === 0) {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall'] = 1;
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall'] = 1;
   }
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
@@ -71,7 +69,7 @@ function enterDisco0(s: GameState, scene: SceneBuilder): void {
 
 function enterWatchorhelp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 19) {
-    if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A25'] = ((s as any).daystart ?? 0);
+    ((s as any).discobloc = (s as any).discobloc ?? {})['A25'] = ((s as any).daystart ?? 0);
   }
   // TODO-QSP: end
   scene.actions([
@@ -109,8 +107,8 @@ function enterWatchorhelp(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Convince her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
@@ -139,7 +137,7 @@ function enterSoniashowsboobs(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Boobs', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) > 19) {
-      if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A25'] = ((s as any).daystart ?? 0);
+      ((s as any).discobloc = (s as any).discobloc ?? {})['A25'] = ((s as any).daystart ?? 0);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
@@ -182,8 +180,8 @@ function enterSoniashowsboobs(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Convince her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You stand in front of her and grab hold of her arms to keep her still. "Look around, Sonia! You\'re totally wasted and flashing your tits at everybody! People are going to talk about this!"');
@@ -217,7 +215,7 @@ function enterSoniashowsboobs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisco(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall'] = ((s as any).soniaQW['soniafall'] ?? 0) + (1);
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall'] = ((s as any).soniaQW['soniafall'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/sonia/0.jpg');
   if (((s as any).soniaQW ?? 0)?.['soniafall'] === 0) {
@@ -239,9 +237,9 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch them leave', handler: (st: GameState) => {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance'] }]);
+      qspGoto(s, 'soniadisco', 'dance');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1'] }]);
+      qspGoto(s, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -262,15 +260,15 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
           { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance', '\'declineinvite\''] }]);
+      qspGoto(s, 'soniadisco', 'dance', 'declineinvite');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1', '\'declineinvite\''] }]);
+      qspGoto(s, 'soniadisco', 'dance1', 'declineinvite');
     }
   } },
         ]);
@@ -285,9 +283,9 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Watch them leave', handler: (st: GameState) => {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance'] }]);
+      qspGoto(s, 'soniadisco', 'dance');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1'] }]);
+      qspGoto(s, 'soniadisco', 'dance1');
     }
   } },
         ]);
@@ -298,9 +296,9 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Watch them leave', handler: (st: GameState) => {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance'] }]);
+      qspGoto(s, 'soniadisco', 'dance');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1'] }]);
+      qspGoto(s, 'soniadisco', 'dance1');
     }
   } },
           ]);
@@ -311,9 +309,9 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Watch them leave', handler: (st: GameState) => {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance'] }]);
+      qspGoto(s, 'soniadisco', 'dance');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1'] }]);
+      qspGoto(s, 'soniadisco', 'dance1');
     }
   } },
             ]);
@@ -332,17 +330,17 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
                 { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance', '\'declineinvite\''] }]);
+      qspGoto(s, 'soniadisco', 'dance', 'declineinvite');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1', '\'declineinvite\''] }]);
+      qspGoto(s, 'soniadisco', 'dance1', 'declineinvite');
     }
   } },
               ]);
@@ -360,9 +358,9 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJoinThem(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
   qspCall(s, 'npc_relationship', 'modify', 'A10', 'like');
   qspCall(s, 'npc_relationship', 'modify', 'A11', 'like');
@@ -385,12 +383,13 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
       { label: 'Decline drink', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
     qspCall(s, 'stat', '');
+    (s as any).soniadisco_peerpressuretrigger = 'declinedrink';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -400,7 +399,7 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     { label: 'Have a drink with them', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'like');
@@ -420,12 +419,13 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
         { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
     qspCall(s, 'stat', '');
+    (s as any).soniadisco_peerpressuretrigger = 'declinedrink';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -439,20 +439,22 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
       { label: 'Take another drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
+    (s as any).soniadisco_peerpressuretrigger = 'takedrink';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Caution Sonia', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['help'] = ((s as any).soniaQW['help'] ?? 0) + (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['help'] = ((s as any).soniaQW['help'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A24', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'dislike');
     qspCall(s, 'stat', '');
+    (s as any).soniadisco_peerpressuretrigger = 'cautionsonia';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -462,15 +464,15 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSoniadrinkmore(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall'] = ((s as any).soniaQW['soniafall'] ?? 0) + (1);
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['encourage'] = ((s as any).soniaQW['encourage'] ?? 0) + (1);
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall'] = ((s as any).soniaQW['soniafall'] ?? 0) + (1);
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['encourage'] = ((s as any).soniaQW['encourage'] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
   qspCall(s, 'npc_relationship', 'modify', 'A10', 'like');
   qspCall(s, 'npc_relationship', 'modify', 'A11', 'like');
   qspCall(s, 'npc_relationship', 'modify', 'A24', 'like');
   qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/sonia/disco/soniadrink.jpg');
   scene.text('You smile and take hold of her hand that\'s holding the cup and encourage her to sit back down. "What\'s the rush, Sonia? We\'re having a good time here, right?" you ask her, extending her arm and cup towards Vasily, who happily refills it.');
@@ -478,6 +480,7 @@ function enterSoniadrinkmore(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take another drink', handler: (st: GameState) => {
+    (s as any).soniadisco_peerpressuretrigger = 'soniadrinkmore';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -487,7 +490,7 @@ function enterSoniadrinkmore(s: GameState, scene: SceneBuilder): void {
 function enterDance(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/sonia/1.jpg');
   if (((s as any).hour ?? 0) > 19) {
-    if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A25'] = ((s as any).daystart ?? 0);
+    ((s as any).discobloc = (s as any).discobloc ?? {})['A25'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'declineinvite') {
     scene.text('You don\'t really want to drink alcohol right now, so you just shake your head. "Thanks for the invite, but I think I\'d rather stay here right now. You guys have fun!"');
@@ -523,8 +526,8 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head in disbelief. Maybe you should do something?');
     scene.actions([
       { label: 'Help her out', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (5);
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
     scene.img('images/characters/pavlovsk/school/girl/sonia/0.jpg');
     scene.text('You stand in front of her to block most of the stares. You can\'t think of a way to tactfully say what you need to over the loud, thumping music, so you sigh and yell in her ear. "Sonia! Your boob is hanging out! You should cover up!"');
@@ -539,9 +542,9 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Pull the other strap down too', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     scene.img('images/characters/pavlovsk/school/girl/sonia/2.jpg');
     scene.text('"You have a nice set of tits, Sonia. I can see why you\'d be so willing to show them off to the world."');
     scene.text('She looks at you with a slightly puzzled look on her face, but never stops dancing. "Wha- What are you talking about?"');
@@ -652,7 +655,7 @@ function enterNotpressured(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+    { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
   ]);
   scene.build();
 }
@@ -681,7 +684,7 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -707,8 +710,8 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
@@ -721,9 +724,9 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance'] }]);
+      qspGoto(s, 'soniadisco', 'dance');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1'] }]);
+      qspGoto(s, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -733,7 +736,7 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Show your panties', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 5);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/panties.jpg');
@@ -742,7 +745,7 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
       ]);
@@ -765,8 +768,8 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
@@ -779,9 +782,9 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance'] }]);
+      qspGoto(s, 'soniadisco', 'dance');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1'] }]);
+      qspGoto(s, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -790,7 +793,7 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show your pussy', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 20);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/pussy.jpg');
@@ -799,7 +802,7 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -837,7 +840,7 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -862,8 +865,8 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
@@ -876,9 +879,9 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance'] }]);
+      qspGoto(s, 'soniadisco', 'dance');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1'] }]);
+      qspGoto(s, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -887,7 +890,7 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show your breasts', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 10);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/tits.jpg');
@@ -896,7 +899,7 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -928,7 +931,7 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Go after her', goto: ['soniadisco', 'chasesonia'] },
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -953,8 +956,8 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
@@ -967,9 +970,9 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance'] }]);
+      qspGoto(s, 'soniadisco', 'dance');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1'] }]);
+      qspGoto(s, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -978,7 +981,7 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show your pussy', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 20);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/pussy.jpg');
@@ -987,7 +990,7 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -1045,8 +1048,8 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Physically intervene', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (20);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (20);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'loathe');
@@ -1071,7 +1074,7 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance'] },
       { label: 'Keep watching', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['vitek_bj_watched'] = 1;
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['vitek_bj_watched'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/bj2.jpg');
     scene.text('Sonia bobs her head up and down on Vitek\'s cock, working her mouth down until she starts to gag. She has her lips tightly wrapped around the shaft, and just like the popsicle, she sucks on his dick with no hands.');
     scene.text('Pauline continues to record as the guys cheer Sonia on. You get the feeling that the guys want to join in, but one look from Vitek shuts them down.');
@@ -1098,7 +1101,7 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
       ]);
@@ -1133,8 +1136,8 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
@@ -1153,7 +1156,7 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'adore');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'like');
@@ -1189,7 +1192,7 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth', 'A10', 1);
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', '\'staytoend\''] },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -1247,8 +1250,8 @@ function enterPressuredforgangbang(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Physically intervene', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (20);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (20);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'loathe');
@@ -1419,15 +1422,15 @@ function enterChasesonia(s: GameState, scene: SceneBuilder): void {
 
 function enterDance1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 19) {
-    if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A25'] = ((s as any).daystart ?? 0);
+    ((s as any).discobloc = (s as any).discobloc ?? {})['A25'] = ((s as any).daystart ?? 0);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 1;
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallenangel'] = 1;
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallday'] = ((s as any).daystart ?? 0);
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slutdays'] = ((s as any).daystart ?? 0);
-  if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A25'] = 5;
-  if (!(s as any).npcGoSchool) (s as any).npcGoSchool = {}; (s as any).npcGoSchool['A25'] = '<a href="exec:gt \'gschool_outcast_chats\', \'\' + $lcase($npc_usedname[\'A25\']) + \'\'">' + qspUntranslated(s, "npc_usedname[\"A25\"]>", { location: "soniadisco" }) + '</a>';
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['slut'] = 1;
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallenangel'] = 1;
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallday'] = ((s as any).daystart ?? 0);
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['slutdays'] = ((s as any).daystart ?? 0);
+  ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A25'] = 5;
+  ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_outcast_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/cumwalk.jpg');
   if (((s as any).locArgs?.[1] ?? 0) === 'staytoend') {
     scene.text('Vitek drags a drunken Sonia around like she\'s a trophy on display. She\'s all smiles and looks pretty happy and completely wasted. You follow them inside and stop near the door.');
@@ -1464,8 +1467,8 @@ function enterSoniabang(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Try to stop her', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['help'] = ((s as any).soniaQW['help'] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (10);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['help'] = ((s as any).soniaQW['help'] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (10);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'loathe');
@@ -1530,7 +1533,7 @@ function enterSoniafall(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Follow them', goto: ['soniadisco', 'dance1', '\'staytoend\''] },
+      { label: 'Follow them', goto: ['soniadisco', 'dance1', 'staytoend'] },
     ]);
   } },
     ]);
@@ -1639,7 +1642,7 @@ function enterFollowsonia(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).soniaQW ?? 0)?.['encourage'] > 0  &&  ((s as any).npc_rel ?? 0)?.['A25'] >= 50) {
         qspCall(s, 'npc_relationship', 'modify', 'A25', '-20');
-        if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['hate'] = 1;
+        ((s as any).soniaQW = (s as any).soniaQW ?? {})['hate'] = 1;
         scene.text('You shake your head. She was all happy before and now she\'s crying about it. "What did you expect? You were acting like a slut! You wanted to have fun and walk on the wild side and you did. You have no one to blame but yourself."');
         scene.text('She cries even harder. "I thought you were my friend! You encouraged me! Why would you do that?"');
         scene.text('"Come on, we both know nothing I was going to say would have gotten you to stop. You wanted to know what it was like to be a bad girl, so I helped you do what you wanted. That\'s not my fault, it\'s yours."');

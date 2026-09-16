@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).chess_name ?? 0) === '') {
+    (s as any).chess_name = 'Boy';
   }
   qspCall(s, 'stat', '');
   (s as any).chess_GG = 20;
@@ -20,7 +21,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).chess_time_limit = 120;
   (s as any).chess_move = 0;
   (s as any).total_chess_time = 0;
-  scene.actions([{ label: 'Continue', goto: ['chessplay', 'game'] }]);
+  qspGoto(s, 'chessplay', 'game');
   // TODO-QSP: end
   scene.build();
 }

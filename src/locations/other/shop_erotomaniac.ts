@@ -1,24 +1,27 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'start');
+  (s as any).location_type = 'public_indoors';
+  (s as any).sexloc = 'shop_erotomaniac';
   (s as any).ghnow = 0;
   qspCall(s, 'schedule', 'A84');
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
   if (((s as any).locat ?? 0)?.['A84_loc'] === 'unknown'  &&  (Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).kendrano ?? 0) !== 1  &&  ((s as any).kendra ?? 0)[1] < ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['shop_erotomaniac', 'kendra'] }]);
+    qspGoto(s, 'shop_erotomaniac', 'kendra');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 33  &&  ((s as any).AlbinaQW ?? 0)?.['sex_shop'] < ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
-    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="exec:gt \'shop_erotomaniac\', \'albina\'">Albina</a>\')+\' browsing through the underwear that the store has to offer.');
+    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027shop_erotomaniac\\u0027, \\u0027albina\\u0027); return false;">Albina</a>\')+\' browsing through the underwear that the store has to offer.');
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  (Math.floor(Math.random() * 10) + 1) === 10) {
-    scene.actions([{ label: 'Continue', goto: ['shop_erotomaniac', 'shprod'] }]);
+    qspGoto(s, 'shop_erotomaniac', 'shprod');
   }
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>The Erotomaniac</b></center>');
@@ -138,6 +141,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexshopMenu(s: GameState, scene: SceneBuilder): void {
+  (s as any).args_s = 'sexshop_menu';
+  (s as any).loc_s = 'shop_erotomaniac';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'sexshop');
   qspCall(s, 'stat', '');
@@ -157,6 +162,7 @@ function enterSexshopMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterDress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'dress');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Fetish dresses - for all your personal needs</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -171,13 +177,15 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_erotomaniac', 'start'] },
+    qspGoto(s, 'shop_erotomaniac', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterOutfits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'outfits');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Fetish outfits - for all your personal needs</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -192,13 +200,15 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_erotomaniac', 'start'] },
+    qspGoto(s, 'shop_erotomaniac', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterStrip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'strip');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Stripper clothing - for work or the bedroom</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -212,13 +222,15 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_erotomaniac', 'start'] },
+    qspGoto(s, 'shop_erotomaniac', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterShoes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'shoes');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Erotomaniac shoes</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -232,13 +244,15 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_erotomaniac', 'start'] },
+    qspGoto(s, 'shop_erotomaniac', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'panties');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Erotomaniac panties</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -252,13 +266,15 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_erotomaniac', 'start'] },
+    qspGoto(s, 'shop_erotomaniac', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterBras(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'bras');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Erotomaniac bras</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -272,7 +288,8 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_erotomaniac', 'start'] },
+    qspGoto(s, 'shop_erotomaniac', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -334,6 +351,9 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
+  (s as any).loc = 'shop_erotomaniac';
+  (s as any).loc_arg = 'peepbooth';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Movie Booth</b></center>');
@@ -367,7 +387,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Stick a finger in the hole (serve a stranger)', handler: (st: GameState) => {
     (s as any).ghnow = ((s as any).ghnow ?? 0) + (1);
-    if (!(s as any).ghnow) (s as any).ghnow = {}; (s as any).ghnow['sexshop_total'] = ((s as any).ghnow['sexshop_total'] ?? 0) + (1);
+    ((s as any).ghnow = (s as any).ghnow ?? {})['sexshop_total'] = ((s as any).ghnow['sexshop_total'] ?? 0) + (1);
     if (((s as any).ghnow ?? 0) < 5) {
       qspCall(s, 'money', 'earn', 300, 'cash');
     } else {
@@ -381,7 +401,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck his dick', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Guy at the gloryhole', Math.floor(Math.random() * 30) + 21);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
     (s as any).ghprand = Math.floor(Math.random() * 36) + 1;
     scene.img(`images/shared/sex/gloryhole/gloryhole${((s as any).ghprand || '')}.jpg`);
@@ -427,6 +447,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendra(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   if (((s as any).meet_kendra ?? 0) === 1) {
@@ -500,7 +521,8 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'dislike');
     scene.text('You quickly leave while Kendra can\'t stop you.');
-  }, goto: ['city_redlight', 'start'] },
+    qspGoto(s, 'city_redlight', 'start');
+  } },
         ]);
       }
       scene.actions([
@@ -618,6 +640,7 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendra1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/erotomaniac/sex/shkend2.jpg');
@@ -660,6 +683,7 @@ function enterKendra1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendra2(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/erotomaniac/sex/shkend8.jpg');
@@ -700,6 +724,7 @@ function enterKendra2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendravag(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/erotomaniac/sex/shkend10.jpg');
   scene.text('"Ride my cock now, slave!" Kendra commands as she sits in a chair. You straddle her and lower yourself, moaning as the dildo slides into your pussy.');
@@ -724,6 +749,7 @@ function enterKendravag(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraanal(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'boyStat', 'D4');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/erotomaniac/sex/shkend9.jpg');
@@ -870,7 +896,8 @@ function enterKendraanal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendrafinish(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).kendra) (s as any).kendra = {}; (s as any).kendra[1] = ((s as any).daystart ?? 0) + 6;
+  (s as any).location_type = 'event';
+  ((s as any).kendra = (s as any).kendra ?? {})[1] = ((s as any).daystart ?? 0) + 6;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/erotomaniac/sex/shkend16.jpg');
   scene.text('As you stand up, she grabs you by the throat and pulls you in close. "Stick out your tongue."');
@@ -891,7 +918,7 @@ function enterKendrafinish(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbina(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['sex_shop'] = ((s as any).daystart ?? 0);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['sex_shop'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/event/browsing.jpg');
   scene.text('You approach Albina with a smile as she examines a cheap, tacky looking thong.');
@@ -937,6 +964,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShprod(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/city/redlight/erotomaniac/shprod.jpg');
   scene.text('The cashier stands in front of you, holding a miniskirt and offering to help you. "Girl, this is very you. Will you try it on?"');
@@ -961,7 +989,8 @@ function enterShprod(s: GameState, scene: SceneBuilder): void {
         { label: 'Push him away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['shop_erotomaniac', 'start'] },
+    qspGoto(s, 'shop_erotomaniac', 'start');
+  } },
       ]);
     }
     scene.actions([

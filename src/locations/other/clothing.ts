@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -212,7 +212,7 @@ function enterGetPrice(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[3] ?? 0) === 0  &&  ((s as any).locArgs?.[3] ?? 0) === '') {
     // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
   }
-  (s as any).result = (((s as any).CloPrice ?? 0) * ((5 * ((s as any).CloQuality ?? 0)) + 100) / 100) * 1000 / (1250 - ((s as any).Clothingstock ?? 0)[((s as any).ARGS ?? 0)[2]]) * 3 / 2;
+  (s as any).result = (((s as any).CloPrice ?? 0) * ((5 * ((s as any).CloQuality ?? 0)) + 100) / 100) * 1000 / (1250 - ((s as any).Clothingstock ?? 0)[((s as any).locArgs?.[2] ?? 0)]) * 3 / 2;
   (s as any).result = ((s as any).result ?? 0) / 50 * 50;
   return;
   // TODO-QSP: end
@@ -221,41 +221,50 @@ function enterGetPrice(s: GameState, scene: SceneBuilder): void {
 
 function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
   }
-  if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  (s as any).result = '';
+  if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: exit
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" })) === 0) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)) === 0) {
+    (s as any).result = 'not_owned';
     return;
   }
-  if (qspFunc(s, 'clothing', 'is_lost', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_lost', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).result = 'is_lost';
     return;
   }
-  if (qspFunc(s, 'clothing', 'in_wardrobe', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" })) === 0) {
+  if (qspFunc(s, 'clothing', 'in_wardrobe', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)) === 0) {
+    (s as any).result = 'not_in_wardrobe';
     return;
   }
-  if (qspFunc(s, 'clothing', 'is_strength_low', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_strength_low', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).result = 'low_strength';
     return;
   }
   if (((s as any).pcs_inhib ?? 0) < ((s as any).CloInhibit ?? 0)) {
+    (s as any).result = 'low_inhib';
     return;
   }
   if (((s as any).CloStyle2 ?? 0) !== 6  &&  ((s as any).CloStyle ?? 0) !== 5  &&  ((s as any).locArgs?.[1] ?? 0) !== 'nude') {
-    if (qspFunc(s, 'clothing', 'is_clothes_too_small', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+    if (qspFunc(s, 'clothing', 'is_clothes_too_small', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
+      (s as any).result = 'too_small';
       return;
     }
-    if (qspFunc(s, 'clothing', 'is_clothes_too_large', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+    if (qspFunc(s, 'clothing', 'is_clothes_too_large', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
+      (s as any).result = 'too_large';
       return;
     }
   }
-  if (qspFunc(s, 'clothing', 'is_hypno_approved', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }), 'attributes_set') === 0) {
+  if (qspFunc(s, 'clothing', 'is_hypno_approved', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === 0) {
+    (s as any).result = 'hypno';
     return;
   }
   return;
@@ -265,15 +274,15 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
 
 function enterCanWear(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
   }
-  (s as any).result = (qspFunc(s, 'clothing', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }), 'attributes_set') === '');
+  (s as any).result = (qspFunc(s, 'clothing', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
   // TODO-QSP: end
   scene.build();
@@ -281,10 +290,10 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
 
 function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = 0;
   return;
@@ -294,13 +303,13 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
 
 function enterIsLost(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = 0;
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     (s as any).result = ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(((s as any).locArgs?.[2] ?? 0)) : -1) >= 0);
   }
   return;
@@ -310,13 +319,13 @@ function enterIsLost(s: GameState, scene: SceneBuilder): void {
 
 function enterIsStrengthLow(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = 0;
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     (s as any).result = 0;
   }
   return;
@@ -326,13 +335,13 @@ function enterIsStrengthLow(s: GameState, scene: SceneBuilder): void {
 
 function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = 0;
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     (s as any).result = 0;
   }
   return;
@@ -342,13 +351,13 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterInStorage(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = 0;
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     (s as any).result = 0;
   }
   return;
@@ -358,13 +367,13 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = 0;
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     (s as any).result = 0;
   }
   return;
@@ -374,12 +383,12 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
 
 function enterDoesFit(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = ((! qspFunc(s, 'clothing', 'is_too_small', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" })))  &&  (! qspFunc(s, 'clothing', 'is_too_large', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))));
+  (s as any).result = ((! qspFunc(s, 'clothing', 'is_too_small', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)))  &&  (! qspFunc(s, 'clothing', 'is_too_large', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))));
   return;
   // TODO-QSP: end
   scene.build();
@@ -387,10 +396,10 @@ function enterDoesFit(s: GameState, scene: SceneBuilder): void {
 
 function enterIsTooSmall(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = 0;
   return;
@@ -400,10 +409,10 @@ function enterIsTooSmall(s: GameState, scene: SceneBuilder): void {
 
 function enterIsTooLarge(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = 0;
   return;
@@ -413,10 +422,10 @@ function enterIsTooLarge(s: GameState, scene: SceneBuilder): void {
 
 function enterIsHypnoApproved(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
@@ -462,10 +471,10 @@ function enterIsWearing(s: GameState, scene: SceneBuilder): void {
 
 function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'gm_outfits'  &&  ((s as any).locArgs?.[2] ?? 0) === 3);
   if (((s as any).result ?? 0)) {
@@ -487,12 +496,12 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
 
 function enterIsCloStrengthLow(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = qspFunc(s, 'clothing', 'is_strength_low', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }));
+  (s as any).result = qspFunc(s, 'clothing', 'is_strength_low', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -500,12 +509,12 @@ function enterIsCloStrengthLow(s: GameState, scene: SceneBuilder): void {
 
 function enterClothingOwned(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }));
+  (s as any).result = qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -513,12 +522,12 @@ function enterClothingOwned(s: GameState, scene: SceneBuilder): void {
 
 function enterIsClothesTooSmall(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = qspFunc(s, 'clothing', 'is_too_small', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }));
+  (s as any).result = qspFunc(s, 'clothing', 'is_too_small', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -526,12 +535,12 @@ function enterIsClothesTooSmall(s: GameState, scene: SceneBuilder): void {
 
 function enterIsClothesTooLarge(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = qspFunc(s, 'clothing', 'is_too_large', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }));
+  (s as any).result = qspFunc(s, 'clothing', 'is_too_large', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -539,12 +548,12 @@ function enterIsClothesTooLarge(s: GameState, scene: SceneBuilder): void {
 
 function enterDoClothesFit(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = qspFunc(s, 'clothing', 'does_fit', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }));
+  (s as any).result = qspFunc(s, 'clothing', 'does_fit', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -575,10 +584,10 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'nude') {
     // TODO-QSP: exit
@@ -592,6 +601,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (s as any).lastwornclothingtype = 'nude';
     (s as any).lastwornclothingnumber = 0;
   }
   return;
@@ -600,23 +610,23 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).gm_outfits) (s as any).gm_outfits = {}; (s as any).gm_outfits[3] = 1;
-  if (!(s as any).gm_outfits_b) (s as any).gm_outfits_b = {}; (s as any).gm_outfits_b[3] = ((s as any).pcs_hips ?? 0);
-  if (!(s as any).gm_outfits_s) (s as any).gm_outfits_s = {}; (s as any).gm_outfits_s[3] = 0;
-  if (!(s as any).gm_outfits_dirt) (s as any).gm_outfits_dirt = {}; (s as any).gm_outfits_dirt[3] = 1440;
-  if (!(s as any).gm_outfits_h) (s as any).gm_outfits_h = {}; (s as any).gm_outfits_h[3] = 10000;
+  ((s as any).gm_outfits = (s as any).gm_outfits ?? {})[3] = 1;
+  ((s as any).gm_outfits_b = (s as any).gm_outfits_b ?? {})[3] = ((s as any).pcs_hips ?? 0);
+  ((s as any).gm_outfits_s = (s as any).gm_outfits_s ?? {})[3] = 0;
+  ((s as any).gm_outfits_dirt = (s as any).gm_outfits_dirt ?? {})[3] = 1440;
+  ((s as any).gm_outfits_h = (s as any).gm_outfits_h ?? {})[3] = 10000;
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
-    if (!(s as any).gm_school) (s as any).gm_school = {}; (s as any).gm_school[6] = 1;
-    if (!(s as any).gm_school_b) (s as any).gm_school_b = {}; (s as any).gm_school_b[6] = ((s as any).pcs_hips ?? 0);
-    if (!(s as any).gm_school_s) (s as any).gm_school_s = {}; (s as any).gm_school_s[6] = 0;
-    if (!(s as any).gm_school_dirt) (s as any).gm_school_dirt = {}; (s as any).gm_school_dirt[6] = 1440;
-    if (!(s as any).gm_school_h) (s as any).gm_school_h = {}; (s as any).gm_school_h[6] = 10000;
+    ((s as any).gm_school = (s as any).gm_school ?? {})[6] = 1;
+    ((s as any).gm_school_b = (s as any).gm_school_b ?? {})[6] = ((s as any).pcs_hips ?? 0);
+    ((s as any).gm_school_s = (s as any).gm_school_s ?? {})[6] = 0;
+    ((s as any).gm_school_dirt = (s as any).gm_school_dirt ?? {})[6] = 1440;
+    ((s as any).gm_school_h = (s as any).gm_school_h ?? {})[6] = 10000;
   }
   if (((s as any).misc_outfits ?? 0)[1]) {
-    if (!(s as any).misc_outfits_b) (s as any).misc_outfits_b = {}; (s as any).misc_outfits_b[1] = ((s as any).pcs_hips ?? 0);
-    if (!(s as any).misc_outfits_s) (s as any).misc_outfits_s = {}; (s as any).misc_outfits_s[1] = 0;
-    if (!(s as any).misc_outfits_dirt) (s as any).misc_outfits_dirt = {}; (s as any).misc_outfits_dirt[1] = 2400;
-    if (!(s as any).misc_outfits_h) (s as any).misc_outfits_h = {}; (s as any).misc_outfits_h[1] = 10000;
+    ((s as any).misc_outfits_b = (s as any).misc_outfits_b ?? {})[1] = ((s as any).pcs_hips ?? 0);
+    ((s as any).misc_outfits_s = (s as any).misc_outfits_s ?? {})[1] = 0;
+    ((s as any).misc_outfits_dirt = (s as any).misc_outfits_dirt ?? {})[1] = 2400;
+    ((s as any).misc_outfits_h = (s as any).misc_outfits_h ?? {})[1] = 10000;
   }
   // TODO-QSP: end
   scene.build();
@@ -631,12 +641,12 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_s[<<ARGS[2]>>] = 0"
   }
   return;
@@ -646,12 +656,12 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_s[<<ARGS[2]>>] = 1"
   }
   return;
@@ -661,12 +671,12 @@ function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_s[<<ARGS[2]>>] = 2"
   }
   return;
@@ -676,12 +686,12 @@ function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
 
 function enterResizeClothes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_b[<<ARGS[2]>>] = pcs_hips"
   }
   // TODO-QSP: end
@@ -696,7 +706,7 @@ function enterQuickBuy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    (s as any).price = qspFunc(s, 'clothing', 'get_price', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }));
+    (s as any).price = qspFunc(s, 'clothing', 'get_price', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
     if (((s as any).price ?? 0) > 0) {
       qspCall(s, 'money', 'pay', ((s as any).price ?? 0));
     }
@@ -719,7 +729,9 @@ function enterLostClothesHere(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRecoverLostClothes(s: GameState, scene: SceneBuilder): void {
-  (s as any).cloAction = qspUntranslated(s, "ARGS[2]", { location: "clothing" });
+  (s as any).cloLoc = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).cloAction = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).clothType = ((s as any).CloLosTyp ?? 0)?.[String((s as any).cloLoc ?? 0)];
   (s as any).clothNumber = ((s as any).CloLosNum ?? 0)?.[String((s as any).cloLoc ?? 0)];
   (s as any).dayLost = ((s as any).CloLosDay ?? 0)?.[String((s as any).cloLoc ?? 0)];
   (s as any).findLocInd = qspUntranslated(s, "arrpos('CloLosTyp', clothType)", { location: "clothing" });
@@ -751,7 +763,7 @@ function enterGadSwampClothes(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'misc_outfits', 1]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    if (!(s as any).misc_outfits) (s as any).misc_outfits = {}; (s as any).misc_outfits[1] = 0;
+    ((s as any).misc_outfits = (s as any).misc_outfits ?? {})[1] = 0;
     (s as any).swamp_clothes = 0;
   }
   return;
@@ -769,23 +781,27 @@ function enterStripAll(s: GameState, scene: SceneBuilder): void {
 
 function enterStrip(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === '') {
+    (s as any).clothingworntype = 'nude';
     (s as any).clothingwornnumber = 0;
   }
   qspCall(s, 'cum_cleanup', '', 6);
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
+    (s as any).strip_loc = ((s as any).locArgs?.[1] ?? 0);
     if (((s as any).strip_loc ?? 0) === '') {
       if (((s as any).PSwim ?? 0) === 1) {
-        if (!(s as any).lastwornclothingtype) (s as any).lastwornclothingtype = {}; (s as any).lastwornclothingtype['swim'] = ((s as any).clothingworntype ?? 0);
-        if (!(s as any).lastwornclothingnumber) (s as any).lastwornclothingnumber = {}; (s as any).lastwornclothingnumber['swim'] = ((s as any).clothingwornnumber ?? 0);
+        ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['swim'] = ((s as any).clothingworntype ?? 0);
+        ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['swim'] = ((s as any).clothingwornnumber ?? 0);
       } else {
+        (s as any).lastwornclothingtype = ((s as any).clothingworntype ?? 0);
         (s as any).lastwornclothingnumber = ((s as any).clothingwornnumber ?? 0);
       }
     } else {
       // TODO-QSP: dynamic "$CloLos<<$clothingworntype>>[<<clothingwornnumber>>] = '<<$strip_loc>>'"
       // TODO-QSP: $CloLosLoc[] = $strip_loc
       // TODO-QSP: $CloLosTyp[$strip_loc] = $clothingworntype
-      if (!(s as any).CloLosNum) (s as any).CloLosNum = {}; (s as any).CloLosNum[String((s as any).strip_loc ?? 0)] = ((s as any).clothingwornnumber ?? 0);
-      if (!(s as any).CloLosDay) (s as any).CloLosDay = {}; (s as any).CloLosDay[String((s as any).strip_loc ?? 0)] = ((s as any).daystart ?? 0);
+      ((s as any).CloLosNum = (s as any).CloLosNum ?? {})[String((s as any).strip_loc ?? 0)] = ((s as any).clothingwornnumber ?? 0);
+      ((s as any).CloLosDay = (s as any).CloLosDay ?? {})[String((s as any).strip_loc ?? 0)] = ((s as any).daystart ?? 0);
+      (s as any).lastwornclothingtype = 'nude';
       (s as any).lastwornclothingnumber = 0;
     }
   }
@@ -796,6 +812,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripCode(s: GameState, scene: SceneBuilder): void {
+  (s as any).clothingworntype = 'nude';
   (s as any).clothingwornnumber = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_CloVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PCloVars(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -889,14 +906,15 @@ function enterReset_PCloVars(s: GameState, scene: SceneBuilder): void {
 
 function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 'nude';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'nude';
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
     if (((s as any).lastwornclothingtype ?? 0) === '') {
+      (s as any).lastwornclothingtype = 'nude';
       (s as any).lastwornclothingnumber = 0;
     }
     // TODO-QSP: $ARGS[1] = $lastwornclothingtype
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).lastwornclothingnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).lastwornclothingnumber ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'nude') {
     // TODO-QSP: exit
@@ -907,6 +925,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('check') : -1) > 0) {
+    (s as any).temp_not_wear_reason = qspFunc(s, 'clothing', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'no_init');
     if (((s as any).temp_not_wear_reason ?? 0) !== ''  &&  ((s as any).temp_not_wear_reason ?? 0) !== 'hypno') {
       if (((s as any).temp_not_wear_reason ?? 0) === 'not_owned') {
       } else {
@@ -928,7 +947,8 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
-  (s as any).clothingwornnumber = qspUntranslated(s, "ARGS[2]", { location: "clothing" });
+  (s as any).clothingworntype = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).clothingwornnumber = ((s as any).locArgs?.[2] ?? 0);
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$clothingworntype>>_w[<<clothingwornnumber>>] = 1
   // TODO-QSP: <<$clothingworntype>>_s[<<clothingwornnumber>>] = 0
@@ -1068,19 +1088,19 @@ function enterDecreaseCurDirt(s: GameState, scene: SceneBuilder): void {
 
 function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = 1;
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] += <<ARGS[3]>>
     if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
-      (s as any).PCloDirt = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_dirt[qspUntranslated(s, \"ARGS[2]\", { location: \"clothing\" })]", { location: "clothing" });
+      (s as any).PCloDirt = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_dirt[((s as any).locArgs?.[2] ?? 0)]", { location: "clothing" });
     }
     // TODO-QSP: "
   }
@@ -1091,22 +1111,22 @@ function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
 
 function enterDecreaseDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = 1;
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] -= <<ARGS[3]>>
     if (((s as any).locArgs?.[1] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[2] ?? 0)] < 0) {
       // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] = 0
     }
     if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
-      (s as any).PCloDirt = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_dirt[qspUntranslated(s, \"ARGS[2]\", { location: \"clothing\" })]", { location: "clothing" });
+      (s as any).PCloDirt = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_dirt[((s as any).locArgs?.[2] ?? 0)]", { location: "clothing" });
     }
     // TODO-QSP: "
   }
@@ -1131,19 +1151,19 @@ function enterIncreaseCurStrength(s: GameState, scene: SceneBuilder): void {
 
 function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = 1;
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_h[<<ARGS[2]>>] -= <<ARGS[3]>>
     if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
-      (s as any).PCloStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_h[qspUntranslated(s, \"ARGS[2]\", { location: \"clothing\" })]", { location: "clothing" });
+      (s as any).PCloStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_h[((s as any).locArgs?.[2] ?? 0)]", { location: "clothing" });
     }
     // TODO-QSP: "
   }
@@ -1154,20 +1174,20 @@ function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
 
 function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).clothingworntype ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = 1;
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "clothing" }))) {
+  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_h[<<ARGS[2]>>] = min(<<$ARGS[1]>>_h[<<ARGS[2]>>] + <<ARGS[3]>>, <<CloMaxStrength>>)
     if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
-      (s as any).PCloStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_h[qspUntranslated(s, \"ARGS[2]\", { location: \"clothing\" })]", { location: "clothing" });
+      (s as any).PCloStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_h[((s as any).locArgs?.[2] ?? 0)]", { location: "clothing" });
     }
     // TODO-QSP: "
   }
@@ -1177,69 +1197,71 @@ function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_preP = ((((s as any).locArgs?.[2] ?? 0) === 'wearing') ? ('P') : (''));
+  (s as any).temp_CloSkirt = ((((s as any).locArgs?.[2] ?? 0) === 'wearing') ? ('PCloSkirt') : ('CloSkirtShortness'));
   if ((0 as any)) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = (-1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = (-1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = (-1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = (-1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['demerit'] = 5;
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['fame'] = 1;
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = (-1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = (-1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = (-1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = (-1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['demerit'] = 5;
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['fame'] = 1;
     if ((0 as any)) {
-      if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = 0;
-      if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = 0;
+      ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = 0;
+      ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = 0;
     } else {
       if ((0 as any)) {
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = 0;
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = 0;
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = 0;
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = 0;
       } else {
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = 0;
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'v_neg', 'This uniform is too thin  &&  that can expose underwear making a mockery of the school uniform regulations. Everybody in school apart from the Gopniks will think that you\'re a slut.');
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = 0;
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'v_neg', 'This uniform is too thin  &&  that can expose underwear making a mockery of the school uniform regulations. Everybody in school apart from the Gopniks will think that you\'re a slut.');
       }
     }
   } else {
     if ((0 as any)) {
       if ((0 as any)) {
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = (-1);
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = (-1);
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = (-1);
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = 1;
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = (-1);
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'neg', 'This uniform complies with the regulations, but is too risqué.');
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = 0;
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = (-1);
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = (-1);
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = (-1);
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = 1;
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = (-1);
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'neg', 'This uniform complies with the regulations, but is too risqué.');
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = 0;
       } else {
         if ((0 as any)) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchoolCheckArchetypeProcess(s, scene); (s as any).locArgs = __savedLocArgs; }
-          if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = 'This uniform complies with the regulations on skirt length and is in a ' + qspUntranslated(s, "temp_school_check['style']>", { location: "clothing" }) + ' style.';
+          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = 'This uniform complies with the regulations on skirt length and is in a ' + ((s as any).temp_school_check ?? 0)?.['style'] + ' style.';
           if (((s as any).temp_school_check ?? 0)?.['disapprove'] !== '') {
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + ((((s as any).temp_school_check ?? {})?.['disapprove'] ?? 0) + (((s as any).temp_school_check ?? {})?.['approve-sep'] ?? 0));
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + ((((s as any).temp_school_check ?? {})?.['disapprove'] ?? 0) + (((s as any).temp_school_check ?? {})?.['approve-sep'] ?? 0));
           }
           if (((s as any).temp_school_check ?? 0)?.['approve'] !== '') {
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? 0)?.['approve']);
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? 0)?.['approve']);
           }
-          if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', '$temp_school_check[\'wrap\']', ((s as any).temp_school_check ?? 0)?.['wardrobe_text']);
-          if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is ' + qspUntranslated(s, "temp_school_check['style']>", { location: "clothing" }) + ' style, but still follows the school regulation on skirt length.');
+          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', '$temp_school_check[\'wrap\']', ((s as any).temp_school_check ?? 0)?.['wardrobe_text']);
+          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is ' + ((s as any).temp_school_check ?? 0)?.['style'] + ' style, but still follows the school regulation on skirt length.');
         } else {
           if ((0 as any)) {
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = (-1);
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = (-1);
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = 1;
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = 1;
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is very conservative.');
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'neutral', 'This uniform is very conservative. The Cool kids  &&  Jocks will disapprove, but the Nerds  &&  Outcasts would approve of you wearing it.');
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = (-1);
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = (-1);
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = 1;
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = 1;
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is very conservative.');
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'neutral', 'This uniform is very conservative. The Cool kids  &&  Jocks will disapprove, but the Nerds  &&  Outcasts would approve of you wearing it.');
           } else {
             if ((0 as any)) {
-              if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = 1;
-              if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is of a style that appeals to gopniks, but still follows the school regulation on skirt length.');
-              if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'neutral', 'This uniform follows the school regulation on skirt length but is of a style that only the Gopniks will approve of.');
+              ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = 1;
+              ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is of a style that appeals to gopniks, but still follows the school regulation on skirt length.');
+              ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'neutral', 'This uniform follows the school regulation on skirt length but is of a style that only the Gopniks will approve of.');
             } else {
               if ((0 as any)) {
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = 1;
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = 1;
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform complies with the regulations  &&  is of good quality.');
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'v_pos', 'This uniform complies with the regulations  &&  is of good quality. It would certainly help you with your standing with the Cool kids  &&  Jocks.');
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = 1;
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = 1;
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform complies with the regulations  &&  is of good quality.');
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'v_pos', 'This uniform complies with the regulations  &&  is of good quality. It would certainly help you with your standing with the Cool kids  &&  Jocks.');
               } else {
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform complies with the school regulations on skirt length.');
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform complies with the school regulations on skirt length. Nobody in school would be offended by you wearing it.');
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform complies with the school regulations on skirt length.');
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform complies with the school regulations on skirt length. Nobody in school would be offended by you wearing it.');
               }
             }
           }
@@ -1247,49 +1269,49 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if ((0 as any)) {
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = (-1);
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = (-1);
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = (-1);
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = 1;
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = (-1);
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'neg', 'This uniform slightly breaches the regulations on skirt length  &&  is also too risqué.');
-        if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'v_neg', 'This uniform slightly breaches the school uniform regulations  &&  it is too risqué. Everybody in school apart from the Gopniks will think that you\'re a slut.');
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = (-1);
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = (-1);
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = (-1);
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = 1;
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = (-1);
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'neg', 'This uniform slightly breaches the regulations on skirt length  &&  is also too risqué.');
+        ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'v_neg', 'This uniform slightly breaches the school uniform regulations  &&  it is too risqué. Everybody in school apart from the Gopniks will think that you\'re a slut.');
       } else {
         if ((0 as any)) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchoolCheckArchetypeProcess(s, scene); (s as any).locArgs = __savedLocArgs; }
-          if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = 'This uniform slightly breaches the school regulations on skirt length and is in a ' + qspUntranslated(s, "temp_school_check['style']>", { location: "clothing" }) + ' style.';
+          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = 'This uniform slightly breaches the school regulations on skirt length and is in a ' + ((s as any).temp_school_check ?? 0)?.['style'] + ' style.';
           if (((s as any).temp_school_check ?? 0)?.['disapprove'] !== '') {
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + ((((s as any).temp_school_check ?? {})?.['disapprove'] ?? 0) + (((s as any).temp_school_check ?? {})?.['approve-sep'] ?? 0));
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + ((((s as any).temp_school_check ?? {})?.['disapprove'] ?? 0) + (((s as any).temp_school_check ?? {})?.['approve-sep'] ?? 0));
           }
           if (((s as any).temp_school_check ?? 0)?.['approve'] !== '') {
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? 0)?.['approve']);
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? 0)?.['approve']);
           }
-          if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', '$temp_school_check[\'wrap\']', ((s as any).temp_school_check ?? 0)?.['wardrobe_text']);
-          if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is ' + qspUntranslated(s, "temp_school_check['style']>", { location: "clothing" }) + ' style uniform slightly breaches the school regulations on skirt length.');
+          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', '$temp_school_check[\'wrap\']', ((s as any).temp_school_check ?? 0)?.['wardrobe_text']);
+          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is ' + ((s as any).temp_school_check ?? 0)?.['style'] + ' style uniform slightly breaches the school regulations on skirt length.');
         } else {
           if ((0 as any)) {
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = (-1);
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = (-1);
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = 1;
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = 1;
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is very conservative.');
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'neutral', 'This uniform is very conservative. The Cool kids  &&  Jocks will disapprove, but the Nerds  &&  Outcasts would approve of you wearing it.');
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = (-1);
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = (-1);
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = 1;
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = 1;
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is very conservative.');
+            ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'neutral', 'This uniform is very conservative. The Cool kids  &&  Jocks will disapprove, but the Nerds  &&  Outcasts would approve of you wearing it.');
           } else {
             if ((0 as any)) {
-              if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = 1;
-              if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This gopnik style uniform slightly breaches the school regulations on skirt length.');
-              if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'neutral', 'This uniform slightly breaches the school regulations on skirt length  &&  is of a style that only the Gopniks will approve of.');
+              ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = 1;
+              ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This gopnik style uniform slightly breaches the school regulations on skirt length.');
+              ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'neutral', 'This uniform slightly breaches the school regulations on skirt length  &&  is of a style that only the Gopniks will approve of.');
             } else {
               if ((0 as any)) {
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = 1;
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = 1;
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = 1;
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is of good quality, but slightly breaches the school regulations on skirt length.');
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'v_pos', 'This uniform slightly breaches the school regulations on skirt length  &&  is of good quality. Everybody apart from the Nerds  &&  Outcasts would approve of you wearing it.');
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = 1;
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = 1;
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = 1;
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is of good quality, but slightly breaches the school regulations on skirt length.');
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'v_pos', 'This uniform slightly breaches the school regulations on skirt length  &&  is of good quality. Everybody apart from the Nerds  &&  Outcasts would approve of you wearing it.');
               } else {
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = 1;
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform slightly breaches the school regulations on skirt length.');
-                if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform slightly breaches the school regulations on skirt length. The Gopnik would approve of you wearing it  &&  they will respect you for beating the school rules.');
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = 1;
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform slightly breaches the school regulations on skirt length.');
+                ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform slightly breaches the school regulations on skirt length. The Gopnik would approve of you wearing it  &&  they will respect you for beating the school rules.');
               }
             }
           }
@@ -1298,11 +1320,11 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'apply') {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (((s as any).temp_school_check ?? 0)?.['cool']);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (((s as any).temp_school_check ?? 0)?.['jock']);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (((s as any).temp_school_check ?? 0)?.['nerd']);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (((s as any).temp_school_check ?? 0)?.['gopnik']);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[5] = ((s as any).grupvalue[5] ?? 0) + (((s as any).temp_school_check ?? 0)?.['outcast']);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (((s as any).temp_school_check ?? 0)?.['cool']);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (((s as any).temp_school_check ?? 0)?.['jock']);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (((s as any).temp_school_check ?? 0)?.['nerd']);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (((s as any).temp_school_check ?? 0)?.['gopnik']);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[5] = ((s as any).grupvalue[5] ?? 0) + (((s as any).temp_school_check ?? 0)?.['outcast']);
     (s as any).demerit = ((s as any).demerit ?? 0) + (((s as any).temp_school_check ?? 0)?.['demerit']);
     if (((s as any).temp_school_check ?? 0)?.['fame'] > 0) {
       // TODO-QSP: gs 'fame', 'pav', 'sex', temp_school_check['fame']
@@ -1317,46 +1339,46 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolCheckArchetypeProcess(s: GameState, scene: SceneBuilder): void {
   if ((0 as any)) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = ((s as any).temp_school_check['cool'] ?? 0) + (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = ((s as any).temp_school_check['nerd'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = ((s as any).temp_school_check['gopnik'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = ((s as any).temp_school_check['cool'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = ((s as any).temp_school_check['nerd'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = ((s as any).temp_school_check['gopnik'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) + (1);
     // TODO-QSP: $temp_school_check_styles[] = 'bimbo'
   }
   if ((0 as any)) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = ((s as any).temp_school_check['jock'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = ((s as any).temp_school_check['nerd'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = ((s as any).temp_school_check['gopnik'] ?? 0) + (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = ((s as any).temp_school_check['jock'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = ((s as any).temp_school_check['nerd'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = ((s as any).temp_school_check['gopnik'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) + (1);
     // TODO-QSP: $temp_school_check_styles[] = 'goth'
   }
   if ((0 as any)) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = ((s as any).temp_school_check['cool'] ?? 0) + (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = ((s as any).temp_school_check['jock'] ?? 0) + (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = ((s as any).temp_school_check['gopnik'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['styles'] = ((s as any).temp_school_check['styles'] ?? 0) + ('');
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = ((s as any).temp_school_check['cool'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = ((s as any).temp_school_check['jock'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = ((s as any).temp_school_check['gopnik'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['styles'] = ((s as any).temp_school_check['styles'] ?? 0) + ('');
     // TODO-QSP: $temp_school_check_styles[] = 'preppy'
   }
   if ((0 as any)) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = ((s as any).temp_school_check['cool'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = ((s as any).temp_school_check['jock'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = ((s as any).temp_school_check['nerd'] ?? 0) + (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = ((s as any).temp_school_check['cool'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = ((s as any).temp_school_check['jock'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = ((s as any).temp_school_check['nerd'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) + (1);
     // TODO-QSP: $temp_school_check_styles[] = 'prude'
   }
   if ((0 as any)) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = ((s as any).temp_school_check['cool'] ?? 0) - (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = ((s as any).temp_school_check['jock'] ?? 0) + (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = ((s as any).temp_school_check['gopnik'] ?? 0) + (1);
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = ((s as any).temp_school_check['cool'] ?? 0) - (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = ((s as any).temp_school_check['jock'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = ((s as any).temp_school_check['gopnik'] ?? 0) + (1);
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = ((s as any).temp_school_check['outcast'] ?? 0) - (1);
     // TODO-QSP: $temp_school_check_styles[] = 'punk'
   }
-  if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['cool'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['cool']), 1);
-  if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['jock'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['jock']), 1);
-  if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['nerd'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['nerd']), 1);
-  if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['gopnik'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['gopnik']), 1);
-  if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['outcast'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['outcast']), 1);
+  ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['cool']), 1);
+  ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['jock']), 1);
+  ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['nerd'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['nerd']), 1);
+  ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['gopnik'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['gopnik']), 1);
+  ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['outcast'] = Math.min(Math.max((-1), ((s as any).temp_school_check ?? 0)?.['outcast']), 1);
   if (((s as any).temp_school_check ?? 0)?.['cool'] > 0) {
     // TODO-QSP: $temp_school_check_approves[] = 'Cool kids'
   } else {
@@ -1393,22 +1415,22 @@ function enterSchoolCheckArchetypeProcess(s: GameState, scene: SceneBuilder): vo
     }
   }
   if (Object.keys((s as any).temp_school_check_disapproves ?? {}).length === 0  &&  Object.keys((s as any).temp_school_check_approves ?? {}).length > 0) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wrap'] = 'v_pos';
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wrap'] = 'v_pos';
   } else {
     if (Object.keys((s as any).temp_school_check_approves ?? {}).length === 0  &&  Object.keys((s as any).temp_school_check_disapproves ?? {}).length > 0) {
-      if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wrap'] = 'neg';
+      ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wrap'] = 'neg';
     } else {
-      if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wrap'] = 'neutral';
+      ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wrap'] = 'neutral';
     }
   }
-  if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['style'] = qspFunc(s, 'string', 'enumerate_list', '$temp_school_check_styles');
-  if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['approve-sep'] = '.';
+  ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['style'] = qspFunc(s, 'string', 'enumerate_list', '$temp_school_check_styles');
+  ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['approve-sep'] = '.';
   if (Object.keys((s as any).temp_school_check_approves ?? {}).length > 0) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['approve'] = ' \' + $func(\'string\', \'enumerate_list\', \'$temp_school_check_approves\') + \' will like it.';
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['approve-sep'] = ', but';
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['approve'] = ' ' + qspFunc(s, 'string', 'enumerate_list', '$temp_school_check_approves') + ' will like it.';
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['approve-sep'] = ', but';
   }
   if (Object.keys((s as any).temp_school_check_disapproves ?? {}).length > 0) {
-    if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['disapprove'] = ' \' + $func(\'string\', \'enumerate_list\', \'$temp_school_check_disapproves\') + \' will disaprove';
+    ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['disapprove'] = ' ' + qspFunc(s, 'string', 'enumerate_list', '$temp_school_check_disapproves') + ' will disaprove';
   }
   return;
   // TODO-QSP: end
@@ -1421,9 +1443,9 @@ function enterClothwidth(s: GameState, scene: SceneBuilder): void {
     { label: 'Set image size for this view', handler: (st: GameState) => {
     (s as any).Enable_clothwidth = 0;
     if (((s as any).Enable_clothwidth ?? 0) !== 0) {
-      (s as any).Enable_clothwidth = 0;
+      (s as any).Enable_clothwidth = Math.min(Math.max(50, ((s as any).Enable_clothwidth ?? 0)), 500);
     }
-    scene.actions([{ label: 'Continue', goto: ['clothing', 'clothing_list', '\'<<$ward_list_store>>\''] }]);
+    qspGoto(s, 'clothing', 'clothing_list', qspUntranslated(s, "'<<ward_list_store>>'", { location: "clothing" }));
   } },
   ]);
   scene.build();
@@ -1433,6 +1455,7 @@ function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void 
   qspCall(s, 'clothing_view', 'set_exceptions');
   return;
   // TODO-QSP: end
+  (s as any).clothing_list_line = '$result = $func(\'clothing\', \'clothing_list_line\', $ARGS[0], $ARGS[1], ARGS[2])';
   scene.build();
 }
 
@@ -1498,6 +1521,7 @@ function enterClothingList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetClothinglistHeader(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = qspFunc(s, 'clothing_view', 'get wardrobe_list_header');
   return;
   // TODO-QSP: end
   scene.build();
@@ -1740,7 +1764,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const clothing: LocationDef = {
   name: 'clothing',
-  title: 'This uniform is so short that it\'s an outright mockery of the school regulation on skirt length.',
+  title: 'This uniform is so short that it\'s an outright mockery of th',
   region: 'other',
   enter: enter,
 };

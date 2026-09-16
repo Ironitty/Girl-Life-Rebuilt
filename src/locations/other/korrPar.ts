@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,6 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).pavhome_enter = 0;
   }
   qspCall(s, 'core_library', 'setloc', 'korrPar', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'private';
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -22,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Corridor</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('The corridor of your parent\'s apartment. There are several doors which lead to the other rooms of the apartment, as well as the front door which leads outside to the stairwell.');
-  scene.text('A <a href="exec:gt \'mirror\', \'start\'">mirror</a> hangs on the wall near the front door.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> hangs on the wall near the front door.');
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
     scene.text('With your parents away visiting your grandparents, the apartment seems quiet and empty.');
   }
@@ -40,15 +41,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Mom_athome'] === 1  &&  (((s as any).GspravkaTalked ?? 0) <= ((s as any).daystart ?? 0) - ((s as any).GspravkaAmbush ?? 0))  &&  (!((s as any).motherKnowRaped ?? 0))) {
     if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).GspravkaT ?? 0) !== 1  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21))) {
       (s as any).GspravkaAmbush = Math.floor(Math.random() * 5) + 3;
-      scene.actions([{ label: 'Continue', goto: ['mother', 'referral'] }]);
+      qspGoto(s, 'mother', 'referral');
     } else {
       if (((s as any).Gspassed ?? 0) === 1  &&  (((s as any).clothingworntype ?? 0) !== 'nude'  ||  ((s as any).clothingworntype ?? 0) !== '')  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21))) {
         (s as any).GspravkaAmbush = Math.floor(Math.random() * 6) + 5;
-        scene.actions([{ label: 'Continue', goto: ['mother', 'ambush_referral_pass'] }]);
+        qspGoto(s, 'mother', 'ambush_referral_pass');
       } else {
         if (((s as any).GspravkaT ?? 0) === 2  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  (((s as any).clothingworntype ?? 0) !== 'nude'  ||  ((s as any).clothingworntype ?? 0) !== '')  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21))) {
           (s as any).GspravkaAmbush = Math.floor(Math.random() * 4) + 2;
-          scene.actions([{ label: 'Continue', goto: ['mother', 'ambush_referral_fail'] }]);
+          qspGoto(s, 'mother', 'ambush_referral_fail');
         }
       }
     }
@@ -137,8 +138,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['Mother'] === 2) {
     if (((s as any).vanrPar_suction_dildo ?? 0) > 0) {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_shower_discovery'] = 1;
-      scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildo_shriek1'] }]);
+      ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_shower_discovery'] = 1;
+      qspGoto(s, 'mother_sextalk', 'bathroom_dildo_shriek1');
     }
     scene.actions([
       { label: 'Go to the bathroom', handler: (st: GameState) => {
@@ -185,15 +186,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 0  &&  ((s as any).locat ?? 0)?.['Mom_athome'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildos1'] }]);
+    qspGoto(s, 'mother_sextalk', 'bathroom_dildos1');
   }
   if (((s as any).nodimkaK ?? 0) >= (Math.floor(Math.random() * 4) + 7)  &&  ((s as any).DimkaWarnedToday ?? 0) === 0  &&  (!((s as any).DimaRudeBlock ?? 0))) {
     (s as any).nodimkaK = 0;
     if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 24  &&  ((s as any).week ?? 0) <=5  &&  (!((s as any).DimkaWarnedToday ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['dimaEv', 'Dimka_warning'] }]);
+      qspGoto(s, 'dimaEv', 'Dimka_warning');
     }
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 24  &&  ((s as any).week ?? 0) >=6  &&  (!((s as any).DimkaWarnedToday ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['dimaEv', 'Dimka_warning'] }]);
+      qspGoto(s, 'dimaEv', 'Dimka_warning');
     }
   }
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] >= 4  &&  ((s as any).week ?? 0) < 6  &&  (((s as any).hour ?? 0) === 6  ||  ((s as any).hour ?? 0) === 7)  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  (((s as any).PSchool ?? 0) === 1  ||  ((s as any).cheatVars ?? 0)?.['school_clothing'] === 1)) {
@@ -209,16 +210,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'homes_properties', 'give_access');
     }
     qspCall(s, 'homes_properties', 'set_home');
-  }, goto: ['korrPar', ''] },
+    qspGoto(s, 'korrPar', '');
+  } },
     ]);
   } else {
     if (((s as any).status ?? 0)?.['dog'] !== 'blocked'  &&  ((s as any).menu_off ?? 0) === 0  &&  ((s as any).rex ?? 0)?.['owned'] === 1) {
       if (((s as any).rex ?? 0)?.['status'] === 0) {
-        scene.actions([{ label: 'Continue', goto: ['pet_dog', 'name'] }]);
+        qspGoto(s, 'pet_dog', 'name');
       } else {
         if (((s as any).hour ?? 0) > 5) {
           // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt 'pet_dog', 'start'"><<$rex['name']>></a> is lying...
-          scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is lying on the floor.<br>`);
+          scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pet_dog\\u0027, \\u0027start\\u0027); return false;">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
             // TODO-QSP: dynamic text: <br><<$rex['name']>> is sleeping in his dog basket.<br>
@@ -228,11 +230,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).korrParMomHeader = '<center><h1><font color="maroon">' + ((s as any).npc_nickname ?? 0)?.['A29'] + '</font></h1></center><center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/mother.jpg"></center><br />';
   if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
     if (((s as any).artemvbrosvid ?? 0) === 1  &&  ((s as any).artemhakday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] < 2  &&  ((s as any).mothervideotalk ?? 0) === 0  ||  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj'] === 1  &&  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj_day'] !== ((s as any).daystart ?? 0)  &&  (!((s as any).BJvideoPublic ?? 0))) {
       (s as any).BJvideoPublic = 1;
-      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['refused_seeporn_bj'] = 0;
-      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['refused_seeporn_bj_day'] = ((s as any).daystart ?? 0);
+      ((s as any).brotherQW = (s as any).brotherQW ?? {})['refused_seeporn_bj'] = 0;
+      ((s as any).brotherQW = (s as any).brotherQW ?? {})['refused_seeporn_bj_day'] = ((s as any).daystart ?? 0);
       qspCall(s, 'mood', 'lower', 'min');
       qspCall(s, 'npc_relationship', 'modify', 'A29', (-40));
       qspCall(s, 'stat', '');
@@ -320,7 +323,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (((s as any).abductionReturned ?? 0) > 0  ||  (((s as any).gschoolVars ?? 0)?.['absence_count'] > 2  &&  ((s as any).gschoolVars ?? 0)?.['expell_stage'] < 3))) {
       qspCall(s, 'stat', '');
       if (((s as any).abductionReturned ?? 0) > 0) {
-        if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = 0;
+        ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['absence_count'] = 0;
         (s as any).GspravkaT = 2;
         (s as any).motherKnowSpravka = 1;
         qspCall(s, 'stat', '');
@@ -349,8 +352,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).gschoolVars ?? 0)?.['expell_stage'] === 0) {
-          if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['expell_stage'] = 1;
-          if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = 0;
+          ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['expell_stage'] = 1;
+          ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['absence_count'] = 0;
           qspCall(s, 'npc_relationship', 'set', 'A29', 0);
           qspCall(s, 'grades', 'grade_award', 'school', 'math', (-20));
           qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-20));
@@ -376,8 +379,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).gschoolVars ?? 0)?.['expell_stage'] === 1) {
-            if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['expell_stage'] = 2;
-            if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = 0;
+            ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['expell_stage'] = 2;
+            ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['absence_count'] = 0;
             qspCall(s, 'npc_relationship', 'set', 'A29', 0);
             qspCall(s, 'grades', 'grade_award', 'school', 'math', (-40));
             qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-40));
@@ -405,10 +408,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).gschoolVars ?? 0)?.['expell_stage'] === 2) {
-              if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['expell_stage'] = 3;
-              if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = 0;
+              ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['expell_stage'] = 3;
+              ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['absence_count'] = 0;
               qspCall(s, 'npc_relationship', 'set', 'A29', 0);
-              if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['block'] = 1;
+              ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['block'] = 1;
               qspCall(s, 'archetypes', 'gain', 'punk', 'large', 'Expelled from school');
               qspCall(s, 'grades', 'grade_award', 'school', 'math', (-100));
               qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-100));
@@ -455,7 +458,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).numnpcboy = ((s as any).numnpcboy ?? 0) + (1);
       if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpcboy ?? 0)] >= 20  &&  ((s as any).boyinday ?? 0)?.[String((s as any).numnpcboy ?? 0)]!((s as any).daystart ?? 0)) {
         (s as any).Gcall = 1;
-        scene.text('You hear the <a href="exec:gt \'gtelefon\'">phone</a> ringing in the hallway.');
+        scene.text('You hear the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gtelefon\\u0027, \\u0027\\u0027); return false;">phone</a> ringing in the hallway.');
       } else {
         if ((Object.keys((s as any).otnBoyFrend ?? {}).length-1) > ((s as any).numnpcboy ?? 0)) {
           // TODO-QSP: jump 'markboyfrendcall'
@@ -471,11 +474,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['Fam_inGad'] > 0  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1) {
       (s as any).motherworry = 0;
     } else {
-      scene.actions([{ label: 'Continue', goto: ['mother', ''] }]);
+      qspGoto(s, 'mother', '');
     }
   }
   if (((s as any).sleepVars ?? 0)?.['notathomesleep'] > 7  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).locat ?? 0)?.['Mom_athome'] === 1) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['notathomesleep'] = 0;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['notathomesleep'] = 0;
     if (((s as any).npc_rel ?? 0)?.['A29'] < 40) {
       scene.text('You run into your mother in the hallway. "Well well, look who decided to come home for once."');
       scene.actions([
@@ -492,10 +495,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  ((s as any).podwhoreQW ?? 0) >= 3) {
     (s as any).pod_client = Math.floor(Math.random() * 101) + 0;
     if (((s as any).pod_whore_countQW ?? 0) <= 15  &&  ((s as any).pod_client ?? 0) <= 5) {
-      scene.text('Someone is at the door: <a href="exec: gt \'pod_whore\', \'client_talk\'">Answer</a>');
+      scene.text('Someone is at the door: <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pod_whore\\u0027, \\u0027client_talk\\u0027); return false;">Answer</a>');
     } else {
       if (((s as any).pod_whore_countQW ?? 0) > 15  &&  ((s as any).pod_client ?? 0) <= 20) {
-        scene.text('Someone is at the door: <a href="exec: gt \'pod_whore\', \'client_talk\'">Answer</a>');
+        scene.text('Someone is at the door: <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pod_whore\\u0027, \\u0027client_talk\\u0027); return false;">Answer</a>');
       }
     }
   }
@@ -503,9 +506,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: '<b>Leave and go to the stairwell</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).minut = ((s as any).minut ?? 0) + (1);
-      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'etaj_2'] }]);
+      qspGoto(s, 'pod_ezd', 'etaj_2');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['korrPar', ''] }]);
+      qspGoto(s, 'korrPar', '');
     }
   } },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
@@ -515,15 +518,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: '<font color=red><b>Go outside</b></font>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
           { label: 'Stay inside', goto: ['korrPar', ''] },
         ]);
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
-        scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+        qspGoto(s, 'pav_complex', 'start');
       }
     } else {
-      scene.actions([{ label: 'Continue', goto: ['korrPar', ''] }]);
+      qspGoto(s, 'korrPar', '');
     }
   } },
     { label: 'Go to the living room', handler: (st: GameState) => {

@@ -27,10 +27,10 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :model_loop
   if (((s as any).model ?? 0)?.['rank'] === (11 - ((s as any).model_i ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:gt 'foto_albums', 'sveta'"><<model_i>>. <<$model['firstname']>> <<...
-    scene.text(`<a href="exec:gt 'foto_albums', 'sveta'">${((s as any).model_i || '')}. ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${qspUntranslated(s, "mid(model['lastname'], 1, 1)", { location: "foto_albums" })}.</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027foto_albums\\u0027, \\u0027sveta\\u0027); return false;">${((s as any).model_i || '')}. ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${qspUntranslated(s, "mid(model['lastname'], 1, 1)", { location: "foto_albums" })}.</a>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:gt 'foto_albums', '<<$temp_base_ranking_link[model_i]>>'"><<model_...
-    scene.text(`<a href="exec:gt 'foto_albums', '${((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}'">${((s as any).model_i || '')}. ${((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027foto_albums\\u0027, \\u0027${((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}\\u0027); return false;">${((s as any).model_i || '')}. ${((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}</a>`);
   }
   (s as any).model_i = ((s as any).model_i ?? 0) + (1);
   if (((s as any).model_i ?? 0) < 11) {
@@ -109,7 +109,7 @@ function enterSveta(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
-    { label: 'Presenting: <<$model[\'firstname\']>> <<mid($model[\'lastname\'],1,1)>>', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Presenting: ' + String(((s as any).model ?? 0)?.['firstname'] ?? '' ?? '') + ' ' + String((String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1))) ?? ''), handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/1.jpg');
     scene.actions([
       { label: 'Waiting For You', handler: (st: GameState) => {
@@ -470,7 +470,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
     scene.text('They seem to be single pictures taken from past photo shoots.');
   } else {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 1;
+      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 1;
       scene.text('You open up the ninth album and are surprised to see pictures of Anushka placed inside. It\'s not surprising that she\'d like being a model given that she loves attention, but you\'re surprised that nobody at school has ever mentioned it. Somebody else surely must know?');
       scene.text('They all seem to be single pictures taken from past photo shoots.');
     } else {

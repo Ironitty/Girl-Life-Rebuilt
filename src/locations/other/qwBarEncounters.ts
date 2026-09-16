@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  (s as any).location_type = 'event';
   qspCall(s, 'themes', 'indoors');
   (s as any).Enc_Rand = Math.floor(Math.random() * 2) + 1;
   if (((s as any).Enc_Rand ?? 0) === 1  &&  (!((s as any).Jaska_Ev ?? 0))) {
@@ -269,6 +270,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('He laps at your cunt without a hint of reservation. One of his hands is squeezing your tits through your clothes while the other joins his mouth, his fingers inside you adding to the overwhelming sensations you are feeling. You notice some people watching but not as many as you expected; you don\'t care though, this simply feels too great to think about consequences, and your guy friend seems unconcerned with the looks of other patrons too, maybe even enjoying the fact that he can show off his conquest right here.');
     scene.text('He keep going, working your sex tirelessly until an orgasm rocks your body and you have to bite down on your lip to keep yourself from moaning out loud. As the shuddering subsides, he stands up with a shit-eating grin and his hands move to unbutton his pants.');
     qspCall(s, 'arousal', 'cuni', 5, 'dom', 'exhibitionism');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Got to leave', handler: (st: GameState) => {
@@ -288,6 +290,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'exhibitionism', 'deepthroat', 'rough');
     qspCall(s, 'arousal', 'vaginal_finger', (-5), 'sub', 'exhibitionism', 'masturbate');
     qspCall(s, 'stat', '');
+    (s as any).orgasm_txt = 'Your fingers on your needy cunt and the sensation of blowing a stranger in the middle of a bar prove too much to you, and you cum, shaking all over, your moans muffled by his ' + ((s as any).dick_girth ?? 0) + ' cock.';
     scene.actions([
       { label: 'Finish him', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/bargrinds2.jpg');
@@ -320,6 +323,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'exhibitionism', 'deepthroat', 'rough');
     qspCall(s, 'arousal', 'clit_finger', (-5), 'sub', 'exhibitionism');
     qspCall(s, 'stat', '');
+    (s as any).orgasm_txt = 'Your fingers on your needy cunt and the sensation of blowing a stranger in the middle of a bar prove too much to you, and you cum, shaking all over, your moans muffled by his ' + ((s as any).dick_girth ?? 0) + ' cock.';
     scene.actions([
       { label: 'Finish him', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/bargrinds2.jpg');

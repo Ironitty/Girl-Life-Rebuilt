@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,57 +9,57 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'start'] }]);
+  qspGoto(s, 'intro_character_custom', 'start');
   scene.build();
 }
 
 function enterModgrup(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modgrup'] }]);
+  qspGoto(s, 'intro_character_custom', 'modgrup');
   scene.build();
 }
 
 function enterModrel(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel');
   scene.build();
 }
 
 function enterModrelFam(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_fam'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel_fam');
   scene.build();
 }
 
 function enterModrelPop(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_pop'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel_pop');
   scene.build();
 }
 
 function enterModrelAth(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_ath'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel_ath');
   scene.build();
 }
 
 function enterModrelNer(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_ner'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel_ner');
   scene.build();
 }
 
 function enterModrelGop(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_gop'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel_gop');
   scene.build();
 }
 
 function enterModrelOut(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_out'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel_out');
   scene.build();
 }
 
 function enterModrelTea(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_tea'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel_tea');
   scene.build();
 }
 
 function enterModrelOth(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_oth'] }]);
+  qspGoto(s, 'intro_character_custom', 'modrel_oth');
   scene.build();
 }
 

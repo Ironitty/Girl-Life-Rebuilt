@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
+  (s as any).loc = 'city_nightclubToilet';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'city_nightclubToilet';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nightclub - Restroom</b></center>');
@@ -26,7 +31,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['city_nightclubToilet', 'clubtoilet_men'] },
+    qspGoto(s, 'city_nightclubToilet', 'clubtoilet_men');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -38,10 +44,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClubtoiletMen(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'city_nightclubToilet';
+  (s as any).loc_arg = 'clubtoilet_men';
+  (s as any).locM = 'city_nightclubToilet';
+  (s as any).locM_arg = 'clubtoilet_men';
+  (s as any).menu_loc = 'city_nightclubToilet';
+  (s as any).menu_arg = 'clubtoilet_men';
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nightclub - Men\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/mentoilet.jpg');
-  scene.text('You walk into the men\'s restroom, where you see some sinks and <a href="exec:gt \'mirror\', \'start\'">mirrors</a>.');
+  scene.text('You walk into the men\'s restroom, where you see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a>.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
@@ -55,10 +69,18 @@ function enterClubtoiletMen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClubtoiletWomen(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'city_nightclubToilet';
+  (s as any).loc_arg = 'clubtoilet_women';
+  (s as any).locM = 'city_nightclubToilet';
+  (s as any).locM_arg = 'clubtoilet_women';
+  (s as any).menu_loc = 'city_nightclubToilet';
+  (s as any).menu_arg = 'clubtoilet_women';
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nightclub - Women\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/womentoilet.jpg');
-  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="exec:gt \'mirror\', \'start\'">mirrors</a>. You notice the last stall has its door wide open.');
+  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a>. You notice the last stall has its door wide open.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');

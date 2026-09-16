@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -19,9 +19,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', goto: ['dina', 'brodila'] },
     { label: 'Open a window and release your parrot', handler: (st: GameState) => {
-    if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Owned1'] = 0;
+    ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Owned1'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-  }, goto: ['dina', 'brodila'] },
+    qspGoto(s, 'dina', 'brodila');
+  } },
   ]);
   scene.build();
 }
@@ -36,7 +37,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Open a window and release your parrot', handler: (st: GameState) => {
     if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] > 30) {
@@ -45,7 +46,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: You say goodbye to <<$ParrotQW['Name2']>> and release him
       scene.text(`You say goodbye to ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} and release him`);
-      if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Owned2'] = 0;
+      ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Owned2'] = 0;
       (s as any).minut = ((s as any).minut ?? 0) + 10;
     }
   } },

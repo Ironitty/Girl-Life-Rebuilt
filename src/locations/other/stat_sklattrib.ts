@@ -40,14 +40,14 @@ function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locArgs?.[0] ?? 0) === 'daycall') {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = 0;
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = 0;
     // TODO-QSP: :sklxploop
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$temp_sklattrib['name']>>_exp += <<$temp_sklattrib['name']>>_exp_skill_derived / 100
     // TODO-QSP: <<$temp_sklattrib['name']>>_exp_skill_derived = 0
     // TODO-QSP: "
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length) {
       // TODO-QSP: jump 'sklxploop'
     }
@@ -61,39 +61,39 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'attribute';
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'attribute';
   // TODO-QSP: :degloop_outer
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = 0;
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = 0;
   // TODO-QSP: :degloop_inner
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = qspFunc(s, '_difficulty', 'get_deg_loss');
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['deg_loss'] = qspFunc(s, '_difficulty', 'get_deg_loss');
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'attribute') {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
   } else {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "skl_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = 75 * (((s as any).temp_sklattrib ?? {})?.['deg_loss'] ?? 0) / 100;
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "skl_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['deg_loss'] = 75 * (((s as any).temp_sklattrib ?? {})?.['deg_loss'] ?? 0) / 100;
   }
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['trait_index'] = 0;
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['trait_index'] = 0;
   // TODO-QSP: :traitdegloop
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['trait'] = qspUntranslated(s, "traitattskl[temp_sklattrib['trait_index']]", { location: "stat_sklattrib" });
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['trait'] = qspUntranslated(s, "traitattskl[temp_sklattrib['trait_index']]", { location: "stat_sklattrib" });
   if (((s as any).temp_sklattrib ?? 0)?.['trait'] !== '') {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + (((s as any).trait_vars ?? 0)?.[(((s as any).temp_sklattrib ?? {})?.['trait'] ?? 0) + '-' + (((s as any).temp_sklattrib ?? {})?.['name'] ?? 0) + '-deg_loss']);
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-\' + $temp_sklattrib[\'name\'] + \'-deg_loss']);
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).temp_sklattrib ?? 0)?.['trait'] + '-' + ((s as any).temp_sklattrib ?? 0)?.['name'] + '-deg_loss']);
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-' + ((s as any).temp_sklattrib ?? 0)?.['name'] + '-deg_loss']);
   }
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['trait_index'] = ((s as any).temp_sklattrib['trait_index'] ?? 0) + (1);
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['trait_index'] = ((s as any).temp_sklattrib['trait_index'] ?? 0) + (1);
   if (((s as any).temp_sklattrib ?? 0)?.['trait_index'] < Object.keys((s as any).traitattskl ?? {}).length) {
     // TODO-QSP: jump 'traitdegloop'
   }
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$temp_sklattrib['name']>>_lvl = <<$temp_sklattrib['name']>>_lvlst
-  // TODO-QSP: temp_sklattrib['max_deg'] = func('stat_funcs', 'get_max_deg', <<$temp_sklattrib['name']>>_lvl, <<$temp_sklattrib['name']>>_muta)
-  if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._exp ?? 0) > ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._mem ?? 0)) {
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['max_deg'] = qspFunc(s, 'stat_funcs', 'get_max_deg', qspUntranslated(s, "\u00010\u0001", { location: "stat_sklattrib" }), qspUntranslated(s, "\u00011\u0001", { location: "stat_sklattrib" }));
+  if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) > ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_mem'] ?? 0)) {
     // TODO-QSP: <<$temp_sklattrib['name']>>_deg = temp_sklattrib['max_deg']
   } else {
     // TODO-QSP: <<$temp_sklattrib['name']>>_exp = <<$temp_sklattrib['name']>>_mem
     // TODO-QSP: <<$temp_sklattrib['name']>>_deg -= temp_sklattrib['deg_loss']
   }
-  if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._deg ?? 0) <= 0) {
-    if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._lvl ?? 0) <= ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._flr ?? 0)) {
+  if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_deg'] ?? 0) <= 0) {
+    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_lvl'] ?? 0) <= ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_flr'] ?? 0)) {
       // TODO-QSP: <<$temp_sklattrib['name']>>_lvl = <<$temp_sklattrib['name']>>_flr
       // TODO-QSP: <<$temp_sklattrib['name']>>_deg = temp_sklattrib['max_deg']
     } else {
@@ -107,17 +107,17 @@ function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$temp_sklattrib['name']>>_lvlst = <<$temp_sklattrib['name']>>_lvl
   // TODO-QSP: <<$temp_sklattrib['name']>>_mem = <<$temp_sklattrib['name']>>_exp
   // TODO-QSP: "
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'attribute') {
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length) {
       // TODO-QSP: jump 'degloop_inner'
     }
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'skill';
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'skill';
   } else {
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).skl_name ?? {}).length) {
       // TODO-QSP: jump 'degloop_inner'
     }
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'END';
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'END';
   }
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'skill') {
     // TODO-QSP: jump 'degloop_outer'
@@ -129,31 +129,31 @@ function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'daycall') {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['daycall'] = 1;
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['daycall'] = 1;
   }
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'attribute';
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'attribute';
   // TODO-QSP: :advloop_outer
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = 0;
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = 0;
   // TODO-QSP: :advloop_inner
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'attribute') {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
   } else {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "skl_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "skl_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
   }
   if (((s as any).temp_sklattrib ?? 0)?.['daycall']) {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['update_stat'] = 1;
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 1;
   } else {
     // TODO-QSP: dynamic "
-    if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._exp ?? 0) !== ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._mem2 ?? 0)) {
-      if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['update_stat'] = 1;
+    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) !== ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_mem2'] ?? 0)) {
+      ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 1;
     } else {
-      if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._exp ?? 0) >= ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._xpnxt ?? 0)) {
-        if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['update_stat'] = 1;
+      if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) >= ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_xpnxt'] ?? 0)) {
+        ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 1;
       } else {
-        if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._exp ?? 0) < ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._xpprv ?? 0)) {
-          if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['update_stat'] = 1;
+        if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) < ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_xpprv'] ?? 0)) {
+          ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 1;
         } else {
-          if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['update_stat'] = 0;
+          ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 0;
         }
       }
     }
@@ -164,18 +164,18 @@ function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: <<$temp_sklattrib['name']>>_lvl = <<$temp_sklattrib['name']>>_lvlst
     // TODO-QSP: <<$temp_sklattrib['name']>>_xpprv = func('stat_funcs', 'get_xpprv', <<$temp_sklattrib['name']>>_lvl)
     // TODO-QSP: <<$temp_sklattrib['name']>>_xpnxt = func('stat_funcs', 'get_xpnxt', <<$temp_sklattrib['name']>>_lvl)
-    if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._exp ?? 0) >= ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._xpnxt ?? 0)) {
+    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) >= ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_xpnxt'] ?? 0)) {
       // TODO-QSP: <<$temp_sklattrib['name']>>_lvl += 1
     } else {
-      if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._exp ?? 0) < ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._xpprv ?? 0)) {
+      if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) < ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_xpprv'] ?? 0)) {
         // TODO-QSP: <<$temp_sklattrib['name']>>_lvl -= 1
       }
     }
     // TODO-QSP: <<$temp_sklattrib['name']>>_lvlst = <<$temp_sklattrib['name']>>_lvl
-    if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._lvl ?? 0) / 5 > ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._flr ?? 0)) {
+    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_lvl'] ?? 0) / 5 > ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_flr'] ?? 0)) {
       // TODO-QSP: <<$temp_sklattrib['name']>>_flr = <<$temp_sklattrib['name']>>_lvl / 5
     }
-    if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._lvl ?? 0) > (100 + (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._muta ?? 0) * 50))) {
+    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_lvl'] ?? 0) > (100 + (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_muta'] ?? 0) * 50))) {
       // TODO-QSP: <<$temp_sklattrib['name']>>_lvl = (100 + (<<$temp_sklattrib['name']>>_muta * 50))
     }
     // TODO-QSP: <<$temp_sklattrib['name']>>_xpprv = func('stat_funcs', 'get_xpprv', <<$temp_sklattrib['name']>>_lvl)
@@ -183,17 +183,17 @@ function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: <<$temp_sklattrib['name']>>_mem2 = <<$temp_sklattrib['name']>>_exp
     // TODO-QSP: "
   }
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'attribute') {
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length) {
       // TODO-QSP: jump 'advloop_inner'
     }
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'skill';
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'skill';
   } else {
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).skl_name ?? {}).length) {
       // TODO-QSP: jump 'advloop_inner'
     }
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'END';
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'END';
   }
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'skill') {
     // TODO-QSP: jump 'advloop_outer'
@@ -215,38 +215,38 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInitLoop(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'attribute';
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'attribute';
   // TODO-QSP: :initloop_outer
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = 0;
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = 0;
   // TODO-QSP: :initloop_inner
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'attribute') {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
   } else {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "skl_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "skl_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
   }
   // TODO-QSP: dynamic "
-  if (((s as any).pcs_ ?? 0)((s as any).temp_sklattrib ?? 0)?.['name'] > 0  &&  ((s as any).temp_sklattrib ?? 0)?.['name'](!((s as any)._lvl ?? 0))) {
+  if (((s as any)['pcs_' + ((s as any).temp_sklattrib ?? {})['name']] ?? 0) > 0  &&  (!((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_lvl'] ?? 0))) {
     // TODO-QSP: <<$temp_sklattrib['name']>>_lvl = pcs_<<$temp_sklattrib['name']>>
     // TODO-QSP: <<$temp_sklattrib['name']>>_lvlst = <<$temp_sklattrib['name']>>_lvl
     // TODO-QSP: <<$temp_sklattrib['name']>>_xpprv = func('stat_funcs', 'get_xpprv', <<$temp_sklattrib['name']>>_lvl)
     // TODO-QSP: <<$temp_sklattrib['name']>>_xpnxt = func('stat_funcs', 'get_xpnxt', <<$temp_sklattrib['name']>>_lvl)
     // TODO-QSP: <<$temp_sklattrib['name']>>_exp = <<$temp_sklattrib['name']>>_xpprv + 1
     // TODO-QSP: <<$temp_sklattrib['name']>>_mem = <<$temp_sklattrib['name']>>_xpprv
-    // TODO-QSP: temp_sklattrib['max_deg'] = func('stat_funcs', 'get_max_deg', <<$temp_sklattrib['name']>>_lvl, <<$temp_sklattrib['name']>>_muta)
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['max_deg'] = qspFunc(s, 'stat_funcs', 'get_max_deg', qspUntranslated(s, "\u00010\u0001", { location: "stat_sklattrib" }), qspUntranslated(s, "\u00011\u0001", { location: "stat_sklattrib" }));
     // TODO-QSP: <<$temp_sklattrib['name']>>_deg = rand(max(100, temp_sklattrib['max_deg'] / 2), max(150, 3 * temp_sk...
   }
   // TODO-QSP: "
-  if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
+  ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'attribute') {
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length) {
       // TODO-QSP: jump 'initloop_inner'
     }
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'skill';
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'skill';
   } else {
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).skl_name ?? {}).length) {
       // TODO-QSP: jump 'initloop_inner'
     }
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['stat_type'] = 'END';
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'END';
   }
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'skill') {
     // TODO-QSP: jump 'initloop_outer'

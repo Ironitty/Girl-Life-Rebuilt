@@ -5,10 +5,12 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).face_style ?? 0)?.['type'] === 1) {
     if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
-      if (!(s as any).face_style) (s as any).face_style = {}; (s as any).face_style['avatar_path'] = 'images/avatar.jpg';
+      ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
     }
+    (s as any).result = ((s as any).face_style ?? 0)?.['avatar_path'];
   } else {
     if (((s as any).face_style ?? 0)?.['type'] === 2) {
+      (s as any).result = 'images/pc/body/head/';
       if (((s as any).glass ?? 0) >= 2) {
         // TODO-QSP: $result += 'stylish/'
       } else {
@@ -194,6 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       // TODO-QSP: $result += '.jpg'
     } else {
+      (s as any).result = 'images/pc/body/hairstyles/';
       if (((s as any).pcs_haircol ?? 0) > 3) {
         // TODO-QSP: $result += 'colours'
         // TODO-QSP: jump 'skipsteps'

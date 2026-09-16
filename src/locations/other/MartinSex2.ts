@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -271,11 +271,13 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).orgasm_txt = 'You only lasted a few minutes, that\'s how horny you were. You and Martin haven\'t even really had the time to get into a proper rhythm before you feel your orgasm build up and sweep you off your feet. You cum with loud moans, your insides quivering around Martin\'s cock as you buck against your lover and desperately try to keep up your movements. But you fail and have to stop after a few seconds because your legs feel like jelly. After a short break in Martin\'s arms, you start moving once again, shifting here and there to allow Martin to explore every inch of your now tightened pussy.';
   if (((s as any).martinpos ?? 0) === 'cowgirl'  ||  ((s as any).martinpos ?? 0) === 'rev_cowgirl') {
     qspCall(s, 'arousal', 'vaginal', 7, 'dom');
   } else {
     qspCall(s, 'arousal', 'vaginal', 7, 'sub');
   }
+  (s as any).orgasm_txt = '';
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
   if (((s as any).martinpos ?? 0) === 'rev_cowgirl'  ||  ((s as any).martinpos ?? 0) === 'doggystyle') {
@@ -316,8 +318,10 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
         scene.text('This idea, and the memories of your previous exhibitionist acts manifest themselves in a small fantasy: You imagine what it would be like if the bar wasn\'t empty but bustling with people, what it might be like to fuck the bartender right here in the center, with all of their eyes on you…');
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       }
+      (s as any).orgasm_txt = 'And it\'s this fantasy that sets you off, causing you to cry out in heat and your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + ' pussy to quiver around Martin\'s cock as you imagine how strangers jerk off to your fucking. As you come down from your high, you feel like a pervert… but that\'s not a bad thing, right?';
       qspCall(s, 'arousal', 'vaginal', 3, 'exhibitionism');
       scene.text('Martin, who has been relatively passive so far, leaving you in control, shakes you out of your reverie when his hands move to your hips. No doubt he intends to take a little more initiative.');
+      (s as any).orgasm_txt = 'Your sense of \' + iif(dominance > 20, \'control over\', \'submission to\') + \' Martin and the intense feeling of him moving inside your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + ' pussy drive you ever closer to the edge until you can no longer take it. You cum loudly, shivering all over, your pussy massaging Martin\'s cock with its contractions as if it wanted to squeeze the cum out of him. The orgasm lasts for what feels like an eternity, but when it has passed\' + iif($martinpos = \'rev_cowgirl\', \' and you look back at him\', \') + \', Martin gives you a smug, self-satisfied look that makes you chuckle. You\'re not done with each other yet, though, and before long, you\'ve resumed your fast, hard rhythm.';
       scene.text('And you could have resisted him; surely you could have stayed in control. But the simple fact of the matter was that you didn\'t want to. You were on top of him, you had proven to yourself and to him that you could make him do what you want. And now, you <b>want</b> him to take charge of you again.');
       // TODO-QSP: dynamic text: With no resistance from you, Martin grabs onto your hips and stops your movement...
       scene.text(`With no resistance from you, Martin grabs onto your hips and stops your movement, only the tip of his ${((s as any).dick_girth || '')} penis still inside your pussy. You want him inside you again, but he doesn't let you move, forcing you to look' + iif($martinpos = 'rev_cowgirl', ' over your shoulder', ') + ' at your lover, feeling both aroused and vulnerable.`);
@@ -339,8 +343,10 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
           scene.text('This idea, and the memories of your previous exhibitionist acts manifest themselves in a small fantasy: You imagine what it would be like if the bar wasn\'t empty but bustling with people, what it might be like to be fuck by the bartender right here in the center, with all of their eyes on you…');
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
         }
+        (s as any).orgasm_txt = 'And it\'s this fantasy that sets you off, causing you to cry out in heat and your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + ' pussy to quiver around Martin\'s cock as you imagine how strangers jerk off to your fucking. As you come down from your high, you feel like a pervert… but that\'s not a bad thing, right?';
         qspCall(s, 'arousal', 'vaginal', 3, 'exhibitionism');
         scene.text('Martin was firmly in control so far, but it seems like it\'s not enough for him: All of a sudden, you can feel his hand at your neck, grabbing you, forcing you to look at him and increasing both his leverage and sense of power over you.');
+        (s as any).orgasm_txt = ((((s as any).dominance ?? 0) > 20) ? ('Wresting control from') : ('Submitting to')) + ' Martin and the intense feeling of him moving inside your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + ' pussy drive you ever closer to the edge until you can no longer take it. You cum loudly, shivering all over, your pussy massaging Martin\'s cock with its contractions as if it wanted to squeeze the cum out of him as he fucks you. The orgasm lasts for what feels like an eternity and makes your legs feel like jelly, but when it has passed and you look back at him, Martin gives you a smug, self-satisfied look that makes you chuckle. You\'re not done with each other yet, though, and before long, you\'ve resumed your fast, hard rhythm.';
         scene.text('Sure, you could have resisted him, but… you choosing this position had already been a submission in and of itself. You <b>wanted</b> him to take charge of you, to fuck you however he wanted, treat you as he pleased. And the kinky side of you was curious about where he was going with this.');
         scene.text('Sensing no resistance from you, Martin tightens his grip and looks into your eyes. He has stopped moving at all, but he\'s not saying anything. All he does is look at you. Seconds pass, his cock deep inside you, throbbing and thick, but perfectly still… it\'s driving you crazy. You squirm against him, trying to wiggle and move, but all the accomplishes is make him hold you tighter.');
         scene.text('"What are you waiting for?" You moan in frustration.');
@@ -360,8 +366,10 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
             scene.text('This idea, and the memories of your previous exhibitionist acts manifest themselves in a small fantasy: You imagine what it would be like if the bar wasn\'t empty but bustling with people, what it might be like to be fuck by the bartender right here in the center, with all of their eyes on you…');
             (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
           }
+          (s as any).orgasm_txt = 'And it\'s this fantasy that sets you off, causing you to cry out in heat and your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + ' pussy to quiver around Martin\'s cock as you imagine how strangers jerk off to your fucking. As you come down from your high, you feel like a pervert… but that\'s not a bad thing, right?';
           qspCall(s, 'arousal', 'vaginal', 3, 'exhibitionism');
           scene.text('Martin was firmly in control so far, but it seems like it\'s not enough to him: All of a sudden, you can feel his hand at your neck, grabbing you, forcing you to look at him and increasing both his leverage and sense of power over you.');
+          (s as any).orgasm_txt = ((((s as any).dominance ?? 0) > 20) ? ('Wresting control from') : ('Submitting to')) + ' Martin and the intense feeling of him moving inside your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + ' pussy drive you ever closer to the edge until you can no longer take it. You cum loudly, shivering all over, your pussy massaging Martin\'s cock with its contractions as if it wanted to squeeze the cum out of him as he fucks you. The orgasm lasts for what feels like an eternity, but when it has passed and you look up at him, Martin gives you a smug, self-satisfied look that makes you chuckle. You\'re not done with each other yet, though, and before long, you\'ve resumed your fast, hard rhythm.';
           scene.text('Sure, you could have resisted him, but… you choosing this position had already been a submission in and of itself. You <b>wanted</b> him to take charge of you, to fuck you any way he wanted, treat you as he pleased. And the kinky side of you was curious about where he was going with this.');
           scene.text('Sensing no resistance from you, Martin tightens his grip around your neck a little and looks into your eyes. He has stopped moving at all, but he\'s not saying anything. All he does is look at you. Seconds pass, his cock deep inside you, throbbing and thick, but perfectly still… it\'s driving you crazy. You squirm against him, trying to wiggle and move, but all the accomplishes is make him hold you tighter.');
           scene.text('"You love having me inside you, don\'t you?"');
@@ -384,8 +392,10 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
               scene.text('This idea, and the memories of your previous exhibitionist acts manifest themselves in a small fantasy: You imagine what it would be like if the bar wasn\'t empty but bustling with people, what it might be like to be fuck by the bartender right here in the center, with all of their eyes on you…');
               (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
             }
+            (s as any).orgasm_txt = 'And it\'s this fantasy that sets you off, causing you to cry out in heat and your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + ' pussy to quiver around Martin\'s cock as you imagine how strangers jerk off to your fucking. As you come down from your high, you feel like a pervert… but that\'s not a bad thing, right?';
             qspCall(s, 'arousal', 'vaginal', 3, 'exhibitionism');
             scene.text('Martin was firmly in control so far, and his switch of position only served to emphasize that, but it seems like it\'s not enough to him: All of a sudden, you can feel one of his hands leave your hips and grab your neck, forcing you to look back at him and increasing both his leverage and sense of power over you.');
+            (s as any).orgasm_txt = ((((s as any).dominance ?? 0) > 20) ? ('Wresting control from') : ('Submitting to')) + ' Martin and the intense feeling of him moving inside your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + ' pussy drive you ever closer to the edge until you can no longer take it. You cum loudly, shivering all over, your pussy massaging Martin\'s cock with its contractions as if it wanted to squeeze the cum out of him as he fucks you. The orgasm lasts for what feels like an eternity and your legs feel so weak that Martin has to support you, but when it has passed and you look back at him, Martin gives you a smug, self-satisfied look that makes you chuckle. You\'re not done with each other yet, though, and before long, you\'ve resumed your fast, hard rhythm.';
             scene.text('Sure, you could have resisted him, but… you didn\'t resist when he put you on your feet. You didn\'t resist when he penetrated you again. You <b>wanted</b> him to take charge of you, to fuck you however he wanted, didn\'t you? So why start pretending otherwise now?');
             scene.text('When he senses no resistance, Martin tightens his grip. He has stopped moving at all, but he\'s not saying anything. All he does is look at you. Seconds pass, his cock deep inside you, throbbing and thick, but perfectly still… it\'s driving you crazy. You squirm against him, trying to wiggle and move, but all the accomplishes is make him hold you tighter.');
             scene.text('"What are you waiting for?" You moan in frustration.');
@@ -402,6 +412,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Unsurprisingly, Martin cannot withstand this kind of pleasure for too long: After a few minutes of this, he groans your name and you know that he is about to cum.');
     qspCall(s, 'stat', '');
+    (s as any).orgasm_txt = '';
     scene.actions([
       { label: 'Let him cum in your mouth', goto: ['MartinSex2', 'MartinCumshot_Mouth'] },
       { label: 'Let him cum on your face', goto: ['MartinSex2', 'MartinCumshot_Face'] },
@@ -613,17 +624,19 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
       scene.text('You are enjoying what he\'s doing so much that it takes a minute or so before you remember to stroke the dick in your hand, getting him nice and hard for what you are about to do.');
     }
   }
+  (s as any).orgasm_txt = 'But that will have to wait another minute or two, because Martin\'s fingers seem to know exactly which way they have to bend inside your ass, touching you in all the right places, and he\'s not letting up. It certainly wasn\'t your intention to cum during foreplay but your intentions mean very little now: Your anal orgasm hits like a truck and while it lasts, your ass clenches so hard around Martin\'s fingers that you could swear you heard him sigh with relief when you finally release them.';
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     qspCall(s, 'arousal', 'anal_finger', 5, 'lube');
     qspCall(s, 'arousal', 'hj', (-3));
     qspCall(s, 'arousal', 'masturbate', (-5));
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
   } else {
     qspCall(s, 'arousal', 'anal_finger', 5);
     qspCall(s, 'arousal', 'hj', (-3));
     qspCall(s, 'arousal', 'foreplay', (-5));
   }
   qspCall(s, 'stat', '');
+  (s as any).orgasm_txt = '';
   // TODO-QSP: end
   scene.actions([
     { label: 'Time for anal', handler: (st: GameState) => {
@@ -655,12 +668,14 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$OpenInnerThought>>You ain't seen nothing yet<<$CloseInnerThought>>, you think...
           scene.text(`${((s as any).OpenInnerThought || '')}You ain't seen nothing yet${((s as any).CloseInnerThought || '')}, you think to yourself and lift yourself up. This time, however, you push down faster. Up again and, encouraged by the lack of pain the first time around, you slam your ass down, slapping against Martin's hips as you take him balls-deep again.`);
         } else {
-          scene.actions([{ label: 'Continue', goto: ['MartinSex2', 'PainalDyn'] }]);
+          qspGoto(s, 'MartinSex2', 'PainalDyn');
         }
       }
       scene.text('The room is soon filled with the sound of slapping and moaning as you ride Martin, fucking your ass on his dick fast and loud, enjoying yourself thoroughly.');
+      (s as any).orgasm_txt = 'Feeling Martin\'s cock inside your ass while you\'re riding him is wonderful. Not only does your backdoor feel full in all the right ways, but you are in control of it all, the goddess of Martin\'s small universe of lust, and if you willed it, he could go to bed with blue balls or dream of the biggest orgasm he\'s ever had. The heady combination of power and that perfect friction his cock provides as you slide your ass up and down its length proves too much for you and you cum, hard.';
       qspCall(s, 'arousal', 'anal', 5, 'dom');
       qspCall(s, 'stat', '');
+      (s as any).orgasm_txt = '';
     } else {
       if (((s as any).anal_slip ?? 0) > 0) {
         scene.text('You are definitely done with foreplay and wiggle your ass invitingly as you look back at your lover. Martin looks like he wants to make a remark about your impatience, but you are having none of it.');
@@ -684,15 +699,18 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
           scene.text('Your ass feels incredibly full, and a single look over the shoulder confirms that Martin is no less pleased: He is looking at where you are connected, spell-bound by the sight of his cock deep inside your ass and probably no less amazed that you took him inside in a single, slow thrust.');
           scene.text('After a start like that, you know that the time for gentleness has passed. Indeed, Martin pulls back, but this time, he meets your ass with a resounding smack and a soft moan escapes you. Encouraged by these sounds, Martin withdraws again and hilts himself into your ass again, his balls smacking against your pussy as you meet him halfway.');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['MartinSex2', 'PainalDyn'] }]);
+          qspGoto(s, 'MartinSex2', 'PainalDyn');
         }
       }
       scene.text('The room is soon filled with the sound of slapping and moaning as Martin fucks your ass hard; you give him a run for his money, though, meeting his thrusts and fucking yourself on his dick, completely giving in to pleasure.');
+      (s as any).orgasm_txt = 'Feeling Martin\'s cock inside your ass while he fucks you from behind turns you on immensely. It\'s one thing to be dominated, but to be in such a submissive position while getting fucked up the ass multiplies that sensation, and it\'s enough to drive you over the edge, moaning like a slut all through the climax.';
       qspCall(s, 'arousal', 'anal', 5, 'lube', 'sub');
       qspCall(s, 'stat', '');
+      (s as any).orgasm_txt = '';
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
+    (s as any).orgasm_txt = ((((s as any).dominance ?? 0) > 20) ? ('Wresting control from') : ('Submitting to')) + ' Martin and the intense feeling of him filling your ass drive you ever closer to the edge until you can no longer take it. You cum loudly, shivering all over' + ((((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1  ||  qspFunc(s, 'fetish', 'get_pref', 'exhibitionism') > 50) ? (' as your mind basks in your exhibitionist fantasy') : ('')) + ', your ass clenching around and massaging Martin\'s cock with its contractions as if it wanted to squeeze the cum out of him as' + ((((s as any).martinpos ?? 0) === 'doggystyle') ? (' he fucks you') : (' you fuck him')) + '. Your anal orgasm lasts for what feels like an eternity, but when it has passed and you look back at him, Martin gives you a smug, self-satisfied look that makes you chuckle. You\'re not done with each other yet, though, and before long, you\'ve resumed your fast, hard rhythm.';
     if (((s as any).martinpos ?? 0) === 'rev_cowgirl') {
       scene.img('images/locations/city/industrial/bar/sex/bar/martin/anal/anal_rev.mp4');
       scene.text('It amazes you how different anal sex feels from regular sex. Some people may find it disgusting or painful, but when your brain is wired up just right, it can be intense and oh-so-satisfying.');
@@ -725,6 +743,7 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('But nobody, not even your Latin lover, can resist the tightness of your ass forever, especially not when you two are fucking like rabbits, and when you sense a change in his movements, you know that he\'s very close to coming.');
     qspCall(s, 'stat', '');
+    (s as any).orgasm_txt = '';
     scene.actions([
       { label: 'Let him cum in your mouth', goto: ['MartinSex2', 'MartinCumshot_Mouth'] },
       { label: 'Let him cum on your face', goto: ['MartinSex2', 'MartinCumshot_Face'] },
@@ -734,7 +753,9 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
     scene.text('You could have taken his cum anywhere you wanted but, really, you have him right where you want him - deep inside your ass.');
     scene.text('You speed up your movements even more, panting "Cum for me, baby! Cum in my ass!" between thrusts. Your horny plea is too much for Martin and, with a final moan, he cums, shooting his load deep into your bowels.');
     qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
+    (s as any).orgasm_txt = 'The feeling of Martin\'s hot cum in your ass finally pushes you over the edge, turning your moans into screams as you twitch and contract around his hard cock, milking him dry with your tight hole.';
     qspCall(s, 'arousal', 'anal', 1);
+    (s as any).orgasm_txt = '';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get cleaned up', goto: ['MartinSex2', 'MartinCleanup'] },
@@ -773,6 +794,7 @@ function enterPainalDyn(s: GameState, scene: SceneBuilder): void {
       scene.text('"You really like it when it hurts, do you?"');
       scene.text('You don\'t answer him directly. You just keep moving your bottom back and forth along his cock, both dreading and savoring every bit of pain along the way.');
       scene.text('Well, most of it, anyway.');
+      (s as any).orgasm_txt = 'no';
       qspCall(s, 'arousal', 'anal', 3, 'maso');
       qspCall(s, 'stat', '');
       scene.actions([
@@ -785,9 +807,11 @@ function enterPainalDyn(s: GameState, scene: SceneBuilder): void {
     scene.text(`But he's not being inconsiderate: As soon as his pace quickens, he reaches around to your pussy, rubbing your clit as he drills your ${((s as any).pc_desc ?? 0)?.['anus'] ?? ''} asshole, adding a more familiar note of lust to the sharp pain from your butt.`);
     scene.text('The conflicting sensations rack you, hurting and arousing and bewildering all at once.');
     scene.text('You cannot tell how long this maelstrom tosses to and fro, the pain getting stronger the longer you keep going. All you know is that, eventually, Martin hammers his cock into your ass with abandon and finally, loudly, fills your bowels with his sperm.');
+    (s as any).orgasm_txt = 'Even though you were enjoying the pain, you didn\'t think you would actually orgasm. But the feeling of Martin\'s hot cum in your ass seems to flip a switch inside you, setting all the nerves in your ass on edge and flooding your brain with pleasure. You cum, your yelps of pain mixing with moans of pleasure as your mind goes blank.';
     qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal', 'masturbate', 5);
     qspCall(s, 'arousal', 'anal', (-5), 'maso');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get cleaned up', handler: (st: GameState) => {
@@ -855,9 +879,11 @@ function enterMartinCumshot_Mouth(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('For a moment, you think about saying something dirty, like verbally asking him to cum in your mouth, but by the time this thought has manifested, Martin has already pulled out and complied with it, shooting his hot sperm into your open, waiting mouth.');
   scene.text('You wait like this for the second and third spurt, but then you take him right back into your mouth, sucking and licking him through his orgasm.');
+  (s as any).orgasm_txt = 'The taste of Martin\'s hot cum on your tongue finally pushes you over the edge, causing you to moan around his cock as you keep pleasing him, both him and you completely taken off-guard by your oral orgasm.';
   qspCall(s, 'arousal', 'bj', 1);
   // TODO-QSP: dynamic text: When his ' + iif(pcs_horny = 0, 'and your orgasm have', 'orgasm has') + ' subsid...
   scene.text('When his \' + iif(pcs_horny = 0, \'and your orgasm have\', \'orgasm has\') + \' subsided, you release his softening dick from your mouth once more and show Martin his jizz on your tongue before swallowing it\' + iif(trait_vars[\'cumeater\'] = 1, \', savouring the taste you come to love as the thick liquid goes down your throat\', \' reluctantly, knowing that men love it when women do that\') + \'. The smile he gives you as you show him your clean tongue is simply priceless.');
+  (s as any).orgasm_txt = '';
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (5);
   qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
   // TODO-QSP: end

@@ -10,24 +10,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterUndressFunction(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['undressed_check'] === 0) {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['undressed_check'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['PCloThinness'] = ((s as any).PCloThinness ?? 0);
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['PCloTopCut'] = ((s as any).PCloTopCut ?? 0);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['undressed_check'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['PCloThinness'] = ((s as any).PCloThinness ?? 0);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['PCloTopCut'] = ((s as any).PCloTopCut ?? 0);
     if (((s as any).CloDress ?? 0) === 1) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['CloDress'] = 1;
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['top_noun'] = 'dress';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['CloDress'] = 1;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['top_noun'] = 'dress';
     } else {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['top_noun'] = 'top';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['top_noun'] = 'top';
     }
     if ((!((s as any).CloSkirtShortness ?? 0))) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['CloPantsShortness'] = ((s as any).CloPantsShortness ?? 0);
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bottom_noun'] = 'pants';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['CloPantsShortness'] = ((s as any).CloPantsShortness ?? 0);
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['bottom_noun'] = 'pants';
     } else {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bottom_noun'] = 'skirt';
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['CloSkirtShortness'] = ((s as any).CloSkirtShortness ?? 0);
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['bottom_noun'] = 'skirt';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['CloSkirtShortness'] = ((s as any).CloSkirtShortness ?? 0);
     }
     if (((s as any).CloStyle2 ?? 0) === 4) {
-      if (!(s as any).npc_know_schoolgirl) (s as any).npc_know_schoolgirl = {}; (s as any).npc_know_schoolgirl[String((s as any).npcID ?? 0)] = 1;
+      ((s as any).npc_know_schoolgirl = (s as any).npc_know_schoolgirl ?? {})[String((s as any).npcID ?? 0)] = 1;
     }
     qspCall(s, 'outfit', 'transfer_backup', 0, 'sex_ev');
     qspCall(s, 'outfit', 'safe_backup', 'sex_ev');
@@ -366,7 +366,7 @@ function enterDressLoop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDressLoopEnd(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['undressed_check'] = 0;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['undressed_check'] = 0;
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).lastwornpantytype ?? 0)?.['sex_ev'] !== 'none') {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['sex_ev'], lastwornpantynumber['sex_ev']
   }
@@ -379,7 +379,7 @@ function enterDressLoopEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shoeworntype ?? 0) === 'none'  &&  ((s as any).lastwornshoetype ?? 0)?.['sex_ev'] !== 'none') {
     // TODO-QSP: gs 'shoes', 'wear', $lastwornshoetype['sex_ev'], lastwornshoenumber['sex_ev']
   }
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_end'] = 1;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_end'] = 1;
   qspCall(s, 'outfit', 'remove_backup', 'sex_ev');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -388,23 +388,23 @@ function enterDressLoopEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['dressing_start'] === 0) {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dressing_start'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'reaching down for your clothes';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['dressing_start'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'reaching down for your clothes';
     return;
   }
   if (((s as any).sex_ev ?? 0)?.['panty_wear'] === 0) {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['panty_wear'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['panty_wear'] = 1;
     if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).lastwornpantytype ?? 0)?.['sex_ev'] !== 'none') {
       // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['sex_ev'], lastwornpantynumber['sex_ev']
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'pulling your panties up';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'pulling your panties up';
       return;
     }
   }
   if (((s as any).sex_ev ?? 0)?.['bra_wear'] === 0) {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bra_wear'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['bra_wear'] = 1;
     if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).lastwornbratype ?? 0)?.['sex_ev'] !== 'none') {
       // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['sex_ev'], lastwornbranumber['sex_ev']
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'fastening your bra around your chest';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'fastening your bra around your chest';
       return;
     }
   }
@@ -416,61 +416,61 @@ function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
     scene.text('Stored clothing values:');
     // TODO-QSP: "  $lastwornclothingtype['sex_ev'] = '<<$lastwornclothingtype['sex_ev']>>'"
     // TODO-QSP: "  lastwornclothingnumber['sex_ev'] = <<lastwornclothingnumber['sex_ev']>>"
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_end'] = 2;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_end'] = 2;
     return;
   }
   if (((s as any).sex_ev ?? 0)?.['clothing_end'] === 0) {
     if (((s as any).sex_ev ?? 0)?.['dress_top_wear'] === 0) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_top_wear'] = 1;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_top_wear'] = 1;
       if (((s as any).CloDress ?? 0) === 1) {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'pulling your dress over your shoulders';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'pulling your dress over your shoulders';
         return;
       }
     }
     if (((s as any).sex_ev ?? 0)?.['dress_skirt_wear'] === 0) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_skirt_wear'] = 1;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_skirt_wear'] = 1;
       if (((s as any).CloDress ?? 0) === 1) {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['clothing_end'] = 1;
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'smoothing your skirt out';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['clothing_end'] = 1;
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'smoothing your skirt out';
         return;
       }
     }
     if (((s as any).sex_ev ?? 0)?.['skirt_wear'] === 0) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['skirt_wear'] = 1;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['skirt_wear'] = 1;
       if (((s as any).CloSkirtShortness ?? 0) > 0) {
         if (((s as any).pantyworntype ?? 0) === 'none') {
-          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'slipping your skirt up your legs ';
+          ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'slipping your skirt up your legs ';
         } else {
-          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'zipping your skirt up over your panties';
+          ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'zipping your skirt up over your panties';
         }
         return;
       }
     }
     if (((s as any).sex_ev ?? 0)?.['pants_wear'] === 0) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pants_wear'] = 1;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['pants_wear'] = 1;
       if ((!((s as any).CloSkirtShortness ?? 0))) {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'tugging your pants over your hips';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'tugging your pants over your hips';
         return;
       }
     }
     if (((s as any).braworntype ?? 0) === 'none') {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'pulling your top over your breasts';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'pulling your top over your breasts';
     } else {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'pulling your top over your bra';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'pulling your top over your bra';
     }
     return;
   }
   if (((s as any).sex_ev ?? 0)?.['shoe_wear'] === 0) {
     if (((s as any).shoeworntype ?? 0) === 'none'  &&  ((s as any).lastwornshoetype ?? 0)?.['sex_ev'] !== 'none') {
       // TODO-QSP: gs 'shoes', 'wear', $lastwornshoetype['sex_ev'], lastwornshoenumber['sex_ev']
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['shoe_wear'] = 1;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['shoe_wear'] = 1;
       return;
     }
     if (((s as any).sex_ev ?? 0)?.['shoe_wear'] === 1) {
       if (((s as any).shoeworntype ?? 0) === 'danilovich') {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'tying up your shoe laces';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'tying up your shoe laces';
       } else {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'slipping on your shoes';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'slipping on your shoes';
       }
     } else {
       if (((s as any).shoeworntype ?? 0) === 'none') {
@@ -478,27 +478,27 @@ function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
         scene.text('Stored shoe values:');
         // TODO-QSP: "  $lastwornshoetype['sex_ev'] = '<<$lastwornshoetype['sex_ev']>>'"
         // TODO-QSP: "  lastwornshoenumber['sex_ev'] = '<<lastwornshoenumber['sex_ev']>>'"
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_end'] = 2;
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_end'] = 2;
         return;
       }
     }
   }
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['clothing_end'] = 1;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['clothing_end'] = 1;
   if (((s as any).sex_ev ?? 0)?.['clothing_end'] === 1) {
     qspCall(s, 'outfit', 'remove_backup', 'sex_ev');
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['clothing_end'] = 2;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['clothing_end'] = 2;
     if (((s as any).CloDress ?? 0) === 1) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'checking your dress';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'checking your dress';
     } else {
       if (((s as any).CloSkirtShortness ?? 0) > 0) {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'smoothing your skirt';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'smoothing your skirt';
       } else {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_describe'] = 'checking your clothes';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'checking your clothes';
       }
     }
     return;
   }
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dress_end'] = 1;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_end'] = 1;
   // TODO-QSP: end
   scene.build();
 }

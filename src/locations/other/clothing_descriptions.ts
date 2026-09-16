@@ -3,20 +3,28 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).description = '';
   if (((s as any).CloDress ?? 0) === 1) {
     if (((s as any).CloQuality ?? 0) === 1) {
+      (s as any).description = 'This crappy quality dress';
     } else {
       if (((s as any).CloQuality ?? 0) === 2) {
+        (s as any).description = 'This very low quality dress';
       } else {
         if (((s as any).CloQuality ?? 0) === 3) {
+          (s as any).description = 'This low quality dress';
         } else {
           if (((s as any).CloQuality ?? 0) === 4) {
+            (s as any).description = 'This average quality dress';
           } else {
             if (((s as any).CloQuality ?? 0) === 5) {
+              (s as any).description = 'This reasonable quality dress';
             } else {
               if (((s as any).CloQuality ?? 0) === 6) {
+                (s as any).description = 'This good quality dress';
               } else {
                 if (((s as any).CloQuality ?? 0) === 7) {
+                  (s as any).description = 'This is an outstanding quality dress';
                 }
               }
             }
@@ -26,18 +34,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).CloQuality ?? 0) === 1) {
+      (s as any).description = 'This crappy quality outfit';
     } else {
       if (((s as any).CloQuality ?? 0) === 2) {
+        (s as any).description = 'This very low quality outfit';
       } else {
         if (((s as any).CloQuality ?? 0) === 3) {
+          (s as any).description = 'This low quality outfit';
         } else {
           if (((s as any).CloQuality ?? 0) === 4) {
+            (s as any).description = 'This average quality outfit';
           } else {
             if (((s as any).CloQuality ?? 0) === 5) {
+              (s as any).description = 'This reasonable quality outfit';
             } else {
               if (((s as any).CloQuality ?? 0) === 6) {
+                (s as any).description = 'This good quality outfit';
               } else {
                 if (((s as any).CloQuality ?? 0) === 7) {
+                  (s as any).description = 'This is an outstanding quality outfit';
                 }
               }
             }

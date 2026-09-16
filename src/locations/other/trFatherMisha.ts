@@ -569,6 +569,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('As you insert his cock into your wet slit, you take a minute to adjust yourself to your fathers cock. Slowly you begin rhythmically bouncing up and down his cock, as you bend over kissing him.');
     scene.text('Overcome by arousal, your father grabs your ass adjusting the speed of how quickly you bounce up and down. He makes you go faster and faster as he penetrates you deeper. By now you\'re loudly moaning your father is a great lover and he knows exactly how to fuck you to give you outmost pleasure.');
     scene.text('Not holding back you furiously and wildly begin bouncing on top of his cock. The two of you sound like two animals in heat as you\'re moaning loudly so that everyone in the near vicinity can hear you.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You\'re no longer able to hold back your screams of pleasure as your body begins to twitch. It\'s a violent orgasm and you\'re certain you\'ve never felt anything like this before. It\'s exactly as you fantasized about, when you met him for the first time.';
     qspCall(s, 'arousal', 'vaginal', 5, 'incest');
     qspCall(s, 'cum_call', '', '', 'A35', 1, 0, 12500, Math.floor(Math.random() * 21) + 20);
     qspCall(s, 'stat', '');

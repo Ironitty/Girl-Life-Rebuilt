@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspFunc } from '../_shared/qspBridge';
+import { qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,38 +14,38 @@ function enterCallboard(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/aurora/callboard.jpg');
   scene.text('<b>Calls For Extras</b>');
   if (((s as any).casting_extra1 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'BackShowerGirl\'">Background Shower Girl</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027BackShowerGirl\\u0027); return false;">Background Shower Girl</a>');
   }
   if (((s as any).casting_extra2 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'SpringBreakFlasher\'">Spring Break Flasher</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027SpringBreakFlasher\\u0027); return false;">Spring Break Flasher</a>');
   }
   if (((s as any).casting_extra3 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'cadaver\'">  </a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027cadaver\\u0027); return false;">  </a>');
   }
   if (((s as any).casting_extra4 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'DildoGirl\'">Dildo Girl</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027DildoGirl\\u0027); return false;">Dildo Girl</a>');
   }
   if (((s as any).casting_extra5 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'NakedLockerGirl\'">Naked Locker Girl</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027NakedLockerGirl\\u0027); return false;">Naked Locker Girl</a>');
   }
   if (((s as any).casting_extra6 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'UndressingLockerGirl\'">Undressing Locker Girl</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027UndressingLockerGirl\\u0027); return false;">Undressing Locker Girl</a>');
   }
   if (((s as any).casting_extra7 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'ToplessCheerleader\'">Topless Cheerleader</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027ToplessCheerleader\\u0027); return false;">Topless Cheerleader</a>');
   }
   if (((s as any).casting_extra8 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'HotShowerGirl\'">Hot Shower Girl</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027HotShowerGirl\\u0027); return false;">Hot Shower Girl</a>');
   }
   if (((s as any).casting_extra9 ?? 0) <= 40) {
-    scene.text('<a href="exec:gt \'casting\',\'WerewolfGirl\'">Werewolf Victim</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027WerewolfGirl\\u0027); return false;">Werewolf Victim</a>');
   }
   scene.text('<b>Calls For Day Players</b>');
   if (((s as any).casting_minor1 ?? 0) <= 25) {
-    scene.text('<a href="exec:gt \'casting\',\'DinerWaitress\'">Diner Waitress</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027DinerWaitress\\u0027); return false;">Diner Waitress</a>');
   }
   if (((s as any).casting_minor2 ?? 0) <= 25) {
-    scene.text('<a href="exec:gt \'casting\',\'SluttyClubGirl\'">Slutty Club Girl</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027casting\\u0027, \\u0027SluttyClubGirl\\u0027); return false;">Slutty Club Girl</a>');
   }
   scene.text('<b>Calls For Supporting Actress</b>');
   scene.text('<b>Calls For Lead Actress</b>');
@@ -78,27 +78,27 @@ function enterCallboardUpdate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAuditionSchedule(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['week'] = Math.floor(Math.random() * 7) + 1;
+  ((s as any).audition = (s as any).audition ?? {})['week'] = Math.floor(Math.random() * 7) + 1;
   if (((s as any).month ?? 0) === 2  &&  (((s as any).audition ?? 0)?.['week'] + ((s as any).day ?? 0)) > 28) {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['month'] = ((s as any).next_month_name ?? 0);
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['calendar_day'] = ((s as any).day ?? 0) - 28 + (((s as any).audition ?? {})?.['week'] ?? 0);
+    ((s as any).audition = (s as any).audition ?? {})['month'] = ((s as any).next_month_name ?? 0);
+    ((s as any).audition = (s as any).audition ?? {})['calendar_day'] = ((s as any).day ?? 0) - 28 + (((s as any).audition ?? {})?.['week'] ?? 0);
   } else {
     if ((((s as any).month ?? 0) === 4  ||  ((s as any).month ?? 0) === 6  ||  ((s as any).month ?? 0) === 9  ||  ((s as any).month ?? 0) === 11)  &&  (((s as any).audition ?? 0)?.['week'] + ((s as any).day ?? 0)) > 30) {
-      if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['month'] = ((s as any).next_month_name ?? 0);
-      if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['calendar_day'] = ((s as any).day ?? 0) - 30 + (((s as any).audition ?? {})?.['week'] ?? 0);
+      ((s as any).audition = (s as any).audition ?? {})['month'] = ((s as any).next_month_name ?? 0);
+      ((s as any).audition = (s as any).audition ?? {})['calendar_day'] = ((s as any).day ?? 0) - 30 + (((s as any).audition ?? {})?.['week'] ?? 0);
     } else {
       if ((((s as any).month ?? 0) === 1  ||  ((s as any).month ?? 0) === 3  ||  ((s as any).month ?? 0) === 5  ||  ((s as any).month ?? 0) === 7  ||  ((s as any).month ?? 0) === 8  ||  ((s as any).month ?? 0) === 10  ||  ((s as any).month ?? 0) === 12)  &&  (((s as any).audition ?? 0)?.['week'] + ((s as any).day ?? 0)) > 31) {
-        if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['month'] = ((s as any).next_month_name ?? 0);
-        if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['calendar_day'] = ((s as any).day ?? 0) - 31 + (((s as any).audition ?? {})?.['week'] ?? 0);
+        ((s as any).audition = (s as any).audition ?? {})['month'] = ((s as any).next_month_name ?? 0);
+        ((s as any).audition = (s as any).audition ?? {})['calendar_day'] = ((s as any).day ?? 0) - 31 + (((s as any).audition ?? {})?.['week'] ?? 0);
       } else {
-        if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['calendar_day'] = ((s as any).day ?? 0) + (((s as any).audition ?? {})?.['week'] ?? 0);
-        if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['month'] = ((s as any).monthName ?? 0);
+        ((s as any).audition = (s as any).audition ?? {})['calendar_day'] = ((s as any).day ?? 0) + (((s as any).audition ?? {})?.['week'] ?? 0);
+        ((s as any).audition = (s as any).audition ?? {})['month'] = ((s as any).monthName ?? 0);
       }
     }
   }
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['day'] = ((s as any).daystart ?? 0) + (((s as any).audition ?? {})?.['week'] ?? 0);
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['shoot_day'] = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * ((((s as any).audition ?? {})?.['day'] ?? 0) + (Math.floor(Math.random() * 6) + 2) + 1)));
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['shoot_time'] = Math.floor(Math.random() * 17) + 6;
+  ((s as any).audition = (s as any).audition ?? {})['day'] = ((s as any).daystart ?? 0) + (((s as any).audition ?? {})?.['week'] ?? 0);
+  ((s as any).acting = (s as any).acting ?? {})['shoot_day'] = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * ((((s as any).audition ?? {})?.['day'] ?? 0) + (Math.floor(Math.random() * 6) + 2) + 1)));
+  ((s as any).acting = (s as any).acting ?? {})['shoot_time'] = Math.floor(Math.random() * 17) + 6;
   // TODO-QSP: end
   scene.build();
 }
@@ -153,47 +153,51 @@ function enterGeneralDetails(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBackShowerGirl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'titty';
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'nude';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Uninhibited girls wanted for the role of <b>Background Shower Girl.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Background Shower Girl';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Background Shower Girl';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterSpringBreakFlasher(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletits'] = 4;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'titty';
+  ((s as any).audition = (s as any).audition ?? {})['roletits'] = 4;
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Big boobed girl wanted for the role of <b>Spring Break Flasher.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Spring Break Flasher';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Spring Break Flasher';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterCadaver(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'nude';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAuditionSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Young pretty girl wanted for the role of <b>Dead Girl 2</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -201,186 +205,204 @@ function enterCadaver(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'cadaver';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'cadaver';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterDildoGirl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['type'] = 'panties';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['panties'] = 'gm';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantynumber'] = 31;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'titty';
+  ((s as any).costuming = (s as any).costuming ?? {})['type'] = 'panties';
+  ((s as any).costuming = (s as any).costuming ?? {})['panties'] = 'gm';
+  ((s as any).costuming = (s as any).costuming ?? {})['pantynumber'] = 31;
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Big boobed girl wanted for the role of <b>Dildo Girl.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Dildo Girl';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Dildo Girl';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterNakedLockerGirl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'titty';
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'nude';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Naked Locker Girl.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Naked Locker Girl';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Naked Locker Girl';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterUndressingLockerGirl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['type'] = 'normal';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'panties';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['panties'] = 'fashionista';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantynumber'] = 13;
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantytype'] = 'thong';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantydrawer'] = 'filled with thongs. She picks one out and';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'titty';
+  ((s as any).costuming = (s as any).costuming ?? {})['type'] = 'normal';
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'panties';
+  ((s as any).costuming = (s as any).costuming ?? {})['panties'] = 'fashionista';
+  ((s as any).costuming = (s as any).costuming ?? {})['pantynumber'] = 13;
+  ((s as any).costuming = (s as any).costuming ?? {})['pantytype'] = 'thong';
+  ((s as any).costuming = (s as any).costuming ?? {})['pantydrawer'] = 'filled with thongs. She picks one out and';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Big boobed girls wanted for the role of <b>Undressing Locker Girl.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Undressing Locker Girl';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Undressing Locker Girl';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterModestCheerleader(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 1;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'face_check';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['type'] = 'normal';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'cheerleader';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 1;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'face_check';
+  ((s as any).costuming = (s as any).costuming ?? {})['type'] = 'normal';
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'cheerleader';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Pretty girls wanted for the role of <b>Modest Cheerleader.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Modest Cheerleader';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Modest Cheerleader';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterUnderwearCheerleader(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 2;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'body_check';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['type'] = 'normal';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'underwear';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['underwear'] = 'cats';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 2;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'body_check';
+  ((s as any).costuming = (s as any).costuming ?? {})['type'] = 'normal';
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'underwear';
+  ((s as any).costuming = (s as any).costuming ?? {})['underwear'] = 'cats';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Pretty girls wanted for the role of <b>Underwear Cheerleader.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Underwear Cheerleader';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Underwear Cheerleader';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterToplessCheerleader(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'panties';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['panties'] = 'cats';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantytype'] = 'normal';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantydrawer'] = 'to pull out a random pair of panties';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'titty';
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'panties';
+  ((s as any).costuming = (s as any).costuming ?? {})['panties'] = 'cats';
+  ((s as any).costuming = (s as any).costuming ?? {})['pantytype'] = 'normal';
+  ((s as any).costuming = (s as any).costuming ?? {})['pantydrawer'] = 'to pull out a random pair of panties';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Topless Cheerleader 3.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Topless Cheerleader 3';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Topless Cheerleader 3';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterHotShowerGirl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'titty';
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'nude';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Hot Shower Girl.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Hot Shower Girl';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Hot Shower Girl';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterWerewolfGirl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
-  if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletits'] = 4;
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['type'] = 'titty';
+  ((s as any).costuming = (s as any).costuming ?? {})['outfit'] = 'nude';
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletits'] = 4;
   scene.text('Big boobed girl wanted for the role of <b>Werewolf Victim.</b>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGeneralDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Werewolf Victim';
-  }, goto: ['casting', 'general_tryout'] },
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Werewolf Victim';
+    qspGoto(s, 'casting', 'general_tryout');
+  } },
   ]);
   scene.build();
 }
 
 function enterDinerWaitress(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 5;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = Math.floor(Math.random() * 5) + 1;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['requirement'] = 50;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['scenecount'] = 2;
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 5;
+  ((s as any).audition = (s as any).audition ?? {})['room'] = Math.floor(Math.random() * 5) + 1;
+  ((s as any).audition = (s as any).audition ?? {})['requirement'] = 50;
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).acting = (s as any).acting ?? {})['scenecount'] = 2;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAuditionSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Casting season two of "The Line", a television police drama. Pretty girls wanted for the role of <b>Diner Waitress.</b>');
   scene.text('Description: A diner waitress meets a main character at her workplace before having a one night stand with him.');
@@ -394,9 +416,10 @@ function enterDinerWaitress(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Try out for this role', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Diner Waitress';
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Diner Waitress';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTryout(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -404,11 +427,11 @@ function enterDinerWaitress(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHotBartender(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 5;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = Math.floor(Math.random() * 5) + 1;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['requirement'] = 50;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['scenecount'] = 3;
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 5;
+  ((s as any).audition = (s as any).audition ?? {})['room'] = Math.floor(Math.random() * 5) + 1;
+  ((s as any).audition = (s as any).audition ?? {})['requirement'] = 50;
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).acting = (s as any).acting ?? {})['scenecount'] = 3;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAuditionSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Casting for the role of <b>Vera:</b> Female, 18-25');
   scene.text('Description: Vera is an attractive bartender who hooks up with the main character after his girlfriend has just broken up with him. She appears again to talk to him when he shows up at the bar later.');
@@ -422,9 +445,10 @@ function enterHotBartender(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Try out for this role', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Vera';
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Vera';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTryout(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -432,12 +456,12 @@ function enterHotBartender(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluttyClubGirl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 5;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = Math.floor(Math.random() * 5) + 1;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['requirement'] = 60;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['unique'] = 1;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['scenecount'] = 1;
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 5;
+  ((s as any).audition = (s as any).audition ?? {})['room'] = Math.floor(Math.random() * 5) + 1;
+  ((s as any).audition = (s as any).audition ?? {})['requirement'] = 60;
+  ((s as any).audition = (s as any).audition ?? {})['unique'] = 1;
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).acting = (s as any).acting ?? {})['scenecount'] = 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAuditionSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Casting "Snare: The Seventh Seduction", a feature length horror film. Pretty girls wanted for the role of <b>Slutty Club Girl (Day Player):</b> Female, 18-30');
   scene.text('Role Description: A party girl the main character meets at a club and unsuccessfully tries to flirt with.');
@@ -449,9 +473,10 @@ function enterSluttyClubGirl(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Try out for this role', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Slutty Club Girl';
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Slutty Club Girl';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTryout(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -459,12 +484,12 @@ function enterSluttyClubGirl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterYulyaGavrikov(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 9;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'YulyaGavrikov';
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['number'] = 1;
-  if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = Math.floor(Math.random() * 5) + 1;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['filmdays'] = 40;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
+  ((s as any).audition = (s as any).audition ?? {})['roletype'] = 9;
+  ((s as any).audition = (s as any).audition ?? {})['role'] = 'YulyaGavrikov';
+  ((s as any).audition = (s as any).audition ?? {})['number'] = 1;
+  ((s as any).audition = (s as any).audition ?? {})['room'] = Math.floor(Math.random() * 5) + 1;
+  ((s as any).acting = (s as any).acting ?? {})['filmdays'] = 40;
+  ((s as any).acting = (s as any).acting ?? {})['pay'] = ((((s as any).audition ?? {})?.['roletype'] ?? 0) + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAuditionSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Casting "Unashamed,"for the lead female role of <b>Yulya Gavrikov (Lead):</b> Female, 18-25');
   scene.text('Synopsis: Unashamed is a comedic drama that follows the Gavrikov family as they struggle through their problems of self image, romance, sexual identity, work and life balance, and most of all what it means to stick together as a family and be able to love each other without shame.');
@@ -476,9 +501,10 @@ function enterYulyaGavrikov(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearcasting(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['casting', 'callboard'] },
+    qspGoto(s, 'casting', 'callboard');
+  } },
     { label: 'Try out for this role', handler: (st: GameState) => {
-    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['role'] = 'Yulya Gavrikov';
+    ((s as any).audition = (s as any).audition ?? {})['role'] = 'Yulya Gavrikov';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTryout(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,9 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'vasilyhome', 'home');
+  (s as any).location_type = 'private';
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -108,30 +110,31 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'vasilyhome', 'hallway');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hallway</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/korr.jpg');
   scene.text('The hallway of Uncle Sergey\'s apartment is similar to every other one in the complex. There are several doors leading to the various rooms. The first bedroom is Uncle Sergey\'s, while the second one is Vasily\'s. There\'s also the kitchen, bathroom, and finally the living room.');
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0) {
-    scene.text('There are several <a href="exec:gt \'wardrobe\', \'start\'">closets</a> in the hall, which Sergey said you can use to store your clothes while you\'re staying here</a>, and a large tall <a href="exec:gt \'mirror\', \'start\'">mirror</a> on one of the doors.');
+    scene.text('There are several <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">closets</a> in the hall, which Sergey said you can use to store your clothes while you\'re staying here</a>, and a large tall <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> on one of the doors.');
     if (((s as any).home ?? 0)?.['current'] === 'shulga_apartment'  &&  ((s as any).prostitute ?? 0)?.['active']) {
       qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
     }
   } else {
-    scene.text('There are several closets in the hall</a> and a large tall <a href="exec:gt \'mirror\', \'start\'">mirror</a> on one of the doors.');
+    scene.text('There are several closets in the hall</a> and a large tall <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> on one of the doors.');
   }
   if (((s as any).momslut ?? 0) >= 1  &&  ((s as any).sexev_momgg_day ?? 0) !== ((s as any).daystart ?? 0)) {
     if (((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).hour ?? 0) < 23  &&  ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 15)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10))) {
       if ((Math.floor(Math.random() * 5) + 1) === 1) {
         (s as any).temprand = Math.floor(Math.random() * 5) + 1;
         if (((s as any).temprand ?? 0) <= 2) {
-          scene.text('You hear some strange sounds coming from uncle Sergey\'s room. You could go and <a href="exec: gt \'vasily_home_sex\',\'vasily_home_momgg1\'">see</a> what\'s causing them.');
+          scene.text('You hear some strange sounds coming from uncle Sergey\'s room. You could go and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasily_home_sex\\u0027, \\u0027vasily_home_momgg1\\u0027); return false;">see</a> what\'s causing them.');
         } else {
           if (((s as any).temprand ?? 0) <= 4) {
-            scene.text('You hear some strange sounds coming from uncle Sergey\'s room, leaving no doubt as to what\'s happening there. You could go and <a href="exec: gt \'vasily_home_sex\',\'vasily_home_momgg2\'">see</a> who\'s with him.');
+            scene.text('You hear some strange sounds coming from uncle Sergey\'s room, leaving no doubt as to what\'s happening there. You could go and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasily_home_sex\\u0027, \\u0027vasily_home_momgg2\\u0027); return false;">see</a> who\'s with him.');
           } else {
-            scene.text('You hear some strange sounds coming from uncle Sergey\'s room, leaving no doubt as to what\'s happening there. It doesn\'t sound like he\'s the only person in there though! You could go and <a href="exec: gt \'vasily_home_sex\',\'vasily_home_momggbang\'">see</a> who else is in there.');
+            scene.text('You hear some strange sounds coming from uncle Sergey\'s room, leaving no doubt as to what\'s happening there. It doesn\'t sound like he\'s the only person in there though! You could go and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasily_home_sex\\u0027, \\u0027vasily_home_momggbang\\u0027); return false;">see</a> who else is in there.');
           }
         }
       }
@@ -246,30 +249,33 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1)  &&  ((s as any).sh_hooker_count ?? 0) > 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 20) {
-    scene.actions([{ label: 'Continue', goto: ['vasilyhome', 'sh_hooker'] }]);
+    qspGoto(s, 'vasilyhome', 'sh_hooker');
   }
   (s as any).roomsex_sonia = Math.floor(Math.random() * 101) + 0;
   if (((s as any).roomsex_sonia ?? 0) <= 5  &&  ((s as any).soniaQW ?? 0)?.['slut'] >= 1  &&  ((s as any).sexev_sonya_count ?? 0) > 0  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20))) {
-    scene.actions([{ label: 'Continue', goto: ['vasilyhome', 'vasily_sex_sonya'] }]);
+    qspGoto(s, 'vasilyhome', 'vasily_sex_sonya');
   }
   if (((s as any).roomsex_sonia ?? 0) >= 97  &&  ((s as any).soniaQW ?? 0)?.['slut'] >= 3  &&  ((s as any).sexev_sonya_count ?? 0) > 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 20) {
-    scene.actions([{ label: 'Continue', goto: ['vasily_home_sex', 'gang_sex_sonya'] }]);
+    qspGoto(s, 'vasily_home_sex', 'gang_sex_sonya');
   }
   qspCall(s, 'internet_mobile', 'get_access', 'free', 'nocamshow');
-  scene.text('There are two sofas next to a <a href="exec: gt \'vasilyhome\', \'shultv\'">TV</a>, and a <a href="exec: gt \'komp\',\'start\'">laptop</a> sitting on a table covered in empty beer bottles.');
+  scene.text('There are two sofas next to a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027shultv\\u0027); return false;">TV</a>, and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">laptop</a> sitting on a table covered in empty beer bottles.');
   (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shulga_room_rnd = 'The boys are sitting on the couch talking and drinking beer.';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shulga_room_rnd = 'The boys are drinking beer and playing cards.';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shulga_room_rnd = 'The boys are drinking beer while watching TV.';
   }
   if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 20) {
     // TODO-QSP: dynamic text: <<$shulga_room_rnd>> <a href="exec: gt 'vasilyhome', 'vasily_bazar_night'">Vasil...
-    scene.text(`${((s as any).shulga_room_rnd || '')} <a href="exec: gt 'vasilyhome', 'vasily_bazar_night'">Vasily</a>, <a href="exec: gt 'vasilyhome', 'dan_bazar'">Dan</a> and <a href="exec: gt 'vasilyhome', 'vitek_bazar'">Vitek</a>, invites you to <a href="exec: gt 'vasilyhome', 'vasily_beer'">have a drink with them</a>.`);
+    scene.text(`${((s as any).shulga_room_rnd || '')} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027vasily_bazar_night\\u0027); return false;">Vasily</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027dan_bazar\\u0027); return false;">Dan</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027vitek_bazar\\u0027); return false;">Vitek</a>, invites you to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027vasily_beer\\u0027); return false;">have a drink with them</a>.`);
   }
   if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)) {
-    scene.text('<a href="exec: gt \'vasilyhome\', \'vasily_bazar_day\'">Vasily</a> is sitting on the big sofa.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027vasily_bazar_day\\u0027); return false;">Vasily</a> is sitting on the big sofa.');
   }
   if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 20) {
     scene.actions([
@@ -483,7 +489,7 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
 function enterDrunkenSexYes(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  if (!(s as any).vasily) (s as any).vasily = {}; (s as any).vasily['drunk_sex'] = ((s as any).vasily['drunk_sex'] ?? 0) + (1);
+  ((s as any).vasily = (s as any).vasily ?? {})['drunk_sex'] = ((s as any).vasily['drunk_sex'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/yes\' + rand(1, 6) + \'.jpg');
   scene.text('It\'s time to show these boys that you know how to have a good time. The guys urge you on, calling out various lewd suggestions.');
@@ -513,7 +519,7 @@ function enterDrunkenSexNo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDrunkenSleep(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['no_health'] = 1;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['no_health'] = 1;
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (((s as any).healthmax ?? 0) / 10);
   qspCall(s, 'mood', 'lower', 'large');
   qspCall(s, 'sleep_simple', 'forced', 180);
@@ -529,9 +535,9 @@ function enterDrunkenSleep(s: GameState, scene: SceneBuilder): void {
 
 function enterVasilySexSonya(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 101) + 0) <= 40) {
-    scene.actions([{ label: 'Continue', goto: ['vasily_home_sex', 'vasily_sexev1_sonya'] }]);
+    qspGoto(s, 'vasily_home_sex', 'vasily_sexev1_sonya');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['vasily_home_sex', 'vasily_sexev2_sonya'] }]);
+    qspGoto(s, 'vasily_home_sex', 'vasily_sexev2_sonya');
   }
   // TODO-QSP: end
   scene.build();
@@ -540,37 +546,53 @@ function enterVasilySexSonya(s: GameState, scene: SceneBuilder): void {
 function enterShultv(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shulga_tv_rnd = 'You watch';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shulga_tv_rnd = 'You watch';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shulga_tv_rnd = 'You find';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shulga_tv_rnd = 'It\'s';
   }
   (s as any).temp_rand = Math.floor(Math.random() * 12) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvdance.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' a teenage music video, with a half-naked girl shaking her charms.';
   }
   if (((s as any).temp_rand ?? 0) === 1) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo1.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' a David Attenborough documentary about animals.';
   }
   if (((s as any).temp_rand ?? 0) === 2) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo2.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' a documentary about the world, with Morgan Freeman narrating.';
   }
   if (((s as any).temp_rand ?? 0) === 3) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo3.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' a David Attenborough documentary about nature.';
   }
   if (((s as any).temp_rand ?? 0) === 4) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo4.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' a documentary film about the ocean called Blue Planet.';
   }
   if (((s as any).temp_rand ?? 0) === 5) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino1.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' that much-loved Soviet comedy.';
   }
   if (((s as any).temp_rand ?? 0) === 6) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino2.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' Import blockbuster.';
   }
   if (((s as any).temp_rand ?? 0) === 7) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino3.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' an old Western. You hope Clint Eastwood shows up, and shoots someone';
   }
   if (((s as any).temp_rand ?? 0) === 8) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult1.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' some cartoons It looks like a cheap imitation of Pixar.';
   }
   if (((s as any).temp_rand ?? 0) === 9) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult2.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' a classic Disney cartoon.';
   }
   if (((s as any).temp_rand ?? 0) === 10) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport1.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' an MMA fight. You wonder if Vitek is as good as these guys.';
   }
   if (((s as any).temp_rand ?? 0) === 11) {
+    (s as any).shulga_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport2.mp4"></video></center>' + ((s as any).shulga_tv_rnd ?? 0) + ' a football match.';
   }
   if ((Math.floor(Math.random() * 100) + 1) > 10) {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -884,41 +906,62 @@ function enterDanBazar(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk\' + rand(1, 5) + \'.jpg');
     (s as any).temp_rand = Math.floor(Math.random() * 7) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).den_textb = 'Dan tells you about a girl they saw giving a guy a blowjob in the park today. "She had such lovely ' + ((s as any).pcs_eyecolor ?? 0) + ' eyes, and beautiful ' + ((s as any).pcs_haircolor ?? 0) + ' hair," he says while smiling at you. "Oh ' + ((s as any).pcs_nickname ?? 0) + ', you should come join us in the park after school. We\'re almost always there having drinks," he adds as an afterthought.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
+        (s as any).den_textb = '"Hey ' + ((s as any).pcs_nickname ?? 0) + ', how is school going?" Dan asks. Before you can answer, he continues, "I don\'t think smart people even belong in school. I have to cut class and hang out in the bathroom just so I don\'t lose my mind."';
+      } else {
+        (s as any).den_textb = 'Dan tells you his plans for after graduation. "I can\'t wait to get to get out of this one horse town. I want to move to the city where all the best food, women, drugs and everything else you could think of are."';
       }
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).den_textb = '"' + ((s as any).pcs_nickname ?? 0) + ', get over here and make yourself useful. I need a back massage, and you look like just the right girl for the job," Dan hollers. <br> "How would you like a swift kick instead? Even if you had bothered to ask me nicely, I still would\'t have done it. It never hurts to be polite," you smirk back at him sweetly.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).den_textb = 'Dan asks you to grab him a beer. When you return from the kitchen with his beer, he politely asks you to open it for him. Rolling your eyes, you crack it open and hand it over to him. <br>"Thanks ' + ((s as any).pcs_nickname ?? 0) + '. You\'re going to make a fine little wife," Dan laughs.<br> You give him a kick in the shin before turning to leave. He just laughs, and sends you on your way with a smack on the ass.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).den_textb = '"' + ((s as any).pcs_nickname ?? 0) + ', if you\'re looking for work I hear the hotel is hiring. They have a job opening for a ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' set of lips," Dan says.<br> You flick your hand between his legs, and he lets out a sharp cry of pain. "Thanks for the tip asshole," you smile back at him.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).den_textb = 'Dan gives you his opinion on religion. "A church is no fit place for a woman on her knees. That should be reserved for places like alleys, bathrooms and living rooms. Speaking of which; ' + ((s as any).pcs_nickname ?? 0) + ', would you be a dear?"<br>  You walk away shaking your head before he can finish.';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).den_textb = 'Unprompted, Dan turns to you and says "You got a real pretty mouth girl," in his best creepy accent.<br> You swiftly raise your knee like you are going for his crotch, but stop short and just walk past him. Seeing him instinctively double over in fear puts a little spring in your step.';
     }
     (s as any).temp_rand = Math.floor(Math.random() * 8) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).den_textb_gorslut = 'Dan looks at you appraisingly. "' + ((s as any).pcs_nickname ?? 0) + ', do you have any money? If you need some, then I\'m sure I could find some work putting your body to good use."<br>  "Dream on. The only work I\'m thinking of using this body for involves a swift kick between your balls!" you snarl.<br> With one hand protecting his nuts, Dan says "Settle down, slut. I wasn\'t suggesting you become a whore. Honestly, I was just thinking out loud. I mean if you\'re already giving it away for free, then why not?" You leave in a huff before he can finish.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
       if (((s as any).soniaQW ?? 0)?.['slut'] <= 0) {
+        (s as any).den_textb_gorslut = 'Dan is idly going on about what a good girl Sonia is when he turns to you and says "Hey ' + ((s as any).pcs_nickname ?? 0) + ', you\'re friends with Sonia, right?"<br>  "Not this again, Dan…" you say with a weary sigh.<br> "Oh, come on! You both like to have a good time. It could be a lot of fun," he replies.<br> You stop him right there. "Listen Dan. I like Sonia, but she has a look in her eyes lately that makes me nervous. Besides, any girl willing to sleep with you has to be half mad. Getting two of us in the same room might be more than you could handle…" You give him a little sway of your hips as you walk away.';
+      } else {
+        (s as any).den_textb_gorslut = 'Dan mockingly issues you a challenge.<br> "' + ((s as any).pcs_nickname ?? 0) + ', I can\'t decide if I prefer your cute set of ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lipss or Sonia\'s. We need to all get together to find out who has the best skills. I have a warm wet surprise for the winner."<br> "Dream on!" you say while shaking your head, though you do wonder if you might be able to best her.';
       }
     }
     if (((s as any).temp_rand ?? 0) === 2) {
       if (((s as any).soniaQW ?? 0)?.['slut'] <= 0) {
+        (s as any).den_textb_gorslut = '"Be a dear and fetch me another beer, ' + ((s as any).pcs_lastname ?? 0) + '," Dan says.<br> You head to the kitchen and grab a beer. You take a little sip and give him a smile when you hand it to him. He gives you a rough slap on the ass as he sends you away giggling.';
+      } else {
+        (s as any).den_textb_gorslut = '"Yesterday, Sonia was servicing every boy in the mens bathroom in any fashion they desired," Dan says. "Not too long ago, she was such a stuck up goody-two-shoes. Now she doesn\'t have a care in the world. You could probably learn a thing or two from her ' + ((s as any).pcs_nickname ?? 0) + '."<br> You just stare back at him with your arms crossed as he slowly moves a hand in front of his crotch for protection.';
       }
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).den_textb_gorslut = 'Dan looks like he\'s up to something. "' + ((s as any).pcs_nickname ?? 0) + ', who\'s your best girlfriend at school?"<br> "Why?" you ask while giving him a stern look.<br> "Well, I was just thinking maybe you\'d like to bring a friend on one of your visits here?" Dan says, trying his best to sound diplomatic.<br> Your anger boils over as you say "Don\'t you think for one second that I\'m going to drag some innocent girl back here and throw her to you jackals. If you\'re so desperate to have a three-way, I would be happy to let you help me suck Vitek\'s cock right now." <br> You hear Dan mutter under his breath. "Bitch, what the hell crawled up your ass tonight?" You turn to leave.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).den_textb_gorslut = '"Hey babe, how about you stop by the park the next time we\'re hanging out there and have some beers with us? You\'re so much fun when you get a few beers in you," Dan says while roughly giving your ass a squeeze.<br> You give him a playful slap on the thigh and a giggle.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).den_textb_gorslut = '"' + ((s as any).pcs_nickname ?? 0) + ', hand me the TV remote," Dan says.<br> He\'s way closer to it than you, but he looks comfortable, so you happily fetch it for him.<br>  "Good girl," he praises.';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).den_textb_gorslut = '"' + ((s as any).pcs_nickname ?? 0) + ', does your sister still work at the local supermarket?" Dan asks. <br> "Yeah, but she doesn\'t enjoy it much, so I try not to bother her when she\'s working," you inform him.<br>  "You should bring her over here sometime. I bet we could find a way to cheer her up…" he says suggestively.<br> "God, is sex the only thing you ever think about?! And what on earth makes you think I would do that sort of thing with my sister?" you say a little sheepishly while giving him a sideways glance.';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).den_textb_gorslut = 'Dan tells you about his visit to the strip club. "You need an ID to get in, but once you do it\'s great. They have some of the best looking women I\'ve ever seen in there, and I think on some nights they even have male strippers for ladies."';
     }
     if (((s as any).bazar_count_den ?? 0) <= 0) {
       // TODO-QSP: dynamic text: "Be quiet, <<$pcs_nickname>>! That's enough talk out of you tonight. Leave me in...
@@ -992,44 +1035,65 @@ function enterVitekBazar(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk\' + rand(1, 5) + \'.jpg');
     (s as any).temp_rand = Math.floor(Math.random() * 8) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).vitek_textb = '"Any chance I could get you to come over and do some cleaning? My apartment is such a wreck that it\'s virtually uninhabitable. It could really use a woman\'s touch."<br>  "I\'ll think about it," you answer shyly.<br> The thought of cleaning Vitek\'s place in a skimpy little outfit bubbles up in your mind, and you turn away blushing.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
+        (s as any).vitek_textb = 'Vitek flexes his bicep, and tells you to feel it. Somewhat hesitantly, you give his muscle a little squeeze. It\'s hard as a rock, and a little exciting too.<br> "I can bench 300," he boasts.<br> You have no idea what that means, but smile anyway. "Wow, that\'s really good. I\'m impressed."';
+      } else {
+        (s as any).vitek_textb = 'Vitek compliments you. "' + ((s as any).pcs_nickname ?? 0) + ', your hair looks beautiful. I\'ve always had a thing for girls with ' + ((s as any).pcs_haircolor ?? 0) + ' hair."<br> "Thank you," you reply while blushing.';
       }
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).vitek_textb = 'Vitek invites you to the community center at night to drink and dance with him. The thought of dancing with him sends a little flutter though your chest.<br> "I might just take you up on that offer," you tell him, trying your best to sound sexy.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).vitek_textb = 'Vitek talks to you about his boxing training at that community center. He thinks he\'s getting pretty good. "Stop by if you want to see me in action. There\'s plenty of other stuff to do there too."';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).vitek_textb = '"Do you ever go down to the lake to swim?" Vitek asks.<br> "Sometimes, but it\'s been a while," you answer.<br> "It\'s a shame I\'ve never seen you in a bathing suit," he says almost shyly.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).vitek_textb = '"I had to kick the shit out of that Igor kid after the dance a few weeks ago. You should steer clear of that guy, ' + ((s as any).pcs_nickname ?? 0) + '. I don\'t like the way he treats women."';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).vitek_textb = 'Vitek must have been boxing today as his shoulders look tense. Trying to be helpful, you walk up behind him and start giving them a good rub.<br> "Oh ' + ((s as any).pcs_nickname ?? 0) + ', your hands feel great…" he sighs in appreciation.';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).vitek_textb = 'You notice Vitek\'s beer is almost empty. Thinking this looks like a job you can handle, you go to the kitchen to get him a fresh one. You return just as he\'s ready for another and hand him it while smiling.<br> "Thanks ' + ((s as any).pcs_nickname ?? 0) + ', you read my mind," he says. His hand grazes your hip when he takes his beer, sending butterflies through your stomach.';
     }
     (s as any).temp_rand = Math.floor(Math.random() * 8) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).vitek_textb_gorslut = 'You\'re lying on the couch when Vitek sits down and puts your feet in his lap. Without saying anything, he gently starts to massage them. You let him know how good it feels with a series of soft moans. Vitek can be so good to you when he wants to be; you think you should probably reward him.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).vitek_textb_gorslut = 'Vitek imparts some wisdom. "You can determine how close your relationship is with someone by how much you can mock them before receiving a beating."<br> "What if I said you have a tiny cock?" you say.<br> "Then I would attack you," he says. He takes both hands and furiously tickles you around your sides and stomach.<br> You squeal with delight, laughing until you\'re out of breath.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).vitek_textb_gorslut = 'Vitek is full of fun facts. "Did you know that it\'s empirically proven that 95% of girls can no longer pronounce the name of the city Naberezhnye Cheln if they go a month without sex?"<br> Deadpan, you respond "I speak seven languages."';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
       if (((s as any).soniaQW ?? 0)?.['slut'] === 0) {
+        (s as any).vitek_textb_gorslut = '"If you ever lend money to nerdy Natasha, then don\'t expect to get it back. Well, not in cash anyway. Her methods of repayment are very interesting though…"<br> You give him a playful slug on the shoulder, and start thinking about Natasha\'s legs.';
       } else {
         if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
+          (s as any).vitek_textb_gorslut = '"Sonia pulled me into the school toilet yesterday, climbed on top of me, and used me for sex. She basically raped me. I may have to go see the therapist at the clinic to get over it."<br> He says it with a smile, but you can tell he\'s worried about Sonia.';
+        } else {
+          (s as any).vitek_textb_gorslut = '"Sonia was pestering me in the park yesterday. When I told her no and walked away, she just followed me. I decided I\'d had enough, and started to jog away, but she chased me! She actually chased me though the park trying to have sex with me…" He just shakes his head dumbfounded by this turn of events.';
         }
       }
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).vitek_textb_gorslut = 'Vitek starts talking like he\'s telling a ghost story. "There\'s a woman who walks our quiet streets at night wearing leather and brandishing a whip. They say if she catches you, you wind up in her dungeon, never to be seen again." He finishes by laughing and making spooky sounds.<br> You\'re too distracted by thoughts of mysterious leather clad women to laugh with him.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).vitek_textb_gorslut = '"What\'s your favorite thing about a penis?" Vitek asks.<br> "They always stand up when a fine lady like myself enters the room," you answer back.<br> Vitek bursts out laughing, and starts tickling your sides.';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).vitek_textb_gorslut = '"Drunk girls might as well call their pussy mistress. They can think of nothing but obeying its wishes," Vitek says.<br> You parry: "Yeah, and guys should call their cocks sir. They follow every order like it\'s a life and death mission issued by their commanding officer."<br>  You both burst out laughing when Vitek gives his crotch a salute.';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).vitek_textb_gorslut = 'Vitek tells a joke. <br> A man walks into a pharmacy and loudly declares: "I\'ll have a pack of condoms, please!"<br> The cute young clerk blushed and whispered: "Sir, this sort of thing should be asked for in the ear, not…"<br> "What about ears? I don\'t need them for me ears! I need them for my dick!"';
     }
     if (((s as any).bazar_count_vitek ?? 0) <= 0) {
       // TODO-QSP: dynamic text: "That's enough talk for now, <<$pcs_nickname>>," he says.
@@ -1107,30 +1171,46 @@ function enterVasilyBazarDay(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk\' + rand(1, 5) + \'.jpg');
     (s as any).temp_rand = Math.floor(Math.random() * 9) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).vasyan_textb_day = '"Life is like a Matryoshka doll," Vasily says mysteriously.<br> "What the hell is that supposed to mean?" you ask.<br> "Think about it," is all he says.<br> You roll you eyes and give him a sarcastic: "Oh I will."';
     } else {
       if (((s as any).temp_rand ?? 0) === 1) {
+        (s as any).vasyan_textb_day = '"I love ' + ((s as any).pcs_haircolor ?? 0) + ' hair, and it looks so good on you ' + ((s as any).pcs_nickname ?? 0) + '."<br> "Thanks Vasily. That\'s very sweet," you reply while blushing.<br> "Does the carpet match the drapes?" he asks with a smirk.<br> "Typical," is all you answer with an exasperated sigh.';
       } else {
         if (((s as any).temp_rand ?? 0) === 2) {
           if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
+            (s as any).vasyan_textb_day = 'He gives you some advice. "Having a phone will make school go by much faster. Just be careful not to let the teacher catch you playing with it."<br> "Nobody is getting my phone without a fight," you declare with a smile.';
+          } else {
+            (s as any).vasyan_textb_day = 'You tell Vasily a story from gym class. "This one time after gym class, I was all sweaty and Katja tried to drag me into the shower. It was really weird."<br> Vasily adds: "She told me to take a shower a few weeks ago too."<br> "Well, that\'s because you stink," you reply while sticking your tongue out at him.';
           }
         } else {
           if (((s as any).temp_rand ?? 0) === 3) {
+            (s as any).vasyan_textb_day = 'He tells you a story about a fight. "I got into a scrap with Dimka behind the community center once. I totally whipped his ass, but be careful around him. He\'s a nasty piece of work."';
           } else {
             if (((s as any).temp_rand ?? 0) === 4) {
+              (s as any).vasyan_textb_day = 'He tells you a story about his trip to the city. "I lost my wallet in the city and had no way to get home. The only way I could earn money for the train was by washing dishes at the barbecue. It turned out great though. The cute barmaid was flirting with me all night, and I even got to make out with her before I left. The next time I make it up there, I\'m going to rock her world."<br> "You go get her tiger," you say encouragingly.';
             } else {
               if (((s as any).temp_rand ?? 0) === 5) {
+                (s as any).vasyan_textb_day = 'Vasily complains: "The economy is broken, and none of these idiots are doing anything about it."<br> "What should be done to fix it?" you ask curiously.<br> "Oh, I don\'t care. I can use my laptop to hack the banks, and get money whenever I need it," he says.<br> "Then why the hell are you complaining?" you ask in frustration.';
               } else {
                 if (((s as any).temp_rand ?? 0) === 6) {
+                  (s as any).vasyan_textb_day = 'He talks about his trip to the city. "I got lost in the old section of the city. I nearly starved to death before I found my way out. If you ever end up there be careful. That place is like a Byzantine labyrinth."<br> "Did you find anything interesting?" you ask.<br> "Not really. There was lots of grass and abandoned buildings, but I did see a leather clad woman get out of a cab. She disappeared like a puff of smoke though."';
                 } else {
                   if (((s as any).temp_rand ?? 0) === 7) {
+                    (s as any).vasyan_textb_day = '"Hey ' + ((s as any).pcs_nickname ?? 0) + ', the guys and I were trying to figure something out. How big are your tits? I said they look like ' + ((s as any).titsize ?? 0) + 's, but I figured I\'d ask you to be sure."<br> You cross your arms over your chest, and glare at him in response.<br> "So, bigger then?" he quirks an eyebrow.<br> You give him a little slug in the arm for an answer.';
                   } else {
                     if (((s as any).npc_rel ?? 0)?.['A11'] >= 30  &&  ((s as any).mc_inventory ?? 0)?.['tech_webcam'] === 1) {
+                      (s as any).vasyan_textb_day = '"Don\'t you sometimes do homework at Julia\'s place after school?" he asks.<br> "Maybe," you say suspiciously.<br> "Well, if you ever do, please put in a good word for me. I think she\'s cute."';
                     } else {
                       if (((s as any).npc_rel ?? 0)?.['A11'] >= 100) {
+                        (s as any).vasyan_textb_day = '"Hey ' + ((s as any).pcs_nickname ?? 0) + ', have you checked out the webcam I bought?" Vasily asks.<br> "Yeah, I may have checked it out a little…" you say.<br> "Well, if you ever want to get on there during the weekend let me know. We could do a show together and rake in some big bucks," he says with a wink and a smile.<br> "That\'s not a bad idea, but I\'ll have to think about it," you blush.';
                       } else {
                         if (((s as any).npc_rel ?? 0)?.['A11'] >= 50) {
+                          (s as any).vasyan_textb_day = '"Do you remember when I told you about the webcam sites where you can earn big money for showing some skin?"<br> "Yeah, I remember," you answer.<br> "Well, not too long ago, I bought a webcam so that I could video chat on Skype. If you want to use it, I wouldn\'t mind…"<br> "Umm thanks, I\'ll think about it…" you reply.';
                         } else {
                           if (((s as any).npc_rel ?? 0)?.['A11'] >= 30) {
+                            (s as any).vasyan_textb_day = '"Have you heard about all the webcam sites that are popping up? Apparently girls can make a lot of money on them. If you have a computer, webcam, and are willing to show a little skin, I bet you could do very well ' + ((s as any).pcs_nickname ?? 0) + '," he says.<br> "I\'m not sure I would be comfortable doing something like that," you reply.<br> "You should think about it. It\'s not like you would be selling it on the street. All you have to do is lie around on a bed and talk to a bunch of lonely guys. Then you show them a little skin and the money starts rolling in. It would be so easy."';
+                          } else {
+                            (s as any).vasyan_textb_day = 'He tells you a story about magic fairies who live in the countryside. He swears it\'s true, but you just roll your eyes.';
                           }
                         }
                       }
@@ -1272,7 +1352,7 @@ function enterVasilyVodka(s: GameState, scene: SceneBuilder): void {
         if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  ((s as any).strapNumber ?? 0) > 0  &&  ((s as any).vasily ?? 0)?.['drunk_sex'] > 0  &&  ((s as any).PCLoSkirt ?? 0) > 0) {
           scene.actions([
             { label: 'Pretend to take a swig', handler: (st: GameState) => {
-    if (!(s as any).vasily) (s as any).vasily = {}; (s as any).vasily['day_drunk'] = ((s as any).vasily['day_drunk'] ?? 0) + (1);
+    ((s as any).vasily = (s as any).vasily ?? {})['day_drunk'] = ((s as any).vasily['day_drunk'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/revenge/vodka3.jpg');
     scene.text('You and Vasily talk about a variety of things as you pretend to take a swig of vodka and swallow very little of it before you pass it back to him. As he quickly takes the bottle and takes another swig, you remember how the bastard made you give him a blowjob when you got drunk with him last time. Maybe you should pay him back after he gets drunk?');
@@ -1331,8 +1411,12 @@ function enterVasilyLern(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 1, 'A2');
     }
     scene.actions([
-      { label: 'Keeps studying', goto: ['vasilyhome', 'vasily_lern'] },
-      { label: 'Take a break', goto: ['vasilyhome', 'vasily_bazar_day'] },
+      { label: 'Keeps studying', handler: (st: GameState) => {
+    qspGoto(s, 'vasilyhome', 'vasily_lern');
+  } },
+      { label: 'Take a break', handler: (st: GameState) => {
+    qspGoto(s, 'vasilyhome', 'vasily_bazar_day');
+  } },
     ]);
   } else {
     qspCall(s, 'stat', '');
@@ -1412,17 +1496,17 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['slut'] >= 2) {
     (s as any).temp_rand = Math.floor(Math.random() * 10) + 1;
     if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).sh_sonya_sexev ?? 0) > 2  &&  ((s as any).sonya_bazar_count ?? 0) > 0  &&  ((s as any).ev_sonya_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) <= 23  &&  ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10))) {
-      scene.actions([{ label: 'Continue', goto: ['vasilyhome', 'sonia_ev'] }]);
+      qspGoto(s, 'vasilyhome', 'sonia_ev');
     } else {
       if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).npc_rel ?? 0)?.['A112'] >= 20  &&  ((s as any).sexev_sonya_count ?? 0) > 0  &&  ((s as any).hour ?? 0) <= 23  &&  ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10))) {
-        scene.actions([{ label: 'Continue', goto: ['vasilyhome', 'sonia_sex'] }]);
+        qspGoto(s, 'vasilyhome', 'sonia_sex');
       }
     }
   }
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/vanna.jpg');
   // TODO-QSP: dynamic text: Uncle Sergey's bathroom is small and very unpretentious. Nevertheless, it has ev...
-  scene.text('Uncle Sergey\'s bathroom is small and very unpretentious. Nevertheless, it has everything a bathroom needs. There is a <a href="exec: gt \'mirror\',\'start\'">mirror</a> above the sink, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec: gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair, a shower and a bathtub.');
+  scene.text('Uncle Sergey\'s bathroom is small and very unpretentious. Nevertheless, it has everything a bathroom needs. There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink, where you can \' + iif(pcs_hairbsh < 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair, a shower and a bathtub.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -1452,9 +1536,9 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterSoniaSex(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    scene.actions([{ label: 'Continue', goto: ['vasily_home_sex', 'sonia_bathroom_sex1'] }]);
+    qspGoto(s, 'vasily_home_sex', 'sonia_bathroom_sex1');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['vasily_home_sex', 'sonia_bathroom_sex2'] }]);
+    qspGoto(s, 'vasily_home_sex', 'sonia_bathroom_sex2');
   }
   // TODO-QSP: end
   scene.build();
@@ -1551,16 +1635,16 @@ function enterVasilykitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 21  &&  (!((s as any).locArgs?.[0] ?? 0))) {
     if ((Math.floor(Math.random() * 100) + 1) < 10) {
       // TODO-QSP: dynamic text: When you enter the kitchen, <<$serg_obr>> <a href="exec:gt 'Serge_kuh','kuh_buh'...
-      scene.text(`When you enter the kitchen, ${((s as any).serg_obr || '')} <a href="exec:gt 'Serge_kuh','kuh_buh'">Sergey</a> gives you a friendly nod. He's sitting at the kitchen table, drinking vodka.`);
+      scene.text(`When you enter the kitchen, ${((s as any).serg_obr || '')} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Serge_kuh\\u0027, \\u0027kuh_buh\\u0027); return false;">Sergey</a> gives you a friendly nod. He's sitting at the kitchen table, drinking vodka.`);
     } else {
       // TODO-QSP: dynamic text: When you enter the kitchen, <<$serg_obr>> <a href="exec:gt 'Serge_kuh'">Sergey</...
-      scene.text(`When you enter the kitchen, ${((s as any).serg_obr || '')} <a href="exec:gt 'Serge_kuh'">Sergey</a> is standing at the kitchen counter preparing a meal.`);
+      scene.text(`When you enter the kitchen, ${((s as any).serg_obr || '')} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Serge_kuh\\u0027, \\u0027\\u0027); return false;">Sergey</a> is standing at the kitchen counter preparing a meal.`);
     }
   }
   qspCall(s, 'kit_din', 'kitchen', 'edasnack');
   qspCall(s, 'core_library', 'kitchen', 'shared');
   if ((Math.floor(Math.random() * 100) + 0) < 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 300  &&  ((s as any).gangsexroom_count ?? 0) > 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 3  &&  ((s as any).kotovLoveQW ?? 0) < 1  &&  ((s as any).gangsexroom_day ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['vasily_home_sex', 'gang_sex_ev1'] }]);
+    qspGoto(s, 'vasily_home_sex', 'gang_sex_ev1');
   }
   if (((s as any).beer_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).beer_count = 2;
@@ -1583,21 +1667,36 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   if (((s as any).beer_count ?? 0) === 2) {
+    (s as any).r_beer = ' 2 beers,';
   } else {
     if (((s as any).beer_count ?? 0) === 1) {
+      (s as any).r_beer = ' 1 beer,';
+    } else {
+      (s as any).r_beer = '';
     }
   }
   if (((s as any).vodka_count ?? 0) === 5) {
+    (s as any).r_vodka = ' a full bottle of vodka,';
   } else {
     if (((s as any).vodka_count ?? 0) === 3) {
+      (s as any).r_vodka = ' a half-empty bottle of vodka,';
     } else {
       if (((s as any).vodka_count ?? 0) === 1) {
+        (s as any).r_vodka = ' a nearly empty bottle of vodka,';
+      } else {
+        (s as any).r_vodka = '';
       }
     }
   }
   if (((s as any).sup_count ?? 0) >= 1) {
+    (s as any).r_sup = ' a large pot of soup';
+  } else {
+    (s as any).r_sup = '';
   }
   if (((s as any).beer_count ?? 0) === 0  &&  ((s as any).vodka_count ?? 0) === 0  &&  (!((s as any).sup_count ?? 0))) {
+    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holodpusto.jpg"></center><br><font color = red>empty shelves.</font>';
+  } else {
+    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holod\' + rand(1, 3) + \'.jpg"></center>';
   }
   // TODO-QSP: dynamic text: You open the fridge and see:<<$r_vodka>><<$r_beer>><<$r_sup>><<$r_pusto>>
   scene.text(`You open the fridge and see:${((s as any).r_vodka || '')}${((s as any).r_beer || '')}${((s as any).r_sup || '')}${((s as any).r_pusto || '')}`);
@@ -1687,6 +1786,14 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSergeyRoom(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'vasilyhome';
+  (s as any).menu_arg = 'sergey_room';
+  (s as any).locM_arg = 'sergey_room';
+  (s as any).locM = 'vasilyhome';
+  (s as any).loc_arg = 'sergey_room';
+  (s as any).loc = 'vasilyhome';
+  (s as any).locclass = 'bedr';
+  (s as any).track_loop = '';
   (s as any).music_loop = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -1695,14 +1802,14 @@ function enterSergeyRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('Sergey\'s bedroom looks just like any other bedroom. There\'s a large bed, a television with a VCR connected to it, and a large cabinet to store clothes in. A random amount of junk is deposited on one of the nightstands.');
   if (((s as any).hour ?? 0) < 7  ||  ((s as any).hour ?? 0) >= 23) {
     // TODO-QSP: dynamic text: When you come in, you see that<<$serg_obr>> <a href="exec: gt 'Serge_Shulgin','s...
-    scene.text(`When you come in, you see that${((s as any).serg_obr || '')} <a href="exec: gt 'Serge_Shulgin','sleep'">Sergey</a> is currently on his bed, sound asleep.`);
+    scene.text(`When you come in, you see that${((s as any).serg_obr || '')} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Serge_Shulgin\\u0027, \\u0027sleep\\u0027); return false;">Sergey</a> is currently on his bed, sound asleep.`);
   } else {
     if (((s as any).hour ?? 0) < 18  ||  ((s as any).hour ?? 0) >= 21) {
       if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 16) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSleep(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         // TODO-QSP: dynamic text: When you come in, you see that<<$serg_obr>> <a href="exec: gt 'Serge_Shulgin','t...
-        scene.text(`When you come in, you see that${((s as any).serg_obr || '')} <a href="exec: gt 'Serge_Shulgin','tv'">Sergey</a> is relaxing on his bed, watching TV.`);
+        scene.text(`When you come in, you see that${((s as any).serg_obr || '')} <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Serge_Shulgin\\u0027, \\u0027tv\\u0027); return false;">Sergey</a> is relaxing on his bed, watching TV.`);
       }
     }
   }
@@ -1728,17 +1835,19 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVasilyRoom(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   (s as any).music_loop = 1;
   qspCall(s, 'core_library', 'setloc', 'vasilyhome', 'vasily_room');
+  (s as any).locclass = 'bedr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vasily\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/vasily_room.jpg');
   scene.text('There is a dresser and small desk on one side of the room, with posters of bands and naked women along the walls. It\'s a messy room, and you can barely see the floor under all the clothes laying around. You can\'t tell if they\'re dirty or clean, not to mention the room smells of stale sweat, weed, stale beer and maybe a hint of urine.');
   if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 7) {
-    scene.text('<a href="exec: gt \'vasilyhome\', \'vasily_asleep\'">Vasily</a> is sleeping on his narrow bed');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027vasily_asleep\\u0027); return false;">Vasily</a> is sleeping on his narrow bed');
   } else {
-    scene.text('A narrow <a href="exec:gt \'vasilyhome\',\'vasily_bed\'">bed</a> is against the other wall.');
+    scene.text('A narrow <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vasilyhome\\u0027, \\u0027vasily_bed\\u0027); return false;">bed</a> is against the other wall.');
   }
   // TODO-QSP: end
   scene.actions([
@@ -1748,6 +1857,8 @@ function enterVasilyRoom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVasilyBed(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'vasilyhome';
+  (s as any).menu_arg = 'vasily_bed';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/vasily_room.jpg');
   scene.text('You lie on his bed and roll over. There\'s not much to do and you start feeling a bit bored, wishing Vasily was here.');
@@ -1779,10 +1890,10 @@ function enterVasilyAsleep(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', goto: ['vasilyhome', 'hallway'] },
     { label: 'Wake him up', handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A11'] < 50) {
-      scene.actions([{ label: 'Continue', goto: ['vasilyhome', 'vasily_asleep1'] }]);
+      qspGoto(s, 'vasilyhome', 'vasily_asleep1');
     }
     if (((s as any).npc_rel ?? 0)?.['A11'] >= 50) {
-      scene.actions([{ label: 'Continue', goto: ['vasilyhome', 'vasily_asleep2'] }]);
+      qspGoto(s, 'vasilyhome', 'vasily_asleep2');
     }
   } },
   ]);

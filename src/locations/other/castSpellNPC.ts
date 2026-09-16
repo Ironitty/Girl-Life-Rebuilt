@@ -7,6 +7,8 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'spellList', '');
   (s as any).spellSuccess = 1;
+  (s as any).SpellID = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).SpellArgs = '';
   (s as any).i = 5;
   // TODO-QSP: :ArgLoopNPC
   if (((s as any).i ?? 0) < Object.keys((s as any).ARGS ?? {}).length) {
@@ -22,6 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).casterMana = 0;
   if (((s as any).casterMana ?? 0) >= ((s as any).manaCost ?? 0)) {
     // TODO-QSP: dynamic '<<$ARGS[3]>>_mana[<<ARGS[4]>>] -= <<manaCost>>'
+    (s as any).SpellExec = 'gs \'spell\', \'' + ((s as any).SpellID ?? 0) + '\', \'' + ((s as any).spellSuccess ?? 0) + '\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', ' + ((s as any).locArgs?.[2] ?? 0) + ', ' + ((s as any).locArgs?.[4] ?? 0) + '' + ((s as any).SpellArgs ?? 0) + '';
   } else {
     scene.text('Not enough mana to cast the spell.');
   }

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -11,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCoursesinfo(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   qspCall(s, 'journal', 'journalmenu');
   scene.text('<center><h2>Class schedule</h2></center>');
   scene.text('Monday: Math, Russian, Literature, Art, Biology, P.E');
@@ -20,6 +19,7 @@ function enterCoursesinfo(s: GameState, scene: SceneBuilder): void {
   scene.text('Friday: Math, Russian, Literature, Art, History and P.E.');
   scene.text('<center><h2>Grades</h2></center>');
   qspCall(s, 'grades', 'assign_grade_description', 'school');
+  (s as any).temp_grade_thr = '20,40,70,90';
   scene.text('<table cellpadding="2" cellspacing="0">');
   // TODO-QSP: dynamic text: '<tr><td>Math:</td><td><<$class_grade_desc[''school_math_grade'']>></td><td>' + ...
   scene.text(`<tr><td>Math:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_math_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_math_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
@@ -144,8 +144,10 @@ function enterCoursesinfo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCreateGrid(s: GameState, scene: SceneBuilder): void {
+  (s as any).grid_text = '';
   (s as any).grid_count = 0;
-  (s as any).temp_grid_grouptipe = qspUntranslated(s, "ARGS[1]", { location: "journal_school" });
+  (s as any).temp_grid_grouptipe = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).temp_grid_groupname = ((s as any).locArgs?.[2] ?? 0);
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :grid_loop
@@ -169,6 +171,7 @@ function enterCreateGrid(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchool(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   qspCall(s, 'journal', 'journalmenu');
   scene.text('<center><h2>School</h2></center>');
   scene.text('You attend the secondary school in Pavlovsk, which is fairly new, built only a few years ago along with a new sports field. When the school was built it was state of the art, but as the years have passed, it is starting to fall into disrepair. The old school building was left to rot and is now a shell of its former self. It\'s sometimes used by the students as a place to hang out.');
@@ -345,7 +348,7 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
     (s as any).jclose = 1;
-    dynamicGoto(st, 'menu_loc', 'menu_arg');
+    dynamicGoto(s, 'menu_loc', 'menu_arg');
   } },
   ]);
   scene.build();

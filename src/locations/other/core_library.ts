@@ -9,6 +9,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetloc(s: GameState, scene: SceneBuilder): void {
+  (s as any).prevloc = ((s as any).loc ?? 0);
+  (s as any).loc = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).menu_loc = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).locM = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).prevarg = ((s as any).loc_arg ?? 0);
+  (s as any).loc_arg = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).menu_arg = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).locM_arg = ((s as any).locArgs?.[2] ?? 0);
   if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pav_') {
     // TODO-QSP: $region[1] = 'pav'
   } else {
@@ -64,12 +72,12 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).location_type ?? 0) === 'private'  ||  ((s as any).location_type ?? 0) === 'bathroom') {
     scene.text('Your accommodation for the week has the luxury of a private shower and a bath. There\'s a poster on the wall promoting the health benefits of ice baths and other advice on looking after your body.');
     // TODO-QSP: dynamic text: There is a shower, toilet, sink, and a <a href="exec:gt 'mirror','start'">mirror...
-    scene.text('There is a shower, toilet, sink, and a <a href="exec:gt \'mirror\',\'start\'">mirror</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair.');
+    scene.text('There is a shower, toilet, sink, and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair.');
     qspCall(s, 'din_van', 'private');
   } else {
     if ((String(((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public'  ||  ((s as any).location_type ?? 0) === 'private_shared') {
       // TODO-QSP: dynamic text: There is a shower and <a href="exec:gt 'mirror','start'">mirrors</a> where you c...
-      scene.text('There is a shower and <a href="exec:gt \'mirror\',\'start\'">mirrors</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair.');
+      scene.text('There is a shower and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair.');
       scene.actions([
         { label: 'Take a shower', handler: (st: GameState) => {
     (s as any).pcs_hairbsh = 0;
@@ -82,7 +90,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.text('You grab a quick shower, but you wish you could stay longer in the shower to let the heat soak into your muscles.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -111,7 +119,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).menu_off = 0;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,7 +16,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       { label: 'Take a tangerine', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
@@ -52,7 +53,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -74,7 +76,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -92,7 +95,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).arturday ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['arturQW', 'arturQW_1'] }]);
+      qspGoto(s, 'arturQW', 'arturQW_1');
     } else {
       if (((s as any).arturday ?? 0) === ((s as any).daystart ?? 0)) {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -119,7 +122,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
             ]);
           }
           scene.actions([
@@ -147,7 +151,7 @@ function enterWork_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     scene.text('You work until the evening at the counter, selling fresh fruit. It was a rough day as you quarreled with several customers over prices and you find yourself very tired.');
     if (((s as any).arturDaysWorked1 ?? 0) >= 10) {
-      scene.actions([{ label: 'Continue', goto: ['arturQW', 'arturQW_2'] }]);
+      qspGoto(s, 'arturQW', 'arturQW_2');
     } else {
       scene.actions([
         { label: 'Go with Arthur', handler: (st: GameState) => {
@@ -210,7 +214,8 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
       ]);
     }
     scene.actions([

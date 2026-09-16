@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,8 +6,9 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'start');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dolls'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dolls'] = 1;
   }
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -58,7 +59,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   scene.text('Inside the store, shelves and racks of alternative clothes are crammed into every available space - anybody setting out to find an inch of wall would have their work cut out for them.');
   scene.text('The checkout counter is near the entrance.');
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['discount'] = (-10);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['discount'] = (-10);
   }
   // TODO-QSP: end
   scene.actions([
@@ -84,6 +85,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
 
 function enterDress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'dress');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Patchwork Dolls dresses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -99,13 +101,15 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_dolls', 'browse'] },
+    qspGoto(s, 'shop_dolls', 'browse');
+  } },
   ]);
   scene.build();
 }
 
 function enterClothing(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'clothing');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Patchwork Dolls clothing</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -121,13 +125,15 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_dolls', 'browse'] },
+    qspGoto(s, 'shop_dolls', 'browse');
+  } },
   ]);
   scene.build();
 }
 
 function enterShoes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'shoes');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Patchwork Dolls shoes</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -142,13 +148,15 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_dolls', 'browse'] },
+    qspGoto(s, 'shop_dolls', 'browse');
+  } },
   ]);
   scene.build();
 }
 
 function enterPurses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'purses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Patchwork Dolls purses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -163,13 +171,15 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_dolls', 'browse'] },
+    qspGoto(s, 'shop_dolls', 'browse');
+  } },
   ]);
   scene.build();
 }
 
 function enterCoats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'coats');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Patchwork Dolls coats</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -184,7 +194,8 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_dolls', 'browse'] },
+    qspGoto(s, 'shop_dolls', 'browse');
+  } },
   ]);
   scene.build();
 }
@@ -264,7 +275,7 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     scene.actions([
       { label: 'Anushka sent me', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dolls'] = 3;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dolls'] = 3;
     qspCall(s, 'npc_relationship', 'modify', 'A205', 5);
     scene.img('images/characters/shared/headshots_main/big205.jpg');
     scene.text('"Anushka, a friend of mine, sent me," you tell her with a smile.');

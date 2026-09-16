@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerRostislav1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'boyStat', 'A272');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower5.jpg');
@@ -57,6 +58,7 @@ function enterShowerRostislav1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerRadislav1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower3.jpg');
   scene.text('You drop to your knees in front of him, his hard cock right in your face. He shoves his dick in your mouth before you have a chance to do it yourself. You start sucking on the tip of his dick while you stroke the shaft.');
@@ -71,14 +73,14 @@ function enterShowerRadislav1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).radomirQW ?? 0)?.['radislav_shower_sex'] === 0) {
-      if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['radislav_shower_sex'] = 1;
+      ((s as any).radomirQW = (s as any).radomirQW ?? {})['radislav_shower_sex'] = 1;
       scene.text('He grins. "Yeah, this is a well used cunt. Look how wet you are already. I bet your pussy is just aching to get fucked by a big cock, isn\'t it?" he says as he lifts you up and sits you on the sink.');
       scene.actions([
         { label: 'Get fucked', goto: ['radaptev1', 'shower_radislav1_vag'] },
       ]);
     } else {
       if (((s as any).radomirQW ?? 0)?.['radislav_shower_sex'] === 1) {
-        if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['radislav_shower_sex'] = 2;
+        ((s as any).radomirQW = (s as any).radomirQW ?? {})['radislav_shower_sex'] = 2;
         scene.text('He grins. "Yeah, this is a well used cunt. Look how wet you are already. I bet your pussy is just aching to get fucked by a big cock, isn\'t it? Tough luck. I want to try that ass of yours this time," he says as he spins you around and bends you over the sink.');
         scene.actions([
           { label: 'Get butt fucked', goto: ['radaptev1', 'shower_radislav1_anal'] },
@@ -104,6 +106,7 @@ function enterShowerRadislav1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerRadislav1Vag(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'boyStat', 'A273');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower_vag1.jpg');

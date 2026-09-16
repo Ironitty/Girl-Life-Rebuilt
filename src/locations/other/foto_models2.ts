@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,15 +10,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEmily_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).emily ?? 0)?.['status'] === 2) {
-    scene.actions([{ label: 'Continue', goto: ['foto_models2', 'emily_2'] }]);
+    qspGoto(s, 'foto_models2', 'emily_2');
   }
   if (((s as any).emily ?? 0)?.['status'] === 5) {
-    scene.actions([{ label: 'Continue', goto: ['foto_models2', 'emily_chat'] }]);
+    qspGoto(s, 'foto_models2', 'emily_chat');
   }
   if (((s as any).emily ?? 0)?.['status'] >= 3) {
-    scene.actions([{ label: 'Continue', goto: ['foto_models2', 'emily_modelling'] }]);
+    qspGoto(s, 'foto_models2', 'emily_modelling');
   }
-  if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['status'] = 2;
+  ((s as any).emily = (s as any).emily ?? {})['status'] = 2;
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('You\'re walking through the studio when you hear someone shout from behind you.');
   scene.text('"Move bitch!"');
@@ -82,7 +82,7 @@ function enterEmily_1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: '"Cunt!"', handler: (st: GameState) => {
-    if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
+    ((s as any).emily = (s as any).emily ?? {})['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
     scene.text('"Cunt!" you hiss');
     scene.text('She stops dead in her tracks before whirling around and stomping back towards you. "What did you just say to me???"');
@@ -115,7 +115,7 @@ function enterEmily_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEmily_2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['status'] = 3;
+  ((s as any).emily = (s as any).emily ?? {})['status'] = 3;
   scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
   if (((s as any).emily ?? 0)?.['hate'] === 1) {
     scene.text('Walking through the studio, you round the corner of a set and nearly bump into Emily. The two of you immediately lock eyes and stare each other down.');
@@ -140,7 +140,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
         { label: 'Try to resolve things', goto: ['foto_models2', 'emily_resolve'] },
         { label: 'Call her "cow tits"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/3.jpg');
-    if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
+    ((s as any).emily = (s as any).emily ?? {})['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
     scene.text('"Why would I be jealous of fat cow tits like yours?" you sneer back.');
     scene.text('"<i>Excuuuuuuuse me?!</i>"');
     scene.text('Your words seem to catch her off guard and she steps back as though she\'s genuinely offended. Sensing you have the upper hand, you push your breasts up with your hands. "Maybe they\'re not as big, but at least they\'re cute, perky and don\'t get waved around like fake cow udders."');
@@ -170,7 +170,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'Try to resolve things', goto: ['foto_models2', 'emily_resolve'] },
           { label: '"Why? So they can distract from your ass ugly face?"', handler: (st: GameState) => {
-    if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
+    ((s as any).emily = (s as any).emily ?? {})['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/3.jpg');
     scene.text('"Why would I? At least I don\'t need mine to distract people from an ass ugly face!"');
     scene.text('"<i>Excuuuuuuuse me?!</i>"');
@@ -240,7 +240,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes. Because unlike you, I\'ve been getting ready for this my whole life. I spent all of high school eating right and working out, getting a thin body and the most voluptuous ass. I started working here the moment I turned 18 and have spent every day since working with the photographers to become the perfect model. I\'ve done hundreds of shoots, I\'m sponsored by lingerie and clothing companies, and currently I\'m working on breaking into the actress business. And then here <i>you</i> are, coming in for easy money like some kind of cheap whore and expecting me to treat you like some kind of special snowflake!"');
     scene.actions([
       { label: '"I didn\'t realize how serious you were"', handler: (st: GameState) => {
-    if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) - (1);
+    ((s as any).emily = (s as any).emily ?? {})['hate'] = ((s as any).emily['hate'] ?? 0) - (1);
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
     scene.text('You find yourself taken aback by her tirade and step away from her.');
     scene.text('"I-, I\'m sorry Emily. I didn\'t realize you were so serious about your work here. I never meant to bother you, I just… we just bumped into each other by accident, I swear."');
@@ -250,7 +250,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: '"Who gave you the right?"', handler: (st: GameState) => {
-    if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
+    ((s as any).emily = (s as any).emily ?? {})['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
     scene.text('"And you think that gives you the right to act the way you do?" you shout back. "Plenty of other people are working hard here, so why does your work make you deserve it more than the rest? Just because you were born with big tits and a pretty face doesn\'t mean you\'re \'destined\' to make it big. You\'re such a self-entitled brat!"');
     scene.text('"A filthy amateur like you wouldn\'t understand," she huffs. "And that\'s always what you\'re going to be. Just another set of tits on the internet with a forgotten name to go along with them."');
@@ -268,7 +268,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEmilyResolve(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) - (1);
+  ((s as any).emily = (s as any).emily ?? {})['hate'] = ((s as any).emily['hate'] ?? 0) - (1);
   scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/3.jpg');
   // TODO-QSP: dynamic text: You take a deep breath to calm down before saying, "Listen. Maybe we got off on ...
   scene.text(`You take a deep breath to calm down before saying, "Listen. Maybe we got off on the wrong foot yesterday. I just started here and I don't want to be making enemies right out of the gate. I'm ${((s as any).model ?? 0)?.['firstname'] ?? ''} and I'm sorry for what happened yesterday. Can we just try to forget about it?"`);
@@ -283,8 +283,8 @@ function enterEmilyResolve(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEmilyModelling(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['status'] = Math.floor(Math.random() * 3) + 3;
-  if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['model'] = Math.floor(Math.random() * 4) + 1;
+  ((s as any).emily = (s as any).emily ?? {})['status'] = Math.floor(Math.random() * 3) + 3;
+  ((s as any).emily = (s as any).emily ?? {})['model'] = Math.floor(Math.random() * 4) + 1;
   if (((s as any).emily ?? 0)?.['model'] === 1) {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/modelling/nude1.mp4');
     scene.text('Looking around for Emily, you find her on set in the middle of a nude shoot. She\'s completely concentrated on her task and doesn\'t even notice you. You spend a few minutes watching before walking away.');
@@ -368,14 +368,14 @@ function enterEmilyWarning(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEmilyChat(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['status'] = Math.floor(Math.random() * 3) + 3;
+  ((s as any).emily = (s as any).emily ?? {})['status'] = Math.floor(Math.random() * 3) + 3;
   scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/5.jpg');
   scene.text('Looking around for Emily, you find her standing around on an empty set, seemingly waiting between shoots for something.');
   scene.text('"Oh. It\'s you. What do you want?"');
   if (((s as any).emily ?? 0)?.['model_exp'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask for modelling advice', handler: (st: GameState) => {
-    if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['model_exp'] = ((s as any).daystart ?? 0);
+    ((s as any).emily = (s as any).emily ?? {})['model_exp'] = ((s as any).daystart ?? 0);
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
     scene.text('"What? You\'re asking me for modelling advice? Why would I ever give advice to you? If you used it, it would only end up distracting the staff from me and my talents."');
     scene.actions([
@@ -459,13 +459,13 @@ function enterEmilyChat(s: GameState, scene: SceneBuilder): void {
 
 function enterJeff_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).jeff ?? 0)?.['status'] === 2) {
-    scene.actions([{ label: 'Continue', goto: ['foto_models2', 'jeff_2'] }]);
+    qspGoto(s, 'foto_models2', 'jeff_2');
   } else {
     if (((s as any).jeff ?? 0)?.['status'] > 2  &&  ((s as any).jeff ?? 0)?.['status'] < 5) {
-      scene.actions([{ label: 'Continue', goto: ['foto_models2', 'jeff_3'] }]);
+      qspGoto(s, 'foto_models2', 'jeff_3');
     } else {
       if (((s as any).jeff ?? 0)?.['status'] === 5) {
-        scene.actions([{ label: 'Continue', goto: ['foto_models2', 'jeff_modelling'] }]);
+        qspGoto(s, 'foto_models2', 'jeff_modelling');
       }
     }
   }
@@ -507,7 +507,7 @@ function enterJeff_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ahh, uh… Okay…" you say.');
     scene.text('All of sudden she seems to startle herself and squeaks. "Oh no! I totally forgot, I was supposed to be on set! Gotta run! It was nice meeting you!" you hear Jeff call back as she skips off towards the other side of the studio.');
     scene.text('<i>What a weird girl…</i>');
-    if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['status'] = 2;
+    ((s as any).jeff = (s as any).jeff ?? {})['status'] = 2;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -524,7 +524,7 @@ function enterJeff_1(s: GameState, scene: SceneBuilder): void {
 
 function enterJeff_2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/4.jpg');
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['status'] = 3;
+  ((s as any).jeff = (s as any).jeff ?? {})['status'] = 3;
   scene.text('As you walk past a set, you hear someone yell out from an armchair. "Hey there, cutie!"');
   scene.text('Looking over, you see Jeff smiling at you, sitting with her legs up and her neat little pussy on peeking out from between them. She must\'ve just finished a shoot.');
   // TODO-QSP: end
@@ -662,8 +662,8 @@ function enterJeff_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJeff_3(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['status'] = Math.floor(Math.random() * 3) + 3;
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['grope'] = ((s as any).jeff['grope'] ?? 0) + (1);
+  ((s as any).jeff = (s as any).jeff ?? {})['status'] = Math.floor(Math.random() * 3) + 3;
+  ((s as any).jeff = (s as any).jeff ?? {})['grope'] = ((s as any).jeff['grope'] ?? 0) + (1);
   scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/grope.jpg');
   scene.text('While walking through the studio, you suddenly feel someone\'s arms wrap around your waist and two soft breasts press into your back.');
   scene.text('Before you can say anything, you jump in surprise as you feel the person\'s hands fly up your body and slap against your breasts to give them a firm squeeze.');
@@ -702,7 +702,7 @@ function enterJeffChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).jeff ?? 0)?.['model_exp'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask for modelling advice', handler: (st: GameState) => {
-    if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['model_exp'] = ((s as any).daystart ?? 0);
+    ((s as any).jeff = (s as any).jeff ?? {})['model_exp'] = ((s as any).daystart ?? 0);
     qspCall(s, 'exp_gain', 'mdlng', 1);
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/9.jpg');
     scene.text('"How to be a better model? Oh that\'s easy! Just have fun!" she says.');
@@ -750,12 +750,12 @@ function enterJeffChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Chat', handler: (st: GameState) => {
-    if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['convo'] = Math.floor(Math.random() * 5) + 1;
+    ((s as any).jeff = (s as any).jeff ?? {})['convo'] = Math.floor(Math.random() * 5) + 1;
     if (((s as any).jeff ?? 0)?.['convo'] === 1) {
       scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/15.jpg');
       scene.text('"So Jeff, have you seen any good movies lately?"');
       scene.text('"Oh no! I don\'t go to the movies. I hate them! They\'re so loud and unpleasant! My poor ears can\'t handle them!" she whines while putting her hands over her ears even though it is perfectly quiet right now.');
-      if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['movies'] = 1;
+      ((s as any).jeff = (s as any).jeff ?? {})['movies'] = 1;
     } else {
       if (((s as any).jeff ?? 0)?.['convo'] === 2) {
         scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/16.jpg');
@@ -928,8 +928,8 @@ function enterJeffSexAdvice(s: GameState, scene: SceneBuilder): void {
 function enterJeffModelling(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('You\'re looking for Jeff when you hear her voice coming from one of the sets.');
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['status'] = Math.floor(Math.random() * 3) + 3;
-  if (!(s as any).jeff) (s as any).jeff = {}; (s as any).jeff['model'] = Math.floor(Math.random() * 3) + 1;
+  ((s as any).jeff = (s as any).jeff ?? {})['status'] = Math.floor(Math.random() * 3) + 3;
+  ((s as any).jeff = (s as any).jeff ?? {})['model'] = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -981,7 +981,7 @@ function enterAnushka_1(s: GameState, scene: SceneBuilder): void {
       scene.text('You nod your head. "Yeah, I was just walking around and seeing what\'s what before getting started."');
       scene.text('Terekhova smiles. "Nice to see you again."');
     } else {
-      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 1;
+      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 1;
       scene.text('You find Anushka sitting in the makeup area getting her makeup done by one of the makeup artists. You\'re a bit surprised since you didn\'t know she modeled, even though you\'ve heard the rumors around school.');
       scene.text('"So you\'re a model?" you ask.');
       scene.text('She glances in your direction. "Hey bitch! Yeah, I am. You too?"');
@@ -1060,7 +1060,7 @@ function enterAnushka_1(s: GameState, scene: SceneBuilder): void {
         if (((s as any).anushkaQW ?? 0)?.['model'] >= 1) {
           scene.text('You arrive just in time to see Anushka finish another photo shoot. She has a huge grin on her face as she stands there completely naked. She seems to really enjoy modeling, or maybe she\'s just enjoying being naked in front of everyone. You doubt you\'ll ever figure out which.');
         } else {
-          if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 1;
+          ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 1;
           scene.text('You arrive just in time to see Anushka finish a photo shoot. She\'s completely naked with a huge grin on her face. She seems to really enjoy modeling, or maybe she\'s just enjoying being naked in front of everyone. It\'s hard to tell with her.');
           scene.actions([
             { label: 'Leave', goto: ['foto', 'studio'] },
@@ -1113,11 +1113,11 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about Anastasia', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['ask_anastasia'] = 1;
+    ((s as any).nush_chat = (s as any).nush_chat ?? {})['ask_anastasia'] = 1;
     scene.text('<center><b>Photography Studio</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/nush_talk.jpg');
     if (((s as any).nush_chat ?? 0)?.['been_here_awhile'] === 0) {
-      if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['been_here_awhile'] = 1;
+      ((s as any).nush_chat = (s as any).nush_chat ?? {})['been_here_awhile'] = 1;
       scene.text('"So, you\'ve been modeling here for a while, yeah?" you ask.');
       scene.text('She nods her head. "Yeah, since the start of the summer before our final year of school. Why?"');
     }
@@ -1141,7 +1141,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Photography Studio</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/nush_talk.jpg');
     if (((s as any).nush_chat ?? 0)?.['been_here_awhile'] === 0) {
-      if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['been_here_awhile'] = 1;
+      ((s as any).nush_chat = (s as any).nush_chat ?? {})['been_here_awhile'] = 1;
       scene.text('"So, you\'ve been modeling here for a while, yeah?" you ask.');
       scene.text('She nods her head. "Yeah, since the start of the summer before our final year of school. Why?"');
     }
@@ -1192,7 +1192,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
       scene.text('She shakes her head. "Not yet. I\'ve been busy and couldn\'t make it to the city on the days they\'re doing it, but I plan to."');
       scene.text('She then tells you about a few other details of her and Krystal just hanging out and talking after work. She seems to get along well with Krystal.');
     }
-    if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['ask_krystal'] = 1;
+    ((s as any).nush_chat = (s as any).nush_chat ?? {})['ask_krystal'] = 1;
     qspCall(s, 'arousal', 'voyeur', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1214,11 +1214,11 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about Emily', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['ask_emily'] = 1;
+    ((s as any).nush_chat = (s as any).nush_chat ?? {})['ask_emily'] = 1;
     scene.text('<center><b>Photography Studio</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/nush_talk.jpg');
     if (((s as any).nush_chat ?? 0)?.['been_here_awhile'] === 0) {
-      if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['been_here_awhile'] = 1;
+      ((s as any).nush_chat = (s as any).nush_chat ?? {})['been_here_awhile'] = 1;
       scene.text('"So, you\'ve been modeling here for a while, yeah?" you ask.');
       scene.text('She nods her head. "Yeah, since the start of the summer before our final year of school. Why?"');
     }
@@ -1239,11 +1239,11 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about Jeff', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['ask_jeff'] = 1;
+    ((s as any).nush_chat = (s as any).nush_chat ?? {})['ask_jeff'] = 1;
     scene.text('<center><b>Photography Studio</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/nush_talk.jpg');
     if (((s as any).nush_chat ?? 0)?.['been_here_awhile'] === 0) {
-      if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['been_here_awhile'] = 1;
+      ((s as any).nush_chat = (s as any).nush_chat ?? {})['been_here_awhile'] = 1;
       scene.text('"So, you\'ve been modeling here for a while, yeah?" you ask.');
       scene.text('She nods her head. "Yeah, since the start of the summer before our final year of school. Why?"');
     }
@@ -1265,11 +1265,11 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about Mari', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['ask_mari'] = 1;
+    ((s as any).nush_chat = (s as any).nush_chat ?? {})['ask_mari'] = 1;
     scene.text('<center><b>Photography Studio</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/nush_talk.jpg');
     if (((s as any).nush_chat ?? 0)?.['been_here_awhile'] === 0) {
-      if (!(s as any).nush_chat) (s as any).nush_chat = {}; (s as any).nush_chat['been_here_awhile'] = 1;
+      ((s as any).nush_chat = (s as any).nush_chat ?? {})['been_here_awhile'] = 1;
       scene.text('"So, you\'ve been modeling here for a while, yeah?" you ask.');
       scene.text('She nods her head. "Yeah, since the start of the summer before our final year of school. Why?"');
     }
@@ -1341,12 +1341,12 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
 
 function enterNushModeling(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['model'] === 0) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 1;
   }
   if (((s as any).anushkaQW ?? 0)?.['model'] < 6) {
     // TODO-QSP: gt 'foto_models2', 'nush_photoshoot<<anushkaQW[''model'']>>'
   } else {
-    scene.actions([{ label: 'Continue', goto: ['foto_models2', 'nush_photoshoot<<rand(1,5)>>'] }]);
+    qspGoto(s, 'foto_models2', 'nush_photoshoot' + Math.floor(Math.random() * 5) + 1 + '');
   }
   // TODO-QSP: end
   scene.build();
@@ -1355,9 +1355,9 @@ function enterNushModeling(s: GameState, scene: SceneBuilder): void {
 function enterNushPhotoshoot1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (((s as any).anushkaQW ?? 0)?.['model'] > 6) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 6;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 6;
   } else {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka Photoshoot</b></center>');
@@ -1465,9 +1465,9 @@ function enterNushPhotoshoot1(s: GameState, scene: SceneBuilder): void {
 function enterNushPhotoshoot2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (((s as any).anushkaQW ?? 0)?.['model'] > 6) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 6;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 6;
   } else {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka Photoshoot</b></center>');
@@ -1567,9 +1567,9 @@ function enterNushPhotoshoot2(s: GameState, scene: SceneBuilder): void {
 function enterNushPhotoshoot3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (((s as any).anushkaQW ?? 0)?.['model'] > 6) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 6;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 6;
   } else {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka Photoshoot</b></center>');
@@ -1684,9 +1684,9 @@ function enterNushPhotoshoot3(s: GameState, scene: SceneBuilder): void {
 function enterNushPhotoshoot4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (((s as any).anushkaQW ?? 0)?.['model'] > 6) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 6;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 6;
   } else {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka Photoshoot</b></center>');
@@ -1796,9 +1796,9 @@ function enterNushPhotoshoot4(s: GameState, scene: SceneBuilder): void {
 function enterNushPhotoshoot5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (((s as any).anushkaQW ?? 0)?.['model'] > 6) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 6;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 6;
   } else {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = ((s as any).anushkaQW['model'] ?? 0) + (1);
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka Photoshoot</b></center>');

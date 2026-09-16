@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'rasputin_host', 'start');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
@@ -32,7 +33,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rasputin ?? 0)?.['hostEv'] === 0) {
     scene.actions([
       { label: 'Ask her about this place', handler: (st: GameState) => {
-    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['hostEv'] = 1;
+    ((s as any).rasputin = (s as any).rasputin ?? {})['hostEv'] = 1;
     scene.text('<center>Unknown Woman</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_2.jpg');
     scene.text('You ask the woman after you introduce yourself. "Excuse me, would you mind tell me a little bit about this place?"');
@@ -50,7 +51,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Return to entrance', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['rasputin_entrance', ''] },
+    qspGoto(s, 'rasputin_entrance', '');
+  } },
     ]);
   } },
     ]);
@@ -63,7 +65,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Apologize for the intrusion and return to the entrance', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['rasputin_entrance', ''] },
+    qspGoto(s, 'rasputin_entrance', '');
+  } },
   ]);
   scene.build();
 }
@@ -85,7 +88,8 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['rasputin_host', 'start', '1'] },
+    qspGoto(s, 'rasputin_host', 'start', '1');
+  } },
     ]);
   } },
     { label: 'About buying a ticket', handler: (st: GameState) => {
@@ -120,7 +124,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'money', 'pay', 3000);
-    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 1;
+    ((s as any).rasputin = (s as any).rasputin ?? {})['burlesque_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);
@@ -154,7 +158,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'money', 'pay', 4000);
-    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 1;
+    ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);
@@ -188,8 +192,8 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'money', 'pay', 7000);
-    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 1;
-    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 1;
+    ((s as any).rasputin = (s as any).rasputin ?? {})['burlesque_ticket'] = 1;
+    ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);
@@ -205,7 +209,8 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/rasputin/nadia_3.jpg');
     scene.text('You tell Nadia you will think on it more, she shrugs off and waits for your response.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['rasputin_host', 'start', '1'] },
+    qspGoto(s, 'rasputin_host', 'start', '1');
+  } },
     ]);
   } },
   ]);

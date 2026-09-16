@@ -1,13 +1,13 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).camGirl) (s as any).camGirl = {}; (s as any).camGirl['MFC_lastrequest'] = ((s as any).totminut ?? 0);
+  ((s as any).camGirl = (s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[0] ?? 0) === 80) {
     scene.text('When one of your loyal viewers speaks up, you feel a weird knot in your throat. He\'s usually making rather insensitive comments and seems to enjoy watching you squirm, but he pays well.');
@@ -24,7 +24,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
       ]);
     }
     scene.actions([
@@ -69,7 +70,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
         ]);
       }
       scene.actions([
@@ -107,7 +109,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
           ]);
         }
         scene.actions([
@@ -144,7 +147,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
               { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
             ]);
           }
           scene.actions([
@@ -155,11 +159,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.img('images/pc/items/accessories/computer/camwhore78.jpg');
       scene.text('You look around quickly and see the wooden knobs on your bed. Those look kinda phallic… should work!');
       scene.text('After you spit on your fingers and coat it with saliva, you carefully rest the tip of the wooden knob against your labia and lower yourself down onto it, feeling how it stretches you nicely.');
+      (s as any).orgasm_txt = 'It hurts a little, but you\'re too horny to care right now. You could get off on this! Shortly after you begin humping the wooden knob, you reach a loud orgasm. Your legs have some issues carrying your weight and the knob presses far inside your pussy when you fall, pressing against your uterus uncomfortably. Ouch! You quickly get off it and rub your sore snatch while you sigh… other than that moment, it felt nice!';
+      (s as any).orgasm_or = 'custom';
     } else {
       scene.img('images/pc/items/accessories/computer/camwhore77.jpg');
       scene.text('You look around quickly and see the wooden knobs on your bed. Those look kinda phallic… should work!');
       scene.text('After you spit on your fingers and coat it with saliva, you carefully rest the tip of the wooden knob against your labia and lower yourself down onto it, feeling how it stretches you nicely.');
       scene.text('Despite the nice feeling of fullness it provides, it\'s not enough to reach an orgasm right now. You make an effort of riding the wooden knob for a little while, but have to stop when your vagina hurts too much to continue.');
+      (s as any).orgasm_or = 'no';
     }
     qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(s, 'stat', '');
@@ -217,11 +224,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
               scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname || '')}! Show us something unusual! Anything!"`);
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
               if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
-                if (!(s as any).temp) (s as any).temp = {}; (s as any).temp[1] = 1;
+                ((s as any).temp = (s as any).temp ?? {})[1] = 1;
               }
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 1)", { location: "komp_cam_MFC_requests_two" });
               if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
-                if (!(s as any).temp) (s as any).temp = {}; (s as any).temp[1] = 1;
+                ((s as any).temp = (s as any).temp ?? {})[1] = 1;
               }
               if (((s as any).temp ?? 0)[1] > 0) {
                 scene.actions([
@@ -418,7 +425,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
                     ]);
                   }
                   scene.actions([
@@ -455,7 +463,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
                       ]);
                     }
                     scene.actions([
@@ -495,7 +504,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
                         ]);
                       }
                       scene.actions([

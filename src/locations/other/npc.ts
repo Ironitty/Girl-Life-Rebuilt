@@ -50,9 +50,9 @@ function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAge(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
+  ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
+  ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
+  ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
   (s as any).result = qspFunc(s, 'time', 'get_age', ((s as any).temp_timeVars ?? 0)?.['year'], ((s as any).temp_timeVars ?? 0)?.['month'], ((s as any).temp_timeVars ?? 0)?.['day']);
   // TODO-QSP: end
   scene.build();
@@ -61,7 +61,7 @@ function enterAge(s: GameState, scene: SceneBuilder): void {
 function enterIsNpcID(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   if ((String(((s as any).locArgs?.[1] ?? 0)).length) > 1) {
-    (s as any).result = ((String('ABCDM').indexOf(String((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0  &&  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '');
+    (s as any).result = (((String('ABCDM').indexOf(String((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1) > 0  &&  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '');
   }
   return;
   // TODO-QSP: end
@@ -69,19 +69,23 @@ function enterIsNpcID(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFindInNpcStat(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = '';
   (s as any).temp_npc_i = qspUntranslated(s, "arrpos('npcID', ARGS[1])", { location: "npc" });
   if (((s as any).temp_npc_i ?? 0) >= 0) {
+    (s as any).result = '[' + ((s as any).temp_npc_i ?? 0) + ']';
     return;
   }
   (s as any).temp_npc_i = 1;
   // TODO-QSP: :npcfindloop
   if ((0 as any) === ((s as any).locArgs?.[1] ?? 0)) {
+    (s as any).result = '' + qspUntranslated(s, "mid('abcdefghijklmnopqrstuvwxyz', temp_npc_i, 1)", { location: "npc" }) + '';
   }
   (s as any).temp_npc_i = ((s as any).temp_npc_i ?? 0) + (1);
   if (((s as any).temp_npc_i ?? 0) < 10  &&  ((s as any).result ?? 0) === '') {
     // TODO-QSP: jump 'npcfindloop'
   }
   if (((s as any).result ?? 0) === '') {
+    (s as any).result = 'none';
   }
   // TODO-QSP: end
   scene.build();
@@ -94,14 +98,14 @@ function enterCopyNpcStat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[1] ?? 0) !== ''  &&  (String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== '[') {
       // TODO-QSP: $ARGS[1] = "<<instr('abcdefghijklmnopqrstuvwxyz', $ARGS[1])>>"
       if (((s as any).locArgs?.[1] ?? 0) === "0") {
-        if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '';
+        ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '';
       }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '[' + qspUntranslated(s, "ARGS[1]>", { location: "npc" }) + ']';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '[' + ((s as any).locArgs?.[1] ?? 0) + ']';
   }
-  if ((String('abcdefghijklmnopqrstuvwxyz').indexOf(String(((s as any).locArgs?.[2] ?? 0)))) + 1) {
+  if (((String('abcdefghijklmnopqrstuvwxyz').indexOf(String(((s as any).locArgs?.[2] ?? 0)))) + 1)) {
     // TODO-QSP: $ARGS[2] = "'<<$ARGS[2]>>'"
   } else {
     // TODO-QSP: $ARGS[2] = '<<ARGS[2]>>'
@@ -113,38 +117,38 @@ function enterCopyNpcStat(s: GameState, scene: SceneBuilder): void {
 
 function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 'npc_sexual';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'npc_sexual';
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = 'ABCM';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 'ABCM';
   }
   if (((s as any).locArgs?.[3] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = '0123';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = '0123';
   }
-  if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['guys'] = 0;
-  if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['girls'] = 0;
-  if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['herms'] = 0;
+  ((s as any).npc_results = (s as any).npc_results ?? {})['guys'] = 0;
+  ((s as any).npc_results = (s as any).npc_results ?? {})['girls'] = 0;
+  ((s as any).npc_results = (s as any).npc_results ?? {})['herms'] = 0;
   if (Object.keys((s as any)[((s as any).locArgs?.[1] ?? 0)] ?? {}).length === 0) {
     // TODO-QSP: exit
   }
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['outer_i'] = 0;
+  ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['outer_i'] = 0;
   // TODO-QSP: :loop_outer_npc_count
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['char'] = 0;
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['inner_i'] = 1;
+  ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['char'] = 0;
+  ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['inner_i'] = 1;
   // TODO-QSP: :loop_inner_npc_count
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['npcID'] = (((s as any).temp_npcVars ?? {})?.['char'] ?? 0) + (((s as any).temp_npcVars ?? {})?.['inner_i'] ?? 0);
+  ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['npcID'] = (((s as any).temp_npcVars ?? {})?.['char'] ?? 0) + (((s as any).temp_npcVars ?? {})?.['inner_i'] ?? 0);
   if ((0 as any) > 0) {
     if (((s as any).npc_gender ?? 0)[((s as any).temp_npcVars ?? 0)?.['npcID']] === 0) {
-      if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['guys'] = ((s as any).npc_results['guys'] ?? 0) + (1);
+      ((s as any).npc_results = (s as any).npc_results ?? {})['guys'] = ((s as any).npc_results['guys'] ?? 0) + (1);
     } else {
       if (((s as any).npc_gender ?? 0)[((s as any).temp_npcVars ?? 0)?.['npcID']] === 1) {
-        if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['girls'] = ((s as any).npc_results['girls'] ?? 0) + (1);
+        ((s as any).npc_results = (s as any).npc_results ?? {})['girls'] = ((s as any).npc_results['girls'] ?? 0) + (1);
       } else {
-        if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['herms'] = ((s as any).npc_results['herms'] ?? 0) + (1);
+        ((s as any).npc_results = (s as any).npc_results ?? {})['herms'] = ((s as any).npc_results['herms'] ?? 0) + (1);
       }
     }
   }
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['inner_i'] = ((s as any).temp_npcVars['inner_i'] ?? 0) + (1);
+  ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['inner_i'] = ((s as any).temp_npcVars['inner_i'] ?? 0) + (1);
   if (((s as any).temp_npcVars ?? 0)?.['inner_i'] < (0 as any)) {
     // TODO-QSP: jump 'loop_inner_npc_count'
   }
@@ -161,14 +165,14 @@ function enterUpdateHotcat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[3] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = '$result = $npc_index[ARGS[0]]';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = '$result = $npc_index[ARGS[0]]';
   }
-  if (!(s as any).ciklVars) (s as any).ciklVars = {}; (s as any).ciklVars['i'] = qspUntranslated(s, "ARGS[1]", { location: "npc" });
-  if (!(s as any).ciklVars) (s as any).ciklVars = {}; (s as any).ciklVars['max_i'] = qspUntranslated(s, "ARGS[2]", { location: "npc" });
+  ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).ciklVars = (s as any).ciklVars ?? {})['max_i'] = ((s as any).locArgs?.[2] ?? 0);
   // TODO-QSP: :hotcat_calc_jump
-  if (!(s as any).ciklVars) (s as any).ciklVars = {}; (s as any).ciklVars['npcID'] = 0;
+  ((s as any).ciklVars = (s as any).ciklVars ?? {})['npcID'] = 0;
   if (((s as any).npc_hotcat ?? 0)[((s as any).ciklVars ?? 0)?.['npcID']] > 0) {
-    if (!(s as any).ciklVars) (s as any).ciklVars = {}; (s as any).ciklVars['switch_rand'] = Math.floor(Math.random() * 100) + 0;
+    ((s as any).ciklVars = (s as any).ciklVars ?? {})['switch_rand'] = Math.floor(Math.random() * 100) + 0;
     if (((s as any).hotcat_movement ?? 0)[((s as any).ciklVars ?? 0)?.['npcID']] === 0) {
       if (((s as any).ciklVars ?? 0)?.['switch_rand'] < 20) {
         // TODO-QSP: npc_hotcat[$ciklVars['npcID']] -= 1
@@ -186,7 +190,7 @@ function enterUpdateHotcat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (!(s as any).ciklVars) (s as any).ciklVars = {}; (s as any).ciklVars['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
+  ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
   if (((s as any).ciklVars ?? 0)?.['i'] < ((s as any).ciklVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'hotcat_calc_jump'
   }
@@ -209,6 +213,7 @@ function enterNpcStatUpdateAll(s: GameState, scene: SceneBuilder): void {
   (s as any).npcStat_update_i = 1;
   (s as any).npcStat_update_max_i = 26;
   // TODO-QSP: :update_loop2
+  (s as any).npcStat_update_letter = qspUntranslated(s, "mid('abcdefghijklmnopqrstuvwxyz', npcStat_update_i, 1)", { location: "npc" });
   // TODO-QSP: dynamic "
   if (((s as any).npcID ?? 0)?.[String((s as any).npcStat_update_i ?? 0)] !== '') {
     // TODO-QSP: gs 'npcStat', $npcID<<npcStat_update_i>>, '<<$npcStat_update_letter>>', $npcCondom<<npcStat_update_i...
@@ -225,22 +230,38 @@ function enterNpcStatUpdateAll(s: GameState, scene: SceneBuilder): void {
 
 function enterIntro(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *clear
+  (s as any).static_num = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] < 20) {
+    (s as any).npc_cur_rel = 'You don\'t get along at all with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] >= 20  &&  ((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] < 40) {
+    (s as any).npc_cur_rel = 'You don\'t get along very well with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] >= 40  &&  ((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] < 60) {
+    (s as any).npc_cur_rel = 'You have a normal relationship with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] >= 60  &&  ((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] < 80) {
+    (s as any).npc_cur_rel = 'You have a good relationship with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] >= 80) {
+    (s as any).npc_cur_rel = 'You have a great relationship with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
+    (s as any).image_path = ((s as any).npc_pic ?? 0)?.[String((s as any).static_num ?? 0)];
+  } else {
+    (s as any).image_path = ((s as any).locArgs?.[2] ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) === '') {
+    (s as any).titlecolor = 'maroon';
+  } else {
+    (s as any).titlecolor = ((s as any).locArgs?.[3] ?? 0);
   }
   if (((s as any).locArgs?.[4] ?? 0) === '') {
+    (s as any).description = qspFunc(s, 'npc_notes', '$static_num');
+  } else {
+    (s as any).description = ((s as any).locArgs?.[4] ?? 0);
   }
+  (s as any).apendix = ((s as any).locArgs?.[5] ?? 0);
   // TODO-QSP: '<center><b><font color = <<$titlecolor>>><<$npc_firstname[$static_num]>> <<$npc_lastname[$static_nu...
   if (((s as any).image_path ?? 0) !== '') {
     if ((!((s as any).locArgs?.[6] ?? 0))) {

@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_id = 'beta_journal_magic';
+  (s as any).hot_link = ((s as any).loc_id ?? 0);
   if (((s as any).array_tab ?? 0)[1] === '') {
     qspCall(s, 'beta_journal', 'init_array');
   }

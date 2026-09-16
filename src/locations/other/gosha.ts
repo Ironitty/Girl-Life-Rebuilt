@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGoshaRoom(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).reccoldorm = 0;
   (s as any).goshiflag = 0;
   scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');

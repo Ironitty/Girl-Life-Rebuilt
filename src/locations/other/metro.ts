@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -39,6 +39,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
@@ -60,10 +61,10 @@ function enterIsland(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: $func('transport_functions', 'display_metropass_time')
       scene.actions([
-        { label: 'Take the metro to the city center (<<func(\'transport_functions\', \'display_metro_timecost\', \'island\', \'center\')>>)', goto: ['metro', 'island_center'] },
-        { label: 'Take the metro to the Residential district (<<func(\'transport_functions\', \'display_metro_timecost\', \'island\', \'residential\')>>)', goto: ['metro', 'island_residential'] },
-        { label: 'Take the metro to the Industrial district (<<func(\'transport_functions\', \'display_metro_timecost\', \'island\', \'industrial\')>>)', goto: ['metro', 'island_industrial'] },
-        { label: 'Take the metro to the Suburbs (<<func(\'transport_functions\', \'display_metro_timecost\', \'island\', \'suburbs\')>>)', goto: ['metro', 'island_suburbs'] },
+        { label: '', labelFn: (s: GameState) => 'Take the metro to the city center (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'island', 'center') ?? '') + ')', goto: ['metro', 'island_center'] },
+        { label: '', labelFn: (s: GameState) => 'Take the metro to the Residential district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'island', 'residential') ?? '') + ')', goto: ['metro', 'island_residential'] },
+        { label: '', labelFn: (s: GameState) => 'Take the metro to the Industrial district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'island', 'industrial') ?? '') + ')', goto: ['metro', 'island_industrial'] },
+        { label: '', labelFn: (s: GameState) => 'Take the metro to the Suburbs (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'island', 'suburbs') ?? '') + ')', goto: ['metro', 'island_suburbs'] },
       ]);
     }
   }
@@ -85,7 +86,7 @@ function enterIsland(s: GameState, scene: SceneBuilder): void {
 
 function enterIslandTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['metropass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['metro', 'island'] }]);
+    qspGoto(s, 'metro', 'island');
   }
   qspCall(s, 'core_library', 'setloc', 'metro', 'island_tickets');
   scene.text('<center><b>Metro station</b></center>');
@@ -110,6 +111,7 @@ function enterIslandTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
@@ -132,14 +134,14 @@ function enterCenter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).transportVars ?? 0)?.['metro_wait_island'] <= 60) {
         scene.actions([
-          { label: 'Take the metro to the Vasilyevsky island (<<$func(\'transport_functions\', \'display_metro_timecost\', \'center\', \'island\')>>)', goto: ['metro', 'center_island'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Vasilyevsky island (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'center', 'island') ?? '') + ')', goto: ['metro', 'center_island'] },
         ]);
       }
       if (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] <= 60) {
         scene.actions([
-          { label: 'Take the metro to the Residential district (<<$func(\'transport_functions\', \'display_metro_timecost\', \'center\', \'residential\')>>)', goto: ['metro', 'center_residential'] },
-          { label: 'Take the metro to the Industrial district (<<$func(\'transport_functions\', \'display_metro_timecost\', \'center\', \'industrial\')>>)', goto: ['metro', 'center_industrial'] },
-          { label: 'Take the metro to the Suburbs (<<$func(\'transport_functions\', \'display_metro_timecost\', \'center\', \'suburbs\')>>)', goto: ['metro', 'center_suburbs'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Residential district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'center', 'residential') ?? '') + ')', goto: ['metro', 'center_residential'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Industrial district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'center', 'industrial') ?? '') + ')', goto: ['metro', 'center_industrial'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Suburbs (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'center', 'suburbs') ?? '') + ')', goto: ['metro', 'center_suburbs'] },
         ]);
       }
     }
@@ -163,7 +165,7 @@ function enterCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['metropass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['metro', 'center'] }]);
+    qspGoto(s, 'metro', 'center');
   }
   qspCall(s, 'core_library', 'setloc', 'metro', 'center_tickets');
   scene.text('<center><b>Metro station</b></center>');
@@ -189,6 +191,7 @@ function enterCenterTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
@@ -211,15 +214,15 @@ function enterArtisan(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).transportVars ?? 0)?.['metro_wait_island'] <= 60) {
         scene.actions([
-          { label: 'Take the metro to the Vasilyevsky island (<<$func(\'transport_functions\', \'display_metro_timecost\', \'artisan\', \'island\')>>)', goto: ['metro', 'artisan_island'] },
-          { label: 'Take the metro to the city center (<<$func(\'transport_functions\', \'display_metro_timecost\', \'artisan\', \'center\')>>)', goto: ['metro', 'artisan_center'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Vasilyevsky island (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'artisan', 'island') ?? '') + ')', goto: ['metro', 'artisan_island'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the city center (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'artisan', 'center') ?? '') + ')', goto: ['metro', 'artisan_center'] },
         ]);
       }
       if (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] <= 60) {
         scene.actions([
-          { label: 'Take the metro to the Residential district (<<$func(\'transport_functions\', \'display_metro_timecost\', \'artisan\', \'residential\')>>)', goto: ['metro', 'artisan_residential'] },
-          { label: 'Take the metro to the Industrial district (<<$func(\'transport_functions\', \'display_metro_timecost\', \'artisan\', \'industrial\')>>)', goto: ['metro', 'artisan_industrial'] },
-          { label: 'Take the metro to the Suburbs (<<$func(\'transport_functions\', \'display_metro_timecost\', \'artisan\', \'suburbs\')>>)', goto: ['metro', 'artisan_suburbs'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Residential district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'artisan', 'residential') ?? '') + ')', goto: ['metro', 'artisan_residential'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Industrial district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'artisan', 'industrial') ?? '') + ')', goto: ['metro', 'artisan_industrial'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Suburbs (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'artisan', 'suburbs') ?? '') + ')', goto: ['metro', 'artisan_suburbs'] },
         ]);
       }
     }
@@ -243,7 +246,7 @@ function enterArtisan(s: GameState, scene: SceneBuilder): void {
 
 function enterArtisanTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['metropass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['metro', 'artisan'] }]);
+    qspGoto(s, 'metro', 'artisan');
   }
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan_tickets');
   scene.text('<center><b>Metro station</b></center>');
@@ -271,6 +274,7 @@ function enterArtisanTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
@@ -293,14 +297,14 @@ function enterResidential(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).transportVars ?? 0)?.['metro_wait_island'] <= 60) {
         scene.actions([
-          { label: 'Take the metro to the Vasilyevsky island (<<$func(\'transport_functions\', \'display_metro_timecost\', \'residential\', \'island\')>>)', goto: ['metro', 'residential_island'] },
-          { label: 'Take the metro to the city center (<<$func(\'transport_functions\', \'display_metro_timecost\', \'residential\', \'center\')>>)', goto: ['metro', 'residential_center'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Vasilyevsky island (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'residential', 'island') ?? '') + ')', goto: ['metro', 'residential_island'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the city center (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'residential', 'center') ?? '') + ')', goto: ['metro', 'residential_center'] },
         ]);
       }
       if (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] <= 60) {
         scene.actions([
-          { label: 'Take the metro to the Industrial district (<<$func(\'transport_functions\', \'display_metro_timecost\', \'residential\', \'industrial\')>>)', goto: ['metro', 'residential_industrial'] },
-          { label: 'Take the metro to the Suburbs (<<$func(\'transport_functions\', \'display_metro_timecost\', \'residential\', \'suburbs\')>>)', goto: ['metro', 'residential_suburbs'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Industrial district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'residential', 'industrial') ?? '') + ')', goto: ['metro', 'residential_industrial'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Suburbs (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'residential', 'suburbs') ?? '') + ')', goto: ['metro', 'residential_suburbs'] },
         ]);
       }
     }
@@ -324,7 +328,7 @@ function enterResidential(s: GameState, scene: SceneBuilder): void {
 
 function enterResidentialTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['metropass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['metro', 'residential'] }]);
+    qspGoto(s, 'metro', 'residential');
   }
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential_tickets');
   scene.text('<center><b>Metro station</b></center>');
@@ -350,6 +354,7 @@ function enterResidentialTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
@@ -373,14 +378,14 @@ function enterIndustrial(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).transportVars ?? 0)?.['metro_wait_island'] <= 60) {
         scene.actions([
-          { label: 'Take the metro to the Vasilyevsky island (<<$func(\'transport_functions\', \'display_metro_timecost\', \'industrial\', \'island\')>>)', goto: ['metro', 'industrial_island'] },
-          { label: 'Take the metro to the city center (<<$func(\'transport_functions\', \'display_metro_timecost\', \'industrial\', \'center\')>>)', goto: ['metro', 'industrial_center'] },
-          { label: 'Take the metro to the Residential district (<<$func(\'transport_functions\', \'display_metro_timecost\', \'industrial\', \'residential\')>>)', goto: ['metro', 'industrial_residential'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Vasilyevsky island (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'industrial', 'island') ?? '') + ')', goto: ['metro', 'industrial_island'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the city center (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'industrial', 'center') ?? '') + ')', goto: ['metro', 'industrial_center'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Residential district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'industrial', 'residential') ?? '') + ')', goto: ['metro', 'industrial_residential'] },
         ]);
       }
       if (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] <= 60) {
         scene.actions([
-          { label: 'Take the metro to the Suburbs (<<$func(\'transport_functions\', \'display_metro_timecost\', \'industrial\', \'suburbs\')>>)', goto: ['metro', 'industrial_suburbs'] },
+          { label: '', labelFn: (s: GameState) => 'Take the metro to the Suburbs (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'industrial', 'suburbs') ?? '') + ')', goto: ['metro', 'industrial_suburbs'] },
         ]);
       }
     }
@@ -404,7 +409,7 @@ function enterIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['metropass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['metro', 'industrial'] }]);
+    qspGoto(s, 'metro', 'industrial');
   }
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial_tickets');
   scene.text('<center><b>Metro station</b></center>');
@@ -430,6 +435,7 @@ function enterIndustrialTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');
@@ -440,7 +446,7 @@ function enterSuburbs(s: GameState, scene: SceneBuilder): void {
   scene.text('The Suburbs metro stop');
   qspCall(s, 'transport_functions', 'set_metro_wait_time', 'suburbs');
   if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 23) {
-    scene.actions([{ label: 'Continue', goto: ['bus', 'suburbs'] }]);
+    qspGoto(s, 'bus', 'suburbs');
     scene.actions([
       { label: 'Walk to the Bus station (0:15)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -459,10 +465,10 @@ function enterSuburbs(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Take the metro to the Vasilyevsky island (<<func(\'transport_functions\', \'display_metro_timecost\', \'suburbs\', \'island\')>>)', goto: ['metro', 'suburbs_island'] },
-        { label: 'Take the metro to the city center (<<func(\'transport_functions\', \'display_metro_timecost\', \'suburbs\', \'center\')>>)', goto: ['metro', 'suburbs_center'] },
-        { label: 'Take the metro to the Residential district (<<func(\'transport_functions\', \'display_metro_timecost\', \'suburbs\', \'residential\')>>)', goto: ['metro', 'suburbs_residential'] },
-        { label: 'Take the metro to the Industrial district (<<func(\'transport_functions\', \'display_metro_timecost\', \'suburbs\', \'industrial\')>>)', goto: ['metro', 'suburbs_industrial'] },
+        { label: '', labelFn: (s: GameState) => 'Take the metro to the Vasilyevsky island (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'suburbs', 'island') ?? '') + ')', goto: ['metro', 'suburbs_island'] },
+        { label: '', labelFn: (s: GameState) => 'Take the metro to the city center (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'suburbs', 'center') ?? '') + ')', goto: ['metro', 'suburbs_center'] },
+        { label: '', labelFn: (s: GameState) => 'Take the metro to the Residential district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'suburbs', 'residential') ?? '') + ')', goto: ['metro', 'suburbs_residential'] },
+        { label: '', labelFn: (s: GameState) => 'Take the metro to the Industrial district (' + String(qspFunc(s, 'transport_functions', 'display_metro_timecost', 'suburbs', 'industrial') ?? '') + ')', goto: ['metro', 'suburbs_industrial'] },
       ]);
     }
   }
@@ -483,7 +489,7 @@ function enterSuburbs(s: GameState, scene: SceneBuilder): void {
 
 function enterSuburbsTickets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['metropass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['metro', 'suburbs'] }]);
+    qspGoto(s, 'metro', 'suburbs');
   }
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs_tickets');
   scene.text('<center><b>Metro station</b></center>');
@@ -508,16 +514,17 @@ function enterSuburbsTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterIslandCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 1;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 1;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 9) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
       if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 16) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -528,9 +535,9 @@ function enterIslandCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -538,16 +545,17 @@ function enterIslandCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterIslandArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -558,9 +566,9 @@ function enterIslandArtisan(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -568,16 +576,17 @@ function enterIslandArtisan(s: GameState, scene: SceneBuilder): void {
 
 function enterIslandResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -588,9 +597,9 @@ function enterIslandResidential(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -598,16 +607,17 @@ function enterIslandResidential(s: GameState, scene: SceneBuilder): void {
 
 function enterIslandIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -618,9 +628,9 @@ function enterIslandIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -628,16 +638,17 @@ function enterIslandIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterIslandSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -649,9 +660,9 @@ function enterIslandSuburbs(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -659,16 +670,17 @@ function enterIslandSuburbs(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -679,9 +691,9 @@ function enterCenterIsland(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -689,16 +701,17 @@ function enterCenterIsland(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -709,9 +722,9 @@ function enterCenterArtisan(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -719,15 +732,16 @@ function enterCenterArtisan(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
-      scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+      qspGoto(s, 'metro_events', 'events');
     }
   }
   qspCall(s, 'stat', '');
@@ -737,9 +751,9 @@ function enterCenterResidential(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -747,16 +761,17 @@ function enterCenterResidential(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -767,9 +782,9 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -777,16 +792,17 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterCenterSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -798,9 +814,9 @@ function enterCenterSuburbs(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -808,16 +824,17 @@ function enterCenterSuburbs(s: GameState, scene: SceneBuilder): void {
 
 function enterArtisanIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -828,9 +845,9 @@ function enterArtisanIsland(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -838,16 +855,17 @@ function enterArtisanIsland(s: GameState, scene: SceneBuilder): void {
 
 function enterArtisanCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -858,9 +876,9 @@ function enterArtisanCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -868,16 +886,17 @@ function enterArtisanCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterArtisanResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -888,9 +907,9 @@ function enterArtisanResidential(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -898,16 +917,17 @@ function enterArtisanResidential(s: GameState, scene: SceneBuilder): void {
 
 function enterArtisanIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -918,9 +938,9 @@ function enterArtisanIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -928,16 +948,17 @@ function enterArtisanIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterArtisanSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -949,9 +970,9 @@ function enterArtisanSuburbs(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -959,16 +980,17 @@ function enterArtisanSuburbs(s: GameState, scene: SceneBuilder): void {
 
 function enterResidentialIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -979,9 +1001,9 @@ function enterResidentialIsland(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -989,16 +1011,17 @@ function enterResidentialIsland(s: GameState, scene: SceneBuilder): void {
 
 function enterResidentialCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1009,9 +1032,9 @@ function enterResidentialCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1019,16 +1042,17 @@ function enterResidentialCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterResidentialArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1039,9 +1063,9 @@ function enterResidentialArtisan(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1049,16 +1073,17 @@ function enterResidentialArtisan(s: GameState, scene: SceneBuilder): void {
 
 function enterResidentialIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1069,9 +1094,9 @@ function enterResidentialIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1079,16 +1104,17 @@ function enterResidentialIndustrial(s: GameState, scene: SceneBuilder): void {
 
 function enterResidentialSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1100,9 +1126,9 @@ function enterResidentialSuburbs(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1110,16 +1136,17 @@ function enterResidentialSuburbs(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1130,9 +1157,9 @@ function enterIndustrialIsland(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1140,16 +1167,17 @@ function enterIndustrialIsland(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1160,9 +1188,9 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1170,16 +1198,17 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1190,9 +1219,9 @@ function enterIndustrialArtisan(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1200,16 +1229,17 @@ function enterIndustrialArtisan(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1220,9 +1250,9 @@ function enterIndustrialResidential(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1230,16 +1260,17 @@ function enterIndustrialResidential(s: GameState, scene: SceneBuilder): void {
 
 function enterIndustrialSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1251,9 +1282,9 @@ function enterIndustrialSuburbs(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1261,16 +1292,17 @@ function enterIndustrialSuburbs(s: GameState, scene: SceneBuilder): void {
 
 function enterSuburbsIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1281,9 +1313,9 @@ function enterSuburbsIsland(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1291,16 +1323,17 @@ function enterSuburbsIsland(s: GameState, scene: SceneBuilder): void {
 
 function enterSuburbsCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1311,9 +1344,9 @@ function enterSuburbsCenter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1321,16 +1354,17 @@ function enterSuburbsCenter(s: GameState, scene: SceneBuilder): void {
 
 function enterSuburbsArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1341,9 +1375,9 @@ function enterSuburbsArtisan(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1351,16 +1385,17 @@ function enterSuburbsArtisan(s: GameState, scene: SceneBuilder): void {
 
 function enterSuburbsResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1371,9 +1406,9 @@ function enterSuburbsResidential(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1381,16 +1416,17 @@ function enterSuburbsResidential(s: GameState, scene: SceneBuilder): void {
 
 function enterSuburbsIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
-    scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
+    qspGoto(s, 'metro_incidental', 'events');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] < 35) {
       if (((s as any).transportVars ?? 0)?.['metro_event_day'] !== ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['metro_events', 'events'] }]);
+        qspGoto(s, 'metro_events', 'events');
       }
     }
   }
@@ -1402,9 +1438,9 @@ function enterSuburbsIndustrial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end'] }]);
+      qspGoto(s, 'metro_incidental', 'end');
     }
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1477,7 +1513,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -47,7 +47,7 @@ function enterSantehnikend(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 1500);
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -60,6 +60,7 @@ function enterSantehnikend(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
+    (s as any).sexloc = 'korr' + 0;
     if (((s as any).pcs_apprnc ?? 0) < 60) {
       (s as any).guy = ((s as any).guy ?? 0) + (1);
       scene.img('images/locations/city/residential/apartment/sex/s5.jpg');
@@ -75,7 +76,7 @@ function enterSantehnikend(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_apprnc ?? 0) >= 60) {
         (s as any).picrand = 90;
         (s as any).textrand = Math.floor(Math.random() * 4) + 1;
-        scene.actions([{ label: 'Continue', goto: ['sex', 'minet'] }]);
+        qspGoto(s, 'sex', 'minet');
       }
     }
   } },
@@ -153,9 +154,11 @@ function enterSantehnikend2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'money', 'debt_add', 'santehnikDolg', 1500);
   if (((s as any).Grisha ?? 0) >= 1) {
+    (s as any).textsan = 'Grisha smiles at you. "Not the first time I\'ve been here. Write receipt, then you save up the money, again."';
   }
   if ((!((s as any).Grisha ?? 0))) {
     (s as any).Grisha = 1;
+    (s as any).textsan = 'I\'m Grisha by the way, you? "You smile feeling that the storm has passed and tell the plumber that your name is ' + ((s as any).pcs_nickname ?? 0) + '.';
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/sex/s3.jpg');
@@ -164,7 +167,7 @@ function enterSantehnikend2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Plumber leaves', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -191,7 +194,7 @@ function enterSantehnikend3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get up', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -214,12 +217,12 @@ function enterSantehnik1(s: GameState, scene: SceneBuilder): void {
 function enterSantehnik(s: GameState, scene: SceneBuilder): void {
   (s as any).kransloman = 0;
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).week ?? 0) >= 6  &&  (((s as any).hour ?? 0) <= 6  ||  ((s as any).hour ?? 0) >= 17)) {
-    scene.actions([{ label: 'Continue', goto: ['lover_living', 'santehnik'] }]);
+    qspGoto(s, 'lover_living', 'santehnik');
   } else {
     if (((s as any).wifID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).week ?? 0) >= 6  &&  (((s as any).hour ?? 0) <= 6  ||  ((s as any).hour ?? 0) >= 17)) {
-      scene.actions([{ label: 'Continue', goto: ['lover_living', 'santehnik_wife'] }]);
+      qspGoto(s, 'lover_living', 'santehnik_wife');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['kit_din', 'santehnik1'] }]);
+      qspGoto(s, 'kit_din', 'santehnik1');
     }
   }
   // TODO-QSP: end
@@ -230,9 +233,9 @@ function enterDirtarm(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] <= 0) {
     scene.text('<center><b>You have no dishwashing liquid.</b></center>');
   } else {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dish_soap'] = ((s as any).mc_inventory['dish_soap'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dish_soap'] = ((s as any).mc_inventory['dish_soap'] ?? 0) - (1);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).dirttarelka ?? 0) * 3);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) + (((s as any).dirttarelka ?? 0));
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) + (((s as any).dirttarelka ?? 0));
     (s as any).dirttarelka = 0;
     qspCall(s, 'mood', 'lower', 'tiny');
     qspCall(s, 'stat', '');
@@ -240,7 +243,7 @@ function enterDirtarm(s: GameState, scene: SceneBuilder): void {
     scene.text('Using the dishwashing liquid you washed the dishes.');
     scene.actions([
       { label: 'Dry your hands', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -264,7 +267,7 @@ function enterEdagotd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $edameal = 'large_meal'
   }, goto: ['kit_din', 'edagotpk', 'large_meal'] },
     { label: 'Nevermind', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -272,10 +275,10 @@ function enterEdagotd(s: GameState, scene: SceneBuilder): void {
 
 function enterEdagotpk(s: GameState, scene: SceneBuilder): void {
   (s as any).edahot = ((s as any).edahot ?? 0) + (1);
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (1);
   (s as any).musor = ((s as any).musor ?? 0) + (1);
   if (((s as any).loc ?? 0) !== 'uni_dorm') {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
   }
   qspCall(s, 'mood', 'lower', 'tiny');
   scene.img('images/shared/home/kitchen/cook.jpg');
@@ -283,18 +286,18 @@ function enterEdagotpk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     scene.actions([
-      { label: 'Eat cooked food (0:20)', goto: ['kit_din', 'edahotd', '\'large_meal\''] },
+      { label: 'Eat cooked food (0:20)', goto: ['kit_din', 'edahotd', 'large_meal'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
       scene.actions([
-        { label: 'Eat cooked food (0:10)', goto: ['kit_din', 'edahotd', '\'small_meal\''] },
+        { label: 'Eat cooked food (0:10)', goto: ['kit_din', 'edahotd', 'small_meal'] },
       ]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 25;
       scene.actions([
-        { label: 'Eat cooked food (0:15)', goto: ['kit_din', 'edahotd', '\'medium_meal\''] },
+        { label: 'Eat cooked food (0:15)', goto: ['kit_din', 'edahotd', 'medium_meal'] },
       ]);
     }
   }
@@ -302,7 +305,7 @@ function enterEdagotpk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the meal', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -315,7 +318,7 @@ function enterEdahotd(s: GameState, scene: SceneBuilder): void {
     (s as any).dirttarelka = ((s as any).dirttarelka ?? 0) + (1);
   }
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 'medium_meal';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'medium_meal';
   }
   qspCall(s, 'food', '', ((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: end
@@ -324,7 +327,7 @@ function enterEdahotd(s: GameState, scene: SceneBuilder): void {
 
 function enterEdahota(s: GameState, scene: SceneBuilder): void {
   if (((s as any).edahot ?? 0) > 0) {
-    scene.text('<a href="exec: gt \'kit_din\', \'edahotd\', \'medium_meal\'">There\'s a warm meal on the table (0:15).</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027edahotd\\u0027, \\u0027medium_meal\\u0027); return false;">There\'s a warm meal on the table (0:15).</a>');
   }
   // TODO-QSP: end
   scene.build();
@@ -340,8 +343,8 @@ function enterEatout(s: GameState, scene: SceneBuilder): void {
 
 function enterPosudomashina(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dirttarelka ?? 0) > 0  &&  ((s as any).mc_inventory ?? 0)?.['dish_soap'] >= ((s as any).dirttarelka ?? 0)) {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) + (((s as any).dirttarelka ?? 0));
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dish_soap'] = ((s as any).mc_inventory['dish_soap'] ?? 0) - (((s as any).dirttarelka ?? 0));
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) + (((s as any).dirttarelka ?? 0));
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dish_soap'] = ((s as any).mc_inventory['dish_soap'] ?? 0) - (((s as any).dirttarelka ?? 0));
     (s as any).dirttarelka = 0;
     scene.text('Your dishwasher has washed the dirty dishes.');
   } else {
@@ -374,7 +377,7 @@ function enterPranik(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Eat some tea biscuits (0:05)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_biscuits'] = ((s as any).mc_inventory['food_biscuits'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_biscuits'] = ((s as any).mc_inventory['food_biscuits'] ?? 0) - (1);
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (30);
     qspCall(s, 'mood', 'raise', 'small');
     (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
@@ -385,7 +388,7 @@ function enterPranik(s: GameState, scene: SceneBuilder): void {
     scene.text('You enjoy your biscuits. You know they\'re too sweet and can\'t be good for your figure, but they taste so good!');
     scene.actions([
       { label: 'Get up from the table', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -415,7 +418,7 @@ function enterEdaD(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
     qspCall(s, 'mood', 'raise', 'small');
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_diet'] = ((s as any).mc_inventory['food_diet'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_diet'] = ((s as any).mc_inventory['food_diet'] ?? 0) - (1);
     scene.img('images/shared/food/food.jpg');
     if (((s as any).pcs_energy ?? 0) >= 100) {
       scene.text('You prepare a diet meal and try to eat it, but you\'re really not hungry at all. You can\'t finish the meal.');
@@ -431,7 +434,7 @@ function enterEdaD(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get up from the table', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -446,7 +449,7 @@ function enterFatdel(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take fat burners (0:05)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['weight_loss_pill'] = ((s as any).mc_inventory['weight_loss_pill'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['weight_loss_pill'] = ((s as any).mc_inventory['weight_loss_pill'] ?? 0) - (1);
     if (((s as any).pcs_hydra ?? 0) >= 100) {
       (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
     } else {
@@ -457,7 +460,7 @@ function enterFatdel(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get up from the table', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -483,8 +486,8 @@ function enterFillBottle(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Fill your water bottle (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['refill_bottle_water'] = 4;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['refill_bottle_water'] = 4;
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -497,8 +500,8 @@ function enterSandwich(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Make a sandwich to go (0:05)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_sandwich'] = 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_sandwich'] = 1;
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -515,7 +518,7 @@ function enterLekarstvo(s: GameState, scene: SceneBuilder): void {
         { label: 'Take an antibiotic (0:05)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).lekarday = ((s as any).daystart ?? 0);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) - (1);
     (s as any).sick = ((s as any).sick ?? 0) - (((s as any).sick ?? 0) * 20 / 100);
     if (((s as any).pcs_hydra ?? 0) >= 100) {
       (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
@@ -527,7 +530,7 @@ function enterLekarstvo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -547,7 +550,7 @@ function enterVitamin(s: GameState, scene: SceneBuilder): void {
         { label: 'Take vitamins (0:02)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).vitaminday = ((s as any).daystart ?? 0);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) - (1);
     (s as any).frost = 0;
     if (((s as any).pcs_hydra ?? 0) >= 100) {
       (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
@@ -568,7 +571,7 @@ function enterVitamin(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -581,7 +584,7 @@ function enterVitamin(s: GameState, scene: SceneBuilder): void {
 
 function enterSandwichDo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_sandwich'] = 1;
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_sandwich'] = 1;
   qspCall(s, 'stat', '');
   scene.text('You make a sandwich to take with you.');
   qspCall(s, 'daily_routine', 'visit_item_done', 'sandwich');
@@ -591,7 +594,7 @@ function enterSandwichDo(s: GameState, scene: SceneBuilder): void {
 
 function enterFillBottleDo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['refill_bottle_water'] = 4;
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['refill_bottle_water'] = 4;
   qspCall(s, 'stat', '');
   scene.text('You fill your sports water bottle with filtered tap water.');
   qspCall(s, 'daily_routine', 'visit_item_done', 'fill_bottle');
@@ -604,7 +607,7 @@ function enterEdaDDo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
   qspCall(s, 'mood', 'raise', 'small');
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_diet'] = ((s as any).mc_inventory['food_diet'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_diet'] = ((s as any).mc_inventory['food_diet'] ?? 0) - (1);
   scene.img('images/shared/food/food.jpg');
   if (((s as any).pcs_energy ?? 0) >= 100) {
     scene.text('You prepare a diet meal and try to eat it, but you\'re really not hungry at all. You can\'t finish the meal.');
@@ -626,7 +629,7 @@ function enterEdaDDo(s: GameState, scene: SceneBuilder): void {
 function enterLekarstvoDo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).lekarday = ((s as any).daystart ?? 0);
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) - (1);
   (s as any).sick = ((s as any).sick ?? 0) - (((s as any).sick ?? 0) * 20 / 100);
   if (((s as any).pcs_hydra ?? 0) >= 100) {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
@@ -644,7 +647,7 @@ function enterLekarstvoDo(s: GameState, scene: SceneBuilder): void {
 function enterVitaminDo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).vitaminday = ((s as any).daystart ?? 0);
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) - (1);
   (s as any).frost = 0;
   if (((s as any).pcs_hydra ?? 0) >= 100) {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
@@ -695,9 +698,9 @@ function enterCookMealDo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  ((s as any).edahot ?? 0) === 0  &&  (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  ||  ((s as any).loc ?? 0) === 'uni_dorm')) {
     scene.text('What kind of meal would you like to prepare?');
     scene.actions([
-      { label: 'Prepare a light meal (0:20)', goto: ['kit_din', 'cook_meal_pk', '\'small_meal\''] },
-      { label: 'Prepare a normal meal (0:25)', goto: ['kit_din', 'cook_meal_pk', '\'medium_meal\''] },
-      { label: 'Prepare a hearty meal (0:30)', goto: ['kit_din', 'cook_meal_pk', '\'large_meal\''] },
+      { label: 'Prepare a light meal (0:20)', goto: ['kit_din', 'cook_meal_pk', 'small_meal'] },
+      { label: 'Prepare a normal meal (0:25)', goto: ['kit_din', 'cook_meal_pk', 'medium_meal'] },
+      { label: 'Prepare a hearty meal (0:30)', goto: ['kit_din', 'cook_meal_pk', 'large_meal'] },
     ]);
   } else {
     if (((s as any).edahot ?? 0) > 0) {
@@ -731,10 +734,10 @@ function enterCookMealDo(s: GameState, scene: SceneBuilder): void {
 
 function enterCookMealPk(s: GameState, scene: SceneBuilder): void {
   (s as any).edahot = ((s as any).edahot ?? 0) + (1);
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (1);
   (s as any).musor = ((s as any).musor ?? 0) + (1);
   if (((s as any).loc ?? 0) !== 'uni_dorm') {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
   }
   qspCall(s, 'mood', 'lower', 'tiny');
   if (((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
@@ -769,17 +772,17 @@ function enterEatMealDo(s: GameState, scene: SceneBuilder): void {
     if (((s as any).edahot ?? 0) > 0) {
       (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
       scene.actions([
-        { label: 'Eat the warm meal - light portion (0:10)', goto: ['kit_din', 'eat_warm_pk', '\'small_meal\''] },
-        { label: 'Eat the warm meal - normal portion (0:15)', goto: ['kit_din', 'eat_warm_pk', '\'medium_meal\''] },
-        { label: 'Eat the warm meal - hearty portion (0:20)', goto: ['kit_din', 'eat_warm_pk', '\'large_meal\''] },
+        { label: 'Eat the warm meal - light portion (0:10)', goto: ['kit_din', 'eat_warm_pk', 'small_meal'] },
+        { label: 'Eat the warm meal - normal portion (0:15)', goto: ['kit_din', 'eat_warm_pk', 'medium_meal'] },
+        { label: 'Eat the warm meal - hearty portion (0:20)', goto: ['kit_din', 'eat_warm_pk', 'large_meal'] },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  ||  ((s as any).loc ?? 0) === 'uni_dorm')) {
       (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
       scene.actions([
-        { label: 'Cook and eat - light (0:30)', goto: ['kit_din', 'eat_cooked_pk', '\'small_meal\''] },
-        { label: 'Cook and eat - normal (0:40)', goto: ['kit_din', 'eat_cooked_pk', '\'medium_meal\''] },
-        { label: 'Cook and eat - hearty (0:50)', goto: ['kit_din', 'eat_cooked_pk', '\'large_meal\''] },
+        { label: 'Cook and eat - light (0:30)', goto: ['kit_din', 'eat_cooked_pk', 'small_meal'] },
+        { label: 'Cook and eat - normal (0:40)', goto: ['kit_din', 'eat_cooked_pk', 'medium_meal'] },
+        { label: 'Cook and eat - hearty (0:50)', goto: ['kit_din', 'eat_cooked_pk', 'large_meal'] },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {
@@ -1104,10 +1107,10 @@ function enterEatWarmPk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEatCookedPk(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (1);
   (s as any).musor = ((s as any).musor ?? 0) + (1);
   if (((s as any).loc ?? 0) !== 'uni_dorm') {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
   }
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'mood', 'raise', 'small');
@@ -1140,7 +1143,7 @@ function enterEatDietPk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
   qspCall(s, 'mood', 'raise', 'small');
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['food_diet'] = ((s as any).mc_inventory['food_diet'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_diet'] = ((s as any).mc_inventory['food_diet'] ?? 0) - (1);
   scene.img('images/shared/food/food.jpg');
   if (((s as any).pcs_energy ?? 0) >= 100) {
     scene.text('You prepare a diet meal and try to eat it, but you\'re really not hungry at all. You can\'t finish the meal.');

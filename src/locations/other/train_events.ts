@@ -1,29 +1,29 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_event_day'] = ((s as any).daystart ?? 0);
+  ((s as any).transportVars = (s as any).transportVars ?? {})['train_event_day'] = ((s as any).daystart ?? 0);
   scene.build();
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 1;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 1;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 15) {
-    scene.actions([{ label: 'Continue', goto: ['train_events', 'oldman'] }]);
+    qspGoto(s, 'train_events', 'oldman');
   } else {
     if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 42) {
-      scene.actions([{ label: 'Continue', goto: ['train_events', 'fit'] }]);
+      qspGoto(s, 'train_events', 'fit');
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 77) {
-        scene.actions([{ label: 'Continue', goto: ['train_events', 'young'] }]);
+        qspGoto(s, 'train_events', 'young');
       } else {
         if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 100) {
-          scene.actions([{ label: 'Continue', goto: ['train_events', 'breastfeed'] }]);
+          qspGoto(s, 'train_events', 'breastfeed');
         } else {
-          scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+          dynamicGoto(s, 'prevLoc', 'prevArg');
         }
       }
     }
@@ -47,7 +47,7 @@ function enterOldman(s: GameState, scene: SceneBuilder): void {
     scene.text('You inform him that you don\'t have the time and he nods sadly, but understandingly. Once you\'ve disembarked the train, you both go your separate ways.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -68,7 +68,7 @@ function enterOldman(s: GameState, scene: SceneBuilder): void {
     scene.text('You refuse and quickly pull free from him before making your way back to the station, leaving the old man behind.');
     scene.actions([
       { label: 'Return to the station', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -84,7 +84,7 @@ function enterOldman(s: GameState, scene: SceneBuilder): void {
     scene.text('You refuse and quickly pull away before making your way back to the station, leaving the old man behind.');
     scene.actions([
       { label: 'Return to the station', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -120,7 +120,7 @@ function enterOldman(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Return to the station', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -150,7 +150,7 @@ function enterFit(s: GameState, scene: SceneBuilder): void {
     scene.text('You thank him but politely refuse his offer, claiming that, sadly, you don\'t have time to go on a walk today and are already running late, really. He doesn\'t seem too disappointed though. "I\'m sure we will meet again on the train sometime," he augurs with a smile, "and then you will have time for that walk." You don\'t know if his prophecy is going to come true or not or if he truly believes what he said but, regardless, he remains a pleasant dialog partner for the rest of the ride.');
     scene.actions([
       { label: 'Leave the train', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -192,7 +192,7 @@ function enterFit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Return to the station', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -222,7 +222,7 @@ function enterYoung(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh, I get it!" he feigns realization at the \'misunderstanding\', "I didn\'t mean that either. I just, you know, thought we could hang out and have fun." His effort to save the situation is valiant, but you shoot him down again with a "no, thank you" and disembark the train without looking at him again.');
     scene.actions([
       { label: 'Return to the station', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -259,6 +259,8 @@ function enterYoung(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You are too desperate for sex to say no even if you'd wanted to. Without hesitat...
     scene.text(`You are too desperate for sex to say no even if you'd wanted to. Without hesitation, you spread a little bit of your secretions around your puckered hole, and you lower yourself onto him. You can feel the head of his cock rubbing against your asshole; the pressure builds, your sphincter resisting the penetration… until the head pops inside. You gasp softly, pain and pleasure both vying for your attention, and you slowly lower yourself further, taking more and more of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your ass.`);
     scene.text('Once you have as much of his cock in your ass as you comfortably can on the first go, you start moving your hips, rising up and lowering yourself again, taking a tiny bit more of him into you each time. As you\'re riding his cock with your ass, his hands come up to grab your waist - not to wrest control from you as you first thought, but to support your weight, allowing you to focus on getting into a rhythm and enjoying yourself as much as he audibly does, with a little help from your hand on your clit.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You are incredibly turned on, by him, by this situation, by having his cock in your ass, moaning loudly and riding him harder and faster. You barely even realize that you\'re taking him balls deep into your ass with each thrust. Your body shudders and your moans come to a crescendo as you orgasm, falling back against him as wave after wave of ecstasy shakes you. Your moans turn into screams when he picks up the pace and thrusts up into you, fucking you hard from below and extending the climax.';
     qspCall(s, 'arousal', 'anal', 10, 'sub', 'unknown');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -280,7 +282,7 @@ function enterYoung(s: GameState, scene: SceneBuilder): void {
     scene.text('The journey is uneventful, and you end up not paying attention for much of it. It doesn\'t seem like long before you arrive at your destination.');
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -319,7 +321,7 @@ function enterBreastfeed(s: GameState, scene: SceneBuilder): void {
       scene.text('With nothing else to say, you just leave him to it.');
       scene.actions([
         { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -332,7 +334,7 @@ function enterBreastfeed(s: GameState, scene: SceneBuilder): void {
           scene.text('With nothing else to say, you just leave him to it.');
           scene.actions([
             { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);
         } else {
@@ -362,7 +364,7 @@ function enterBreastfeed(s: GameState, scene: SceneBuilder): void {
           scene.text('With nothing else to say, you just leave him to it.');
           scene.actions([
             { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);
         } else {
@@ -403,7 +405,7 @@ function enterBreastfeed(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to leave the couple in peace for the rest of the journey.');
     scene.actions([
       { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -446,7 +448,7 @@ function enterBreastfeed1(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -462,7 +464,7 @@ function enterBreastfeed1(s: GameState, scene: SceneBuilder): void {
       scene.text('The man quietly thanks you for your help before settling down with his son for the rest of the journey.');
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -472,6 +474,8 @@ function enterBreastfeed1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWeed(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'train';
+  (s as any).loc_arg = 'center';
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/pavplat.jpg');
   scene.text('After you buy your ticket, you are told that you have just missed the train. A little miffed at this, you take a seat on one of the benches on the platform to wait for the next train to arrive.');
@@ -493,7 +497,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.text('Before long, the two of them sneak off across the tracks and disappear, but come rushing back, clothes out of place and hair disheveled, when the train arrives. It isn\'t hard to guess what they were doing to kill the time.');
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
-    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
+    ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/train/cityplat.jpg');
@@ -502,15 +506,16 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+      qspGoto(s, 'train_incidental', 'events');
     }
-  }, goto: ['train', 'center'] },
+    qspGoto(s, 'train', 'center');
+  } },
     ]);
   } },
     ]);
   } },
       { label: 'Smoke with him', handler: (st: GameState) => {
-    (s as any).pcs_horny = 0;
+    (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
     qspCall(s, 'drugs', 'joint', 1);
     scene.img('images/locations/shared/train/sex/weedsmoke.jpg');
     scene.text('You smile and nod before taking the joint from him - you only live once and it\'s as good a pastime as any. He lights it as you take a long slow drag off it and hold it in, feeling it in your lungs… until you start coughing, causing him to chuckle.');
@@ -538,7 +543,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.text('Before long, the two of them sneak off across the tracks and disappear, but come rushing back, clothes out of place and hair disheveled, when the train arrives. It isn\'t hard to guess what they were doing to kill the time. A part of you wishes you had taken him up on the offer.');
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
-    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
+    ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/train/cityplat.jpg');
@@ -547,9 +552,10 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+      qspGoto(s, 'train_incidental', 'events');
     }
-  }, goto: ['train', 'center'] },
+    qspGoto(s, 'train', 'center');
+  } },
     ]);
   } },
     ]);
@@ -595,7 +601,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
-    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
+    ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/train/ride.jpg');
@@ -605,9 +611,10 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
-      scene.actions([{ label: 'Continue', goto: ['train_incidental', 'events'] }]);
+      qspGoto(s, 'train_incidental', 'events');
     }
-  }, goto: ['train', 'center'] },
+    qspGoto(s, 'train', 'center');
+  } },
     ]);
   } },
     ]);
@@ -651,7 +658,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
     scene.text('They seem shocked and speculate that only a crook would be insolent enough to make such an offer to a young lady such as yourself.');
     scene.actions([
       { label: 'Continue journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -706,7 +713,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -739,7 +746,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     scene.text('The rest of the ride is fairly uneventful; you spend most of it chatting with your seatmate about men who molest women on trains.');
     scene.actions([
       { label: 'Continue journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -771,7 +778,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     scene.text('You lean in and give him a long, slow kiss goodbye, then bounce away and head off the platform. You hear him mutter about not getting more action, but you don\'t really care.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -791,7 +798,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     scene.text('You exploit his current struggle with his pants to run back down the stairs to the platform and into the station before he can follow.');
     scene.actions([
       { label: 'Return to the station', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -819,6 +826,8 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     scene.text('As you try to stifle your moans so passersby on the walkway won\'t hear you, he leans forward and seductively whispers in your ear. "I\'m going to fuck that tight little ass of yours…"');
     scene.text('Without waiting for a response from you, he pulls out once more and slides his cock up your ass. You gasp in pain, but it turns into a moan of pleasure along the way. You don\'t have to consciously relax your asshole to enjoy this at this point; you\'re so turned on at the moment that you don\'t really care where he sticks his cock so long as he just keeps fucking you.');
     qspCall(s, 'arousal', 'vaginal', 10, 'exhibitionism', 'unknown', 'rough');
+    (s as any).orgasm_txt = 'Your ass is getting pounded almost as hard as your pussy; he\'s just rough enough to make it hurt a little, but in this strange state you\'re in, it seems to hurt in a <i>good</i> way, adding more fuel to the mounting climax inside of you. And then, just like that, the pressure is suddenly released. You can\'t contain your moans at this point, and it doesn\'t help that he redoubles his efforts and fucks your asshole even harder when he realizes that you\'re cumming.';
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal', (-10), 'exhibitionism', 'unknown', 'rough');
     scene.text('Had anybody walked by and heard or seen you right now, you wouldn\'t have even cared.');
     qspCall(s, 'stat', '');
@@ -846,7 +855,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'d like that," you tell him and give him your phone number. He waits until you\'re more or less presentable again, then walks you back up to the skywalk where you two part ways.');
     scene.actions([
       { label: 'Return to the station', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -857,7 +866,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     scene.text('With that, he turns and walks away, leaving you to finish getting your clothes back in order.');
     scene.actions([
       { label: 'Return to the station', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

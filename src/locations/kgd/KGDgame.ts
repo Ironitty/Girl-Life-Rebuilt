@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,53 +9,53 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'KGDexp', '');
   if (((s as any).KGD ?? 0)?.['totminut'] === 0) {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['totminut'] = ((s as any).totminut ?? 0);
+    ((s as any).KGD = (s as any).KGD ?? {})['totminut'] = ((s as any).totminut ?? 0);
   }
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['totminut'] = ((s as any).KGD['totminut'] ?? 0) + (10);
+  ((s as any).KGD = (s as any).KGD ?? {})['totminut'] = ((s as any).KGD['totminut'] ?? 0) + (10);
   if (((s as any).KGD ?? 0)?.['totminut'] - 180 >= ((s as any).totminut ?? 0)) {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['blocked'] = 1;
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['totminut'] = ((s as any).totminut ?? 0);
+    ((s as any).KGD = (s as any).KGD ?? {})['blocked'] = 1;
+    ((s as any).KGD = (s as any).KGD ?? {})['totminut'] = ((s as any).totminut ?? 0);
     scene.text('You\'ve been playing for 3 hours and your computer is running hot. It\'s time to take a break.');
     scene.actions([
       { label: 'Back to the main menu', goto: ['KGDgame', 'exit'] },
     ]);
   } else {
     if (((s as any).KGD ?? 0)?.['blocked'] === 1  &&  ((s as any).KGD ?? 0)?.['totminut'] + 60 > ((s as any).totminut ?? 0)) {
-      if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['totminut'] = ((s as any).KGD['totminut'] ?? 0) - (10);
+      ((s as any).KGD = (s as any).KGD ?? {})['totminut'] = ((s as any).KGD['totminut'] ?? 0) - (10);
       scene.text('Your computer is still too hot to play with.');
       scene.actions([
         { label: 'Back to the main menu', goto: ['KGDgame', 'exit'] },
       ]);
     } else {
       if (((s as any).KGD ?? 0)?.['blocked'] === 1  &&  ((s as any).KGD ?? 0)?.['totminut'] + 60 <= ((s as any).totminut ?? 0)) {
-        if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['blocked'] = 0;
-        if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['totminut'] = ((s as any).totminut ?? 0);
+        ((s as any).KGD = (s as any).KGD ?? {})['blocked'] = 0;
+        ((s as any).KGD = (s as any).KGD ?? {})['totminut'] = ((s as any).totminut ?? 0);
       }
     }
   }
   // TODO-QSP: dynamic text: <center><b>Date <<KGD['day']>></b></center>
   scene.text(`<center><b>Date ${((s as any).KGD ?? 0)?.['day'] ?? ''}</b></center>`);
   scene.text('<center><b>Your town</b></center>');
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = '<center><table border="0" align="center">';
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2" align="center">Buildings</td></tr>');
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="center">Warehouse:</td><td align="left">which stores \' + KGD[\'money\'] + \' Resources</td></tr>');
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="right">Farms:</td><td align="left">you own \' + KGD[\'farm_owned\'] + \' farms</td></tr>');
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="right">Camp:</td><td align="left">\' + KGD[\'Cavalry\']+KGD[\'Archers\']+KGD[\'Infantrie\'] + \' troops</td></tr>');
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('</table></center>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = '<center><table border="0" align="center">';
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2" align="center">Buildings</td></tr>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="center">Warehouse:</td><td align="left">which stores ' + ((s as any).KGD ?? 0)?.['money'] + ' Resources</td></tr>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="right">Farms:</td><td align="left">you own ' + ((s as any).KGD ?? 0)?.['farm_owned'] + ' farms</td></tr>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="right">Camp:</td><td align="left">' + ((s as any).KGD ?? 0)?.['Cavalry'] + ((s as any).KGD ?? 0)?.['Archers'] + ((s as any).KGD ?? 0)?.['Infantrie'] + ' troops</td></tr>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('</table></center>');
   // TODO-QSP: $KGD['table']
   if (((s as any).KGD ?? 0)?.['sput_2'] > 0) {
     scene.text('<center><b>List Party hero (max. 6)</b></center>');
     (s as any).i = 2;
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = '<center><table border="0"><tr><th>Name</th><th>Level</th><th>HP</th><th>DMG</th></tr>';
+    ((s as any).KGD = (s as any).KGD ?? {})['table'] = '<center><table border="0"><tr><th>Name</th><th>Level</th><th>HP</th><th>DMG</th></tr>';
     // TODO-QSP: :kgdparty_loop
     if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] > 0) {
-      // TODO-QSP: $KGD['table'] += '<tr><td><<$KGD[''name_<<i>>'']>></td><td><<KGD[''lvl_<<i>>'']>></td><td><<KGD[''HP_<<i>>'']>></td><td><<KGD[''damage_<<i>>'']>></td></tr>'
+      ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td>' + ((s as any).KGD ?? 0)?.['name_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['HP_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['damage_' + String(((s as any).i ?? 0))] + '</td></tr>');
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 6) {
       // TODO-QSP: jump 'kgdparty_loop'
     }
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('</table></center>');
+    ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('</table></center>');
     // TODO-QSP: $KGD['table']
   } else {
     scene.text('<center> You do not have any heroes in your party. </center>');
@@ -68,13 +66,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :farm_loop
     if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 0) {
-      if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['money'] = ((s as any).KGD['money'] ?? 0) - (150);
-      if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['farm_' + String((s as any).i || '') + ''] = 1;
-      if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['farm_level_' + String((s as any).i || '') + ''] = 1;
-      if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['farm_rate_' + String((s as any).i || '') + ''] = 5;
-      if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['farm_owned'] = ((s as any).KGD['farm_owned'] ?? 0) + (1);
+      ((s as any).KGD = (s as any).KGD ?? {})['money'] = ((s as any).KGD['money'] ?? 0) - (150);
+      ((s as any).KGD = (s as any).KGD ?? {})['farm_' + String((s as any).i || '') + ''] = 1;
+      ((s as any).KGD = (s as any).KGD ?? {})['farm_level_' + String((s as any).i || '') + ''] = 1;
+      ((s as any).KGD = (s as any).KGD ?? {})['farm_rate_' + String((s as any).i || '') + ''] = 5;
+      ((s as any).KGD = (s as any).KGD ?? {})['farm_owned'] = ((s as any).KGD['farm_owned'] ?? 0) + (1);
       (s as any).i = 10;
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
+      dynamicGoto(s, 'curloc');
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 10) {
@@ -91,15 +89,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGD ?? 0)?.['brod'] === 0  &&  ((s as any).KGD ?? 0)?.['partyCreate'] > 0) {
     scene.actions([
       { label: 'Win territory', handler: (st: GameState) => {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['brod'] = 1;
-  }, goto: ['KGDbefore', ''] },
+    ((s as any).KGD = (s as any).KGD ?? {})['brod'] = 1;
+    qspGoto(s, 'KGDbefore', '');
+  } },
     ]);
   }
   if (((s as any).KGD ?? 0)?.['sput_6'] === 0  &&  ((s as any).KGD ?? 0)?.['money'] >= 250) {
     scene.actions([
       { label: 'Hire a hero (250 resources)', handler: (st: GameState) => {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['money'] = ((s as any).KGD['money'] ?? 0) - (250);
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['partyCreate'] = 0;
+    ((s as any).KGD = (s as any).KGD ?? {})['money'] = ((s as any).KGD['money'] ?? 0) - (250);
+    ((s as any).KGD = (s as any).KGD ?? {})['partyCreate'] = 0;
     scene.actions([
       { label: 'Warrior', handler: (st: GameState) => {
     qspCall(st, 'KGDgame', 'KGDhire', 'Warrior', 100, 10);
@@ -122,19 +121,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Train troops (100 resources)', handler: (st: GameState) => {
     scene.actions([
       { label: 'train Infantrie', handler: (st: GameState) => {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['money'] = ((s as any).KGD['money'] ?? 0) - (100);
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['Infantrie'] = ((s as any).KGD['Infantrie'] ?? 0) + (10);
-    dynamicGoto(st, 'curloc');
+    ((s as any).KGD = (s as any).KGD ?? {})['money'] = ((s as any).KGD['money'] ?? 0) - (100);
+    ((s as any).KGD = (s as any).KGD ?? {})['Infantrie'] = ((s as any).KGD['Infantrie'] ?? 0) + (10);
+    dynamicGoto(s, 'curloc');
   } },
       { label: 'train Cavalry', handler: (st: GameState) => {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['money'] = ((s as any).KGD['money'] ?? 0) - (100);
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['Cavalry'] = ((s as any).KGD['Cavalry'] ?? 0) + (10);
-    dynamicGoto(st, 'curloc');
+    ((s as any).KGD = (s as any).KGD ?? {})['money'] = ((s as any).KGD['money'] ?? 0) - (100);
+    ((s as any).KGD = (s as any).KGD ?? {})['Cavalry'] = ((s as any).KGD['Cavalry'] ?? 0) + (10);
+    dynamicGoto(s, 'curloc');
   } },
       { label: 'train Archers', handler: (st: GameState) => {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['money'] = ((s as any).KGD['money'] ?? 0) - (100);
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['Archers'] = ((s as any).KGD['Archers'] ?? 0) + (10);
-    dynamicGoto(st, 'curloc');
+    ((s as any).KGD = (s as any).KGD ?? {})['money'] = ((s as any).KGD['money'] ?? 0) - (100);
+    ((s as any).KGD = (s as any).KGD ?? {})['Archers'] = ((s as any).KGD['Archers'] ?? 0) + (10);
+    dynamicGoto(s, 'curloc');
   } },
     ]);
   } },
@@ -142,63 +141,70 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Next Day', handler: (st: GameState) => {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['brod'] = 0;
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['day'] = ((s as any).KGD['day'] ?? 0) + (1);
+    ((s as any).KGD = (s as any).KGD ?? {})['brod'] = 0;
+    ((s as any).KGD = (s as any).KGD ?? {})['day'] = ((s as any).KGD['day'] ?? 0) + (1);
     (s as any).i = 1;
     // TODO-QSP: :kgdnextday_loop
     if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 0) {
       (s as any).i = 10;
     }
     if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 1) {
-      if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['farm'] = ((s as any).KGD['farm'] ?? 0) + (((s as any).KGD ?? 0)['farm_rate_' + ((s as any).i ?? 0) + ''] * ((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + '']);
+      ((s as any).KGD = (s as any).KGD ?? {})['farm'] = ((s as any).KGD['farm'] ?? 0) + (((s as any).KGD ?? 0)['farm_rate_' + ((s as any).i ?? 0) + ''] * ((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + '']);
     }
     if (((s as any).i ?? 0) < 10) {
       (s as any).i = ((s as any).i ?? 0) + (1);
       // TODO-QSP: jump 'kgdnextday_loop'
     }
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['money'] = ((s as any).KGD['money'] ?? 0) + (((s as any).KGD ?? 0)?.['farm']);
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['farm'] = 0;
-    dynamicGoto(st, 'curloc');
+    ((s as any).KGD = (s as any).KGD ?? {})['money'] = ((s as any).KGD['money'] ?? 0) + (((s as any).KGD ?? 0)?.['farm']);
+    ((s as any).KGD = (s as any).KGD ?? {})['farm'] = 0;
+    dynamicGoto(s, 'curloc');
   } },
     { label: 'Arrange the soldiers', handler: (st: GameState) => {
     (s as any).i = 1;
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['partyCreate'] = 1;
+    ((s as any).KGD = (s as any).KGD ?? {})['partyCreate'] = 1;
     // TODO-QSP: :kgdplace_loop
     if (((s as any).i ?? 0) === 1) {
+      (s as any).temp_suffix = 'st';
     } else {
       if (((s as any).i ?? 0) === 2) {
+        (s as any).temp_suffix = 'nd';
       } else {
         if (((s as any).i ?? 0) === 3) {
+          (s as any).temp_suffix = 'rd';
+        } else {
+          (s as any).temp_suffix = 'th';
         }
       }
     }
-    // TODO-QSP: $KGD['place_<<i>>'] = '<<i>><<$temp_suffix>> place is empty'
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['place_' + String((s as any).i || '') + '_rank'] = 0;
+    ((s as any).KGD = (s as any).KGD ?? {})['place_' + String((s as any).i || '') + ''] = '' + ((s as any).i ?? 0) + '' + ((s as any).temp_suffix ?? 0) + ' place is empty';
+    ((s as any).KGD = (s as any).KGD ?? {})['place_' + String((s as any).i || '') + '_rank'] = 0;
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) < 6) {
       // TODO-QSP: jump 'kgdplace_loop'
     }
-  }, goto: ['KGDparty', ''] },
+    qspGoto(s, 'KGDparty', '');
+  } },
     { label: 'Quit Game', goto: ['KGDgame', 'exit'] },
   ]);
   scene.build();
 }
 
 function enterKGDhire(s: GameState, scene: SceneBuilder): void {
-  (s as any).baseHP = qspUntranslated(s, "ARGS[2]", { location: "KGDgame" });
-  (s as any).baseDam = qspUntranslated(s, "ARGS[3]", { location: "KGDgame" });
+  (s as any).type = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).baseHP = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).baseDam = ((s as any).locArgs?.[3] ?? 0);
   (s as any).i = 2;
   // TODO-QSP: :kgdhire_loop
   if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] === 1) {
     (s as any).i = 6;
   }
   if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] === 0) {
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['name_' + String((s as any).i || '') + ''] = ((s as any).type ?? 0);
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['lvl_' + String((s as any).i || '') + ''] = 1;
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['HP_' + String((s as any).i || '') + ''] = ((s as any).baseHP ?? 0);
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['damage_' + String((s as any).i || '') + ''] = ((s as any).baseDam ?? 0);
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['sput_' + String((s as any).i || '') + ''] = 1;
-    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['exp_' + String((s as any).i || '') + ''] = 0;
+    ((s as any).KGD = (s as any).KGD ?? {})['name_' + String((s as any).i || '') + ''] = ((s as any).type ?? 0);
+    ((s as any).KGD = (s as any).KGD ?? {})['lvl_' + String((s as any).i || '') + ''] = 1;
+    ((s as any).KGD = (s as any).KGD ?? {})['HP_' + String((s as any).i || '') + ''] = ((s as any).baseHP ?? 0);
+    ((s as any).KGD = (s as any).KGD ?? {})['damage_' + String((s as any).i || '') + ''] = ((s as any).baseDam ?? 0);
+    ((s as any).KGD = (s as any).KGD ?? {})['sput_' + String((s as any).i || '') + ''] = 1;
+    ((s as any).KGD = (s as any).KGD ?? {})['exp_' + String((s as any).i || '') + ''] = 0;
     (s as any).i = 6;
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
@@ -210,26 +216,26 @@ function enterKGDhire(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMngFarm(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = '<center><table border="0">';
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2" align="center">Farm Manager</td></tr>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = '<center><table border="0">';
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2" align="center">Farm Manager</td></tr>');
   (s as any).i = 1;
   // TODO-QSP: :farmmanage_loop
   if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 0) {
     (s as any).i = 10;
   }
   if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 1) {
-    // TODO-QSP: $KGD['table'] += '<tr><td>farm <<i>></td><td>Level: '+KGD['farm_level_<<i>>']+'</td><td>Production: '+KGD['farm_rate_<<i>>']*KGD['farm_level_<<i>>']+' R/D</td></tr>'
+    ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td>farm ' + ((s as any).i ?? 0) + '</td><td>Level: \'+KGD[\'farm_level_' + ((s as any).i ?? 0) + '\']+\'</td><td>Production: \'+KGD[\'farm_rate_' + ((s as any).i ?? 0) + '\']*KGD[\'farm_level_' + ((s as any).i ?? 0) + '\']+\' R/D</td></tr>');
     if (((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0)] < 5  &&  ((s as any).KGD ?? 0)?.['money'] >= 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0)]) {
-      // TODO-QSP: $KGD['table'] += '<tr><td colspan="2"><a href="exec:KGD[''farm_level_<<i>>''] += 1 & KGD[''farm_rate_<<i>>''] += 2 & KGD[''money''] -= 100*KGD[''farm_level_<<i>>''] & gt ''KGDgame'', ''MngFarm''">Upgrade farm (<<100*KGD[''farm_level_<<i>>'']>> resources)</a></td></tr>'
+      ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { (s.KGD ??= {})\\u0027farm_level_' + ((s as any).i ?? 0) + '\\u0027 +=s.1; (s.KGD ??= {})\\u0027farm_rate_' + ((s as any).i ?? 0) + '\\u0027 +=s.2; (s.KGD ??= {})\\u0027money\\u0027 -=100*KGD[\\u0027farm_level_' + ((s as any).i ?? 0) + '\\u0027]; return s; }); window.__gameStore.getState().doGoto(\\u0027KGDgame\\u0027, \\u0027MngFarm\\u0027); return false;">Upgrade farm (' + 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + ''] + ' resources)</a></td></tr>');
     } else {
-      if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2">\' + $func(\'wrap\', \'neg\', \'Upgrade farm (' + 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + '']> + ' resources)\') + \'</td></tr>');
+      ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2">\' + $func(\'wrap\', \'neg\', \'Upgrade farm (' + 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + ''] + ' resources)\') + \'</td></tr>');
     }
   }
   if (((s as any).i ?? 0) < 10) {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'farmmanage_loop'
   }
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('</table></center>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('</table></center>');
   // TODO-QSP: $KGD['table']
   // TODO-QSP: end
   scene.actions([
@@ -294,7 +300,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const KGDgame: LocationDef = {
   name: 'KGDgame',
-  title: 'Upgrade farm (<<100*KGD[\'farm_level_<<i>>\']>> resources)',
+  title: 'Upgrade farm (\']>> resources)',
   region: 'kgd',
   description: ['You\'ve been playing for 3 hours and your computer is running hot. It\'s time to take a break.'],
   enter: enter,

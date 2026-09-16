@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -65,7 +65,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
         { label: 'Fight him', handler: (st: GameState) => {
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'rapist');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
         { label: 'Try to run away', handler: (st: GameState) => {
     if (((s as any).pcs_run ?? 0) < 10) {
       (s as any).peshimraperand = Math.floor(Math.random() * 12) + 0;
@@ -122,19 +123,19 @@ function enter1(s: GameState, scene: SceneBuilder): void {
         { label: 'Further', handler: (st: GameState) => {
     (s as any).locbegrand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).locbegrand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+      qspGoto(s, 'city_park', 'start');
     }
     if (((s as any).locbegrand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+      qspGoto(s, 'city_residential', '');
     }
     if (((s as any).locbegrand ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+      qspGoto(s, 'city_center', '');
     }
     if (((s as any).locbegrand ?? 0) === 3) {
-      scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
+      qspGoto(s, 'city_industrial', '');
     }
     if (((s as any).locbegrand ?? 0) === 4) {
-      scene.actions([{ label: 'Continue', goto: ['city_lake', 'start'] }]);
+      qspGoto(s, 'city_lake', 'start');
     }
   } },
       ]);
@@ -176,7 +177,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         { label: '"Not this time, I\'m afraid"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_park', 'start'] },
+    qspGoto(s, 'city_park', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -217,7 +219,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         { label: 'Fuck off, asshole', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_park', 'start'] },
+    qspGoto(s, 'city_park', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -244,7 +247,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave', goto: ['city_park', 'start'] },
         ]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+        qspGoto(s, 'park_walkevents', 'empty');
       }
     }
   }
@@ -311,11 +314,11 @@ function enter3(s: GameState, scene: SceneBuilder): void {
         { label: 'Try to talk your way out', handler: (st: GameState) => {
     scene.text('You try to talk your way out, but they just laugh at you, pitying you for even trying. Then one of the guys forces you onto your knees as they prepare to rape you.');
     if (((s as any).mc_inventory ?? 0)?.['tech_hidden_cam'] === 1) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_hidden_cam'] = 0;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_hidden_cam'] = 0;
       scene.text('One of the other guys takes your camera and smashes it against a rock');
     } else {
       scene.text('One of the other guys takes your camera and smashes it against a rock');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_camera'] = 0;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_camera'] = 0;
     }
     scene.actions([
       { label: 'Further', goto: ['paysex', 'start'] },
@@ -360,15 +363,15 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).peshimraperand ?? 0) < 11) {
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+      ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
       (s as any).guy = ((s as any).guy ?? 0) + (3);
       scene.text('You try to run away, but you\'re not fast enough and one of them eventually catches up with you. He drags you back into the bushes and forces you onto your knees, preparing to rape you.');
       if (((s as any).mc_inventory ?? 0)?.['tech_hidden_cam'] === 1) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_hidden_cam'] = 0;
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_hidden_cam'] = 0;
         scene.text('The other guys soon catch up, and one of them takes your camera and smashes it against a rock');
       } else {
         scene.text('The other guys soon catch up, and one of them takes your camera and smashes it against a rock');
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_camera'] = 0;
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_camera'] = 0;
       }
       scene.actions([
         { label: 'Further', goto: ['paysex', 'start'] },
@@ -455,7 +458,8 @@ function enter4(s: GameState, scene: SceneBuilder): void {
         { label: 'Kick him in the his nuts and walk away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_park', 'start'] },
+    qspGoto(s, 'city_park', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -531,7 +535,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+    qspGoto(s, 'park_walkevents', 'empty');
   }
   // TODO-QSP: end
   scene.build();
@@ -560,7 +564,8 @@ function enter5(s: GameState, scene: SceneBuilder): void {
         { label: 'Turn him down', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['city_park', 'start'] },
+    qspGoto(s, 'city_park', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -587,7 +592,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+    qspGoto(s, 'park_walkevents', 'empty');
   }
   // TODO-QSP: end
   scene.actions([
@@ -626,7 +631,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+    qspGoto(s, 'park_walkevents', 'empty');
   }
   // TODO-QSP: end
   scene.build();
@@ -808,7 +813,8 @@ function enter7(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_park', 'start'] },
+    qspGoto(s, 'city_park', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -826,7 +832,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+    qspGoto(s, 'park_walkevents', 'empty');
   }
   // TODO-QSP: end
   scene.build();
@@ -857,7 +863,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_park', 'start'] },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+    qspGoto(s, 'park_walkevents', 'empty');
   }
   // TODO-QSP: end
   scene.build();
@@ -865,8 +871,9 @@ function enter8(s: GameState, scene: SceneBuilder): void {
 
 function enter9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  (s as any).temp_npcID = qspFunc(s, 'lover', 'draw_random_from', 'boyfriend', 'girlfriend', 'sugar_daddy', 'fuckbuddy', 'husband');
   if (((s as any).temp_npcID ?? 0) === '') {
-    scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+    qspGoto(s, 'park_walkevents', 'empty');
   }
   qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
   // TODO-QSP: dynamic text: As you walk through the park, you notice <<$npcdesc>> walking towards you.
@@ -888,12 +895,13 @@ function enter9(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npcdesc>> is happy to see you, quickly grabbing you by the hand leading you i...
       scene.text(`${((s as any).npcdesc || '')} is happy to see you, quickly grabbing you by the hand leading you into a more secluded area of the park.`);
       scene.actions([
-        { label: 'Follow <<$npcdesc>>.', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Follow ' + String(((s as any).npcdesc || '') ?? '') + '.', handler: (st: GameState) => {
     if (((s as any).npc_gender ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['event', 'city_park'] }]);
+      qspGoto(s, 'event', 'city_park');
     }
     if (((s as any).npc_gender ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['parksvid', ''] }]);
+      (s as any).telsob = ((s as any).npcdesc ?? 0);
+      qspGoto(s, 'parksvid', '');
     }
   } },
       ]);
@@ -904,10 +912,11 @@ function enter9(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Offer to sit on the bench', handler: (st: GameState) => {
     if (((s as any).npc_gender ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['event', 'city_park'] }]);
+      qspGoto(s, 'event', 'city_park');
     }
     if (((s as any).npc_gender ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['parksvid', ''] }]);
+      (s as any).telsob = ((s as any).npcdesc ?? 0);
+      qspGoto(s, 'parksvid', '');
     }
   } },
           { label: 'Nice talk', handler: (st: GameState) => {
@@ -1012,7 +1021,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).daybegskver = ((s as any).daystart ?? 0);
     if ((Math.floor(Math.random() * 20) + 1) > ((s as any).pcs_hotcat ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'run_end'] }]);
+      qspGoto(s, 'park_walkevents', 'run_end');
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRunningImage(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.text('About halfway through your run, you hear a whistle pierce the air.');
@@ -1021,7 +1030,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcgeneratec', '', 0, '', Math.floor(Math.random() * 28) + 18, 'like');
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}`);
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['catcall'] = Math.floor(Math.random() * 3) + 1;
+    ((s as any).temp = (s as any).temp ?? {})['catcall'] = Math.floor(Math.random() * 3) + 1;
     scene.text('Turning your head instinctively at the sound, you see a guy lowering his fingers from his mouth, a wide grin on his face.');
     if (((s as any).temp ?? 0)?.['catcall'] === 1) {
       scene.text('"Hey sexy! Why don\'t you come run back to my place so I can fuck your brains out!"');
@@ -1043,7 +1052,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ignore him (annoyed)', handler: (st: GameState) => {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['catcall'] = 4;
+    ((s as any).temp = (s as any).temp ?? {})['catcall'] = 4;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRunningImage(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You grit your teeth and try to ignore him, continuing to run past while he shouts lewd remarks about your body and what he\'d like to do to it. Even once he\'s far behind you, you can\'t stop thinking about it, seething internally and grinding your teeth.');
     scene.text('Fuck! Who does he think he is? Are you just a piece of meat to him? Fuck that guy and fuck everybody like him!');
@@ -1058,7 +1067,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Serious about you," he snickers before making a kissy face at you. "I'm ${((s as any).npc_firstname ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}. What's your name?"`);
     scene.actions([
       { label: 'You\'re a piece of shit', handler: (st: GameState) => {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['catcall'] = 4;
+    ((s as any).temp = (s as any).temp ?? {})['catcall'] = 4;
     scene.text('"You\'re a real piece of shit, you know that?" you huff. "You think that girls like this kind of thing? Ugly fucks like you calling out lewd shit about their bodies?"');
     scene.text('"I don\'t think they like it, I know they <i>love</i> it. Come on, I\'m just being nice, giving you some nice compliments. No need to be such a bitch about it."');
     scene.text('"Ugh, fuck you!" You spit at his shoes and break back into a run, trying to get as far away as possible.');
@@ -1077,8 +1086,10 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go to his place', handler: (st: GameState) => {
     qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
-    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['pickup'] = 'park_run';
-  }, goto: ['sex_ev_start', 'hookup_npc_home_start'] },
+    (s as any).npclastgenerated = ((s as any).npclastsaved ?? 0);
+    ((s as any).hookup = (s as any).hookup ?? {})['pickup'] = 'park_run';
+    qspGoto(s, 'sex_ev_start', 'hookup_npc_home_start');
+  } },
       ]);
     } else {
       scene.text('"Uhhh…" he blinks in surprise and begins sputtering. "Well I- You\'re uhmm… It\'s just-"');
@@ -1122,7 +1133,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     scene.text('On second thought, maybe a young girl like yourself <i>shouldn\'t</i> go running in the dark…');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1152,7 +1163,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 25) + 0) < 7  &&  ((s as any).cheatVars ?? 0)?.['random_rapists'] !== 1) {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['rape_type'] = 'gang';
+    ((s as any).temp = (s as any).temp ?? {})['rape_type'] = 'gang';
     scene.img('images/shared/misc/jumped.jpg');
     scene.text('You\'re just thinking to yourself how exciting it is to bare your breasts even when no one is around when suddenly arms grip you from behind and a dirty hand clamps over your mouth. Your eyes go wide with fear as several more shapes emerge from the darkness, moving towards you.');
     scene.text('"Well well well, what do we have here?" a gravely voice says from behind you as another hand begins to paw your exposed breasts. "A little slut looking for some fun?"');
@@ -1177,7 +1188,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).daybegskver = ((s as any).daystart ?? 0);
     if ((Math.floor(Math.random() * 25) + 0) < 7  &&  ((s as any).cheatVars ?? 0)?.['random_rapists'] !== 1) {
-      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['rape_type'] = 'gang';
+      ((s as any).temp = (s as any).temp ?? {})['rape_type'] = 'gang';
       scene.img('images/pc/activities/exercises/running/park_jogn1.jpg');
       scene.text('About halfway through your run, you hear a branch snap to your left. You turn to see a shadow crouching in the bushes, but before you can react, arms grip you from behind and a dirty hand clamps over your mouth. Your eyes go wide with fear as several more shapes emerge from the darkness, moving towards you.');
       scene.text('"Well well well, what do we have here?" a gravely voice says from behind you. "A tasty little treat for us to enjoy?"');
@@ -1186,7 +1197,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
         { label: 'Fight!', goto: ['rape_events', 'fight_init'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'run_end'] }]);
+      qspGoto(s, 'park_walkevents', 'run_end');
     }
   } },
     ]);
@@ -1225,7 +1236,7 @@ function enterRunReactions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish your run', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1247,7 +1258,7 @@ function enterRunEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1293,7 +1304,7 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
     scene.text('You look around, someone probably left him here for good. You put him back into the crib and leave the baby behind, finishing your walk.');
     scene.actions([
       { label: 'Finish your walk', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1324,7 +1335,7 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
     scene.text('You call an ambulance. It takes them 10 minutes to get here. They take the baby with them and thank you for the report.');
     scene.actions([
       { label: 'Finish your walk', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1347,7 +1358,7 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
     scene.text('You look around, someone probably left him here for good. You put him back into the crib and leave the baby behind, finishing your walk.');
     scene.actions([
       { label: 'Finish your walk', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1403,7 +1414,7 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
     scene.text('You call an ambulance. It takes them 10 minutes to get here. They take the baby with them and thank you for the report.');
     scene.actions([
       { label: 'Finish your walk', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1445,7 +1456,7 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
     scene.text('You call an ambulance. It takes them 10 minutes to get here. They take the baby with them and thank you for the report.');
     scene.actions([
       { label: 'Finish your walk', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1467,7 +1478,7 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish your walk', goto: ['city_park', 'start'] },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+    qspGoto(s, 'park_walkevents', 'empty');
   }
   // TODO-QSP: end
   scene.build();
@@ -1541,7 +1552,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const park_walkevents: LocationDef = {
   name: 'park_walkevents',
-  title: 'One of the other guys takes your camera and smashes it against a rock',
+  title: 'One of the other guys takes your camera and smashes it again',
   region: 'other',
   enter: enter,
 };

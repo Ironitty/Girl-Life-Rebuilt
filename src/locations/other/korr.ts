@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -7,6 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'korr', '');
+  (s as any).location_type = 'private';
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -14,22 +15,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   if (((s as any).ml_performance ?? 0)?.['max_perform_minutes'] === 0) {
-    if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
+    ((s as any).ml_performance = (s as any).ml_performance ?? {})['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
   }
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   scene.text('<center><b>Corridor</b></center>');
   if ((!((s as any).remkorr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/home/korr.jpg');
-    scene.text('The wallpaper in the hallway has long since faded and is peeling from the walls. A <a href="exec:gt \'mirror\', \'start\'">mirror</a> hangs on the wall.');
+    scene.text('The wallpaper in the hallway has long since faded and is peeling from the walls. A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> hangs on the wall.');
   } else {
     scene.img('images/locations/city/residential/apartment/home/korr2.jpg');
-    scene.text('A modern hall with stylish furniture, including a wall-mounted <a href="exec:gt \'mirror\', \'start\'">mirror</a>.');
+    scene.text('A modern hall with stylish furniture, including a wall-mounted <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>.');
   }
   qspCall(s, 'home_events', 'entry');
   if (((s as any).lesbiday ?? 0) + 14 <= ((s as any).daystart ?? 0)  &&  ((s as any).lesbiQW ?? 0) >= 11  &&  ((s as any).hour ?? 0) >= 19  &&  (!((s as any).santehnikDolg ?? 0))) {
     if ((Math.floor(Math.random() * 101) + 0) > 82  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
-      scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'mistvisit'] }]);
+      qspGoto(s, 'lesbimistress', 'mistvisit');
     } else {
       (s as any).lesbiday = ((s as any).lesbiday ?? 0) + (1);
     }
@@ -44,11 +45,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).status ?? 0)?.['dog'] !== 'blocked'  &&  ((s as any).menu_off ?? 0) === 0  &&  ((s as any).rex ?? 0)?.['owned'] === 1) {
       if (((s as any).rex ?? 0)?.['status'] === 0) {
-        scene.actions([{ label: 'Continue', goto: ['pet_dog', 'name'] }]);
+        qspGoto(s, 'pet_dog', 'name');
       } else {
         if (((s as any).hour ?? 0) > 5) {
           // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt 'pet_dog', 'start'"><<$rex['name']>></a> is lying...
-          scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is lying on the floor.<br>`);
+          scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pet_dog\\u0027, \\u0027start\\u0027); return false;">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
             // TODO-QSP: dynamic text: <br><<$rex['name']>> is sleeping in his dog basket.<br>
@@ -63,11 +64,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).krolik ?? 0) === 1) {
     // TODO-QSP: dynamic text: Your rabbit <a href="exec:gt 'krol', 'start'"><<$namekrol>></a> sits in it's cag...
-    scene.text(`Your rabbit <a href="exec:gt 'krol', 'start'">${((s as any).namekrol || '')}</a> sits in it's cage on the floor.`);
+    scene.text(`Your rabbit <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027krol\\u0027, \\u0027start\\u0027); return false;">${((s as any).namekrol || '')}</a> sits in it's cage on the floor.`);
   }
   if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 1) {
     // TODO-QSP: dynamic text: Your parrot <a href="exec:gt 'popu', 'start'"><<$ParrotQW['Name1']>></a> sits in...
-    scene.text(`Your parrot <a href="exec:gt 'popu', 'start'">${((s as any).ParrotQW ?? 0)?.['Name1'] ?? ''}</a> sits in it's cage.`);
+    scene.text(`Your parrot <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027popu\\u0027, \\u0027start\\u0027); return false;">${((s as any).ParrotQW ?? 0)?.['Name1'] ?? ''}</a> sits in it's cage.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -79,7 +80,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><b>You\'re too sick to leave home.</b></center>');
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + (1);
-        scene.actions([{ label: 'Continue', goto: ['city_apt_building', 'floor_5'] }]);
+        qspGoto(s, 'city_apt_building', 'floor_5');
       }
     }
   } },
@@ -91,7 +92,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><b>You\'re too sick to walk around in the streets.</b></center>');
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 2;
-        scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+        qspGoto(s, 'city_residential', '');
       }
     }
   } },

@@ -1,10 +1,11 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
@@ -19,12 +20,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).alla ?? 0) >= 20) {
         (s as any).parksvidrand = Math.floor(Math.random() * 6) + 0;
         if (((s as any).parksvidrand ?? 0) > 0  &&  ((s as any).parksvidrand ?? 0) < 3) {
-          scene.actions([{ label: 'Continue', goto: ['parksvid', '1'] }]);
+          qspGoto(s, 'parksvid', '1');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['parksvid', '3'] }]);
+          qspGoto(s, 'parksvid', '3');
         }
       } else {
-        scene.actions([{ label: 'Continue', goto: ['parksvid', '3'] }]);
+        qspGoto(s, 'parksvid', '3');
       }
     } else {
       if (((s as any).telsob ?? 0) === 'Masha') {
@@ -32,12 +33,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).masha ?? 0) >= 20) {
           (s as any).parksvidrand = Math.floor(Math.random() * 11) + 0;
           if (((s as any).parksvidrand ?? 0) > 0  &&  ((s as any).parksvidrand ?? 0) < 3) {
-            scene.actions([{ label: 'Continue', goto: ['parksvid', '1'] }]);
+            qspGoto(s, 'parksvid', '1');
           } else {
-            scene.actions([{ label: 'Continue', goto: ['parksvid', '3'] }]);
+            qspGoto(s, 'parksvid', '3');
           }
         } else {
-          scene.actions([{ label: 'Continue', goto: ['parksvid', '3'] }]);
+          qspGoto(s, 'parksvid', '3');
         }
       } else {
         if (((s as any).telsob ?? 0) === 'Kate') {
@@ -45,27 +46,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_rel ?? 0)?.['A219'] >= 20) {
             (s as any).parksvidrand = Math.floor(Math.random() * 11) + 0;
             if (((s as any).parksvidrand ?? 0) > 0  &&  ((s as any).parksvidrand ?? 0) < 3) {
-              scene.actions([{ label: 'Continue', goto: ['parksvid', '1'] }]);
+              qspGoto(s, 'parksvid', '1');
             } else {
-              scene.actions([{ label: 'Continue', goto: ['parksvid', '3'] }]);
+              qspGoto(s, 'parksvid', '3');
             }
           } else {
-            scene.actions([{ label: 'Continue', goto: ['parksvid', '3'] }]);
+            qspGoto(s, 'parksvid', '3');
           }
         } else {
           if (((s as any).telsob ?? 0) === ((s as any).npcdesc ?? 0)) {
             qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
             if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 50) {
-              scene.actions([{ label: 'Continue', goto: ['parksvid', '3'] }]);
+              qspGoto(s, 'parksvid', '3');
             } else {
               (s as any).parksvidrand = Math.floor(Math.random() * 11) + 0;
               if (((s as any).parksvidrand ?? 0) <= 1) {
-                scene.actions([{ label: 'Continue', goto: ['parksvid', '1'] }]);
+                qspGoto(s, 'parksvid', '1');
               } else {
                 if (((s as any).parksvidrand ?? 0) <= 3) {
-                  scene.actions([{ label: 'Continue', goto: ['parksvid', '2'] }]);
+                  qspGoto(s, 'parksvid', '2');
                 } else {
-                  scene.actions([{ label: 'Continue', goto: ['parksvid', '3'] }]);
+                  qspGoto(s, 'parksvid', '3');
                 }
               }
             }
@@ -125,7 +126,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'cuni', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['parksvid', '3'] },
+    qspGoto(s, 'parksvid', '3');
+  } },
       ]);
     }
     scene.actions([
@@ -148,6 +150,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('Sometime later you have an intense orgasm, not long after, he pulls out of her. He grabs her, flips her over and spins her around. Now she is laying on her back with her face near his crotch, she opens her mouth at once. Her mouth is barely even open before he shoves his dick in and starts to fuck her mouth, within moments he is shooting his load across her face and in her mouth.');
     scene.text('You crawl down next to her and lick his cum off her face. He smiles as he watches the two of you. "That was great girls, but I need to get back to practicing at the park. I\'ll walk you back."');
     scene.text('You all get dressed and he walks with you back to the park. Once back in the park you go your separate ways.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['parksvid', '3'] },

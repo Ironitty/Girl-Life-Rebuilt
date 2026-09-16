@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'havana_pool', 'start');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -17,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You stand beside the large pool, the peaceful tranquility of the water feeling very inviting.');
   scene.text('A large sign states that you must wear swimwear and shower before entering the water.');
   if (((s as any).db ?? 0) >= 1  &&  ((s as any).Goraday ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'ev42'] }]);
+    qspGoto(s, 'city_jorahouse', 'ev42');
     scene.actions([
       { label: 'Search ZHoru', handler: (st: GameState) => {
     (st as any).Goraday = ((st as any).daystart ?? 0);

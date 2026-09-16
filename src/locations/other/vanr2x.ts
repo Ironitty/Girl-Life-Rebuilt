@@ -6,13 +6,15 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'vanr2x', '');
+  (s as any).location_type = 'bathroom';
+  (s as any).bathtype = 'bathtub shower';
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pushkin/apartment/vanr2x.jpg');
   // TODO-QSP: dynamic text: A <a href="exec:gt 'mirror','start'">mirror</a> hangs above the sink where you c...
-  scene.text('A <a href="exec:gt \'mirror\',\'start\'">mirror</a> hangs above the sink where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> hangs above the sink where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair.');
   qspCall(s, 'selfplay', 'suction_dildo');
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'din_van', 'misery');

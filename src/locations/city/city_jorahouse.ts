@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -17,11 +17,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     if (((s as any).klofQW ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).klofday ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).klofday = ((s as any).daystart ?? 0);
-      scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'ev1'] }]);
+      qspGoto(s, 'city_jorahouse', 'ev1');
     } else {
       if (((s as any).klofQW ?? 0) > 2  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).klofday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).klofday = ((s as any).daystart ?? 0);
-        scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'start1'] }]);
+        qspGoto(s, 'city_jorahouse', 'start1');
       } else {
         scene.text('No one home');
         scene.actions([
@@ -41,7 +41,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
   (s as any).kloftimes = ((s as any).kloftimes ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).kloftimes ?? 0) < 10) {
-    scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'ev7'] }]);
+    qspGoto(s, 'city_jorahouse', 'ev7');
   } else {
     scene.img('images/characters/city/jora/klof.jpg');
     scene.text('You ring the doorbell. Jora answers, scratching his belly. He yawns and says he is busy.');
@@ -150,7 +150,9 @@ function enterEv6(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 1);
+  (s as any).orgasm_txt = 'The combination is enough to take you past your peak and you orgasm.';
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub', 'group');
+  (s as any).orgasm_txt = 'The combination is enough to take you past your peak and you orgasm.';
   qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID ?? 0), 'sub', 'group');
   scene.text('You get dressed and ready to go home.');
   scene.text('You are approached by Jora who hands you money, "Earned yourself a crumb."');
@@ -413,7 +415,7 @@ function enterEv19(s: GameState, scene: SceneBuilder): void {
   scene.text('You get dressed and get ready to go home.');
   scene.text('The boys throw money at you, "Earned yourself a crumb."');
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
@@ -431,10 +433,10 @@ function enterEv20(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Talk to the boss', handler: (st: GameState) => {
     if (((s as any).klofQW ?? 0) < 10) {
-      scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'ev21'] }]);
+      qspGoto(s, 'city_jorahouse', 'ev21');
     }
     if (((s as any).klofQW ?? 0) >= 10) {
-      scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'ev22'] }]);
+      qspGoto(s, 'city_jorahouse', 'ev22');
     }
   } },
   ]);
@@ -468,7 +470,8 @@ function enterEv22(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -494,7 +497,8 @@ function enterEv23(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -520,7 +524,8 @@ function enterEv24(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -550,7 +555,8 @@ function enterEv25(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -578,7 +584,8 @@ function enterEv26(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -604,7 +611,8 @@ function enterEv27(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -632,7 +640,8 @@ function enterEv28(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -659,7 +668,8 @@ function enterEv29(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -686,7 +696,8 @@ function enterEv30(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -713,7 +724,8 @@ function enterEv31(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -741,7 +753,8 @@ function enterEv32(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -769,7 +782,8 @@ function enterEv33(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -799,7 +813,8 @@ function enterEv34(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -888,7 +903,8 @@ function enterEv39(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -907,7 +923,7 @@ function enterEv40(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 15, ((s as any).npcID ?? 0), 'sub', 'group', 'rough');
   qspCall(s, 'arousal', 'vaginal', 15, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
   (s as any).guy = ((s as any).guy ?? 0) + (2);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -926,7 +942,8 @@ function enterEv41(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go home', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
   ]);
   scene.build();
 }
@@ -951,7 +968,8 @@ function enterEv42(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -982,7 +1000,8 @@ function enterEv43(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1013,7 +1032,8 @@ function enterEv44(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1051,7 +1071,8 @@ function enterEv45(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1077,7 +1098,8 @@ function enterEv46(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
   ]);
   scene.build();
 }
@@ -1106,7 +1128,8 @@ function enterEv47(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1140,7 +1163,8 @@ function enterEv48(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1174,7 +1198,8 @@ function enterEv49(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1207,7 +1232,8 @@ function enterEv50(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1239,7 +1265,8 @@ function enterEv51(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1251,6 +1278,8 @@ function enterEv51(s: GameState, scene: SceneBuilder): void {
 
 function enterEv52(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/jora/sex/bas15.mp4');
+  (s as any).orgasm_or = 'custom';
+  (s as any).orgasm_txt = 'Within a few minutes you have a wild orgasm.';
   scene.text('The crowd of men are standing in complete shock.');
   qspCall(s, 'arousal', 'clit_finger', 5, 'exhibitionism', 'sub', 'masturbation');
   scene.text('Jora hands you a dildo and says, "Insert this."');
@@ -1271,7 +1300,8 @@ function enterEv52(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1316,7 +1346,8 @@ function enterEv54(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1362,7 +1393,8 @@ function enterEv56(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1415,7 +1447,7 @@ function enterEv60(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEv61(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_horny = 0;
+  (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
   scene.img('images/characters/city/jora/sex/bas22.jpg');
   qspCall(s, 'stat', '');
   scene.text('Jora gets up and goes to the showers saying to the crowd, "This bitch is all yours."');
@@ -1435,7 +1467,8 @@ function enterEv61(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     qspCall(s, 'stat', '');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1460,6 +1493,7 @@ function enterEv62(s: GameState, scene: SceneBuilder): void {
   scene.text('You haven\'t got any choice and you are gangbanged by the group of men.');
   scene.text('Someone bends you over and sticks his dick in your ass, another your throat and a third in your cunt. You remain fully stuffed as they all try each of your holes.');
   scene.text('One of them comes down your throat giving you no choice but to swallow with the rest finishing in or on your pussy.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal', 2, ((s as any).npcID ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
   qspCall(s, 'arousal', 'vaginal', 2, ((s as any).npcID1 ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
   qspCall(s, 'arousal', 'vaginal', 2, ((s as any).npcID2 ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
@@ -1508,6 +1542,7 @@ function enterEv63(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'arousal', 'bj', 4, $npcID[5], 'exhibitionism', 'sub', 'unknown'
   // TODO-QSP: gs 'arousal', 'bj', 4, $npcID[6], 'exhibitionism', 'sub', 'unknown'
   // TODO-QSP: gs 'arousal', 'bj', 4, $npcID[7], 'exhibitionism', 'sub', 'unknown'
+  (s as any).orgasm_or = 'yes';
   // TODO-QSP: gs 'arousal', 'vaginal', -7, $npcID[0], 'exhibitionism', 'sub', 'unknown', 'gangbang'
   // TODO-QSP: gs 'arousal', 'vaginal', -7, $npcID[1], 'exhibitionism', 'sub', 'unknown', 'gangbang'
   // TODO-QSP: gs 'arousal', 'anal', -7, $npcID[2], 'exhibitionism', 'sub', 'unknown', 'gangbang'
@@ -1543,8 +1578,10 @@ function enterEv64(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/jora/sex/bas25.jpg');
   scene.text('Only three guys left and they seem to know what they are doing, working in tandem they take you in each orifice finding your most sensitive triggers.');
   qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID2 ?? 0), 'exhibitionism', 'sub', 'unknown');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
   scene.text('They have more stamina then the last group and seem to want to make sure you remember this.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'anal', (-10), ((s as any).npcID ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
   scene.text('You have no strength left and they are the only thing stopping you collapsing at this point which seems to be enough for them to hit orgasm. They each pull out and paint your body in their cum before gently lowering you to the ground so you can catch your breath.');
   qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0));
@@ -1560,7 +1597,7 @@ function enterEv64(s: GameState, scene: SceneBuilder): void {
 
 function enterEv65(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', 2000);
-  (s as any).saunawhore = 0;
+  (s as any).saunawhore = Math.max(((s as any).saunawhore ?? 0), 1);
   scene.img('images/characters/city/jora/bas26.jpg');
   scene.text('One of the men finds and hands you your swimsuit.');
   scene.text('"Damn you\'re good, boss said we can have you last if we kept an eye on you to make sure things didn\'t get out of hand. Hope we made it as much fun for you as it was for us."');

@@ -7,6 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'BOSS "Blue rat"';
   (s as any).KGOLstrenV = 30;
   (s as any).KGOLspeedV = 30;
   (s as any).KGOLvitalV = 100;

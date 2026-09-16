@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTLazar(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).socialchg) (s as any).socialchg = {}; (s as any).socialchg['tLazar_day'] = ((s as any).daystart ?? 0);
+  ((s as any).socialchg = (s as any).socialchg ?? {})['tLazar_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big149.jpg');
   scene.text('You decide to walk over and see what the fuss is about. As usual, Lazar is showing off his skills as some younger kids challenge him 1-on-1 or even 1-on-2, and he easily bests them. You see several girls from school sitting on the bleachers watching Lazar and notice that he glances at them from time to time, obviously trying to show off.');
@@ -255,7 +255,7 @@ function enterLazarAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn around and face the tree before pulling your clothes aside to expose your ass to him and bending over. He spits on your asshole a few times and rubs it with his fingers to give you some lubrication. You then feel the tip of his dick pressing up against your wet hole, and the pressure builds until his dick pops into your asshole, causing you to gasp in pain. Finally, he pauses to let you adjust before he starts to slowly fuck your ass.');
     (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
   } else {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.text('You dig around in your purse, pull out your bottle of lube, and hand it to him. You then turn around and face the tree before pulling your clothes aside to expose your ass to him and bending over. He squirts some lube onto your asshole and rubs it in to give you some lubrication before you feel the tip of his dick press up against your hole. The pressure builds until the head of his dick pops into your asshole, causing you to gasp in pain. Then, he pauses to let you adjust and squirts a little more lube onto his dick before he starts to slowly fuck your ass.');
     (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (10);
   }
@@ -492,7 +492,7 @@ function enterIvanfedorThreesome(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTSvyatoslav(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).socialchg) (s as any).socialchg = {}; (s as any).socialchg['tSvyatoslav_day'] = ((s as any).daystart ?? 0);
+  ((s as any).socialchg = (s as any).socialchg ?? {})['tSvyatoslav_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big8.jpg');
   scene.text('You wait patiently until Svyatoslav ends one of his runs. "You\'re improving greatly!" you compliment him with a smile.');
@@ -528,7 +528,7 @@ function enterTSvyatoslav(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTVanya(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).socialchg) (s as any).socialchg = {}; (s as any).socialchg['tVanya_day'] = ((s as any).daystart ?? 0);
+  ((s as any).socialchg = (s as any).socialchg ?? {})['tVanya_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big165.jpg');
   // TODO-QSP: dynamic text: Vanya stops in his tracks when he sees you. "Hey, <<$pcs_nickname>>, you're out ...
@@ -681,10 +681,12 @@ function enterLariskaGm_2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave the store', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_commercial', ''] },
+    qspGoto(s, 'pav_commercial', '');
+  } },
       { label: 'Stay and shop alone', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['shop_coco_carmen', 'start'] },
+    qspGoto(s, 'shop_coco_carmen', 'start');
+  } },
     ]);
   } },
   ]);
@@ -717,12 +719,15 @@ function enterLariskaGm_3(s: GameState, scene: SceneBuilder): void {
       { label: '69', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_6.jpg');
     scene.text('Face red with desire, Lariska stands up, pulling you off the bench and down to the floor on your back. Straddling your bare chest, she buries her face between your legs, licking and slurping wildly. You do the same, licking her clit while thrusting your fingers inside her pussy.');
+    (s as any).orgasm_txt = 'You can tell she is getting close. Her pussy is soaking wet and leaking like crazy. The sight and feeling of her going wild on your clit sends you over the edge, and your body starts shaking. Your orgasm also sets hers off, both of you writhing on the floor, attempting to keep licking your way through the other orgasm.';
+    (s as any).orgasm_or = 'custom';
     scene.text('Exhausted, you let your head fall back while you catch your breath. You hear her panting and feel her breath on your now sensitive lower lips as you come down in post-orgasmic bliss.');
     scene.text('Once you catch your breath, you stand up and share a long kiss while stroking her cheek with your hand. When you pull back from it, she seems to remember you\'re in a public place and gets nervous, her face red again.');
     scene.actions([
       { label: 'Clean up and leave the store', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_commercial', ''] },
+    qspGoto(s, 'pav_commercial', '');
+  } },
     ]);
   } },
     ]);

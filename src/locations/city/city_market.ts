@@ -1,10 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   scene.build();
 }
 
@@ -27,12 +28,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'outdoors');
   scene.img('images/locations/city/residential/market/rinok.jpg');
-  scene.text('One of the stalls has a sign attached to it that reads "Cash paid for secondhand clothes". You can <a href="exec:cloc=2 & gt \'clothing_view\', \'view_lists_list\', \'sell\'">sell individual items</a> or <a href="exec:gs \'portnoi\'">all of your unwanted clothes here</a>.');
+  scene.text('One of the stalls has a sign attached to it that reads "Cash paid for secondhand clothes". You can <a href="#" onclick="window.__gameStore.setState((s) => { s.cloc = s.2; return s; }); window.__gameStore.getState().doGoto(\\u0027clothing_view\\u0027, \\u0027view_lists_list\\u0027, \\u0027sell\\u0027); return false;">sell individual items</a> or <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027portnoi\\u0027, \\u0027\\u0027); return false;">all of your unwanted clothes here</a>.');
   if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 2) {
     (s as any).nurand = Math.floor(Math.random() * 101) + 0;
     if (((s as any).nurand ?? 0) >= 80) {
       qspCall(s, 'mood', 'lower', 'tiny');
-      scene.text('You feel a hand gently pawing at <a href="exec:gt \'ETO_salon\', \'market_grope\'">your ass</a>.');
+      scene.text('You feel a hand gently pawing at <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ETO_salon\\u0027, \\u0027market_grope\\u0027); return false;">your ass</a>.');
       qspCall(s, 'arousal', 'foreplay', 3);
       qspCall(s, 'stat', '');
     }
@@ -97,7 +98,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     { label: 'Browse wares', goto: ['city_market', 'wares'] },
     { label: 'Go to the book tray', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -133,12 +135,15 @@ function enterClo(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['city_market', 'start'] },
+    qspGoto(s, 'city_market', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterWares(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_s = 'city_market';
+  (s as any).args_s = 'wares';
   qspCall(s, 'themes', 'outdoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'market');
   qspCall(s, 'stat', '');

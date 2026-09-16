@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -50,14 +50,14 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 20, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_trashplaceevents', 'pos5'] }]);
+      qspGoto(s, 'city_trashplaceevents', 'pos5');
     }
   } },
     { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_trashplaceevents', 'pos6'] }]);
+      qspGoto(s, 'city_trashplaceevents', 'pos6');
     }
   } },
     { label: 'Leave', goto: ['city_trashplace', ''] },

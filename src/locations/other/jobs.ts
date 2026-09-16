@@ -138,7 +138,7 @@ function enterSetRank(s: GameState, scene: SceneBuilder): void {
 
 function enterResolveScheduleIdx(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_active_schedule ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
-    (s as any).result = qspUntranslated(s, "val(job_active_schedule[ARGS[1]])", { location: "jobs" });
+    (s as any).result = parseFloat(((s as any).job_active_schedule ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]);
   } else {
     (s as any).result = 0;
   }
@@ -209,6 +209,7 @@ function enterDailyCheck(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_dc_idx = 0;
   // TODO-QSP: :daily_check_v4_loop
   if (((s as any).temp_dc_idx ?? 0) < Object.keys((s as any).job_list ?? {}).length) {
+    (s as any).temp_dc_job = ((s as any).job_list ?? 0)?.[String((s as any).temp_dc_idx ?? 0)];
     if (((s as any).job_status ?? 0)?.[String((s as any).temp_dc_job ?? 0)] === 'employed'  &&  ((s as any).job_suspended ?? 0)?.[String((s as any).temp_dc_job ?? 0)] === 0) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_dc_job ?? 0)]; enterGetJobDefinition(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).job_schedule_mode ?? 0)?.[String((s as any).temp_dc_job ?? 0)] === 'booking') {
@@ -220,10 +221,11 @@ function enterDailyCheck(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_dc_slot = 0;
         // TODO-QSP: :daily_check_booking_slot_loop
         if (((s as any).temp_dc_slot ?? 0) < ((s as any).temp_dc_max_slot ?? 0)) {
+          (s as any).temp_dc_booking_data = ((s as any).job_booking ?? 0)?.[((s as any).temp_dc_job ?? 0) + ', ' + qspUntranslated(s, "str(temp_dc_yesterday)", { location: "jobs" }) + ', ' + qspUntranslated(s, "str(temp_dc_slot)", { location: "jobs" })];
           if (((s as any).temp_dc_booking_data ?? 0) !== '') {
             if (((s as any).job_last_work_day ?? 0)?.[String((s as any).temp_dc_job ?? 0)] < ((s as any).temp_dc_yesterday ?? 0)) {
               if (((s as any).job_on_miss_handler ?? 0)?.[String((s as any).temp_dc_job ?? 0)] !== '') {
-                if (!(s as any).job_missed_total) (s as any).job_missed_total = {}; (s as any).job_missed_total[String((s as any).temp_dc_job ?? 0)] = ((s as any).job_missed_total[String((s as any).temp_dc_job ?? 0)] ?? 0) + (1);
+                ((s as any).job_missed_total = (s as any).job_missed_total ?? {})[String((s as any).temp_dc_job ?? 0)] = ((s as any).job_missed_total[String((s as any).temp_dc_job ?? 0)] ?? 0) + (1);
                 // TODO-QSP: gs $job_on_miss_handler[$temp_dc_job], $job_on_miss_handler_func[$temp_dc_job], $temp_dc_job, $temp_...
               } else {
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_dc_job ?? 0)]; enterMissedShift(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -239,10 +241,11 @@ function enterDailyCheck(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_dc_slot ?? 0) < ((s as any).temp_dc_max_slot ?? 0)) {
           if (((s as any).job_booking ?? 0)[((s as any).temp_dc_job ?? 0) + ', ' + String(((s as any).temp_dc_daybefore ?? 0)) + ', ' + String(((s as any).temp_dc_slot ?? 0))] !== '') {
             // TODO-QSP: $job_booking[$temp_dc_job + ', ' + $str(temp_dc_daybefore) + ', ' + $str(temp_dc_slot)] = ''
-            if (!(s as any).job_bookings_active) (s as any).job_bookings_active = {}; (s as any).job_bookings_active[String((s as any).temp_dc_job ?? 0)] = ((s as any).job_bookings_active[String((s as any).temp_dc_job ?? 0)] ?? 0) - (1);
+            ((s as any).job_bookings_active = (s as any).job_bookings_active ?? {})[String((s as any).temp_dc_job ?? 0)] = ((s as any).job_bookings_active[String((s as any).temp_dc_job ?? 0)] ?? 0) - (1);
             if (((s as any).job_bookings_active ?? 0)?.[String((s as any).temp_dc_job ?? 0)] < 0) {
-              if (!(s as any).job_bookings_active) (s as any).job_bookings_active = {}; (s as any).job_bookings_active[String((s as any).temp_dc_job ?? 0)] = 0;
+              ((s as any).job_bookings_active = (s as any).job_bookings_active ?? {})[String((s as any).temp_dc_job ?? 0)] = 0;
             }
+            (s as any).temp_dc_evt = 'job_booking_' + ((s as any).temp_dc_job ?? 0) + '_' + qspUntranslated(s, "str(temp_dc_daybefore)", { location: "jobs" }) + '_' + qspUntranslated(s, "str(temp_dc_slot)", { location: "jobs" });
             qspCall(s, 'calendar_events', 'remove_event', ((s as any).temp_dc_evt ?? 0));
           }
           (s as any).temp_dc_slot = ((s as any).temp_dc_slot ?? 0) + (1);
@@ -328,7 +331,7 @@ function enterDockPay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsWorkDay(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_check_day = qspUntranslated(s, "ARGS[2]", { location: "jobs" });
+  (s as any).temp_check_day = ((s as any).locArgs?.[2] ?? 0);
   if ((!((s as any).temp_check_day ?? 0))) {
     (s as any).temp_check_day = ((s as any).daystart ?? 0);
   }
@@ -339,7 +342,7 @@ function enterIsWorkDay(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'jobs', 'matches_recurring_schedule', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_check_day ?? 0));
   } else {
     if (((s as any).job_schedule_mode ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'on_demand') {
-      if ((String(' \' + $job_available_days[$ARGS[1]] + \' ').indexOf(String(' \' + $str(\'0\') + \' '))) + 1 > 0) {
+      if (((String(' ' + ((s as any).job_available_days ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] + ' ').indexOf(String(' ' + qspUntranslated(s, "str(\u00000\u0000)", { location: "jobs" }) + ' '))) + 1) > 0) {
         (s as any).result = 1;
       } else {
         (s as any).result = 0;
@@ -466,7 +469,7 @@ function enterIsTimeCheck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetShiftForDay(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_check_day = qspUntranslated(s, "ARGS[2]", { location: "jobs" });
+  (s as any).temp_check_day = ((s as any).locArgs?.[2] ?? 0);
   if ((!((s as any).temp_check_day ?? 0))) {
     (s as any).temp_check_day = ((s as any).daystart ?? 0);
   }
@@ -484,9 +487,9 @@ function enterGetShiftForDay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_gsfd_slot ?? 0) < ((s as any).temp_gsfd_max_slot ?? 0)) {
       if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_check_day ?? 0)) + ', ' + String(((s as any).temp_gsfd_slot ?? 0))] !== '') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_gsfd_slot ?? 0)]; enterResolveSlotTiming(s, scene); (s as any).locArgs = __savedLocArgs; }
-        if (!(s as any).result_slot_arrival) (s as any).result_slot_arrival = {}; (s as any).result_slot_arrival[String((s as any).result_slot_count ?? 0)] = ((s as any).temp_resolved_arrival ?? 0);
-        if (!(s as any).result_slot_start) (s as any).result_slot_start = {}; (s as any).result_slot_start[String((s as any).result_slot_count ?? 0)] = ((s as any).temp_resolved_start ?? 0);
-        if (!(s as any).result_slot_end) (s as any).result_slot_end = {}; (s as any).result_slot_end[String((s as any).result_slot_count ?? 0)] = ((s as any).temp_resolved_end ?? 0);
+        ((s as any).result_slot_arrival = (s as any).result_slot_arrival ?? {})[String((s as any).result_slot_count ?? 0)] = ((s as any).temp_resolved_arrival ?? 0);
+        ((s as any).result_slot_start = (s as any).result_slot_start ?? {})[String((s as any).result_slot_count ?? 0)] = ((s as any).temp_resolved_start ?? 0);
+        ((s as any).result_slot_end = (s as any).result_slot_end ?? {})[String((s as any).result_slot_count ?? 0)] = ((s as any).temp_resolved_end ?? 0);
         (s as any).result_slot_count = ((s as any).result_slot_count ?? 0) + (1);
       }
       (s as any).temp_gsfd_slot = ((s as any).temp_gsfd_slot ?? 0) + (1);
@@ -528,11 +531,12 @@ function enterGetShiftForDay(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_found = 0;
   (s as any).temp_idx = ((s as any).temp_schedule_idx ?? 0);
   // TODO-QSP: :find_schedule_loop
+  (s as any).temp_work_days = ((s as any).job_work_days ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(temp_idx)", { location: "jobs" })];
   if (((s as any).temp_work_days ?? 0) !== '') {
-    if ((String(' \' + $temp_work_days + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
-      (s as any).result_arrival = ((s as any).job_arrival ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_idx ?? 0))];
-      (s as any).result_start = ((s as any).job_start ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_idx ?? 0))];
-      (s as any).result_duration = ((s as any).job_shift ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_idx ?? 0))];
+    if (((String(' ' + ((s as any).temp_work_days ?? 0) + ' ').indexOf(String(' ' + qspUntranslated(s, "str(temp_weekday)", { location: "jobs" }) + ' '))) + 1) > 0) {
+      (s as any).result_arrival = ((s as any).job_arrival ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(temp_idx)", { location: "jobs" })];
+      (s as any).result_start = ((s as any).job_start ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(temp_idx)", { location: "jobs" })];
+      (s as any).result_duration = ((s as any).job_shift ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(temp_idx)", { location: "jobs" })];
       (s as any).temp_found = 1;
     }
   }
@@ -551,7 +555,7 @@ function enterGetShiftForDay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNextWorkDay(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_nwd_start_day = qspUntranslated(s, "ARGS[2]", { location: "jobs" });
+  (s as any).temp_nwd_start_day = ((s as any).locArgs?.[2] ?? 0);
   if ((!((s as any).temp_nwd_start_day ?? 0))) {
     (s as any).temp_nwd_start_day = ((s as any).daystart ?? 0);
   }
@@ -573,13 +577,13 @@ function enterNextWorkDay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMatchesRecurringSchedule(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_check_day = qspUntranslated(s, "ARGS[2]", { location: "jobs" });
+  (s as any).temp_check_day = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).temp_check_day ?? 0));
   if (((s as any).job_work_dates ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
     qspCall(s, 'time', 'to_date', ((s as any).temp_check_day ?? 0));
     (s as any).temp_mmdd = (((s as any).dateVars ?? {})?.['month'] ?? 0) * 100 + (((s as any).dateVars ?? {})?.['day'] ?? 0);
-    (s as any).temp_season_start = 0;
-    (s as any).temp_season_end = 0;
+    (s as any).temp_season_start = parseFloat((String(((s as any).job_work_dates ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))));
+    (s as any).temp_season_end = parseFloat((String(((s as any).job_work_dates ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((6)-1, ((6)-1)+(4))));
     if (((s as any).temp_mmdd ?? 0) < ((s as any).temp_season_start ?? 0)  ||  ((s as any).temp_mmdd ?? 0) > ((s as any).temp_season_end ?? 0)) {
       (s as any).result = 0;
       return;
@@ -589,8 +593,9 @@ function enterMatchesRecurringSchedule(s: GameState, scene: SceneBuilder): void 
   (s as any).result = 0;
   (s as any).temp_idx = ((s as any).temp_schedule_idx ?? 0);
   // TODO-QSP: :check_schedule_loop
+  (s as any).temp_work_days = ((s as any).job_work_days ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(temp_idx)", { location: "jobs" })];
   if (((s as any).temp_work_days ?? 0) !== '') {
-    if ((String(' \' + $temp_work_days + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
+    if (((String(' ' + ((s as any).temp_work_days ?? 0) + ' ').indexOf(String(' ' + qspUntranslated(s, "str(temp_weekday)", { location: "jobs" }) + ' '))) + 1) > 0) {
       (s as any).result = 1;
       return;
     }
@@ -605,22 +610,24 @@ function enterMatchesRecurringSchedule(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterGetShiftFromRecurrence(s: GameState, scene: SceneBuilder): void {
-  (s as any).check_day = qspUntranslated(s, "ARGS[2]", { location: "jobs" });
+  (s as any).check_day = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).check_day ?? 0));
   (s as any).temp_pos = 1;
   // TODO-QSP: :loop_find_shift
-  (s as any).temp_semi = qspUntranslated(s, "instr(ARGS[1], ';', temp_pos)", { location: "jobs" });
+  (s as any).temp_semi = ((String(((s as any).locArgs?.[1] ?? 0)).indexOf(String(';'))) + 1);
   if ((!((s as any).temp_semi ?? 0))) {
     (s as any).temp_semi = (String(((s as any).locArgs?.[1] ?? 0)).length) + 1;
   }
-  (s as any).temp_pipe1 = qspUntranslated(s, "instr(temp_shift, '|')", { location: "jobs" });
-  (s as any).temp_pipe2 = (String(((s as any).temp_shift ?? 0)).indexOf(String('|'))) + 1;
-  (s as any).temp_pipe3 = (String(((s as any).temp_shift ?? 0)).indexOf(String('|'))) + 1;
+  (s as any).temp_shift = (String(((s as any).locArgs?.[1] ?? 0)).slice((((s as any).temp_pos ?? 0))-1, ((((s as any).temp_pos ?? 0))-1)+(((s as any).temp_semi ?? 0) - ((s as any).temp_pos ?? 0))));
+  (s as any).temp_pipe1 = ((String(((s as any).temp_shift ?? 0)).indexOf(String('|'))) + 1);
+  (s as any).temp_pipe2 = ((String(((s as any).temp_shift ?? 0)).indexOf(String('|'))) + 1);
+  (s as any).temp_pipe3 = ((String(((s as any).temp_shift ?? 0)).indexOf(String('|'))) + 1);
   if (((s as any).temp_pipe1 ?? 0) > 0  &&  ((s as any).temp_pipe2 ?? 0) > 0  &&  ((s as any).temp_pipe3 ?? 0) > 0) {
+    (s as any).temp_days = (String(((s as any).temp_shift ?? 0)).slice((1)-1, ((1)-1)+(((s as any).temp_pipe1 ?? 0) - 1)));
     (s as any).temp_arrival = parseFloat((String(((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe1 ?? 0) + 1)-1, ((((s as any).temp_pipe1 ?? 0) + 1)-1)+(((s as any).temp_pipe2 ?? 0) - ((s as any).temp_pipe1 ?? 0) - 1))));
     (s as any).temp_start = parseFloat((String(((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe2 ?? 0) + 1)-1, ((((s as any).temp_pipe2 ?? 0) + 1)-1)+(((s as any).temp_pipe3 ?? 0) - ((s as any).temp_pipe2 ?? 0) - 1))));
     (s as any).temp_duration = parseFloat((String(((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe3 ?? 0) + 1)-1)));
-    if ((String(' \' + $temp_days + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
+    if (((String(' ' + ((s as any).temp_days ?? 0) + ' ').indexOf(String(' ' + qspUntranslated(s, "str(temp_weekday)", { location: "jobs" }) + ' '))) + 1) > 0) {
       (s as any).result_arrival = ((s as any).temp_arrival ?? 0);
       (s as any).result_start = ((s as any).temp_start ?? 0);
       (s as any).result_duration = ((s as any).temp_duration ?? 0);
@@ -695,7 +702,7 @@ function enterHasBookingForDay(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_hbfd_slot = 0;
   // TODO-QSP: :has_booking_slot_loop
   if (((s as any).temp_hbfd_slot ?? 0) < ((s as any).temp_hbfd_max ?? 0)) {
-    if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" })) + ', ' + String(((s as any).temp_hbfd_slot ?? 0))] !== '') {
+    if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).locArgs?.[2] ?? 0)) + ', ' + String(((s as any).temp_hbfd_slot ?? 0))] !== '') {
       (s as any).result = 1;
       return;
     }
@@ -708,6 +715,7 @@ function enterHasBookingForDay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetBookingDataForDay(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = '';
   if (((s as any).job_title ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetJobDefinition(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -718,7 +726,8 @@ function enterGetBookingDataForDay(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_gbdfd_slot = 0;
   // TODO-QSP: :get_bdata_day_loop
   if (((s as any).temp_gbdfd_slot ?? 0) < ((s as any).temp_gbdfd_max ?? 0)) {
-    if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" })) + ', ' + String(((s as any).temp_gbdfd_slot ?? 0))] !== '') {
+    if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).locArgs?.[2] ?? 0)) + ', ' + String(((s as any).temp_gbdfd_slot ?? 0))] !== '') {
+      (s as any).result = ((s as any).job_booking ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(ARGS[2])", { location: "jobs" }) + ', ' + qspUntranslated(s, "str(temp_gbdfd_slot)", { location: "jobs" })];
       return;
     }
     (s as any).temp_gbdfd_slot = ((s as any).temp_gbdfd_slot ?? 0) + (1);
@@ -730,11 +739,11 @@ function enterGetBookingDataForDay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetNextBookingDay(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_gnbd_day = qspUntranslated(s, "ARGS[2]", { location: "jobs" });
+  (s as any).temp_gnbd_day = ((s as any).locArgs?.[2] ?? 0);
   if ((!((s as any).temp_gnbd_day ?? 0))) {
     (s as any).temp_gnbd_day = ((s as any).daystart ?? 0);
   }
-  (s as any).temp_gnbd_max = qspUntranslated(s, "ARGS[3]", { location: "jobs" });
+  (s as any).temp_gnbd_max = ((s as any).locArgs?.[3] ?? 0);
   if ((!((s as any).temp_gnbd_max ?? 0))) {
     (s as any).temp_gnbd_max = 50;
   }
@@ -756,7 +765,7 @@ function enterGetNextBookingDay(s: GameState, scene: SceneBuilder): void {
 
 function enterBookSlot(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetJobDefinition(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" })) + ', ' + String(qspUntranslated(s, "ARGS[3]", { location: "jobs" }))] !== '') {
+  if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).locArgs?.[2] ?? 0)) + ', ' + String(((s as any).locArgs?.[3] ?? 0))] !== '') {
     (s as any).result = 0;
     return;
   }
@@ -772,16 +781,16 @@ function enterBookSlot(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
-  if (qspFunc(s, 'jobs', 'check_booking_gap', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "jobs" })) === 1) {
+  if (qspFunc(s, 'jobs', 'check_booking_gap', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)) === 1) {
     (s as any).result = 0;
     return;
   }
   // TODO-QSP: gs 'jobs', '_build_booking_event_vars', $ARGS[1], ARGS[2], ARGS[3]
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'job_booking_' + ((s as any).locArgs?.[1] ?? 0) + '_' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" })) + '_' + String(qspUntranslated(s, "ARGS[3]", { location: "jobs" }));
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = ((s as any).job_title ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ' - Booking';
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['loc'] = ((s as any).job_location ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['desc'] = ((s as any).locArgs?.[4] ?? 0);
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['color'] = 0;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'job_booking_' + ((s as any).locArgs?.[1] ?? 0) + '_' + qspUntranslated(s, "str(ARGS[2])", { location: "jobs" }) + '_' + qspUntranslated(s, "str(ARGS[3])", { location: "jobs" });
+  ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = ((s as any).job_title ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] + ' - Booking';
+  ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = ((s as any).job_location ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = ((s as any).locArgs?.[4] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 0;
   qspCall(s, 'calendar_list', 'assign_color');
   if (((s as any).job_blocking ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
     if (qspFunc(s, 'calendar_events', 'check_event_conflicts') === 1) {
@@ -799,6 +808,7 @@ function enterBookSlot(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetBookingData(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = ((s as any).job_booking ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(ARGS[2])", { location: "jobs" }) + ', ' + qspUntranslated(s, "str(ARGS[3])", { location: "jobs" })];
   return;
   // TODO-QSP: end
   scene.build();
@@ -817,8 +827,8 @@ function enterCheckBookingConflict(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: gs 'jobs', '_build_booking_event_vars', $ARGS[1], ARGS[2], 0
   }
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'job_booking_conflict_check';
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = 'Conflict Check';
+  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'job_booking_conflict_check';
+  ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Conflict Check';
   (s as any).result = qspFunc(s, 'calendar_events', 'check_event_conflicts');
   return;
   // TODO-QSP: end
@@ -834,7 +844,7 @@ function enterCheckBookingGap(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_cbg_max_slot ?? 0) < 1) {
       (s as any).temp_cbg_max_slot = 1;
     }
-    (s as any).temp_cbg_check = ((s as any).ARGS ?? 0)[2] - ((s as any).temp_cbg_gap ?? 0) + 1;
+    (s as any).temp_cbg_check = ((s as any).locArgs?.[2] ?? 0) - ((s as any).temp_cbg_gap ?? 0) + 1;
     // TODO-QSP: :cbg_day_loop
     if (((s as any).temp_cbg_check ?? 0) <= ((s as any).locArgs?.[2] ?? 0) + ((s as any).temp_cbg_gap ?? 0) - 1) {
       (s as any).temp_cbg_slot = 0;
@@ -857,7 +867,7 @@ function enterCheckBookingGap(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCancelBooking(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" })) + ', ' + String(qspUntranslated(s, "ARGS[3]", { location: "jobs" }))] !== '') {
+  if (((s as any).job_booking ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).locArgs?.[2] ?? 0)) + ', ' + String(((s as any).locArgs?.[3] ?? 0))] !== '') {
     // TODO-QSP: $job_booking[$ARGS[1] + ', ' + $str(ARGS[2]) + ', ' + $str(ARGS[3])] = ''
     // TODO-QSP: job_bookings_active[$ARGS[1]] -= 1
     if (((s as any).job_bookings_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] < 0) {
@@ -896,14 +906,14 @@ function enterSetJobIcon(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResolveSlotTiming(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).job_slot_arrival ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" }))] > 0) {
-    (s as any).temp_resolved_arrival = ((s as any).job_slot_arrival ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" }))];
-    if (((s as any).job_slot_start ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" }))] > 0) {
-      (s as any).temp_resolved_start = ((s as any).job_slot_start ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" }))];
+  if (((s as any).job_slot_arrival ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).locArgs?.[2] ?? 0))] > 0) {
+    (s as any).temp_resolved_arrival = ((s as any).job_slot_arrival ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(ARGS[2])", { location: "jobs" })];
+    if (((s as any).job_slot_start ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).locArgs?.[2] ?? 0))] > 0) {
+      (s as any).temp_resolved_start = ((s as any).job_slot_start ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(ARGS[2])", { location: "jobs" })];
     } else {
       (s as any).temp_resolved_start = ((s as any).temp_resolved_arrival ?? 0);
     }
-    (s as any).temp_resolved_end = ((s as any).temp_resolved_start ?? 0) + ((s as any).job_slot_shift ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(qspUntranslated(s, "ARGS[2]", { location: "jobs" }))];
+    (s as any).temp_resolved_end = ((s as any).temp_resolved_start ?? 0) + ((s as any).job_slot_shift ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).locArgs?.[2] ?? 0))];
   } else {
     if (((s as any).job_arrival_start ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
       (s as any).temp_resolved_arrival = ((s as any).job_arrival_start ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
@@ -929,20 +939,20 @@ function enterResolveSlotTiming(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBuildBookingEventVars(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = qspUntranslated(s, "ARGS[2]", { location: "jobs" });
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['all_day'] = 0;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['blocking'] = 1;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['priority'] = 2;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['holiday'] = 0;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur'] = '';
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur_end'] = 0;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur_blocked_months'] = '';
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['flex_type'] = 1;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 0;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['blocking'] = 1;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = 0;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '';
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = 0;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_blocked_months'] = '';
+  ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = 1;
   // TODO-QSP: gs 'jobs', '_resolve_slot_timing', $ARGS[1], ARGS[3]
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_start_ts'] = ((s as any).temp_resolved_arrival ?? 0) / 15;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_end_ts'] = ((s as any).temp_resolved_start ?? 0) / 15;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['duration_ts'] = (((s as any).temp_resolved_end ?? 0) - ((s as any).temp_resolved_start ?? 0)) / 15;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['exclude_prefix'] = 'job_booking_' + ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = ((s as any).temp_resolved_arrival ?? 0) / 15;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = ((s as any).temp_resolved_start ?? 0) / 15;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (((s as any).temp_resolved_end ?? 0) - ((s as any).temp_resolved_start ?? 0)) / 15;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['exclude_prefix'] = 'job_booking_' + ((s as any).locArgs?.[1] ?? 0);
   return;
   // TODO-QSP: end
   scene.build();
@@ -964,6 +974,7 @@ function enterGetJobDefinition(s: GameState, scene: SceneBuilder): void {
 function enterCheckEmploymentPossible(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetJobDefinition(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).result = 1;
+  (s as any).employment_conflict_reason = '';
   if (((s as any).cheatVars ?? 0)?.['work'] !== 0) {
     // TODO-QSP: exit
   }
@@ -979,6 +990,7 @@ function enterCheckEmploymentPossible(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'jobs', 'build_event_vars_for_job', $ARGS[1], ARGS[2]
   if (qspFunc(s, 'calendar_events', 'check_event_conflicts') === 1) {
     (s as any).result = 0;
+    (s as any).employment_conflict_reason = 'Schedule conflicts with existing calendar events';
   }
   return;
   // TODO-QSP: end
@@ -986,50 +998,50 @@ function enterCheckEmploymentPossible(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBuildEventVarsForJob(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'job_' + ((s as any).locArgs?.[1] ?? 0);
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = ((s as any).job_title ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['loc'] = ((s as any).job_location ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['desc'] = 'Work shift for ' + ((s as any).job_title ?? 0)[((s as any).locArgs?.[1] ?? 0)];
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = 0;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['all_day'] = 0;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['blocking'] = ((s as any).job_blocking ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['priority'] = ((((s as any).job_blocking ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) ? (2) : (1));
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['color'] = 0;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['holiday'] = 0;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'job_' + ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = ((s as any).job_title ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = ((s as any).job_location ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = 'Work shift for ' + ((s as any).job_title ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = Math.max(1, ((s as any).daystart ?? 0));
+  ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 0;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['blocking'] = ((s as any).job_blocking ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = ((((s as any).job_blocking ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) ? (2) : (1));
+  ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 0;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = 0;
   if (((s as any).job_schedule_mode ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'fixed'  ||  ((s as any).job_schedule_mode ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'windowed') {
-    if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['flex_type'] = 1;
+    ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = 1;
     if (((s as any).locArgs?.[2] ?? 0) >= 0) {
-      (s as any).temp_bev_sched_idx = qspUntranslated(s, "ARGS[2]", { location: "jobs" });
+      (s as any).temp_bev_sched_idx = ((s as any).locArgs?.[2] ?? 0);
     } else {
       (s as any).temp_bev_sched_idx = qspFunc(s, 'jobs', 'resolve_schedule_idx', ((s as any).locArgs?.[1] ?? 0));
     }
-    if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_start_ts'] = ((s as any).job_arrival ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_bev_sched_idx ?? 0))] / 15;
-    if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_end_ts'] = ((s as any).job_start ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_bev_sched_idx ?? 0))] / 15;
-    if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['duration_ts'] = ((s as any).job_shift ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_bev_sched_idx ?? 0))] / 15;
+    ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = ((s as any).job_arrival ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_bev_sched_idx ?? 0))] / 15;
+    ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = ((s as any).job_start ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_bev_sched_idx ?? 0))] / 15;
+    ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = ((s as any).job_shift ?? 0)[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_bev_sched_idx ?? 0))] / 15;
     if (((s as any).job_work_dates ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur'] = 'yearly-' + ((s as any).job_work_dates ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+      ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = 'yearly-' + ((s as any).job_work_dates ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
     } else {
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur'] = ((s as any).job_work_days ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_bev_sched_idx ?? 0))];
+      ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = ((s as any).job_work_days ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + qspUntranslated(s, "str(temp_bev_sched_idx)", { location: "jobs" })];
     }
   } else {
     if (((s as any).job_schedule_mode ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'on_demand') {
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['flex_type'] = 1;
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['blocking'] = 0;
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['priority'] = 0;
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_start_ts'] = ((s as any).job_available_start ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 15;
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_end_ts'] = ((s as any).job_available_end ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 15;
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['duration_ts'] = 0;
-      if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur'] = ((s as any).job_available_days ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+      ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = 1;
+      ((s as any).event_vars = (s as any).event_vars ?? {})['blocking'] = 0;
+      ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 0;
+      ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = ((s as any).job_available_start ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 15;
+      ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = ((s as any).job_available_end ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 15;
+      ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = 0;
+      ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = ((s as any).job_available_days ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
     } else {
       if (((s as any).job_schedule_mode ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'booking') {
-        if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['flex_type'] = 0;
-        if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['start_ts'] = 0;
-        if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['duration_ts'] = 0;
-        if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur'] = '';
+        ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = 0;
+        ((s as any).event_vars = (s as any).event_vars ?? {})['start_ts'] = 0;
+        ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = 0;
+        ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '';
       }
     }
   }
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur_end'] = 0;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = 0;
   return;
   // TODO-QSP: end
   scene.build();
@@ -1051,7 +1063,7 @@ function enterCreateAvailabilityEvents(s: GameState, scene: SceneBuilder): void 
   if (((s as any).job_create_availability_events ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), (-1)]; enterBuildEventVarsForJob(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'calendar_list', 'assign_color');
-    if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'job_avail_' + ((s as any).locArgs?.[1] ?? 0);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'job_avail_' + ((s as any).locArgs?.[1] ?? 0);
     // TODO-QSP: gs 'calendar_events', 'add_event', 'job_avail_' + $ARGS[1]
     // TODO-QSP: $job_event_id[$ARGS[1]] = 'job_avail_' + $ARGS[1]
   }
@@ -1062,101 +1074,101 @@ function enterCreateAvailabilityEvents(s: GameState, scene: SceneBuilder): void 
 
 function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0) + 1) {
-    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['aurora_jobs'] = 'Aurora Talent Agency commercial shoot scheduled tomorrow at ' + qspUntranslated(s, "func('time', 'get_time_string', 10, 0, cheatVars['time_format'])>", { location: "jobs" }) + '.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['aurora_jobs'] = 'Aurora Talent Agency commercial shoot scheduled tomorrow at ' + qspFunc(s, 'time', 'get_time_string', 10, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + '.';
     qspCall(s, 'stat_display_compute', 'queue_msg', 'aurora_jobs');
   } else {
     if (((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0)) {
       if (((s as any).hour ?? 0) <= 11) {
-        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['aurora_jobs'] = 'Aurora Talent Agency commercial shoot in the city center at ' + qspUntranslated(s, "func('time', 'get_time_string', 10, 0, cheatVars['time_format'])>", { location: "jobs" }) + '!';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['aurora_jobs'] = 'Aurora Talent Agency commercial shoot in the city center at ' + qspFunc(s, 'time', 'get_time_string', 10, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + '!';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'aurora_jobs');
         qspCall(s, 'stat_display_compute', 'queue_alert', 'You have an Aurora commercial shoot today at 10:00.', 'neg');
       }
     }
   }
   if (((s as any).job_status ?? 0)?.['city_pornstudio_delivery'] === 'employed'  &&  ((s as any).workDisk ?? 0) === 0  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) >= 9  &&  (!((s as any).workDolg ?? 0))) {
-    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['porn_delivery'] = 'You should go to the porn studio today to pick up your delivery assignment.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_delivery'] = 'You should go to the porn studio today to pick up your delivery assignment.';
     qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_delivery');
     qspCall(s, 'stat_display_compute', 'queue_alert', 'Go to the porn studio today for your delivery assignment.', 'neg');
   }
   if (((s as any).week ?? 0) === 5  &&  ((s as any).workDolg ?? 0) === 0  &&  ((s as any).job_status ?? 0)?.['city_pornstudio_delivery'] === 'employed') {
     if (((s as any).workDisk ?? 0) === 2) {
-      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['porn_delivery'] = 'You should go to the sauna to do the delivery.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_delivery'] = 'You should go to the sauna to do the delivery.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_delivery');
     } else {
       if (((s as any).workDisk ?? 0) === 3) {
-        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['porn_delivery'] = 'You should get back to the studio to finish the delivery.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_delivery'] = 'You should get back to the studio to finish the delivery.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_delivery');
       }
     }
   }
   if (((s as any).workDolg ?? 0) > 0) {
-    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['porn_delivery'] = 'You owe the porn studio ' + qspUntranslated(s, "func('money', 'string_debt', workDolg)>", { location: "jobs" }) + '';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_delivery'] = 'You owe the porn studio ' + qspFunc(s, 'money', 'string_debt', ((s as any).workDolg ?? 0)) + '';
     qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_delivery');
     qspCall(s, 'stat_display_compute', 'queue_alert', 'You owe the porn studio money.', 'neg');
   }
   if (((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'] > 0) {
-    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['porn_acting_debt'] = 'You owe the porn studio ' + qspUntranslated(s, "func('money', 'format', job_booking_debt['city_pornstudio_actress'])>", { location: "jobs" }) + '.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_acting_debt'] = 'You owe the porn studio ' + qspFunc(s, 'money', 'format', ((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress']) + '.';
     qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_acting_debt');
     qspCall(s, 'stat_display_compute', 'queue_alert', 'You owe the porn studio money for a shoot.', 'neg');
   }
   if (((s as any).firstkasting ?? 0) > 0  &&  ((s as any).pfilmNO ?? 0) < 1) {
-    if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['pa_avail'] = (((s as any).job_booking_max_concurrent ?? {})?.['city_pornstudio_actress'] ?? 0) - (((s as any).job_bookings_active ?? {})?.['city_pornstudio_actress'] ?? 0);
+    ((s as any).sd_cm = (s as any).sd_cm ?? {})['pa_avail'] = (((s as any).job_booking_max_concurrent ?? {})?.['city_pornstudio_actress'] ?? 0) - (((s as any).job_bookings_active ?? {})?.['city_pornstudio_actress'] ?? 0);
     if (((s as any).sd_cm ?? 0)?.['pa_avail'] > 0) {
-      // TODO-QSP: $stat_texts['porn_acting_avail'] = 'You can contract <<iif(sd_cm[''pa_avail''] = 1, ''1 more'', ''up to '' + $str(sd_cm[''pa_avail'']))>> porn shoot<<iif(sd_cm[''pa_avail''] > 1, ''s'', '''')>> at the Porn Studio.'
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_acting_avail'] = 'You can contract ' + ((((s as any).sd_cm ?? 0)?.['pa_avail'] === 1) ? ('1 more') : ('up to ' + qspUntranslated(s, "str(sd_cm['pa_avail'])", { location: "jobs" }))) + ' porn shoot' + ((((s as any).sd_cm ?? 0)?.['pa_avail'] > 1) ? ('s') : ('')) + ' at the Porn Studio.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_acting_avail');
     }
   }
   if (((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 0) {
     if (qspFunc(s, 'jobs', 'has_booking_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0)) === 0) {
       if (qspFunc(s, 'jobs', 'has_booking_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0) + 1) === 0) {
-        if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['porn_next'] = qspFunc(s, 'jobs', 'get_next_booking_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0) + 2, 50);
-        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['porn_acting_sched'] = 'You have a porn shoot scheduled in ' + (((s as any).sd_cm ?? {})?.['porn_next'] ?? 0) - ((s as any).daystart ?? 0)> + ' days.';
+        ((s as any).sd_cm = (s as any).sd_cm ?? {})['porn_next'] = qspFunc(s, 'jobs', 'get_next_booking_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0) + 2, 50);
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_acting_sched'] = 'You have a porn shoot scheduled in ' + (((s as any).sd_cm ?? {})?.['porn_next'] ?? 0) - ((s as any).daystart ?? 0) + ' days.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_acting_sched');
       } else {
-        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['porn_acting_sched'] = 'You have a porn shoot scheduled tomorrow.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_acting_sched'] = 'You have a porn shoot scheduled tomorrow.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_acting_sched');
       }
     }
   }
-  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['max'] = 0;
+  ((s as any).sd_si = (s as any).sd_si ?? {})['max'] = 0;
   if (((s as any).sd_si ?? 0)?.['max'] > 0) {
-    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['now'] = ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
-    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['idx'] = 0;
+    ((s as any).sd_si = (s as any).sd_si ?? {})['now'] = ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
+    ((s as any).sd_si = (s as any).sd_si ?? {})['idx'] = 0;
     // TODO-QSP: :sd_v4job_loop
     if (((s as any).sd_si ?? 0)?.['idx'] < ((s as any).sd_si ?? 0)?.['max']) {
-      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['job'] = qspUntranslated(s, "job_list[sd_si['idx']]", { location: "jobs" });
+      ((s as any).sd_si = (s as any).sd_si ?? {})['job'] = qspUntranslated(s, "job_list[sd_si['idx']]", { location: "jobs" });
       if (((s as any).job_status ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 'employed'  &&  ((s as any).job_suspended ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 0) {
         if (((s as any).job_title ?? 0)[((s as any).sd_si ?? 0)?.['job']] === '') {
           // TODO-QSP: gs 'jobs', 'get_job_definition', $sd_si['job']
         }
         if (((s as any).job_show_stat_icon ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 1  &&  qspFunc(s, 'jobs', 'is_work_day', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0)) === 1) {
-          if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = '';
-          if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 0;
-          if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['r_arrival'] = 0;
-          if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['r_start'] = 0;
-          if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['missed_today'] = 0;
+          ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = '';
+          ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 0;
+          ((s as any).sd_si = (s as any).sd_si ?? {})['r_arrival'] = 0;
+          ((s as any).sd_si = (s as any).sd_si ?? {})['r_start'] = 0;
+          ((s as any).sd_si = (s as any).sd_si ?? {})['missed_today'] = 0;
           if (((s as any).job_schedule_mode ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 'booking') {
-            if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['crossmid'] = 0;
+            ((s as any).sd_si = (s as any).sd_si ?? {})['crossmid'] = 0;
             if (qspFunc(s, 'jobs', 'has_booking_for_day', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0) - 1) === 1) {
               // TODO-QSP: gs 'jobs', 'get_shift_for_day', $sd_si['job'], daystart - 1
-              if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['xm_i'] = 0;
+              ((s as any).sd_si = (s as any).sd_si ?? {})['xm_i'] = 0;
               // TODO-QSP: :sd_v4_crossmid
               if (((s as any).sd_si ?? 0)?.['xm_i'] < ((s as any).result_slot_count ?? 0)) {
                 if (((s as any).result_slot_end ?? 0)[((s as any).sd_si ?? 0)?.['xm_i']] > 1440) {
-                  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['overflow'] = ((s as any).result_slot_end ?? 0)[(((s as any).sd_si ?? {})?.['xm_i'] ?? 0)] - 1440;
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['overflow'] = ((s as any).result_slot_end ?? 0)[(((s as any).sd_si ?? {})?.['xm_i'] ?? 0)] - 1440;
                   if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0) - 1  &&  ((s as any).job_worked_count ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).sd_si ?? 0)?.['overflow']) {
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = 'green';
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 1;
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['crossmid'] = 1;
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'green';
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['crossmid'] = 1;
                   } else {
                     if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== ((s as any).daystart ?? 0) - 1  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).sd_si ?? 0)?.['overflow'] + 60) {
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = 'red';
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 1;
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['crossmid'] = 1;
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'red';
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['crossmid'] = 1;
                     }
                   }
                 }
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['xm_i'] = ((s as any).sd_si['xm_i'] ?? 0) + (1);
+                ((s as any).sd_si = (s as any).sd_si ?? {})['xm_i'] = ((s as any).sd_si['xm_i'] ?? 0) + (1);
                 if (((s as any).sd_si ?? 0)?.['crossmid'] === 0) {
                   // TODO-QSP: jump 'sd_v4_crossmid'
                 }
@@ -1164,78 +1176,78 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             }
             if (((s as any).sd_si ?? 0)?.['crossmid'] === 0  &&  qspFunc(s, 'jobs', 'has_booking_for_day', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0)) === 1) {
               // TODO-QSP: gs 'jobs', 'get_shift_for_day', $sd_si['job'], daystart
-              if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['best'] = 0;
-              if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['slot_i'] = 0;
+              ((s as any).sd_si = (s as any).sd_si ?? {})['best'] = 0;
+              ((s as any).sd_si = (s as any).sd_si ?? {})['slot_i'] = 0;
               // TODO-QSP: :sd_v4_slot_loop
               if (((s as any).sd_si ?? 0)?.['slot_i'] < ((s as any).result_slot_count ?? 0)) {
                 if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0)  &&  ((s as any).job_worked_count ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0  &&  ((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_slot_arrival ?? 0)[((s as any).sd_si ?? 0)?.['slot_i']]  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).result_slot_end ?? 0)[((s as any).sd_si ?? 0)?.['slot_i']]) {
-                  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['best'] = 4;
-                  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = 'green';
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['best'] = 4;
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'green';
                 } else {
                   if (((s as any).sd_si ?? 0)?.['best'] < 3  &&  ((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_slot_arrival ?? 0)[((s as any).sd_si ?? 0)?.['slot_i']]  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).result_slot_start ?? 0)[((s as any).sd_si ?? 0)?.['slot_i']]) {
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['best'] = 3;
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = 'blue';
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['r_start'] = qspUntranslated(s, "result_slot_start[sd_si['slot_i']]", { location: "jobs" });
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['best'] = 3;
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'blue';
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['r_start'] = qspUntranslated(s, "result_slot_start[sd_si['slot_i']]", { location: "jobs" });
                   } else {
                     if (((s as any).sd_si ?? 0)?.['best'] < 2  &&  ((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== ((s as any).daystart ?? 0)  &&  ((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_slot_start ?? 0)[((s as any).sd_si ?? 0)?.['slot_i']]  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).result_slot_end ?? 0)[((s as any).sd_si ?? 0)?.['slot_i']] + 60) {
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['best'] = 2;
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = 'red';
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['missed_today'] = 1;
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['best'] = 2;
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'red';
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['missed_today'] = 1;
                     } else {
                       if (((s as any).sd_si ?? 0)?.['best'] < 1  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).result_slot_arrival ?? 0)[((s as any).sd_si ?? 0)?.['slot_i']]) {
-                        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['best'] = 1;
-                        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('white') : ('black'));
-                        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['r_arrival'] = qspUntranslated(s, "result_slot_arrival[sd_si['slot_i']]", { location: "jobs" });
-                        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['r_start'] = qspUntranslated(s, "result_slot_start[sd_si['slot_i']]", { location: "jobs" });
+                        ((s as any).sd_si = (s as any).sd_si ?? {})['best'] = 1;
+                        ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('white') : ('black'));
+                        ((s as any).sd_si = (s as any).sd_si ?? {})['r_arrival'] = qspUntranslated(s, "result_slot_arrival[sd_si['slot_i']]", { location: "jobs" });
+                        ((s as any).sd_si = (s as any).sd_si ?? {})['r_start'] = qspUntranslated(s, "result_slot_start[sd_si['slot_i']]", { location: "jobs" });
                       }
                     }
                   }
                 }
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['slot_i'] = ((s as any).sd_si['slot_i'] ?? 0) + (1);
+                ((s as any).sd_si = (s as any).sd_si ?? {})['slot_i'] = ((s as any).sd_si['slot_i'] ?? 0) + (1);
                 if (((s as any).sd_si ?? 0)?.['best'] < 4) {
                   // TODO-QSP: jump 'sd_v4_slot_loop'
                 }
               }
               if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0)  &&  ((s as any).sd_si ?? 0)?.['suffix'] === '') {
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 0;
+                ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 0;
               } else {
                 if (((s as any).sd_si ?? 0)?.['suffix'] !== '') {
-                  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 1;
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
                 }
               }
             }
           } else {
             if (((s as any).job_schedule_mode ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 'on_demand') {
               if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0)) {
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 0;
+                ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 0;
               } else {
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('white') : ('black'));
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 1;
+                ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('white') : ('black'));
+                ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
               }
             } else {
               // TODO-QSP: gs 'jobs', 'get_shift_for_day', $sd_si['job'], daystart
               if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0)  &&  ((s as any).job_worked_count ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0  &&  ((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_arrival ?? 0)  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).iif ?? 0)(((s as any).job_clocked_in ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0, ((s as any).job_clocked_in ?? 0)[((s as any).sd_si ?? 0)?.['job']], ((s as any).result_start ?? 0)) + ((s as any).result_duration ?? 0)) {
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = 'green';
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 1;
+                ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'green';
+                ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
               } else {
                 if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0)) {
-                  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 0;
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 0;
                 } else {
                   if (((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_start ?? 0)  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).result_start ?? 0) + ((s as any).result_duration ?? 0) + 60) {
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = 'red';
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 1;
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['missed_today'] = 1;
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'red';
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['missed_today'] = 1;
                   } else {
                     if (((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_arrival ?? 0)  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).result_start ?? 0)) {
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = 'blue';
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 1;
-                      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['r_start'] = ((s as any).result_start ?? 0);
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'blue';
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
+                      ((s as any).sd_si = (s as any).sd_si ?? {})['r_start'] = ((s as any).result_start ?? 0);
                     } else {
                       if (((s as any).sd_si ?? 0)?.['now'] < ((s as any).result_arrival ?? 0)) {
-                        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['suffix'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('white') : ('black'));
-                        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['show'] = 1;
-                        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['r_arrival'] = ((s as any).result_arrival ?? 0);
-                        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['r_start'] = ((s as any).result_start ?? 0);
+                        ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('white') : ('black'));
+                        ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
+                        ((s as any).sd_si = (s as any).sd_si ?? {})['r_arrival'] = ((s as any).result_arrival ?? 0);
+                        ((s as any).sd_si = (s as any).sd_si ?? {})['r_start'] = ((s as any).result_start ?? 0);
                       }
                     }
                   }
@@ -1244,51 +1256,51 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             }
           }
           if (((s as any).sd_si ?? 0)?.['show'] === 1  &&  ((s as any).sd_si ?? 0)?.['suffix'] !== '') {
-            if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['f_title'] = ((s as any).job_title ?? 0)[(((s as any).sd_si ?? {})?.['job'] ?? 0)] + ' at ' + ((s as any).job_location ?? 0)[(((s as any).sd_si ?? {})?.['job'] ?? 0)] + ': ';
-            if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['f_start'] = qspFunc(s, 'time', 'get_time_string', (((s as any).sd_si ?? {})?.['r_start'] ?? 0) / 60, (((s as any).sd_si ?? {})?.['r_start'] ?? 0) % 60);
-            if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['f_arrival'] = qspFunc(s, 'time', 'get_time_string', (((s as any).sd_si ?? {})?.['r_arrival'] ?? 0) / 60, (((s as any).sd_si ?? {})?.['r_arrival'] ?? 0) % 60);
+            ((s as any).sd_si = (s as any).sd_si ?? {})['f_title'] = ((s as any).job_title ?? 0)?.[((s as any).sd_si ?? 0)?.['job']] + ' at ' + ((s as any).job_location ?? 0)?.[((s as any).sd_si ?? 0)?.['job']] + ': ';
+            ((s as any).sd_si = (s as any).sd_si ?? {})['f_start'] = qspFunc(s, 'time', 'get_time_string', (((s as any).sd_si ?? {})?.['r_start'] ?? 0) / 60, (((s as any).sd_si ?? {})?.['r_start'] ?? 0) % 60);
+            ((s as any).sd_si = (s as any).sd_si ?? {})['f_arrival'] = qspFunc(s, 'time', 'get_time_string', (((s as any).sd_si ?? {})?.['r_arrival'] ?? 0) / 60, (((s as any).sd_si ?? {})?.['r_arrival'] ?? 0) % 60);
             if (((s as any).sd_si ?? 0)?.['suffix'] === 'green') {
-              if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['msg'] = (((s as any).sd_si ?? {})?.['f_title'] ?? 0) + 'Currently working.';
+              ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'Currently working.';
             } else {
               if (((s as any).sd_si ?? 0)?.['suffix'] === 'blue') {
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['msg'] = (((s as any).sd_si ?? {})?.['f_title'] ?? 0) + 'Your shift starts at ' + (((s as any).sd_si ?? {})?.['f_start'] ?? 0) + '. Head there now!';
+                ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'Your shift starts at ' + ((s as any).sd_si ?? 0)?.['f_start'] + '. Head there now!';
                 // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $sd_si['msg']
               } else {
                 if (((s as any).sd_si ?? 0)?.['suffix'] === 'red') {
-                  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['msg'] = (((s as any).sd_si ?? {})?.['f_title'] ?? 0) + 'You missed your shift' + ((((s as any).sd_si ?? 0)?.['missed_today'] === 1) ? (' today!') : ('!'));
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'You missed your shift' + ((((s as any).sd_si ?? 0)?.['missed_today'] === 1) ? (' today!') : ('!'));
                 } else {
                   if (((s as any).job_schedule_mode ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 'on_demand') {
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['msg'] = (((s as any).sd_si ?? {})?.['f_title'] ?? 0) + 'Available today.';
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'Available today.';
                   } else {
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['msg'] = (((s as any).sd_si ?? {})?.['f_title'] ?? 0) + 'Arrive by ' + (((s as any).sd_si ?? {})?.['f_arrival'] ?? 0) + ', shift starts at ' + (((s as any).sd_si ?? {})?.['f_start'] ?? 0) + '.';
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'Arrive by ' + ((s as any).sd_si ?? 0)?.['f_arrival'] + ', shift starts at ' + ((s as any).sd_si ?? 0)?.['f_start'] + '.';
                     // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $sd_si['msg']
                   }
                 }
               }
             }
-            if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['label'] = 'v4_job_' + (((s as any).sd_si ?? {})?.['job'] ?? 0);
+            ((s as any).sd_si = (s as any).sd_si ?? {})['label'] = 'v4_job_' + ((s as any).sd_si ?? 0)?.['job'];
             // TODO-QSP: $stat_texts[$sd_si['label']] = $sd_si['msg']
             if (((s as any).stat_cfg ?? 0)?.['job_icon_themed'] === 1) {
-              if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['icon_path'] = ((((s as any).job_icons_source ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== '') ? (((s as any).job_icons_source ?? 0)[(((s as any).sd_si ?? {})?.['job'] ?? 0)] + '/') : ('jobs/'));
+              ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((((s as any).job_icons_source ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== '') ? (((s as any).job_icons_source ?? 0)?.[((s as any).sd_si ?? 0)?.['job']] + '/') : ('jobs/'));
               if (((s as any).sd_si ?? 0)?.['suffix'] === 'green') {
-                if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + (((s as any).theme_hex ?? {})?.['v_pos'] ?? 0));
+                ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + ((s as any).theme_hex ?? 0)?.['v_pos']);
               } else {
                 if (((s as any).sd_si ?? 0)?.['suffix'] === 'blue') {
-                  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + (((s as any).theme_hex ?? {})?.['accent'] ?? 0));
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + ((s as any).theme_hex ?? 0)?.['accent']);
                 } else {
                   if (((s as any).sd_si ?? 0)?.['suffix'] === 'red') {
-                    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + (((s as any).theme_hex ?? {})?.['v_neg'] ?? 0));
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + ((s as any).theme_hex ?? 0)?.['v_neg']);
                   }
                 }
               }
             } else {
-              if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['icon_path'] = ((((s as any).job_icons_source ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== '') ? (((s as any).job_icons_source ?? 0)[(((s as any).sd_si ?? {})?.['job'] ?? 0)] + '/') : ('status/jobs/'));
+              ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((((s as any).job_icons_source ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== '') ? (((s as any).job_icons_source ?? 0)?.[((s as any).sd_si ?? 0)?.['job']] + '/') : ('status/jobs/')) + ((s as any).sd_si ?? 0)?.['job'] + '_' + ((s as any).sd_si ?? 0)?.['suffix'];
             }
             // TODO-QSP: gs 'stat_display_compute', 'queue_msg', $sd_si['label'], '', $sd_si['icon_path'], 4
           }
         }
       }
-      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['idx'] = ((s as any).sd_si['idx'] ?? 0) + (1);
+      ((s as any).sd_si = (s as any).sd_si ?? {})['idx'] = ((s as any).sd_si['idx'] ?? 0) + (1);
       // TODO-QSP: jump 'sd_v4job_loop'
     }
   }
@@ -1410,6 +1422,7 @@ function enterTerminateAllJobs(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_term_idx = 0;
   // TODO-QSP: :terminate_all_loop
   if (((s as any).temp_term_idx ?? 0) >= 0) {
+    (s as any).temp_term_job = ((s as any).job_list ?? 0)?.[String((s as any).temp_term_idx ?? 0)];
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_term_job ?? 0)]; enterCleanupJob(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).temp_term_idx = ((s as any).temp_term_idx ?? 0) - (1);
     // TODO-QSP: jump 'terminate_all_loop'
@@ -1421,40 +1434,51 @@ function enterTerminateAllJobs(s: GameState, scene: SceneBuilder): void {
 
 function enterFormatDays(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '1 2 3 4 5') {
+    (s as any).result = 'Mon-Fri';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '1 2 3 4 5 6') {
+    (s as any).result = 'Mon-Sat';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '1 2 3 4 5 6 7') {
+    (s as any).result = 'Every day';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '2 3 4 5 6') {
+    (s as any).result = 'Tue-Sat';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '6 7') {
+    (s as any).result = 'Weekends';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '6') {
+    (s as any).result = 'Saturdays';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '7') {
+    (s as any).result = 'Sundays';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '3 4') {
+    (s as any).result = 'Wed-Thu';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '5 6') {
+    (s as any).result = 'Fri-Sat';
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[1] ?? 0) === '4 5 6 7 1 2') {
+    (s as any).result = 'Mon-Tue, Thu-Sun';
     // TODO-QSP: exit
   }
   // TODO-QSP: $fd_names[1] = 'Mon' & $fd_names[2] = 'Tue' & $fd_names[3] = 'Wed'
   // TODO-QSP: $fd_names[4] = 'Thu' & $fd_names[5] = 'Fri' & $fd_names[6] = 'Sat' & $fd_names[7] = 'Sun'
+  (s as any).result = '';
   (s as any).fd_i = 1;
   // TODO-QSP: :fd_loop
-  if ((String(((s as any).locArgs?.[1] ?? 0)).indexOf(String(qspUntranslated(s, "str(fd_i)", { location: "jobs" })))) + 1 > 0) {
+  if (((String(((s as any).locArgs?.[1] ?? 0)).indexOf(String(String(((s as any).fd_i ?? 0))))) + 1) > 0) {
     if (((s as any).result ?? 0) !== '') {
       // TODO-QSP: $result += ', '
     }
@@ -1505,36 +1529,64 @@ function enterEnsureRegistry(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCard(s: GameState, scene: SceneBuilder): void {
+  (s as any).jc_id = ((s as any).locArgs?.[1] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).jc_id ?? 0)]; enterGetJobDefinition(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).job_card_hidden ?? 0)?.[String((s as any).jc_id ?? 0)] === 1  &&  ((s as any).job_status ?? 0)?.[String((s as any).jc_id ?? 0)] !== 'employed'  &&  ((s as any).job_hiring_step ?? 0)?.[String((s as any).jc_id ?? 0)] === 0  &&  ((s as any).cheatVars ?? 0)?.['show_hidden_jobs'] === 0) {
-    if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['icon'] = 'images/system/icons/traits/hidden.png';
-    if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['title'] = '???';
-    if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['body'] = '<div style="font-size:0.9em; margin-top:4px;">This job is hidden. Keep exploring to unlock it.</div>';
-    if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['bg'] = ((s as any).temp_bcolor ?? 0);
-    if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['opacity'] = '0.4';
+    (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
+    ((s as any).card_in = (s as any).card_in ?? {})['icon'] = 'images/system/icons/traits/hidden.png';
+    ((s as any).card_in = (s as any).card_in ?? {})['title'] = '???';
+    ((s as any).card_in = (s as any).card_in ?? {})['body'] = '<div style="font-size:0.9em; margin-top:4px;">This job is hidden. Keep exploring to unlock it.</div>';
+    ((s as any).card_in = (s as any).card_in ?? {})['bg'] = ((s as any).temp_bcolor ?? 0);
+    ((s as any).card_in = (s as any).card_in ?? {})['opacity'] = '0.4';
     qspCall(s, 'cards', 'shell');
     return;
   }
   if (((s as any).job_status ?? 0)?.[String((s as any).jc_id ?? 0)] === 'employed') {
+    (s as any).jc_opac = '1.0';
+    (s as any).jc_border = ((s as any).theme_hex ?? 0)?.['accent'];
+    (s as any).jc_status = qspFunc(s, 'wrap', 'v_pos', '&#9679; Employed');
   } else {
     if (((s as any).job_hiring_step ?? 0)?.[String((s as any).jc_id ?? 0)] > 0) {
+      (s as any).jc_opac = '0.85';
+      (s as any).jc_border = ((s as any).theme_hex ?? 0)?.['goth'];
+      (s as any).jc_status = qspFunc(s, 'wrap', 'pos', '&#9675; Not currently employed');
+    } else {
+      (s as any).jc_opac = '0.6';
+      (s as any).jc_border = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('#555555') : ('#aaaaaa'));
+      (s as any).jc_status = qspFunc(s, 'wrap', 'goth', '&#9675; Not employed');
     }
   }
-  (s as any).jc_slot = ((((s as any).job_active_schedule ?? 0)?.[String((s as any).jc_id ?? 0)] !== '') ? (qspUntranslated(s, "val(job_active_schedule[jc_id])", { location: "jobs" })) : (0));
+  (s as any).jc_icon = 'images/system/icons/' + ((((s as any).job_icons_source ?? 0)?.[String((s as any).jc_id ?? 0)] !== '') ? (((s as any).job_icons_source ?? 0)?.[String((s as any).jc_id ?? 0)]) : ('jobs')) + '/' + ((s as any).jc_id ?? 0) + '.png';
+  (s as any).jc_slot = ((((s as any).job_active_schedule ?? 0)?.[String((s as any).jc_id ?? 0)] !== '') ? (parseFloat(((s as any).job_active_schedule ?? 0)?.[String((s as any).jc_id ?? 0)])) : (0));
+  (s as any).jc_skey = ((s as any).jc_id ?? 0) + ', ' + String(((s as any).jc_slot ?? 0));
   if (((s as any).job_schedule_mode ?? 0)?.[String((s as any).jc_id ?? 0)] === 'booking') {
+    (s as any).jc_sched = 'Booking-based — sign up for available slots';
   } else {
     if (((s as any).job_schedule_mode ?? 0)?.[String((s as any).jc_id ?? 0)] === 'on_demand') {
+      (s as any).jc_sched = 'On demand, any time';
     } else {
+      (s as any).jc_days = qspFunc(s, 'jobs', 'format_days', ((s as any).job_work_days ?? 0)?.[String((s as any).jc_skey ?? 0)]);
+      (s as any).jc_t_arr = qspFunc(s, 'time', 'get_time_string', ((s as any).job_arrival ?? 0)?.[String((s as any).jc_skey ?? 0)] / 60, ((s as any).job_arrival ?? 0)?.[String((s as any).jc_skey ?? 0)] % 60);
+      (s as any).jc_t_st = qspFunc(s, 'time', 'get_time_string', ((s as any).job_start ?? 0)?.[String((s as any).jc_skey ?? 0)] / 60, ((s as any).job_start ?? 0)?.[String((s as any).jc_skey ?? 0)] % 60);
       (s as any).jc_end_m = (((s as any).job_start ?? 0)?.[String((s as any).jc_skey ?? 0)] + ((s as any).job_shift ?? 0)?.[String((s as any).jc_skey ?? 0)]) % 1440;
+      (s as any).jc_t_end = qspFunc(s, 'time', 'get_time_string', ((s as any).jc_end_m ?? 0) / 60, ((s as any).jc_end_m ?? 0) % 60);
       if (((s as any).job_schedule_mode ?? 0)?.[String((s as any).jc_id ?? 0)] === 'windowed') {
         (s as any).jc_shift_h = ((s as any).job_shift ?? 0)?.[String((s as any).jc_skey ?? 0)] / 60;
         (s as any).jc_shift_m = ((s as any).job_shift ?? 0)?.[String((s as any).jc_skey ?? 0)] % 60;
+        (s as any).jc_dur = (((!((s as any).jc_shift_m ?? 0))) ? (String(((s as any).jc_shift_h ?? 0)) + 'h') : (String(((s as any).jc_shift_h ?? 0)) + 'h ' + String(((s as any).jc_shift_m ?? 0)) + 'min'));
+        (s as any).jc_sched = ((s as any).jc_days ?? 0) + ', anytime ' + ((s as any).jc_t_arr ?? 0) + '-' + ((s as any).jc_t_st ?? 0) + ', ' + ((s as any).jc_dur ?? 0) + ' shift';
+      } else {
+        (s as any).jc_sched = ((s as any).jc_days ?? 0) + ', arrive ' + ((s as any).jc_t_arr ?? 0) + '-' + ((s as any).jc_t_st ?? 0) + ', until ' + ((s as any).jc_t_end ?? 0);
       }
     }
   }
   if (((s as any).job_pay_interval_def ?? 0)?.[String((s as any).jc_id ?? 0)] === 'none') {
+    (s as any).jc_pay = 'Pay: Managed separately';
   } else {
     if (((s as any).job_pay_rate_def ?? 0)?.[String((s as any).jc_id ?? 0)] === 0) {
+      (s as any).jc_pay = 'Pay: Dependent on performance';
+    } else {
+      (s as any).jc_pay = 'Pay: ' + qspFunc(s, 'money', 'string_profit', ((s as any).job_pay_rate_def ?? 0)?.[String((s as any).jc_id ?? 0)]) + ' per ' + ((s as any).job_pay_interval_def ?? 0)?.[String((s as any).jc_id ?? 0)];
     }
   }
   if (((s as any).job_refresh_desc ?? 0)?.[String((s as any).jc_id ?? 0)] === 1) {
@@ -1544,10 +1596,15 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'jobs_list', '', ((s as any).jc_id ?? 0));
     }
   }
+  (s as any).jc_body = '';
   if (((s as any).job_status ?? 0)?.[String((s as any).jc_id ?? 0)] !== 'employed') {
+    (s as any).jc_body = ((s as any).job_hire_hint ?? 0)?.[((s as any).jc_id ?? 0) + ', ' + String(((s as any).job_hiring_step ?? 0)?.[String((s as any).jc_id ?? 0)])];
   }
   if (((s as any).jc_body ?? 0) === '') {
+    (s as any).jc_body = ((s as any).job_desc ?? 0)?.[String((s as any).jc_id ?? 0)];
   }
+  (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
+  (s as any).jc_body_html = '<div style="font-size:0.85em; margin-top:3px;">' + ((s as any).jc_status ?? 0) + '</div>';
   if (((s as any).jc_sched ?? 0) !== '') {
     // TODO-QSP: $jc_body_html += '<div style="font-size:0.85em; margin-top:2px; opacity:0.8;"><<$jc_sched>></div>'
   }
@@ -1555,13 +1612,13 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
   if (((s as any).jc_body ?? 0) !== '') {
     // TODO-QSP: $jc_body_html += '<div style="margin-top:6px; font-size:0.9em;"><<$jc_body>></div>'
   }
-  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['icon'] = ((s as any).jc_icon ?? 0);
-  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['title'] = ((s as any).job_title ?? 0)?.[String((s as any).jc_id ?? 0)];
-  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['title_sub'] = 'at ' + $((s as any).job_location ?? 0)?.[String((s as any).jc_id ?? 0)];
-  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['body'] = ((s as any).jc_body_html ?? 0);
-  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['border'] = ((s as any).jc_border ?? 0);
-  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['bg'] = ((s as any).temp_bcolor ?? 0);
-  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['opacity'] = ((s as any).jc_opac ?? 0);
+  ((s as any).card_in = (s as any).card_in ?? {})['icon'] = ((s as any).jc_icon ?? 0);
+  ((s as any).card_in = (s as any).card_in ?? {})['title'] = ((s as any).job_title ?? 0)?.[String((s as any).jc_id ?? 0)];
+  ((s as any).card_in = (s as any).card_in ?? {})['title_sub'] = 'at ' + ((s as any).job_location ?? 0)?.[String((s as any).jc_id ?? 0)];
+  ((s as any).card_in = (s as any).card_in ?? {})['body'] = ((s as any).jc_body_html ?? 0);
+  ((s as any).card_in = (s as any).card_in ?? {})['border'] = ((s as any).jc_border ?? 0);
+  ((s as any).card_in = (s as any).card_in ?? {})['bg'] = ((s as any).temp_bcolor ?? 0);
+  ((s as any).card_in = (s as any).card_in ?? {})['opacity'] = ((s as any).jc_opac ?? 0);
   qspCall(s, 'cards', 'shell');
   return;
   // TODO-QSP: end
@@ -1573,6 +1630,7 @@ function enterShowAll(s: GameState, scene: SceneBuilder): void {
   (s as any).show_all_ji = 0;
   // TODO-QSP: :show_all_sort
   if (((s as any).show_all_ji ?? 0) < Object.keys((s as any).job_registry ?? {}).length) {
+    (s as any).sa_id = ((s as any).job_registry ?? 0)?.[String((s as any).show_all_ji ?? 0)];
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sa_id ?? 0)]; enterGetJobDefinition(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).job_card_hidden ?? 0)?.[String((s as any).sa_id ?? 0)] === 1  &&  ((s as any).job_status ?? 0)?.[String((s as any).sa_id ?? 0)] !== 'employed'  &&  ((s as any).job_hiring_step ?? 0)?.[String((s as any).sa_id ?? 0)] === 0) {
       // TODO-QSP: $sa_hidden[] = $sa_id
@@ -1598,6 +1656,7 @@ function enterShowAll(s: GameState, scene: SceneBuilder): void {
     (s as any).show_all_ji = ((s as any).show_all_ji ?? 0) + (1);
     // TODO-QSP: jump 'show_all_sort'
   }
+  (s as any).temp_bcolor = '';
   (s as any).show_all_ji = 0;
   // TODO-QSP: :show_all_r_emp
   if (((s as any).show_all_ji ?? 0) < Object.keys((s as any).sa_emp ?? {}).length) {

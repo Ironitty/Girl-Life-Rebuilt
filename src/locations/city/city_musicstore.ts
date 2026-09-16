@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,13 +6,14 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_musicstore', '');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   if ((!((s as any).ml_musicstorevisited ?? 0))) {
     (s as any).ml_musicstorevisited = 1;
-    scene.actions([{ label: 'Continue', goto: ['city_musicstore', 'firstvisit'] }]);
+    qspGoto(s, 'city_musicstore', 'firstvisit');
   } else {
     if (((s as any).ml_didntbuyguitarthefirstvisit ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['city_musicstore', 'cameback'] }]);
+      qspGoto(s, 'city_musicstore', 'cameback');
     }
   }
   scene.img('images/locations/city/citycenter/mall/musicstore/music_store.jpg');
@@ -29,9 +30,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Shop for guitars and amps', goto: ['city_musicstore_stock', 'acoustic'] },
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).ml_boughtguitar ?? 0) > 0  ||  ((s as any).ml_boughtamp ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['city_musicstore', 'payandtakestuff'] }]);
+      qspGoto(s, 'city_musicstore', 'payandtakestuff');
     }
-  }, goto: ['city_mall', ''] },
+    qspGoto(s, 'city_mall', '');
+  } },
   ]);
   scene.build();
 }
@@ -41,7 +43,7 @@ function enterSetRadomirCounterText(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) !== ((s as any).radomirQW ?? 0)?.['store_chat_day']) {
     scene.actions([
       { label: 'Approach the counter', handler: (st: GameState) => {
-    if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['store_chat_day'] = ((s as any).daystart ?? 0);
+    ((s as any).radomirQW = (s as any).radomirQW ?? {})['store_chat_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
@@ -135,12 +137,14 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).ml_didntbuyguitarthefirstvisit = 1;
-  }, goto: ['city_mall', ''] },
+    qspGoto(s, 'city_mall', '');
+  } },
     ]);
   } },
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).ml_didntbuyguitarthefirstvisit = 1;
-  }, goto: ['city_mall', ''] },
+    qspGoto(s, 'city_mall', '');
+  } },
   ]);
   scene.build();
 }
@@ -183,9 +187,10 @@ function enterCameback(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).ml_boughtguitar ?? 0) > 0  ||  ((s as any).ml_boughtamp ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['city_musicstore', 'payandtakestuff'] }]);
+      qspGoto(s, 'city_musicstore', 'payandtakestuff');
     }
-  }, goto: ['city_mall', ''] },
+    qspGoto(s, 'city_mall', '');
+  } },
   ]);
   scene.build();
 }
@@ -214,7 +219,7 @@ function enterPayandtakestuff(s: GameState, scene: SceneBuilder): void {
     scene.text('Jimmy takes your details and your home address after you pay to set up the delivery. "It should be there tomorrow."');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['carried'] = 1;
+    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
     scene.text('Jimmy disappears into the back of the shop with your guitar before returning 10 minutes later. "That\'s it all set up, but if you need to tweak anything, just bring it in and we\'ll do it for you, free of charge."');
     // TODO-QSP: dynamic text: He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = ...
     scene.text(`He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = 1, 'its case', ') + ' and hands it to you. "All the best, ${((s as any).pcs_nickname || '')}."`);
@@ -227,13 +232,13 @@ function enterPayandtakestuff(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstSetup(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).ml_guitars) (s as any).ml_guitars = {}; (s as any).ml_guitars['jb-budget-acoustic'] = 1;
+  ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['jb-budget-acoustic'] = 1;
   (s as any).ml_strings = 2;
-  if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['chordbook'] = 1;
-  if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['hasguitar'] = 1;
-  if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['carried'] = 1;
-  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
-  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['performed_minutes'] = 0;
+  ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['chordbook'] = 1;
+  ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
+  ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+  ((s as any).ml_performance = (s as any).ml_performance ?? {})['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
+  ((s as any).ml_performance = (s as any).ml_performance ?? {})['performed_minutes'] = 0;
   // TODO-QSP: end
   scene.build();
 }

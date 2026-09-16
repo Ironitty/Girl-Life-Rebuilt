@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,10 +6,13 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).moodTypeRand ?? 0) <= 0) {
+    (s as any).moodType = 'bad';
   } else {
     if (((s as any).moodTypeRand ?? 0) >= 1  &&  ((s as any).moodTypeRand ?? 0) <= 3) {
+      (s as any).moodType = 'fairly normal';
     } else {
       if (((s as any).moodTypeRand ?? 0) >= 4) {
+        (s as any).moodType = 'good';
       }
     }
   }
@@ -18,6 +21,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSaunawork(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_saunawhore', 'saunawork');
+  (s as any).location_type = 'public_indoors';
+  (s as any).locBroom = 'city_saunawhore';
+  (s as any).metkaBroom = 'saunawork';
   (s as any).saunaYouRoom = 1;
   if ((!((s as any).paymamka ?? 0))) {
     (s as any).paymamka = 300;
@@ -34,7 +40,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
   scene.text('');
   // TODO-QSP: dynamic text: The sauna is open to "customers" between '+func('time', 'get_time_string', 8, 0)...
   scene.text('The sauna is open to "customers" between 8:00 and 0:00.');
-  scene.text('All the walls are covered in <a href="exec:gt \'mirror\', \'start\'">mirrors</a>.');
+  scene.text('All the walls are covered in <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a>.');
   if (((s as any).saunaWorkNow ?? 0) === 1) {
     (s as any).saunaWorkNow = 0;
     qspCall(s, 'money', 'pay', ((s as any).paymamka ?? 0));
@@ -63,7 +69,8 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'heroin');
-  }, goto: ['city_saunawhore', 'saunawork'] },
+    qspGoto(s, 'city_saunawhore', 'saunawork');
+  } },
     ]);
   }
   if (((s as any).workDolg ?? 0) <= 0  &&  ((s as any).pcs_mood ?? 0) <= 50  &&  ((s as any).saunaWhore ?? 0) > 0  &&  qspFunc(s, 'money', 'can_afford', 420) === 1) {
@@ -77,7 +84,8 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'drugs', 'heroin');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'money', 'pay', 420);
-  }, goto: ['city_saunawhore', 'saunawork'] },
+    qspGoto(s, 'city_saunawhore', 'saunawork');
+  } },
     ]);
   } },
     ]);
@@ -223,7 +231,8 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
     (s as any).saunaWorkKlient = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).saunaWhore = ((s as any).saunaWhore ?? 0) + (1);
-  }, goto: ['city_saunawhore', 'clientGate'] },
+    qspGoto(s, 'city_saunawhore', 'clientGate');
+  } },
           ]);
         } else {
           scene.text('The client examines you closely, but turns away to chose another girl.');
@@ -300,7 +309,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
     scene.text('"No. I\'m sorry, but I just want to go home… Maybe some other time."');
     scene.text('Vadim looks at you with a serious stare. "You\'re lucky I\'m in a good mood today. I\'ll let it slide this time."');
     scene.text('You quickly gather your stuff before he has a change of heart and run outside the sauna.');
-    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A113'] = 2;
+    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A113'] = 2;
     scene.actions([
       { label: 'Leave', goto: ['city_sauna', ''] },
     ]);
@@ -321,7 +330,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
         scene.text('You have genital herpes. You can\'t afford the cure and I can\'t provide it.');
         if (((s as any).Gerpes ?? 0) >= 3) {
           if ((!((s as any).GerpesNapr ?? 0))) {
-            (s as any).GerpesNapr = 3;
+            (s as any).GerpesNapr = 3 + qspFunc(s, 'money', 'string_debt_addition', 750) + ' to your debt or put you in debt if not already.';
           } else {
             if (((s as any).GerpesNapr ?? 0) > 0) {
               scene.text('You need to finish your course of herpes injections.');
@@ -340,7 +349,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
       if (((s as any).TriperOnce ?? 0) === 1) {
         scene.text('We found gonorrhoea. In principle, this disease is curable.');
         if ((!((s as any).TriperNapr ?? 0))) {
-          (s as any).TriperNapr = 5;
+          (s as any).TriperNapr = 5 + qspFunc(s, 'money', 'string_debt_addition', 750) + ' to your debt or put you in debt if not already.';
         } else {
           if (((s as any).TriperNapr ?? 0) > 0) {
             scene.text('You need to finish your course of gonorrhoea injections.');
@@ -351,7 +360,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
         scene.text('You have a yeast infection. The cure for this disease is very expensive, but it\'s not that harmful and can easily be suppressed.');
         if ((!((s as any).KandidNapr ?? 0))) {
           (s as any).KandidNapr = 1;
-          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) + (5);
+          ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) + (5);
           scene.text('Here\'s some pills, the drug company rep gives these away so I won\'t add anything to your debt. When you have it in remission you must take vitamins to keep it that way.');
         }
         if (((s as any).Kandidoz ?? 0) < 30) {
@@ -374,19 +383,20 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_saunawhore', 'bathroom');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/brothel/brothelshower.jpg');
   scene.text('');
   scene.text('You enter the staff bathroom, which is usually cleaned by the new girls who have just started working here, whether they want to or not.');
   // TODO-QSP: dynamic text: There is a <a href="exec:gt 'mirror', 'start'">mirror</a>, where you can ' + iif...
-  scene.text('There is a <a href="exec:gt \'mirror\', \'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair, a shower, toilet and a sink.');
+  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair, a shower, toilet and a sink.');
   if (((s as any).mc_inventory ?? 0)?.['razor'] > 0) {
     if (((s as any).workDolg ?? 0) > 0) {
       // TODO-QSP: dynamic text: You have a handful of cheap razors you can use, enough for <<mc_inventory['razor...
-      scene.text(`You have a handful of cheap razors you can use, enough for ${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''} shaves. <a href="exec:gs 'din_van', 'shave_options'">Shave Options</a>`);
+      scene.text(`You have a handful of cheap razors you can use, enough for ${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''} shaves. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027din_van\\u0027, \\u0027shave_options\\u0027); return false;">Shave Options</a>`);
     } else {
       // TODO-QSP: dynamic text: Your current pack of razors will last for <b><<mc_inventory['razor']>></b> more ...
-      scene.text(`Your current pack of razors will last for <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more shaves. <a href="exec:gs 'din_van', 'shave_options'">Shave Options</a>`);
+      scene.text(`Your current pack of razors will last for <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more shaves. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027din_van\\u0027, \\u0027shave_options\\u0027); return false;">Shave Options</a>`);
     }
     qspCall(s, 'din_van', 'brit');
   } else {
@@ -426,7 +436,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).workDolg ?? 0) > 0) {
       if (((s as any).mc_inventory ?? 0)?.['razor'] <= 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = 5;
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['razor'] = 5;
       }
       qspCall(s, 'din_van', 'brit');
     } else {
@@ -455,15 +465,18 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).raceRand = Math.floor(Math.random() * 10) + 1;
   if (((s as any).raceRand ?? 0) <= 7) {
+    (s as any).raceType = 'white';
     (s as any).dickChance = 30;
     (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (8 - (-2) + 1)) + ((-2))));
     (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (6 - (-1) + 1)) + ((-1))));
   } else {
     if (((s as any).raceRand ?? 0) <= 9) {
+      (s as any).raceType = 'asian';
       (s as any).dickChance = 20;
       (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - (-6) + 1)) + ((-6))));
       (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (1 - (-4) + 1)) + ((-4))));
     } else {
+      (s as any).raceType = 'black';
       (s as any).dickChance = 40;
       (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + (Math.floor(Math.random() * 7) + 0);
       (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + (Math.floor(Math.random() * 7) + 0);
@@ -480,20 +493,26 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).dick ?? 0) >= 26) {
+    (s as any).dick_girth = 'monstrous';
     (s as any).cumVol = Math.floor(Math.random() * 2) + 4;
   } else {
     if (((s as any).dick ?? 0) >= 23) {
+      (s as any).dick_girth = 'massive';
       (s as any).cumVol = Math.floor(Math.random() * 3) + 3;
     } else {
       if (((s as any).dick ?? 0) >= 20) {
+        (s as any).dick_girth = 'thick';
         (s as any).cumVol = Math.floor(Math.random() * 4) + 2;
       } else {
         if (((s as any).dick ?? 0) >= 16) {
+          (s as any).dick_girth = 'thicker than average';
           (s as any).cumVol = Math.floor(Math.random() * 3) + 2;
         } else {
           if (((s as any).dick ?? 0) >= 12) {
+            (s as any).dick_girth = 'well proportioned';
             (s as any).cumVol = Math.floor(Math.random() * 4) + 1;
           } else {
+            (s as any).dick_girth = 'slim';
             (s as any).cumVol = Math.floor(Math.random() * 4) + 0;
           }
         }
@@ -501,18 +520,23 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).cumVol ?? 0) <= 1) {
+    (s as any).cumType = 'a bit of';
     (s as any).cumVolMl = 10;
   } else {
     if (((s as any).cumVol ?? 0) === 2) {
+      (s as any).cumType = 'some';
       (s as any).cumVolMl = 20;
     } else {
       if (((s as any).cumVol ?? 0) === 3) {
+        (s as any).cumType = 'his warm';
         (s as any).cumVolMl = 40;
       } else {
         if (((s as any).cumVol ?? 0) === 4) {
+          (s as any).cumType = 'a lot of';
           (s as any).cumVolMl = 60;
         } else {
           if (((s as any).cumVol ?? 0) >= 5) {
+            (s as any).cumType = 'an enormous amount of';
             (s as any).cumVolMl = 100;
           }
         }
@@ -520,35 +544,48 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).bodyTypeRand ?? 0) <= 1) {
+    (s as any).bodyType = 'thin';
   } else {
     if (((s as any).bodyTypeRand ?? 0) >= 2  &&  ((s as any).bodyTypeRand ?? 0) <= 4) {
+      (s as any).bodyType = 'athletic';
     } else {
       if (((s as any).bodyTypeRand ?? 0) >= 5  &&  ((s as any).bodyTypeRand ?? 0) <= 6) {
+        (s as any).bodyType = 'stout';
       } else {
         if (((s as any).bodyTypeRand ?? 0) >= 7) {
+          (s as any).bodyType = 'fat';
         }
       }
     }
   }
   if (((s as any).heightTypeRand ?? 0) <= 1) {
+    (s as any).heightType = 'short';
   } else {
     if (((s as any).heightTypeRand ?? 0) >= 2  &&  ((s as any).heightTypeRand ?? 0) <= 4) {
+      (s as any).heightType = 'average height';
     } else {
       if (((s as any).heightTypeRand ?? 0) >= 5) {
+        (s as any).heightType = 'tall';
       }
     }
   }
   if (((s as any).customerAge ?? 0) <= 18) {
+    (s as any).ageType = 'a teenage';
   } else {
     if (((s as any).customerAge ?? 0) > 18  &&  ((s as any).customerAge ?? 0) <= 30) {
+      (s as any).ageType = 'a young';
     } else {
       if (((s as any).customerAge ?? 0) > 30  &&  ((s as any).customerAge ?? 0) <= 45) {
+        (s as any).ageType = 'a middle-aged';
       } else {
         if (((s as any).customerAge ?? 0) > 45  &&  ((s as any).customerAge ?? 0) <= 60) {
+          (s as any).ageType = 'a late middle-aged';
         } else {
           if (((s as any).customerAge ?? 0) > 60  &&  ((s as any).customerAge ?? 0) <= 80) {
+            (s as any).ageType = 'an elderly';
           } else {
             if (((s as any).customerAge ?? 0) > 80) {
+              (s as any).ageType = 'a very old';
             }
           }
         }
@@ -556,7 +593,7 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((!(Math.floor(Math.random() * 20) + 0))) {
-    scene.actions([{ label: 'Continue', goto: ['city_saunawhore', 'bdsmclient'] }]);
+    qspGoto(s, 'city_saunawhore', 'bdsmclient');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -930,14 +967,16 @@ function enterFuckVaginal(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask him not to cum inside you', handler: (st: GameState) => {
     (s as any).not_inside = 1;
-  }, goto: ['city_saunawhore', 'cumClientGate'] },
+    qspGoto(s, 'city_saunawhore', 'cumClientGate');
+  } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum wherever he wants', handler: (st: GameState) => {
     (s as any).not_inside = 2;
-  }, goto: ['city_saunawhore', 'cumClientGate'] },
+    qspGoto(s, 'city_saunawhore', 'cumClientGate');
+  } },
   ]);
   scene.build();
 }
@@ -966,7 +1005,8 @@ function enterFuckAnal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Let him cum wherever he wants', handler: (st: GameState) => {
     (s as any).not_inside = 2;
-  }, goto: ['city_saunawhore', 'cumClientGate'] },
+    qspGoto(s, 'city_saunawhore', 'cumClientGate');
+  } },
   ]);
   scene.build();
 }
@@ -1026,14 +1066,16 @@ function enterFuckRoughVaginal(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Beg him not to cum inside you', handler: (st: GameState) => {
     (s as any).not_inside = 1;
-  }, goto: ['city_saunawhore', 'cumClientGate'] },
+    qspGoto(s, 'city_saunawhore', 'cumClientGate');
+  } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum wherever he wants', handler: (st: GameState) => {
     (s as any).not_inside = 2;
-  }, goto: ['city_saunawhore', 'cumClientGate'] },
+    qspGoto(s, 'city_saunawhore', 'cumClientGate');
+  } },
   ]);
   scene.build();
 }

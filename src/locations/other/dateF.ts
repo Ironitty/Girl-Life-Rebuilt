@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   qspCall(s, 'npcgeneratec', '', 1, '', Math.floor(Math.random() * 18) + 18, 'like');
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   if (((s as any).PCloStyle2 ?? 0) === 4  ||  ((s as any).PCloSchool ?? 0) === 1) {
@@ -37,7 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"What a strange girl." you think to yourself as you watch her going away muttering something to herself.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -67,7 +68,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re already moving away from her before she even finished her sentence not hearing what she wanted.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -78,7 +79,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('As you move away from her, you\'re glad you declined, especially after the last comment.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -98,7 +99,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"You better be." you say teasingly.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -127,7 +128,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Okay, okay, sheesh… take it easy." she says loudly as she\'s moving away from you.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -154,7 +155,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t count on it loser." you answer.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -167,7 +168,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`As you're getting more annoyed you give her a shove making her back up a couple of steps. "Get the fuck out of here before I kick your ass!" ${((s as any).npcdesc || '')} seeing she's getting nowhere moves away quickly.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -197,7 +198,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc || '')} quickly scribbles it down not knowing you've just given her a totally unknown number.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -237,7 +238,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"You better be." you say teasingly.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -282,7 +283,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you say goodbye to each other.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -292,7 +293,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"What did you say, you little…" you\'re not able to hear the rest as you walk away…');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -312,7 +313,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"You better be." you say teasingly.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -327,7 +328,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her and hurry away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -342,7 +343,7 @@ function enterDecline(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -418,7 +419,9 @@ function enterDatepark(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go along with her', handler: (st: GameState) => {
     (s as any).gfsex = 1;
-  }, goto: ['lezbsex', 'start'] },
+    (s as any).dateFType = 'walk_back';
+    qspGoto(s, 'lezbsex', 'start');
+  } },
       { label: 'Stop her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -471,7 +474,7 @@ function enterWalkBack(s: GameState, scene: SceneBuilder): void {
     scene.text('You end the date by her giving you a kiss on the cheek.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -483,7 +486,7 @@ function enterWalkBack(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc || '')} disappointingly looks at you, "Well at least I gave it my best shot who knows maybe I'll meet you once again."`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -492,6 +495,7 @@ function enterWalkBack(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDatebar(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/date/barinside.jpg');
@@ -607,7 +611,9 @@ function enterBartalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go along with her', handler: (st: GameState) => {
     (s as any).gfsex = 1;
-  }, goto: ['lezbsex', 'start'] },
+    (s as any).dateFType = 'barend';
+    qspGoto(s, 'lezbsex', 'start');
+  } },
       { label: 'Decide to stop', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/shared/date/barinside.jpg');
@@ -667,7 +673,7 @@ function enterBarend(s: GameState, scene: SceneBuilder): void {
     scene.text('You end the date by her giving you a kiss on the cheek.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -679,7 +685,7 @@ function enterBarend(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc || '')} disappointingly looks at you, "Well at least I gave it my best shot who knows maybe I'll meet you once again."`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

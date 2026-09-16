@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'themes', 'indoors');
   scene.build();
 }
@@ -250,16 +251,17 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "I know that. But," he seems to be having trouble focusing on what he wants to s...
         scene.text(`"I know that. But," he seems to be having trouble focusing on what he wants to say, "${((s as any).pcs_firstname || '')}, not here, not now."`);
         scene.text('For a moment, you wonder how far he would go. Reluctant as he is, you doubt that he\'d go as far as screwing you over the billiard table while there are people in the bar. He seems to be on the verge of agreeing to a blowjob, though, if you are bold or horny enough to push him…');
+        (s as any).martinpos = 'I\'ll do it if you want me to';
         qspCall(s, 'willpower', 'bj', 'self');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: '<<$martinpos>>', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => String(((s as any).martinpos || '') ?? ''), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: '<<$martinpos>>', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => String(((s as any).martinpos || '') ?? ''), handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/city/industrial/bar/sex/pool/poolm1.jpg');
     qspCall(s, 'boyStat', 'A216');
@@ -276,6 +278,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You bob your head '+ iif(stat['bj']>20, 'confidently', 'reluctantly, still tryin...
     scene.text(`You bob your head '+ iif(stat['bj']>20, 'confidently', 'reluctantly, still trying to figure blowjobs out') + iif(stat['bj']>40, ' and with wild abandon', ') + ' and run your ${((s as any).pc_desc ?? 0)?.['tongue'] ?? ''} tongue around it to stimulate him as much as you can.`);
     scene.text('You\'re not sure if the prospect of getting caught here with a cock in your mouth terrifies or excites you more, but you don\'t really feel the need to find out which it is.');
+    (s as any).orgasm_txt = 'But you do anyway: It\'s the latter. As you unconsciously knead your ' + ((s as any).pc_desc ?? 0)?.['breast'] + ' breasts through your top, the heat between your legs grows and spreads to your belly. You moan around Martin\'s cock as the orgasm overcomes you. You don\'t have to look up to see the self-satisfied expression on Martin\'s face when he realizes that you came from sucking his cock…';
     qspCall(s, 'arousal', 'bj', 5, 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -284,6 +287,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     scene.text('You are giving Martin the best blowjob you can, working him over with your mouth, tongue and hand to make him shoot his load quickly. And you seem to be doing something right, cause Martin is starting to tense.');
     scene.text('As Martin groans quietly, moments away from climax, you become acutely aware of the heat between your legs. The forbidden nature of what you\'re doing apparently isn\'t lost on your pussy, regardless of whether your conscious mind is turned on or scared.');
     scene.text('Finally, your latin lover bends his head back as he empties his sperm into your mouth. You double your efforts, licking and sucking even harder.');
+    (s as any).orgasm_txt = 'Or at least you try: You moan around Martin\'s cock when the first jet of his ' + ((((s as any).trait_vars ?? 0)?.['cumeater']===1) ? ('tasty ') : ('')) + 'cum lands on your tongue and pushes you over the edge, making it difficult to focus on his pleasure. You think you manage quite well, but you don\'t have to look up to see the self-satisfied expression on Martin\'s face when he realizes that you came from sucking his cock - from him cumming in your mouth, in fact.';
     qspCall(s, 'arousal', 'bj', 2, 'exhibitionism');
     qspCall(s, 'stat', '');
     qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
@@ -292,6 +296,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     scene.text('After that, you quickly return to reality when the sound of breaking glass reminds you of the bar behind the curtain. Martin zips his pants back up and you barely have time to get up on your feet when two guys pull the veil aside, looking to play a game of billiards.');
     scene.text('They seem just as surprised as you to see each other, but they just give Martin a friendly "hello" before the two of you leave. As Martin strides towards the source of the noise you heard, you stay back long enough to hear the guys at the pool table break into wild speculations.');
     scene.text('That was definitely an experience…');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Return to the bar', goto: ['qwBarPolet', ''] },

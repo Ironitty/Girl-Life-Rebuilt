@@ -1,3 +1,5 @@
+import { qspGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -8,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichGentleclubVisits ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['nichClub', 'firstVisit'] }]);
+    qspGoto(s, 'nichClub', 'firstVisit');
   }
   scene.build();
 }
@@ -27,7 +29,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow him', handler: (st: GameState) => {
     (s as any).nichClubStage = 1;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
     ]);
   } else {
     if (((s as any).nichClubStage ?? 0) === 1) {
@@ -44,7 +47,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichClubStage = 2;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
       ]);
     } else {
       if (((s as any).nichClubStage ?? 0) === 2) {
@@ -59,7 +63,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichClubStage = 3;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
         ]);
       } else {
         if (((s as any).nichClubStage ?? 0) === 3) {
@@ -77,7 +82,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichClubStage = 4;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
           ]);
         } else {
           if (((s as any).nichClubStage ?? 0) === 4) {
@@ -91,7 +97,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichClubStage = 5;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
             ]);
           } else {
             if (((s as any).nichClubStage ?? 0) === 5) {
@@ -104,7 +111,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichClubStage = 6;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
               ]);
             } else {
               if (((s as any).nichClubStage ?? 0) === 6) {
@@ -117,7 +125,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichClubStage = 7;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
                 ]);
               } else {
                 if (((s as any).nichClubStage ?? 0) === 7) {
@@ -134,7 +143,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'Continue', handler: (st: GameState) => {
     (s as any).nichClubStage = 8;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
                   ]);
                 } else {
                   if (((s as any).nichClubStage ?? 0) === 8) {
@@ -148,7 +158,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
                     scene.actions([
                       { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichClubStage = 9;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
                     ]);
                   } else {
                     if (((s as any).nichClubStage ?? 0) === 9) {
@@ -167,10 +178,12 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
                       scene.actions([
                         { label: 'Run away', handler: (st: GameState) => {
     (s as any).nichClubStage = 10;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
                         { label: 'Stay', handler: (st: GameState) => {
     (s as any).nichClubStage = 20;
-  }, goto: ['nichClub', 'firstVisit'] },
+    qspGoto(s, 'nichClub', 'firstVisit');
+  } },
                       ]);
                     } else {
                       if (((s as any).nichClubStage ?? 0) === 10) {

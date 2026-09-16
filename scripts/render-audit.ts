@@ -167,7 +167,7 @@ async function main() {
       // Display locations (has title but 0 action refs by design)
       'FSstat','anekdot','cuminsidereact','dinsexFX','exp_deg','map','spell',
       // Conditional locations (actions only under specific game states)
-      'KGOLfight','KGZgame','VolleyTrenCentr','andrey','city_kafeend','city_trashplace','father','intro_overview','kotovEv','nichUtil','pav_library','pirsingsalon','placer_pav_park','pornstudio','road','shop_exhibitionist','sister','transport_functions',
+      'KGOLfight','KGZgame','VolleyTrenCentr','andrey','city_kafeend','city_trashplace','father','FedorEv','intro_overview','kotovEv','nichUtil','pav_library','pirsingsalon','placer_pav_park','pornstudio','shop_exhibitionist','sister','transport_functions',
       // Hub/stub locations (text-link navigation or empty by design)
       'pushkin_sq','pushkin_theatre','placer_house','treeCircle',
     ]);
@@ -285,6 +285,20 @@ async function main() {
       const bodyText = await page.textContent('body');
       if ((bodyText?.length ?? 0) < 50) {
         issues.push(`text too short (${bodyText?.length ?? 0} chars)`);
+      }
+      if (bodyText?.includes('[UNTRANSLATED:')) {
+        const matches = bodyText.match(/\[UNTRANSLATED: [^\]]+\]/g);
+        issues.push(`untranslated QSP: ${matches?.slice(0, 3).join(', ')}`);
+      }
+
+      const srcPath = locationFileMap[loc];
+      if (srcPath) {
+        try {
+          const src = readFileSync(srcPath, 'utf8');
+          if (/scene\.actions\(\[\{ label: 'Continue', goto:/.test(src)) {
+            issues.push('goto translated to Continue button (should be qspGoto)');
+          }
+        } catch { /* ignore */ }
       }
 
       const passed = issues.length === 0;

@@ -3,7 +3,7 @@ import { SceneBuilder } from '../../core/scene';
 import { AREAS, WORLD_IMAGE, WORLD_AREAS } from './areaData';
 
 function resolveAreaId(arg: string): string {
-  if (arg === 'world' || arg === '') return 'world';
+  if (!arg || arg === 'world' || typeof arg !== 'string') return 'world';
   for (const key of Object.keys(AREAS)) {
     if (arg.startsWith(key)) return key;
   }

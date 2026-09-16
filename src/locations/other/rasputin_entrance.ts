@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,11 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
+  (s as any).menu_loc = 'rasputin_entrance';
+  (s as any).menu_arg = '';
+  (s as any).loc_arg = '';
+  (s as any).loc = 'rasputin_entrance';
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 2  &&  ((s as any).hour ?? 0) < 15) {
     scene.img('images/locations/pushkin/rasputin/building_day.jpg');
@@ -17,27 +22,28 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Yes', handler: (st: GameState) => {
     if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 2) {
-      if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 0;
+      ((s as any).rasputin = (s as any).rasputin ?? {})['burlesque_ticket'] = 0;
     }
     if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
-      if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 0;
+      ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 0;
     }
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['pushkin_sq', ''] },
+    qspGoto(s, 'pushkin_sq', '');
+  } },
         { label: 'No', goto: ['rasputin_entrance', ''] },
       ]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['pushkin_sq', ''] }]);
+      qspGoto(s, 'pushkin_sq', '');
     }
   } },
       { label: 'Go to emplyee\'s entrance', handler: (st: GameState) => {
     if (((s as any).rasputin ?? 0)?.['work'] === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['rasputin_room_staff', ''] }]);
+      qspGoto(s, 'rasputin_room_staff', '');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['rasputin_entrance', ''] }]);
+      qspGoto(s, 'rasputin_entrance', '');
     }
   } },
     ]);
@@ -49,7 +55,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Go to the staff lounge', handler: (st: GameState) => {
     if (((s as any).rasputin ?? 0)?.['work'] === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['rasputin_room_staff', ''] }]);
+      qspGoto(s, 'rasputin_room_staff', '');
     }
   } },
       ]);
@@ -57,13 +63,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Return to the square', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['pushkin_sq', ''] },
+    qspGoto(s, 'pushkin_sq', '');
+  } },
       { label: 'Visit the hostess', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['rasputin_host', 'start'] },
+    qspGoto(s, 'rasputin_host', 'start');
+  } },
       { label: 'Go inside the club', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['rasputin_walkway', ''] },
+    qspGoto(s, 'rasputin_walkway', '');
+  } },
     ]);
   }
   scene.build();

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRecords(s: GameState, scene: SceneBuilder): void {
+  (s as any).BACKIMAGE = '';
   qspCall(s, 'housing', 'rent');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -19,6 +20,7 @@ function enterRecords(s: GameState, scene: SceneBuilder): void {
 
 function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  (s as any).tablebody = '<tr>';
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
     // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 0 & gs ''journal'', ''magictab''">Magic</a></th>'
   }
@@ -36,16 +38,16 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).jumploc ?? 0) === 'worktab'  &&  ((s as any).jclose ?? 0) === 1) {
     (s as any).jclose = 0;
     (s as any).menutrack = 3;
-    scene.actions([{ label: 'Continue', goto: ['journal_work', 'start'] }]);
+    qspGoto(s, 'journal_work', 'start');
   } else {
     if (((s as any).jumploc ?? 0) === ''  ||  ((s as any).jclose ?? 0) === 1) {
       (s as any).jclose = 0;
       (s as any).menutrack = 1;
       if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
         (s as any).menutrack = 0;
-        scene.actions([{ label: 'Continue', goto: ['journal', 'magictab'] }]);
+        qspGoto(s, 'journal', 'magictab');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['journal', 'calendar'] }]);
+        qspGoto(s, 'journal', 'calendar');
       }
     }
   }
@@ -55,12 +57,14 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCalendar(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'calendar';
   qspCall(s, 'calendar', 'show');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterMagictab(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'magictab';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Magic</h2></center><br>');
   scene.text('<center><h2>Spells to Cast</h2></center><br>');
@@ -85,6 +89,7 @@ function enterMagictab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHousingtab(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'housingtab';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Housing</h2></center>');
   if (((s as any).accessible_property ?? 0)?.['shared_apartment'] === 4) {
@@ -236,6 +241,7 @@ function enterHousingtab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRelationstab(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'relationstab';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Relationships</h2></center>');
   scene.text('<h2>Family</h2>');
@@ -256,10 +262,13 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     scene.text('<center><h2>Standings by Social Group</h2></center>');
     if (((s as any).grupTipe ?? 0) < 5  &&  ((s as any).grupvalue ?? 0)?.[String((s as any).grupTipe ?? 0)] > 700) {
+      (s as any).journal_school_standing = ' You are well respected and liked within your clique.';
     } else {
       if (((s as any).grupTipe ?? 0) < 5  &&  ((s as any).grupvalue ?? 0)?.[String((s as any).grupTipe ?? 0)] > 300) {
+        (s as any).journal_school_standing = ' You are in good standing with your clique.';
       } else {
         if (((s as any).grupTipe ?? 0) < 5) {
+          (s as any).journal_school_standing = 0;
         }
       }
     }
@@ -297,23 +306,34 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :grupbar_loop
     if (((s as any).i ?? 0) === 1) {
+      (s as any).grupbar_name = 'Cool Kids';
     }
     if (((s as any).i ?? 0) === 2) {
+      (s as any).grupbar_name = 'Jocks';
     }
     if (((s as any).i ?? 0) === 3) {
+      (s as any).grupbar_name = 'Nerds';
     }
     if (((s as any).i ?? 0) === 4) {
+      (s as any).grupbar_name = 'Gopnik';
     }
     if (((s as any).grupTipe ?? 0) === ((s as any).i ?? 0)) {
       if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 20) {
+        (s as any).grupbar_standing = '<font color="#FF0000">You will be kicked out</font>';
       } else {
         if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 30) {
+          (s as any).grupbar_standing = '<font color="#FF6600">On last warning</font>';
         } else {
           if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 40) {
+            (s as any).grupbar_standing = '<font color="#0000FF">Tolerated</font>';
           } else {
             if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 60) {
+              (s as any).grupbar_standing = '<font color="#00CED1">Barely a member</font>';
             } else {
               if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 85) {
+                (s as any).grupbar_standing = '<font color="#B3B300">Member</font>';
+              } else {
+                (s as any).grupbar_standing = '<font color="#00FF00">Popular member</font>';
               }
             }
           }
@@ -321,14 +341,21 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 10) {
+        (s as any).grupbar_standing = '<font color="#FF0000">Hated</font>';
       } else {
         if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 20) {
+          (s as any).grupbar_standing = '<font color="#FF6600">Disliked</font>';
         } else {
           if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 50) {
+            (s as any).grupbar_standing = '<font color="#0000FF">Tolerated</font>';
           } else {
             if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 70) {
+              (s as any).grupbar_standing = '<font color="#00CED1">Liked</font>';
             } else {
               if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 80) {
+                (s as any).grupbar_standing = '<font color="#B3B300">Really Liked</font>';
+              } else {
+                (s as any).grupbar_standing = '<font color="#00FF00">Will be asked to join</font>';
               }
             }
           }
@@ -1052,6 +1079,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneraltab(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generaltab';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>General Information</h2></center>');
   if (Object.keys((s as any).portfolio_locations ?? {}).length > 0  ||  Object.keys((s as any).portfolio_people ?? {}).length > 0) {
@@ -1059,36 +1087,37 @@ function enterGeneraltab(s: GameState, scene: SceneBuilder): void {
       { label: 'View your photography portfolio', goto: ['journal_portfolio', ''] },
     ]);
   }
-  scene.text('<br><center><a href="exec: gs \'journal\', \'locations\'">Locations</a></center>');
-  scene.text('<br><center><a href="exec: gs \'journal\', \'family\'">Family</a></center>');
-  scene.text('<br><center><a href="exec: gs \'journal\', \'pav_res\'">Pavlovsk Residents</a></center>');
-  scene.text('<br><center><a href="exec: gs \'journal\', \'gad_res\'">Gadukino Residents</a></center>');
-  scene.text('<br><center><a href="exec: gs \'journal\', \'city_res\'">City Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027locations\\u0027); return false;">Locations</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027family\\u0027); return false;">Family</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027pav_res\\u0027); return false;">Pavlovsk Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027gad_res\\u0027); return false;">Gadukino Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027city_res\\u0027); return false;">City Residents</a></center>');
   if (((s as any).ballet ?? 0)?.['blocker'] > 0  ||  ((s as any).balletqw ?? 0)?.['school'] > 0) {
-    scene.text('<br><center><a href="exec: gs \'journal\', \'ballet\'">Ballet Career</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027ballet\\u0027); return false;">Ballet Career</a></center>');
   }
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
-    scene.text('<br><center><a href="exec: gs \'journal_school\', \'school\'">School</a></center>');
-    scene.text('<br><center><a href="exec: gs \'journal_school\', \'coursesinfo\'">School Courses and Grades</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_school\\u0027, \\u0027school\\u0027); return false;">School</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_school\\u0027, \\u0027coursesinfo\\u0027); return false;">School Courses and Grades</a></center>');
   }
   if (((s as any).university ?? 0)?.['student'] === 1) {
-    scene.text('<br><center><a href="exec: gs \'journal\', \'uni\'">University</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027uni\\u0027); return false;">University</a></center>');
   }
-  scene.text('<br><center><a href="exec: gs \'journal\', \'clothing\'">Clothing information</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027clothing\\u0027); return false;">Clothing information</a></center>');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterNotestab(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'notestab';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Notes</h2></center>');
   scene.text('Create notes to keep track of any information you need.');
-  scene.text('<a href="exec: $zapis[] = input(\'What do you want to record?\') & gt \'journal\',\'notestab\' ">Make a note</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $zapis[] = input(\\u0027What do you want to record?\\u0027) */ return s; }); window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027notestab\\u0027); return false;">Make a note</a>');
   (s as any).jur_temp = 0;
   // TODO-QSP: :jur_loop
   if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
     // TODO-QSP: dynamic text: <<$zapis[jur_temp]>> <a href="exec: dynamic 'killvar''$zapis'',<<jur_temp>> & gt...
-    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? ''} <a href="exec: dynamic 'killvar'$zapis',${((s as any).jur_temp || '')} & gt 'journal', 'notestab'' ">Delete</a>`);
+    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? ''} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic \\u0027killvar\\u0027$zapis\\u0027,${((s as any).jur_temp || '')} */ return s; }); window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027notestab\\u0027); return false;">Delete</a>`);
     (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
     // TODO-QSP: jump 'jur_loop'
   }
@@ -1097,6 +1126,7 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNotificationLog(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'notification_log';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Notifications</h2></center>');
   if (Object.keys((s as any).notification_log ?? {}).length === 0) {
@@ -1114,6 +1144,7 @@ function enterNotificationLog(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBallet(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'ballet';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Ballet Career</h1></center>');
   scene.img('images/locations/pushkin/ballet_events/dream_ballet.jpg');
@@ -1139,6 +1170,7 @@ function enterBallet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClothing(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center>Clothing information</center>');
   scene.text('Clothing has a strength value, which decreases by 1 for every day you wear that outfit. At 0 it is ruined and you will have to throw it away.');
@@ -1157,6 +1189,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUni(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>University</h2></center>');
   if (((s as any).university ?? 0)?.['diploma'] > 0) {
@@ -1173,7 +1206,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
   (s as any).j = 1;
   // TODO-QSP: :semester_loop
   if (((s as any).j ?? 0) <= ((s as any).university ?? 0)?.['semester_passed']) {
-    qspCall(s, 'grades', 'assign_grade_description', 'uni_' + qspUntranslated(s, "university['enrolled_in']>", { location: "journal" }) + '_semester_<<j>>');
+    qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).j ?? 0) + '');
     // TODO-QSP: dynamic text: You passed the ' + $func('string', 'parse_number', j, 'ordinal') + ' semester wi...
     scene.text('You passed the \' + $func(\'string\', \'parse_number\', j, \'ordinal\') + \' semester with the following grades:');
     (s as any).k = 0;
@@ -1219,7 +1252,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: 'Wednesday: '  + $func('uni_programs', 'get_first_period', 'wednesday'  ) + ' ' + $func('uni_program...
         // TODO-QSP: 'Thursday: '  + $func('uni_programs', 'get_first_period', 'thursday'  ) + ' ' + $func('uni_programs'...
         scene.text('<center><h2>Grades</h2></center>');
-        qspCall(s, 'grades', 'assign_grade_description', 'uni_' + qspUntranslated(s, "university['enrolled_in']>", { location: "journal" }) + '_semester_<<university[\'enrolled_in_semester\']>>');
+        qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
         (s as any).j = 0;
         // TODO-QSP: :grade_loop
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
@@ -1310,7 +1343,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).university ?? 0)?.['exam_week'] > 0) {
           // TODO-QSP: 'You are in the ' + iif(university['exam_week'] = 1, 'first', 'second') + ' of the two weeks of exam...
-          qspCall(s, 'grades', 'assign_grade_description', 'uni_' + qspUntranslated(s, "university['enrolled_in']>", { location: "journal" }) + '_semester_<<university[\'enrolled_in_semester\']>>');
+          qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
           (s as any).j = 0;
           // TODO-QSP: :exam_loop
           if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
@@ -1356,10 +1389,10 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('<center><h2>Students and Teachers</h2></center>');
-  scene.text('<br><center><a href="exec: gs \'journal_uni\', \'professors\'">Professors</a></center>');
-  scene.text('<br><center><a href="exec: gs \'journal_uni\', \'pavlovsk_university_students\'">University Students from Pavlovsk</a></center>');
-  scene.text('<br><center><a href="exec: gs \'journal_uni\', \'university_students\'">Other University Students</a></center>');
-  scene.text('<br><center><a href="exec: gs \'journal_uni\', \'former_pavlovsk_students\'">Former Pavlovsk Students</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_uni\\u0027, \\u0027professors\\u0027); return false;">Professors</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_uni\\u0027, \\u0027pavlovsk_university_students\\u0027); return false;">University Students from Pavlovsk</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_uni\\u0027, \\u0027university_students\\u0027); return false;">Other University Students</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_uni\\u0027, \\u0027former_pavlovsk_students\\u0027); return false;">Former Pavlovsk Students</a></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -1369,6 +1402,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLocations(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Pavlovsk</h2></center>');
   scene.text('Pavlovsk is a small town. It is somewhat of a tourist trap thanks to the Catharina Palace and the former palace grounds, which have been converted into a large park centered around the train station. There is an open air market near the train station that is open year round where many bargains can be found. The cafe where your mother works can also be found near the train station. It caters to the visitors coming in by train. The downtown area contains businesses and some middle class housing, while the residential area is a mixture of houses and old Soviet era apartment blocks.');
@@ -1386,6 +1420,7 @@ function enterLocations(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFamily(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Family</h2></center>');
   qspCall(s, 'journal_NPC_information', 'A29');
@@ -1406,6 +1441,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPavRes(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Pavlovsk Residents</h2></center>');
   if (((s as any).yearstart ?? 0) > 1) {
@@ -1436,6 +1472,7 @@ function enterPavRes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGadRes(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Gadukino Residents</h2></center>');
   qspCall(s, 'journal_NPC_information', 'A31');
@@ -1472,6 +1509,7 @@ function enterGadRes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCityRes(s: GameState, scene: SceneBuilder): void {
+  (s as any).jumploc = 'generalsub';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>City Residents</h2></center>');
   if (((s as any).yearstart ?? 0) > 1) {
@@ -1496,7 +1534,7 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
     (s as any).jclose = 1;
-    dynamicGoto(st, 'menu_loc', 'menu_arg');
+    dynamicGoto(s, 'menu_loc', 'menu_arg');
   } },
   ]);
   scene.build();
@@ -1570,7 +1608,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const journal: LocationDef = {
   name: 'journal',
-  title: ' You have to work on your clique standing. You\'re in danger of being cast out.',
+  title: 'You have to work on your clique standing. You\'re in danger o',
   region: 'other',
   enter: enter,
 };

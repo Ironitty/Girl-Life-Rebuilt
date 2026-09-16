@@ -25,7 +25,7 @@ function enterCiklCalls(s: GameState, scene: SceneBuilder): void {
 
 function enterCiklSms(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'booty_call', 'scheduler');
-  if (!(s as any).booty_call_time) (s as any).booty_call_time = {}; (s as any).booty_call_time['daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).booty_call_time = (s as any).booty_call_time ?? {})['daystart'] = ((s as any).daystart ?? 0);
   if (((s as any).nerd_game ?? 0)?.['invite_day'] < ((s as any).daystart ?? 0)  &&  ((s as any).week ?? 0) === 1) {
     if (((s as any).nerd_game ?? 0)?.['first_SMS_received'] === 0) {
       // TODO-QSP: if arrpos('$contact', 'A152') = -1: gs 'telefon', 'AddContact', 'A152', 'icon_na', 1
@@ -33,13 +33,13 @@ function enterCiklSms(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A152', "gs 'nerd_game_night', 'game_invite_sms_switch'", "totminu...
   }
   if (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) === 6  &&  ((s as any).gopnikbandQW ?? 0)?.['on_tour'] === 0) {
-    if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['on_tour'] = 1;
+    ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['on_tour'] = 1;
     if (((s as any).npc_rel ?? 0)?.['A144'] >= 50  &&  (Array.isArray((s as any).contact) ? ((s as any).contact as any[]).indexOf('A144') : -1) < 0) {
       qspCall(s, 'telefon', 'AddContact', 'A144', 'icon_na', 1);
     }
   } else {
     if (((s as any).gopnikbandQW ?? 0)?.['on_tour'] === 1  &&  ((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) >= 19) {
-      if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['on_tour'] = 0;
+      ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['on_tour'] = 0;
     }
   }
   if (((s as any).gopnikbandQW ?? 0)?.['on_tour'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A144'] >= 50  &&  ((s as any).anushkaQW ?? 0)?.['tour_SMS_send'] < ((s as any).daystart ?? 0)  &&  ((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] < 11) {

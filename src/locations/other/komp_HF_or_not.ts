@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -30,12 +30,12 @@ function enterFuckornot(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave the site', handler: (st: GameState) => {
     if (((s as any).view_location ?? 0) === 'school') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     } else {
       if (((s as any).view_location ?? 0) === 'school_lesson') {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'computer'] }]);
+        qspGoto(s, 'gschool_lessons2', 'computer');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['komp', 'browse'] }]);
+        qspGoto(s, 'komp', 'browse');
       }
     }
   } },
@@ -65,12 +65,12 @@ function enterHotornot(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave the site', handler: (st: GameState) => {
     if (((s as any).view_location ?? 0) === 'school') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     } else {
       if (((s as any).view_location ?? 0) === 'school_lesson') {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'computer'] }]);
+        qspGoto(s, 'gschool_lessons2', 'computer');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['komp', 'browse'] }]);
+        qspGoto(s, 'komp', 'browse');
       }
     }
   } },
@@ -80,6 +80,7 @@ function enterHotornot(s: GameState, scene: SceneBuilder): void {
 
 function enterFuckornotList(s: GameState, scene: SceneBuilder): void {
   (s as any).fu_count = 0;
+  (s as any).fu_text = '<center><table cellspacing="3">';
   (s as any).j = 10;
   // TODO-QSP: :fu_loop_2
   (s as any).i = 1;
@@ -117,6 +118,7 @@ function enterFuckornotList(s: GameState, scene: SceneBuilder): void {
 
 function enterHotornotList(s: GameState, scene: SceneBuilder): void {
   (s as any).ho_count = 0;
+  (s as any).ho_text = '<center><table cellspacing="3">';
   (s as any).j = 10;
   // TODO-QSP: :ho_loop_2
   (s as any).i = 1;
@@ -187,6 +189,7 @@ function enterHotornotUni(s: GameState, scene: SceneBuilder): void {
 
 function enterFuckornotUniList(s: GameState, scene: SceneBuilder): void {
   (s as any).fu_count = 0;
+  (s as any).fu_text = '<center><table cellspacing="3">';
   (s as any).j = 10;
   // TODO-QSP: :fu_loop_2_uni
   (s as any).i = 1;
@@ -223,6 +226,7 @@ function enterFuckornotUniList(s: GameState, scene: SceneBuilder): void {
 
 function enterHotornotUniList(s: GameState, scene: SceneBuilder): void {
   (s as any).ho_count = 0;
+  (s as any).ho_text = '<center><table cellspacing="3">';
   (s as any).j = 10;
   // TODO-QSP: :ho_loop_2_uni
   (s as any).i = 1;

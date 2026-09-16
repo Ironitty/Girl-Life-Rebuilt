@@ -1,10 +1,12 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'artstudia';
+  (s as any).location_type = 'secluded';
   scene.build();
 }
 
@@ -41,9 +43,9 @@ function enterBodimod2(s: GameState, scene: SceneBuilder): void {
       { label: 'Strip off and join in', handler: (st: GameState) => {
     (s as any).arts_day = ((s as any).daystart ?? 0);
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['artstudia', 'bodimod3'] }]);
+      qspGoto(s, 'artstudia', 'bodimod3');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['artstudia', 'bodimod4'] }]);
+      qspGoto(s, 'artstudia', 'bodimod4');
     }
   } },
     ]);

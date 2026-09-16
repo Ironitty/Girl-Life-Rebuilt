@@ -103,7 +103,18 @@ export function generateTs(loc: QspLocation): GenResult {
   lines.push('');
   lines.push(`export const ${loc.name}: LocationDef = {`);
   lines.push(`  name: '${loc.name}',`);
-  if (loc.title) lines.push(`  title: '${esc(loc.title)}',`);
+  if (loc.title) {
+    let cleanTitle = convertExecLinks(loc.title);
+    while (cleanTitle.includes('<<') && cleanTitle.includes('>>')) {
+      const idx = cleanTitle.indexOf('<<');
+      const closeIdx = cleanTitle.indexOf('>>', idx + 2);
+      if (closeIdx === -1) break;
+      cleanTitle = cleanTitle.slice(0, idx) + cleanTitle.slice(closeIdx + 2);
+    }
+    cleanTitle = cleanTitle.trim();
+    if (cleanTitle.length > 60) cleanTitle = cleanTitle.slice(0, 60);
+    if (cleanTitle) lines.push(`  title: '${esc(cleanTitle)}',`);
+  }
   lines.push(`  region: '${getRegion(loc.name)}',`);
   if (loc.locationType) lines.push(`  locationType: '${loc.locationType}',`);
   if (loc.locclass) lines.push(`  locclass: '${loc.locclass}',`);
@@ -121,6 +132,7 @@ export function generateTs(loc: QspLocation): GenResult {
   if (body.includes('qspCall(')) bridgeNames.push('qspCall');
   if (body.includes('qspFunc(')) bridgeNames.push('qspFunc');
   if (body.includes('dynamicGoto(')) bridgeNames.push('dynamicGoto');
+  if (body.includes('qspGoto(')) bridgeNames.push('qspGoto');
   if (body.includes('hasLocation(')) bridgeNames.push('hasLocation');
   if (bridgeNames.length > 0) {
     lines.unshift(`import { ${bridgeNames.join(', ')} } from '../_shared/qspBridge';`, '');
@@ -201,7 +213,7 @@ function generateSceneBody(
             break;
           }
           if (lhs === "setloc['imagepath']" && node.op === '=') {
-            out.push(`if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + ${val};`);
+            out.push(`((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + ${val};`);
             stateWrites.push(varName);
             break;
           }
@@ -209,14 +221,13 @@ function generateSceneBody(
         if (bracketIdx !== -1) {
           const objName = lhs.slice(0, bracketIdx);
           const rest = lhs.slice(bracketIdx);
-          const init = `if (!(s as any).${objName}) (s as any).${objName} = {};`;
-          const guarded = `(s as any).${objName}${rest}`;
+          const guarded = `((s as any).${objName} = (s as any).${objName} ?? {})${rest}`;
           if (node.op === '=') {
-            out.push(`${init} ${guarded} = ${val};`);
+            out.push(`${guarded} = ${val};`);
           } else if (node.op === '+=') {
-            out.push(`${init} ${guarded} = (${guarded} ?? 0) + (${val});`);
+            out.push(`${guarded} = ((s as any).${objName}${rest} ?? 0) + (${val});`);
           } else {
-            out.push(`${init} ${guarded} = (${guarded} ?? 0) - (${val});`);
+            out.push(`${guarded} = ((s as any).${objName}${rest} ?? 0) - (${val});`);
           }
         } else if (node.op === '=') {
           out.push(`(s as any).${lhs} = ${val};`);
@@ -230,25 +241,36 @@ function generateSceneBody(
       }
       case 'goto': {
         if (node.target.startsWith('$')) {
-          const t = node.target.replace(/^\$/, '');
-          const argPart = node.arg.startsWith('$') ? `, '${node.arg.replace(/^\$/, '')}'` : '';
-          out.push(`scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, '${t}'${argPart}); } }]);`);
+          let t = node.target.replace(/^\$/, '');
+          if (t === 'loc') t = 'prevLoc';
+          let argPart = '';
+          if (node.arg.startsWith('$')) {
+            let av = node.arg.replace(/^\$/, '');
+            if (av === 'loc_arg') av = 'prevArg';
+            argPart = `, '${av}'`;
+          }
+          out.push(`dynamicGoto(s, '${t}'${argPart});`);
         } else {
           targets.add(node.target);
-          const arg2Part = node.arg2 ? `, '${esc(node.arg2)}'` : '';
-          const arg3Part = node.arg3 ? `, '${esc(node.arg3)}'` : '';
-          out.push(`scene.actions([{ label: 'Continue', goto: ['${node.target}', '${node.arg}'${arg2Part}${arg3Part}] }]);`);
+          const argVal = translateValue(`'${node.arg}'`, stateReads, todos);
+          const arg2Val = node.arg2 ? translateValue(`'${node.arg2}'`, stateReads, todos) : null;
+          const arg3Val = node.arg3 ? translateValue(`'${node.arg3}'`, stateReads, todos) : null;
+          const arg2Part = arg2Val ? `, ${arg2Val}` : '';
+          const arg3Part = arg3Val ? `, ${arg3Val}` : '';
+          out.push(`qspGoto(s, '${node.target}', ${argVal}${arg2Part}${arg3Part});`);
         }
         break;
       }
       case 'gs': {
         gsCalls.push(`${node.module}.${node.func}`);
         const gargs = node.args.map(a => translateValue(a, stateReads, todos));
-        const selfFn = node.module === locName ? argToFunc[node.func] : undefined;
+        const funcName = node.func.includes('<<') ? translateValue(`'${node.func}'`, stateReads, todos) : `'${node.func}'`;
+        const moduleName = node.module.includes('<<') ? translateValue(`'${node.module}'`, stateReads, todos) : `'${node.module}'`;
+        const selfFn = node.module === locName && !node.func.includes('<<') && !node.module.includes('<<') ? argToFunc[node.func] : undefined;
         if (selfFn) {
           out.push(`{ const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ${gargs.join(', ')}]; ${selfFn}(s, scene); (s as any).locArgs = __savedLocArgs; }`);
         } else {
-          out.push(`qspCall(s, '${node.module}', '${node.func}'${gargs.length ? ', ' + gargs.join(', ') : ''});`);
+          out.push(`qspCall(s, ${moduleName}, ${funcName}${gargs.length ? ', ' + gargs.join(', ') : ''});`);
         }
         break;
       }
@@ -335,9 +357,10 @@ function generateAct(
 ): string {
   if (node.inlineGoto) {
     targets.add(node.inlineGoto.target);
-    const arg2Part = node.inlineGoto.arg2 ? `, '${esc(node.inlineGoto.arg2)}'` : '';
-    const arg3Part = node.inlineGoto.arg3 ? `, '${esc(node.inlineGoto.arg3)}'` : '';
-    return `{ label: '${esc(resolveStaticFuncs(node.label))}', goto: ['${node.inlineGoto.target}', '${node.inlineGoto.arg}'${arg2Part}${arg3Part}] },`;
+    const argVal = translateValue(`'${node.inlineGoto.arg}'`, stateReads, todos);
+    const arg2Part = node.inlineGoto.arg2 ? `, ${translateValue(`'${node.inlineGoto.arg2}'`, stateReads, todos)}` : '';
+    const arg3Part = node.inlineGoto.arg3 ? `, ${translateValue(`'${node.inlineGoto.arg3}'`, stateReads, todos)}` : '';
+    return `{ ${generateLabelCode(node.label, stateReads, todos)}, goto: ['${node.inlineGoto.target}', ${argVal}${arg2Part}${arg3Part}] },`;
   }
 
   if (node.inlineStatements) {
@@ -347,7 +370,7 @@ function generateAct(
   }
 
   if (node.body.length === 0) {
-    return `{ label: '${esc(resolveStaticFuncs(node.label))}' }, // TODO-QSP: empty action body`;
+    return `{ ${generateLabelCode(node.label, stateReads, todos)} }, // TODO-QSP: empty action body`;
   }
 
   const bodyLines = generateSceneBody(node.body, todos, unsupported, stateWrites, stateReads, gsCalls, targets, locName, argToFunc);
@@ -372,7 +395,7 @@ function generateAct(
   }
 
   if (bodyLines.length === 0 && gotoCode) {
-    return `{ label: '${esc(resolveStaticFuncs(node.label))}', ${gotoCode} },`;
+    return `{ ${generateLabelCode(node.label, stateReads, todos)}, ${gotoCode} },`;
   }
 
   const parts: string[] = [];
@@ -380,7 +403,7 @@ function generateAct(
     parts.push(`handler: (st: GameState) => {\n${bodyLines.map(l => `    ${l}`).join('\n')}\n  }`);
   }
   if (gotoCode) parts.push(gotoCode);
-  return `{ label: '${esc(resolveStaticFuncs(node.label))}', ${parts.join(', ')} },`;
+  return `{ ${generateLabelCode(node.label, stateReads, todos)}, ${parts.join(', ')} },`;
 }
 
 function translateInlineAct(
@@ -411,12 +434,17 @@ function translateInlineAct(
     }
     const gtDynMatch = part.match(/^gt\s+(\$\w+)\s*(?:,\s*(\$\w+|'[^']*'))?\s*$/);
     if (gtDynMatch) {
-      const t = gtDynMatch[1].replace(/^\$/, '');
+      let t = gtDynMatch[1].replace(/^\$/, '');
+      if (t === 'loc') t = 'prevLoc';
       let argPart = '';
       if (gtDynMatch[2]) {
-        argPart = gtDynMatch[2].startsWith('$')
-          ? `, '${gtDynMatch[2].replace(/^\$/, '')}'`
-          : `, '${esc(gtDynMatch[2].slice(1, -1))}'`;
+        if (gtDynMatch[2].startsWith('$')) {
+          let av = gtDynMatch[2].replace(/^\$/, '');
+          if (av === 'loc_arg') av = 'prevArg';
+          argPart = `, '${av}'`;
+        } else {
+          argPart = `, '${esc(gtDynMatch[2].slice(1, -1))}'`;
+        }
       }
       handlerBits.push(`dynamicGoto(st, '${t}'${argPart});`);
       continue;
@@ -480,7 +508,7 @@ function translateInlineAct(
     : '';
 
   const bits = [handlerCode, gotoCode].filter(Boolean).join(', ');
-  return `{ label: '${esc(resolveStaticFuncs(label))}', ${bits} },`;
+  return `{ ${generateLabelCode(label, stateReads, todos)}, ${bits} },`;
 }
 
 function generateIf(
@@ -645,6 +673,25 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
   // QSP ! operator (not equal) between operands
   c = c.replace(/(\w)!(\w)/g, '$1!==$2');
   c = c.replace(/(\])!(\s*')/g, '$1!== $2');
+  // QSP dynamic variable name: <<$var['key']>>_suffix -> dynamic property access
+  // Must run BEFORE array-access handler so var['key'] inside <<>> is not pre-consumed
+  c = c.replace(/<<\$([a-zA-Z_]\w*)\[(['"])([^'"]*)\2\]>>(_[a-zA-Z_]\w*)/g, (_, obj, q, key, suffix) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    const keyStr = key.replace(/''/g, "'").replace(/\\"/g, '"');
+    const keyExpr = key.includes('<<') ? `(${key})` : `'${keyStr}'`;
+    phs.push([ph, `((${stateVar} as any)[((${stateVar} as any).${obj} ?? {})['${keyStr}'] + '${suffix}'] ?? 0)`]);
+    stateReads.push(obj);
+    return ph;
+  });
+  // QSP dynamic variable name: prefix<<$var['key']>> -> dynamic property access
+  // Must run BEFORE array-access handler so var['key'] inside <<>> is not pre-consumed
+  c = c.replace(/([a-zA-Z_]\w*)<<\$([a-zA-Z_]\w*)\[(['"])([^'"]*)\3\]>>/g, (_, prefix, obj, q, key) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    const keyStr = key.replace(/''/g, "'").replace(/\\"/g, '"');
+    phs.push([ph, `((${stateVar} as any)['${prefix}' + ((${stateVar} as any).${obj} ?? {})['${keyStr}']] ?? 0)`]);
+    stateReads.push(obj);
+    return ph;
+  });
   // QSP array access with literal key: WORD['key'] or WORD["key"] (protect key from identifier replacement)
   // Must run before <<expr>> handler so dynamic keys like WORD['<<$ARGS[1]>>-type'] are handled correctly
   c = c.replace(/\$?([a-zA-Z_]\w*)\[(['"])([^'"]*)\2\]/g, (_, obj, q, key) => {
@@ -655,8 +702,74 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
     return ph;
   });
   // QSP array access with angle-bracket index: WORD<<var>> -> WORD[var] (simple identifier index)
+  // QSP dynamic variable name: prefix<<var>>_suffix -> dynamic property access (quote-aware)
+  {
+    let out = '';
+    let i = 0;
+    let inQ = false;
+    let qCh = '';
+    while (i < c.length) {
+      if (inQ) {
+        if (c[i] === qCh) {
+          if (c[i + 1] === qCh) { i += 2; continue; }
+          inQ = false;
+        }
+        out += c[i];
+        i++;
+      } else {
+        if (c[i] === "'" || c[i] === '"') { inQ = true; qCh = c[i]; out += c[i]; i++; }
+        else {
+          const m = /^([a-zA-Z_]\w*)<<\$?([a-zA-Z_]\w*)>>(_[a-zA-Z_]\w*)/.exec(c.slice(i));
+          if (m) {
+            const ph = `\u0000${phs.length}\u0000`;
+            phs.push([ph, `((${stateVar} as any)[('${m[1]}' + String((${stateVar} as any).${m[2]} ?? 0)) + '${m[3]}'] ?? 0)`]);
+            stateReads.push(m[2]);
+            out += ph;
+            i += m[0].length;
+          } else {
+            out += c[i];
+            i++;
+          }
+        }
+      }
+    }
+    c = out;
+  }
   // Must run before the <<expr>> handler so it is treated as array access, not a call.
   c = c.replace(/([a-zA-Z_]\w*)<<\$?([a-zA-Z_]\w*)>>/g, '$1[$2]');
+  // QSP dynamic variable name: <<$var>>_suffix -> dynamic property access (quote-aware)
+  {
+    let out = '';
+    let i = 0;
+    let inQ = false;
+    let qCh = '';
+    while (i < c.length) {
+      if (inQ) {
+        if (c[i] === qCh) {
+          if (c[i + 1] === qCh) { i += 2; continue; }
+          inQ = false;
+        }
+        out += c[i];
+        i++;
+      } else {
+        if (c[i] === "'" || c[i] === '"') { inQ = true; qCh = c[i]; out += c[i]; i++; }
+        else {
+          const m = /^<<\$([a-zA-Z_]\w*)>>(_[a-zA-Z_]\w*)/.exec(c.slice(i));
+          if (m) {
+            const ph = `\u0000${phs.length}\u0000`;
+            phs.push([ph, `((${stateVar} as any)[((${stateVar} as any).${m[1]} ?? '') + '${m[2]}'] ?? 0)`]);
+            stateReads.push(m[1]);
+            out += ph;
+            i += m[0].length;
+          } else {
+            out += c[i];
+            i++;
+          }
+        }
+      }
+    }
+    c = out;
+  }
   // Handle <<expr>> inline in conditions
   c = c.replace(/<<(.+?)>>/g, (_, expr) => {
     const ph = `\u0000${phs.length}\u0000`;
@@ -801,7 +914,10 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
     return `((${stateVar} as any).${m.replace(/\./g, '?.')} ?? 0)`;
   });
   for (let pi = phs.length - 1; pi >= 0; pi--) {
-    c = c.split(phs[pi][0]).join(phs[pi][1]);
+    const ph = phs[pi][0];
+    const rep = phs[pi][1];
+    c = c.split(ph + '[').join(rep + '?.[');
+    c = c.split(ph).join(rep);
   }
   // QSP (expr) = 0 means "NOT expr" - convert (boolean_expr) === 0 to !(boolean_expr)
   // Skip when preceded by arithmetic operators (+, -, *, /, %) since the (expr) is an operand, not a boolean
@@ -879,6 +995,7 @@ function translateAssignLhs(varName: string, stateReads: string[], stateVar: str
 function translateValue(val: string, stateReads: string[], todos: string[], stateVar: string = 's', textContext: boolean = false): string {
   let v = val.trim();
   if (/^\u0000\d+\u0000$/.test(v)) return v;
+  v = convertExecLinks(v);
   const exprPhs: [string, string][] = [];
   // QSP & !! or & ! trailing comment (non-numeric values)
   const ampComment = v.match(/^(.*?)\s*&\s*!+/);
@@ -922,11 +1039,48 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
           else if (content[k] === '>' && content[k + 1] === '>' && depth > 0) { depth--; k++; if (depth === 0) break; }
         }
         const pre = content.slice(0, realDynIdx);
-        const inner = content.slice(realDynIdx + 2, k).replace(/''/g, "'");
+        const inner = content.slice(realDynIdx + 2, k - 1).replace(/''/g, "'");
         const post = content.slice(k + 1);
         const exprTranslated = translateValue(inner.trim(), stateReads, todos, stateVar, textContext);
-        return `'${esc(pre)}' + ${exprTranslated} + '${esc(post)}'`;
+        const postTranslated = translateFragment(post, stateReads, todos, stateVar, textContext);
+        return `'${esc(pre)}' + ${exprTranslated} + ${postTranslated}`;
       }
+    }
+  }
+  // Pre-pass: handle <<expr>> inside double-quoted strings with "" escapes
+  if (v.startsWith('"') && v.endsWith('"') && v.includes('<<') && v.includes('>>')) {
+    const content = v.slice(1, -1);
+    // Find << that is inside the double-quoted string (not after a closing ")
+    let inStr = true, strCh = '"';
+    let realDynIdx = -1;
+    for (let ci = 0; ci < content.length; ci++) {
+      const ch = content[ci];
+      if (inStr) {
+        if (ch === '"') {
+          if (content[ci + 1] === '"') { ci++; continue; }
+          inStr = false;
+        }
+      } else {
+        if (ch === "'" || ch === '"') { inStr = true; strCh = ch; }
+      }
+      if (ch === '<' && content[ci + 1] === '<' && inStr && strCh === '"') {
+        realDynIdx = ci;
+        break;
+      }
+    }
+    if (realDynIdx !== -1) {
+      let depth = 0, k = realDynIdx;
+      for (; k < content.length; k++) {
+        if (content[k] === '<' && content[k + 1] === '<') { depth++; k++; }
+        else if (content[k] === '>' && content[k + 1] === '>' && depth > 0) { depth--; k++; if (depth === 0) break; }
+      }
+      const pre = content.slice(0, realDynIdx).replace(/""/g, '"');
+      const inner = content.slice(realDynIdx + 2, k - 1).replace(/""/g, '"');
+      const postRaw = content.slice(k + 1);
+      const post = postRaw.replace(/""/g, '"');
+      const exprTranslated = translateValue(inner.trim(), stateReads, todos, stateVar, textContext);
+      const postTranslated = post.includes('<<') ? translateValue(`"${postRaw}"`, stateReads, todos, stateVar, textContext) : `'${esc(post)}'`;
+      return `'${esc(pre)}' + ${exprTranslated} + ${postTranslated}`;
     }
   }
   const hasArith = /[+\-*/%]/.test(v) || /\bmod\b/.test(v);
@@ -937,7 +1091,22 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
   }
   // String concatenation: 'lit' + $var + 'lit' — split on + outside quotes, translate each part.
   // Only apply when no other arithmetic operators (-, *, /, %) are present, to avoid breaking mixed expressions.
-  const hasOtherArith = /[-*/%]/.test(v.replace(/'/g, '').replace(/"/g, ''));
+  let hasOtherArith = false;
+  {
+    let inStr = false, strCh = '';
+    for (let ci = 0; ci < v.length; ci++) {
+      const ch = v[ci];
+      if (inStr) {
+        if (ch === strCh) {
+          if (v[ci + 1] === strCh) { ci++; }
+          else inStr = false;
+        }
+      } else {
+        if (ch === "'" || ch === '"') { inStr = true; strCh = ch; }
+        else if (/-|[*\/%]/.test(ch)) { hasOtherArith = true; break; }
+      }
+    }
+  }
   if (hasArith && v.includes('+') && !hasOtherArith) {
     const parts: string[] = [];
     let cur = '', inStr = false, strCh = '', depth = 0;
@@ -974,7 +1143,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
   if (v.startsWith("'") && v.endsWith("'") && !v.includes('<<')) return `'${esc(v.slice(1, -1))}'`;
   if (v.startsWith('"') && v.endsWith('"') && !v.includes('<<')) return `'${esc(v.slice(1, -1))}'`;
   // QSP $ARGS[N] in value context
-  const argsMatch = v.match(/^\$ARGS\[(\d+)\]$/);
+  const argsMatch = v.match(/^(?:\$)?ARGS\[(\d+)\]$/);
   if (argsMatch) {
     return textContext
       ? `((${stateVar} as any).locArgs?.[${argsMatch[1]}] ?? '')`
@@ -1051,6 +1220,139 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     const inner = v.match(/^<<(.+?)>>$/);
     if (inner) {
       return translateValue(inner[1].trim(), stateReads, todos, stateVar, textContext);
+    }
+    // QSP dynamic variable name: prefix<<$var['key']>> -> dynamic property access (quote-aware)
+    {
+      let out = '';
+      let i = 0;
+      let inQ = false;
+      let qCh = '';
+      while (i < v.length) {
+        if (inQ) {
+          if (v[i] === qCh) {
+            if (v[i + 1] === qCh) { i += 2; continue; }
+            inQ = false;
+          }
+          out += v[i];
+          i++;
+        } else {
+          if (v[i] === "'" || v[i] === '"') { inQ = true; qCh = v[i]; out += v[i]; i++; }
+          else {
+            const m = /^([a-zA-Z_]\w*)<<\$([a-zA-Z_]\w*)\[(['"])(.+?)\3\]>>/.exec(v.slice(i));
+            if (m) {
+              const ph = `\u0001${exprPhs.length}\u0001`;
+              exprPhs.push([ph, `((${stateVar} as any)['${m[1]}' + ((${stateVar} as any).${m[2]} ?? {})['${m[4]}']] ?? 0)`]);
+              stateReads.push(m[2]);
+              out += ph;
+              i += m[0].length;
+            } else {
+              out += v[i];
+              i++;
+            }
+          }
+        }
+      }
+      v = out;
+    }
+    // QSP dynamic variable name: prefix<<var>>_suffix -> dynamic property access (quote-aware)
+    {
+      let out = '';
+      let i = 0;
+      let inQ = false;
+      let qCh = '';
+      while (i < v.length) {
+        if (inQ) {
+          if (v[i] === qCh) {
+            if (v[i + 1] === qCh) { i += 2; continue; }
+            inQ = false;
+          }
+          out += v[i];
+          i++;
+        } else {
+          if (v[i] === "'" || v[i] === '"') { inQ = true; qCh = v[i]; out += v[i]; i++; }
+          else {
+            const m = /^([a-zA-Z_]\w*)<<\$?([a-zA-Z_]\w*)>>(_[a-zA-Z_]\w*)/.exec(v.slice(i));
+            if (m) {
+              const ph = `\u0001${exprPhs.length}\u0001`;
+              exprPhs.push([ph, `((${stateVar} as any)[('${m[1]}' + String((${stateVar} as any).${m[2]} ?? 0)) + '${m[3]}'] ?? 0)`]);
+              stateReads.push(m[2]);
+              out += ph;
+              i += m[0].length;
+            } else {
+              out += v[i];
+              i++;
+            }
+          }
+        }
+      }
+      v = out;
+    }
+    // QSP dynamic variable name: <<$var['key']>>_suffix -> dynamic property access (quote-aware)
+    {
+      let out = '';
+      let i = 0;
+      let inQ = false;
+      let qCh = '';
+      while (i < v.length) {
+        if (inQ) {
+          if (v[i] === qCh) {
+            if (v[i + 1] === qCh) { i += 2; continue; }
+            inQ = false;
+          }
+          out += v[i];
+          i++;
+        } else {
+          if (v[i] === "'" || v[i] === '"') { inQ = true; qCh = v[i]; out += v[i]; i++; }
+          else {
+            const m = /^<<\$([a-zA-Z_]\w*)\[(['"])(.+?)\2\]>>(_[a-zA-Z_]\w*)/.exec(v.slice(i));
+            if (m) {
+              const ph = `\u0001${exprPhs.length}\u0001`;
+              exprPhs.push([ph, `((${stateVar} as any)[((${stateVar} as any).${m[1]} ?? {})['${m[3]}'] + '${m[4]}'] ?? 0)`]);
+              stateReads.push(m[1]);
+              out += ph;
+              i += m[0].length;
+            } else {
+              out += v[i];
+              i++;
+            }
+          }
+        }
+      }
+      v = out;
+    }
+    // QSP dynamic variable name: <<$var>>_suffix -> dynamic property access
+    // Only match when NOT inside single/double quotes (those are handled by array-access handler)
+    {
+      let out = '';
+      let i = 0;
+      let inQ = false;
+      let qCh = '';
+      while (i < v.length) {
+        if (inQ) {
+          if (v[i] === qCh) {
+            if (v[i + 1] === qCh) { i += 2; continue; }
+            inQ = false;
+          }
+          out += v[i];
+          i++;
+        } else {
+          if (v[i] === "'" || v[i] === '"') { inQ = true; qCh = v[i]; out += v[i]; i++; }
+          else {
+            const m = /^<<\$([a-zA-Z_]\w*)>>(_[a-zA-Z_]\w*)/.exec(v.slice(i));
+            if (m) {
+              const ph = `\u0001${exprPhs.length}\u0001`;
+              exprPhs.push([ph, `((${stateVar} as any)[((${stateVar} as any).${m[1]} ?? '') + '${m[2]}'] ?? 0)`]);
+              stateReads.push(m[1]);
+              out += ph;
+              i += m[0].length;
+            } else {
+              out += v[i];
+              i++;
+            }
+          }
+        }
+      }
+      v = out;
     }
     // <<expr>> embedded in a larger expression. Skip <<...>> inside quoted array keys —
     // those are handled by the arithmetic branch's replaceArrayAccesses + buildKeyExpr.
@@ -1221,8 +1523,8 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
       return `Math.floor(Math.random() * ${b - a + 1}) + ${a}`;
     }
   }
-  if (/^\$ARGS\[(\d+)\]$/.test(v)) {
-    const idx = v.match(/^\$ARGS\[(\d+)\]$/)![1];
+  if (/^(?:\$)?ARGS\[(\d+)\]$/.test(v)) {
+    const idx = v.match(/^(?:\$)?ARGS\[(\d+)\]$/)![1];
     return textContext
       ? `(${stateVar} as any).locArgs?.[${idx}] ?? ''`
       : `(${stateVar} as any).locArgs?.[${idx}] ?? 0`;
@@ -1232,6 +1534,27 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     return `(${stateVar} as any).locat?.['${key}'] ?? 0`;
   }
   if (TS_KEYWORDS.has(v)) return v;
+  const builtinCall = v.match(/^(\w+)\s*\(/);
+  if (builtinCall && BUILTIN_FUNCS[builtinCall[1]]) {
+    const fnName = builtinCall[1];
+    const openIdx = v.indexOf('(', builtinCall[0].length - 1);
+    let depth = 0, end = -1, inStr = false, strCh = '';
+    for (let j = openIdx; j < v.length; j++) {
+      const ch = v[j];
+      if (inStr) {
+        if (ch === strCh) { if (v[j + 1] === strCh) { j++; continue; } inStr = false; }
+        continue;
+      }
+      if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
+      if (ch === '(') depth++;
+      else if (ch === ')') { depth--; if (depth === 0) { end = j; break; } }
+    }
+    if (end === v.length - 1) {
+      const bArgs = splitTopLevel(v.slice(openIdx + 1, end)).map(a => a.trim()).filter(a => a !== '');
+      const bTranslated = bArgs.map(a => translateValue(a, stateReads, todos, stateVar, textContext));
+      return BUILTIN_FUNCS[fnName](bTranslated);
+    }
+  }
   if (/[+\-*/%]/.test(v) || /\bmod\b/.test(v)) {
     const phs: [string, string][] = [];
     // Unicode fractions and operators
@@ -1275,12 +1598,12 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
       stateReads.push(obj, idx);
       return ph;
     });
-    v = v.replace(/\$ARGS\[\]/g, () => {
+    v = v.replace(/(?:\$)?ARGS\[\]/g, () => {
       const ph = `\u0000${phs.length}\u0000`;
       phs.push([ph, `((${stateVar} as any).locArgs ?? 0)`]);
       return ph;
     });
-    v = v.replace(/\$ARGS\[(\d+)\]/g, (_, idx) => {
+    v = v.replace(/(?:\$)?ARGS\[(\d+)\]/g, (_, idx) => {
       const ph = `\u0000${phs.length}\u0000`;
       phs.push([ph, textContext
         ? `((${stateVar} as any).locArgs?.[${idx}] ?? '')`
@@ -1452,7 +1775,11 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
       }
     }
     for (let pi = exprPhs.length - 1; pi >= 0; pi--) {
-      v = v.split(exprPhs[pi][0]).join(exprPhs[pi][1]);
+      const ph = exprPhs[pi][0];
+      const rep = exprPhs[pi][1];
+      // If placeholder is immediately followed by '[', use '?.[' for safe chaining
+      v = v.split(ph + '[').join(rep + '?.[');
+      v = v.split(ph).join(rep);
     }
     return v;
   }
@@ -1492,7 +1819,40 @@ function extractDescription(nodes: QspNode[]): string | null {
 }
 
 function esc(s: string): string {
-  return s.replace(/''/g, '\u0000').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\u0000/g, "\\'");
+  return s.replace(/''/g, '\u0000').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\u0000/g, "\\'").replace(/\n/g, '\\n');
+}
+
+function translateFragment(frag: string, stateReads: string[], todos: string[], stateVar: string, textContext: boolean): string {
+  if (!frag.includes('<<')) return `'${esc(frag)}'`;
+  let inStr = true, strCh = "'";
+  let idx = -1;
+  for (let ci = 0; ci < frag.length; ci++) {
+    const ch = frag[ci];
+    if (inStr) {
+      if (ch === "'") {
+        if (frag[ci + 1] === "'") { ci++; continue; }
+        inStr = false;
+      }
+    } else {
+      if (ch === "'" || ch === '"') { inStr = true; strCh = ch; }
+    }
+    if (ch === '<' && frag[ci + 1] === '<' && inStr && strCh === "'") {
+      idx = ci;
+      break;
+    }
+  }
+  if (idx === -1) return `'${esc(frag)}'`;
+  let depth = 0, k = idx;
+  for (; k < frag.length; k++) {
+    if (frag[k] === '<' && frag[k + 1] === '<') { depth++; k++; }
+    else if (frag[k] === '>' && frag[k + 1] === '>' && depth > 0) { depth--; k++; if (depth === 0) break; }
+  }
+  const pre = frag.slice(0, idx);
+  const inner = frag.slice(idx + 2, k - 1).replace(/''/g, "'");
+  const post = frag.slice(k + 1);
+  const exprTranslated = translateValue(inner.trim(), stateReads, todos, stateVar, textContext);
+  const postTranslated = translateFragment(post, stateReads, todos, stateVar, textContext);
+  return `'${esc(pre)}' + ${exprTranslated} + ${postTranslated}`;
 }
 
 function unescapeDoubled(v: string): string {
@@ -1516,6 +1876,27 @@ function unescapeDoubled(v: string): string {
     }
   }
   return out;
+}
+
+function generateLabelCode(label: string, stateReads: string[], todos: string[]): string {
+  const resolved = resolveStaticFuncs(label);
+  if (resolved.includes('<<')) {
+    const parts: string[] = [];
+    let rest = resolved;
+    while (rest.includes('<<') && rest.includes('>>')) {
+      const idx = rest.indexOf('<<');
+      const closeIdx = rest.indexOf('>>', idx + 2);
+      if (closeIdx === -1) break;
+      if (idx > 0) parts.push(`'${esc(rest.slice(0, idx))}'`);
+      const expr = rest.slice(idx + 2, closeIdx).trim();
+      const translated = translateValue(expr, stateReads, todos, 's', true);
+      parts.push(`String(${translated} ?? '')`);
+      rest = rest.slice(closeIdx + 2);
+    }
+    if (rest.length > 0) parts.push(`'${esc(rest)}'`);
+    return `label: '', labelFn: (s: GameState) => ${parts.join(' + ')}`;
+  }
+  return `label: '${esc(resolved)}'`;
 }
 
 function resolveStaticFuncs(s: string): string {
@@ -1562,6 +1943,84 @@ function resolveStaticFuncs(s: string): string {
   return out;
 }
 
+function execArgToJs(a: string): string {
+  const t = a.trim();
+  if (t.startsWith("'") && t.endsWith("'") && t.length >= 2) return t;
+  if (t === '$loc') return `window.__gameStore.getState().prevLoc`;
+  if (t === '$loc_arg') return `window.__gameStore.getState().prevArg`;
+  if (t.startsWith('$')) return `String(window.__gameStore.getState().${t.slice(1)} ?? '')`;
+  if (/^\w+$/.test(t)) return `String(window.__gameStore.getState().${t} ?? '')`;
+  return `'${t}'`;
+}
+
+function execValToJs(v: string): string {
+  const t = v.trim();
+  if (/^\$?\w+$/.test(t)) return `s.${t.replace(/^\$/, '')}`;
+  return t;
+}
+
+function convertExecLinks(s: string): string {
+  const re = /<a[^>]*href="(?:"?)?exec:([^"]+?)"{1,3}[^>]*>((?:[^<]|<(?!\/a>))*)<\/a>/g;
+  return s.replace(re, (_m, execStr: string, text: string) => {
+    const clean = execStr.replace(/''/g, "'");
+    const gtMatch = clean.match(/(?:^|&\s*|\s)(?:gt|gs)\s*((?:'[^']*'|\$?\w+)(?:\s*,\s*(?:'[^']*'|\$?\w+)){0,2})/);
+    const argParts = gtMatch ? gtMatch[1].split(',').map((a: string) => a.trim()) : [];
+    const locJs = argParts[0] !== undefined ? execArgToJs(argParts[0]) : null;
+    const argJs = argParts[1] !== undefined ? execArgToJs(argParts[1]) : "''";
+    const arg2Js = argParts[2] !== undefined ? execArgToJs(argParts[2]) : null;
+    const stmts = clean.split('&').map((st: string) => st.trim()).filter((st: string) => st && !st.startsWith('gt') && !st.startsWith('gs'));
+    const stmtCode = stmts.map((st: string) => {
+      const setMatch = st.match(/^(\w+)\[('[^']*')\]\s*([+\-]?=)\s*(.+)$/);
+      if (setMatch) {
+        const obj = setMatch[1];
+        const key = setMatch[2];
+        const op = setMatch[3];
+        const val = execValToJs(setMatch[4]);
+        return op === '=' ? `(s.${obj} ??= {})${key} = ${val};` : `(s.${obj} ??= {})${key} ${op}${val};`;
+      }
+      const simpleMatch = st.match(/^(\w+)\s*([+\-]?=)\s*(.+)$/);
+      if (simpleMatch) {
+        const obj = simpleMatch[1];
+        const op = simpleMatch[2];
+        const val = execValToJs(simpleMatch[3]);
+        return op === '=' ? `s.${obj} = ${val};` : `s.${obj} ${op}${val};`;
+      }
+      const viewMatch = st.match(/^view\s*'(.*)'$/);
+      if (viewMatch) {
+        const imgPath = viewMatch[1].replace(/''/g, "'");
+        const singleMatch = imgPath.match(/^<<(.+?)>>$/);
+        if (singleMatch) {
+          const e = singleMatch[1].trim();
+          if (/^\$?\w+$/.test(e)) return `s.viewImage = s.${e.replace(/^\$/, '')};`;
+          return `s.viewImage = '__qspDyn';`;
+        }
+        if (!imgPath.includes('<<')) return `s.viewImage = '${imgPath}';`;
+        const parts = imgPath.split(/(<<.+?>>)/g).filter((p: string) => p);
+        const jsParts = parts.map((p: string) => {
+          const m = p.match(/^<<(.+?)>>$/);
+          if (m) {
+            const e = m[1].trim();
+            if (/^\$?\w+$/.test(e)) return `s.${e.replace(/^\$/, '')}`;
+            return `'__qspDyn'`;
+          }
+          return `'${p.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+        });
+        return `s.viewImage = ${jsParts.join(' + ')};`;
+      }
+      return `/* TODO-QSP: ${st} */`;
+    }).join(' ');
+    const parts: string[] = [];
+    if (stmtCode) parts.push(`window.__gameStore.setState((s) => { ${stmtCode} return s; });`);
+    if (locJs) {
+      const arg2Part = arg2Js ? `, ${arg2Js}` : '';
+      parts.push(`window.__gameStore.getState().doGoto(${locJs}, ${argJs}${arg2Part});`);
+    }
+    const onclick = parts.join(' ').replace(/'/g, '\\u0027');
+    if (!onclick) return _m;
+    return `<a href="#" onclick="${onclick} return false;">${text}</a>`;
+  });
+}
+
 function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVar: string = 's'): string {
   s = resolveStaticFuncs(s);
   const funcMatch = s.match(/^\s*\$func\((.*)\)\s*$/);
@@ -1575,7 +2034,10 @@ function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVa
     });
     return `qspFunc(${stateVar}, '${esc(mod)}', '${esc(fn)}'${rest.length ? ', ' + rest.join(', ') : ''})`;
   }
-  if (!s.includes('<<')) return `'${esc(s)}'`;
+  const bareVar = s.match(/^\$(\w+)$/);
+  if (bareVar) return `String((${stateVar} as any).${bareVar[1]} ?? '')`;
+  if (!s.includes('<<')) return `'${esc(convertExecLinks(s))}'`;
+  s = convertExecLinks(s);
   // Segment IR: split into text / expr segments, then emit ONE template literal.
   const segs: { type: 'text' | 'expr'; value: string }[] = [];
   let rest = s;
@@ -1605,6 +2067,7 @@ function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVa
 }
 
 function truncate(s: string, max: number): string {
+  s = s.replace(/\n/g, ' ');
   return s.length > max ? s.slice(0, max) + '...' : s;
 }
 
@@ -1711,7 +2174,8 @@ function splitTopLevel(s: string): string[] {
 // QSP built-in functions -> JS (args are already-translated expressions)
 const BUILTIN_FUNCS: Record<string, (a: string[]) => string> = {
   mid: (a) => a.length === 3 ? `(String(${a[0]}).slice((${a[1]})-1, ((${a[1]})-1)+(${a[2]})))` : `(String(${a[0]}).slice((${a[1]})-1))`,
-  instr: (a) => `(String(${a[0]}).indexOf(String(${a[1]}))) + 1`,
+  instr: (a) => `((String(${a[0]}).indexOf(String(${a[1]}))) + 1)`,
+  strpos: (a) => `((String(${a[0]}).indexOf(String(${a[1]}))) + 1)`,
   left: (a) => `(String(${a[0]}).slice(0, ${a[1]}))`,
   right: (a) => `(String(${a[0]}).slice(String(${a[0]}).length - ${a[1]}))`,
   len: (a) => `(String(${a[0]}).length)`,
@@ -1777,6 +2241,7 @@ function replaceBuiltinFuncs(c: string, stateReads: string[], todos: string[], s
       const inner = out.slice(openIdx + 1, end);
       const args = splitTopLevel(inner).map(a => a.trim()).filter(a => a !== '');
       const translated = args.map(a => {
+        if (/^\u0000\d+\u0000$/.test(a)) return a;
         const r = translateValue(a, stateReads, todos, stateVar, textContext);
         return r;
       });

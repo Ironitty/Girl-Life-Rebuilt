@@ -41,13 +41,15 @@ function enterLookstabs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_end'] = '</td></tr></table></center>';
+  ((s as any).settings = (s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings = (s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings = (s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
+  (s as any).BACKIMAGE = '';
   (s as any).menu_page = 0;
   qspCall(s, '$menu_looks', 'lookstabs', 'Looks');
   scene.text('<center><h1>Looks</h1></center>');
   // TODO-QSP: $settings['table_start']
+  (s as any).img_temp = qspFunc(s, '$face_image', '');
   scene.img(`${((s as any).img_temp || '')}`);
   if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
     // TODO-QSP: dynamic text: Your hair: <<$face_style['avatar_hair']>>.
@@ -85,6 +87,9 @@ function enterBody(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Body</h1></center>');
   // TODO-QSP: $settings['table_start']
   if (((s as any).modApi_body_image ?? 0) !== '') {
+    (s as any).img_temp = ((s as any).modApi_body_image ?? 0);
+  } else {
+    (s as any).img_temp = qspFunc(s, '$body_image', 'body');
   }
   scene.img(`${((s as any).img_temp || '')}`);
   if (((s as any).modApi_body_image_msg ?? 0) === '') {
@@ -100,6 +105,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).ward_img_hgt ?? 0))) {
     (s as any).ward_img_hgt = 150;
   }
+  (s as any).temp_table = '<center><table border=0 cellspacing=' + ((s as any).ward_img_hgt ?? 0)/25 + ' cellpadding=5>';
   // TODO-QSP: $temp_table += '<tr>'
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     // TODO-QSP: $temp_table += '<th width="33%">Bra worn</th>'
@@ -130,6 +136,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, '$body_image', 'clothes');
   if (((s as any).modApi_clothes_image ?? 0) !== '') {
+    (s as any).img_temp = ((s as any).modApi_clothes_image ?? 0);
   }
   if (((s as any).modApi_clothes_image_msg ?? 0) === '') {
     // TODO-QSP: $temp_table += '<td><center><<$body_image_msg>></center></td>'
@@ -186,7 +193,9 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', 'Clothes');
   scene.text('<center><h1>Shoes</h1></center>');
   // TODO-QSP: $settings['table_start']
+  (s as any).img_temp = qspFunc(s, '$body_image', 'shoes');
   if (((s as any).modApi_shoes_image ?? 0) !== '') {
+    (s as any).img_temp = ((s as any).modApi_shoes_image ?? 0);
   }
   scene.img(`${((s as any).img_temp || '')}`);
   if (((s as any).modApi_shoes_image_msg ?? 0) === '') {
@@ -211,92 +220,92 @@ function enterTattoos(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).pcs_tattoos ?? 0)?.['face'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooface\'">Face</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooface\\u0027); return false;">Face</a> | ');
   } else {
     scene.text('Face | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['lip'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoolip\'">Lip</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattoolip\\u0027); return false;">Lip</a> | ');
   } else {
     scene.text('Lip | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['neck'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooneck\'">Neck</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooneck\\u0027); return false;">Neck</a> | ');
   } else {
     scene.text('Neck | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['back'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooback\'">Back</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooback\\u0027); return false;">Back</a> | ');
   } else {
     scene.text('Back | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooshoulder\'">Shoulder</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooshoulder\\u0027); return false;">Shoulder</a> | ');
   } else {
     scene.text('Shoulder | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['breast'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoobreast\'">Breast</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattoobreast\\u0027); return false;">Breast</a> | ');
   } else {
     scene.text('Breast | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['under'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoounder\'">Under Breast</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattoounder\\u0027); return false;">Under Breast</a> | ');
   } else {
     scene.text('Under Breast | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['chest'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoochest\'">Chest</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattoochest\\u0027); return false;">Chest</a> | ');
   } else {
     scene.text('Chest | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['side'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooside\'">Side</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooside\\u0027); return false;">Side</a> | ');
   } else {
     scene.text('Side | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['belly'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoobelly\'">Belly</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattoobelly\\u0027); return false;">Belly</a>');
   } else {
     scene.text('Belly');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['arm'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooarm\'">Arm</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooarm\\u0027); return false;">Arm</a> | ');
   } else {
     scene.text('Arm | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['wrist'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoowrist\'">Wrist</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattoowrist\\u0027); return false;">Wrist</a> | ');
   } else {
     scene.text('Wrist | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['hand'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoohand\'">Hand</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattoohand\\u0027); return false;">Hand</a> | ');
   } else {
     scene.text('Hand | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['leg'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooleg\'">Leg</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooleg\\u0027); return false;">Leg</a> | ');
   } else {
     scene.text('Leg | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ankle'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooankle\'">Ankle</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooankle\\u0027); return false;">Ankle</a> | ');
   } else {
     scene.text('Foot | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['tramp'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattootramp\'">"Tramp Stamp"</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattootramp\\u0027); return false;">"Tramp Stamp"</a> | ');
   } else {
     scene.text('Tramp Stamp | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ass'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooass\'">Butt</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattooass\\u0027); return false;">Butt</a> | ');
   } else {
     scene.text('Butt | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['pussy'] > 0) {
-    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoovag\'">Groin</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027tattoovag\\u0027); return false;">Groin</a>');
   } else {
     scene.text('Groin');
   }
@@ -447,42 +456,42 @@ function enterPiercing(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['ears'] > 0) {
-    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_ears\'">Ears</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027piercing_ears\\u0027); return false;">Ears</a> | ');
   } else {
     scene.text('Ears | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['nose'] > 0) {
-    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_nose\'">Nose</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027piercing_nose\\u0027); return false;">Nose</a> | ');
   } else {
     scene.text('Nose | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['brow'] > 0) {
-    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_brow\'">Eyebrows</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027piercing_brow\\u0027); return false;">Eyebrows</a> | ');
   } else {
     scene.text('Eyebrows | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['lip'] > 0) {
-    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_lip\'">Lips</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027piercing_lip\\u0027); return false;">Lips</a> | ');
   } else {
     scene.text('lips | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
-    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_tongue\'">Tongue</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027piercing_tongue\\u0027); return false;">Tongue</a> | ');
   } else {
     scene.text('Tongue | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['navel'] > 0) {
-    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_navel\'">Navel</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027piercing_navel\\u0027); return false;">Navel</a> | ');
   } else {
     scene.text('Navel | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['nipples'] > 0) {
-    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_nipples\'">Nipples</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027piercing_nipples\\u0027); return false;">Nipples</a> | ');
   } else {
     scene.text('Nipples | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['pussy'] > 0) {
-    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_pussy\'">Pussy</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_looks\\u0027, \\u0027piercing_pussy\\u0027); return false;">Pussy</a>');
   } else {
     scene.text('Pussy');
   }

@@ -13,6 +13,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'uni_library', 'start');
+  (s as any).sexloc = 'uni_library';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
@@ -22,34 +24,34 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('One of the medium sized buildings is the university\'s library. It is three stories tall and filled with books, sections with tables scattered around to study or relax at and computer stations to help students with their studying.');
   if (((s as any).locat ?? 0)?.['katja'] === 29) {
     // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
-    scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a cute redheaded girl\', \'<a href="exec:gt \'katja_uni\', \'library\'">Katja</a>\')+\' sitting at one of the desks with a laptop and a pile of books.');
+    scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a cute redheaded girl\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027katja_uni\\u0027, \\u0027library\\u0027); return false;">Katja</a>\')+\' sitting at one of the desks with a laptop and a pile of books.');
   }
   if (((s as any).locat ?? 0)?.['A144'] === 12) {
-    scene.text('You see your former classmate <a href="exec:gt \'uni_library\', \'anushka\'">Anushka</a> sitting at one of the tables studying some books.');
+    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027uni_library\\u0027, \\u0027anushka\\u0027); return false;">Anushka</a> sitting at one of the tables studying some books.');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 15) {
     // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
-    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="exec:gt \'uni_library\', \'albina\'">Albina</a>\')+\' searching the shelves for books.');
+    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027uni_library\\u0027, \\u0027albina\\u0027); return false;">Albina</a>\')+\' searching the shelves for books.');
   }
   if (((s as any).week ?? 0) <= 4  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17) {
     if (((s as any).meet_kendra ?? 0) === 1) {
-      scene.text('You see <a href="exec:gt \'uni_library\', \'kendra\'">Kendra</a> sitting at one of the tables studying some books.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027uni_library\\u0027, \\u0027kendra\\u0027); return false;">Kendra</a> sitting at one of the tables studying some books.');
     } else {
-      scene.text('You see a pretty ebony <a href="exec:gt \'uni_library\', \'kendra\'">girl</a> sitting at one of the tables studying some books.');
+      scene.text('You see a pretty ebony <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027uni_library\\u0027, \\u0027kendra\\u0027); return false;">girl</a> sitting at one of the tables studying some books.');
     }
   }
   if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17) {
-    scene.text('You see your former classmate <a href="exec:gt \'uni_library\', \'artem\'">Artem</a> sitting at one of the tables studying some books.');
+    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027uni_library\\u0027, \\u0027artem\\u0027); return false;">Artem</a> sitting at one of the tables studying some books.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) > 1  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
     if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
-      if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_day_check'] = ((s as any).daystart ?? 0);
+      ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['library_day_check'] = ((s as any).daystart ?? 0);
       if ((!(Math.floor(Math.random() * 4) + 0))) {
-        if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_day'] = ((s as any).daystart ?? 0);
+        ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['library_day'] = ((s as any).daystart ?? 0);
       }
     }
     if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
-      scene.text('You see your former classmate <a href="exec: gt \'natalia_pavlova\',\'library\'">Natalia Pavlova</a>.');
+      scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027natalia_pavlova\\u0027, \\u0027library\\u0027); return false;">Natalia Pavlova</a>.');
     }
   }
   if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8) {
@@ -80,6 +82,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterStudy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).sexloc = 'uni_library';
   qspCall(s, 'stat', '');
   scene.text('<center><b>The University Library</b></center>');
   scene.img('images/locations/city/island/university/library/study\' + rand(1, 7) + \'.jpg');
@@ -138,7 +141,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
 
 function enterStudying(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  qspCall(s, 'grades', 'optional_activity_attribute', '' + qspUntranslated(s, "ARGS[1]>", { location: "uni_library" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "uni_library" }) + '', 'yes', Math.min(((s as any).pcs_intel ?? 0)+10, 100));
+  qspCall(s, 'grades', 'optional_activity_attribute', '' + ((s as any).locArgs?.[1] ?? 0) + '', '' + ((s as any).locArgs?.[2] ?? 0) + '', 'yes', Math.min(((s as any).pcs_intel ?? 0)+10, 100));
   qspCall(s, 'stat', '');
   scene.text('<center><b>The University Library</b></center>');
   scene.img('images/locations/city/island/university/library/study\' + rand(1, 7) + \'.jpg');
@@ -266,7 +269,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'grades', 'grade_award', '' + qspUntranslated(s, "ARGS[1]>", { location: "uni_library" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "uni_library" }) + '', ((s as any).study_mod ?? 0));
+    qspCall(s, 'grades', 'grade_award', '' + ((s as any).locArgs?.[1] ?? 0) + '', '' + ((s as any).locArgs?.[2] ?? 0) + '', ((s as any).study_mod ?? 0));
   }
   qspCall(s, 'stat', '');
   if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8) {
@@ -289,6 +292,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
 
 function enterWander(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
+  (s as any).sexloc = 'uni_library';
   qspCall(s, 'stat', '');
   scene.text('<center><b>The University Library</b></center>');
   (s as any).temp = Math.floor(Math.random() * 20) + 1;
@@ -505,7 +509,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('You walk over to his table.');
   if (((s as any).npc_rel ?? 0)?.['A2'] >= 50) {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['knows_dorm_room_number'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['knows_dorm_room_number'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.text('You sit next to Artem and talk about your classes, fellow students, roommates and life in general for a while.');
     scene.text('"I don\'t mean to be rude, but I really need to finish this," he says with a small smile. "Why don\'t you come to my dorm room sometime and we can hang out then? I\'m in room 209."');
@@ -538,7 +542,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   scene.text('You walk over to her table.');
   if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
-    if (!(s as any).anushkaCityQW) (s as any).anushkaCityQW = {}; (s as any).anushkaCityQW['first_visit'] = 1;
+    ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
@@ -589,7 +593,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       scene.text('"I prefer studying in private without any distractions. Now I\'d love to chat, but I need to get going."');
       scene.text('You just nod as she brushes past you.');
       if (((s as any).AlbinaQW ?? 0)?.['dorm_invite'] === 0) {
-        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['dorm_invite'] = 1;
+        ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['dorm_invite'] = 1;
         scene.text('"Oh, one last thing," she says as she stops and turns back to face you. "It\'s insane that you haven\'t visited me at my dorm room yet!"');
         if (((s as any).start_type ?? 0) === 'city_tg'  ||  ((s as any).start_type ?? 0) === 'uni_tg') {
           scene.text('"Really?" you reply. "You want me to come to your room?"');
@@ -605,7 +609,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_showtext = 1;
         } else {
           if (((s as any).contactAnon ?? 0)?.[String((s as any).temp_index ?? 0)] !== 0) {
-            if (!(s as any).contactAnon) (s as any).contactAnon = {}; (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
+            ((s as any).contactAnon = (s as any).contactAnon ?? {})[String((s as any).temp_index ?? 0)] = 0;
             (s as any).temp_showtext = 1;
           }
         }

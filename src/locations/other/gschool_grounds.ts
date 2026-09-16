@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_grounds', 'main');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'vicky_meynold_schedule', '');
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'igor_schedule', '');
@@ -22,14 +23,14 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Pavlovsk\'s only school, where all the local children go for their education. Next to the school is the athletic field and a parking lot for the teachers, with a large grove of trees just beyond them.');
   // TODO-QSP: dynamic text: Hidden behind these trees is the <a href="exec: minut += 1 & gt 'pav_old_school'...
-  scene.text('Hidden behind these trees is the <a href="exec: minut += 1 & gt \'pav_old_school\', \'old_school\'">old school building</a>, which was supposed to be renovated and used for advanced classes after the new one was built, but budget cuts meant the project was cancelled and now the old building stands empty and abandoned. It\'s a popular spot for students to skip class or hang out outside of school.');
+  scene.text('Hidden behind these trees is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_old_school\\u0027, \\u0027old_school\\u0027); return false;">old school building</a>, which was supposed to be renovated and used for advanced classes after the new one was built, but budget cuts meant the project was cancelled and now the old building stands empty and abandoned. It\'s a popular spot for students to skip class or hang out outside of school.');
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  (((s as any).hour ?? 0) === 6  ||  (((s as any).hour ?? 0) > 13  &&  ((s as any).hour ?? 0) <= 15))  &&  ((s as any).cumloc ?? 0)[11] === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
     return;
   }
   if (((((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) >= 30)  ||  (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).suspended ?? 0)?.['on'] !== 1) {
     // TODO-QSP: dynamic text: With the school open, you can go to the <a href="exec: minut += 1 & gt 'gschool_...
-    scene.text('With the school open, you can go to the <a href="exec: minut += 1 & gt \'gschool_grounds\', \'change_room\'">changing rooms</a> by the gym and change your outfit.');
+    scene.text('With the school open, you can go to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027gschool_grounds\\u0027, \\u0027change_room\\u0027); return false;">changing rooms</a> by the gym and change your outfit.');
   }
   if (((s as any).day ?? 0) === ((s as any).nyp_day ?? 0)  &&  ((s as any).month ?? 0) === 12  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17) {
@@ -51,19 +52,20 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow Dimka to the party at his house', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-  }, goto: ['sny', '3'] },
+    qspGoto(s, 'sny', '3');
+  } },
     ]);
   }
   if (((s as any).hour ?? 0) === 14  &&  ((s as any).week ?? 0) < 6  &&  (!((s as any).kanikuli ?? 0))) {
     if (((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
       if (((s as any).week ?? 0) === 1  &&  (!((s as any).NikoIntro ?? 0))) {
-        scene.actions([{ label: 'Continue', goto: ['NikoEv', 'Intro'] }]);
+        qspGoto(s, 'NikoEv', 'Intro');
       } else {
         if (((s as any).NikoVolkovQW ?? 0) === 5  &&  ((s as any).NikoEv ?? 0) === 6  &&  (!((s as any).NikoDate ?? 0))) {
-          scene.actions([{ label: 'Continue', goto: ['NikoDates', 'after_school'] }]);
+          qspGoto(s, 'NikoDates', 'after_school');
         } else {
           if (((s as any).NikoVolkovQW ?? 0) === 5  &&  ((s as any).NikoEv ?? 0) === 8  &&  (!((s as any).NikoDate ?? 0))) {
-            scene.actions([{ label: 'Continue', goto: ['NikoDates', 'after_school2'] }]);
+            qspGoto(s, 'NikoDates', 'after_school2');
           }
         }
       }
@@ -72,22 +74,23 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).afterschool_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).suspended ?? 0)?.['on'] !== 1  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     (s as any).afterschool_day = ((s as any).daystart ?? 0);
     if ((!(Math.floor(Math.random() * 4) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_events', 'break_events'] }]);
+      (s as any).eventtype = 'after_school';
+      qspGoto(s, 'gschool_events', 'break_events');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_events', 'afterschool_events'] }]);
+      qspGoto(s, 'gschool_events', 'afterschool_events');
     }
   }
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).cheerleaders_on ?? 0) === 1  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).suspended ?? 0)?.['on'] !== 1  &&  ((s as any).npc_pregtalk ?? 0)?.['A23'] === 0) {
     if (((s as any).cheerleadingQW ?? 0)?.['quest_stage'] === 1) {
       if (((s as any).pregtime ?? 0) < 90) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'tryouts'] }]);
+        qspGoto(s, 'gschool_cheerleading', 'tryouts');
       }
     } else {
       if (((s as any).cheerleadingQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).cheerleadingQW ?? 0)?.['quest_stage'] > 1) {
         if (((s as any).week ?? 0) === 5  &&  (((s as any).cheerleadingQW ?? 0)?.['quest_stage'] >= 3  ||  ((s as any).cheerleadingQW ?? 0)?.['backup_game'] === 1)) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'afterschool_game'] }]);
+          qspGoto(s, 'gschool_cheerleading', 'afterschool_game');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['gschool_cheerleading', 'afterschool_practice'] }]);
+          qspGoto(s, 'gschool_cheerleading', 'afterschool_practice');
         }
       }
     }
@@ -99,7 +102,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to your graduation', handler: (st: GameState) => {
     (s as any).hour = 10;
     (s as any).minut = 0;
-    if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['school_diploma'] = 1;
+    ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['school_diploma'] = 1;
     (s as any).kanikuli = 7;
     qspCall(s, 'stat', '');
     if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
@@ -154,7 +157,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get your diploma', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['school_diploma'] = 1;
+    ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['school_diploma'] = 1;
     (s as any).kanikuli = 7;
     qspCall(s, 'stat', '');
     if (((s as any).class ?? 0)?.['school_grade_average'] >= 70) {
@@ -183,7 +186,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
             scene.text('It\'s too early for school right now.');
           } else {
             if (((s as any).NikoEv ?? 0) === 10) {
-              scene.actions([{ label: 'Continue', goto: ['NikoWhore', 'Walk Of Shame'] }]);
+              qspGoto(s, 'NikoWhore', 'Walk Of Shame');
             }
             scene.actions([
               { label: 'Wait for class', goto: ['gschool_grounds', 'building'] },
@@ -192,7 +195,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).hour ?? 0) === 7) {
             if (((s as any).NikoEv ?? 0) === 10) {
-              scene.actions([{ label: 'Continue', goto: ['NikoWhore', 'Walk Of Shame'] }]);
+              qspGoto(s, 'NikoWhore', 'Walk Of Shame');
             }
             if (((s as any).minut ?? 0) <= 45) {
               scene.actions([
@@ -216,7 +219,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).hour ?? 0) === 8) {
               if (((s as any).NikoEv ?? 0) === 10) {
-                scene.actions([{ label: 'Continue', goto: ['NikoWhore', 'Walk Of Shame'] }]);
+                qspGoto(s, 'NikoWhore', 'Walk Of Shame');
               }
               scene.text('You missed your first class. You hope that no one noticed.');
               scene.actions([
@@ -238,7 +241,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       { label: 'Smoke a joint behind the school building', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'joint');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -249,15 +252,17 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).christinaQW ?? 0)?.['pre_fight'] === 1  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  (!((s as any).kanikuli ?? 0))) {
     scene.actions([
-      { label: 'Attack Christina', goto: ['Zvereva_events', 'KristinaFight'] },
+      { label: 'Attack Christina', handler: (st: GameState) => {
+    qspGoto(s, 'Zvereva_events', 'KristinaFight');
+  } },
     ]);
   }
   if (((s as any).suspended ?? 0)?.['on'] !== 1  &&  (!((s as any).kanikuli ?? 0))) {
     if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).dimaRevenge ?? 0) === 5  &&  (!((s as any).dimaRevChoice ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
+      qspGoto(s, 'dimaRevenge', '', 'dimaRevenge');
     } else {
       if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
+        qspGoto(s, 'dimaRevenge', '', 'dimaRevenge');
       } else {
         if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 5  &&  ((s as any).dimaRevChoice ?? 0) === 1) {
           // TODO-QSP: gt 'dimaRevenge', 5, 'before'
@@ -266,7 +271,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: gt 'dimaRevenge', 6, 'before'
           } else {
             if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 1) {
-              scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
+              qspGoto(s, 'dimaRevenge', '', 'dimaRevenge');
             } else {
               if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 2) {
                 // TODO-QSP: gt 'dimaRevenge', dimaRevenge, 'day4jockbefore'
@@ -278,7 +283,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: gt 'dimaRevenge', 5, 'day5jockafter'
                   } else {
                     if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 5  &&  ((s as any).dimaRevChoice ?? 0) === 3) {
-                      scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
+                      qspGoto(s, 'dimaRevenge', '', 'dimaRevenge');
                     } else {
                       if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 4) {
                         // TODO-QSP: gt 'dimaRevenge', dimaRevenge, 'after'
@@ -290,16 +295,16 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: gt 'dimaRevenge', 5, 'after'
                           } else {
                             if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 4  &&  ((s as any).dimaRevengedaystart ?? 0) >= ((s as any).daystart ?? 0)) {
-                              scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '6'] }]);
+                              qspGoto(s, 'dimaRevenge', '', '6');
                             } else {
                               if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 5  &&  ((s as any).dimaRevChoice ?? 0) === 5) {
                                 // TODO-QSP: gt 'dimaRevenge', dimaRevenge, 'before'
                               } else {
                                 if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 5) {
-                                  scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '5'] }]);
+                                  qspGoto(s, 'dimaRevenge', '', '5');
                                 } else {
                                   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 6) {
-                                    scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
+                                    qspGoto(s, 'dimaRevenge', '', 'dimaRevenge');
                                   }
                                 }
                               }
@@ -318,7 +323,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hour ?? 0) >= 14  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  ((s as any).SchoolGossip ?? 0) > 0  &&  ((s as any).afterschoolday ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_sex', 'suck'] }]);
+    qspGoto(s, 'gschool_sex', 'suck');
   }
   if (((s as any).hour ?? 0) === 14  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
     if (((s as any).ivan_afterschool ?? 0) === 1) {
@@ -328,124 +333,125 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
       if (((s as any).anushkaQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).meet_after_school ?? 0) === 1) {
-        scene.text('<a href="exec: gt \'anushka\', \'meet_after_school\'">Anushka</a> is leaning against a tree just in front of the school.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anushka\\u0027, \\u0027meet_after_school\\u0027); return false;">Anushka</a> is leaning against a tree just in front of the school.');
       }
       if (((s as any).radomirQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).radomirQW ?? 0)?.['meet_after_school'] === 1) {
-        scene.text('<a href="exec: gt \'radapt\', \'meet_after_school\'">Radomir</a> is leaning against a tree just in front of the school.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027meet_after_school\\u0027); return false;">Radomir</a> is leaning against a tree just in front of the school.');
       }
       if (((s as any).LariskaQW ?? 0)?.['story'] >= 5  &&  (!((s as any).cheerleaders_on ?? 0))) {
         // TODO-QSP: dynamic text: You see <a href="exec:minut += 1 & gt 'LariskaGo'">Lariska</a> impatiently walks...
-        scene.text('You see <a href="exec:minut += 1 & gt \'LariskaGo\'">Lariska</a> impatiently walks back and fourth across the courtyard, as if she\'s waiting for someone.');
+        scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027LariskaGo\\u0027, \\u0027\\u0027); return false;">Lariska</a> impatiently walks back and fourth across the courtyard, as if she\'s waiting for someone.');
       }
       if (((s as any).christinaQW ?? 0)?.['subpath'] >= 4  &&  (!((s as any).cheerleaders_on ?? 0))) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt 'Zvereva_house_events', 'Chris_walk_home'">Christi...
-        scene.text('<a href="exec:minut += 1 & gt \'Zvereva_house_events\', \'Chris_walk_home\'">Christina Zvereva</a> is walking across the school courtyard, looking irritated.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027Zvereva_house_events\\u0027, \\u0027Chris_walk_home\\u0027); return false;">Christina Zvereva</a> is walking across the school courtyard, looking irritated.');
       }
       if (((s as any).juliaQW ?? 0)?.['study_unlocked'] >= 1) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt 'JuliaMilHome', 'julia_go'">Julia</a> is sitting o...
-        scene.text('<a href="exec:minut += 1 & gt \'JuliaMilHome\', \'julia_go\'">Julia</a> is sitting out on the courtyard, reading a book.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027JuliaMilHome\\u0027, \\u0027julia_go\\u0027); return false;">Julia</a> is sitting out on the courtyard, reading a book.');
       }
       if (((s as any).NatbelQW ?? 0)?.['QWstage'] > 0  &&  ((s as any).NatbelQW ?? 0)?.['blocked'] !== 1) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt 'natbelEv', 'natbel_go'">Natasha</a> is standing i...
-        scene.text('<a href="exec:minut += 1 & gt \'natbelEv\', \'natbel_go\'">Natasha</a> is standing in a corner.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027natbelEv\\u0027, \\u0027natbel_go\\u0027); return false;">Natasha</a> is standing in a corner.');
       }
       if (((s as any).artemLernQW ?? 0) >= 1  &&  ((s as any).artemVitokQW ?? 0) !== 2  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0  &&  ((s as any).artemQW ?? 0)?.['artlie'] !== 2  &&  ((s as any).artemQW ?? 0)?.['artembrokenheart'] !== 1) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'artem_events', 'start'">Artem</a> is waiting for...
-        scene.text('<a href="exec:minut += 15 & gt \'artem_events\', \'start\'">Artem</a> is waiting for you near the school entrance.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027artem_events\\u0027, \\u0027start\\u0027); return false;">Artem</a> is waiting for you near the school entrance.');
       }
       if (((s as any).katjaQW ?? 0)?.['afterschool_hangout_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 1  &&  ((s as any).locat ?? 0)?.['katja'] === 6) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'katjaEv'">Katja</a> is walking across the school...
-        scene.text('<a href="exec:minut += 15 & gt \'katjaEv\'">Katja</a> is walking across the school courtyard, getting ready to go home.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027katjaEv\\u0027, \\u0027\\u0027); return false;">Katja</a> is walking across the school courtyard, getting ready to go home.');
       }
       if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'dimaEv', 'after_school'">Dimka</a> is deep in th...
-        scene.text('<a href="exec:minut += 15 & gt \'dimaEv\', \'after_school\'">Dimka</a> is deep in thought, as he leans against a lamp post.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027dimaEv\\u0027, \\u0027after_school\\u0027); return false;">Dimka</a> is deep in thought, as he leans against a lamp post.');
       } else {
         if (((s as any).DimaRudeQW ?? 0) > 0  &&  ((s as any).dimarudeday ?? 0) !== ((s as any).daystart ?? 0)  &&  (!((s as any).DimaRudeBlock ?? 0))) {
           if ((!(Math.floor(Math.random() * 5) + 0))) {
-            scene.actions([{ label: 'Continue', goto: ['dimaEv', 'after_school'] }]);
+            qspGoto(s, 'dimaEv', 'after_school');
           }
           // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'dimaEv', 'after_school'">Dimka</a> is deep in th...
-          scene.text('<a href="exec:minut += 15 & gt \'dimaEv\', \'after_school\'">Dimka</a> is deep in thought, as he leans against a lamp post.');
+          scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027dimaEv\\u0027, \\u0027after_school\\u0027); return false;">Dimka</a> is deep in thought, as he leans against a lamp post.');
         }
       }
       if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0)  &&  ((s as any).IgorQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0  &&  ((s as any).locat ?? 0)?.['igor'] === 6) {
         // TODO-QSP: dynamic text: <a href="exec:minut += 15 & IgorQW['daystart'] = daystart & gt 'igorhome', 'entr...
-        scene.text('<a href="exec:minut += 15 & IgorQW[\'daystart\'] = daystart & gt \'igorhome\', \'entrance\'">Igor</a> is talking to some of his friends on the courtyard.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; (s.IgorQW ??= {})\\u0027daystart\\u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(\\u0027igorhome\\u0027, \\u0027entrance\\u0027); return false;">Igor</a> is talking to some of his friends on the courtyard.');
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).kotovVSkozlov ?? 0) === 1) {
-        scene.text('You can see <a href="exec: gt \'FedorEv\', \'Strela Chat\'">Fedor</a> sitting in the corner of the schoolyard by himself.');
+        scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv\\u0027, \\u0027Strela Chat\\u0027); return false;">Fedor</a> sitting in the corner of the schoolyard by himself.');
       } else {
         if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fedorkozqw ?? 0) === 2  &&  ((s as any).FedorLuv ?? 0) < -4) {
-          scene.text('You can see <a href="exec: gt \'FedorEv2\', \'Fedor Breakup\'">Fedor</a> standing by himself with a troubled look on his face.');
+          scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv2\\u0027, \\u0027Fedor Breakup\\u0027); return false;">Fedor</a> standing by himself with a troubled look on his face.');
         } else {
           if (((s as any).fedorKozlovQW ?? 0) >= 10) {
-            scene.text('You can see <a href="exec: gt \'FedorEv\', \'Start\'">Fedor</a> standing by himself, his backpack around his arm.');
+            scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv\\u0027, \\u0027Start\\u0027); return false;">Fedor</a> standing by himself, his backpack around his arm.');
           }
         }
       }
       if (((s as any).NikoVolkovQW ?? 0) >= 5  &&  ((s as any).NikoDate ?? 0) === 1  &&  ((s as any).NikoNextDate_day ?? 0) <= ((s as any).daystart ?? 0)  ||  ((s as any).NikoEv ?? 0) === 11) {
-        scene.text('You can see <a href="exec:gt \'NikoEv\', \'niko_dates\'">Nikolai Volkov</a> smoking outside of the school.');
+        scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoEv\\u0027, \\u0027niko_dates\\u0027); return false;">Nikolai Volkov</a> smoking outside of the school.');
       } else {
         if (((s as any).NikoVolkovQW ?? 0) >= 10  &&  ((s as any).NikoEv ?? 0) >= 17  &&  ((s as any).NikoEv ?? 0) <= 20  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
-          scene.text('<a href="exec:gt \'NikoEv2\', \'Events\'">Nikolai</a> is smoking outside of the school.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoEv2\\u0027, \\u0027Events\\u0027); return false;">Nikolai</a> is smoking outside of the school.');
         }
       }
     } else {
       (s as any).st_count = 0;
+      (s as any).show_table = '';
       if (((s as any).anushkaQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).meet_after_school ?? 0) === 1) {
-        qspCall(s, 'show_table', '', '<a href="exec: gt \'anushka\', \'meet_after_school\'">Anushka Konstantinov</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anushka\\u0027, \\u0027meet_after_school\\u0027); return false;">Anushka Konstantinov</a>', '5');
       }
       if (((s as any).radomirQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).radomirQW ?? 0)?.['meet_after_school'] === 1) {
-        qspCall(s, 'show_table', '', '<a href="exec: gt \'radapt\', \'meet_after_school\'">Radomir</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027meet_after_school\\u0027); return false;">Radomir</a>', '5');
       }
       if (((s as any).LariskaQW ?? 0)?.['story'] >= 5  &&  (!((s as any).cheerleaders_on ?? 0))) {
-        qspCall(s, 'show_table', '', '<a href="exec:minut += 1 & gt \'LariskaGo\'">Lariska Gruzdev</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027LariskaGo\\u0027, \\u0027\\u0027); return false;">Lariska Gruzdev</a>', '5');
       }
       if (((s as any).christinaQW ?? 0)?.['subpath'] >= 4  &&  (!((s as any).cheerleaders_on ?? 0))) {
-        qspCall(s, 'show_table', '', '<a href="exec:minut += 1 & gt \'Zvereva_house_events\', \'Chris_walk_home\'">Christina Zvereva</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027Zvereva_house_events\\u0027, \\u0027Chris_walk_home\\u0027); return false;">Christina Zvereva</a>', '5');
       }
       if (((s as any).juliaQW ?? 0)?.['study_unlocked'] >= 1) {
-        qspCall(s, 'show_table', '', '<a href="exec:minut += 1 & gt \'JuliaMilHome\', \'julia_go\'">Julia Milova</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027JuliaMilHome\\u0027, \\u0027julia_go\\u0027); return false;">Julia Milova</a>', '5');
       }
       if (((s as any).NatbelQW ?? 0)?.['QWstage'] > 0) {
-        qspCall(s, 'show_table', '', '<a href="exec:minut += 1 & gt \'natbelEv\', \'natbel_go\'">Natasha Belova</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027natbelEv\\u0027, \\u0027natbel_go\\u0027); return false;">Natasha Belova</a>', '5');
       }
       if (((s as any).artemLernQW ?? 0) >= 1  &&  ((s as any).artemVitokQW ?? 0) !== 2  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0  &&  ((s as any).artemQW ?? 0)?.['artlie'] !== 2  &&  ((s as any).artemQW ?? 0)?.['artembrokenheart'] !== 1) {
-        qspCall(s, 'show_table', '', '<a href="exec:minut += 15 & gt \'artem_events\', \'start\'">Artem Chebotarev</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027artem_events\\u0027, \\u0027start\\u0027); return false;">Artem Chebotarev</a>', '5');
       }
       if (((s as any).katjaQW ?? 0)?.['afterschool_hangout_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 1  &&  ((s as any).locat ?? 0)?.['katja'] === 6) {
-        qspCall(s, 'show_table', '', '<a href="exec:minut += 15 & gt \'katjaEv\'">Katja Meynold</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027katjaEv\\u0027, \\u0027\\u0027); return false;">Katja Meynold</a>', '5');
       }
       if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-        qspCall(s, 'show_table', '', '<a href="exec:minut += 15 & gt \'dimaHome\', \'home\'">Dimka Nosov</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027dimaHome\\u0027, \\u0027home\\u0027); return false;">Dimka Nosov</a>', '5');
       } else {
         if (((s as any).DimaRudeQW ?? 0) > 0  &&  ((s as any).dimarudeday ?? 0) !== ((s as any).daystart ?? 0)  &&  (!((s as any).DimaRudeBlock ?? 0))) {
           if ((!(Math.floor(Math.random() * 5) + 0))) {
-            scene.actions([{ label: 'Continue', goto: ['dimaEv', 'after_school'] }]);
+            qspGoto(s, 'dimaEv', 'after_school');
           }
-          qspCall(s, 'show_table', '', '<a href="exec:minut += 15 & gt \'dimaEv\', \'after_school\'">Dimka Nosov</a>', '5');
+          qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027dimaEv\\u0027, \\u0027after_school\\u0027); return false;">Dimka Nosov</a>', '5');
         }
       }
       if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0)  &&  ((s as any).IgorQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0  &&  ((s as any).locat ?? 0)?.['igor'] === 6) {
-        qspCall(s, 'show_table', '', '<a href="exec:minut += 15 & IgorQW[\'daystart\'] = daystart & gt \'igorhome\', \'entrance\'">Igor Kruglov</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; (s.IgorQW ??= {})\\u0027daystart\\u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(\\u0027igorhome\\u0027, \\u0027entrance\\u0027); return false;">Igor Kruglov</a>', '5');
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).kotovVSkozlov ?? 0) === 1) {
-        qspCall(s, 'show_table', '', '<a href="exec: gt \'FedorEv\', \'Strela Chat\'">Fedor</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv\\u0027, \\u0027Strela Chat\\u0027); return false;">Fedor</a>', '5');
       } else {
         if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fedorkozqw ?? 0) === 2  &&  ((s as any).FedorLuv ?? 0) < -4) {
-          qspCall(s, 'show_table', '', '<a href="exec: gt \'FedorEv2\', \'Fedor Breakup\'">Fedor</a>', '5');
+          qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv2\\u0027, \\u0027Fedor Breakup\\u0027); return false;">Fedor</a>', '5');
         } else {
           if (((s as any).fedorKozlovQW ?? 0) >= 10) {
-            qspCall(s, 'show_table', '', '<a href="exec: gt \'FedorEv\', \'Start\'">Fedor</a>', '5');
+            qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv\\u0027, \\u0027Start\\u0027); return false;">Fedor</a>', '5');
           }
         }
       }
       if (((s as any).NikoVolkovQW ?? 0) === 5  &&  ((s as any).NikoDate ?? 0) === 1  &&  ((s as any).NikoNextDate_day ?? 0) <= ((s as any).daystart ?? 0)  ||  ((s as any).NikoEv ?? 0) === 11) {
-        qspCall(s, 'show_table', '', '<a href="exec: gt \'NikoEv\', \'niko_dates\'">Nikolai</a>', '5');
+        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoEv\\u0027, \\u0027niko_dates\\u0027); return false;">Nikolai</a>', '5');
       } else {
         if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) >= 17  &&  ((s as any).NikoEv ?? 0) <= 20  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
-          qspCall(s, 'show_table', '', '<a href="exec: gt \'NikoEv2\', \'Events\'">Nikolai</a>', '5');
+          qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoEv2\\u0027, \\u0027Events\\u0027); return false;">Nikolai</a>', '5');
         }
       }
       if (((s as any).st_count ?? 0) > 0) {
@@ -456,7 +462,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).AlbinaQW ?? 0)?.['albride'] === 0  &&  ((s as any).AlbinaQW ?? 0)?.['RideDaystart'] <= ((s as any).daystart ?? 0)  &&  ((s as any).AlbinaQW ?? 0)?.['Chernov'] > 0  &&  (!((s as any).cheerleaders_on ?? 0))) {
       // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt 'albina_starlets_aftermath'">Albina</a> is standi...
-      scene.text('<a href="exec:minut += 15 & gt \'albina_starlets_aftermath\'">Albina</a> is standing next to a car parked near the school.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027albina_starlets_aftermath\\u0027, \\u0027\\u0027); return false;">Albina</a> is standing next to a car parked near the school.');
     }
     if (((s as any).hour ?? 0) === 14  &&  ((s as any).vicky_afterschool ?? 0) !== ((s as any).daystart ?? 0)) {
       qspCall(s, 'mey_vika_events', 'near_school');
@@ -465,9 +471,10 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Study with Tamara', handler: (st: GameState) => {
     if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 36) {
-      scene.actions([{ label: 'Continue', goto: ['mey_tamara_events', 'rebuke'] }]);
+      qspGoto(s, 'mey_tamara_events', 'rebuke');
     }
-  }, goto: ['mey_tamara_events', 'learning0'] },
+    qspGoto(s, 'mey_tamara_events', 'learning0');
+  } },
       ]);
     }
   }
@@ -494,6 +501,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 
 function enterSports(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_grounds', 'sports');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'Zvereva_schedule', '');
   qspCall(s, 'stat', '');
   if (((s as any).month ?? 0) > 3  &&  ((s as any).month ?? 0) < 11) {
@@ -504,11 +512,11 @@ function enterSports(s: GameState, scene: SceneBuilder): void {
   scene.text('There is a football field near the school with a large track circling around it. Students often use the field and track before and after school.');
   if (((s as any).week ?? 0) === 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 18) {
     // TODO-QSP: dynamic text: As you pass by the sports field, you hear lots of cheering and yelling coming fr...
-    scene.text('As you pass by the sports field, you hear lots of cheering and yelling coming from the younger kids on the field. As you approach, you see \'+iif(socialchg[\'tLazar_day\'] ! daystart, \'<a href="exec: gt \'gschool_socialchg1\', \'tLazar\'">Lazar</a>\', \'Lazar\')+\' on the football field showing off his skills.');
+    scene.text('As you pass by the sports field, you hear lots of cheering and yelling coming from the younger kids on the field. As you approach, you see \'+iif(socialchg[\'tLazar_day\'] ! daystart, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_socialchg1\\u0027, \\u0027tLazar\\u0027); return false;">Lazar</a>\', \'Lazar\')+\' on the football field showing off his skills.');
   }
   if ((((s as any).week ?? 0) === 1  ||  ((s as any).week ?? 0) === 3)  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 18) {
     // TODO-QSP: dynamic text: Looking toward what you can barely describe as a running track, you notice '+iif...
-    scene.text('Looking toward what you can barely describe as a running track, you notice \'+iif(socialchg[\'tSvyatoslav_day\'] ! daystart, \'<a href="exec: gt \'gschool_socialchg1\', \'tSvyatoslav\'">Svyatoslav</a>\', \'Svyatoslav\')+\' doing sprints by the football field.');
+    scene.text('Looking toward what you can barely describe as a running track, you notice \'+iif(socialchg[\'tSvyatoslav_day\'] ! daystart, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_socialchg1\\u0027, \\u0027tSvyatoslav\\u0027); return false;">Svyatoslav</a>\', \'Svyatoslav\')+\' doing sprints by the football field.');
   }
   if ((!((s as any).PSport ?? 0))) {
     scene.text('You could go for a run here if you were wearing sports clothes and shoes.');
@@ -554,7 +562,7 @@ function enterSports(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (!((s as any).kanikuli ?? 0))) {
     // TODO-QSP: dynamic text: With the school open, you can go to the <a href="exec: minut += 1 & gt 'gschool_...
-    scene.text('With the school open, you can go to the <a href="exec: minut += 1 & gt \'gschool_grounds\', \'change_room\'">changing rooms</a> by the gym and change your outfit.');
+    scene.text('With the school open, you can go to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027gschool_grounds\\u0027, \\u0027change_room\\u0027); return false;">changing rooms</a> by the gym and change your outfit.');
   }
   if (((s as any).week ?? 0) === 6  &&  ((s as any).runnerQW ?? 0)?.['pav_racetype'] === 2  &&  ((s as any).hour ?? 0) === 10  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     scene.text('Athletic students of your school and other schools in the area have gathered at the athletics track near your school. Everyone is getting ready for the running competition.');
@@ -577,10 +585,10 @@ function enterSports(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).fbpickupDay ?? 0) + 14 <= ((s as any).daystart ?? 0)  &&  ((s as any).bbpickupDay ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.text('As you pass by the sports field, you notice that most of the jocks have gathered around the <a href="exec: gt \'fbgameout\', \'start\'">football field</a>.');
+    scene.text('As you pass by the sports field, you notice that most of the jocks have gathered around the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027fbgameout\\u0027, \\u0027start\\u0027); return false;">football field</a>.');
   } else {
     if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).bbpickupDay ?? 0) + 14 <= ((s as any).daystart ?? 0)  &&  ((s as any).fbpickupDay ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.text('As you pass by the sports field, you notice that most of the jocks have gathered around the <a href="exec: gt \'bbgameout\', \'start\'">basketball court</a>.');
+      scene.text('As you pass by the sports field, you notice that most of the jocks have gathered around the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bbgameout\\u0027, \\u0027start\\u0027); return false;">basketball court</a>.');
     }
   }
   qspCall(s, 'brother', 'bro_school_field');
@@ -598,9 +606,10 @@ function enterSports(s: GameState, scene: SceneBuilder): void {
 
 function enterBuilding(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_grounds', 'building');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   if (((s as any).therapistFuckedPussyScene ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['therapist', 'therapistFucked'] }]);
+    qspGoto(s, 'therapist', 'therapistFucked');
   }
   scene.text('<center><b>Inside School</b></center>');
   scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
@@ -629,7 +638,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Skipping training <i>again</i>, ${((s as any).pcs_nickname || '')}?! I thought I told you that you were to be there on time <b>no excuses</b>?! I don't care about what miserable story you have to defend yourself with. You either commit to the squad or you're out. This is your final warning ${((s as any).pcs_nickname || '')}, don't fucking test me!"`);
         scene.text('You don\'t have a chance to speak before she storms off. Maybe it\'s best for both of you if you stopped pissing her off?');
       } else {
-        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsJoined'] = (-1);
+        ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['StarletsJoined'] = (-1);
         qspCall(s, 'calendar', 'pack', 'remove', 'starlets');
         qspCall(s, 'npc_relationship', 'set', 'A23', 10);
         scene.text('You are walking down the hallway and freeze when you clock a furious Albina heading straight for you. You barely have time to react before she grabs your shirt and forcefully slams you into the lockers, silencing the hall as everyone looks at you.');
@@ -656,18 +665,19 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
       (s as any).late = 1;
     }
     qspCall(s, 'stat', '');
-    if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['attendance_count'] = ((s as any).gschoolVars['attendance_count'] ?? 0) + (1);
+    ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['attendance_count'] = ((s as any).gschoolVars['attendance_count'] ?? 0) + (1);
     qspCall(s, 'Zvereva_events', 'cikl');
     if (((s as any).christinaQW ?? 0)?.['set_bully'] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['Zvereva_events', 'christina_bu_1'] }]);
+      qspGoto(s, 'Zvereva_events', 'christina_bu_1');
     } else {
       if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).hour ?? 0) > 7) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'morning'] }]);
+        qspGoto(s, 'gschool_lessons', 'morning');
       } else {
         if ((!(Math.floor(Math.random() * 4) + 0))) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_events', 'teacher_greet'] }]);
+          qspGoto(s, 'gschool_events', 'teacher_greet');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['gschool_events', 'break_events'] }]);
+          (s as any).eventtype = 'before_school';
+          qspGoto(s, 'gschool_events', 'break_events');
         }
       }
     }
@@ -680,29 +690,30 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.text('You think you might be able to win and sign up to participate in the competition. After quickly changing into your running gear you return to the track. The guys are having their race first, and you watch them as you prepare. As expected, Ivan wins. When the guys have finished, it is the girls\' turn.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the start', handler: (st: GameState) => {
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_racetype'] = 0;
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['races_ran'] = ((s as any).runnerQW['races_ran'] ?? 0) + (1);
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_racetype'] = 0;
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['races_ran'] = ((s as any).runnerQW['races_ran'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/grounds/begsor.jpg');
     scene.text('The 400m sprint event for girls is up next. You take off your jacket and go to the starting line, mentally preparing yourself for the race.');
     scene.text('On your marks…');
     scene.text('Get set…');
     scene.text('Go!');
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['bmi_penalty'] = 0;
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['bmi_penalty'] = 0;
     if (((s as any).pcs_bmi ?? 0) > 25) {
-      if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['bmi_penalty'] = ((((s as any).pcs_bmi ?? 0) - 25)*4);
+      ((s as any).runnerQW = (s as any).runnerQW ?? {})['bmi_penalty'] = ((((s as any).pcs_bmi ?? 0) - 25)*4);
     } else {
       if (((s as any).pcs_bmi ?? 0) < 20) {
-        if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['bmi_penalty'] = ((20 - ((s as any).pcs_bmi ?? 0))*(20-((s as any).pcs_bmi ?? 0)));
+        ((s as any).runnerQW = (s as any).runnerQW ?? {})['bmi_penalty'] = ((20 - ((s as any).pcs_bmi ?? 0))*(20-((s as any).pcs_bmi ?? 0)));
       }
     }
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - (((s as any).runnerQW ?? {})?.['bmi_penalty'] ?? 0);
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['result'] = ((s as any).pcs_run ?? 0) - (((s as any).runnerQW ?? {})?.['bmi_penalty'] ?? 0);
     qspCall(s, 'willpower', 'skill_base', 'run', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -713,7 +724,7 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Give it your best', handler: (st: GameState) => {
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).runnerQW['result'] ?? 0) + (10);
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['result'] = ((s as any).runnerQW['result'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'self');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchoolRunResult(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -731,11 +742,11 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolRunResult(s: GameState, scene: SceneBuilder): void {
   if (((s as any).runnerQW ?? 0)?.['result'] < 10) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     scene.text('You barely manage to reach the finish line at all. There\'s no point in checking where you finished; you already know you were last by quite a large margin.');
   } else {
     if (((s as any).runnerQW ?? 0)?.['result'] < 15) {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       scene.text('You struggle to keep up with the other girls and finish in last place.');
     } else {
       if (((s as any).runnerQW ?? 0)?.['result'] < 20) {
@@ -745,23 +756,23 @@ function enterSchoolRunResult(s: GameState, scene: SceneBuilder): void {
           scene.text('You run as fast as you can, but only manage to take 6th place.');
         } else {
           if (((s as any).runnerQW ?? 0)?.['result'] < 30) {
-            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+            ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
             scene.text('You run as fast as you can, but only manage to take 5th place.');
           } else {
             if (((s as any).runnerQW ?? 0)?.['result'] < 35) {
-              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+              ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
               scene.text('You run as fast as you can, but only manage to take 4th place.');
             } else {
               if (((s as any).runnerQW ?? 0)?.['result'] < 45) {
-                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                 scene.text('You run as fast as you can and manage to take 3rd place. Mr. Pavlovich, the P.E. teacher at your school, congratulates you.');
               } else {
                 if (((s as any).runnerQW ?? 0)?.['result'] < 50) {
-                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (3);
+                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (3);
                   scene.text('You run as fast as you can and manage to take 2nd place. Mr. Pavlovich, the P.E. teacher at your school, congratulates you on your achievement.');
                 } else {
-                  if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_wins1'] = ((s as any).runnerQW['pav_wins1'] ?? 0) + (1);
-                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (5);
+                  ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_wins1'] = ((s as any).runnerQW['pav_wins1'] ?? 0) + (1);
+                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (5);
                   scene.text('You run as fast as you can and manage to reach the finish line first. Mr. Pavlovich, the P.E. teacher at your school, congratulates you on winning the competition as you walk around with your arms raised in triumph.');
                 }
               }
@@ -773,10 +784,10 @@ function enterSchoolRunResult(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'exercise', 'tier2', 30, 'run');
   if (((s as any).runnerQW ?? 0)?.['pav_wins1'] === 3  &&  ((s as any).runnerQW ?? 0)?.['pav_stage'] === 0) {
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_stage'] = 1;
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_stage'] = 1;
     if (((s as any).runnerQW ?? 0)?.['prof_stage'] < 1) {
       scene.text('You have won the school running competition three times now and Mr. Pavlovich, the P.E. teacher at your school, announces that your success has not gone unnoticed. He smiles and awards you the third tier sports trophy in running, which you proudly accept and show to everyone.');
-      if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['prof_stage'] = 1;
+      ((s as any).runnerQW = (s as any).runnerQW ?? {})['prof_stage'] = 1;
     } else {
       scene.text('You have won the school running competition three times now and Mr. Pavlovich, the P.E. teacher at your school, smiles and awards you a local competition trophy which you proudly accept and show to everyone.');
     }
@@ -796,6 +807,7 @@ function enterSchoolRunResult(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.text('You think you might be able to win and sign up to participate in the competition.');
@@ -838,23 +850,23 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the start', handler: (st: GameState) => {
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['races_ran'] = ((s as any).runnerQW['races_ran'] ?? 0) + (1);
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_racetype'] = 0;
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['races_ran'] = ((s as any).runnerQW['races_ran'] ?? 0) + (1);
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_racetype'] = 0;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/grounds/begsor.jpg');
     scene.text('The 400m sprint event for girls is up next. You take off your jacket and go the starting line, mentally preparing yourself for the race.');
     scene.text('On your marks…');
     scene.text('Get set…');
     scene.text('Go!');
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['bmi_penalty'] = 0;
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['bmi_penalty'] = 0;
     if (((s as any).pcs_bmi ?? 0) > 25) {
-      if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['bmi_penalty'] = ((((s as any).pcs_bmi ?? 0) - 25)*4);
+      ((s as any).runnerQW = (s as any).runnerQW ?? {})['bmi_penalty'] = ((((s as any).pcs_bmi ?? 0) - 25)*4);
     } else {
       if (((s as any).pcs_bmi ?? 0) < 18) {
-        if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['bmi_penalty'] = ((25 - ((s as any).pcs_bmi ?? 0))*6);
+        ((s as any).runnerQW = (s as any).runnerQW ?? {})['bmi_penalty'] = ((25 - ((s as any).pcs_bmi ?? 0))*6);
       }
     }
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - (((s as any).runnerQW ?? {})?.['bmi_penalty'] ?? 0);
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['result'] = ((s as any).pcs_run ?? 0) - (((s as any).runnerQW ?? {})?.['bmi_penalty'] ?? 0);
     qspCall(s, 'willpower', 'skill_base', 'run', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -865,7 +877,7 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Give it your best', handler: (st: GameState) => {
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).runnerQW['result'] ?? 0) + (10);
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['result'] = ((s as any).runnerQW['result'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'self');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchoolRun2Result(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -883,11 +895,11 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolRun2Result(s: GameState, scene: SceneBuilder): void {
   if (((s as any).runnerQW ?? 0)?.['result'] < 10) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
     scene.text('You barely manage to reach the finish line at all. There\'s no point in checking where you finished; you already know you were last by quite a large margin.');
   } else {
     if (((s as any).runnerQW ?? 0)?.['result'] < 15) {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       scene.text('You struggle to keep up with the other girls and finish in last place.');
     } else {
       if (((s as any).runnerQW ?? 0)?.['result'] < 20) {
@@ -897,23 +909,23 @@ function enterSchoolRun2Result(s: GameState, scene: SceneBuilder): void {
           scene.text('You run as fast as you can, but only manage to take 6th place.');
         } else {
           if (((s as any).runnerQW ?? 0)?.['result'] < 30) {
-            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+            ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
             scene.text('You run as fast as you can, but only manage to take 5th place.');
           } else {
             if (((s as any).runnerQW ?? 0)?.['result'] < 35) {
-              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+              ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
               scene.text('You run as fast as you can, but only manage to take 4th place.');
             } else {
               if (((s as any).runnerQW ?? 0)?.['result'] < 40) {
-                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                 scene.text('You run as fast as you can and manage to take 3rd place. Mr. Pavlovich, the P.E. teacher at your school, congratulates you.');
               } else {
                 if (((s as any).runnerQW ?? 0)?.['result'] < 50) {
-                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (3);
+                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (3);
                   scene.text('You run as fast as you can and manage to take 2nd place. Mr. Pavlovich, the P.E. teacher at your school, congratulates you on your achievement.');
                 } else {
-                  if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_wins2'] = ((s as any).runnerQW['pav_wins2'] ?? 0) + (1);
-                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (5);
+                  ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_wins2'] = ((s as any).runnerQW['pav_wins2'] ?? 0) + (1);
+                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (5);
                   scene.text('You run as fast as you can and manage to reach the finish line first. Mr. Pavlovich, the P.E. teacher at your school, congratulates you on winning the competition yet again while you walk around with your arms raised in triumph.');
                 }
               }
@@ -925,10 +937,10 @@ function enterSchoolRun2Result(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'exercise', 'tier2', 30, 'run');
   if (((s as any).runnerQW ?? 0)?.['pav_wins2'] === 3  &&  ((s as any).runnerQW ?? 0)?.['pav_stage'] === 1) {
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_stage'] = 2;
+    ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_stage'] = 2;
     if (((s as any).runnerQW ?? 0)?.['prof_stage'] < 2) {
       scene.text('You\'ve won the competition three more times and Mr. Pavlovich awards you the second-tier sports trophy in running.');
-      if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['prof_stage'] = 2;
+      ((s as any).runnerQW = (s as any).runnerQW ?? {})['prof_stage'] = 2;
     } else {
       scene.text('You\'ve won the competition three more times and Mr. Pavlovich awards you another trophy.');
     }
@@ -976,10 +988,12 @@ function enterSchoolRun2Result(s: GameState, scene: SceneBuilder): void {
 
 function enterChangeRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_grounds', 'change_room');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'locker';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/gym/locker/lockerroom.jpg');
   // TODO-QSP: dynamic text: The locker room is accessed through the school gym and is left unlocked until '+...
-  scene.text('The locker room is accessed through the school gym and is left unlocked until 18:30 each day for the use of students using the sports ground for training and events outside school hours. The room is cold, damp and filled with lockers, benches and not much else. You can <a href="exec: gt \'wardrobe\', \'start\'">change your outfit</a> by the lockers here\' + iif(pcs_piercings[\'total\'] > 0, \', and <a href="exec: gt \'piercing_management\', \'main\'">manage your piercings</a>\', \') + \'.');
+  scene.text('The locker room is accessed through the school gym and is left unlocked until 18:30 each day for the use of students using the sports ground for training and events outside school hours. The room is cold, damp and filled with lockers, benches and not much else. You can <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">change your outfit</a> by the lockers here\' + iif(pcs_piercings[\'total\'] > 0, \', and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027piercing_management\\u0027, \\u0027main\\u0027); return false;">manage your piercings</a>\', \') + \'.');
   if ((((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) >= 30)  ||  ((s as any).hour ?? 0) > 18) {
     scene.text('The school is closing for the night and you have to leave before you get locked in.');
     return;
@@ -1004,21 +1018,23 @@ function enterChangeRoom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'change_room'] }]);
+      qspGoto(s, 'gschool_grounds', 'change_room');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+      qspGoto(s, 'gschool_grounds', 'main');
     }
   } },
     { label: 'Go to the sports field', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'change_room'] }]);
+      qspGoto(s, 'gschool_grounds', 'change_room');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'sports'] }]);
+      qspGoto(s, 'gschool_grounds', 'sports');
     }
   } },
-    { label: 'Change your outfit', goto: ['wardrobe', 'start'] },
+    { label: 'Change your outfit', handler: (st: GameState) => {
+    qspGoto(s, 'wardrobe', 'start');
+  } },
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
   ]);
   scene.build();
@@ -1159,7 +1175,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/grounds/sveta_mum_restaurant.jpg');
     if (((s as any).npc_QW ?? 0)?.['A29'] > 0) {
       if (((s as any).npc_QW ?? 0)?.['A29'] === 1) {
-        if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A29'] = 2;
+        ((s as any).npc_QW = (s as any).npc_QW ?? {})['A29'] = 2;
       }
       scene.text('At the station cafe, your mother selects a corner spot away from the main area so you can keep your chat private.');
       scene.text('You both initially have some general small talk during which she again congratulates you on your win and explains that she wants the best for you and will help in any way she can, but you need to meet her halfway.');
@@ -1240,6 +1256,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).stat ?? 0)?.['boyfriends_current'] > 0  ||  ((s as any).stat ?? 0)?.['girlfriends_current']) {
+        (s as any).temp_npcID = qspFunc(s, 'lover', 'draw_random_from', 'boyfrined', 'girlfriend');
         qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
         // TODO-QSP: dynamic text: You hear <<$npcdesc>> shouting your name and jog over to meet them. You both emb...
         scene.text(`You hear ${((s as any).npcdesc || '')} shouting your name and jog over to meet them. You both embrace with a cuddle and a kiss on the cheek.`);

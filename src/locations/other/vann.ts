@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,23 +9,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'vann';
+  (s as any).loc_arg = 'start';
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   if (((s as any).locM ?? 0) === 'uni_dorm'  &&  (!((s as any).vannin ?? 0))) {
     (s as any).vanobrand = Math.floor(Math.random() * 16) + 0;
     (s as any).vannin = 1;
     if ((!((s as any).vanobrand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['vann', 'v1'] }]);
+      qspGoto(s, 'vann', 'v1');
     }
     if (((s as any).vanobrand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['vann', 'v2'] }]);
+      qspGoto(s, 'vann', 'v2');
     }
     if (((s as any).vanobrand ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['vann', 'v3'] }]);
+      qspGoto(s, 'vann', 'v3');
     }
   }
   (s as any).vannin = 1;
   scene.img('images/shared/home/bathroom/wash1.jpg');
-  if ((String('uni_dorm;Palatka;bordel').indexOf(String(((s as any).locM ?? 0)))) + 1 > 0) {
+  if (((String('uni_dorm;Palatka;bordel').indexOf(String(((s as any).locM ?? 0)))) + 1) > 0) {
     qspCall(s, 'din_van', 'private');
   }
   // TODO-QSP: end
@@ -36,12 +39,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFin(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'locM', 'locM_arg'); } }]);
+  dynamicGoto(s, 'locM', 'locM_arg');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterBrit1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.img('images/locations/city/island/university/dorm/sex/bathroom/brit1.jpg');
   scene.text('As you apply shaving foam to your pubis in the bath, a guy comes in. You are so engrossed in what you are doing that you don\'t notice him. Only when he turns on the electric shaver he plugged in do you look up and see him standing in front of you with a smile. A few seconds later, he looks up at your face and says "Hey, do you mind that I\'m in here to shave?" Noticing your inept movements as you continue to apply shaving foam to your pussy, he adds, "I can help if you want. I have an older sister who was supposed to get married four years ago. Her fiance used to help her shave, but he fled while she was pregnant. I took over that role, and I\'m pretty good at it." You can\'t help but imagine this hunk of a man at thirteen, squatting in front of a pregnant woman and shaving her pussy. It was probably his first sexual experience.');
   qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
@@ -139,6 +143,7 @@ function enterBrit1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterV1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.img('images/locations/city/island/university/dorm/sex/bathroom/v0.jpg');
   scene.text('You enter the bathroom and see a girl sitting on the edge of the bathtub smearing her feet with cream.');
   scene.text('"Oops… Sorry, I\'ll come back later," you say and turn to leave.');
@@ -178,6 +183,7 @@ function enterV1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterV2(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.img('images/locations/city/island/university/dorm/sex/bathroom/v2.jpg');
   scene.text('You walk into the bathroom and wash your hands at the sink. You suddenly hear a noise behind you, and realizing that you are not in the bathroom alone, you turn sharply and see a guy standing in the bath with a towel around his neck, masturbating. He continues masturbating, seemingly unaware of your presence. A few seconds later, he finally notices and tries to cover himself with his towel. He scurries towards the door, muttering an apology under his breath.');
   qspCall(s, 'willpower', 'hj', 'self');
@@ -224,6 +230,7 @@ function enterV2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterV3(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.img('images/locations/city/island/university/dorm/sex/bathroom/v5.jpg');
   scene.text('Not bothering to check if anyone is present, you run into the bathroom and quickly sit on the toilet. "Just in time…" you think to yourself with relief. You then realize that someone else is here. Turning your head, you see a guy in the shower. He stands there, smiling. "Hello there."');
   scene.text('"Hi…" you reply with an awkward grin as your cheeks flush bright red. "Sorry, I just have to…" you continue.');
@@ -288,6 +295,8 @@ function enterV3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterV4(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate');
   if (((s as any).pcs_inhib ?? 0) < 30) {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);

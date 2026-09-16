@@ -5,11 +5,14 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gad_river';
+  (s as any).menu_loc = 'gad_river';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_river', 'start');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'schedule', 'A60');
   qspCall(s, 'stat', '');
   scene.text('<center><h2>Slavka River</h2></center>');
@@ -28,21 +31,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A large river flows lazily for a few hundred meters on the northern outskirts of Gadukino.');
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).sunWeather ?? 0) === 1) {
-    scene.text('You see the local <a href="exec:gt \'gad_river\', \'fishers\'">fishermen</a> fishing with their rods on the riverbank.');
+    scene.text('You see the local <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_river\\u0027, \\u0027fishers\\u0027); return false;">fishermen</a> fishing with their rods on the riverbank.');
   }
   (s as any).temp_rand = Math.floor(Math.random() * 21) + 0;
   if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).hour ?? 0) < 5  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 20) {
-    scene.text('Right next to the path leading to the river, you see <a href="exec: gt \'gad_river\', \'mirapunish\' ">Mira</a> naked, bound with ropes between two trees…');
+    scene.text('Right next to the path leading to the river, you see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_river\\u0027, \\u0027mirapunish\\u0027); return false;">Mira</a> naked, bound with ropes between two trees…');
   } else {
     if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).GadBoy ?? 0)?.['river_day'] !== ((s as any).daystart ?? 0)  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here', 'river'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 5) {
-      if (!(s as any).GadBoy) (s as any).GadBoy = {}; (s as any).GadBoy['river_day'] = ((s as any).daystart ?? 0);
+      ((s as any).GadBoy = (s as any).GadBoy ?? {})['river_day'] = ((s as any).daystart ?? 0);
       scene.text('While going to the river, you meet Kolyamba and Vasyan. They first invite you to join them, then insist you go with them.');
       scene.actions([
         { label: 'Go with them', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex17.jpg');
     scene.text('The boys take you to Vasyan\'s house, where they rudely keep pushing you until you are bent over the kitchen table. They then take turns fucking you…');
     qspCall(s, 'boyStat', 'A61');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).pose = 1;
     if ((!((s as any).mesec ?? 0))) {
       qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -53,7 +56,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'dinsex', 'analsex', 20, 'sub', 'gangbang');
     }
     qspCall(s, 'boyStat', 'A62');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     if ((!((s as any).mesec ?? 0))) {
       qspCall(s, 'dinsex', 'boy_puts_condom');
       qspCall(s, 'dinsex', 'vaginal_sex', 20, 'sub', 'gangbang');
@@ -72,7 +75,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).temp_rand ?? 0) === 5  &&  ((s as any).GadBoy ?? 0)?.['river_day'] !== ((s as any).daystart ?? 0)  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here', 'river'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 5) {
-        if (!(s as any).GadBoy) (s as any).GadBoy = {}; (s as any).GadBoy['river_day'] = ((s as any).daystart ?? 0);
+        ((s as any).GadBoy = (s as any).GadBoy ?? {})['river_day'] = ((s as any).daystart ?? 0);
         scene.text('While walking towards the river, you meet the village boys you\'ve been drinking with recently. They ask you to go with them.');
         scene.actions([
           { label: 'Go with them', handler: (st: GameState) => {
@@ -85,13 +88,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', 20, 'gangbang', 'sub');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'boyStat', 'A63');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'boyStat', 'A61');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'boyStat', 'A62');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 3);
     qspCall(s, 'stat', '');
@@ -102,12 +105,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).temp_rand ?? 0) === 6  &&  ((s as any).GadBoy ?? 0)?.['river_day'] !== ((s as any).daystart ?? 0)  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here', 'river'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 5) {
-          if (!(s as any).GadBoy) (s as any).GadBoy = {}; (s as any).GadBoy['river_day'] = ((s as any).daystart ?? 0);
+          ((s as any).GadBoy = (s as any).GadBoy ?? {})['river_day'] = ((s as any).daystart ?? 0);
           scene.text('On your way to the river, you meet Vasyan. But, unfortunately, he insists you follow him home…');
           scene.actions([
             { label: 'Go with him', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A62');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).pose = 1;
     if ((!((s as any).mesec ?? 0))) {
       scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex20.jpg');
@@ -302,7 +305,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).fish ?? 0))) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -315,7 +318,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to release all the fish you caught today. The other fishermen shake their heads disapprovingly, throwing sidelong glances at your body as you dump the fish back into the river.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -327,7 +330,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     scene.text('You give all the fish you caught to uncle Stepan, and he makes a show out of reluctantly accepting them. Still, you can see that he is pretty happy with this arrangement.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -407,7 +410,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).fish ?? 0))) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -487,7 +490,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to release all the fish you caught today. The other fishermen shake their heads disapprovingly, throwing sidelong glances at your body as you dump the fish back into the river.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -499,7 +502,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     scene.text('You give all the fish caught to uncle Stepan, who reluctantly accepts them. You can see he is pretty happy with this arrangement.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstChat(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['introduction'] = 1;
+  ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['introduction'] = 1;
   if (((s as any).grupTipe ?? 0) === 1) {
     scene.text('You see Natalia sitting with the nerds, reading a book. When she notices you, she glances up and smiles.');
     // TODO-QSP: dynamic text: You smile back at her. "Hey Natalia. I thought I'd come and say hello. I'm <<$pc...
@@ -107,7 +107,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh. Okay. See you later."');
     scene.actions([
       { label: 'Go back to the library', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -124,23 +124,23 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well… we could help each other? Nothing serious though, as my studies come first. I can\'t afford the distraction of a serious relationship."');
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
-    if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['sex_agree'] = (-1);
+    ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['sex_agree'] = (-1);
     scene.text('"I\'m sorry, but you\'re my friend and I value that. This isn\'t something I\'d want to get into now. Maybe another time."');
     // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, no problem. If you change your mind, just let me know....
     scene.text(`"Okay, ${((s as any).pcs_nickname || '')}, no problem. If you change your mind, just let me know. Sorry if I embarrassed you."`);
     scene.text('"Of course. You\'re my friend, and that\'s unchanged." You smile at her and wave goodbye.');
     scene.actions([
       { label: 'Go back to the library', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
         { label: 'Yes', handler: (st: GameState) => {
-    if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['sex_agree'] = 1;
+    ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['sex_agree'] = 1;
     scene.text('"You know what, that would be great. I know that must have been difficult to ask, so thanks for confiding in me," you smile at her before leaving.');
     scene.actions([
       { label: 'Go back to the library', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -155,14 +155,14 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nataliaQW ?? 0)?.['sex_agree'] === -1) {
           scene.actions([
             { label: 'Tell her that you\'re ready for a sexual relationship', handler: (st: GameState) => {
-    if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['sex_agree'] = 1;
+    ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['sex_agree'] = 1;
     scene.text('After your friendly catch up, you prod Natalia in the arm to get her attention.');
     scene.text('When she turns to you, you lean in very close to her. "Erm… I\'ve been thinking about your earlier suggestion…" You pause to gather yourself as you realize your face is getting redder and redder. You nervously clear your throat and continue. "Well I\'ve thought about it, and yes that would be great. Although I\'d understand if…"');
     // TODO-QSP: dynamic text: Clearly realizing you're finding this difficult, she cuts you off to save you fu...
     scene.text(`Clearly realizing you're finding this difficult, she cuts you off to save you further embarrassment. "It's okay, ${((s as any).pcs_nickname || '')}. I understand. I'll look forward to it." She pauses before continuing. "I can't now, but maybe next time?" She gives you a quick hug before getting up and leaving.`);
     scene.actions([
       { label: 'Go back to the library', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -170,7 +170,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Go back to the library', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -188,12 +188,12 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
     scene.text('"No problem. See you soon," she replies.');
     scene.actions([
       { label: 'Go back to the library', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
           { label: 'Yes', handler: (st: GameState) => {
-    if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_sex_day'] = ((s as any).daystart ?? 0);
+    ((s as any).nataliaQW = (s as any).nataliaQW ?? {})['library_sex_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'arousal', 'kiss', 3, 'lesbian');
     scene.img('images/characters/pavlovsk/school/girl/natalia/love/kiss1.mp4');
     // TODO-QSP: dynamic text: You silently nod before Natalia looks around. "Come on, <<$pcs_nickname>>, follo...
@@ -265,6 +265,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
     scene.text('Her tongue flicks in and out of you as she fingers your ass, your excitement slowly building.');
     scene.actions([
       { label: 'Bliss', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 3, 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natalia/love/bathroom/receiving/5.mp4');
@@ -291,7 +292,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
     scene.text('You both quickly finish up, dry off and get dressed before leaving.');
     scene.actions([
       { label: 'Go back to the library', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

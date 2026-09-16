@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_miroslava_home', 'start');
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'schedule', 'A60');
   qspCall(s, 'stat', '');
@@ -85,7 +86,8 @@ function enterMirabrother(s: GameState, scene: SceneBuilder): void {
           { label: 'Remove panties', handler: (st: GameState) => {
     qspCall(s, 'underwear', 'remove');
     scene.text('You really want a ride on his motorcycle and quickly slide them down your legs and stuff them in your pocket.');
-  }, goto: ['gad_miroslava_home', 'mirabrother'] },
+    qspGoto(s, 'gad_miroslava_home', 'mirabrother');
+  } },
         ]);
       } else {
         scene.text('"No problem", he says to you and then adds with a mischievous smile, "but first, sit down on him, and he\'ll check to make sure he likes you. He is a fussy son of a bitch."');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'start');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Tsar Bomba</b></center>');
@@ -19,25 +20,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pushkin_sq', ''] },
     { label: 'View dresses', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['shop_tsar_bomba', 'dresses'] },
+    qspGoto(s, 'shop_tsar_bomba', 'dresses');
+  } },
     { label: 'View outfits', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['shop_tsar_bomba', 'clothes'] },
+    qspGoto(s, 'shop_tsar_bomba', 'clothes');
+  } },
     { label: 'View shoes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['shop_tsar_bomba', 'shoes'] },
+    qspGoto(s, 'shop_tsar_bomba', 'shoes');
+  } },
     { label: 'View purses', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['shop_tsar_bomba', 'purses'] },
+    qspGoto(s, 'shop_tsar_bomba', 'purses');
+  } },
     { label: 'View coats', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['shop_tsar_bomba', 'coats'] },
+    qspGoto(s, 'shop_tsar_bomba', 'coats');
+  } },
   ]);
   scene.build();
 }
 
 function enterDresses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'dresses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Tsar Bomba dresses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -53,13 +60,15 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_tsar_bomba', 'start'] },
+    qspGoto(s, 'shop_tsar_bomba', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'clothes');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Tsar Bomba outfits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -75,13 +84,15 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_tsar_bomba', 'start'] },
+    qspGoto(s, 'shop_tsar_bomba', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterPurses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'purses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Tsar Bomba purses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -96,13 +107,15 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_tsar_bomba', 'start'] },
+    qspGoto(s, 'shop_tsar_bomba', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterShoes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'shoes');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Tsar Bomba shoes</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -117,13 +130,15 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_tsar_bomba', 'start'] },
+    qspGoto(s, 'shop_tsar_bomba', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterCoats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'coats');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Tsar Bomba coats</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -138,7 +153,8 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_tsar_bomba', 'start'] },
+    qspGoto(s, 'shop_tsar_bomba', 'start');
+  } },
   ]);
   scene.build();
 }

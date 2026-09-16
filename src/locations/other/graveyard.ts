@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'graveyard', '');
+  (s as any).region = 'other';
+  (s as any).location_type = 'secluded';
   qspCall(s, 'stat', '');
   qspCall(s, 'archetypes', 'gain', 'goth', 'tiny', 'Cemetery visit', 1);
   scene.text('<center><h4>Cemetery</h4></center>');

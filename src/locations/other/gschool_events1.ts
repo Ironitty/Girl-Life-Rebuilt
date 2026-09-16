@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -23,10 +23,10 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Slap him hard', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'npc_relationship', 'modify', 'A1', 'loathe');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -60,10 +60,10 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'flash', (-5));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A1', 'dislike');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
@@ -79,8 +79,8 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Slap him playfully', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A1', 'dislike');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy2.jpg');
     scene.text('Dimka isn\'t so bad, but you can\'t just let him do this to you.');
@@ -99,16 +99,17 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ignore it', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A1', 'like');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
-  }, goto: ['gschool_events', 'leave_break_events2'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    qspGoto(s, 'gschool_events', 'leave_break_events2');
+  } },
       { label: 'Taunt him', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy4.jpg');
     scene.text('You\'re so horny you decide to tease him and see if you can push him into doing more. You put your finger in your mouth and give him a flirty smirk.');
@@ -148,10 +149,10 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Slap him hard', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A8', 'hate');
@@ -184,10 +185,10 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'flash', (-5));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
     scene.text('You pretend the other boys aren\'t there and step closer. "Come on Svyatoslav. You know you only have to ask if you want to see more…" you smile sweetly as you slowly begin to lift your skirt.');
@@ -202,14 +203,15 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Ignore it', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
-  }, goto: ['gschool_events', 'leave_break_events2'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    qspGoto(s, 'gschool_events', 'leave_break_events2');
+  } },
         { label: 'Slap him playfully', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy2.jpg');
     scene.text('Svyatoslav isn\'t so bad, but you can\'t just let him do this to you.');
     scene.text('You give him a playful slap in the face. It\'s not hard enough to really hurt him, but enough to send a message.');
@@ -219,10 +221,10 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Taunt him', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy4.jpg');
     scene.text('You\'re so horny you decide to tease him and see if you can push him into doing more. You put your finger in your mouth and give him a flirty smirk.');
@@ -230,10 +232,10 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     scene.text('His friends heard your question and are now daring him to take you to the men\'s room.');
     scene.actions([
       { label: 'Tease him', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
     scene.text('You can see him starting to get aroused as you lean in close and whisper in his ear, loud enough for the others to hear. "This is what I have for you…"');
     scene.text('You start sliding your skirt slowly up your thighs, but just before it gets high enough to show them anything, you let it go and it drops back in place.');
@@ -262,10 +264,10 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
             { label: 'Slap him hard', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (3);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'dislike');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     if (((s as any).mesec ?? 0) > 0) {
@@ -308,11 +310,12 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Ignore it', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (10);
-  }, goto: ['gschool_events', 'leave_break_events2'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (10);
+    qspGoto(s, 'gschool_events', 'leave_break_events2');
+  } },
           { label: 'Slap him playfully', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).school_static_num ?? 0), (-2));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy2.jpg');
@@ -382,9 +385,9 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     scene.text(`He laughs and steps up closer, crowding you a little, but keeps his hands to himself. "Come on, ${((s as any).pcs_nickname || '')}. You know you want to have some fun, so stop acting like you're not all hot and bothered by this. We can help you with that itch."`);
     scene.actions([
       { label: 'Back off', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/lunch/buttflash.mp4');
     scene.text('You snort at him and look at his friends before looking back at him.');
@@ -395,9 +398,9 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Go with them', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (10);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (10);
     qspCall(s, 'fame', 'pav', 'sex', 5);
     scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. One of them leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
@@ -449,6 +452,8 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I'll show you what the fuck I want, slut!" Vitek suddenly grabs you by the hair...
     scene.text(`"I'll show you what the fuck I want, slut!" Vitek suddenly grabs you by the hair and presses your face against a desk. "What I want is your lips around my dick, right now. Everyone already knows you're a ${((s as any).gnikname || '')}, so you better start acting like it or there will be consequences."`);
     scene.text('He turns to his friends. "Come on boys, this whore doesn\'t understand her place in life. It\'s about time we show her."');
+    (s as any).availble_rescuers = 'none|none|none|none|erast' + ((((s as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((s as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((s as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((s as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (s as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((s as any).availble_rescuers ?? 0));
     if (((s as any).temperson ?? 0) === 'ivan') {
       scene.text('As you try and pull away, Ivan suddenly appears and pulls Vitek off of you. "Leave her alone!"');
       scene.text('Vitek turns towards him and narrows his eyes. "You want to go for real instead of in the ring?!"');
@@ -563,6 +568,8 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('Vitek suddenly grabs you by the hair. "Why don\'t we go somewhere where you can put that mouth of yours to good use for a change?"');
+    (s as any).availble_rescuers = 'none|none|none|none|erast' + ((((s as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((s as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((s as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((s as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (s as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((s as any).availble_rescuers ?? 0));
     if (((s as any).temperson ?? 0) === 'ivan') {
       scene.text('As you try and pull away, Ivan suddenly appears and pulls Vitek off of you. "Leave her alone!"');
       scene.text('Vitek turns towards him and narrows his eyes. "You want to go for real instead of in the ring?!"');
@@ -615,9 +622,9 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Flip him off', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     scene.img('images/pc/reactions/fuckoff3.jpg');
     scene.text('You sneer at him and look at his friends before looking back at him and flipping him off. "As if I would stoop to letting your disgusting ass paw at me."');
@@ -627,9 +634,9 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                 { label: 'Go with them', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (10);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (10);
     qspCall(s, 'fame', 'pav', 'sex', 10);
     scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. One of them leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
@@ -684,6 +691,8 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('Vitek suddenly grabs you by the hair. "Why don\'t we go somewhere where you can put that mouth of yours to good use for a change?"');
+    (s as any).availble_rescuers = 'none|none|none|none|erast' + ((((s as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((s as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((s as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((s as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (s as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((s as any).availble_rescuers ?? 0));
     if (((s as any).temperson ?? 0) === 'ivan') {
       scene.text('As you try and pull away, Ivan suddenly appears and pulls Vitek off of you. "Leave her alone!"');
       scene.text('Vitek turns towards him and narrows his eyes. "You want to go for real instead of in the ring?!"');
@@ -736,10 +745,10 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Run away', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/building/gschool_hall02.jpg');
     scene.text('You manage to pull away from him and take off running down the hall, not daring to look back. You hear them yelling before they start chasing you.');
@@ -750,9 +759,9 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                 { label: 'Go with them', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (10);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (10);
     qspCall(s, 'fame', 'pav', 'sex', 10);
     scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. One of them leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
@@ -813,9 +822,9 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     scene.text(`He laughs and steps up closer again, crowding you a little, but keeps his hands to himself. "Come on, ${((s as any).pcs_nickname || '')}. You know you want to have some fun, so stop acting like you're not all hot and bothered by this. We can help you with that itch."`);
     scene.actions([
       { label: 'Back off', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/lunch/buttflash.mp4');
     scene.text('You snort at him and look at his friends before looking back at him. You wiggle your middle finger at him, flipping him off while pretending you\'re wiggling your finger for another reason. "If I needed something that small to satisfy my itch, I could just use this."');
@@ -825,9 +834,9 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Go with them', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (10);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (10);
     qspCall(s, 'fame', 'pav', 'sex', 5);
     scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. Niko leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
@@ -879,6 +888,8 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I'll show you what the fuck I want, slut!" Roman suddenly grabs you by the hair...
     scene.text(`"I'll show you what the fuck I want, slut!" Roman suddenly grabs you by the hair and presses your face against a desk. "What I want is your lips around my dick, right now. Everyone already knows you're a ${((s as any).gnikname || '')}, so you better start acting like it or there will be consequences."`);
     scene.text('He turns to his friends and says "Come on boys, this whore doesn\'t understand her place in life. It\'s about time we show her."');
+    (s as any).availble_rescuers = 'none|none|none|none|erast' + ((((s as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((s as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((s as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((s as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (s as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((s as any).availble_rescuers ?? 0));
     if (((s as any).temperson ?? 0) === 'ivan') {
       scene.text('As you try and pull away, Ivan suddenly appears and pulls Roman off of you. "Leave her alone!"');
       scene.text('Roman turns towards him and narrows his eyes. "Touch me again and I\'ll fuck you up!"');
@@ -995,6 +1006,8 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big157.jpg');
     scene.text('Roman suddenly grabs you by the hair. "Why don\'t we go somewhere where you can put that mouth of yours to good use for a change?"');
+    (s as any).availble_rescuers = 'none|none|none|none|erast' + ((((s as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((s as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((s as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((s as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (s as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((s as any).availble_rescuers ?? 0));
     if (((s as any).temperson ?? 0) === 'ivan') {
       scene.text('As you try and pull away, Ivan suddenly appears and pulls Roman off of you. "Leave her alone!"');
       scene.text('Roman turns towards him and narrows his eyes. "Touch me again and I\'ll fuck you up!"');
@@ -1049,9 +1062,9 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Flip him off', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     scene.img('images/pc/reactions/fuckoff3.jpg');
     scene.text('You sneer at him and look at his friends before looking back at him and flipping him off. "As if I would stoop to letting your disgusting ass paw at me."');
@@ -1061,9 +1074,9 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                 { label: 'Go with them', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (10);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (10);
     qspCall(s, 'fame', 'pav', 'sex', 10);
     scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. Niko leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
@@ -1118,6 +1131,8 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big157.jpg');
     scene.text('Roman suddenly grabs you by the hair. "Why don\'t we go somewhere where you can put that mouth of yours to good use for a change?"');
+    (s as any).availble_rescuers = 'none|none|none|none|erast' + ((((s as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((s as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((s as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((s as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (s as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((s as any).availble_rescuers ?? 0));
     if (((s as any).temperson ?? 0) === 'ivan') {
       scene.text('As you try and pull away, Ivan suddenly appears and pulls Roman off of you. "Leave her alone!"');
       scene.text('Roman turns towards him and narrows his eyes. "Touch me again and I\'ll fuck you up!"');
@@ -1172,10 +1187,10 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Run away', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/building/gschool_hall02.jpg');
     scene.text('You manage to pull away from him and take off running, not daring to look back. You hear them cry out as you run and hear them starting to chase you. You run past a classroom as a teacher comes out, who yells at you but you don\'t stop. You then hear the teacher yelling at those chasing you and keep running until you don\'t hear anything. You finally stop and lean against the wall to catch your breath while looking down the empty hall.');
@@ -1184,9 +1199,9 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                 { label: 'Go with them', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (10);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (10);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (10);
     qspCall(s, 'fame', 'pav', 'sex', 10);
     scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. One of them leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
@@ -1274,9 +1289,9 @@ function enterToiletBj1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) >= 14) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+      qspGoto(s, 'gschool_grounds', 'main');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_events', 'leave_break_events2'] }]);
+      qspGoto(s, 'gschool_events', 'leave_break_events2');
     }
   } },
     ]);
@@ -1541,7 +1556,8 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
             { label: 'Ignore them and hurry to your next class', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A22', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A139', (-1));
-  }, goto: ['gschool_events', 'break_events'] },
+    qspGoto(s, 'gschool_events', 'break_events');
+  } },
           ]);
         } else {
           if (((s as any).grupTipe ?? 0) === 5) {
@@ -1580,7 +1596,8 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
               { label: 'Ignore them and hurry to your next class', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A22', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A139', (-1));
-  }, goto: ['gschool_events', 'break_events'] },
+    qspGoto(s, 'gschool_events', 'break_events');
+  } },
             ]);
           }
         }
@@ -1592,7 +1609,7 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['bella_stasya_gossip'] = 1;
+  ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['bella_stasya_gossip'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/bella/notice/bella_stasya1.jpg');
   scene.text('As you walk into the cafeteria, Bella and Stasya gesture towards you to get your attention.');
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 7) {
@@ -1732,7 +1749,8 @@ function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['gschool_lunch', 'lunch'] },
+    qspGoto(s, 'gschool_lunch', 'lunch');
+  } },
       ]);
     }
     scene.actions([
@@ -1755,7 +1773,8 @@ function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
-  }, goto: ['gschool_lunch', 'lunch'] },
+    qspGoto(s, 'gschool_lunch', 'lunch');
+  } },
     ]);
   } },
     ]);

@@ -27,16 +27,16 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBackup(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).lastwornunderwear) (s as any).lastwornunderwear = {}; (s as any).lastwornunderwear['backup'] = ((s as any).underwear ?? 0)?.['type'];
+  ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})['backup'] = ((s as any).underwear ?? 0)?.['type'];
   if (((s as any).underwear ?? 0)?.['type'] === 2) {
-    if (!(s as any).lastwornbodysuittype) (s as any).lastwornbodysuittype = {}; (s as any).lastwornbodysuittype['backup'] = ((s as any).bodysuitworntype ?? 0);
-    if (!(s as any).lastwornbodysuitnumber) (s as any).lastwornbodysuitnumber = {}; (s as any).lastwornbodysuitnumber['backup'] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})['backup'] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})['backup'] = ((s as any).bodysuitwornnumber ?? 0);
     qspCall(s, 'underwear_bodysuits', 'remove');
   } else {
-    if (!(s as any).lastwornpantytype) (s as any).lastwornpantytype = {}; (s as any).lastwornpantytype['backup'] = ((s as any).pantyworntype ?? 0);
-    if (!(s as any).lastwornpantynumber) (s as any).lastwornpantynumber = {}; (s as any).lastwornpantynumber['backup'] = ((s as any).pantywornnumber ?? 0);
-    if (!(s as any).lastwornbratype) (s as any).lastwornbratype = {}; (s as any).lastwornbratype['backup'] = ((s as any).braworntype ?? 0);
-    if (!(s as any).lastwornbranumber) (s as any).lastwornbranumber = {}; (s as any).lastwornbranumber['backup'] = ((s as any).brawornnumber ?? 0);
+    ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})['backup'] = ((s as any).pantyworntype ?? 0);
+    ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})['backup'] = ((s as any).pantywornnumber ?? 0);
+    ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})['backup'] = ((s as any).braworntype ?? 0);
+    ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})['backup'] = ((s as any).brawornnumber ?? 0);
     qspCall(s, 'panties', 'remove');
     qspCall(s, 'bras', 'remove');
   }
@@ -46,7 +46,7 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStrip(s: GameState, scene: SceneBuilder): void {
-  if ((String(((s as any).clothingworntype ?? 0)).indexOf(String('swimsuit'))) + 1 <= 0  &&  (String(((s as any).clothingworntype ?? 0)).indexOf(String('bikinis'))) + 1 <= 0) {
+  if (((String(((s as any).clothingworntype ?? 0)).indexOf(String('swimsuit'))) + 1) <= 0  &&  ((String(((s as any).clothingworntype ?? 0)).indexOf(String('bikinis'))) + 1) <= 0) {
     if (((s as any).underwear ?? 0)?.['type'] === 2) {
       qspCall(s, 'underwear_bodysuits', 'strip');
     } else {
@@ -96,7 +96,7 @@ function enterDresser(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

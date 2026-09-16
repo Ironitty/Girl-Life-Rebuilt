@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)?.['pav_slut'] < 250) {
     if (((s as any).pcs_apprnc ?? 0)/8 === 0) {
-      qspCall(s, 'npc_relationship', 'modify', 'A' + qspUntranslated(s, "numnpc>", { location: "nogorslut" }) + '', 1);
+      qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).numnpc ?? 0) + '', 1);
     } else {
       // TODO-QSP: gs 'npc_relationship', 'modify_exact', 'A<<numnpc>>', pcs_apprnc/8
     }
@@ -71,7 +71,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'pav_disco') {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -136,7 +136,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     if (((s as any).numnpc ?? 0) === 14) {
                                       scene.text('');
                                       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-                                        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+                                        ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
                                         scene.text('Katja blushes slightly and tries to avoid your gaze, looking away every time you look at her.');
                                       }
                                     } else {

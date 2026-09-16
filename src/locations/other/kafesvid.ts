@@ -1,10 +1,11 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
@@ -20,16 +21,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).alla ?? 0) >= 20) {
         (s as any).kaferand = Math.floor(Math.random() * 9) + 0;
         if (((s as any).kaferand ?? 0) < 2) {
-          scene.actions([{ label: 'Continue', goto: ['kafesvid', '1'] }]);
+          qspGoto(s, 'kafesvid', '1');
         } else {
           if (((s as any).kaferand ?? 0) < 4) {
-            scene.actions([{ label: 'Continue', goto: ['kafesvid', '2'] }]);
+            qspGoto(s, 'kafesvid', '2');
           } else {
-            scene.actions([{ label: 'Continue', goto: ['kafesvid', 'end'] }]);
+            qspGoto(s, 'kafesvid', 'end');
           }
         }
       } else {
-        scene.actions([{ label: 'Continue', goto: ['kafesvid', 'end'] }]);
+        qspGoto(s, 'kafesvid', 'end');
       }
     } else {
       if (((s as any).telsob ?? 0) === 'Masha') {
@@ -37,16 +38,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).masha ?? 0) >= 20) {
           (s as any).kaferand = Math.floor(Math.random() * 9) + 0;
           if (((s as any).kaferand ?? 0) < 2) {
-            scene.actions([{ label: 'Continue', goto: ['kafesvid', '1'] }]);
+            qspGoto(s, 'kafesvid', '1');
           } else {
             if (((s as any).kaferand ?? 0) < 4) {
-              scene.actions([{ label: 'Continue', goto: ['kafesvid', '2'] }]);
+              qspGoto(s, 'kafesvid', '2');
             } else {
-              scene.actions([{ label: 'Continue', goto: ['kafesvid', 'end'] }]);
+              qspGoto(s, 'kafesvid', 'end');
             }
           }
         } else {
-          scene.actions([{ label: 'Continue', goto: ['kafesvid', 'end'] }]);
+          qspGoto(s, 'kafesvid', 'end');
         }
       } else {
         if (((s as any).telsob ?? 0) === 'Kate') {
@@ -54,30 +55,30 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_rel ?? 0)?.['A219'] >= 20) {
             (s as any).kaferand = Math.floor(Math.random() * 9) + 0;
             if (((s as any).kaferand ?? 0) < 2) {
-              scene.actions([{ label: 'Continue', goto: ['kafesvid', '1'] }]);
+              qspGoto(s, 'kafesvid', '1');
             } else {
               if (((s as any).kaferand ?? 0) < 4) {
-                scene.actions([{ label: 'Continue', goto: ['kafesvid', '2'] }]);
+                qspGoto(s, 'kafesvid', '2');
               } else {
-                scene.actions([{ label: 'Continue', goto: ['kafesvid', 'end'] }]);
+                qspGoto(s, 'kafesvid', 'end');
               }
             }
           } else {
-            scene.actions([{ label: 'Continue', goto: ['kafesvid', 'end'] }]);
+            qspGoto(s, 'kafesvid', 'end');
           }
         } else {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
           if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 60) {
-            scene.actions([{ label: 'Continue', goto: ['kafesvid', 'end'] }]);
+            qspGoto(s, 'kafesvid', 'end');
           } else {
             (s as any).kaferand = Math.floor(Math.random() * 9) + 0;
             if (((s as any).kaferand ?? 0) <= 1) {
-              scene.actions([{ label: 'Continue', goto: ['kafesvid', '1'] }]);
+              qspGoto(s, 'kafesvid', '1');
             } else {
               if (((s as any).kaferand ?? 0) <= 3) {
-                scene.actions([{ label: 'Continue', goto: ['kafesvid', '2'] }]);
+                qspGoto(s, 'kafesvid', '2');
               } else {
-                scene.actions([{ label: 'Continue', goto: ['kafesvid', 'end'] }]);
+                qspGoto(s, 'kafesvid', 'end');
               }
             }
           }
@@ -110,7 +111,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       { label: 'Not in public', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['kafesvid', 'end'] },
+    qspGoto(s, 'kafesvid', 'end');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -132,7 +134,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
         { label: 'We can\'t do it here', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['kafesvid', 'end'] },
+    qspGoto(s, 'kafesvid', 'end');
+  } },
       ]);
     }
     scene.actions([
@@ -147,6 +150,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/boyfriend/sex/event/5.jpg');
     // TODO-QSP: dynamic text: Wanting to feel her wonderful tongue over even more of you most private places, ...
     scene.text(`Wanting to feel her wonderful tongue over even more of you most private places, you bend over the table for her. ${((s as any).telsob || '')} immediately jumps to aggressively tongue both your holes. One particularly deep thrust of her tongue into your ass is what sends you over the edge. You cry out, as an intense orgasm rushes over you.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'rimming', 5, 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -236,6 +240,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/7.jpg');
   // TODO-QSP: dynamic text: You stand up against the table, waiting for <<$telsob>> to pleasure you. She eag...
   scene.text(`You stand up against the table, waiting for ${((s as any).telsob || '')} to pleasure you. She eagerly drops to her knees, dildo at the ready. She licks at your clitoris, while she pushes it inside you. It's not long before her attention sends an orgasm coursing through you.`);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
   qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'lesbian');
   qspCall(s, 'stat', '');
@@ -277,7 +282,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: '"I\'ll crush your balls if you do"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['kafesvid', 'end'] },
+    qspGoto(s, 'kafesvid', 'end');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -306,7 +312,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['kafesvid', 'end'] },
+    qspGoto(s, 'kafesvid', 'end');
+  } },
       ]);
     }
     scene.actions([
@@ -336,7 +343,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Lick sperm', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
     scene.img('images/characters/city/boyfriend/sex/event/14.jpg');
     // TODO-QSP: dynamic text: You lean over the table, and lap up his sperm with your tongue. <<$telsob>> gent...
     scene.text(`You lean over the table, and lap up his sperm with your tongue. ${((s as any).telsob || '')} gently strokes your hair, as you do.`);
@@ -345,7 +352,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Don\'t touch the sperm', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
     scene.img('images/characters/city/boyfriend/sex/event/15.jpg');
     // TODO-QSP: dynamic text: Seeing that you aren't moving, <<$telsob>> leans over the table to collect all h...
     scene.text(`Seeing that you aren't moving, ${((s as any).telsob || '')} leans over the table to collect all his sperm in her mouth. Before you can think to react, she gives you a deep kiss, forcing most of his cum into your mouth. You swallow it without thinking. "Now tell me that wasn't a tasty treat," she finishes.`);
@@ -387,6 +394,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('When he is finally all the way in, he starts moving with gentle thrusts. It\'s almost overwhelming. Gentle or not this man has you stretched almost to the breaking point. The thought of what he is doing to your backside sends you over the edge, and you cum with a loud cry. Moments later you feel his wet warmth fill your ass.');
     // TODO-QSP: dynamic text: "You little slut, I can't believe you came from getting fucked in the ass," <<$t...
     scene.text(`"You little slut, I can't believe you came from getting fucked in the ass," ${((s as any).telsob || '')} says, smiling at you with approval. "Now lick him clean," she finishes.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'stat', '');
     qspCall(s, 'willpower', 'misc', 'resist', 'easy');
@@ -401,7 +409,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         { label: 'No, that\'s enough', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['kafesvid', 'end'] },
+    qspGoto(s, 'kafesvid', 'end');
+  } },
       ]);
     }
     scene.actions([
@@ -423,7 +432,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: '<<$telsob>> knows best', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).telsob || '') ?? '') + ' knows best', handler: (st: GameState) => {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     scene.img('images/characters/city/boyfriend/sex/event/21.jpg');
     // TODO-QSP: dynamic text: The man lies back on the table, as <<$telsob>> helps you on top of him. When you...
@@ -432,6 +441,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Faster boy, I want you to fuck her so she can't sit for a week," she orders him. To you she says, "My ${((s as any).pcs_nickname || '')} fucking loves it." Her words send you over the edge again. Your body shakes from head to toe, as you ride another orgasm. When you have regained your senses she whispers to you again, "That's twice you little slut."`);
     // TODO-QSP: dynamic text: When the waiter is getting close <<$telsob>> stops him with a command, "In her m...
     scene.text(`When the waiter is getting close ${((s as any).telsob || '')} stops him with a command, "In her mouth this time, boy."`);
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -443,7 +453,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: As soon you drop to your knees, <<$telsob>> furiously jerks his cock, aiming it ...
     scene.text(`As soon you drop to your knees, ${((s as any).telsob || '')} furiously jerks his cock, aiming it at your mouth. The man groans loudly, and erupts all over the place. A lot of his cum finds your mouth, but it also runs down your chin and chest. Looking up, you see ${((s as any).telsob || '')} looking at you like a proud parent.`);
     scene.actions([
-      { label: 'Kiss <<$telsob>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Kiss ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/23.jpg');
     // TODO-QSP: dynamic text: <<$telsob>> leans down, and kisses you deeply. You push a little of the mans cum...
     scene.text(`${((s as any).telsob || '')} leans down, and kisses you deeply. You push a little of the mans cum into her mouth with your tongue. She swallows it down, with a wicked grin. Not satisfied she moves further down licking the cum from your breasts and stomach. Just when you think she is finished cleaning you, she rocks your hips back exposing your backside. She passionately licks and kisses your little hole, as she works to collect every drop. When she is finished, she gives you one last deep kiss. It tastes wonderful.`);
@@ -475,6 +485,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('When he is finally all the way in, he starts moving with gentle thrusts. It\'s almost overwhelming. Gentle or not this man has you stretched almost to the breaking point. The thought of what he is doing to your backside sends you over the edge, and you cum with a loud cry. Moments later you feel his wet warmth fill your ass.');
     // TODO-QSP: dynamic text: "You little slut, I can't believe you came from getting fucked in the ass," <<$t...
     scene.text(`"You little slut, I can't believe you came from getting fucked in the ass," ${((s as any).telsob || '')} says, smiling at you with approval. "Now lick him clean," she finishes.`);
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'stat', '');
     qspCall(s, 'willpower', 'misc', 'resist', 'easy');
@@ -489,7 +500,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         { label: 'No, that\'s enough', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['kafesvid', 'end'] },
+    qspGoto(s, 'kafesvid', 'end');
+  } },
       ]);
     }
     scene.actions([
@@ -511,7 +523,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: '<<$telsob>> knows best', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).telsob || '') ?? '') + ' knows best', handler: (st: GameState) => {
     (s as any).orgasm = ((s as any).orgasm ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     scene.img('images/characters/city/boyfriend/sex/event/21.jpg');
@@ -521,6 +533,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Faster boy, I want you to fuck her so she can't sit for a week," she orders him. To you she says, "My ${((s as any).pcs_nickname || '')} fucking loves it." Her words send you over the edge again. Your body shakes from head to toe, as you ride another orgasm. When you have regained your senses she whispers to you again, "That's twice you little slut."`);
     // TODO-QSP: dynamic text: When the waiter is getting close <<$telsob>> stops him with a command, "In her m...
     scene.text(`When the waiter is getting close ${((s as any).telsob || '')} stops him with a command, "In her mouth this time, boy."`);
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -532,7 +545,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: As soon you drop to your knees, <<$telsob>> furiously jerks his cock, aiming it ...
     scene.text(`As soon you drop to your knees, ${((s as any).telsob || '')} furiously jerks his cock, aiming it at your mouth. The man groans loudly, and erupts all over the place. A lot of his cum finds your mouth, but it also runs down your chin and chest. Looking up, you see ${((s as any).telsob || '')} looking at you like a proud parent.`);
     scene.actions([
-      { label: 'Kiss <<$telsob>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Kiss ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/23.jpg');
     // TODO-QSP: dynamic text: <<$telsob>> leans down, and kisses you deeply. You push a little of the mans cum...
     scene.text(`${((s as any).telsob || '')} leans down, and kisses you deeply. You push a little of the mans cum into her mouth with your tongue. She swallows it down, with a wicked grin. Not satisfied she moves further down licking the cum from your breasts and stomach. Just when you think she is finished cleaning you, she rocks your hips back exposing your backside. She passionately licks and kisses your little hole, as she works to collect every drop. When she is finished, she gives you one last deep kiss. It tastes wonderful.`);

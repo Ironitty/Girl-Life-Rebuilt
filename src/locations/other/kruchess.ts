@@ -1,11 +1,15 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '';
+  (s as any).loc = 'kruchess';
   (s as any).frost = 0;
+  (s as any).menu_loc = 'kruchess';
+  (s as any).menu_arg = '';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Chess Club</b></center>');
@@ -95,40 +99,50 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('You are paired against Vitalik, the youngest boy in the club. Despite his age he has already achieved rank 4, the lowest official chess rank corresponding to an ELO rating of 1000+.');
         scene.actions([
           { label: 'Play chess with Vitalik', handler: (st: GameState) => {
+    (s as any).chess_name = 'Vitalik';
     (s as any).chessV = 10;
-  }, goto: ['chessplay', ''] },
+    qspGoto(s, 'chessplay', '');
+  } },
         ]);
       } else {
         if (((s as any).chess_win ?? 0) < 10) {
           scene.text('You get to play against Kostya, who recently advanced to rank 3 after passing 1400 ELO points.');
           scene.actions([
             { label: 'Play chess with Kostya', handler: (st: GameState) => {
+    (s as any).chess_name = 'Kostya';
     (s as any).chessV = 30;
-  }, goto: ['chessplay', ''] },
+    qspGoto(s, 'chessplay', '');
+  } },
           ]);
         } else {
           if (((s as any).chess_win ?? 0) < 15) {
             scene.text('You sit down to play Sergei. You recall that he is a rank 2 player with an ELO rating of more than 1600.');
             scene.actions([
               { label: 'Play chess with Sergei', handler: (st: GameState) => {
+    (s as any).chess_name = 'Sergei';
     (s as any).chessV = 50;
-  }, goto: ['chessplay', ''] },
+    qspGoto(s, 'chessplay', '');
+  } },
             ]);
           } else {
             if (((s as any).chess_win ?? 0) < 20) {
               scene.text('You are facing Coach Genrikh. At his peak he achieved an ELO ranking of just over 2000, and despite his skills declining with age he still plays at the level of a rank 1 player.');
               scene.actions([
                 { label: 'Play chess with Coach Genrikh', handler: (st: GameState) => {
+    (s as any).chess_name = 'Coach Genrikh';
     (s as any).chessV = 70;
-  }, goto: ['chessplay', ''] },
+    qspGoto(s, 'chessplay', '');
+  } },
               ]);
             } else {
               if (((s as any).chess_win ?? 0) >= 20) {
                 scene.text('You are challenging Evgeny Kuznetsov. He has already won the regional championship twice and placed well at the nationals each year he has attended. He is already rated above a 2200 in the ELO rankings.');
                 scene.actions([
                   { label: 'Play chess with Evgeny', handler: (st: GameState) => {
+    (s as any).chess_name = 'Evgeny';
     (s as any).chessV = 90;
-  }, goto: ['chessplay', ''] },
+    qspGoto(s, 'chessplay', '');
+  } },
                 ]);
               }
             }

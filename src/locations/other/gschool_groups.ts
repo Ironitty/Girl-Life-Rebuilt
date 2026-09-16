@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -29,11 +31,13 @@ function enterTeachers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerds(s: GameState, scene: SceneBuilder): void {
+  (s as any).nerd_text = '';
   (s as any).nerd_count = 0;
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :nerd_loop
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 3  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+    (s as any).lcase_nerd = qspUntranslated(s, "lcase(npc_usedname['A<<i>>'])", { location: "gschool_groups" });
     // TODO-QSP: $nerd_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:...
     (s as any).nerd_count = ((s as any).nerd_count ?? 0) + (1);
     if (((s as any).nerd_count ?? 0) === 6) {
@@ -52,11 +56,13 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJocks(s: GameState, scene: SceneBuilder): void {
+  (s as any).jock_text = '';
   (s as any).jock_count = 0;
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :jock_loop
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 2  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+    (s as any).lcase_jock = qspUntranslated(s, "lcase(npc_usedname['A<<i>>'])", { location: "gschool_groups" });
     // TODO-QSP: $jock_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:...
     (s as any).jock_count = ((s as any).jock_count ?? 0) + (1);
     if (((s as any).jock_count ?? 0) === 6) {
@@ -75,11 +81,13 @@ function enterJocks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPopular(s: GameState, scene: SceneBuilder): void {
+  (s as any).pop_text = '';
   (s as any).pop_count = 0;
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :pop_loop
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+    (s as any).lcase_pop = qspUntranslated(s, "lcase(npc_usedname['A<<i>>'])", { location: "gschool_groups" });
     // TODO-QSP: $pop_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:g...
     (s as any).pop_count = ((s as any).pop_count ?? 0) + (1);
     if (((s as any).pop_count ?? 0) === 6) {
@@ -98,11 +106,13 @@ function enterPopular(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopniks(s: GameState, scene: SceneBuilder): void {
+  (s as any).gop_text = '';
   (s as any).gop_count = 0;
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :gop_loop
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+    (s as any).lcase_gop = qspUntranslated(s, "lcase(npc_usedname['A<<i>>'])", { location: "gschool_groups" });
     // TODO-QSP: $gop_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:g...
     (s as any).gop_count = ((s as any).gop_count ?? 0) + (1);
     if (((s as any).gop_count ?? 0) === 6) {
@@ -121,11 +131,13 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOutcasts(s: GameState, scene: SceneBuilder): void {
+  (s as any).oc_text = '';
   (s as any).oc_count = 0;
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :oc_loop
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 5  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+    (s as any).lcase_oc = qspUntranslated(s, "lcase(npc_usedname['A<<i>>'])", { location: "gschool_groups" });
     // TODO-QSP: $oc_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:gt...
     (s as any).oc_count = ((s as any).oc_count ?? 0) + (1);
     if (((s as any).oc_count ?? 0) === 6) {

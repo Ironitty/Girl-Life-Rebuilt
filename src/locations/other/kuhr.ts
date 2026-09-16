@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'kuhr', '');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'kitr';
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -18,10 +20,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if ((Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).santehnikDolg ?? 0) === 0  &&  ((s as any).remkuhr ?? 0) === 0  &&  ((s as any).daystart ?? 0) > ((s as any).kransloman ?? 0)[1] + 90) {
     (s as any).kransloman = 1;
-    if (!(s as any).kransloman) (s as any).kransloman = {}; (s as any).kransloman[1] = ((s as any).daystart ?? 0);
+    ((s as any).kransloman = (s as any).kransloman ?? {})[1] = ((s as any).daystart ?? 0);
   }
   if (((s as any).kransloman ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['kuhr', 'leak'] }]);
+    qspGoto(s, 'kuhr', 'leak');
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
     // TODO-QSP: dynamic text: <b><<mc_inventory['dish_plates']>></b> clean plates are stored in the cupboard.
@@ -31,7 +33,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><<dirttarelka>></b> dirty dishes are lying in the sink. <a href="exec:gs 'kit...
-    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="exec:gs 'kit_din', 'dirtarm'">Wash the dishes</a>.`);
+    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027dirtarm\\u0027); return false;">Wash the dishes</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
     // TODO-QSP: dynamic text: There is dishwashing liquid next to the sink, enough for <b><<mc_inventory['dish...
@@ -41,8 +43,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] === 0  ||  ((s as any).edahot ?? 0) > 0) {
+      (s as any).edagot = '';
     }
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
+      (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027edagotd\\u0027); return false;">Cook a meal</a>';
     }
     // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
     scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot || '')}`);
@@ -61,7 +65,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You can\'t go out to the trash cans naked!');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 3;
-      scene.actions([{ label: 'Continue', goto: ['city_trashplace', ''] }]);
+      qspGoto(s, 'city_trashplace', '');
     }
   } },
     ]);
@@ -81,14 +85,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<font color = maroon><b>Leave the apartment and go outside</b></font>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['korr', ''] },
+    qspGoto(s, 'korr', '');
+  } },
   ]);
   scene.build();
 }
@@ -108,7 +114,8 @@ function enterLeak(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['korr', ''] },
+    qspGoto(s, 'korr', '');
+  } },
   ]);
   scene.build();
 }
@@ -120,10 +127,10 @@ function enterDildo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 6  ||  ((s as any).hour ?? 0) >= 17)) {
-    scene.actions([{ label: 'Continue', goto: ['husbsex', 'husb_mastr_vtor'] }]);
+    qspGoto(s, 'husbsex', 'husb_mastr_vtor');
   } else {
     if (((s as any).wifID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 6  ||  ((s as any).hour ?? 0) >= 17)) {
-      scene.actions([{ label: 'Continue', goto: ['husbsex', 'husb_mastr_vtor'] }]);
+      qspGoto(s, 'husbsex', 'husb_mastr_vtor');
     } else {
       qspCall(s, 'npcStat', 'D1');
       scene.img('images/shared/sex/mast/mastr.mp4');
@@ -133,6 +140,7 @@ function enterDildo(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'re soon twitching on the dildo and juices drip down its length, soaking the floor beneath you. You take a few deep breaths and a smile grows along your face. That was just what you needed!');
     }
   }
+  (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end

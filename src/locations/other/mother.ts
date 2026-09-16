@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -15,7 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your mother is still quite young and attractive at only <<motherAge>> years old....
   scene.text(`Your mother is still quite young and attractive at only ${((s as any).motherAge || '')} years old. She works at the station cafe.`);
   if ((((s as any).motherKnowWhore ?? 0) > 0  ||  ((s as any).motherKnowSpravka ?? 0) > 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A29'] = 1;
+    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A29'] = 1;
   }
   if (((s as any).npc_QW ?? 0)?.['A29'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A29'] > 40) {
     qspCall(s, 'npc_relationship', 'set', 'A29', 40);
@@ -84,17 +84,23 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hcolmotherremember ?? 0) !== ((s as any).pcs_haircol ?? 0)) {
     if (((s as any).pcs_haircol ?? 0) === ((s as any).nathcol ?? 0)) {
+      (s as any).texthcol = 'Or, rather, un-dyed your hair. Good, you decided to go back to your natural color!';
     } else {
       if ((!((s as any).pcs_haircol ?? 0))) {
+        (s as any).texthcol = 'I see you decided to go with black hair?';
       } else {
         if (((s as any).pcs_haircol ?? 0) === 1) {
+          (s as any).texthcol = 'I see you decided to become a brunette?';
         } else {
           if (((s as any).pcs_haircol ?? 0) === 2) {
+            (s as any).texthcol = 'I see you decided to become a redhead?';
           } else {
             if (((s as any).pcs_haircol ?? 0) === 3) {
+              (s as any).texthcol = 'I see you decided to go blonde?';
             } else {
               if (((s as any).pcs_haircol ?? 0) >= 4) {
                 qspCall(s, 'npc_relationship', 'modify', 'A29', (-25));
+                (s as any).texthcol = 'What were you thinking?! Do you think you\'ll get into university with hair like <i>that</i>?!';
               }
             }
           }
@@ -102,9 +108,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).pcs_haircol ?? 0) !== ((s as any).nathcol ?? 0)  &&  ((s as any).pcs_haircol ?? 0) <= 3  &&  ((s as any).npc_rel ?? 0)?.['A29'] < 60) {
+      (s as any).texthcol2 = 'she frowns. "You should concentrate on your studies, not on how you look!"';
     } else {
       if (((s as any).pcs_haircol ?? 0) !== ((s as any).nathcol ?? 0)  &&  ((s as any).pcs_haircol ?? 0) > 3  &&  ((s as any).npc_rel ?? 0)?.['A29'] < 60) {
         (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
+        (s as any).texthcol2 = 'she angrily grabs a handful of it and holds it tightly, but doesn\'t quite pull it. "What a fool you are! Do you want to throw away your future? Get out of my sight!"';
+      } else {
+        (s as any).texthcol2 = 'smiling. "It looks nice on you. I\'m sure the boys will like it too. Just make sure you keep your grades up."';
       }
     }
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> immediately notices that you've dyed your hair. "W...
@@ -178,7 +188,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_tongue'] === 0  &&  ((s as any).motherQW ?? 0)?.['piercing_talkday'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
+    ((s as any).motherQW = (s as any).motherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
     if ((Math.floor(Math.random() * 100) + 1) >= 75) {
       // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> sees the glimmer of metal in your mouth. "<<$pcs_n...
       scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} sees the glimmer of metal in your mouth. "${((s as any).pcs_nickname || '')}, what's that in your mouth? I thought I saw something shiny…"`);
@@ -189,12 +199,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly turn and walk away before she has time to second guess you.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
         { label: 'Show her your pierced tongue', handler: (st: GameState) => {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['piercing_tongue'] = 1;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['piercing_tongue'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/piercings/a${((s as any).pcs_piercings ?? 0)?.['tongue'] ?? ''}.jpg`);
@@ -203,7 +213,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} clearly disapproves and shakes her head. "Oh ${((s as any).pcs_nickname || '')}… You know those things are only worn by slutty women who serve men with their mouths!"`);
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -211,12 +221,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['lip'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_lip'] === 0  &&  ((s as any).motherQW ?? 0)?.['piercing_talkday'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
+    ((s as any).motherQW = (s as any).motherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> notices your new lip piercing and doesn't seem ver...
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} notices your new lip piercing and doesn't seem very happy about it. "Why did you get such a thing?"`);
     scene.actions([
       { label: 'I think it looks pretty', handler: (st: GameState) => {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['piercing_lip'] = 1;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['piercing_lip'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/piercings/b${((s as any).pcs_piercings ?? 0)?.['lip'] ?? ''}.jpg`);
@@ -224,19 +234,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('She clearly doesn\'t, and walks away without even bothering to answer.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
     ]);
   }
   if (((s as any).pcs_piercings ?? 0)?.['ears'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_ears'] === 0) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['piercing_ears'] = 1;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['piercing_ears'] = 1;
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> notices your new earrings and smiles. "I see you d...
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} notices your new earrings and smiles. "I see you decided to wear earrings? They're nice and look very cute on you."`);
   }
   if (((s as any).pcs_piercings ?? 0)?.['nose'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_nose'] === 0) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['piercing_nose'] = 1;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['piercing_nose'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> looks a bit shocked at your nose ring.
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} looks a bit shocked at your nose ring.`);
@@ -244,7 +254,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Jesus ${((s as any).pcs_nickname || '')}, what is- why?! I understand putting a ring in a bull's nose to lead them by, but on a <i>person</i>? There's no reason to do that!"`);
   }
   if (((s as any).pcs_piercings ?? 0)?.['brow'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_brow'] === 0) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['piercing_brow'] = 1;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['piercing_brow'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> shakes her head in exasperation when she sees your...
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} shakes her head in exasperation when she sees your eyebrow piercing.`);
@@ -254,7 +264,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A29'] > 65  &&  ((s as any).mesec ?? 0) > 0  &&  ((s as any).knowpreg ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['tampons'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 0) {
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['sanitary_pads'] = ((s as any).mc_inventory['sanitary_pads'] ?? 0) + (3);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sanitary_pads'] = ((s as any).mc_inventory['sanitary_pads'] ?? 0) + (3);
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-15));
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     // TODO-QSP: dynamic text: You tell your <<$npc_nickname['A29']>> you're menstruating and have ran out of t...
@@ -286,7 +296,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['school_diploma'] = 1;
+      ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['school_diploma'] = 1;
       (s as any).grad_miss = 0;
       (s as any).kanikuli = 7;
       qspCall(s, 'stat', '');
@@ -356,7 +366,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('She smiles at you gratefully and returns to what she was doing.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -364,7 +374,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).rape_count ?? 0) > 0  &&  ((s as any).rape_day ?? 0)+7 > ((s as any).daystart ?? 0)  &&  ((s as any).rape_talk_mom ?? 0) !== ((s as any).rape_count ?? 0)) {
       scene.actions([
-        { label: 'Tell her about your rape', goto: ['mother_chats', 'rape_talk'] },
+        { label: 'Tell her about your rape', handler: (st: GameState) => {
+    qspGoto(s, 'mother_chats', 'rape_talk');
+  } },
       ]);
     }
     qspCall(s, 'camera', 'check_person', 'mother');
@@ -507,7 +519,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is outraged by the suggestion. "Really ${((s as any).pcs_nickname || '')}? You have lots of customers, and you're still asking me for clothes? You should have plenty of whore money to buy them yourself! Besides, I don't know where to buy clothes for a whore."`);
       scene.actions([
         { label: 'Move away from her', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -706,7 +718,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`You try to talk with your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} to hopefully patch up your relationship. You're not sure whether you said something wrong, or whether she's just in a bad mood, but your attempt to reconcile backfires horribly; within seconds, the conversation turns into a screaming contest and your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} ends up disliking you even more.`);
       scene.actions([
         { label: 'Leave her be for now', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -717,12 +729,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text(`You try to talk with your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} to try and patch up your relationship. Despite your best efforts, the whole conversation consists mainly of her fairly aggressive monologue about morality, diseases and what awaits you in the future if you don't change your ways. Still, there is <i>some</i> improvement in your relationship.`);
         scene.actions([
           { label: 'Leave her be for now', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
         if (((s as any).mqwtRand ?? 0) > 8  &&  ((s as any).npc_rel ?? 0)?.['A29'] >= 40) {
-          scene.actions([{ label: 'Continue', goto: ['mother', 'motherQW_2'] }]);
+          qspGoto(s, 'mother', 'motherQW_2');
         }
       }
     }
@@ -849,7 +861,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -873,7 +885,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -921,13 +933,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).GspravkaTalked ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  ((s as any).GspravkaT ?? 0) !== 1  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21))) {
-    scene.actions([{ label: 'Continue', goto: ['mother', 'referral'] }]);
+    qspGoto(s, 'mother', 'referral');
   } else {
     if (((s as any).Gspassed ?? 0) === 1  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21))) {
-      scene.actions([{ label: 'Continue', goto: ['mother', 'referral_pass'] }]);
+      qspGoto(s, 'mother', 'referral_pass');
     } else {
       if (((s as any).GspravkaT ?? 0) === 2  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21))) {
-        scene.actions([{ label: 'Continue', goto: ['mother', 'referral_fail'] }]);
+        qspGoto(s, 'mother', 'referral_fail');
       }
     }
   }
@@ -937,7 +949,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away from her', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -946,25 +958,25 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterCheckWorkout(s: GameState, scene: SceneBuilder): void {
   if (((s as any).motherQW ?? 0)?.['workout'] !== 1) {
     scene.actions([
-      { label: 'Ask <<$npc_nickname[\'A29\']>> to workout sometime', goto: ['mother', 'ask_mother_workout'] },
+      { label: '', labelFn: (s: GameState) => 'Ask ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' to workout sometime', goto: ['mother', 'ask_mother_workout'] },
     ]);
   }
   if ((((s as any).PCloStyle ?? 0) === 5  ||  ((s as any).PCloStyle2 ?? 0) === 6  ||  ((s as any).PCloSport ?? 0) === 1)  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).motherQW ?? 0)?.['workout'] === 1  &&  ((s as any).motherQW ?? 0)?.['workout_day'] !== ((s as any).daystart ?? 0)) {
     if (((s as any).pcs_energy ?? 0) < 10) {
       scene.actions([
-        { label: 'Ask <<$npc_nickname[\'A29\']>> to workout', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Ask ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' to workout', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
       ]);
     } else {
       if (((s as any).loc ?? 0) === 'kuhrPar'  ||  ((s as any).loc ?? 0) === 'sitrPar') {
         scene.actions([
-          { label: 'Ask <<$npc_nickname[\'A29\']>> to workout', goto: ['mother', 'mother_workout_pav'] },
+          { label: '', labelFn: (s: GameState) => 'Ask ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' to workout', goto: ['mother', 'mother_workout_pav'] },
         ]);
       } else {
         if (((s as any).loc ?? 0) === 'gad_gphouse') {
           scene.actions([
-            { label: 'Ask <<$npc_nickname[\'A29\']>> to workout', goto: ['mother', 'mother_workout_gad'] },
+            { label: '', labelFn: (s: GameState) => 'Ask ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' to workout', goto: ['mother', 'mother_workout_gad'] },
           ]);
         }
       }
@@ -1042,16 +1054,16 @@ function enterReferral(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).dildo_gyno_fail ?? 0) === 1) {
-          scene.actions([{ label: 'Continue', goto: ['mother', 'dildo_gyno_fail'] }]);
+          qspGoto(s, 'mother', 'dildo_gyno_fail');
         } else {
           if (((s as any).dildo_gyno_pass ?? 0) === 1) {
-            scene.actions([{ label: 'Continue', goto: ['mother', 'dildo_gyno_pass'] }]);
+            qspGoto(s, 'mother', 'dildo_gyno_pass');
           } else {
             if (((s as any).GspravkaT ?? 0) === 2  &&  (!((s as any).motherKnowSpravka ?? 0))) {
-              scene.actions([{ label: 'Continue', goto: ['mother', 'referral_fail'] }]);
+              qspGoto(s, 'mother', 'referral_fail');
             } else {
               if (((s as any).Gspassed ?? 0) === 1) {
-                scene.actions([{ label: 'Continue', goto: ['mother', 'referral_pass'] }]);
+                qspGoto(s, 'mother', 'referral_pass');
               }
             }
           }
@@ -1101,7 +1113,7 @@ function enterReferralFail(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'set', 'A29', 0);
     (s as any).motherKnowSpravka = 1;
     if (((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-      if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A29'] = 1;
+      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A29'] = 1;
     }
     if (((s as any).momslut ?? 0) < 2) {
       (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
@@ -1131,7 +1143,7 @@ function enterReferralFail(s: GameState, scene: SceneBuilder): void {
       (s as any).motherKnowSpravka = 1;
       (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
       if (((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-        if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A29'] = 1;
+        ((s as any).npc_QW = (s as any).npc_QW ?? {})['A29'] = 1;
       }
       // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> reads the referral and closes her eyes for a secon...
       scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} reads the referral and closes her eyes for a second, trying to suppress her anger. "To be honest, it's not even a surprise to me. Don't think that I haven't seen you sneaking around the house at weird times, and all the guys loitering near our apartment."`);
@@ -1161,7 +1173,7 @@ function enterReferralFail1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'set', 'A29', 0);
     (s as any).motherKnowSpravka = 1;
     if (((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-      if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A29'] = 1;
+      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A29'] = 1;
     }
     if (((s as any).momslut ?? 0) < 2) {
       (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
@@ -1191,7 +1203,7 @@ function enterReferralFail1(s: GameState, scene: SceneBuilder): void {
       (s as any).motherKnowSpravka = 1;
       (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
       if (((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-        if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A29'] = 1;
+        ((s as any).npc_QW = (s as any).npc_QW ?? {})['A29'] = 1;
       }
       // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> reads the referral and closes her eyes for a secon...
       scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} reads the referral and closes her eyes for a second, trying to suppress her anger. "To be honest, it's not even a surprise to me. Don't think that I haven't seen you sneaking around the house at weird times, and all the guys loitering near our apartment."`);
@@ -1299,7 +1311,7 @@ function enterHypnoPregReact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1364,7 +1376,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1396,7 +1408,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1460,7 +1472,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1490,7 +1502,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1532,7 +1544,7 @@ function enterPregreactnude(s: GameState, scene: SceneBuilder): void {
   scene.text(`You put on some clothes before returning to your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}.`);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return to <<$npc_nickname[\'A29\']>>', goto: ['mother', 'pregreact1'] },
+    { label: '', labelFn: (s: GameState) => 'Return to ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), goto: ['mother', 'pregreact1'] },
   ]);
   scene.build();
 }
@@ -1573,7 +1585,9 @@ function enterPregreact1Hypno(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return to <i>Master</i>', goto: ['therapist', 'toldMomPregnantAndReturned'] },
+    { label: 'Return to <i>Master</i>', handler: (st: GameState) => {
+    qspGoto(s, 'therapist', 'toldMomPregnantAndReturned');
+  } },
   ]);
   scene.build();
 }
@@ -1608,7 +1622,7 @@ function enterPregreact1(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).wombthfathID ?? 0) === 'A34'  &&  ((s as any).npc_rel ?? 0)?.['A34'] > 50  &&  ((s as any).brotherSecret ?? 0) === 0  &&  (!((s as any).momKnowsKolka ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['mother', 'pregreactbrother'] }]);
+      qspGoto(s, 'mother', 'pregreactbrother');
     } else {
       if (((s as any).wombthfathID ?? 0) === 'A28'  &&  ((s as any).npc_rel ?? 0)?.['A28'] > 50  &&  ((s as any).stepdadSecret ?? 0) === 1  &&  (!((s as any).momKnowsVladimir ?? 0))) {
         if ((!((s as any).motherKnowRaped ?? 0))) {
@@ -1639,7 +1653,7 @@ function enterPregreact1(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).wombthfathID ?? 0) === 'A28'  &&  ((s as any).npc_rel ?? 0)?.['A28'] > 50  &&  ((s as any).stepdadSecret ?? 0) === 0  &&  (!((s as any).momKnowsVladimir ?? 0))) {
-          scene.actions([{ label: 'Continue', goto: ['mother', 'pregreactstepdad'] }]);
+          qspGoto(s, 'mother', 'pregreactstepdad');
         } else {
           if (((s as any).wombthfath ?? 0) === ''  ||  ((s as any).wombthfathID ?? 0) === 'unknown') {
             if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -2017,7 +2031,7 @@ function enterAbortionTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('After a weak smile and sharing a final hug, you get up and leave the room. You feel that your chat with her has helped you and are glad you told her.');
     scene.actions([
       { label: 'Return to the hallway', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -2034,7 +2048,7 @@ function enterAbortionTalkPreg(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-40));
     (s as any).pregTalkFamily = 1;
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 1;
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
     }
@@ -2065,7 +2079,7 @@ function enterAbortionTalkPreg(s: GameState, scene: SceneBuilder): void {
     scene.text('After sharing another brief hug, you get up and leave the room. You feel that she didn\'t react too badly given what you just said and your chat with her has helped you as you\'re glad to have shared your burden.');
     scene.actions([
       { label: 'Return to the hallway', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -2117,14 +2131,14 @@ function enterGetBelongings(s: GameState, scene: SceneBuilder): void {
     scene.text('Most importantly, you grab your hidden money from your drawer first.');
   }
   if (((s as any).stolcigarettes ?? 0)?.['bedrPar'] > 0) {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) + (((s as any).stolcigarettes ?? 0)?.['bedrPar']);
-    if (!(s as any).stolcigarettes) (s as any).stolcigarettes = {}; (s as any).stolcigarettes['bedrPar'] = 0;
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) + (((s as any).stolcigarettes ?? 0)?.['bedrPar']);
+    ((s as any).stolcigarettes = (s as any).stolcigarettes ?? {})['bedrPar'] = 0;
     scene.text('You take the hidden cigarettes from under your drawer.');
   }
   scene.text('Before you leave, you gather your clothes and other belongings.');
   if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1  &&  ((s as any).ml_guitar ?? 0)?.['location'] === 'bedrPar'  &&  ((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-    if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['carried'] = 0;
-    if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['location'] = 'carried';
+    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 0;
+    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['location'] = 'carried';
     scene.text('Finally, you take your guitar with you.');
   }
   // TODO-QSP: end
@@ -2133,7 +2147,7 @@ function enterGetBelongings(s: GameState, scene: SceneBuilder): void {
 
 function enterMotherQW_2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A29'] = 2;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A29'] = 2;
   qspCall(s, 'npc_relationship', 'modify', 'A29', Math.floor(Math.random() * 6) + 5);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -2238,7 +2252,7 @@ function enterMotherQW_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCloReact(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['clo_react'] = ((s as any).daystart ?? 0);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['clo_react'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   if (((s as any).locArgs?.[1] ?? 0) === 'apartment') {
@@ -2303,7 +2317,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
     scene.text('The look she gives you is surprisingly stoic, but you can tell that despite how calm she\'s trying to play it, she\'s fuming underneath. Having won this argument, you make your way past her with an innocent smile.');
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -2339,7 +2353,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
     scene.text('Her frown only deepens when she hears that. "That\'s what I\'m worried about…" she mutters to herself. With a heavy sigh, she tells you again to be careful before reluctantly letting you leave.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -2382,7 +2396,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
     scene.text(`She suddenly raises her hand to slap you, but quickly composes herself. "You… are such a disappointment to me, ${((s as any).pcs_firstname || '')}… I thought you would have a bright future ahead of you," she says calmly. Her face is blank, no longer scowling like she was before, and it makes you feel a bit uneasy. "You'll have your beauty and all the attention, sure, but after that? No one will want to touch the town whore…"`);
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -2428,7 +2442,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
     scene.text(`Whether it's because she's angry, embarrassed or both, you watch with a pleased smile as your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} cheeks burn red before she rushes off in the opposite direction.`);
     scene.actions([
       { label: 'Continue on your way', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -2444,7 +2458,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
     scene.text('She goes off into a rant about the crowd your sister hangs around with, which distracts her from being upset with you. Seems like you\'re off the hook!');
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -2474,7 +2488,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oops, I\'m sorry," you reply. "Technically, <i>you</i> get paid to sleep around as well! You\'re fucking your boss while you\'re on the clock and he\'s the one cutting the checks, so I guess what I\'m saying is: thanks for setting such a great example. I\'m learning from the best!"');
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -2483,7 +2497,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Ignore her', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -2491,7 +2505,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
         scene.text('Panicked, she makes sure no one has seen her before rushing off in the other direction without saying another word to you.');
         scene.actions([
           { label: 'Continue on your way', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -2503,7 +2517,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
 
 function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'hear') {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['con_steal_hear'] = ((s as any).daystart ?? 0);
+    ((s as any).motherQW = (s as any).motherQW ?? {})['con_steal_hear'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -2513,7 +2527,7 @@ function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
     scene.text('Not noticing you, she keeps rummaging as you quietly slip out, not wanting to bring attention to yourself.');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'talk') {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['con_steal_talk'] = ((s as any).daystart ?? 0);
+      ((s as any).motherQW = (s as any).motherQW ?? {})['con_steal_talk'] = ((s as any).daystart ?? 0);
       (s as any).minut = ((s as any).minut ?? 0) + 3;
       qspCall(s, 'stat', '');
       scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -2532,7 +2546,7 @@ function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Quietly walk away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -2540,7 +2554,7 @@ function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
 
 function enterCondomFind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  if (!(s as any).mom) (s as any).mom = {}; (s as any).mom['condoms'] = 1;
+  ((s as any).mom = (s as any).mom ?? {})['condoms'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   if (((s as any).motherKnowSpravka ?? 0) === 1  ||  ((s as any).motherKnowWhore ?? 0) === 1) {
@@ -2756,7 +2770,7 @@ function enterCondomFind(s: GameState, scene: SceneBuilder): void {
 
 function enterDildoFind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['seen_dildos'] = 1;
+  ((s as any).motherQW = (s as any).motherQW ?? {})['seen_dildos'] = 1;
   (s as any).motherKnowDildo = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -2967,7 +2981,7 @@ function enterDildoFind(s: GameState, scene: SceneBuilder): void {
 
 function enterPlugFind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['seen_plug'] = 1;
+  ((s as any).motherQW = (s as any).motherQW ?? {})['seen_plug'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A29', 'dislike');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -3041,7 +3055,7 @@ function enterAskMotherWorkout(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You wonder if your <<$npc_nickname['A29']>> would be interested in working out w...
   scene.text(`You wonder if your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} would be interested in working out with you, even if it was just to do a short yoga session or go for a run, so you ask her if it's something she would be interested in doing.`);
   if (((s as any).npc_rel ?? 0)?.['A29'] >= 60) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['workout'] = 1;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['workout'] = 1;
     scene.text('"You know what? That sounds like it could be fun. Grab me whenever I\'m home or when we\'re visiting your grandparents; it\'d be nice to get out into the countryside. You\'d better be dressed and ready, though!"');
   } else {
     // TODO-QSP: dynamic text: "No thanks, <<$pcs_nickname>>. I'll leave all that to people younger than me."
@@ -3057,7 +3071,7 @@ function enterAskMotherWorkout(s: GameState, scene: SceneBuilder): void {
 
 function enterMotherWorkoutPav(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 1);
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['workout_day'] = ((s as any).daystart ?? 0);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['workout_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   scene.text('"You ready to work out?" you ask.');
@@ -3075,7 +3089,7 @@ function enterMotherWorkoutPav(s: GameState, scene: SceneBuilder): void {
 
 function enterMotherWorkoutGad(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 1);
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['workout_day'] = ((s as any).daystart ?? 0);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['workout_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   scene.text('"You ready to go work out?" you ask.');
@@ -3197,7 +3211,7 @@ function enterMotherJogGad(s: GameState, scene: SceneBuilder): void {
     scene.text(`With your run going very smoothly, it doesn't take too long until you circle back to the cottage and finish. You and your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} feel quite tired, but she looks very happy from the experience overall and you're glad you have the chance to spend time with her like this.`);
     scene.actions([
       { label: 'Walk back to the cottage', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -3242,7 +3256,7 @@ function enterMotherYogaGad(s: GameState, scene: SceneBuilder): void {
     scene.text('You compliment her for both her efforts with yoga and for keeping fit before packing up and heading back to the cottage.');
     scene.actions([
       { label: 'Walk back to the cottage', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

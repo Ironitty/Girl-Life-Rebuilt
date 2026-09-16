@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,13 +6,14 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'obekt', '');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'stat', '');
   scene.text('<center><h4>An object</h4></center>');
   scene.img('images/locations/construction/obekt.jpg');
   scene.text('The construction work has stopped and there is complete silence, the only person there is the guard walking around.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: The <a href="exec:gs 'carF', 'start'"> <<$car['name']>></a> is standing in the p...
-    scene.text(`The <a href="exec:gs 'carF', 'start'"> ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is standing in the parking.`);
+    scene.text(`The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;"> ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is standing in the parking.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -24,15 +25,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).obekt ?? 0)?.['open'] === 0) {
       if (((s as any).obekt ?? 0)?.['bil'] === 0) {
-        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['bil'] = 1;
+        ((s as any).obekt = (s as any).obekt ?? {})['bil'] = 1;
         scene.text('Before you\'re able to enter, you hear a voice asking you what you\'re doing. It\'s the guard that caught you. He points towards the direction you should be heading instead.');
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['obekt', 'obekt2'] }]);
+        qspGoto(s, 'obekt', 'obekt2');
       }
     }
   } },
@@ -42,6 +43,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterObekt2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'obekt2', '');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'stat', '');
   scene.text('<center><h4>An object</h4></center>');
   scene.img('images/locations/construction/obekt.jpg');
@@ -95,7 +97,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).obekt ?? 0)?.['openstateDM2'] === 2) {
-    scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon5'] }]);
+    qspGoto(s, 'obekt', 'dungeon5');
     scene.actions([
       { label: 'Sign in third room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -113,11 +115,11 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     { label: 'Sign in 2w room', handler: (st: GameState) => {
     if (((s as any).obekt ?? 0)?.['openstateDM1'] === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (5);
-      scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon4'] }]);
+      qspGoto(s, 'obekt', 'dungeon4');
     } else {
       if (((s as any).obekt ?? 0)?.['openstateDM1'] === 0) {
         // TODO-QSP: :markanotherrand
-        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['DMN'] = '' + (String(String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4)))> + '';
+        ((s as any).obekt = (s as any).obekt ?? {})['DMN'] = '' + (String(String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4))) + '';
         if (((s as any).obekt ?? 0)?.['DMN'] === (String(((s as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + (String(((s as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
           // TODO-QSP: jump 'markanotherrand'
         }
@@ -157,26 +159,26 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
         if (((s as any).obekt ?? 0)?.['DMN'] === '5531') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['i'] = 1;
-        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = 0;
+        ((s as any).obekt = (s as any).obekt ?? {})['i'] = 1;
+        ((s as any).obekt = (s as any).obekt ?? {})['numdmr'] = 0;
         // TODO-QSP: :markdnm
-        if (((s as any).strpos ?? 0)('69', (String(((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1)))) > 0) {
-          if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (1);
+        if (((String('69').indexOf(String((String(((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1)))))) + 1) > 0) {
+          ((s as any).obekt = (s as any).obekt ?? {})['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (1);
         } else {
           if ((String(((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1))) === '8') {
-            if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (2);
+            ((s as any).obekt = (s as any).obekt ?? {})['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (2);
           }
         }
-        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['i'] = ((s as any).obekt['i'] ?? 0) + (1);
+        ((s as any).obekt = (s as any).obekt ?? {})['i'] = ((s as any).obekt['i'] ?? 0) + (1);
         if (((s as any).obekt ?? 0)?.['i'] < 5) {
           // TODO-QSP: jump 'markdnm'
         }
-        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numberOSDM'] = 0;
+        ((s as any).obekt = (s as any).obekt ?? {})['numberOSDM'] = 0;
         if (((s as any).obekt ?? 0)?.['numberOSDM'] < 0  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] >= 9  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] !== ((s as any).obekt ?? 0)?.['numdmr']) {
         } else {
-          if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['openstateDM1'] = 1;
+          ((s as any).obekt = (s as any).obekt ?? {})['openstateDM1'] = 1;
         }
-        scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon2'] }]);
+        qspGoto(s, 'obekt', 'dungeon2');
       }
     }
   } },
@@ -187,7 +189,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
 function enterDungeon3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pre/shared/dunpre3.jpg');
   scene.text('The room in which the middle stands a stone dais on which are various dusty bottles.');
-  scene.text('Scrawled on the wall of what is <a href="exec: gt \'obekt\', \'dungeon3_labels\'">signs</a>.');
+  scene.text('Scrawled on the wall of what is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obekt\\u0027, \\u0027dungeon3_labels\\u0027); return false;">signs</a>.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
@@ -229,17 +231,18 @@ function enterDungeon3Labels(s: GameState, scene: SceneBuilder): void {
 
 function enterDungeon4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pre/shared/dunpre4.jpg');
-  scene.text('Small room in which there are what that <a href="exec: gt \'obekt\', \'dungeon4_drums\'">Drums</a>.');
+  scene.text('Small room in which there are what that <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obekt\\u0027, \\u0027dungeon4_drums\\u0027); return false;">Drums</a>.');
   if (((s as any).obekt ?? 0)?.['openstateDM2'] === 1) {
     scene.text('In another barrel you see a device where you can enter numbers.');
     scene.actions([
       { label: 'Enter the numbers', handler: (st: GameState) => {
-    if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numberOSDM2'] = 0;
+    ((s as any).obekt = (s as any).obekt ?? {})['numberOSDM2'] = 0;
     if (((s as any).obekt ?? 0)?.['numberOSDM2'] === 1415) {
-      if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['openstateDM2'] = 2;
+      ((s as any).obekt = (s as any).obekt ?? {})['openstateDM2'] = 2;
     }
     qspCall(s, 'array', 'remove_element', 'dungeon', 'numberOSDM2');
-  }, goto: ['obekt', 'dungeon4'] },
+    qspGoto(s, 'obekt', 'dungeon4');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -253,7 +256,7 @@ function enterDungeon4(s: GameState, scene: SceneBuilder): void {
 
 function enterDungeon4Drums(s: GameState, scene: SceneBuilder): void {
   if (((s as any).obekt ?? 0)?.['openstateDM2'] === 0) {
-    if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['openstateDM2'] = 1;
+    ((s as any).obekt = (s as any).obekt ?? {})['openstateDM2'] = 1;
   }
   qspCall(s, 'stat', '');
   scene.text('Chimes hear soon reconcile those who quarrel.');
@@ -268,7 +271,7 @@ function enterDungeon5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pre/shared/dunpre5.jpg');
   scene.text('The room in which the middle, sitting on a stone throne cobwebbed skeleton.');
   if (((s as any).obekt ?? 0)?.['svitokRTS'] === 0) {
-    scene.text('In the hands of a skeleton lying <a href="exec: gt \'obekt\', \'dungeon5_scroll\'">scroll</a>.');
+    scene.text('In the hands of a skeleton lying <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obekt\\u0027, \\u0027dungeon5_scroll\\u0027); return false;">scroll</a>.');
   }
   // TODO-QSP: end
   scene.actions([
@@ -280,8 +283,8 @@ function enterDungeon5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDungeon5Scroll(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['svitokRTS'] = 1;
-  if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['heart'] = ((s as any).obekt['heart'] ?? 0) + (1);
+  ((s as any).obekt = (s as any).obekt ?? {})['svitokRTS'] = 1;
+  ((s as any).obekt = (s as any).obekt ?? {})['heart'] = ((s as any).obekt['heart'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('You picked up the scroll and he crumbled. As if you breathed in the wind. You listen to the feelings and understand that you have something changed. You feel like somewhere, as if in another dimension another beating heart belongs to you, which will die for you in battle.');
   // TODO-QSP: end

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'komp_cam_MFC_main';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'family_schedule', '');
   if (((s as any).mesec ?? 0) > 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -48,7 +50,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'start_camming', 'MFC');
-  }, goto: ['komp_cam_MFC_main', 'startpage'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'startpage');
+  } },
     ]);
   } },
         { label: 'Leave this website', handler: (st: GameState) => {
@@ -56,7 +59,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'komp_cam_functions', 'stop_camming');
     qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
     qspCall(s, 'stat', '');
-  }, goto: ['komp', 'browse'] },
+    qspGoto(s, 'komp', 'browse');
+  } },
       ]);
     }
   }
@@ -65,6 +69,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStartpage(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'komp_cam_MFC_main';
+  (s as any).menu_arg = 'startpage';
   (s as any).cam_daystart = ((s as any).daystart ?? 0) + 4;
   if (((s as any).vgape ?? 0) > 10  ||  ((s as any).agape ?? 0) > 10) {
     qspCall(s, 'stat', '');
@@ -72,7 +78,8 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Collect your earnings and leave', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'stop_camming');
-  }, goto: ['komp_cam_MFC_main', 'start'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'start');
+  } },
     ]);
   } else {
     qspCall(s, 'stat', '');
@@ -84,10 +91,11 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
       scene.text(`You casually chat with the ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers currently in your chatroom. Once you turn on your webcam, things will probably get busier.`);
     }
     scene.actions([
-      { label: 'Turn on your webcam', goto: ['komp_cam_MFC_main', 'waitclients', '\'start\''] },
+      { label: 'Turn on your webcam', goto: ['komp_cam_MFC_main', 'waitclients', 'start'] },
       { label: 'Collect your earnings and leave', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'stop_camming');
-  }, goto: ['komp_cam_MFC_main', 'start'] },
+    qspGoto(s, 'komp_cam_MFC_main', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -95,10 +103,12 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWaitclients(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'komp_cam_MFC_main';
+  (s as any).menu_arg = 'waitclients';
   if (((s as any).loc ?? 0) === 'bedrPar') {
     qspCall(s, 'family_schedule', '');
     if (((s as any).locat ?? 0)?.['Anya_inroom'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_main', 'anya_interrupted'] }]);
+      qspGoto(s, 'komp_cam_MFC_main', 'anya_interrupted');
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 'start') {
@@ -108,6 +118,8 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
   if (((s as any).orgasm_or ?? 0) === 'yes'  ||  ((s as any).orgasm_or ?? 0) === 'custom') {
     (s as any).mfcdaycum = ((s as any).daystart ?? 0);
   }
+  (s as any).orgasm_or = 'no';
+  (s as any).orgasm_txt = '';
   (s as any).img_source = 3;
   if (((s as any).braworntype ?? 0) === 'none') {
     (s as any).img_source = ((s as any).img_source ?? 0) + (1);
@@ -314,8 +326,12 @@ function enterPlayWithPussy(s: GameState, scene: SceneBuilder): void {
   scene.text('You get bored during a slow moment in the chat, and begin to play with your pussy without giving it another thought.');
   scene.text('"How does that feel, girl?" one of your viewers asks. "I bet you love fingering yourself, with a bunch of strangers watching you!" another adds.');
   scene.text('Giving them a defensive smile, you shrug and reply with one hand, while you keep rubbing your clit slowly with the other.');
+  (s as any).orgasm_or = 'no';
+  (s as any).orgasm_txt = '';
   qspCall(s, 'arousal', 'porn', (-5));
   if (((s as any).pcs_horny ?? 0) >= 100) {
+    (s as any).orgasm_txt = 'Oh crap! You misjudged your endurance, and suddenly squirm and gasp in front of the camera. You\'re having an orgasm! When it subsides, you look at your current viewer count. Damn… you just came in front of ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' users, completely free of charge!';
+    (s as any).orgasm_or = 'custom';
   }
   qspCall(s, 'arousal', 'vaginal_finger', (-5));
   qspCall(s, 'stat', '');
@@ -336,8 +352,12 @@ function enterPlayWithAss(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/pc/items/accessories/computer/camwhore45.jpg');
   scene.text('You put two fingers in your mouth and generously cover them in saliva, and then turn your back to the camera. Much to the appreciation of your viewers, you give them a short preview of what an anal show would look like from you. You finger your anus for the camera for a little while, giving your viewers a happy smile the whole time.');
+  (s as any).orgasm_or = 'no';
+  (s as any).orgasm_txt = '';
   qspCall(s, 'arousal', 'porn', (-5));
   if (((s as any).pcs_horny ?? 0) >= 100) {
+    (s as any).orgasm_txt = 'It feels too good to stop! Before you know it, your fingers are repeatedly penetrating your ass and you moan excitedly, barely keeping yourself from screaming. You just had an anal orgasm in front of ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers, completely free of charge! Oops…';
+    (s as any).orgasm_or = 'custom';
   }
   qspCall(s, 'arousal', 'anal_finger', (-5));
   qspCall(s, 'stat', '');

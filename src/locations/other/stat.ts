@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,15 +12,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).magik_alert_loc ?? 0) !== ''  &&  ((s as any).loc ?? 0) === ((s as any).magik_alert_loc ?? 0)) {
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You feel a strength revealed within you, brimming with magic at level ' + qspUntranslated(s, "pcs_magik>", { location: "stat" }) + '!', 'pos');
+    qspCall(s, 'stat_display_compute', 'queue_alert', 'You feel a strength revealed within you, brimming with magic at level ' + ((s as any).pcs_magik ?? 0) + '!', 'pos');
   }
   if (((s as any).HotelRoom ?? 0)?.['pav'] > 0) {
     if (((s as any).hotelRoomDays ?? 0)?.['pav'] - 1 === ((s as any).daystart ?? 0)) {
-      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hotel_pav'] = 'You have 1 night left on your Pavlosk hotel booking.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotel_pav'] = 'You have 1 night left on your Pavlosk hotel booking.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'hotel_pav');
     } else {
       if (((s as any).hotelRoomDays ?? 0)?.['pav'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 11) {
-        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hotel_pav'] = 'Your room at the Pavlosk hotel checks out today at \' + $func(\'time\', \'get_time_string\', 11, 0) + \'.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotel_pav'] = 'Your room at the Pavlosk hotel checks out today at ' + qspFunc(s, 'time', 'get_time_string', 11, 0) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'hotel_pav', 'neg');
         // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['hotel_pav'], 'neg'
       }
@@ -28,11 +28,11 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).HotelRoom ?? 0)?.['city'] > 0) {
     if (((s as any).hotelRoomDays ?? 0)?.['city'] - 1 === ((s as any).daystart ?? 0)) {
-      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hotel_city'] = 'You have 1 night left on your St Petersburg hotel booking.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotel_city'] = 'You have 1 night left on your St Petersburg hotel booking.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'hotel_city');
     } else {
       if (((s as any).hotelRoomDays ?? 0)?.['city'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 11) {
-        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hotel_city'] = 'Your room at the St Petersburg hotel checks out today at \' + $func(\'time\', \'get_time_string\', 11, 0) + \'.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotel_city'] = 'Your room at the St Petersburg hotel checks out today at ' + qspFunc(s, 'time', 'get_time_string', 11, 0) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'hotel_city', 'neg');
         // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['hotel_city'], 'neg'
       }
@@ -50,25 +50,25 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterApplyCaps(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_vag = 0;
-  (s as any).pcs_ass = 0;
-  (s as any).pcs_throat = 0;
-  (s as any).pcs_inhib = 0;
-  (s as any).pcs_sweat = 0;
-  (s as any).pcs_sleep = 0;
-  (s as any).min_arousal = 0;
-  (s as any).willpowermax = 0;
+  (s as any).pcs_vag = Math.max(0, Math.min(36, ((s as any).pcs_vag ?? 0)));
+  (s as any).pcs_ass = Math.max(0, Math.min(36, ((s as any).pcs_ass ?? 0)));
+  (s as any).pcs_throat = Math.max(0, Math.min(36, ((s as any).pcs_throat ?? 0)));
+  (s as any).pcs_inhib = Math.max(0, Math.min(100, ((s as any).pcs_inhib ?? 0)));
+  (s as any).pcs_sweat = Math.max(0, Math.min(69, ((s as any).pcs_sweat ?? 0)));
+  (s as any).pcs_sleep = Math.min(100, ((s as any).pcs_sleep ?? 0));
+  (s as any).min_arousal = Math.max(0, ((s as any).min_arousal ?? 0));
+  (s as any).willpowermax = Math.max(50, ((s as any).willpowermax ?? 0));
   (s as any).healthmax = Math.max(1, ((s as any).pcs_vital ?? 0) * 10 + ((s as any).pcs_stren ?? 0) * 5);
   (s as any).manamax = Math.max(1, (((s as any).pcs_intel ?? 0) + 100) * ((s as any).pcs_magik ?? 0) + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0));
-  if (!(s as any).stammax) (s as any).stammax = {}; (s as any).stammax['base'] = (30 * (2 * ((s as any).pcs_vital ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0)) + 1000) / 13;
+  ((s as any).stammax = (s as any).stammax ?? {})['base'] = (30 * (2 * ((s as any).pcs_vital ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0)) + 1000) / 13;
   (s as any).stammax = Math.max(1, Math.max((((s as any).stammax ?? {})?.['base'] ?? 0) / 10, (((s as any).stammax ?? {})?.['base'] ?? 0) - ((s as any).pregChem ?? 0) / 10));
-  (s as any).pcs_horny = Math.max(0, ((s as any).pcs_horny ?? 0));
-  (s as any).pcs_willpwr = 0;
-  (s as any).pcs_health = 0;
-  (s as any).pcs_mana = 0;
-  (s as any).pcs_stam = 0;
+  (s as any).pcs_horny = Math.max(Math.max(((((s as any).daystart ?? 0) <= ((s as any).fairycurse ?? 0)  &&  ((s as any).fairyshoo ?? 0) > 0) ? (90) : (0)), ((s as any).min_arousal ?? 0)), ((s as any).pcs_horny ?? 0));
+  (s as any).pcs_willpwr = Math.max(0, Math.min(((s as any).willpowermax ?? 0), ((s as any).pcs_willpwr ?? 0)));
+  (s as any).pcs_health = Math.min(((s as any).healthmax ?? 0), ((s as any).pcs_health ?? 0));
+  (s as any).pcs_mana = Math.min(((s as any).manamax ?? 0), ((s as any).pcs_mana ?? 0));
+  (s as any).pcs_stam = Math.min(((s as any).stammax ?? 0), ((s as any).pcs_stam ?? 0));
   if (((s as any).arch_vars ?? 0)?.['main_active'] === 'prude') {
-    (s as any).pcs_faith = 0;
+    (s as any).pcs_faith = Math.min(100, ((s as any).pcs_faith ?? 0));
   } else {
     (s as any).pcs_faith = 100;
   }
@@ -80,8 +80,8 @@ function enterApplyCaps(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_dom = 0;
     (s as any).sub = -((s as any).dom_net ?? 0);
   }
-  (s as any).pcs_dom = 0;
-  (s as any).sub = 0;
+  (s as any).pcs_dom = Math.min(100, ((s as any).pcs_dom ?? 0));
+  (s as any).sub = Math.min(100, ((s as any).sub ?? 0));
   if (((s as any).cheatVars ?? 0)?.['std'] === 1) {
     qspCall(s, 'cheatmenu_din', 'std_cure');
   }
@@ -102,19 +102,19 @@ function enterApplyCaps(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sweat = 0;
   }
   if (((s as any).cheatVars ?? 0)?.['hunger'] === 1) {
-    (s as any).pcs_energy = 0;
+    (s as any).pcs_energy = Math.max(60, ((s as any).pcs_energy ?? 0));
   }
   if (((s as any).cheatVars ?? 0)?.['no_leghair'] === 1) {
     (s as any).pcs_leghair = 0;
   }
   if (((s as any).cheatVars ?? 0)?.['thirst'] === 1) {
-    (s as any).pcs_hydra = 0;
+    (s as any).pcs_hydra = Math.max(60, ((s as any).pcs_hydra ?? 0));
   }
   if (((s as any).cheatVars ?? 0)?.['sleep'] === 1) {
-    (s as any).pcs_sleep = 0;
+    (s as any).pcs_sleep = Math.max(35, ((s as any).pcs_sleep ?? 0));
   }
   if (((s as any).cheatVars ?? 0)?.['always_horny'] === 1) {
-    (s as any).pcs_horny = 0;
+    (s as any).pcs_horny = Math.max(50, ((s as any).pcs_horny ?? 0));
   }
   if (((s as any).cheatVars ?? 0)?.['makeup_smear'] === 1) {
     if (((s as any).cosmetic_tattoo ?? 0) === 0  &&  (!((s as any).pcs_makeup ?? 0))) {
@@ -139,7 +139,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
         (s as any).succubxp = ((s as any).succubxp ?? 0) + (5);
         (s as any).sucabscum = 1;
         qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).suctempi ?? 0));
-        if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[String((s as any).suctemploc ?? 0)] = 0;
+        ((s as any).cumloc = (s as any).cumloc ?? {})[String((s as any).suctemploc ?? 0)] = 0;
       }
     }
     (s as any).suctempi = ((s as any).suctempi ?? 0) - (1);
@@ -154,14 +154,20 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + ((((s as any).sexnutrition ?? 0) * 2) / 10);
     }
     if (((s as any).sucabslez ?? 0) === 1  &&  ((s as any).sucabscum ?? 0) === 1) {
+      (s as any).sucabsmsg = 'absorbed energy from the woman you had sex with and you absorb the semen in your body';
     } else {
       if (((s as any).sucabscum ?? 0) === 1) {
+        (s as any).sucabsmsg = 'absorb the semen in your body';
       } else {
         if (((s as any).sucabslez ?? 0) === 1) {
+          (s as any).sucabsmsg = 'absorbed energy from the woman you had sex with';
+        } else {
+          (s as any).sucabs_queued_alert = 'SOMETHING HAPPENED! (succubus debug: no absorption source)';
         }
       }
     }
     if (((s as any).sucabsmsg ?? 0) !== '') {
+      (s as any).sucabs_queued_alert = 'You ' + ((s as any).sucabsmsg ?? 0) + ', gaining nourishment.';
     }
     (s as any).sucabslez = 0;
     (s as any).sucabscum = 0;
@@ -221,15 +227,15 @@ function enterApplyStretch(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
     if (((s as any).pain ?? 0)?.['throat'] > 0) {
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = 0;
+      ((s as any).pain = (s as any).pain ?? {})['throat'] = 0;
       (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (1);
     }
     if (((s as any).pain ?? 0)?.['asshole'] > 0) {
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = 0;
+      ((s as any).pain = (s as any).pain ?? {})['asshole'] = 0;
       (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (1);
     }
     if (((s as any).pain ?? 0)?.['vaginal'] > 0) {
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = 0;
+      ((s as any).pain = (s as any).pain ?? {})['vaginal'] = 0;
       (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (1);
     }
     if (((s as any).vgape ?? 0) > 0) {
@@ -244,45 +250,45 @@ function enterApplyStretch(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).agape ?? 0)[4] === 0) {
-    if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[4] = 10;
+    ((s as any).agape = (s as any).agape ?? {})[4] = 10;
   }
   if (((s as any).vgape ?? 0)[4] === 0) {
-    if (!(s as any).vgape) (s as any).vgape = {}; (s as any).vgape[4] = 10;
+    ((s as any).vgape = (s as any).vgape ?? {})[4] = 10;
   }
   if (((s as any).trait_vars ?? 0)?.['elasticity'] < 0) {
-    if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[5] = ((s as any).agape ?? 0)[4] * 5;
-    if (!(s as any).vgape) (s as any).vgape = {}; (s as any).vgape[5] = ((s as any).vgape ?? 0)[4] * 5;
+    ((s as any).agape = (s as any).agape ?? {})[5] = ((s as any).agape ?? 0)[4] * 5;
+    ((s as any).vgape = (s as any).vgape ?? {})[5] = ((s as any).vgape ?? 0)[4] * 5;
   } else {
-    if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[5] = qspUntranslated(s, "agape[4]", { location: "stat" });
-    if (!(s as any).vgape) (s as any).vgape = {}; (s as any).vgape[5] = qspUntranslated(s, "vgape[4]", { location: "stat" });
+    ((s as any).agape = (s as any).agape ?? {})[5] = qspUntranslated(s, "agape[4]", { location: "stat" });
+    ((s as any).vgape = (s as any).vgape ?? {})[5] = qspUntranslated(s, "vgape[4]", { location: "stat" });
   }
   if (((s as any).vgape ?? 0) > ((s as any).vgape ?? 0)[1]) {
-    if (!(s as any).vgape) (s as any).vgape = {}; (s as any).vgape[3] = ((s as any).totminut ?? 0);
-    if (!(s as any).vgape) (s as any).vgape = {}; (s as any).vgape[1] = ((s as any).vgape ?? 0);
+    ((s as any).vgape = (s as any).vgape ?? {})[3] = ((s as any).totminut ?? 0);
+    ((s as any).vgape = (s as any).vgape ?? {})[1] = ((s as any).vgape ?? 0);
   } else {
     if (((s as any).vgape ?? 0) > 0) {
       if ((((s as any).totminut ?? 0) - ((s as any).vgape ?? 0)[3])/((s as any).vgape ?? 0)[5] >= 1) {
         (s as any).vgape = ((s as any).vgape ?? 0) - (1);
       }
-      if (!(s as any).vgape) (s as any).vgape = {}; (s as any).vgape[1] = ((s as any).vgape ?? 0);
+      ((s as any).vgape = (s as any).vgape ?? {})[1] = ((s as any).vgape ?? 0);
     } else {
-      if (!(s as any).vgape) (s as any).vgape = {}; (s as any).vgape[3] = 0;
+      ((s as any).vgape = (s as any).vgape ?? {})[3] = 0;
     }
   }
   if (((s as any).agape ?? 0) > ((s as any).agape ?? 0)[1]) {
-    if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[3] = ((s as any).totminut ?? 0);
-    if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[1] = ((s as any).agape ?? 0);
+    ((s as any).agape = (s as any).agape ?? {})[3] = ((s as any).totminut ?? 0);
+    ((s as any).agape = (s as any).agape ?? {})[1] = ((s as any).agape ?? 0);
   } else {
     if (((s as any).agape ?? 0) > 0) {
       if ((((s as any).totminut ?? 0) - ((s as any).agape ?? 0)[3])/((s as any).agape ?? 0)[5] >= 1) {
         (s as any).agape = ((s as any).agape ?? 0) - (1);
       }
       if ((!((s as any).agape ?? 0))) {
-        if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[3] = 0;
+        ((s as any).agape = (s as any).agape ?? {})[3] = 0;
       }
-      if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[1] = ((s as any).agape ?? 0);
+      ((s as any).agape = (s as any).agape ?? {})[1] = ((s as any).agape ?? 0);
     } else {
-      if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[3] = 0;
+      ((s as any).agape = (s as any).agape ?? {})[3] = 0;
     }
   }
   return;
@@ -369,6 +375,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: pl '<br>Did you start at the <a href="exec:daystart_start = 239 & gs ''time'' & gs''stat''">end of A...
     return;
   }
+  (s as any).BACKIMAGE = '';
   // TODO-QSP: view
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
     (s as any).magik_exp = ((s as any).orgasm ?? 0) + ((s as any).magik_adj ?? 0);
@@ -396,11 +403,11 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).cumSUM = ((s as any).cumsumbod ?? 0)/40;
   if (((s as any).husID ?? 0) !== '') {
     if (((s as any).spouseVars ?? 0)?.['pervert_add'] > 5) {
-      if (!(s as any).npc_pervert) (s as any).npc_pervert = {}; (s as any).npc_pervert[String((s as any).husID ?? 0)] = 1;
+      ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).husID ?? 0)] = 1;
     }
     if (((s as any).spouseVars ?? 0)?.['gentle_add'] > 10) {
-      if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).husID ?? 0)] = 1;
-      if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).husID ?? 0)] = 0;
+      ((s as any).npc_gentle = (s as any).npc_gentle ?? {})[String((s as any).husID ?? 0)] = 1;
+      ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).husID ?? 0)] = 0;
     }
   }
   if (((s as any).food_loc_last ?? 0) !== ((s as any).loc ?? 0)) {
@@ -421,7 +428,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     (s as any).orgasm_count = ((s as any).orgasm ?? 0);
   }
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).succublvl ?? 0) > 2  &&  ((s as any).stat ?? 0)?.['rape_count'] !== ((s as any).rape_count ?? 0)) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).rape_count ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).rape_count ?? 0);
   } else {
     if (((s as any).stat ?? 0)?.['rape_count'] !== ((s as any).rape_count ?? 0)) {
       qspCall(s, 'mood', 'lower', 'min');
@@ -431,13 +438,13 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).stat ?? 0)?.['vaginal'] === 0  &&  ((s as any).stat ?? 0)?.['vaginal_fist'] === 0  &&  ((s as any).stat ?? 0)?.['vaginal_dildo'] === 0  &&  ((s as any).stat ?? 0)?.['vaginal_strap'] === 0  &&  ((s as any).tatiana ?? 0)?.['virginity_restore'] === 0) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['think_virgin'] = 1;
+    ((s as any).stat = (s as any).stat ?? {})['think_virgin'] = 1;
   } else {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['think_virgin'] = 0;
+    ((s as any).stat = (s as any).stat ?? {})['think_virgin'] = 0;
   }
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (((s as any).sex ?? 0));
+  ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (((s as any).sex ?? 0));
   (s as any).sex = 0;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (((s as any).anal ?? 0));
+  ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (((s as any).anal ?? 0));
   (s as any).anal = 0;
   (s as any).temp_rape_count = ((s as any).stat ?? 0)?.['rape_count'];
   (s as any).temp_rape_this_tick = 0;
@@ -445,8 +452,8 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_prev_last_sex_day = ((s as any).stat ?? 0)?.['last_sex_day'];
   (s as any).temp_vaginal = ((s as any).stat ?? 0)?.['vaginal'];
   if (((s as any).temp_vaginal ?? 0) > ((s as any).stat_seen_vaginal ?? 0)) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_vaginal'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_sex_day'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_sex_day_vaginal'] = ((s as any).daystart ?? 0);
     if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 250, (-2000), 'Vaginal sex');
       (s as any).temp_base_act_fired = 1;
@@ -455,8 +462,8 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).stat_seen_vaginal = ((s as any).temp_vaginal ?? 0);
   (s as any).temp_anal = ((s as any).stat ?? 0)?.['anal'];
   if (((s as any).temp_anal ?? 0) > ((s as any).stat_seen_anal ?? 0)) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_anal'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_sex_day'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_sex_day_anal'] = ((s as any).daystart ?? 0);
     if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 300, (-2400), 'Anal sex');
       (s as any).temp_base_act_fired = 1;
@@ -465,8 +472,8 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).stat_seen_anal = ((s as any).temp_anal ?? 0);
   (s as any).temp_oral = (((s as any).stat ?? {})?.['bj'] ?? 0) + (((s as any).stat ?? {})?.['cuni'] ?? 0);
   if (((s as any).temp_oral ?? 0) > ((s as any).stat_seen_oral ?? 0)) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_oral'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_sex_day'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_sex_day_oral'] = ((s as any).daystart ?? 0);
     if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 150, (-1200), 'Oral sex');
       (s as any).temp_base_act_fired = 1;
@@ -480,12 +487,12 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_mast = ((s as any).stat ?? 0)?.['mast'];
   if (((s as any).temp_mast ?? 0) > ((s as any).stat_seen_mast ?? 0)) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_mast_day'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_mast_day'] = ((s as any).daystart ?? 0);
   }
   (s as any).stat_seen_mast = ((s as any).temp_mast ?? 0);
   if (((s as any).temp_rape_count ?? 0) > ((s as any).stat_seen_rape ?? 0)) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_rape'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_sex_day'] = ((s as any).daystart ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_sex_day_rape'] = ((s as any).daystart ?? 0);
   }
   (s as any).stat_seen_rape = ((s as any).temp_rape_count ?? 0);
   (s as any).temp_gangbang = ((s as any).stat ?? 0)?.['gangbang_count'];
@@ -507,22 +514,22 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', '');
   qspCall(s, 'outdoors', 'weather');
   if (((s as any).daystage ?? 0) === 1) {
-    if (!(s as any).daystage) (s as any).daystage = {}; (s as any).daystage['desc'] = 'dawn';
+    ((s as any).daystage = (s as any).daystage ?? {})['desc'] = 'dawn';
   } else {
     if (((s as any).daystage ?? 0) === 2) {
-      if (!(s as any).daystage) (s as any).daystage = {}; (s as any).daystage['desc'] = 'mid_day';
+      ((s as any).daystage = (s as any).daystage ?? {})['desc'] = 'mid_day';
     } else {
       if (((s as any).daystage ?? 0) === 3) {
-        if (!(s as any).daystage) (s as any).daystage = {}; (s as any).daystage['desc'] = 'sunset';
+        ((s as any).daystage = (s as any).daystage ?? {})['desc'] = 'sunset';
       } else {
         if (((s as any).daystage ?? 0) === 4) {
-          if (!(s as any).daystage) (s as any).daystage = {}; (s as any).daystage['desc'] = 'early_night';
+          ((s as any).daystage = (s as any).daystage ?? {})['desc'] = 'early_night';
         } else {
           if (((s as any).daystage ?? 0) === 5) {
-            if (!(s as any).daystage) (s as any).daystage = {}; (s as any).daystage['desc'] = 'mid_night';
+            ((s as any).daystage = (s as any).daystage ?? {})['desc'] = 'mid_night';
           } else {
             if (((s as any).daystage ?? 0) === 6) {
-              if (!(s as any).daystage) (s as any).daystage = {}; (s as any).daystage['desc'] = 'pre_dawn';
+              ((s as any).daystage = (s as any).daystage ?? {})['desc'] = 'pre_dawn';
             }
           }
         }
@@ -554,8 +561,8 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).stat ?? 0)?.['last_workout_trig'] === 1) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_workout_trig'] = 0;
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_workout'] = ((s as any).totminut ?? 0);
+    ((s as any).stat = (s as any).stat ?? {})['last_workout_trig'] = 0;
+    ((s as any).stat = (s as any).stat ?? {})['last_workout'] = ((s as any).totminut ?? 0);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyStretch(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'outfit', 'stat', totminut - prevtotmin
@@ -604,6 +611,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (8);
       } else {
         qspCall(s, 'gameover', 'check', 3);
+        (s as any).cheat_death_alert = 'You starved to death, but Cheat Mode keeps you Alive.';
         (s as any).fat = 1;
       }
     }
@@ -622,18 +630,23 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) <= 0  &&  ((s as any).pcs_mood ?? 0) <= 1) {
     qspCall(s, 'gameover', 'check', 2);
+    (s as any).cheat_death_alert = 'You are insane, but Cheat Mode keeps you Alive.';
   }
   if (((s as any).pcs_health ?? 0) < 0) {
     if (((s as any).temp_death_cause_hydra ?? 0) === 1  &&  ((s as any).temp_death_cause_energy ?? 0) === 1) {
       qspCall(s, 'gameover', 'check', 17);
+      (s as any).cheat_death_alert = 'You died of dehydration and malnutrition, but Cheat Mode keeps you Alive.';
     } else {
       if (((s as any).temp_death_cause_hydra ?? 0) === 1) {
         qspCall(s, 'gameover', 'check', 15);
+        (s as any).cheat_death_alert = 'You died of dehydration, but Cheat Mode keeps you Alive.';
       } else {
         if (((s as any).temp_death_cause_energy ?? 0) === 1) {
           qspCall(s, 'gameover', 'check', 16);
+          (s as any).cheat_death_alert = 'You died of malnutrition, but Cheat Mode keeps you Alive.';
         } else {
           qspCall(s, 'gameover', 'check', 1);
+          (s as any).cheat_death_alert = 'You died from injuries, but Cheat Mode keeps you Alive.';
         }
       }
     }
@@ -643,11 +656,11 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tabletkicheck ?? 0) === 1) {
       (s as any).tabletkicheck = 0;
     }
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['remind_hour'] = 0;
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['auto_hour'] = 0;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['remind_hour'] = 0;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['auto_hour'] = 0;
   }
   if (((s as any).therapistFuckedPussyStage ?? 0) > 1  &&  ((s as any).tabletkicheck ?? 0) === 1  &&  ((s as any).birth_control ?? 0)?.['auto_hour'] === 0) {
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['auto_hour'] = 18;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['auto_hour'] = 18;
   }
   if (((s as any).tabletkicheck ?? 0) === 1  &&  ((s as any).tabletkichday ?? 0) < ((s as any).daystart ?? 0)  &&  ((s as any).birth_control ?? 0)?.['auto_hour'] > 0  &&  ((s as any).hour ?? 0) >= ((s as any).birth_control ?? 0)?.['auto_hour']  &&  ((s as any).hour ?? 0) < ((s as any).birth_control ?? 0)?.['auto_hour'] + 2  &&  ((s as any).inSleep ?? 0) === 0  &&  ((s as any).menu_off ?? 0) === 0  &&  ((s as any).location_type ?? 0) !== 'event'  &&  ((s as any).location_type ?? 0) !== 'event_outdoors') {
     qspCall(s, 'fertility', 'auto_pill');
@@ -660,6 +673,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_magik ?? 0) > ((s as any).magikhigh ?? 0)) {
       (s as any).magikhigh = ((s as any).pcs_magik ?? 0);
       (s as any).rikudo = ((s as any).rikudo ?? 0) + (((s as any).pcs_magik ?? 0) * 100);
+      (s as any).magik_alert_loc = ((s as any).loc ?? 0);
       if ((((s as any).pcs_magik ?? 0) % 2 !== 0)  &&  ((s as any).pcs_eyesize ?? 0) < 2) {
         (s as any).pcs_eyesize = ((s as any).pcs_eyesize ?? 0) + (1);
       }
@@ -668,16 +682,17 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).magik_alert_loc ?? 0) !== ''  &&  ((s as any).loc ?? 0) !== ((s as any).magik_alert_loc ?? 0)) {
+        (s as any).magik_alert_loc = '';
       }
     }
   }
   if (((s as any).cosmetic_tattoo ?? 0) > 0) {
-    if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['base'] = ((s as any).cosmetic_tattoo ?? 0) + 1;
+    ((s as any).makeup = (s as any).makeup ?? {})['base'] = ((s as any).cosmetic_tattoo ?? 0) + 1;
     if (((s as any).pcs_makeup ?? 0) < ((s as any).makeup ?? 0)?.['base']) {
       (s as any).pcs_makeup = ((s as any).makeup ?? 0)?.['base'];
     }
   } else {
-    if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['base'] = 1;
+    ((s as any).makeup = (s as any).makeup ?? {})['base'] = 1;
   }
   qspCall(s, 'body', 'RegularUpdate');
   qspCall(s, 'body', 'Update_Appearance');
@@ -687,14 +702,14 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'pain', 'manage');
   if (((s as any).birth_control ?? 0)?.['remind_hour'] > 0  &&  ((s as any).birth_control ?? 0)?.['auto_hour'] === 0  &&  ((s as any).hour ?? 0) >= ((s as any).birth_control ?? 0)?.['remind_hour']  &&  ((s as any).hour ?? 0) <= ((s as any).birth_control ?? 0)?.['remind_hour'] + 1  &&  ((s as any).tabletkiday ?? 0) !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['remind_icon'] = 1;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['remind_icon'] = 1;
   } else {
-    if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['remind_icon'] = 0;
+    ((s as any).birth_control = (s as any).birth_control ?? {})['remind_icon'] = 0;
   }
   if ((((s as any).acting ?? 0)?.['shoot_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).actress_cast ?? 0) === 1)  ||  (((s as any).audition ?? 0)?.['day'] === ((s as any).daystart ?? 0))) {
-    if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['icon'] = 1;
+    ((s as any).acting = (s as any).acting ?? {})['icon'] = 1;
   } else {
-    if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['icon'] = 0;
+    ((s as any).acting = (s as any).acting ?? {})['icon'] = 0;
   }
   qspCall(s, 'stat_sklattrib_lvlset', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyCaps(s, scene); (s as any).locArgs = __savedLocArgs; }

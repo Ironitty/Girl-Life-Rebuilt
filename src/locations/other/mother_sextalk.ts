@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,19 +10,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0) {
-    scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildo_shriek4'] }]);
+    qspGoto(s, 'mother_sextalk', 'bathroom_dildo_shriek4');
   }
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = ((s as any).vanrPar_suction_dildo ?? 0);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = ((s as any).vanrPar_suction_dildo ?? 0);
   if (((s as any).motherQW ?? 0)?.['dildo_caught'] === 0) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+    ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
   } else {
     if (((s as any).motherQW ?? 0)?.['dildo_caught'] === 1) {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-      scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildo_shriek2'] }]);
+      ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+      qspGoto(s, 'mother_sextalk', 'bathroom_dildo_shriek2');
     } else {
       if (((s as any).motherQW ?? 0)?.['dildo_caught'] >= 2) {
-        if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-        scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildo_shriek3'] }]);
+        ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+        qspGoto(s, 'mother_sextalk', 'bathroom_dildo_shriek3');
       }
     }
   }
@@ -108,10 +108,10 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).motherQW ?? 0)?.['dildo_caught'] === 1) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+    ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
   } else {
     if (((s as any).motherQW ?? 0)?.['dildo_caught'] === 2) {
-      scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildo_shriek3'] }]);
+      qspGoto(s, 'mother_sextalk', 'bathroom_dildo_shriek3');
     }
   }
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
@@ -124,7 +124,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('Unfortunately, you don\'t think you can weasel out of this one.');
     scene.text('"Uhh… Sorry?" you say, hopeful that she won\'t do what she did last time.');
@@ -133,7 +133,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>Well, so much for that…</i>');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -142,7 +142,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).motherKnowDildo = 1;
     scene.text('You feel a sinking feeling in your chest. It\'s not like you\'re going to be able to weasel your way out of this one.');
     scene.text('"Do you have an excuse this time?"');
@@ -156,7 +156,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoDumpsterEnding2(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -164,7 +164,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
@@ -176,7 +176,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"But ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have one of these."');
     if (((s as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_shower_discovery'] = 0;
+      ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -185,7 +185,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     scene.text(`<i>Ugh. Great. Now I need a new one. At least this gets ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} off my back…</i>`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -200,9 +200,9 @@ function enterBathroomDildoShriek3(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bathtub_dildo = 0;
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('You\'re walking down the hall when you suddenly hear a shriek come from the bathroom. Not again! Right as you get to the door, it opens up to reveal your mother. She looks more exasperated than angry this time though.');
   // TODO-QSP: dynamic text: "Again, <<$pcs_firstname>>?" she sighs before tossing your toy at you and puttin...
@@ -211,7 +211,7 @@ function enterBathroomDildoShriek3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -222,9 +222,9 @@ function enterBathroomDildoShriek4(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bathtub_dildo = 0;
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('You\'re walking down the hall when you suddenly hear a shriek come from the bathroom. Not again! Right as you get to the door, it flies open to show your very angry mother.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>, you disgusting whore! How dare you leave filth like this ly...
@@ -233,7 +233,7 @@ function enterBathroomDildoShriek4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -242,19 +242,19 @@ function enterBathroomDildoShriek4(s: GameState, scene: SceneBuilder): void {
 function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).motherQW ?? 0)?.['dildo_caught'] === 0) {
     if (((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildos4'] }]);
+      qspGoto(s, 'mother_sextalk', 'bathroom_dildos4');
     }
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+    ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
   } else {
     if (((s as any).motherQW ?? 0)?.['dildo_caught'] === 1) {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-      scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildos2'] }]);
+      ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+      qspGoto(s, 'mother_sextalk', 'bathroom_dildos2');
     } else {
       if (((s as any).motherQW ?? 0)?.['dildo_caught'] >= 2) {
         if (((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0) {
-          scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildos5'] }]);
+          qspGoto(s, 'mother_sextalk', 'bathroom_dildos5');
         }
-        scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildos3'] }]);
+        qspGoto(s, 'mother_sextalk', 'bathroom_dildos3');
       }
     }
   }
@@ -304,7 +304,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"But ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have these either."');
     if (((s as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_shower_discovery'] = 0;
+      ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -313,11 +313,11 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).motherKnowDildo = 1;
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -348,10 +348,10 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She walks away into her bedroom still carrying ' + iif(motherQW['bathroom_dildos...
     scene.text('She walks away into her bedroom still carrying \' + iif(motherQW[\'bathroom_dildos\'] = 1, \'it\', \'them\') + \'.');
     scene.text('<i>Well, so much for that…</i>');
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -361,7 +361,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
     (s as any).motherKnowDildo = 1;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     scene.actions([
       { label: '"No…"', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-10));
@@ -372,7 +372,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoDumpsterEnding2(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -380,7 +380,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"Well I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
@@ -392,7 +392,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"But ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have one of these."');
     if (((s as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_shower_discovery'] = 0;
+      ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -401,7 +401,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     scene.text(`<i>Ugh. Great. Now I need a new one. At least this gets ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} off my back…</i>`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -416,9 +416,9 @@ function enterBathroomDildos3(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bathtub_dildo = 0;
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+  ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('As you step into the hall, you see your mother there waiting for you. She looks more exasperated than angry though.');
   // TODO-QSP: dynamic text: "Again, <<$pcs_firstname>>?" She sighs and tosses your toy at you before putting...
@@ -433,7 +433,7 @@ function enterBathroomDildos3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -444,7 +444,7 @@ function enterBathroomDildos4(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bathtub_dildo = 0;
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('As you step into the hall, you see your mother there waiting for you. She looks very angry.');
   scene.text('"I want you to know that I found your whore things that you left in the bathroom!" You look at her in confusion.');
@@ -460,7 +460,7 @@ function enterBathroomDildos4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -471,7 +471,7 @@ function enterBathroomDildos5(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bathtub_dildo = 0;
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('As you step into the hall, you see your mother there waiting for you. She looks very angry.');
   scene.text('"I want you to know that I found your whore things that you left in the bathroom." She glares at you. "Again."');
@@ -487,24 +487,24 @@ function enterBathroomDildos5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
 }
 
 function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_wakeup'] = 1;
+  ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_wakeup'] = 1;
   (s as any).inSleep = 0;
   qspCall(s, 'stat', '');
   if (((s as any).motherQW ?? 0)?.['dildo_caught'] === 0) {
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+    ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
   } else {
     if (((s as any).motherQW ?? 0)?.['dildo_caught'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'dildo_wakeup2'] }]);
+      qspGoto(s, 'mother_sextalk', 'dildo_wakeup2');
     } else {
       if (((s as any).motherQW ?? 0)?.['dildo_caught'] >= 2  &&  ((s as any).motherKnowDildo ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'dildo_wakeup3'] }]);
+        qspGoto(s, 'mother_sextalk', 'dildo_wakeup3');
       }
     }
   }
@@ -520,7 +520,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text('You wake up in a shock when your door bangs open and you see your mother standing in the doorway holding… a pair of dildos?');
     scene.text('Oh <i>fuck</i>, they\'re the dildos you left in the bathroom!');
   }
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   // TODO-QSP: end
   scene.actions([
     { label: 'Shamelessly lie your ass off', handler: (st: GameState) => {
@@ -559,7 +559,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"But ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have these either."');
     if (((s as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_shower_discovery'] = 0;
+      ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -568,7 +568,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).motherKnowDildo = 1;
     scene.actions([
       { label: 'Continue', goto: ['wakeup_events', 'event_end'] },
@@ -579,7 +579,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDildoWakeup2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1) {
     scene.text('You wake up in a shock when your door bangs open and you see your mother standing in the doorway holding a dildo.');
@@ -595,7 +595,7 @@ function enterDildoWakeup2(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-10));
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('Unfortunately, you don\'t think you can weasel out of this one.');
@@ -612,7 +612,7 @@ function enterDildoWakeup2(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).motherKnowDildo = 1;
     scene.actions([
       { label: '"No…"', handler: (st: GameState) => {
@@ -630,7 +630,7 @@ function enterDildoWakeup2(s: GameState, scene: SceneBuilder): void {
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"Well I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
@@ -659,9 +659,9 @@ function enterDildoWakeup3(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bathtub_dildo = 0;
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+  ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1) {
     scene.text('You wake up in shock to something made of rubber slapping you in the face. Startled, you sit up in bed and look around, seeing a dildo laying on your covers.');
@@ -687,7 +687,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).Gspravka = 0;
     (s as any).GspravkaT = 0;
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
@@ -711,7 +711,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -724,7 +724,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).Gspravka = 0;
     (s as any).GspravkaT = 0;
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
@@ -758,7 +758,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -767,7 +767,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).Gspravka = 0;
     (s as any).GspravkaT = 0;
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
@@ -793,7 +793,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -802,7 +802,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).motherKnowDildo = 1;
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"Well I need some kind of outlet!" you say, throwing your arms up in exasperation.');
@@ -815,7 +815,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     scene.text(`"But ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you can\'t have this back."');
     if (((s as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
-      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_shower_discovery'] = 0;
+      ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -828,7 +828,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -844,7 +844,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).Gspravka = 0;
     (s as any).GspravkaT = 0;
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
@@ -868,7 +868,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -881,7 +881,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).Gspravka = 0;
     (s as any).GspravkaT = 0;
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
@@ -915,7 +915,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -924,7 +924,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).Gspravka = 0;
     (s as any).GspravkaT = 0;
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
@@ -950,7 +950,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -976,7 +976,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     (s as any).vanrPar_bathtub_dildo = 0;
     (s as any).vanrPar_bath_shower_dildo = 0;
     (s as any).vanrPar_suction_dildo = 0;
-    if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = 0;
+    ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
     (s as any).motherKnowDildo = 1;
     if (((s as any).motherQW ?? 0)?.['dildo_wakeup'] === 1) {
       scene.actions([
@@ -985,7 +985,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -1025,7 +1025,7 @@ function enterDildoShowerEnding2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDiscoverDildo(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['bathroom_dildos'] = ((s as any).vanrPar_suction_dildo ?? 0);
+  ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = ((s as any).vanrPar_suction_dildo ?? 0);
   (s as any).vanrPar_suction_dildo = 0;
   if (((s as any).vanrPar_bathtub_dildo ?? 0) === 1) {
     (s as any).vanrPar_bathtub_dildo = 0;

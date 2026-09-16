@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,13 +10,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'rolanbath', 'start');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   if (((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 7) {
     scene.text('Rolan is here.');
     if ((Math.floor(Math.random() * 101) + 0) >= 30) {
-      scene.actions([{ label: 'Continue', goto: ['rolanbath', 'ev'] }]);
+      qspGoto(s, 'rolanbath', 'ev');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['rolanbath', 'sexev'] }]);
+      qspGoto(s, 'rolanbath', 'sexev');
     }
   }
   scene.text('<center><b>Bathroom</b></center>');
@@ -31,7 +32,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: A <a href="exec:gt 'mirror','start'">mirror</a>, where you can ' + iif(pcs_hairb...
-  scene.text('A <a href="exec:gt \'mirror\',\'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair hangs over the sink.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair hangs over the sink.');
   if (((s as any).rolanworker ?? 0) === 2  &&  (((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 9  ||  ((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 10)) {
     if ((!((s as any).workertool ?? 0))) {
       scene.actions([
@@ -56,10 +57,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'piercing_management', 'set_manage_string');
   if (((s as any).fillimplant ?? 0) === 1  &&  ((s as any).siliconeBag ?? 0) >= 1) {
     // TODO-QSP: dynamic text: <a href="exec:cls & siliconeBag -= 1 & bodyVars['bust_silicone'] += 10 & gt $loc...
-    scene.text('<a href="exec:cls & siliconeBag -= 1 & bodyVars[\'bust_silicone\'] += 10 & gt $loc, $loc_arg">Inject silicone into breast implants.</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ s.siliconeBag -=s.1; (s.bodyVars ??= {})\\u0027bust_silicone\\u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Inject silicone into breast implants.</a>');
   }
   if (((s as any).fillimplant ?? 0) === 1  &&  ((s as any).bodyVars ?? 0)?.['bust_silicone'] >= 20) {
-    scene.text('<a href="exec:cls & bodyVars[\'bust_silicone\'] -= 10 & gt $loc, $loc_arg">Drain silicone from breast implants.</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ (s.bodyVars ??= {})\\u0027bust_silicone\\u0027 -=s.10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Drain silicone from breast implants.</a>');
   }
   qspCall(s, 'din_van', 'bteeth');
   qspCall(s, 'din_van', 'tampon');
@@ -68,7 +69,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowpreg ?? 0) !== 1  &&  ((s as any).mc_inventory ?? 0)?.['pregnancy_test'] > 0  &&  (((s as any).abortionbirthdate ?? 0) === 0  ||  ((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) > 100)) {
     scene.actions([
       { label: 'Do a pregnancy test', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['pregnancy_test'] = ((s as any).mc_inventory['pregnancy_test'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['pregnancy_test'] = ((s as any).mc_inventory['pregnancy_test'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     if (((s as any).pregChem ?? 0) > 120) {
       (s as any).knowpreg = 1;
@@ -108,8 +109,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bodyVars ?? 0)?.['weight_warning'] > 0) {
       if (((s as any).bodyVars ?? 0)?.['weight_warning'] === 1) {
+        (s as any).weightwarn = 'losing';
       }
       if (((s as any).bodyVars ?? 0)?.['weight_warning'] === 2) {
+        (s as any).weightwarn = 'gaining';
       }
       scene.text(`<center><b>You seem to be ${((s as any).weightwarn || '')} weight.</b></center>`);
     }
@@ -256,7 +259,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Dry off', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'start');
+    dynamicGoto(st, 'prevLoc', 'start');
   } },
     ]);
   } },
@@ -276,7 +279,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Dry off', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'start');
+    dynamicGoto(st, 'prevLoc', 'start');
   } },
     ]);
   } },
@@ -320,8 +323,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bodyVars ?? 0)?.['weight_warning'] > 0) {
       if (((s as any).bodyVars ?? 0)?.['weight_warning'] === 1) {
+        (s as any).weightwarn = 'losing';
       }
       if (((s as any).bodyVars ?? 0)?.['weight_warning'] === 2) {
+        (s as any).weightwarn = 'gaining';
       }
       scene.text(`<center><b>You seem to be ${((s as any).weightwarn || '')} weight.</b></center>`);
     }
@@ -443,7 +448,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate');
     scene.actions([
       { label: 'Dry off', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'start');
+    dynamicGoto(st, 'prevLoc', 'start');
   } },
     ]);
   } },
@@ -457,7 +462,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('He wouldn\'t come into the bathroom knowing you were in here.');
     scene.actions([
       { label: 'Dry off', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'start');
+    dynamicGoto(st, 'prevLoc', 'start');
   } },
     ]);
   } },
@@ -537,20 +542,28 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = Math.floor(Math.random() * 8) + 1;
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/bathroom.jpg');
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rolan_textb_vanna = 'Rolan tells you that he doesn\'t mind if you take a shower here.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rolan_textb_vanna = 'Rolan tells you that he see often sees some of your classmates buying clothes at G&M Stores, though he doesn\'t know how it\'s possible for young girls to have so much money.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rolan_textb_vanna = 'Rolan tells you that he wants to run for mayor and end the discrimination he sees in Pavlovsk.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).rolan_textb_vanna = 'Rolan tells you that the day before Ms. Sokoloff stopped to chat with him as he was coming back from the supermarket.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).rolan_textb_vanna = 'Rolan tells you that he saw two of your classmates arguing outside.';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).rolan_textb_vanna = 'Rolan tells you that the courtyard is dangerous at night.';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you he saw two girls walking in the park, hand in hand, like they were in love. He wonders what is wrong with people these days. Girls need a man after all.';
     }
     if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you he saw Anushka and Alyona kissing on the playground, in the apartment courtyard. He thinks it is very unbecoming of them, they should be with men.';
     }
     // TODO-QSP: dynamic text: <br><<$rolan_imgb_vanna>><br>
     scene.text(`<br>${((s as any).rolan_imgb_vanna || '')}<br>`);
@@ -613,8 +626,10 @@ function enterPervshower(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bodyVars ?? 0)?.['weight_warning'] > 0) {
       if (((s as any).bodyVars ?? 0)?.['weight_warning'] === 1) {
+        (s as any).weightwarn = 'losing';
       }
       if (((s as any).bodyVars ?? 0)?.['weight_warning'] === 2) {
+        (s as any).weightwarn = 'gaining';
       }
       scene.text(`<center><b>You seem to be ${((s as any).weightwarn || '')} weight.</b></center>`);
     }
@@ -793,7 +808,7 @@ function enterDryOff(s: GameState, scene: SceneBuilder): void {
     scene.text('You know Rolan isn\'t here.');
     scene.actions([
       { label: 'Get out and dry off', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'start');
+    dynamicGoto(st, 'prevLoc', 'start');
   } },
     ]);
   } else {
@@ -844,7 +859,7 @@ function enterDryOff(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Exit', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'start');
+    dynamicGoto(st, 'prevLoc', 'start');
   } },
       ]);
     } else {
@@ -853,7 +868,7 @@ function enterDryOff(s: GameState, scene: SceneBuilder): void {
       scene.text('Better hurry and dry off. You never know…');
       scene.actions([
         { label: 'Exit', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'start');
+    dynamicGoto(st, 'prevLoc', 'start');
   } },
       ]);
     }
@@ -924,7 +939,7 @@ function enterSurprise(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     (s as any).rolanknow = 1;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[String((s as any).hour ?? 0)] = 6;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[String((s as any).hour ?? 0)] = 6;
     scene.text('<center><b>Surprise</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanheadbath1.jpg');
     scene.text('"Ah I see, your stepfather. That would make sense. He seems like a man who take cares of his property. But did he have the concrete, as well? I didn\'t have time to get any. But you fixed that crack in the wall?"');

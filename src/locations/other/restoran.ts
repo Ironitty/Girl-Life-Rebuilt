@@ -1,10 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -16,10 +17,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
   scene.text('You enter the restaurant and see a well dressed man by the counter at the entrance.');
   if (((s as any).hour ?? 0) === 21  &&  ((s as any).minut ?? 0) < 30  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 36) {
-    scene.actions([{ label: 'Continue', goto: ['mey_tamara_events', 'wait_qw'] }]);
+    qspGoto(s, 'mey_tamara_events', 'wait_qw');
   }
   if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 21  &&  ((s as any).hour ?? 0) === 20) {
-    scene.actions([{ label: 'Continue', goto: ['vladimirQW_meet', ''] }]);
+    qspGoto(s, 'vladimirQW_meet', '');
   }
   // TODO-QSP: end
   scene.actions([
@@ -106,7 +107,8 @@ function enterZal(s: GameState, scene: SceneBuilder): void {
         { label: 'Smile at her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['nastja', 'pos1'] },
+    qspGoto(s, 'nastja', 'pos1');
+  } },
       ]);
     }
     scene.actions([

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,11 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    scene.actions([{ label: 'Continue', goto: ['metro_events', 'frot'] }]);
+    qspGoto(s, 'metro_events', 'frot');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['metro_events', 'station'] }]);
+    qspGoto(s, 'metro_events', 'station');
   }
   // TODO-QSP: end
   scene.build();
@@ -21,15 +21,15 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterFrot(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 10) + 0) < 8) {
-    scene.actions([{ label: 'Continue', goto: ['metro_events', 'train'] }]);
+    qspGoto(s, 'metro_events', 'train');
   }
   if ((Math.floor(Math.random() * 2) + 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['metro_events', 'a'] }]);
+    qspGoto(s, 'metro_events', 'a');
   } else {
     if (((s as any).PCloSkirt ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['metro_events', 'b'] }]);
+      qspGoto(s, 'metro_events', 'b');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['metro_events', 'c'] }]);
+      qspGoto(s, 'metro_events', 'c');
     }
   }
   // TODO-QSP: end
@@ -54,7 +54,8 @@ function enterA(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -76,7 +77,8 @@ function enterA(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     scene.actions([
@@ -97,7 +99,8 @@ function enterA(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     scene.actions([
@@ -139,7 +142,8 @@ function enterB(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -161,7 +165,8 @@ function enterB(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     scene.actions([
@@ -183,7 +188,8 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     qspCall(s, 'willpower', 'hj', 'resist', 'medium');
@@ -261,7 +267,8 @@ function enterB(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     scene.actions([
@@ -315,7 +322,8 @@ function enterC(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -340,7 +348,8 @@ function enterC(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     scene.actions([
@@ -362,7 +371,8 @@ function enterC(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     scene.actions([
@@ -385,7 +395,8 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'medium');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     qspCall(s, 'willpower', 'bj', 'resist', 'medium');
@@ -455,7 +466,8 @@ function enterC(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['metro_events', 'fin'] },
+    qspGoto(s, 'metro_events', 'fin');
+  } },
       ]);
     }
     scene.actions([
@@ -498,7 +510,7 @@ function enterFin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the car', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -510,7 +522,7 @@ function enterFin2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the car', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -526,7 +538,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -537,7 +549,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ignore', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -547,7 +559,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -560,7 +572,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -576,7 +588,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Ignore', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -586,7 +598,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -599,7 +611,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -649,7 +661,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Go over', goto: ['metro_events', 'twobbc'] },
     ]);
@@ -660,7 +672,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
             { label: 'Hurry away', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
             { label: 'Stare in shock', handler: (st: GameState) => {
     scene.img('images/pc/reactions/shock.jpg');
@@ -670,7 +682,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Go over', goto: ['metro_events', 'twobbc'] },
     ]);
@@ -683,7 +695,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Go over', goto: ['metro_events', 'twobbc'] },
     ]);
@@ -731,7 +743,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -741,7 +753,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
               { label: 'Hurry away', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
             ]);
           } else {
@@ -753,7 +765,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
               ]);
             } else {
@@ -765,7 +777,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Ignore her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                   { label: 'Help her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -779,7 +791,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -794,7 +806,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                   ]);
                 } else {
@@ -806,7 +818,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                     scene.actions([
                       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                     ]);
                   } else {
@@ -818,7 +830,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                       scene.actions([
                         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                       ]);
                     } else {
@@ -830,7 +842,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                         scene.actions([
                           { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                         ]);
                       } else {
@@ -844,7 +856,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                             { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
                             { label: 'Record them', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'photoskl', 2);
@@ -855,14 +867,14 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
                           ]);
                         } else {
                           if (((s as any).metrorand ?? 0) === 14) {
-                            if (!(s as any).metrorand) (s as any).metrorand = {}; (s as any).metrorand['rand'] = Math.floor(Math.random() * 2) + 1;
+                            ((s as any).metrorand = (s as any).metrorand ?? {})['rand'] = Math.floor(Math.random() * 2) + 1;
                             scene.img('images/locations/city/shared/metro/station/sex/fuck\' + metrorand[\'rand\'] + \'.jpg');
                             scene.text('As you head through the metro station, you see a couple leaning against one of the walls, the woman struggling to keep her moans quiet as the man hammers her for all he is worth. Several people gather around to watch, many of them pulling out their phones to record the scene. A few men try to join in, but are quickly shooed away.');
                             qspCall(s, 'arousal', 'voyeur_sex', 3);
@@ -871,7 +883,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                               { label: 'Hurry away', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
                               { label: 'Record them', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/station/sex/fuck\' + metrorand[\'rand\'] + \'.jpg');
@@ -882,7 +894,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -895,7 +907,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                               scene.actions([
                                 { label: 'Ignore', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                 { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -905,7 +917,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -918,7 +930,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -934,7 +946,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                 scene.actions([
                                   { label: 'Ignore', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                   { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -944,7 +956,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Give them money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -957,7 +969,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -973,7 +985,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                   scene.actions([
                                     { label: 'Ignore', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                     { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -983,7 +995,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -996,7 +1008,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -1012,7 +1024,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                     scene.actions([
                                       { label: 'Ignore', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                       { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1022,7 +1034,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -1035,7 +1047,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -1054,7 +1066,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                         { label: 'Hurry away', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
                                         { label: 'Record them', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'photoskl', 2);
@@ -1065,7 +1077,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1079,7 +1091,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                         scene.actions([
                                           { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                         ]);
                                       } else {
@@ -1088,7 +1100,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                         scene.actions([
                                           { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                         ]);
                                       }
@@ -1122,20 +1134,20 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
     scene.text('As you take a seat on the metro, you hear a huff. You glance up to see a woman giving you a dirty look, like you took her seat or something. She moves over to sit across from you, and for the rest of the ride and continues giving you a dirty look. You have no idea what you did, but whatever it was really pissed her off.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
     if (((s as any).metrorand ?? 0) === 2) {
       qspCall(s, 'stat', '');
       if ((!((s as any).PCloSkirt ?? 0))) {
-        scene.actions([{ label: 'Continue', goto: ['metro', 'vagon'] }]);
+        qspGoto(s, 'metro', 'vagon');
       }
       scene.img('images/locations/city/shared/metro/draft.mp4');
       scene.text('The train car is in desperate need of cleaning, so you choose to stand for the duration of the ride. There\'s also a draft in the car, which lifts your skirt every few seconds.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -1146,7 +1158,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'end');
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -1157,7 +1169,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'end');
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);
         } else {
@@ -1168,7 +1180,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'arousal', 'end');
             scene.actions([
               { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
             ]);
           } else {
@@ -1179,13 +1191,13 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'end');
               scene.actions([
                 { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
               ]);
             } else {
               if (((s as any).metrorand ?? 0) === 7) {
                 if (((s as any).pcs_hotcat ?? 0) < 7) {
-                  scene.actions([{ label: 'Continue', goto: ['metro', 'vagon'] }]);
+                  qspGoto(s, 'metro', 'vagon');
                 }
                 scene.img('images/locations/city/shared/metro/flashus\' + rand(1, 5) + \'.jpg');
                 scene.text('As you ride the metro, you notice a young woman. When she sees you looking at her, she gives you a wicked grin and winks before spreading her legs, showing off her pussy from under her skirt. She sticks out her tongue and flicks it at you, as if mimicking eating pussy.');
@@ -1227,7 +1239,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1236,7 +1248,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Ignore her', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
                 ]);
               } else {
@@ -1246,7 +1258,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                   scene.text('As you ride the metro, you notice a young woman sitting across from you playing on her phone, but that\'s not what draws your attention to her; she has large black cat sitting in her lap. The cat seems surprisingly calm and happy considering the strange people around. She occasionally reaches down to pet the cat while playing on her phone. Once the train comes to a stop, she lifts the cat and carries it in her arms as she disembarks.');
                   scene.actions([
                     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                   ]);
                 } else {
@@ -1256,7 +1268,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                     scene.text('As you ride the metro, you notice a foreign man wearing a kilt. You overhear several other men commenting on him wearing a skirt, which he just ignores. He\'s likely used to such comments.');
                     scene.actions([
                       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                     ]);
                   } else {
@@ -1266,7 +1278,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                       scene.text('As you ride the metro, you notice a young man laying on the floor of the car in front of one of the doors. He seems to be fast asleep, or passed out. Several other people his age are sitting near him, likely his friends taking him home. When your stop arrives, everyone just steps over him as they enter or exit the train. You quickly follow suit.');
                       scene.actions([
                         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                       ]);
                     } else {
@@ -1277,7 +1289,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'arousal', 'end');
                         scene.actions([
                           { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                         ]);
                       } else {
@@ -1288,7 +1300,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'arousal', 'end');
                           scene.actions([
                             { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                           ]);
                         } else {
@@ -1299,7 +1311,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                             qspCall(s, 'arousal', 'end');
                             scene.actions([
                               { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                             ]);
                           } else {
@@ -1310,7 +1322,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                               qspCall(s, 'arousal', 'end');
                               scene.actions([
                                 { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                               ]);
                             } else {
@@ -1322,7 +1334,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                 qspCall(s, 'arousal', 'end');
                                 scene.actions([
                                   { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                 ]);
                               } else {
@@ -1333,7 +1345,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                   qspCall(s, 'arousal', 'end');
                                   scene.actions([
                                     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                   ]);
                                 } else {
@@ -1344,7 +1356,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                     qspCall(s, 'arousal', 'end');
                                     scene.actions([
                                       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                     ]);
                                   } else {
@@ -1355,7 +1367,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                       qspCall(s, 'arousal', 'end');
                                       scene.actions([
                                         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                       ]);
                                     } else {
@@ -1365,7 +1377,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                         scene.text('As you find a seat, you notice a young man close to your own age across from you. He seems to be fast asleep while clutching a stuffed animal tightly in his arms. Several of the other passengers give him amused looks.');
                                         scene.actions([
                                           { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                         ]);
                                       } else {
@@ -1375,7 +1387,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                           scene.text('As you find a seat, you see some girls horsing around, talking loudly and goofing off. While they seem to be having fun, they\'re also annoying several of the other passengers.');
                                           scene.actions([
                                             { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                           ]);
                                         } else {
@@ -1385,7 +1397,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                             scene.text('As you find a seat, you notice a woman passed out in the seat across from you; you can smell the alcohol from here. Most of the other passengers ignore her, but you notice more than a few men eying her.');
                                             scene.actions([
                                               { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                             ]);
                                           } else {
@@ -1395,7 +1407,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                               scene.text('As you find a seat, you notice a young man sound asleep snoring across from you, having managed to cram himself akwardly into the seat. You don\'t know how he manged to get comfortable enough to fall asleep, but imagine he will be sore when he wakes up.');
                                               scene.actions([
                                                 { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                               ]);
                                             } else {
@@ -1405,7 +1417,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                 scene.text('As you find a seat, you a couple across from you. The man is sitting up and snoring while the woman is laying on the seat next to him with her head in his lap.');
                                                 scene.actions([
                                                   { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                 ]);
                                               } else {
@@ -1416,7 +1428,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                   qspCall(s, 'arousal', 'end');
                                                   scene.actions([
                                                     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                   ]);
                                                 } else {
@@ -1426,17 +1438,17 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                     scene.text('As you find a seat, you notice a woman laying in the seat across from yours sound asleep. Most of the passengers ignore her, though one man seems to be watching her. You don\'t know if he knows her or is thinking about doing something.');
                                                     scene.actions([
                                                       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                     ]);
                                                   } else {
                                                     if (((s as any).metrorand ?? 0) === 26  &&  (((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 15)) {
                                                       qspCall(s, 'stat', '');
                                                       scene.img('images/characters/shared/headshots_main/big77.jpg');
-                                                      scene.text('You spot your neighbor <a href="exec:gt \'tryndin\', \'tryndinmetro\'">Tryndin</a> sitting across from you.');
+                                                      scene.text('You spot your neighbor <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027tryndin\\u0027, \\u0027tryndinmetro\\u0027); return false;">Tryndin</a> sitting across from you.');
                                                       scene.actions([
                                                         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                       ]);
                                                     } else {
@@ -1446,7 +1458,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                         scene.text('It seems as if some of the famous "Moscow Metro Dogs" have made their way to St. Petersburg. You heard about them on the news a while back, but today was the first day you\'ve seen one for yourself. It was pretty cute and it made you happy to see the other passengers petting it. Still, you don\'t think the public metro is really a place for a dog to be, and wonder about taking it home with you, or at least to the local animal shelter. Before you can inspect it\'s collar however, the metro doors open and the dog trots away.');
                                                         scene.actions([
                                                           { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                         ]);
                                                       } else {
@@ -1456,7 +1468,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                           scene.text('Sitting across from you is a woman who is hauling some sort of mannequin around in a bag. You wonder what it\'s for or where she\'s going. Maybe she\'s a clothing designer or something? No one else seems to think it\'s unusual though, so you shrug it off and play on your phone for the rest of the trip.');
                                                           scene.actions([
                                                             { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                           ]);
                                                         } else {
@@ -1466,7 +1478,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                             scene.text('You honestly don\'t understand how some people get to be the way they are, but such is life in the city. You just never know what you\'re going to encounter, especially on the metro. You wonder if this person is asleep under their mask as they\'re sitting there as still as a statue. Another curious passenger must be thinking the same thing and walks up to him, cautiously reaching out to touch his mask. Suddenly, the masked man jumps to life and starts barking and growling at the lady, who darts away into the crowd of other passengers, who are now trying to see what all the commotion is about. As soon as you reach your destination, you get up quickly and leave the bizarre scene.');
                                                             scene.actions([
                                                               { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                             ]);
                                                           } else {
@@ -1476,7 +1488,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                               scene.text('You take a seat on the metro and wait for it to head to your destination. Across from you sits an older man, who appears to be rather scruffy and dirty. You wonder if he\'s homeless, or just poor, and almost feel sorry for him. That\'s when he opens his jacket and reveals a very provocative women\'s top, with the nipples cut out of it. A woman a few seats away shouts "Oh my God!" and starts to film the man with her phone, who starts making lewd faces at her while tweaking his nipples, clearly liking the attention.');
                                                               scene.actions([
                                                                 { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                               ]);
                                                             } else {
@@ -1487,7 +1499,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                                 scene.text('You do your best to turn away from his creepy stare, but there\'s only so much you can do. Even as the train pulls up to your stop, you cast one more peek in his direction and he\'s still staring right into your eyes.');
                                                                 scene.actions([
                                                                   { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                                 ]);
                                                               } else {
@@ -1497,7 +1509,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                                   scene.text('The metro is mostly empty today. A lady sits across from you and you close your eyes here and there, almost dozing off. That\'s when a man enters the metro and sits right next to the woman and spreads his legs wide, pressing them into her. There is plenty of room in the metro for this guy to sit, so he\'s either being intentionally rude or intentionally creepy. He has one of his hands underneath the bags he\'s holding and it seems to be moving slightly… Is he touching himself? Gross! The woman doesn\'t tolerate this for long and huffs loudly, sliding down the bench to get away from him. He doesn\'t follow her, but continues to sit there while breathing heavily through his mouth, his arm still moving under the bag.');
                                                                   scene.actions([
                                                                     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                                   ]);
                                                                 } else {
@@ -1508,7 +1520,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                                     scene.text('"Why is he standing so close to me? Is he going to try something?" you think to yourself, your mind preparing for the worst. For the remainder of the trip, the stranger never says a word to you and never intentionally touches any part of your body, but he is definitely too close for comfort. When the train finally comes to a stop, you push towards the doors the second they open and get out of the station as quickly as you can.');
                                                                     scene.actions([
                                                                       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                                     ]);
                                                                   } else {
@@ -1517,7 +1529,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                                     scene.text('As you ride the metro, you notice a foreign man wearing a kilt. You overhear several other men commenting on him wearing a skirt, which he just ignores. He\'s likely used to such comments.');
                                                                     scene.actions([
                                                                       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                                                     ]);
                                                                   }
@@ -1579,7 +1591,7 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1612,7 +1624,7 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1663,7 +1675,8 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
         { label: 'Just suck them off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['metro_events', 'twobbcfinish'] },
+    qspGoto(s, 'metro_events', 'twobbcfinish');
+  } },
       ]);
     }
     scene.actions([
@@ -1692,7 +1705,8 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
         { label: 'Finish them off with blowjobs', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['metro_events', 'twobbcfinish'] },
+    qspGoto(s, 'metro_events', 'twobbcfinish');
+  } },
       ]);
     }
     scene.actions([
@@ -1750,7 +1764,7 @@ function enterTwobbcfinish(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

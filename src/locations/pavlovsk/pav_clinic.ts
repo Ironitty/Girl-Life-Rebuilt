@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_clinic', '');
+  (s as any).location_type = 'public_indoors';
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -63,7 +64,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Get urgent treatment', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).clinic) (s as any).clinic = {}; (s as any).clinic['docheal'] = ((s as any).daystart ?? 0);
+    ((s as any).clinic = (s as any).clinic ?? {})['docheal'] = ((s as any).daystart ?? 0);
     qspCall(s, 'medical_din', 'healthTreatment');
     qspCall(s, 'stat', '');
     scene.text('The doctor guides you to a bed and tells you to lie down, after which she gives you a combined painkiller, steroid and vitamin shot.');
@@ -90,7 +91,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReception(s, scene); (s as any).locArgs = __savedLocArgs; }
       if ((((s as any).lactation ?? 0)?.['active'] > 0  ||  ((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1)  &&  ((s as any).pcs_know_mward ?? 0) <= 0) {
         // TODO-QSP: dynamic text: A sign on the notice board catches your attention. It reads <a href="exec: minut...
-        scene.text('A sign on the notice board catches your attention. It reads <a href="exec: minut += 5 & gt \'pav_clinic\', \'maternity_ward\'">"Maternity ward"</a>.');
+        scene.text('A sign on the notice board catches your attention. It reads <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_clinic\\u0027, \\u0027maternity_ward\\u0027); return false;">"Maternity ward"</a>.');
       }
       if (((s as any).pcs_know_mward ?? 0) > 0) {
         scene.actions([
@@ -112,7 +113,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Read the job listing', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_clinic_cleaner'] = 1;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_clinic_cleaner'] = 1;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You notice a piece of paper on the wall near the entrance to the clinic - it's a...
     scene.text('You notice a piece of paper on the wall near the entrance to the clinic - it\'s a job listing which reads: "Cleaner wanted! One hour per day, any time between 14:00 and 21:00. Payment: \'+$func(\'money\', \'string_profit\', 100)+\'."');
@@ -126,7 +127,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Ask the head doctor about the job', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_clinic_cleaner'] = 2;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_clinic_cleaner'] = 2;
     qspCall(s, 'jobs', 'set_employed', 'pav_clinic_cleaner');
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/clinic/poli.jpg');
@@ -207,6 +208,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have an appointment with a doctor," you tell the receptionist.');
     scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
   }
+  (s as any).reception_category = 'General practitioner';
   qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   // TODO-QSP: end
   // TODO-QSP: act $func('clinic_functions', 'reception_option_label', 'Petrovich', 'Dr. Petrovich, the gynecologis...
@@ -218,16 +220,18 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have an appointment with Dr. Petrovich," you tell the receptionist.');
     scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
   }
+  (s as any).reception_category = 'Petrovich';
   qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   // TODO-QSP: end
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).Gspravka ?? 0) < 3  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
     scene.actions([
-      { label: 'Ask for a referral from Dr. Petrovich', goto: ['pav_clinic', 'Petrovich1', '\'referral_only\''] },
+      { label: 'Ask for a referral from Dr. Petrovich', goto: ['pav_clinic', 'Petrovich1', 'referral_only'] },
     ]);
   }
   if (((s as any).therapistQW ?? 0)?.['met'] > 0) {
     // TODO-QSP: act $func('clinic_functions', 'reception_option_label', 'Pavlov', 'Dr. Pavlov, the therapist'):
     scene.img('images/locations/shared/clinic/poli.jpg');
+    (s as any).temp_rcp_recur = ((((s as any).hypnoSchedule ?? 0) === 1) ? ('therapist_appointment') : (''));
     if (qspFunc(s, 'appointments', 'get_state', 'Pavlov', ((s as any).temp_rcp_recur ?? 0)) === 'none') {
       scene.text('"I would like to book an appointment with Dr. Pavlov, please," you tell the receptionist.');
       scene.text('"Of course, let me check what we have available," she replies, flipping through the appointment book.');
@@ -235,6 +239,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
       scene.text('"I have an appointment with Dr. Pavlov," you tell the receptionist.');
       scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
     }
+    (s as any).reception_category = 'Pavlov';
     qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   }
   // TODO-QSP: act $func('clinic_functions', 'reception_option_label', 'Therapist', 'a therapist'):
@@ -246,6 +251,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have an appointment with a therapist," you tell the receptionist.');
     scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
   }
+  (s as any).reception_category = 'Therapist';
   qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   // TODO-QSP: end
   // TODO-QSP: end
@@ -258,6 +264,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have an appointment with a dentist," you tell the receptionist.');
     scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
   }
+  (s as any).reception_category = 'Dentist';
   qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   // TODO-QSP: end
   // TODO-QSP: act $func('clinic_functions', 'reception_option_label', 'Optometrist', 'an optometrist'):
@@ -269,6 +276,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have an appointment with an optometrist," you tell the receptionist.');
     scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
   }
+  (s as any).reception_category = 'Optometrist';
   qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   // TODO-QSP: end
   if (((s as any).kid ?? 0) > 0) {
@@ -281,6 +289,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
       scene.text('"I have an appointment with a pediatrician," you tell the receptionist.');
       scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
     }
+    (s as any).reception_category = 'Pediatrician';
     qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   }
   // TODO-QSP: end
@@ -345,10 +354,19 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to have a check-up with your gynecologist. Given your sexual history, you can\'t be too careful.');
     if ((!((s as any).docKnow ?? 0))) {
       if (((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  ((s as any).fame ?? 0)?.['pav_prostitute'] < 125) {
+        (s as any).gyn1 = 'He looks at you with some concern, but still has to ask. "Rumor in town says that you\'re a prostitute?"';
+        (s as any).gyn2 = '"Doctor, the whole town knows! And knows my body, if you know what I mean…" you laugh despite yourself.';
       } else {
         if (((s as any).unprotfilm ?? 0)) {
+          (s as any).gyn1 = 'He looks at you with some concern, but still has to ask. "Are you by any chance ' + ((s as any).pfname ?? 0) + '?" He doesn\'t say how he\'s familiar with the name, but you can probably guess.';
+          (s as any).gyn2 = '"I hope not, but who knows?"';
         } else {
           if (((s as any).whoreQW ?? 0) > 1  ||  ((s as any).bordelslutty ?? 0) > 0  ||  ((s as any).fame ?? 0)?.['pav_prostitute'] >= 125) {
+            (s as any).gyn1 = 'He looks at you with some concern, but still has to ask. "Rumor in town says that you\'re a prostitute?"';
+            (s as any).gyn2 = '"I don\'t think so. I only do business in St. Petersburg, but who knows?"';
+          } else {
+            (s as any).gyn1 = 'He looks at you with some concern, but still has to ask. "Why are you visiting me? Are you worried by something about your sexual history?"';
+            (s as any).gyn2 = '"I hope not, but who knows?"';
           }
         }
       }
@@ -363,6 +381,11 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).docKnow ?? 0) === 1) {
         if (((s as any).fame ?? 0)?.['pav_slut'] >= 25  ||  ((s as any).unprotfilm ?? 0)  ||  ((s as any).whoreQW ?? 0) > 1  ||  ((s as any).bordelslutty ?? 0) > 0  ||  ((s as any).fame ?? 0)?.['pav_prostitute'] >= 125) {
+          (s as any).gyn1 = 'He looks at you with some concern. "Are you still in the business?"';
+          (s as any).gyn2 = 'In a way, you feel touched that he\'s so concerned for his patients. You don\'t mind answering his question. "Doctor, you know how it is… I do it because studies are expensive, because clothing is expensive. Because my family could also use the help financially. And most of all: because I love having sex. I might as well get paid to do it, right?"';
+        } else {
+          (s as any).gyn1 = 'He looks at you with some concern. "Are you still seeing a lot of men?"';
+          (s as any).gyn2 = 'In a way, you feel touched that he\'s so concerned for his patients. You don\'t mind answering him, and you might as well be frank. "Doctor, I really just love having sex. I don\'t even care about getting paid, it just seems like I can\'t ever get enough dick. You understand, right?"';
         }
         // TODO-QSP: dynamic text: He looks up from his desk when you enter his office and recognizes you immediate...
         scene.text(`He looks up from his desk when you enter his office and recognizes you immediately. "Ah, hello ${((s as any).pcs_nickname || '')}. Back for another check-up?"`);
@@ -426,7 +449,7 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
 
 function enterPetrovichBirthControl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).birth_control ?? 0)?.['implant_status'] > 0  ||  ((s as any).tabletkicheck ?? 0) === 2) {
-    scene.actions([{ label: 'Continue', goto: ['pav_clinic', 'Petrovich_birth_control3'] }]);
+    qspGoto(s, 'pav_clinic', 'Petrovich_birth_control3');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -518,13 +541,16 @@ function enterPetrovichCheckup(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/gyno/gpoli_4.jpg');
     scene.text('You quickly undress and climb into the chair. The leather-like surface feels strangely warm on your bottom, and it takes you a second to realize that it\'s heated. You fidget nervously as you wait for the doctor to return.');
     scene.text('After what seems like hours, the doctor comes back into the room. You notice his face seems redder than it was and his hair seems to be a little damp. He\'s also taken off the apron-like smock he had on before. He continues with his examination, taking your hands and arms and massaging the joints and flexing them. He does the same with your feet and legs. To your surprise, he also examines your ass and pussy, easing his gloved fingers into your pussy and then your asshole. He even spreads your lips apart and pushes the hood back to expose your clitoris, which he gently massages for a second before suddenly getting to his feet with a deep sigh, his eyes lingering on your exposed pussy for a moment too long before he seems to give himself a little shake.');
+    (s as any).gpoli_sick = '';
     if (((s as any).cumcondslip ?? 0) > 0) {
+      (s as any).gpoli_sick = 'are suffering from toxic shock due to a used condom in your body. I removed it as soon as I found it. If you were feeling sick, the symptoms should slowly subside.';
       (s as any).cumspclnt = 8;
       qspCall(s, 'cum_cleanup', '');
     }
     if (((s as any).preg ?? 0) > 0) {
       (s as any).thinkpreg = 1;
       (s as any).knowpreg = 1;
+      (s as any).gpoli_sick = 'are pregnant';
     }
     if (((s as any).Venera ?? 0) > 0  ||  ((s as any).Kandidoz ?? 0) > 10) {
       if (((s as any).gpoli_sick ?? 0) !== '') {
@@ -568,18 +594,23 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/clinic/gyno/gpoli_4.jpg');
     scene.text('Once you\'re naked, you take a seat in the gynecologist\'s chair and spread your legs in the stirrups before the doctor gives you a thorough check-up. He spends a bit more time on your asshole than he probably should, but maybe he\'s just being thorough.');
+    (s as any).gpoli_sick = '';
     if (((s as any).cumcondslip ?? 0) > 0) {
+      (s as any).gpoli_sick = 'are suffering from toxic shock from a spent condom in your body. I removed it as soon as I found it. If you were feeling sick, it should slowly subside.';
       (s as any).cumcondslip = 0;
       qspCall(s, 'cum_cleanup', 'cleanloc', 17);
     }
     if (((s as any).preg ?? 0) > 0) {
       (s as any).thinkpreg = 1;
       (s as any).knowpreg = 1;
+      (s as any).gpoli_sick = 'are pregnant';
     }
     if (((s as any).Venera ?? 0) > 0  ||  ((s as any).Kandidoz ?? 0) > 10) {
       if (((s as any).gpoli_sick ?? 0) !== '') {
+        (s as any).gpoli_sick = ((s as any).gpoli_sick ?? 0) + ', and you have a sexually transmitted disease';
       }
       if (((s as any).gpoli_sick ?? 0) === '') {
+        (s as any).gpoli_sick = 'have a sexually transmitted disease';
       }
     }
     if (((s as any).gpoli_sick ?? 0) === '') {
@@ -630,7 +661,7 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
     if (((s as any).Venera ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['pav_clinic', 'gynoblow'] }]);
+      qspGoto(s, 'pav_clinic', 'gynoblow');
     }
     if ((!((s as any).gpoli_doctorhavesex ?? 0))) {
       (s as any).gpoli_doctorhavesex = 1;
@@ -662,6 +693,7 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel like you\'re in heat when he slowly starts thrusting his cock in and out of you. When he realizes you can take him easily, he steadily increases the pace and fucks you harder. You involuntarily moan with his thrusts, fully giving yourself to him.');
     scene.text('Dr. Petrovich lightly slaps your ass a few times and you moan louder. He\'s making you feel so good! After a few minutes, you can\'t take it any more and try to stifle your moans so you don\'t scream the whole clinic down while you have a thunderous orgasm. Your legs buckle under your weight and give way, but fortunately he pulled his dick out of you on time and catches you in his powerful arms. He carries you to a table and puts you down on top of it with your legs spread towards him.');
     scene.text('He immediately guides his cock back into you while your body quivers, still not fully recovered from the orgasm you just had.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -701,6 +733,7 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/gyno/sex/gpoli_13.jpg');
     scene.text('Now that you\'re so aroused, the anal sex doesn\'t hurt quite as much. You furiously rub your clit while he roughly pounds your stretched asshole, slowly losing your mind when a second orgasm hits you. Dr. Petrovich must feel your anus contracting around his cock when you cum with it inside you.');
     scene.text('He was close as well, and after you ride out your orgasm he gives it a few more thrusts before he pulls out and moves his hips towards your face. He grabs you by the hair and guides his cock towards your mouth, and you obediently open your mouth to let it in.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -795,13 +828,16 @@ function enterPetrovichDrug(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/gyno/gpoli_4.jpg');
     scene.text('You quickly undress and climb into the chair. The leather-like surface feels strangely warm on your bottom, and it takes you a second to realize that it\'s heated. You fidget nervously as you wait for the doctor to return.');
     scene.text('After what seems like hours, the doctor comes back into the room. You notice his face seems redder than it was and his hair seems to be a little damp. He\'s also taken off the apron-like smock he had on before. He continues with his examination, taking your hands and arms and massaging the joints and flexing them. He does the same with your feet and legs. To your surprise, he also examines your ass and pussy, easing his gloved fingers into your pussy and then your asshole. He even spreads your lips apart and pushes the hood back to expose your clitoris, which he gently massages for a second before suddenly getting to his feet with a deep sigh, his eyes lingering on your exposed pussy for a moment too long before he seems to give himself a little shake.');
+    (s as any).gpoli_sick = '';
     if (((s as any).cumcondslip ?? 0) > 0) {
+      (s as any).gpoli_sick = 'are suffering from toxic shock due to a used condom in your body. I removed it as soon as I found it. If you were feeling sick, the symptoms should slowly subside.';
       (s as any).cumspclnt = 8;
       qspCall(s, 'cum_cleanup', '');
     }
     if (((s as any).preg ?? 0) > 0) {
       (s as any).thinkpreg = 1;
       (s as any).knowpreg = 1;
+      (s as any).gpoli_sick = 'are pregnant';
     }
     if (((s as any).Venera ?? 0) > 0  ||  ((s as any).Kandidoz ?? 0) > 10) {
       if (((s as any).gpoli_sick ?? 0) !== '') {
@@ -957,9 +993,11 @@ function enterReferral2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/clinic/gyno/gpoli_4.jpg');
   scene.text('Once you\'re naked, you have a seat in the gynecologist\'s chair and spread your legs in the stirrups before the doctor gives you a thorough check-up. He spends a bit more time on your asshole than he probably should, but maybe he\'s just being thorough.');
+  (s as any).gpoli_sick = '';
   if (((s as any).preg ?? 0) > 0) {
     (s as any).thinkpreg = 1;
     (s as any).knowpreg = 1;
+    (s as any).gpoli_sick = 'are pregnant';
   }
   if (((s as any).Venera ?? 0) > 0  ||  ((s as any).Kandidoz ?? 0) > 10) {
     if (((s as any).gpoli_sick ?? 0) !== '') {
@@ -1157,7 +1195,7 @@ function enterSpravkaArrange(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
     if (((s as any).Venera ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['pav_clinic', 'gynoblow', '\'referral_blow\''] }]);
+      qspGoto(s, 'pav_clinic', 'gynoblow', 'referral_blow');
     }
     if ((!((s as any).gpoli_doctorhavesex ?? 0))) {
       (s as any).gpoli_doctorhavesex = 1;
@@ -1191,6 +1229,7 @@ function enterSpravkaArrange(s: GameState, scene: SceneBuilder): void {
     scene.text('Your body feels like it\'s getting hotter and hotter as beads of sweat form on your forehead. With every thrust Dr. Petrovich fucks you faster and harder, and you can feel your excitement growing too. You start involuntarily moaning as his hard hot member penetrates you ever deeper without giving you any pause.');
     scene.text('You can no longer control yourself and have a thunderous orgasm as the doctor keeps fucking you relentlessly. Waves of bliss sear your nerves and your mouth opens in a silent scream as you\'re consumed with pleasure.');
     scene.text('He suddenly pulls his dick out of you and you almost fall to the floor, but he catches you with his powerful arms and lowers you onto a table where you feel his cock slide back into your quivering pussy.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1230,6 +1269,7 @@ function enterSpravkaArrange(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/gyno/sex/gpoli_13.jpg');
     scene.text('Now that you\'re so aroused, the anal sex doesn\'t hurt quite as much. You furiously rub your clit while he roughly pounds your stretched asshole, slowly losing your mind when a second orgasm hits you. Dr. Petrovich must feel your anus contracting around his cock when you cum with it inside you.');
     scene.text('He was close as well, and after you ride out your orgasm he gives it a few more thrusts before he pulls out and moves his hips towards your face. He grabs you by the hair and guides his cock towards your mouth, and you obediently open your mouth to let it in.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1441,7 +1481,7 @@ function enterSpravkaArrangePale(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
     if (((s as any).Venera ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['pav_clinic', 'gynoblow'] }]);
+      qspGoto(s, 'pav_clinic', 'gynoblow');
     }
     if ((!((s as any).gpoli_doctorhavesex ?? 0))) {
       (s as any).gpoli_doctorhavesex = 1;
@@ -1475,6 +1515,7 @@ function enterSpravkaArrangePale(s: GameState, scene: SceneBuilder): void {
     scene.text('Your body feels like it\'s getting hotter and hotter as beads of sweat form on your forehead. With every thrust Dr. Petrovich fucks you faster and harder, and you can feel your excitement growing too. You start involuntarily moaning as his hard hot member penetrates you ever deeper without giving you any pause.');
     scene.text('You can no longer control yourself and have a thunderous orgasm as the doctor keeps fucking you relentlessly. Waves of bliss sear your nerves and your mouth opens in a silent scream as you\'re consumed with pleasure.');
     scene.text('He suddenly pulls his dick out of you and you almost fall to the floor, but he catches you with his powerful arms and lowers you onto a table where you feel his cock slide back into your quivering pussy.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1514,6 +1555,7 @@ function enterSpravkaArrangePale(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/gyno/sex/gpoli_13.jpg');
     scene.text('Now that you\'re so aroused, the anal sex doesn\'t hurt quite as much. You furiously rub your clit while he roughly pounds your stretched asshole, slowly losing your mind when a second orgasm hits you. Dr. Petrovich must feel your anus contracting around his cock when you cum with it inside you.');
     scene.text('He was close as well, and after you ride out your orgasm he gives it a few more thrusts before he pulls out and moves his hips towards your face. He grabs you by the hair and guides his cock towards your mouth, and you obediently open your mouth to let it in.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1568,8 +1610,9 @@ function enterSpravkaArrangePale(s: GameState, scene: SceneBuilder): void {
 
 function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_know_mward = 1;
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_temp_var'] = 0;
+  ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_temp_var'] = 0;
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
     scene.img('images/locations/pavlovsk/clinic/mward/mward.jpg');
@@ -1585,7 +1628,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['pav_clinic', 'maternity_ward'] },
       { label: 'Donate your breast milk (0:15)', handler: (st: GameState) => {
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = 0;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = 0;
     (s as any).pcs_gpoli_donationsessioncount = 0;
     scene.img('images/locations/pavlovsk/clinic/mward/pump_room.jpg');
     scene.text('You talk to the nurse and she leads you into the quiet room.');
@@ -1601,11 +1644,11 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       scene.img('images/pc/body/nipples/sore_nipple.jpg');
       scene.text('The nurse looks at your sore nipples and frowns before she grabs a small tin and takes a bit more of the yellowish cream from it.');
       scene.text('She applies the cream to your nipples and they start hurting less as a soothing sensation tingles through your breasts.');
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
+      ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
     } else {
       scene.text('The nurse grabs the nipple balm and applies it to your nipples. It feels nice as she rubs it in.');
     }
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
+    ((s as any).lactation = (s as any).lactation ?? {})['nipple_cream_applied'] = 1;
     scene.actions([
       { label: 'Continue', goto: ['pav_clinic', 'maternity_ward_donation'] },
     ]);
@@ -1717,9 +1760,9 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept her offer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_gpolimilkdonation = 2;
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 5, 1))/100;
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = 0;
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 5, 1))/100;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = 0;
+    ((s as any).lactation = (s as any).lactation ?? {})['pc_aware'] = 1;
     scene.img('images/locations/pavlovsk/clinic/mward/pump_room.jpg');
     scene.text('The nurse leads you into a quiet room containing a chair, a table and a breast pump.');
     scene.text('The nurse invites you to sit down and you reluctantly pull up your shirt and present your breasts to her.');
@@ -1764,7 +1807,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       scene.text('"What\'s that?" you ask.');
       scene.text('The nurse looks up at you. "This is nipple balm. It helps with sore nipples during pumping. Don\'t you know this?"');
       scene.text('You shake your head and watch as the nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
+      ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       scene.text('"Where do I get this stuff?" you ask.');
       scene.text('"You can buy it in the pharmacy," she replies.');
       (s as any).pcs_knows_nipplecream = 1;
@@ -1773,16 +1816,16 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pain ?? 0)?.['nipples'] >= 60  &&  ((s as any).pcs_knows_nipplecream ?? 0) > 0) {
         scene.text('The nurse looks at your sore nipples and frowns before she grabs a small tin and takes a bit of the yellowish cream from it.');
         scene.text('The nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
+        ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       } else {
         scene.text('The nurse grabs the nipple balm and applies it to your nipples. It feels nice on your nipples as she rubs it in.');
       }
     }
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
+    ((s as any).lactation = (s as any).lactation ?? {})['nipple_cream_applied'] = 1;
     scene.text('"Okay, I\'m going to pump a sample first to check the quality and see if you\'re able to donate enough. You won\'t get paid this time."');
     scene.text('You nod and pull up your shirt as the nurse takes the pumps and puts them on your breasts. She flicks a switch and you can feel your nipples being sucked in with force as it slowly starts working your nipples.');
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
+    ((s as any).lactation = (s as any).lactation ?? {})['breastpumped'] = 1;
     (s as any).pcs_orphanfeed = 0;
     if (((s as any).lact_ev ?? 0)?.['gpoli_milkedvolume'] >= 1000) {
       scene.text('Your breasts are able to fill both small bottles easily and the nurse nods at you.');
@@ -1855,7 +1898,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       scene.text('"What\'s that?" you ask.');
       scene.text('The nurse looks up at you. "This is nipple balm. It helps with sore nipples during pumping. Don\'t you know this?"');
       scene.text('You shake your head and watch as the nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
+      ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       scene.text('"Where do I get this stuff?" you ask.');
       scene.text('"You can buy it in the pharmacy," she replies.');
       (s as any).pcs_knows_nipplecream = 1;
@@ -1864,16 +1907,16 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pain ?? 0)?.['nipples'] >= 60  &&  ((s as any).pcs_knows_nipplecream ?? 0) > 0) {
         scene.text('The nurse looks at your sore nipples and frowns before she grabs a small tin and takes a bit of the yellowish cream from it.');
         scene.text('The nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
+        ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       } else {
         scene.text('The nurse grabs the nipple balm and applies it to your nipples. It feels nice on your nipples as she rubs it in.');
       }
     }
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
+    ((s as any).lactation = (s as any).lactation ?? {})['nipple_cream_applied'] = 1;
     scene.text('"Okay, I\'m going to pump a sample first to check the quality and see if you\'re able to donate enough. You won\'t get paid this time."');
     scene.text('You nod and pull up your shirt as the nurse takes the pumps and puts them on your breasts. She flicks a switch and you can feel your nipples being sucked in with force as it slowly starts working your nipples.');
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
+    ((s as any).lactation = (s as any).lactation ?? {})['breastpumped'] = 1;
     (s as any).pcs_orphanfeed = 0;
     if (((s as any).lact_ev ?? 0)?.['gpoli_milkedvolume'] >= 1000) {
       scene.text('Your breasts are able to fill both small bottles easily and the nurse nods at you.');
@@ -1944,7 +1987,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       scene.text('"What\'s that?" you ask.');
       scene.text('The nurse looks up at you. "This is nipple balm. It helps with sore nipples during pumping. Don\'t you know this?"');
       scene.text('You shake your head and watch as the nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
+      ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       scene.text('"Where do I get this stuff?" you ask.');
       scene.text('"You can buy it in the pharmacy," she replies.');
       (s as any).pcs_knows_nipplecream = 1;
@@ -1953,7 +1996,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pain ?? 0)?.['nipples'] >= 60) {
         scene.text('The nurse looks at your sore nipples and frowns before she grabs a small tin and takes a bit of the yellowish cream from it.');
         scene.text('She applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
+        ((s as any).pain = (s as any).pain ?? {})['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       } else {
         if (((s as any).pcs_knows_nipplecream ?? 0) <= 0) {
           scene.text('The nurse grabs a small tin and takes a bit of yellowish cream from it.');
@@ -1969,11 +2012,11 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
+    ((s as any).lactation = (s as any).lactation ?? {})['nipple_cream_applied'] = 1;
     scene.text('"Okay, I\'m going to pump a sample first to check the quality and see if you\'re able to donate enough. You won\'t get paid this time."');
     scene.text('You nod and pull up your shirt as the nurse takes the pumps and puts them on your breasts. She flicks a switch and you can feel your nipples being sucked in with force as it slowly starts working your nipples.');
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
+    ((s as any).lactation = (s as any).lactation ?? {})['breastpumped'] = 1;
     (s as any).pcs_orphanfeed = 0;
     if (((s as any).lact_ev ?? 0)?.['gpoli_milkedvolume'] >= 1000) {
       scene.text('Your breasts are able to fill both small bottles easily and the nurse nods at you.');
@@ -2047,7 +2090,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
 function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
+    ((s as any).lactation = (s as any).lactation ?? {})['nipple_cream_applied'] = 1;
     scene.img('images/locations/pavlovsk/clinic/mward/pumping.jpg');
     scene.text('The nurse attaches the pumps and switches them on.');
     if (((s as any).lactation ?? 0)?.['breastmv'] >= 0) {
@@ -2057,12 +2100,12 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
+    ((s as any).lactation = (s as any).lactation ?? {})['breastpumped'] = 1;
     scene.text('After 15 minutes, the nurse detaches the pumps from your breasts.');
     if (((s as any).lact_ev ?? 0)?.['gpoli_milkedvolume'] >= 50000) {
       (s as any).pcs_gpoli_donationsessioncount = ((s as any).pcs_gpoli_donationsessioncount ?? 0) + ((((s as any).lact_ev ?? {})?.['gpoli_milkedvolume'] ?? 0)/10000);
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_temp_var'] = ((((s as any).lact_ev ?? {})?.['gpoli_milkedvolume'] ?? 0)/50000);
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_temp_var'] = ((((s as any).lact_ev ?? {})?.['gpoli_milkedvolume'] ?? 0)/50000);
       (s as any).pcs_gpoli_totalmilkdonation_count = ((s as any).pcs_gpoli_totalmilkdonation_count ?? 0) + (1);
       (s as any).pcs_gpoli_totalmilkdonation = ((s as any).pcs_gpoli_totalmilkdonation ?? 0) + (((((s as any).lact_ev ?? {})?.['gpoli_temp_var'] ?? 0)*50));
       if (((s as any).lact_ev ?? 0)?.['gpoli_temp_var'] >= 12) {
@@ -2113,13 +2156,13 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
         scene.text('"Mhmm… I\'m sorry, but this isn\'t enough milk for a valid donation. You provided no breast milk at all."');
       }
     }
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = 0;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = 0;
     if (((s as any).pcs_gpoli_donationsessioncount ?? 0) > 0) {
       (s as any).mward_donatemoney = (((s as any).pcs_gpoli_donationsessioncount ?? 0) * 3) / 10 * 10;
     } else {
       (s as any).mward_donatemoney = 0;
     }
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 0;
+    ((s as any).lactation = (s as any).lactation ?? {})['nipple_cream_applied'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).lactation ?? 0)?.['breastmv'] > ((s as any).lactation ?? 0)?.['breastmm']/2  &&  ((s as any).lactation ?? 0)?.['breastmv'] >= 100000) {
       scene.text('The nurse looks at your breasts.');
@@ -2144,8 +2187,9 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = 0;
-  }, goto: ['pav_clinic', 'maternity_ward'] },
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['gpoli_milkedvolume'] = 0;
+    qspGoto(s, 'pav_clinic', 'maternity_ward');
+  } },
     ]);
   } },
     ]);
@@ -2181,7 +2225,7 @@ function enterStdCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('"You have genital herpes. Unfortunately, the complete cure for this disease is very expensive and we can\'t cure it here. On the upside, herpes is dormant most of the time and is quite manageable if you take good care of your body. When it\'s dormant, taking vitamins regularly will make sure it won\'t show itself."');
     if (((s as any).Gerpes ?? 0) >= 3) {
       if ((!((s as any).GerpesNapr ?? 0))) {
-        (s as any).GerpesNapr = 3;
+        (s as any).GerpesNapr = 3 + qspFunc(s, 'money', 'string_price', 450) + '."';
       } else {
         if (((s as any).GerpesNapr ?? 0) > 0) {
           scene.text('You need to see the nurse for your herpes drug injection.');
@@ -2199,7 +2243,7 @@ function enterStdCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).TriperOnce ?? 0) === 1) {
     scene.text('"We found gonorrhea. Fortunately, we can cure this disease."');
     if ((!((s as any).TriperNapr ?? 0))) {
-      (s as any).TriperNapr = 5;
+      (s as any).TriperNapr = 5 + qspFunc(s, 'money', 'string_price', 750) + '."';
     } else {
       if (((s as any).TriperNapr ?? 0) > 0) {
         scene.text('You need to see the nurse for your gonorrhea injections.');

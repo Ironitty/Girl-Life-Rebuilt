@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You knock on Mr. Sobulyagin\'s office door, and when he sees you enter, his expression hardens. "What do you want," he questions you with a scowl.');
   }
   if (((s as any).hour ?? 0) >= 20  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 16)) {
-    scene.actions([{ label: 'Continue', goto: ['shop_pussycats', 'start'] }]);
+    qspGoto(s, 'shop_pussycats', 'start');
   }
   if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'employed'  &&  ((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk'] >= 3) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPunish(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -114,7 +114,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "You have missed work <<job_booking_debt['city_pussycats_clerk']>> '+iif(job_boo...
         scene.text(`"You have missed work ${((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk'] ?? ''} '+iif(job_booking_debt['city_pussycats_clerk'] = 1, 'time', 'times')+'," he reminds you. "Don't make a habit out of it. If you miss work 3 times, I will fire you.`);
       } else {
-        if (!(s as any).job_miss_acknowledged) (s as any).job_miss_acknowledged = {}; (s as any).job_miss_acknowledged['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
+        ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
         scene.text('He gives you a hard look when he see\'s it\'s you. "You missed work. Do you remember what I said about missing work?"');
         scene.text('You nod. "I remember. I\'m sorry."');
         scene.text('He snorts slightly and shakes his head. "You better not forget about it the next time. Here\'s your pay." He beckons you closer, and you oblige. He digs around in his desk drawer for your money. As you wait, you catch a glimpse of his computer screen and see an image of a naked woman. He must think you can\'t see the screen from where you are. "Here you go," Mr. Sobulyagin says as he holds out a white envelope with your money inside.');
@@ -126,7 +126,8 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'city_pussycats_clerk');
     // TODO-QSP: dynamic text: The manager counts <<$func('money', 'string_profit', temp_pay)>> and hands it to...
     scene.text(`The manager counts ${qspFunc(s, 'money', 'string_profit', ((s as any).temp_pay || ''))} and hands it to you. With that done, he goes back to looking at the monitor of his computer.`);
-  }, goto: ['shop_pussycats', 'start'] },
+    qspGoto(s, 'shop_pussycats', 'start');
+  } },
     ]);
   } else {
     scene.actions([
@@ -134,13 +135,15 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).job_active_schedule ?? 0)?.['city_pussycats_clerk'] === '0') {
+    (s as any).temp_switch_label = 'Ask to switch to weekend shifts';
     (s as any).temp_switch_to = 1;
   } else {
+    (s as any).temp_switch_label = 'Ask to switch to evening shifts';
     (s as any).temp_switch_to = 0;
   }
   if (qspFunc(s, 'jobs', 'check_employment_possible', 'city_pussycats_clerk', ((s as any).temp_switch_to ?? 0)) === 1) {
     scene.actions([
-      { label: '<<$temp_switch_label>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).temp_switch_label || '') ?? ''), handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
     scene.text('"Mr. Sobulyagin, I was wondering if I could switch to a different schedule?"');
     scene.text('He considers it for a moment. "Sure, I can arrange that. Let me just settle your current pay first."');
@@ -222,7 +225,8 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-  }, goto: ['shop_pussycats', 'start'] },
+    qspGoto(s, 'shop_pussycats', 'start');
+  } },
     ]);
   } },
       { label: 'Beg to keep your job', handler: (st: GameState) => {
@@ -246,7 +250,8 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['shop_pussycats', 'start'] },
+    qspGoto(s, 'shop_pussycats', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -287,7 +292,8 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-  }, goto: ['shop_pussycats', 'start'] },
+    qspGoto(s, 'shop_pussycats', 'start');
+  } },
     ]);
   } },
         ]);
@@ -333,7 +339,8 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-  }, goto: ['shop_pussycats', 'start'] },
+    qspGoto(s, 'shop_pussycats', 'start');
+  } },
     ]);
   } },
         ]);
@@ -412,7 +419,8 @@ function enterReapply(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     // TODO-QSP: dynamic text: You got a job in the youth clothing store 'Pussy-Cats'. Your first workday is on...
     scene.text('You got a job in the youth clothing store \'Pussy-Cats\'. Your first workday is on Monday at 15:00.');
-  }, goto: ['shop_pussycats', 'start'] },
+    qspGoto(s, 'shop_pussycats', 'start');
+  } },
       ]);
     }
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'city_pussycats_clerk', 1) === 1) {
@@ -424,7 +432,8 @@ function enterReapply(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     // TODO-QSP: dynamic text: You got a job in the youth clothing store 'Pussy-Cats'. Your first workday is on...
     scene.text('You got a job in the youth clothing store \'Pussy-Cats\'. Your first workday is on Saturday at 9:00.');
-  }, goto: ['shop_pussycats', 'start'] },
+    qspGoto(s, 'shop_pussycats', 'start');
+  } },
       ]);
     }
     (s as any).temp_sched0_ok = qspFunc(s, 'jobs', 'check_employment_possible', 'city_pussycats_clerk', 0);
@@ -456,8 +465,8 @@ function enterFired1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'boyStat', 'A101');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
-  if (!(s as any).job_booking_debt) (s as any).job_booking_debt = {}; (s as any).job_booking_debt['city_pussycats_clerk'] = 0;
-  if (!(s as any).job_miss_acknowledged) (s as any).job_miss_acknowledged = {}; (s as any).job_miss_acknowledged['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
+  ((s as any).job_booking_debt = (s as any).job_booking_debt ?? {})['city_pussycats_clerk'] = 0;
+  ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
   qspCall(s, 'jobs', 'bonus_pay', 'city_pussycats_clerk', 410);
   scene.img('images/locations/city/citycenter/mall/cats/fired.jpg');
   scene.text('You swallow hard and nod your head. "If this means keeping my job… I\'ll do it."');
@@ -514,8 +523,8 @@ function enterFired1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFired2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).job_booking_debt) (s as any).job_booking_debt = {}; (s as any).job_booking_debt['city_pussycats_clerk'] = 0;
-  if (!(s as any).job_miss_acknowledged) (s as any).job_miss_acknowledged = {}; (s as any).job_miss_acknowledged['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
+  ((s as any).job_booking_debt = (s as any).job_booking_debt ?? {})['city_pussycats_clerk'] = 0;
+  ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
   (s as any).sexpartkno = 1;
   (s as any).spafinloc = 3;
   qspCall(s, 'cum_manage', '');
@@ -710,7 +719,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const andrey: LocationDef = {
   name: 'andrey',
-  title: 'Unfortunately, both shifts conflict with your existing schedule.',
+  title: 'Unfortunately, both shifts conflict with your existing sched',
   region: 'other',
   description: ['You knock on Mr. Sobulyagin\'s office door, and when he sees you enter, his expression hardens. "What do you want," he questions you with a scowl.'],
   enter: enter,

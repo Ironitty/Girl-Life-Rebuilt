@@ -7,7 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).tgQW) (s as any).tgQW = {}; (s as any).tgQW['dream_sex_anya'] = 1;
+  ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_anya'] = 1;
   scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
   scene.text('You awaken in your bedroom, but something feels… different. You glance over and see Anya snoozing away in her bed when you suddenly feel a tingling sensation pulse through you and pull back the covers to discover that you\'ve turned back to your old self, your cock hanging between your legs once more. It\'s at this point you realize that you\'re naked with Anya next to you!');
   // TODO-QSP: dynamic text: "Is <<$pcs_nickname>> finally gone?"
@@ -77,7 +77,7 @@ function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).tgQW) (s as any).tgQW = {}; (s as any).tgQW['dream_sex_vika'] = 1;
+  ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_vika'] = 1;
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better.jpg');
   scene.text('You feel a tingling sensation pulse through your body before you slowly open your eyes. You find yourself standing in… a hotel room? Something feels off…');
   scene.text('When you look down, you\'re surprised to see that you\'ve turned back into your old self, your cock hanging between your legs once more.');
@@ -171,7 +171,7 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDreamSexAlbina(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).tgQW) (s as any).tgQW = {}; (s as any).tgQW['dream_sex_albina'] = 1;
+  ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_albina'] = 1;
   scene.img('images/shared/home/bathroom/dush.mp4');
   scene.text('You dream that you\'re in the shower, washing your breasts when you suddenly feel a tingling sensation pulse through your body.');
   scene.text('When it fades, you look down. To your surprise, you discover that you\'ve turned back into your old self, your cock hanging between your legs once more.');
@@ -253,7 +253,7 @@ function enterDreamSexAlbina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDreamSexNush(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).tgQW) (s as any).tgQW = {}; (s as any).tgQW['dream_sex_nush'] = 1;
+  ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_nush'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/mikhail/man_dream1.jpg');
   scene.text('You\'re laying in bed when you suddenly feel a tingling sensation pulse through your body. When it fades, you look down. To your surprise, you discover that you\'ve turned back into your old self, no breasts blocking your view down your body. You reach down and lift up the band of your boxer shorts, happy to see your cock hanging between your legs once more.');
   scene.text('Just as you\'re about to grab your dick and start stroking it, you hear a familiar voice. "I knew it! I knew there was something different about you! Something <i>manly</i> and <i>strong</i>."');
@@ -365,7 +365,7 @@ function enterDreamSexNush1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDreamSexBella(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).tgQW) (s as any).tgQW = {}; (s as any).tgQW['dream_sex_bella'] = 1;
+  ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_bella'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/bella/dream/dream1.jpg');
   scene.text('You\'re laying in bed when you suddenly feel a tingling sensation pulse through your body. When it fades, you look down. To your surprise, you discover that you\'ve turned back into your old self, no breasts blocking your view down your body. You reach down and lift up the band of your boxer shorts, happy to see your cock hanging between your legs once more.');
   scene.text('You pull your boxers off and start stroking your cock, the thought of Bella in a sexy schoolgirl outfit being the first thing to enter your mind when you suddenly hear a voice.');
@@ -415,7 +415,7 @@ function enterDreamSexBella(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDreamSexJulia(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).tgQW) (s as any).tgQW = {}; (s as any).tgQW['dream_sex_julia'] = 1;
+  ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_julia'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/julia/dream/dream1.jpg');
   scene.text('You\'re alarmed to find yourself standing naked in a bedroom when you suddenly feel a tingling sensation pulse through your body. When it fades, you look down and discover that you\'ve turned back into your old self, your cock hanging between your legs once more.');
   scene.text('You\'re about to start jerking off when you suddenly hear a voice.');
@@ -469,7 +469,7 @@ function enterDreamSexJulia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDreamSexKatjaVicky(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).tgQW) (s as any).tgQW = {}; (s as any).tgQW['dream_sex_katja_vicky'] = 1;
+  ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_katja_vicky'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/katja/dreams/mikhail/twins_dream1.jpg');
   scene.text('You feel a tingling sensation pulse through your body before you slowly open your eyes.');
   scene.text('"Look! I think he\'s waking up, sis!" you hear a feminine voice state.');

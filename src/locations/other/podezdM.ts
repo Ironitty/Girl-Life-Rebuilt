@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -28,7 +28,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/boyfriend/boygo.jpg');
     // TODO-QSP: dynamic text: You walk to the kiosk, your bodies close, his arm around your shoulders. Getting...
     scene.text(`You walk to the kiosk, your bodies close, his arm around your shoulders. Getting there, ${((s as any).npcdesc || '')} buys beer and some chips before you leave together.`);
-  }, goto: ['podezdM', 'kiosk'] },
+    qspGoto(s, 'podezdM', 'kiosk');
+  } },
     { label: 'Go holding hands', handler: (st: GameState) => {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -42,7 +43,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/boyfriend/boygo1.jpg');
     // TODO-QSP: dynamic text: You walk to the kiosk holding hands. Getting there, <<$npcdesc>> buys beer and s...
     scene.text(`You walk to the kiosk holding hands. Getting there, ${((s as any).npcdesc || '')} buys beer and some chips before you leave together.`);
-  }, goto: ['podezdM', 'kiosk'] },
+    qspGoto(s, 'podezdM', 'kiosk');
+  } },
     { label: 'Go', handler: (st: GameState) => {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
@@ -56,7 +58,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/boyfriend/boygo2.jpg');
     // TODO-QSP: dynamic text: You go up to the kiosk. There, <<$npcdesc>> buys beer and some chips before you ...
     scene.text(`You go up to the kiosk. There, ${((s as any).npcdesc || '')} buys beer and some chips before you leave together.`);
-  }, goto: ['podezdM', 'kiosk'] },
+    qspGoto(s, 'podezdM', 'kiosk');
+  } },
   ]);
   scene.build();
 }
@@ -74,10 +77,10 @@ function enterKiosk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'stat', '');
     if (((s as any).podrand ?? 0) < 9) {
-      scene.actions([{ label: 'Continue', goto: ['podezdM', 'kiosk1'] }]);
+      qspGoto(s, 'podezdM', 'kiosk1');
     } else {
       if (((s as any).podrand ?? 0) >= 9) {
-        scene.actions([{ label: 'Continue', goto: ['podezdM', 'grup'] }]);
+        qspGoto(s, 'podezdM', 'grup');
       }
     }
   } },
@@ -85,10 +88,10 @@ function enterKiosk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'stat', '');
     if (((s as any).podrand ?? 0) < 9) {
-      scene.actions([{ label: 'Continue', goto: ['podezdM', 'kiosk1'] }]);
+      qspGoto(s, 'podezdM', 'kiosk1');
     } else {
       if (((s as any).podrand ?? 0) >= 9) {
-        scene.actions([{ label: 'Continue', goto: ['podezdM', 'grup'] }]);
+        qspGoto(s, 'podezdM', 'grup');
       }
     }
   } },
@@ -129,7 +132,8 @@ function enterKiosk1(s: GameState, scene: SceneBuilder): void {
     { label: 'Laugh', handler: (st: GameState) => {
     (s as any).SUB = ((s as any).SUB ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
-  }, goto: ['podezdM', 'kiosk2'] },
+    qspGoto(s, 'podezdM', 'kiosk2');
+  } },
     { label: 'Smile', goto: ['podezdM', 'kiosk2'] },
     { label: 'Not funny', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
@@ -192,7 +196,8 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'kiss', 3, 'sub');
     qspCall(s, 'arousal', 'foreplay', (-3), 'sub');
     qspCall(s, 'stat', '');
-  }, goto: ['sexm', 'startPod'] },
+    qspGoto(s, 'sexm', 'startPod');
+  } },
     ]);
   } else {
     scene.actions([
@@ -201,7 +206,8 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'kiss', 3, 'sub');
     qspCall(s, 'arousal', 'foreplay', (-3), 'sub');
     qspCall(s, 'stat', '');
-  }, goto: ['sexm', 'startPod'] },
+    qspGoto(s, 'sexm', 'startPod');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -212,7 +218,8 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'kiss', 3, 'sub');
     qspCall(s, 'arousal', 'foreplay', (-3), 'sub');
     qspCall(s, 'stat', '');
-  }, goto: ['podezdM', 'Alleyway'] },
+    qspGoto(s, 'podezdM', 'Alleyway');
+  } },
   ]);
   scene.build();
 }
@@ -242,7 +249,8 @@ function enterGrup(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
       }
     }
-  }, goto: ['podezdM', 'grup1'] },
+    qspGoto(s, 'podezdM', 'grup1');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -259,7 +267,8 @@ function enterGrup(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
       }
     }
-  }, goto: ['podezdM', 'grup1'] },
+    qspGoto(s, 'podezdM', 'grup1');
+  } },
     { label: 'Drink with the guys', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'stat', '');
@@ -272,7 +281,8 @@ function enterGrup(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
       }
     }
-  }, goto: ['podezdM', 'grup2'] },
+    qspGoto(s, 'podezdM', 'grup2');
+  } },
   ]);
   scene.build();
 }
@@ -307,7 +317,8 @@ function enterGrup2(s: GameState, scene: SceneBuilder): void {
         { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['sexm', 'gangrape'] },
+    qspGoto(s, 'sexm', 'gangrape');
+  } },
       ]);
     }
     scene.actions([
@@ -330,11 +341,12 @@ function enterGrup2(s: GameState, scene: SceneBuilder): void {
           { label: 'Go upstairs', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['sexm', 'start'] },
+    qspGoto(s, 'sexm', 'start');
+  } },
         ]);
       }
       scene.actions([
-        { label: 'Ignore <<$npcdesc>> and kiss the guys', goto: ['sexm', 'gangbang'] },
+        { label: '', labelFn: (s: GameState) => 'Ignore ' + String(((s as any).npcdesc || '') ?? '') + ' and kiss the guys', goto: ['sexm', 'gangbang'] },
       ]);
     } else {
       if (((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -353,7 +365,8 @@ function enterGrup2(s: GameState, scene: SceneBuilder): void {
             { label: 'Go upstairs', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['sexm', 'start'] },
+    qspGoto(s, 'sexm', 'start');
+  } },
           ]);
         }
         scene.actions([
@@ -375,7 +388,8 @@ function enterGrup2(s: GameState, scene: SceneBuilder): void {
             { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['sexm', 'gangrape'] },
+    qspGoto(s, 'sexm', 'gangrape');
+  } },
           ]);
         }
         scene.actions([

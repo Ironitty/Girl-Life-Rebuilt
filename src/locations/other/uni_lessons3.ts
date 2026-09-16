@@ -37,7 +37,7 @@ function enterGeneralEducation_201(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'grades', 'class_activity_attributes', 'uni_teaching_studies_semester_3', 'general education 201', ((s as any).pcs_intel ?? 0));
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
     scene.text('You listen attentively to Professor Kovalyov for the duration of the class. He manages to make today\'s lesson very interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
@@ -338,7 +338,7 @@ function enterAssessment_201(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
     qspCall(s, 'grades', 'class_activity_attributes', 'uni_teaching_studies_semester_3', 'assessment 201', ((s as any).pcs_intel ?? 0));
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
     scene.text('You listen attentively to Professor Pasternak for the duration of the class. Today\'s lesson was interesting and informative, and you feel like you\'ve learned something from taking part in the class.');
@@ -655,7 +655,7 @@ function enterLearningTheories_201(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
     qspCall(s, 'grades', 'class_activity_attributes', 'uni_teaching_studies_semester_3', 'learning theories 201', ((s as any).pcs_intel ?? 0));
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
     scene.text('You listen attentively to Professor Kovalchuk for the duration of the class. Today\'s lesson was interesting and informative, and you feel like you\'ve learned something from taking part in the class.');
@@ -962,7 +962,7 @@ function enterPatientCare_201(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'grades', 'class_activity_attributes', 'uni_nursing_semester_3', 'patient care 201', ((s as any).pcs_intel ?? 0));
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
     scene.text('You listen attentively to Professor Kudelina for the duration of the class. She manages to make today\'s lesson very interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
@@ -1226,7 +1226,7 @@ function enterAnatomyAndPhysiology_201(s: GameState, scene: SceneBuilder): void 
     }
     qspCall(s, 'grades', 'class_activity_attributes', 'uni_nursing_semester_3', 'anatomy and physiology 201', ((s as any).pcs_intel ?? 0));
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
     scene.text('You listen attentively to Professor Marinova for the duration of the class. She manages to make today\'s lesson very interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
@@ -1491,7 +1491,7 @@ function enterDosagesAndPharmaceuticals_101(s: GameState, scene: SceneBuilder): 
     }
     qspCall(s, 'grades', 'class_activity_attributes', 'uni_nursing_semester_3', 'dosages and pharmaceuticals 101', ((s as any).pcs_intel ?? 0));
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
     scene.text('You listen attentively to Professor Borisov for the duration of the class. He somehow manages to make today\'s lesson very interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');

@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -26,7 +28,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Have a rest', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Dance more', goto: ['rex_party_smallEvents', 'dance'] },
   ]);
@@ -44,7 +46,7 @@ function enterPartyDrink(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -277,7 +279,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_4_1.jpg');
       scene.actions([
         { label: 'Return to party', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -301,7 +303,7 @@ function enterLena(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -322,7 +324,7 @@ function enterIra(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -339,7 +341,7 @@ function enterIraLenaLivingRoom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -357,9 +359,9 @@ function enterIraLenaLivingRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Have fun', goto: ['rex_party_sexEvents', 'ira_lena_fun', '\'boys\''] },
+        { label: 'Have fun', goto: ['rex_party_sexEvents', 'ira_lena_fun', 'boys'] },
         { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -379,9 +381,9 @@ function enterIraLenaLivingRoom(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Have a rest', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-      { label: 'Kiss', goto: ['rex_party_sexEvents', 'ira_lena_fun', '\'girls\''] },
+      { label: 'Kiss', goto: ['rex_party_sexEvents', 'ira_lena_fun', 'girls'] },
     ]);
   } },
   ]);
@@ -418,7 +420,7 @@ function enterRex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -438,7 +440,7 @@ function enterRexTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Ask Rex to dance', goto: ['rex_party_smallEvents', 'rex_dance'] },
   ]);
@@ -475,7 +477,7 @@ function enterRexHug(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Follow Rex', goto: ['rex_party_sexEvents', 'rex_sex'] },
     ]);
@@ -524,7 +526,7 @@ function enterRexDance(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -539,7 +541,7 @@ function enterRoma(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -577,7 +579,7 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -589,7 +591,7 @@ function enterSisterTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Anya</b></center>');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/party_sister_1.jpg');
   if (((s as any).sisterQW ?? 0)?.['AnyaRomaQW'] === 1) {
-    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['partytalk'] = ((s as any).sisterQW['partytalk'] ?? 0) + (1);
+    ((s as any).sisterQW = (s as any).sisterQW ?? {})['partytalk'] = ((s as any).sisterQW['partytalk'] ?? 0) + (1);
     if (((s as any).sisterQW ?? 0)?.['partytalk'] === 1) {
       scene.text('"It is strange seeing you back together with Roma."');
       scene.text('"We talked things out and decided to give it another chance.');
@@ -635,13 +637,13 @@ function enterSisterTalk(s: GameState, scene: SceneBuilder): void {
                         scene.text('"Oh, what a naughty girl! Well then, how about we lure him together?"');
                       } else {
                         if (((s as any).sisterQW ?? 0)?.['partytalk'] === 10  &&  ((s as any).rex_love ?? 0) === 1) {
-                          if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['AnyaRomaQW'] = 2;
+                          ((s as any).sisterQW = (s as any).sisterQW ?? {})['AnyaRomaQW'] = 2;
                           scene.text('You huff and pout, but realize she has a point. "OK fine, but I\'m not sure Rex would agree. You and Roma both agreed ahead of time."');
                           // TODO-QSP: dynamic text: "The main thing is that you are not opposed to it <<$pcs_nickname>>. Besides, al...
                           scene.text(`"The main thing is that you are not opposed to it ${((s as any).pcs_nickname || '')}. Besides, all men are the same. You really think Rex could withstand both our charms?"`);
                         } else {
                           if (((s as any).sisterQW ?? 0)?.['partytalk'] === 10  &&  (!((s as any).rex_love ?? 0))) {
-                            if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['AnyaRomaQW'] = 2;
+                            ((s as any).sisterQW = (s as any).sisterQW ?? {})['AnyaRomaQW'] = 2;
                             scene.text('"You want to seduce Rex? Haha, I\'ve already fucked him! You have no idea what he is like in bed.');
                             scene.text('"Wow! What a saucy little minx you are! So that\'s why you are always running around in his room? Well then, that will make this easier."');
                           }
@@ -692,7 +694,7 @@ function enterSisterTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -719,7 +721,7 @@ function enterSisterDrink(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Dance topless', goto: ['rex_party_sexEvents', 'sister_fun'] },
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -741,12 +743,12 @@ function enterDj(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><b>DJ</b></center>');
       scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boy.jpg');
       // TODO-QSP: dynamic text: The guy messes with the soundboard and makes the sound even louder. "Well, <<$pc...
-      scene.text(`The guy messes with the soundboard and makes the sound even louder. "Well, ${((s as any).pcs_nickname || '')}, where are our beers?" You go into the kitchen, get two bottles of beer and <a href="exec:gt 'rex_party_smallEvents', 'dj_give_beer'">bring</a> them to the guys.`);
+      scene.text(`The guy messes with the soundboard and makes the sound even louder. "Well, ${((s as any).pcs_nickname || '')}, where are our beers?" You go into the kitchen, get two bottles of beer and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027rex_party_smallEvents\\u0027, \\u0027dj_give_beer\\u0027); return false;">bring</a> them to the guys.`);
     } else {
       if (((s as any).dj_thank ?? 0) === 1  &&  ((s as any).dj_bad ?? 0) < 1) {
         scene.text('<center><b>DJ</b></center>');
         scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boy.jpg');
-        scene.text('The guy messes with the soundboard and makes the sound even louder. You are allowed to <a href="exec:gt \'rex_party_smallEvents\', \'dj_thank\'">twist</a> some knobs on the turntable.');
+        scene.text('The guy messes with the soundboard and makes the sound even louder. You are allowed to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027rex_party_smallEvents\\u0027, \\u0027dj_thank\\u0027); return false;">twist</a> some knobs on the turntable.');
       } else {
         if (((s as any).dj_bad ?? 0) === 1  &&  ((s as any).dj_boobs ?? 0) < 1) {
           scene.text('<center><b>DJ</b></center>');
@@ -757,7 +759,7 @@ function enterDj(s: GameState, scene: SceneBuilder): void {
           if (((s as any).dj_boobs ?? 0) === 1) {
             scene.text('<center><b>DJ</b></center>');
             scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boy.jpg');
-            scene.text('The guy messes with the soundboard and makes the sound even louder. You are again allowed to <a href="exec:gt \'rex_party_sexEvents\', \'dj_cock\'">twist</a> some knobs on the turntable.');
+            scene.text('The guy messes with the soundboard and makes the sound even louder. You are again allowed to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027rex_party_sexEvents\\u0027, \\u0027dj_cock\\u0027); return false;">twist</a> some knobs on the turntable.');
           }
         }
       }
@@ -780,7 +782,7 @@ function enterDj(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -795,7 +797,7 @@ function enterDjTakeBeer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -810,11 +812,11 @@ function enterDjGiveBeer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you ever use one of these before?" the DJ asks you, indicati...
   scene.text(`"${((s as any).pcs_nickname || '')}, you ever use one of these before?" the DJ asks you, indicating the turntable.`);
   scene.text('You shake your head. "No, I can\'t say I have."');
-  scene.text('He smiles at you. "While everyone is still sitting and drinking, you can give it a little <a href="exec: gt \'rex_party_smallEvents\', \'dj_thank\'">twist</a>. Let\'s see what you can do girl!"');
+  scene.text('He smiles at you. "While everyone is still sitting and drinking, you can give it a little <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027rex_party_smallEvents\\u0027, \\u0027dj_thank\\u0027); return false;">twist</a>. Let\'s see what you can do girl!"');
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -830,7 +832,7 @@ function enterDjThank(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -864,7 +866,7 @@ function enterPartyGirls(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -904,7 +906,7 @@ function enterPartyGirlsDrink(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -952,7 +954,7 @@ function enterBra(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -974,11 +976,12 @@ function enterBra(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Undress', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    (s as any).boydesc = ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)];
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'arousal', 'flash', 5);
     qspCall(s, 'stat', '');
@@ -1018,7 +1021,7 @@ function enterPartyGirlsDance(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take a breather', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Dance more', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1042,7 +1045,7 @@ function enterPartyGirlsDance(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -1112,7 +1115,7 @@ function enterPartyBoys(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1138,7 +1141,7 @@ function enterGostDrink(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -1186,7 +1189,7 @@ function enterShowBoobs(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -1286,7 +1289,7 @@ function enterKitchenBoyDrink(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Come on, ${((s as any).pcs_nickname || '')}, we're just having fun. Just admit that you liked where this was going." the touchy guy responds.`);
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Have fun with them', goto: ['rex_party_smallEvents', 'smile'] },
     ]);
@@ -1300,7 +1303,7 @@ function enterKitchenBoyDrink(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1310,8 +1313,13 @@ function enterSmile(s: GameState, scene: SceneBuilder): void {
   (s as any).party_boys_in = ((s as any).party_boys_in ?? 0) + (1);
   qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  (s as any).boydesc = ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)];
   qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
+  (s as any).boy1 = ((s as any).npclastgenerated ?? 0);
+  (s as any).boydesc1 = ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)];
   qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
+  (s as any).boy2 = ((s as any).npclastgenerated ?? 0);
+  (s as any).boydesc2 = ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)];
   qspCall(s, 'stat', '');
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_${Math.floor(Math.random() * 3) + 1}.jpg`);
   scene.text('You give the guys a faint smile, showing your availability. They quickly realize the situation and come over to you and start to stroke your hair and massage your neck. It is very relaxing and you give a soft sigh which turns into a moan. You have the full attention of the boys and they decide to drag you.');
@@ -1432,7 +1440,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1457,7 +1465,7 @@ function enterSmoke(s: GameState, scene: SceneBuilder): void {
         { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -1498,7 +1506,7 @@ function enterSmoke(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1525,7 +1533,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -1551,7 +1559,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
     scene.text('You seductively wag your ass. \' + iif(rex_love = 0, \'One boy\', \'Rex\') + \' is standing right in front of you and you firmly press your buttocks in his palms. He exclaims, "Boys, I think I already know the winner!" You win the competition easily.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1582,7 +1590,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
           { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -1625,7 +1633,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = 14;
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1640,7 +1648,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_manage', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1666,7 +1674,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
           { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -1676,17 +1684,19 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_7_6.jpg');
       scene.text('You can\'t help but start to moan and the girls quickly spread you legs an begin to lick your holes in unison. You quickly come from the sensation of having every hole licked and caressed.');
+      (s as any).orgasm_or = 'no';
       qspCall(s, 'arousal', 'rimming', (-10), 'exhibitionism', 'lesbian');
     } else {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_7_7.jpg');
       scene.text('You start to moan and the girls quickly lay you down on your back an start to caress you with their tongues. They take turns kissing you and licking your pussy, quickly bringing you to orgasm.');
     }
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'exhibitionism', 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1713,7 +1723,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Move away', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
             ]);
           }
@@ -1724,6 +1734,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
       (s as any).bja = ((s as any).bja ?? 0) + (1);
     }
     qspCall(s, 'stat', '');
+    (s as any).party_suck = qspUntranslated(s, "{", { location: "rex_party_smallEvents" });
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_8_4.jpg');
       // TODO-QSP: dynamic text: Strong desire clouds your mind, and you grab ' + iif(rex_love = 0, 'the guy's', ...
@@ -1748,7 +1759,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: iif(rex_love = 0,'The guy', 'Rex') + ' cums hard, filling up your mouth and smearing sperm all over ...
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

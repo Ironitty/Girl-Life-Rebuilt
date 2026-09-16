@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).sexloc = 'bouling';
+  (s as any).loc = 'bouling';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'bouling';
+  (s as any).menu_arg = 'start';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bowling</b></center>');
   scene.img('images/locations/city/citycenter/mall/bowling/boul.jpg');
@@ -45,7 +51,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['bouling', 'randwin'] },
+    qspGoto(s, 'bouling', 'randwin');
+  } },
           ]);
         }
         scene.actions([
@@ -70,7 +77,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['bouling', 'randwin'] },
+    qspGoto(s, 'bouling', 'randwin');
+  } },
             ]);
           }
           scene.actions([
@@ -80,7 +88,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).boulrand ?? 0) > 1) {
-            scene.actions([{ label: 'Continue', goto: ['bouling', 'randwin'] }]);
+            qspGoto(s, 'bouling', 'randwin');
           }
         }
       }
@@ -190,7 +198,8 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
             ]);
           }
           scene.actions([

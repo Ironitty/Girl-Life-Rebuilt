@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'gad_gpyard', 'start');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'gadukino_event', 'sound');
@@ -41,23 +42,23 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).grandmaQW ?? 0)?.['chore_feed_chickens'] === 1  ||  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10)) {
-      scene.text('In the yard there are several <a href="exec:gt \'gad_gpyard\', \'chickens\'">chickens</a> running around.');
+      scene.text('In the yard there are several <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gpyard\\u0027, \\u0027chickens\\u0027); return false;">chickens</a> running around.');
     }
     if (qspFunc(s, 'homes_properties', 'is_current_home')  &&  ((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).rex ?? 0)?.['owned'] === 1) {
       if (((s as any).status ?? 0)?.['dog'] === '') {
-        scene.actions([{ label: 'Continue', goto: ['pet_dog', 'name'] }]);
+        qspGoto(s, 'pet_dog', 'name');
       } else {
         if (((s as any).rex ?? 0)?.['gadukino_day'] !== ((s as any).daystart ?? 0)) {
-          if (!(s as any).rex) (s as any).rex = {}; (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (2);
-          if (!(s as any).rex) (s as any).rex = {}; (s as any).rex['gadukino_day'] = ((s as any).daystart ?? 0);
+          ((s as any).rex = (s as any).rex ?? {})['relationship'] = ((s as any).rex['relationship'] ?? 0) + (2);
+          ((s as any).rex = (s as any).rex ?? {})['gadukino_day'] = ((s as any).daystart ?? 0);
         }
         // TODO-QSP: dynamic text: <br><a href="exec: gt 'pet_dog', 'gadukino'"><<$rex['name']>></a> is running aro...
-        scene.text(`<br><a href="exec: gt 'pet_dog', 'gadukino'">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is running around in the garden.`);
+        scene.text(`<br><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pet_dog\\u0027, \\u0027gadukino\\u0027); return false;">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is running around in the garden.`);
       }
     }
   }
   if (((s as any).MiraVars ?? 0)?.['guest'] === 1  ||  qspFunc(s, 'miroslava_schedule', 'is_here')) {
-    scene.text('Your friend <a href="exec: gt \'miroslava\', \'start\'">Mira</a> stands next to you.');
+    scene.text('Your friend <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027miroslava\\u0027, \\u0027start\\u0027); return false;">Mira</a> stands next to you.');
   }
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'yard');
   if (((s as any).grandmaQW ?? 0)?.['chore_feed_chickens'] === 1  ||  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10)) {
@@ -71,8 +72,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You went out into the yard and noticed Mira standing there.');
     // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, hi. I hope you don't mind me visiting. I was bored being...
     scene.text(`"Oh, ${((s as any).pcs_nickname || '')}, hi. I hope you don't mind me visiting. I was bored being home alone," she said, smiling.`);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guestday'] = ((s as any).daystart ?? 0);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0);
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 1;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['gad_gpyard', 'start'] },
@@ -84,14 +85,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'clothing', 'recover_lost_clothes', 'gad_gpyard', 1);
     qspCall(s, 'underwear', 'wear');
-  }, goto: ['gad_gpyard', 'start'] },
+    qspGoto(s, 'gad_gpyard', 'start');
+  } },
       ]);
     } else {
       scene.actions([
         { label: 'Pick up your clothes', handler: (st: GameState) => {
     qspCall(s, 'clothing', 'recover_lost_clothes', 'gad_gpyard');
     scene.text('You picked up your clothes.');
-  }, goto: ['gad_gpyard', 'start'] },
+    qspGoto(s, 'gad_gpyard', 'start');
+  } },
       ]);
     }
   }
@@ -100,9 +103,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: '<b>Leave and go into the village</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['gadukino', ''] }]);
+      qspGoto(s, 'gadukino', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_gpyard', 'start'] }]);
+      qspGoto(s, 'gad_gpyard', 'start');
     }
   } },
     { label: 'Enter your grandparents\' house', handler: (st: GameState) => {
@@ -125,6 +128,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRootCellar(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'root_cellar';
   scene.text('<center><h4>Root Cellar</h4></center>');
   scene.img('images/locations/gadukino/gp_dacha/root_cellar.jpg');
   if (((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) >= 20) {
@@ -138,6 +142,7 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Even though your grandparents allow you to store extra mushrooms and berries you pick, they reserve the right to use them, too, so you aren\'t surprised if any go missing.');
   if (((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) > 0) {
+    (s as any).temp_text = 'You currently are storing ';
     if (((s as any).boletus_stored ?? 0) > 0) {
       // TODO-QSP: $temp_text += '<b><<boletus_stored>></b> kg of raw mushrooms'
       if (((s as any).bilberry_stored ?? 0) > 0) {
@@ -194,7 +199,8 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
         { label: 'Store 1 kg of raw mushrooms', handler: (st: GameState) => {
     (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) + (1);
     (s as any).boletus = ((s as any).boletus ?? 0) - (1);
-  }, goto: ['gad_gpyard', 'root_cellar'] },
+    qspGoto(s, 'gad_gpyard', 'root_cellar');
+  } },
       ]);
     }
     if (((s as any).bilberry ?? 0) > 0) {
@@ -202,7 +208,8 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
         { label: 'Store 1 kg of raw berries', handler: (st: GameState) => {
     (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) + (1);
     (s as any).bilberry = ((s as any).bilberry ?? 0) - (1);
-  }, goto: ['gad_gpyard', 'root_cellar'] },
+    qspGoto(s, 'gad_gpyard', 'root_cellar');
+  } },
       ]);
     }
     scene.actions([
@@ -219,24 +226,27 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) < 20  &&  ((s as any).boletus ?? 0) + ((s as any).bilberry ?? 0) > 0) {
       // TODO-QSP: jump 'store_bb_loop'
     }
-  }, goto: ['gad_gpyard', 'root_cellar'] },
+    qspGoto(s, 'gad_gpyard', 'root_cellar');
+  } },
     ]);
   }
   if (((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) <= 10) {
     if (((s as any).mc_inventory ?? 0)?.['mushrooms'] > 0  &&  ((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) <= 10) {
       scene.actions([
         { label: 'Store 10 kg of bought mushrooms', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mushrooms'] = ((s as any).mc_inventory['mushrooms'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mushrooms'] = ((s as any).mc_inventory['mushrooms'] ?? 0) - (1);
     (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) + (10);
-  }, goto: ['gad_gpyard', 'root_cellar'] },
+    qspGoto(s, 'gad_gpyard', 'root_cellar');
+  } },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['berries'] > 0  &&  ((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) <= 10) {
       scene.actions([
         { label: 'Store 10 kg of bought berries', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['berries'] = ((s as any).mc_inventory['berries'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['berries'] = ((s as any).mc_inventory['berries'] ?? 0) - (1);
     (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) + (10);
-  }, goto: ['gad_gpyard', 'root_cellar'] },
+    qspGoto(s, 'gad_gpyard', 'root_cellar');
+  } },
       ]);
     }
   }
@@ -246,7 +256,8 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
         { label: 'Retrieve 1 kg of raw mushrooms', handler: (st: GameState) => {
     (s as any).boletus = ((s as any).boletus ?? 0) + (1);
     (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) - (1);
-  }, goto: ['gad_gpyard', 'root_cellar'] },
+    qspGoto(s, 'gad_gpyard', 'root_cellar');
+  } },
       ]);
     }
     if ((((s as any).bilberry_stored ?? 0) > 0  &&  ((s as any).grandmaQW ?? 0)?.['chore_can_berries'] !== 1)  ||  (((s as any).bilberry_stored ?? 0) > 5  &&  ((s as any).grandmaQW ?? 0)?.['chore_can_berries'] === 1)) {
@@ -254,7 +265,8 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
         { label: 'Retrieve 1 kg of raw berries', handler: (st: GameState) => {
     (s as any).bilberry = ((s as any).bilberry ?? 0) + (1);
     (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) - (1);
-  }, goto: ['gad_gpyard', 'root_cellar'] },
+    qspGoto(s, 'gad_gpyard', 'root_cellar');
+  } },
       ]);
     }
     scene.actions([
@@ -274,7 +286,8 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: jump 'retrieve_bb_loop'
       }
     }
-  }, goto: ['gad_gpyard', 'root_cellar'] },
+    qspGoto(s, 'gad_gpyard', 'root_cellar');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -300,6 +313,7 @@ function enterChickens(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGarden(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'secluded';
   qspCall(s, 'core_library', 'setloc', 'gad_gpyard', 'garden');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'miroslava_schedule', '');
@@ -319,7 +333,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A large vegetable garden that your grandparents are very proud of.');
   if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-    scene.text('There is also a small land plot is dedicated to growing <a href="exec: gt \'gad_gpyard\', \'strawberry\' ">strawberries</a> and a <a href="exec: gt \'gad_gpyard\',\'fruit_garden\' ">fruit tree orchard</a>.');
+    scene.text('There is also a small land plot is dedicated to growing <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gpyard\\u0027, \\u0027strawberry\\u0027); return false;">strawberries</a> and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gpyard\\u0027, \\u0027fruit_garden\\u0027); return false;">fruit tree orchard</a>.');
   } else {
     scene.text('There is also a small plot of land dedicated to growing strawberries and a small fruit tree orchard, but they are not in season right now.');
   }
@@ -426,7 +440,7 @@ function enterFruitGarden(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['check'] = 0;
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['check'] = 0;
   (s as any).mushroom_pickers = 0;
   (s as any).forestpicnic = 0;
   if (((s as any).gadstay ?? 0) === 1  &&  (!((s as any).lost_girl ?? 0))) {
@@ -438,85 +452,85 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You haven't helped your grandparents with any chores in <<daystart - grandpaQW['...
         scene.text(`You haven't helped your grandparents with any chores in ${((s as any).daystart ?? '') - (((s as any).grandpaQW ?? {})?.['last_day_helped'] ?? 0)} days. You should help out more often to stay on your grandparents' good side.`);
       }
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
     }
   }
   if (((s as any).grandmaQW ?? 0)?.['chore_clean_floor'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_clean_floor'] === 2) {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_clean_floor'] = 0;
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_clean_floor'] = 0;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
   } else {
     if (((s as any).grandmaQW ?? 0)?.['chore_wash_clothes'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_wash_clothes'] === 2) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_wash_clothes'] = 0;
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_wash_clothes'] = 0;
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
     } else {
       if (((s as any).grandmaQW ?? 0)?.['chore_milk_cow'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_milk_cow'] === 2) {
-        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_milk_cow'] = 0;
-        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_milk_cow'] = 0;
+        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
       } else {
         if (((s as any).grandmaQW ?? 0)?.['chore_groceries'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_groceries'] === 2) {
-          if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_groceries'] = 0;
-          if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+          ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_groceries'] = 0;
+          ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
         } else {
           if (((s as any).grandmaQW ?? 0)?.['chore_can_mushrooms'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_can_mushrooms'] === 2) {
-            if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_can_mushrooms'] = 0;
-            if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+            ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_can_mushrooms'] = 0;
+            ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
           } else {
             if (((s as any).grandmaQW ?? 0)?.['chore_can_berries'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_can_berries'] === 2) {
-              if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_can_berries'] = 0;
-              if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+              ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_can_berries'] = 0;
+              ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
             } else {
               if (((s as any).grandmaQW ?? 0)?.['chore_can_veggies'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_can_veggies'] === 2) {
-                if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_can_veggies'] = 0;
-                if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_can_veggies'] = 0;
+                ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
               } else {
                 if (((s as any).grandmaQW ?? 0)?.['chore_feed_chickens'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_feed_chickens'] === 2) {
-                  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_feed_chickens'] = 0;
-                  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_feed_chickens'] = 0;
+                  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                 } else {
                   if (((s as any).grandmaQW ?? 0)?.['chore_work_in_garden'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_work_in_garden'] === 2) {
-                    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_work_in_garden'] = 0;
-                    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_work_in_garden'] = 0;
+                    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                   } else {
                     if (((s as any).grandmaQW ?? 0)?.['chore_water_garden'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_water_garden'] === 2) {
-                      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_water_garden'] = 0;
-                      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_water_garden'] = 0;
+                      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                     } else {
                       if (((s as any).grandmaQW ?? 0)?.['chore_collect_strawberries'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_collect_strawberries'] === 2) {
-                        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_collect_strawberries'] = 0;
-                        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_collect_strawberries'] = 0;
+                        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                       } else {
                         if (((s as any).grandmaQW ?? 0)?.['chore_collect_fruit'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_collect_fruit'] === 2) {
-                          if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_collect_fruit'] = 0;
-                          if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                          ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_collect_fruit'] = 0;
+                          ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                         } else {
                           if (((s as any).grandmaQW ?? 0)?.['chore_harvest_garden'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_harvest_garden'] === 2) {
-                            if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_harvest_garden'] = 0;
-                            if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                            ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_harvest_garden'] = 0;
+                            ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                           } else {
                             if (((s as any).grandmaQW ?? 0)?.['chore_gather_mushrooms'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_gather_mushrooms'] === 2) {
-                              if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 2;
+                              ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 2;
                             } else {
                               if (((s as any).grandmaQW ?? 0)?.['chore_gather_mushrooms'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_gather_mushrooms'] === 2  &&  ((s as any).grandmaQW ?? 0)?.['disappointment'] === 2) {
-                                if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_gather_mushrooms'] = 0;
-                                if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_mushroom_quantity'] = 0;
-                                if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                                ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_gather_mushrooms'] = 0;
+                                ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_mushroom_quantity'] = 0;
+                                ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                               } else {
                                 if (((s as any).grandmaQW ?? 0)?.['chore_gather_berries'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_gather_berries'] === 2) {
-                                  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 2;
+                                  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 2;
                                 } else {
                                   if (((s as any).grandmaQW ?? 0)?.['chore_gather_berries'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_gather_berries'] === 2  &&  ((s as any).grandmaQW ?? 0)?.['disappointment'] === 2) {
-                                    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_gather_berries'] = 0;
-                                    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_berry_quantity'] = 0;
-                                    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                                    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_gather_berries'] = 0;
+                                    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_berry_quantity'] = 0;
+                                    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                                   } else {
                                     if (((s as any).grandmaQW ?? 0)?.['chore_gather_both'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_gather_both'] === 2) {
-                                      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 2;
+                                      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 2;
                                     } else {
                                       if (((s as any).grandmaQW ?? 0)?.['chore_gather_both'] === 1  ||  ((s as any).grandmaQW ?? 0)?.['chore_gather_both'] === 2  &&  ((s as any).grandmaQW ?? 0)?.['disappointment'] === 2) {
-                                        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_gather_both'] = 0;
-                                        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_mushroom_quantity'] = 0;
-                                        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['chore_berry_quantity'] = 0;
-                                        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 1;
+                                        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_gather_both'] = 0;
+                                        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_mushroom_quantity'] = 0;
+                                        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_berry_quantity'] = 0;
+                                        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 1;
                                       }
                                     }
                                   }
@@ -537,74 +551,74 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_fetch_firewood'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_fetch_firewood'] === 2) {
-    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_fetch_firewood'] = 0;
-    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_fetch_firewood'] = 0;
+    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
   } else {
     if (((s as any).grandpaQW ?? 0)?.['chore_feed_horse'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_feed_horse'] === 2) {
-      if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_feed_horse'] = 0;
-      if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+      ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_feed_horse'] = 0;
+      ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
     } else {
       if (((s as any).grandpaQW ?? 0)?.['chore_feed_cow'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_feed_cow'] === 2) {
-        if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_feed_cow'] = 0;
-        if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+        ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_feed_cow'] = 0;
+        ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
       } else {
         if (((s as any).grandpaQW ?? 0)?.['chore_clean_yard'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_clean_yard'] === 2) {
-          if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_clean_yard'] = 0;
-          if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+          ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_clean_yard'] = 0;
+          ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
         } else {
           if (((s as any).grandpaQW ?? 0)?.['chore_feed_boar'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_feed_boar'] === 2) {
-            if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_feed_boar'] = 0;
-            if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+            ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_feed_boar'] = 0;
+            ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
           } else {
             if (((s as any).grandpaQW ?? 0)?.['chore_bathe_horse'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_bathe_horse'] === 2) {
-              if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_bathe_horse'] = 0;
-              if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_bathe_horse_prog'] = 0;
-              if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+              ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_bathe_horse'] = 0;
+              ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_bathe_horse_prog'] = 0;
+              ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
             } else {
               if (((s as any).grandpaQW ?? 0)?.['chore_brush_horse'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_brush_horse'] === 2) {
-                if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_brush_horse'] = 0;
-                if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+                ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_brush_horse'] = 0;
+                ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
               } else {
                 if (((s as any).grandpaQW ?? 0)?.['chore_lead_horse_to_field'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_lead_horse_to_field'] === 2) {
-                  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_lead_horse_to_field'] = 0;
-                  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+                  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_lead_horse_to_field'] = 0;
+                  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
                 } else {
                   if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 2) {
-                    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_herd_cattle'] = 0;
-                    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+                    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_herd_cattle'] = 0;
+                    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
                   } else {
                     if (((s as any).grandpaQW ?? 0)?.['chore_lead_cow_to_field'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_lead_cow_to_field'] === 2) {
-                      if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_lead_cow_to_field'] = 0;
-                      if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+                      ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_lead_cow_to_field'] = 0;
+                      ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
                     } else {
                       if (((s as any).grandpaQW ?? 0)?.['chore_gather_mushrooms'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_gather_mushrooms'] === 2) {
-                        if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 2;
+                        ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 2;
                       } else {
                         if (((s as any).grandpaQW ?? 0)?.['chore_gather_mushrooms'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_gather_mushrooms'] === 2  &&  ((s as any).grandpaQW ?? 0)?.['disappointment'] === 2) {
-                          if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_gather_mushrooms'] = 0;
-                          if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_mushroom_quantity'] = 0;
-                          if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+                          ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_mushrooms'] = 0;
+                          ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_mushroom_quantity'] = 0;
+                          ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
                         } else {
                           if (((s as any).grandpaQW ?? 0)?.['chore_gather_berries'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_gather_berries'] === 2) {
-                            if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 2;
+                            ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 2;
                           } else {
                             if (((s as any).grandpaQW ?? 0)?.['chore_gather_berries'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_gather_berries'] === 2  &&  ((s as any).grandpaQW ?? 0)?.['disappointment'] === 2) {
-                              if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_gather_berries'] = 0;
-                              if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_berry_quantity'] = 0;
-                              if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+                              ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_berries'] = 0;
+                              ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_berry_quantity'] = 0;
+                              ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
                             } else {
                               if (((s as any).grandpaQW ?? 0)?.['chore_gather_both'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_gather_both'] === 2) {
-                                if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 2;
+                                ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 2;
                               } else {
                                 if (((s as any).grandpaQW ?? 0)?.['chore_gather_both'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_gather_both'] === 2  &&  ((s as any).grandpaQW ?? 0)?.['disappointment'] === 2) {
-                                  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_gather_both'] = 0;
-                                  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_mushroom_quantity'] = 0;
-                                  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_berry_quantity'] = 0;
-                                  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+                                  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_both'] = 0;
+                                  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_mushroom_quantity'] = 0;
+                                  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_berry_quantity'] = 0;
+                                  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
                                 } else {
                                   if (((s as any).grandpaQW ?? 0)?.['chore_bale_hay'] === 1  ||  ((s as any).grandpaQW ?? 0)?.['chore_bale_hay'] === 2) {
-                                    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_bale_hay'] = 0;
-                                    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 1;
+                                    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_bale_hay'] = 0;
+                                    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 1;
                                   }
                                 }
                               }

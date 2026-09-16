@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (2);
   (s as any).girl = ((s as any).girl ?? 0) + (1);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
-  scene.actions([{ label: 'Continue', goto: ['sexdvanadva', 'var'] }]);
+  qspGoto(s, 'sexdvanadva', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -98,6 +98,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'cum_call', 'mouth_swallow', 'Random Guy');
   if (((s as any).pcs_horny ?? 0) >= 80) {
+    (s as any).orgasm_or = 'yes';
   }
   scene.img(`images/locations/shared/sex/sexdvanadva/cum${((s as any).picrand || '')}.jpg`);
   scene.text('They spill semen all over both of you. You lick it off each other and share a deep kiss before you both swallow.');
@@ -107,13 +108,13 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).kafesexrand ?? 0) === 1) {
       (s as any).kafesexrand = 0;
-      scene.actions([{ label: 'Continue', goto: ['city_kafe', 'workPred'] }]);
+      qspGoto(s, 'city_kafe', 'workPred');
     }
     if (((s as any).kazsexdva ?? 0) === 1) {
       (s as any).kazsexdva = 0;
-      scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+      qspGoto(s, 'kazinosvid', '3');
     }
-    dynamicGoto(st, 'sexloc');
+    dynamicGoto(s, 'sexloc');
   } },
   ]);
   scene.build();

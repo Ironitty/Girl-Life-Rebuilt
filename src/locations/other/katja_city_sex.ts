@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,8 +12,9 @@ function enterWalkingHomeWithAGuy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'npcgeneratec', '', 0, '', Math.floor(Math.random() * 38) + 18, 4);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (1);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (1);
   qspCall(s, 'drugs', 'alcohol', 'wine', 1);
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/drinking_wine.jpg');
   // TODO-QSP: dynamic text: As you walk through the streets, the guy introduces himself as <<$npc_nickname[$...
@@ -28,7 +29,7 @@ function enterWalkingHomeWithAGuy(s: GameState, scene: SceneBuilder): void {
     scene.text('He takes her reaction as a sign not to go any further, so he simply continues to caress her thighs while she keeps squirming.');
     scene.text('You\'ll have to do something if this is going to lead anywhere.');
     scene.actions([
-      { label: 'Make out with <<$npc_nickname[$npcID]>>', goto: ['katja_city_sex', 'first_time'] },
+      { label: '', labelFn: (s: GameState) => 'Make out with ' + String(((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '' ?? ''), goto: ['katja_city_sex', 'first_time'] },
     ]);
   } else {
     if ((!(Math.floor(Math.random() * 5) + 0))) {
@@ -37,7 +38,7 @@ function enterWalkingHomeWithAGuy(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Watch Katja\'s reaction', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (20);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (20);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"No. I don\'t want any of that. And if you use it, I\'m out of here," Katja says very harshly.');
     // TODO-QSP: dynamic text: "Okay, Okay. I'll put it away," <<$npc_nickname[$npcID]>> says and leaves the ro...
@@ -503,7 +504,7 @@ function enterAfterDrugs(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14', 'a');
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/kiss_guy_katja_watch.jpg');
   // TODO-QSP: dynamic text: You take the initiative and bring <<$npc_nickname[$npcID]>>'s face to yours, kis...
   scene.text(`You take the initiative and bring ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s face to yours, kissing him as his hands roam over your body.`);
@@ -513,7 +514,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Katja\'s turn', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     scene.img('images/characters/pavlovsk/school/girl/katja/katja_kiss.jpg');
     // TODO-QSP: dynamic text: You gently push <<$npc_nickname[$npcID]>> away and stand up in front of Katja. Y...
     scene.text(`You gently push ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} away and stand up in front of Katja. You pull her up in your arms and start to kiss her deeply.`);
@@ -550,7 +551,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Show Katja how to ride cock', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex3.jpg');
     // TODO-QSP: dynamic text: "Time for you to see how sex works," you tell Katja as you remove <<$npc_nicknam...
     scene.text(`"Time for you to see how sex works," you tell Katja as you remove ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s cock from your mouth. Katja sits up and looks at you intently.`);
@@ -561,14 +562,14 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex4.jpg');
     // TODO-QSP: dynamic text: You scoot forward and <<$npc_nickname[$npcID]>>'s cock pops out of your pussy. "...
     scene.text(`You scoot forward and ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s cock pops out of your pussy. "Why don't you suck on his cock some more?"`);
     // TODO-QSP: dynamic text: Katja does as you ask and '+iif(npc_throat['A14'] < dick/2, 'tries to take', 'ta...
     scene.text(`Katja does as you ask and '+iif(npc_throat['A14'] < dick/2, 'tries to take', 'takes')+' ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s ${((s as any).dick_girth || '')} dick into her mouth.`);
     if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick ?? 0)/2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (2);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (2);
       scene.text('Katja continues to try to suck his cock, but she\'s clearly having problems with getting it in her mouth. After trying for a few minutes, she gives up.');
     } else {
       if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
@@ -576,24 +577,24 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
         scene.text(`Katja starts to blow ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}, but she's clearly having problems with taking all of his cock. After trying for a few minutes, she gives up.`);
       } else {
         if (((s as any).npc_throat ?? 0)?.['A14'] < 2*((s as any).dick ?? 0)) {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
           // TODO-QSP: dynamic text: Katja starts to blow <<$npc_nickname[$npcID]>> and she's able to take most of hi...
           scene.text(`Katja starts to blow ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} and she's able to take most of his cock without a problem. After sucking him for a few minutes, she stops.`);
         } else {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
           // TODO-QSP: dynamic text: Katja starts to blow <<$npc_nickname[$npcID]>> and she's able to take all of his...
           scene.text(`Katja starts to blow ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} and she's able to take all of his cock like a pro. After sucking him for a few minutes, she stops.`);
         }
       }
     }
     if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+      ((s as any).npc_throat = (s as any).npc_throat ?? {})['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'group');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get on your back', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex5.jpg');
     scene.text('"Come and sit on your knees right here," you tell Katja and point at a spot on the bed. She does as you say, then you lie on your back and put your head in her lap.');
     // TODO-QSP: dynamic text: "Hold my legs," you tell her as you spread and lift them in the air to give <<$n...
@@ -605,7 +606,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Katja\'s turn', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex6.jpg');
     // TODO-QSP: dynamic text: After a few minutes, you stop <<$npc_nickname[$npcID]>>. Once he pulls out, you ...
     scene.text(`After a few minutes, you stop ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}. Once he pulls out, you look up at Katja. "Your turn now."`);
@@ -621,8 +622,8 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
       { label: 'Penetration', handler: (st: GameState) => {
     if (((s as any).npc_vag ?? 0)?.['A14'] === 0) {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex7a.jpg');
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (Math.floor(Math.random() * 21) + 20);
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (5);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (Math.floor(Math.random() * 21) + 20);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (5);
       // TODO-QSP: dynamic text: <<$npc_nickname[$npcID]>> slowly guides his cock into Katja, who's clearly feeli...
       scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} slowly guides his cock into Katja, who's clearly feeling uncomfortable with it. He comes to a halt, apparently having reached her hymen.`);
       scene.text('Katja looks at him with big eyes, then lets out a shriek of pain and throws her head back when he suddenly thrusts forward.');
@@ -633,16 +634,16 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex7a.jpg');
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (2);
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (2);
         // TODO-QSP: dynamic text: <<$npc_nickname[$npcID]>> slowly guides his cock into Katja, who's clearly feeli...
         scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} slowly guides his cock into Katja, who's clearly feeling some pain, but when he seems to stop, Katja looks up at him. "You can… go on."`);
         scene.text('He slowly continues to push his cock into her, and before long, it\'s fully buried inside her pussy.');
         scene.text('It\'s clear that she\'s still feeling some pain. He pulls out and slowly pushes in again. Before long, her discomfort seems to be disappearing.');
       } else {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex7b.jpg');
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
         // TODO-QSP: dynamic text: <<$npc_nickname[$npcID]>> slowly guides his cock into Katja, who looks on with b...
         scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} slowly guides his cock into Katja, who looks on with big eyes.`);
         scene.text('To what looks like his surprise, he meets very little resistance, and his cock is soon fully buried in her pussy.');
@@ -650,21 +651,21 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).npc_vag ?? 0)?.['A14'] === 0) {
-      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = 20;
+      ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = 20;
     } else {
       if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+        ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14'] < 2*((s as any).dick ?? 0)) {
-        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+        ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
     }
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'group');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Katja gets fucked', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex8.jpg');
     // TODO-QSP: dynamic text: "Come on, move faster… Fuck me!" Katja moans. <<$npc_nickname[$npcID]>> doesn't ...
     scene.text(`"Come on, move faster… Fuck me!" Katja moans. ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} doesn't need to be asked twice.`);
@@ -674,7 +675,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Your turn again', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex9.jpg');
     // TODO-QSP: dynamic text: After a few minutes of pounding, '+iif( katjaQW['horny'] >= 100, 'she lets out a...
     scene.text('After a few minutes of pounding, \'+iif( katjaQW[\'horny\'] >= 100, \'she lets out a huge moan, seemingly having an orgasm\', \'seems to have had enough\')+\' "Enough! I need a break."');
@@ -684,15 +685,15 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: After a short moment, Katja seems to have gathered her strength and stands up on...
     scene.text(`After a short moment, Katja seems to have gathered her strength and stands up on the bed. She guides your mouth to her pussy and you start eating her out as you bounce up and down on ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s cock.`);
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (100);
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (100);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
     }
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'arousal', 'cuni_give', (-2), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Switch again', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex10.jpg');
     scene.text('After a while, you\'ve had enough. "Your turn again," you tell Katja as you get off.');
     scene.text('"This time, put your feet on his knees and hands on his shoulders, facing this way," you say as you instruct Katja on doing reverse cowgirl.');
@@ -701,7 +702,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get pounded one more time', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex11.jpg');
     // TODO-QSP: dynamic text: "This isn't working. Get off," <<$npc_nickname[$npcID]>> says after a few minute...
     scene.text(`"This isn't working. Get off," ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} says after a few minutes of awkward sex and Katja obliges.`);
@@ -713,14 +714,14 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Last switch', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex12.jpg');
     // TODO-QSP: dynamic text: "I want to fuck the redhead again before I cum," <<$npc_nickname[$npcID]>> says ...
     scene.text(`"I want to fuck the redhead again before I cum," ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} says as he gets off you. Katja quickly takes your position.`);
     scene.text('He mounts her and starts thrusting like a piston. You crawl under them so you can look at his cock ravaging Katja\'s pussy while she moans loudly.');
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (3);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (3);
       scene.text('After a short while, Katja yells out that she\'s cumming and has an explosive orgasm, squirting all over your face.');
       // TODO-QSP: dynamic text: "Get down on your knees, I want to cum on your faces!" <<$npc_nickname[$npcID]>>...
       scene.text(`"Get down on your knees, I want to cum on your faces!" ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} yells.`);
@@ -797,7 +798,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
 
 function enterOneGuyStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((((s as any).katjaQW ?? 0)?.['dom'] >= 30  &&  ((s as any).katjaQW ?? 0)?.['bondage_sex'] === 0)  ||  (((s as any).katjaQW ?? 0)?.['bondage_sex'] > 0  &&  (Math.floor(Math.random() * 6) + 0) === 0))  &&  ((s as any).katjaQW ?? 0)?.['drinks'] < 8) {
-    scene.actions([{ label: 'Continue', goto: ['katja_city_sex', 'blindfold_sex_start'] }]);
+    qspGoto(s, 'katja_city_sex', 'blindfold_sex_start');
   }
   qspCall(s, 'npcStat', 'A14', 'a');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex1.jpg');
@@ -831,7 +832,7 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Time to fuck', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex5.jpg');
     // TODO-QSP: dynamic text: "Time to ride some cock!" you tell Katja as you remove <<$npc_nickname[$npcID]>>...
     scene.text(`"Time to ride some cock!" you tell Katja as you remove ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s dick from your mouth. Katja also stops licking.`);
@@ -845,7 +846,7 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Katja\'s turn', handler: (st: GameState) => {
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex7a.jpg');
       // TODO-QSP: dynamic text: After a few minutes, you stop <<$npc_nickname[$npcID]>>. Once he pulls out, you ...
       scene.text(`After a few minutes, you stop ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}. Once he pulls out, you switch places with Katja and she holds up her legs to give ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} access.`);
@@ -855,23 +856,23 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
       scene.text('It\'s clear that she\'s still feeling some pain, so he pulls out and slowly pushes in again. Before long, her discomfort seems to be disappearing.');
     } else {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex7b.jpg');
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
       // TODO-QSP: dynamic text: <<$npc_nickname[$npcID]>> guides his cock into Katja. When he meets very little ...
       scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} guides his cock into Katja. When he meets very little resistance, he starts to fuck her just as hard as he did you.`);
       scene.text('Katja starts to moan and is clearly enjoying herself.');
     }
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+      ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_vag ?? 0)?.['A14'] < 2*((s as any).dick ?? 0)) {
-      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+      ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'group');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Katja gets fucked', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex8.jpg');
     // TODO-QSP: dynamic text: "Come on, move faster… Fuck me!" Katja moans. <<$npc_nickname[$npcID]>> doesn't ...
     scene.text(`"Come on, move faster… Fuck me!" Katja moans. ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} doesn't need to be asked twice. He starts pounding her, even moving one foot onto the bed so he can go deeper as you look at Katja writhing in '+iif(npc_vag['A14'] < dick, 'pain and pleasure', 'pleasure')+', moaning louder and louder.`);
@@ -879,7 +880,7 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Your turn again', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex9.jpg');
     // TODO-QSP: dynamic text: After a few minutes, '+iif( katjaQW['horny'] >= 100, 'she lets out a huge moan, ...
     scene.text('After a few minutes, \'+iif( katjaQW[\'horny\'] >= 100, \'she lets out a huge moan, seemingly having an orgasm.\', \'seems to have had enough.\')+\' "Enough. I need a break."');
@@ -889,8 +890,8 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: After a short moment, Katja seems to have gathered her strength and stands on th...
     scene.text(`After a short moment, Katja seems to have gathered her strength and stands on the bed. She guides your mouth to her pussy and you start eating her out as you bounce up and down on ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s cock.`);
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (100);
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (100);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
     }
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'arousal', 'cuni_give', (-2), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
@@ -898,7 +899,7 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let Katja suck his cock', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'group');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex4.jpg');
     // TODO-QSP: dynamic text: After a while, you've also had enough and scoot forward and <<$npc_nickname[$npc...
@@ -906,7 +907,7 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Katja does as you say and '+iif(npc_throat['A14'] < dick/2, 'tries to take', 'ta...
     scene.text(`Katja does as you say and '+iif(npc_throat['A14'] < dick/2, 'tries to take', 'takes')+' ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s ${((s as any).dick_girth || '')} in her mouth.`);
     if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick ?? 0)/2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (2);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (2);
       scene.text('Katja continues to try to suck his cock, but is clearly having problems with getting it into her mouth. After trying for a few minutes, she gives up.');
     } else {
       if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
@@ -917,18 +918,18 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: Katja then starts to blow <<$npc_nickname[$npcID]>> and can take most of his coc...
           scene.text(`Katja then starts to blow ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} and can take most of his cock without a problem. She stops after a few minutes.`);
         } else {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
           // TODO-QSP: dynamic text: Katja starts blowing <<$npc_nickname[$npcID]>>, taking all of his cock like a pr...
           scene.text(`Katja starts blowing ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}, taking all of his cock like a pro. She stops after a few minutes.`);
         }
       }
     }
     if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+      ((s as any).npc_throat = (s as any).npc_throat ?? {})['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
     }
     scene.actions([
       { label: 'Switch again', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex10.jpg');
     if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') > 80  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= (Math.floor(Math.random() * 31) + 70)) {
       scene.text('"My turn now," Katja says and crawls up onto him for a reverse cowgirl and guides his cock into her pussy.');
@@ -941,7 +942,7 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get pounded one more time', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex11.jpg');
     // TODO-QSP: dynamic text: "Let's change position," <<$npc_nickname[$npcID]>> says after a few minutes and ...
     scene.text(`"Let's change position," ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} says after a few minutes and Katja obliges.`);
@@ -953,14 +954,14 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Last switch', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/man_home_sex12.jpg');
     // TODO-QSP: dynamic text: "I need to fuck the redhead one last time before I cum," <<$npc_nickname[$npcID]...
     scene.text(`"I need to fuck the redhead one last time before I cum," ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} says as he gets off you and Katja quickly takes your place.`);
     scene.text('He mounts her and starts thrusting like a piston. You crawl under them so you can look at his cock ravaging Katja\'s pussy while she moans loudly.');
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
       scene.text('After a short while, Katja screams that she\'s coming and has an explosive orgasm, squirting all over your face.');
       // TODO-QSP: dynamic text: Just a short moment afterward, <<$npc_nickname[$npcID]>> jumps off and yells, "G...
       scene.text(`Just a short moment afterward, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} jumps off and yells, "Get down on your knees, I want to cum on your faces!"`);
@@ -1028,11 +1029,12 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
 
 function enterGoingHome(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
+  (s as any).location_type = 'public_outdoors';
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/walking_home_at_night.jpg');
   scene.text('You leave his apartment and walk out into the streets, heading in the direction of the nearest metro station.');
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['on_date'] = 1;
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['on_date'] = 1;
   if (((s as any).katjaQW ?? 0)?.['QWstage'] === 5) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['QWstage'] = 6;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['QWstage'] = 6;
     scene.text('"So? How was your first time having sex with a man?" you ask after you\'ve walked in silence for a few minutes.');
     // TODO-QSP: iif(katjaQW['horny'] = 0, '"It was great, even better than I imagined," she says with a big smile. '...
     scene.text('"Does this mean you want to try again?" you ask.');
@@ -1055,10 +1057,10 @@ function enterGoingHome(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['birth_control_start_day'] === 0) {
       scene.text('"Are you on birth control?" you ask.');
       scene.text('"No, but I definitely should be. I\'ll get started tomorrow, and maybe also take a morning-after pill to be safe" she replies, looking a little worried.');
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['birth_control_start_day'] = ((s as any).daystart ?? 0) + 15;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['birth_control_start_day'] = ((s as any).daystart ?? 0) + 15;
     } else {
       if (((s as any).katjaQW ?? 0)?.['birth_control_know'] === 0) {
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['birth_control_know'] = 1;
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['birth_control_know'] = 1;
         scene.text('"Are you on birth control?" you ask.');
         scene.text('"Yes. Of course, I\'m prepared," she replies, looking a little proud.');
       }
@@ -1118,7 +1120,7 @@ function enterBlindfoldSex1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Are they comfortable?" he asks and you nod. He then proceeds to place the blindfold over your eyes and your vision is completely gone.');
   scene.text('He then leads you to his bed and helps you lie down. It\'s a little uncomfortable lying on your bound wrists and very strange not being able to see anything.');
   scene.text('You can hear what sounds like somebody sitting in a chair and a slight breathing you recognize as the sound Katja makes when she\'s anticipating something very exciting.');
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
   qspCall(s, 'arousal', 'BDSM', 3, ((s as any).npcID ?? 0), 'group', 'bound');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1128,7 +1130,7 @@ function enterBlindfoldSex1(s: GameState, scene: SceneBuilder): void {
     scene.text('You lie there for what seems like an eternity before you hear somebody moving on the bed, even though they\'re trying to be as quiet as possible.');
     scene.text('You almost jump when a delicate finger suddenly starts caressing your stomach.');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'arousal', 'foreplay', 1, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'bound');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1136,7 +1138,7 @@ function enterBlindfoldSex1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/blindfold_sex3.jpg');
     scene.text('The finger slowly moves up along your body, stopping at the underside of your left breast. It is joined by the other hand just above the same breast.');
     scene.text('The hands don\'t move and your anticipation of what will happen is really getting to you, so you can\'t hold back your moan when something warm and wet touches your left nipple. You realize it\'s a tongue, which gently starts to lick your nipple.');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'bound');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1144,7 +1146,7 @@ function enterBlindfoldSex1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/blindfold_sex4.jpg');
     scene.text('The tongue disappears from your nipple and one of the hands slowly travels down your body towards your groin.');
     scene.text('When it reaches your pussy, the delicate fingers start to gently caress your pussy lips before they finally start to play with your clit.');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'bound');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1152,7 +1154,7 @@ function enterBlindfoldSex1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/blindfold_sex5.jpg');
     scene.text('The fingers disappear from your clit and you suddenly become very aware that nobody is touching you, but you can feel some movement on the bed and faintly hear somebody moving around.');
     scene.text('It comes as a shock when your legs are suddenly pushed apart, followed by a tongue starting to lick your clit.');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'bound');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1161,7 +1163,7 @@ function enterBlindfoldSex1(s: GameState, scene: SceneBuilder): void {
     scene.text('The tongue disappears from your clit, but soon after, you feel something very hard penetrating you.');
     scene.text('You think it\'s a dick, but it\'s too smooth and cold. It\'s a dildo…');
     scene.text('Whoever is controlling the dildo is moving it in and out at a slow pace, but is gradually increasing the speed.');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'npcStat', 'D2', 'b');
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID1 ?? 0), ((s as any).npcID2 ?? 0), 'group', 'lesbian', 'bound');
     qspCall(s, 'stat', '');
@@ -1171,7 +1173,7 @@ function enterBlindfoldSex1(s: GameState, scene: SceneBuilder): void {
     scene.text('After spending a few minutes being fucked by the dildo, it is removed and you feel a body lie down next to you.');
     scene.text('A finger gently enters your pussy and you feel the breath of somebody\'s mouth very close to yours.');
     scene.text('It\'s followed by soft lips meeting yours, and a fine tongue enters your mouth. You recognize Katja\'s kiss.');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
     qspCall(s, 'arousal', 'vaginal_finger', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'bound');
     qspCall(s, 'arousal', 'kiss', (-2), ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'bound');
     qspCall(s, 'stat', '');
@@ -1182,7 +1184,7 @@ function enterBlindfoldSex1(s: GameState, scene: SceneBuilder): void {
     scene.text('One hand is placed on your breast and another on the back of your head. your head is gently turned to the side where something enters your mouth.');
     // TODO-QSP: dynamic text: You use your tongue to explore the object and recognize it as a'+iif(dick > 15, ...
     scene.text(`You use your tongue to explore the object and recognize it as a'+iif(dick > 15, ' big ', ' ')+'${((s as any).dick_girth || '')} cock, which you start to suck.`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'bound');
     qspCall(s, 'arousal', 'bj', (-3), ((s as any).npcID ?? 0), 'group', 'bound');
     qspCall(s, 'stat', '');
@@ -1233,7 +1235,7 @@ function enterBlindfoldSex2(s: GameState, scene: SceneBuilder): void {
   scene.text(`Once you're free, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} pushes you down to Katja's pussy. You start licking it while fingering her.`);
   // TODO-QSP: dynamic text: You then feel <<$npc_nickname[$npcID]>>'s <<dick>> cm <<$dick_girth>> cock enter...
   scene.text(`You then feel ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s ${((s as any).dick || '')} cm ${((s as any).dick_girth || '')} cock entering your'+iif(pcs_vag <= dick, ' tight ', ' ')+'pussy and he starts to pound you.`);
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
   qspCall(s, 'arousal', 'cuni_give', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-3), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
   qspCall(s, 'arousal', 'vaginal', (-3), ((s as any).npcID ?? 0), 'group');
@@ -1246,16 +1248,16 @@ function enterBlindfoldSex2(s: GameState, scene: SceneBuilder): void {
     scene.text(`After a while, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} pulls out of you. "I want the redhead's pussy now."`);
     // TODO-QSP: dynamic text: You lie down on your back and Katja crawls on top of you as <<$npc_nickname[$npc...
     scene.text(`You lie down on your back and Katja crawls on top of you as ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} gets behind her and starts fucking her hard.`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: '<<$npc_nickname[$npcID]>> is coming', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '' ?? '') + ' is coming', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/blindfold_sex12.jpg');
     // TODO-QSP: dynamic text: As <<$npc_nickname[$npcID]>> is getting close, he pulls Katja up to him and you ...
     scene.text(`As ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} is getting close, he pulls Katja up to him and you decide to lick her nipple.`);
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100  ||  ((s as any).katjaQW ?? 0)?.['bondage_sex'] === 0) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
       scene.text('This sends her over the edge and she cums with a loud scream.');
     }
     scene.text('Shortly after, he pushes his cock deep into her and holds it there as he pumps his seed into her.');
@@ -1279,7 +1281,7 @@ function enterBlindfoldSex2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['birth_control_start_day'] <= ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['birth_control_start_day'] > 0) {
       if (((s as any).katjaQW ?? 0)?.['creampie'] === 0) {
         if (((s as any).katjaQW ?? 0)?.['birth_control_know'] === 0) {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['birth_control_know'] = 1;
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['birth_control_know'] = 1;
         }
         scene.text('She stands there looking thoughtful. "Anything wrong?" you ask.');
         scene.text('"This is so strange, feeling this foreign substance moving in my vagina," she answers.');
@@ -1314,14 +1316,14 @@ function enterBlindfoldSex2(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).katjaQW ?? 0)?.['birth_control_start_day'] > ((s as any).daystart ?? 0)) {
         if (((s as any).katjaQW ?? 0)?.['birth_control_know'] === 0) {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['birth_control_know'] = 1;
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['birth_control_know'] = 1;
         }
         scene.text('"Are you on birth control?" you ask.');
         scene.text('"Yes. Oh shit, I don\'t think it\'s working yet. I\'ll have to take a morning-after pill," she says, looking a little worried.');
       } else {
         scene.text('"Are you on birth control?" you ask.');
         scene.text('"No. Shit. I\'ll have to take a morning-after pill. I should also start on regular birth control since something like this might happen again," she says, looking a little worried.');
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['birth_control_start_day'] = ((s as any).daystart ?? 0) + 15;
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['birth_control_start_day'] = ((s as any).daystart ?? 0) + 15;
       }
     }
     // TODO-QSP: dynamic text: You finish getting cleaned up and head back to <<$npc_nickname[$npcID]>>, who is...
@@ -1329,9 +1331,10 @@ function enterBlindfoldSex2(s: GameState, scene: SceneBuilder): void {
     scene.text('You talk a little while getting dressed, but it\'s clear that he\'s not up for anything else, so you say your goodbyes and leave his apartment.');
     scene.actions([
       { label: 'Walk to the metro', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['creampie'] = ((s as any).katjaQW['creampie'] ?? 0) + (1);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['on_date'] = 1;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['creampie'] = ((s as any).katjaQW['creampie'] ?? 0) + (1);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['on_date'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).location_type = 'public_outdoors';
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/walking_home_at_night.jpg');
     scene.text('You leave his apartment and walk out into the streets, heading in the direction of the nearest metro station.');
     if (((s as any).katjaQW ?? 0)?.['bondage_sex'] === 0) {
@@ -1388,6 +1391,7 @@ function enterSafeWordSaid(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk to the metro station', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).location_type = 'public_outdoors';
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/walking_home_at_night.jpg');
     scene.text('Katja asks if you\'re okay as you walk through the streets and you explain why you decided to stop it.');
     if (((s as any).katjaQW ?? 0)?.['bondage_sex'] > 0) {
@@ -1412,8 +1416,9 @@ function enterWalkingHomeWithTwoGuys(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
   qspCall(s, 'npcgeneratec', '', 0, '', Math.floor(Math.random() * 38) + 18, 4);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (1);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (1);
   qspCall(s, 'drugs', 'alcohol', 'wine', 1);
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/drinking_wine.jpg');
   // TODO-QSP: dynamic text: As you walk through the streets, the men introduce themselves as <<$npc_nickname...
@@ -1450,7 +1455,7 @@ function enterTwoGuysStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`The men don't hesitate and walk up to you and Katja, not even waiting to take their clothes off. ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} starts to caress you, bending down and kissing your neck as your hand finds his groin.`);
     // TODO-QSP: dynamic text: At the same time, <<$npc_nickname[$npcID2]>> starts to play with Katja's breasts...
     scene.text(`At the same time, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''} starts to play with Katja's breasts and she starts rubbing his cock through his pants.`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1458,9 +1463,9 @@ function enterTwoGuysStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/two_men_home_sex3.jpg');
     // TODO-QSP: dynamic text: You unzip <<$npc_nickname[$npcID1]>>'s pants and take out his <<dick1>> cm <<$di...
     scene.text(`You unzip ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s pants and take out his ${((s as any).dick1 || '')} cm ${((s as any).dick_girth1 || '')} cock and start sucking it. Katja does the same with ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}.`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick2 ?? 0)) {
-      if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+      ((s as any).npc_throat = (s as any).npc_throat ?? {})['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'stat', '');
@@ -1473,9 +1478,9 @@ function enterTwoGuysStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`You give up ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s cock and move over to the other side of the bed, taking ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}'s ${((s as any).dick1 || '')} cm ${((s as any).dick_girth1 || '')} dick into your mouth.`);
     // TODO-QSP: dynamic text: Katja mirrors you and soon has her head going up and down on <<$npc_nickname[$np...
     scene.text(`Katja mirrors you and soon has her head going up and down on ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s dick.`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick1 ?? 0)) {
-      if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+      ((s as any).npc_throat = (s as any).npc_throat ?? {})['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID2 ?? 0), 'group');
     qspCall(s, 'stat', '');
@@ -1486,12 +1491,12 @@ function enterTwoGuysStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`As you're sucking ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}'s cock, you suddenly feel your legs being spread apart, followed shortly by Katja's soft tongue licking your pussy.`);
     // TODO-QSP: dynamic text: She stops for a moment before starting again, and you take a look and see that <...
     scene.text(`She stops for a moment before starting again, and you take a look and see that ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} has entered her pussy from behind.`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * -4) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * -4) + 10);
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick1 ?? 0)) {
-      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+      ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick1 ?? 0)) {
-      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+      ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID2 ?? 0), 'group');
     qspCall(s, 'arousal', 'cuni_give', (-3), ((s as any).npcID3 ?? 0), 'group', 'lesbian');
@@ -1504,13 +1509,13 @@ function enterTwoGuysStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''} gets the message and as you start kissing Katja, he slams his ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}'s ${((s as any).dick2 || '')} cm ${((s as any).dick_girth2 || '')} cock into your wet pussy.`);
     // TODO-QSP: dynamic text: You both enjoy getting your pussies pounded for a few minutes before <<$npc_nick...
     scene.text(`You both enjoy getting your pussies pounded for a few minutes before ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} says "I really want to fuck those assholes."`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID2 ?? 0), 'group');
     qspCall(s, 'arousal', 'kiss', (-3), ((s as any).npcID3 ?? 0), 'group', 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).katjaQW ?? 0)?.['anal_quest'] > 2  ||  ((s as any).katjaQW ?? 0)?.['anal_sex'] > 0) {
       if (((s as any).katjaQW ?? 0)?.['anal_sex'] > 0) {
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['anal_quest'] = 3;
       }
       scene.text('Katja immediately nods. "Yes, I want a cock in my butt".');
       scene.actions([
@@ -1551,7 +1556,7 @@ function enterTwoGuysPussySex(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Get on top of her," ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} tells Katja, and you feel her crawling up onto your back and start fondling your breasts.`);
   // TODO-QSP: dynamic text: She soon starts moaning, and it's clear that <<$npc_nickname[$npcID1]>> has pene...
   scene.text(`She soon starts moaning, and it's clear that ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} has penetrated her pussy.`);
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
   qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID2 ?? 0), 'group');
   qspCall(s, 'arousal', 'foreplay', (-3), ((s as any).npcID3 ?? 0), 'group', 'lesbian');
   qspCall(s, 'stat', '');
@@ -1564,7 +1569,7 @@ function enterTwoGuysPussySex(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''} takes the opportunity to move his cock to Katja's mouth instead. his balls are now in front of your face, so you start to lick them.`);
     // TODO-QSP: dynamic text: You then feel <<$npc_nickname[$npcID1]>>'s cock enter your pussy and he starts t...
     scene.text(`You then feel ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s cock enter your pussy and he starts to fuck you hard.`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'arousal', 'foreplay_give', (-3), ((s as any).npcID2 ?? 0), 'group');
     qspCall(s, 'stat', '');
@@ -1577,13 +1582,13 @@ function enterTwoGuysPussySex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The men don't want to be left out for long, and you see <<$npc_nickname[$npcID1]...
     scene.text(`The men don't want to be left out for long, and you see ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s dick penetrate Katja's pussy as ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}'s slides into your own.`);
     scene.text('The men then pick up the pace and fuck you hard while you and Katja try to eat each other out.');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
     qspCall(s, 'arousal', 'vaginal', (-3), ((s as any).npcID2 ?? 0), 'group');
     qspCall(s, 'arousal', 'cuni_give', 5, ((s as any).npcID3 ?? 0), 'group', 'lesbian');
     qspCall(s, 'arousal', 'cuni', (-5), ((s as any).npcID3 ?? 0), 'group', 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
       // TODO-QSP: dynamic text: Katja's mouth suddenly disappears from your pussy and you can hear her scream as...
       scene.text(`Katja's mouth suddenly disappears from your pussy and you can hear her scream as she cums. After that, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} pulls out.`);
     } else {
@@ -1612,7 +1617,7 @@ function enterTwoGuysAnalSex1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).auto_anal_lube ?? 0) === 1) {
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       scene.text('You tell the men to use the bottle of lube in your purse, and Katja says that there is also a bottle in hers.');
       // TODO-QSP: dynamic text: <<$npc_nickname[$npcID2]>> finds your bottle and lubes you up and you soon feel ...
       scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''} finds your bottle and lubes you up and you soon feel the cool ointment being spread on your asshole by his finger.`);
@@ -1626,14 +1631,14 @@ function enterTwoGuysAnalSex1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'anal_finger', 1, ((s as any).npcID3 ?? 0), 'lube', 'group');
     }
     scene.text('Once you\'re both lubed up, the guys position their dicks against your assholes.');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['lube'] = 1;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['lube'] = 1;
   } else {
     // TODO-QSP: dynamic text: <<$npc_nickname[$npcID2]>> applies some spit to your asshole and you can see <<$...
     scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''} applies some spit to your asshole and you can see ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} doing the same to Katja before they position their dicks.`);
   }
   // TODO-QSP: dynamic text: You take the'+iif(katjaQW['anal_quest'] < 3, ' almost frightened, but also ', ' ...
   scene.text('You take the\'+iif(katjaQW[\'anal_quest\'] < 3, \' almost frightened, but also \', \' very \')+\'excited looking Katja\'s mouth into yours and start playing with her tongue.');
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((((s as any).katjaQW ?? {})?.['anal_quest'] ?? 0)* 10 -(Math.floor(Math.random() * 26) + 0));
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((((s as any).katjaQW ?? {})?.['anal_quest'] ?? 0)* 10 -(Math.floor(Math.random() * 26) + 0));
   qspCall(s, 'arousal', 'kiss', 3, ((s as any).npcID3 ?? 0), 'group', 'lesbian');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1645,7 +1650,7 @@ function enterTwoGuysAnalSex1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: At the same time, <<$npc_nickname[$npcID1]>> guides his cock '+iif(katjaQW['anal...
     scene.text(`At the same time, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} guides his cock '+iif(katjaQW['anal_quest'] < 3, 'carefully', 'forcefully')+' into Katja.`);
     if (((s as any).npc_ass ?? 0)?.['A14'] + 4*((s as any).katjaQW ?? 0)?.['lube'] < ((s as any).dick1 ?? 0)) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (Math.floor(Math.random() * 11) + 10);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (Math.floor(Math.random() * 11) + 10);
       // TODO-QSP: dynamic text: Katja lets out a scream. "Shit, it hurts more than '+iif(katjaQW['anal_quest'] <...
       scene.text('Katja lets out a scream. "Shit, it hurts more than \'+iif(katjaQW[\'anal_quest\'] < 3, \'I expected\', \'last time\')+\'! Slow down!" she cries.');
       // TODO-QSP: dynamic text: <<$npc_nickname[$npcID1]>> does so and lets Katja relax and get used to it. To d...
@@ -1653,7 +1658,7 @@ function enterTwoGuysAnalSex1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: After a few minutes, she looks back at <<$npc_nickname[$npcID1]>>. "You can cont...
       scene.text(`After a few minutes, she looks back at ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}. "You can continue, but'+iif(katjaQW['anal_quest'] < 3, ' go very slow. I still don't know if I can do it', 'be careful')+'." ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} does as he's told and Katja is also also enjoying it.`);
     } else {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
       if (((s as any).katjaQW ?? 0)?.['anal_quest'] < 3) {
         // TODO-QSP: dynamic text: "Wow, that didn't hurt. It actually feels nice," Katja says, sounding very surpr...
         scene.text(`"Wow, that didn't hurt. It actually feels nice," Katja says, sounding very surprised as ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} enters her. "I thought it would hurt the first time. Go on, fuck me faster!"`);
@@ -1665,10 +1670,10 @@ function enterTwoGuysAnalSex1(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} does what she says and is soon pounding her asshole as if it was something she did every day. Her mouth finds your pussy and starts to lick it.`);
     }
     if (((s as any).npc_ass ?? 0)?.['A14'] < ((s as any).dick1 ?? 0)) {
-      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+      ((s as any).npc_ass = (s as any).npc_ass ?? {})['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_ass ?? 0)?.['A14']*2 < ((s as any).dick1 ?? 0)) {
-      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+      ((s as any).npc_ass = (s as any).npc_ass ?? {})['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID2 ?? 0), 'group');
     qspCall(s, 'arousal', 'cuni', (-2), ((s as any).npcID3 ?? 0), 'group', 'lesbian');
@@ -1706,9 +1711,9 @@ function enterTwoGuysAnalSex2(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: Seeing you with your ass in the air while Katja slides down onto <<$npc_nickname...
   scene.text(`Seeing you with your ass in the air while Katja slides down onto ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} dick, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''} jams his hard cock into your ass.`);
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
   if (((s as any).npc_ass ?? 0)?.['A14'] + 4*((s as any).katjaQW ?? 0)?.['lube'] < ((s as any).dick1 ?? 0)) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (10);
   }
   qspCall(s, 'arousal', 'anal', (-1), ((s as any).npcID2 ?? 0), 'group');
   qspCall(s, 'arousal', 'foreplay_give', 3, ((s as any).npcID3 ?? 0), 'group', 'lesbian');
@@ -1719,7 +1724,7 @@ function enterTwoGuysAnalSex2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/sex/two_men_home_sex_anal_4\'+iif(katjaQW[\'horny\'] >= 100, \'a\', \'b\')+\'.jpg');
     scene.text('The men start to fuck you hard, and seeing Katja\'s pussy in front of you, you decide to lick it.');
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
       scene.text('That helps bring Katja over the edge, and she soon cums with a loud scream.');
     } else {
       // TODO-QSP: dynamic text: After a fucking you for a little while, <<$npc_nickname[$npcID2]>> pulls out of ...
@@ -1744,7 +1749,7 @@ function enterTwoGuysDp(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} lies down on his back with his ${((s as any).dick1 || '')} cm ${((s as any).dick_girth1 || '')} cock standing right up. You mount it as Katja stands up and presents her pussy to you, so you lick it.`);
   // TODO-QSP: dynamic text: Meanwhile, <<$npc_nickname[$npcID2]>> has taken position behind you, and you fee...
   scene.text(`Meanwhile, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''} has taken position behind you, and you feel '+iif(pcs_ass < dick2, 'some pain', 'only pleasure')+' as he pushes his cock into your asshole.`);
-  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
   qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID1 ?? 0), 'group');
   qspCall(s, 'arousal', 'anal', (-3), ((s as any).npcID2 ?? 0), 'group');
   qspCall(s, 'arousal', 'cuni_give', (-3), ((s as any).npcID3 ?? 0), 'group', 'lesbian');
@@ -1758,7 +1763,7 @@ function enterTwoGuysDp(s: GameState, scene: SceneBuilder): void {
     scene.text(`After a few minutes, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} says "It's time for the redhead to get this treatment."`);
     // TODO-QSP: dynamic text: "Yes. Let's switch." <<$npc_nickname[$npcID2]>> agrees.
     scene.text(`"Yes. Let's switch." ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''} agrees.`);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'arousal', 'anal', (-3), ((s as any).npcID2 ?? 0), 'group');
     qspCall(s, 'arousal', 'rimming_give', (-3), ((s as any).npcID3 ?? 0), 'group', 'lesbian');
@@ -1813,15 +1818,15 @@ function enterTwoGuysKatjaDp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Katja looks '+iif(katjaQW['dp'] = 0, 'perplexed, and you have to explain to her ...
   scene.text(`Katja looks '+iif(katjaQW['dp'] = 0, 'perplexed, and you have to explain to her how she's supposed to sit.', 'excited, and positions her ass above his cock.')+' You then help guide ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}'s cock into hes ass as she lowers herself down.`);
   if (((s as any).npc_ass ?? 0)?.['A14'] + 4*((s as any).katjaQW ?? 0)?.['lube'] <((s as any).dick2 ?? 0)) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (Math.floor(Math.random() * 11) + 10);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (5);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (5);
     // TODO-QSP: dynamic text: "Shit, it hurts!" she screams as <<$npc_nickname[$npcID2]>>'s cock stretches out...
     scene.text(`"Shit, it hurts!" she screams as ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}'s cock stretches out her asshole. You start to lick her breasts to try and distract her from the pain while ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} looks on, waiting until she's ready.`);
     // TODO-QSP: dynamic text: After a minute, she's able to speak. "You can try to put it in my pussy." <<$npc...
     scene.text(`After a minute, she's able to speak. "You can try to put it in my pussy." ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} does so, and it goes in without any problems. The men then slowly start to fuck her.`);
     qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID3 ?? 0), 'group', 'lesbian');
   } else {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     // TODO-QSP: dynamic text: "Ahh. It feels good in my ass!" she says as <<$npc_nickname[$npcID2]>>'s dick st...
     scene.text(`"Ahh. It feels good in my ass!" she says as ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}'s dick stretches out her asshole. You start to suck ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s cock to get it ready for Katja's pussy.`);
     // TODO-QSP: dynamic text: "You can put it in my pussy now," Katja says, which <<$npc_nickname[$npcID1]>> d...
@@ -1838,7 +1843,7 @@ function enterTwoGuysKatjaDp(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
       // TODO-QSP: dynamic text: She makes more and more noise until she cums with a huge scream, which takes her...
       scene.text(`She makes more and more noise until she cums with a huge scream, which takes her some time to calm down from. After that, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} pulls out.`);
     } else {
@@ -1846,18 +1851,18 @@ function enterTwoGuysKatjaDp(s: GameState, scene: SceneBuilder): void {
       scene.text(`She clearly enjoys it and is making a lot of noise, '+iif(npc_ass['A14'] + 4*katjaQW['lube'] <dick2, 'but some of it is clearly also from ', ' and she doesn't seem to feel any')+' pain. Before she can cum, ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''} pulls out.`);
     }
     scene.text('"I\'m close," he says. "I want to paint those pretty faces with my cum, so get down to the floor and suck our cocks."');
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dp'] = ((s as any).katjaQW['dp'] ?? 0) + (1);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dp'] = ((s as any).katjaQW['dp'] ?? 0) + (1);
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick1 ?? 0)) {
-      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+      ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick1 ?? 0)) {
-      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+      ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_ass ?? 0)?.['A14'] < ((s as any).dick2 ?? 0)) {
-      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+      ((s as any).npc_ass = (s as any).npc_ass ?? {})['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_ass ?? 0)?.['A14']*2 < ((s as any).dick2 ?? 0)) {
-      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+      ((s as any).npc_ass = (s as any).npc_ass ?? {})['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     scene.actions([
       { label: 'Get down on your knees', goto: ['katja_city_sex', 'two_guys_cumming', '2'] },
@@ -1904,8 +1909,8 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
     scene.text('On the way to the bathroom, you pick up your clothes, then spend some time cleaning the rest of their cum off your faces.');
     if (((s as any).locArgs?.[1] ?? 0) === 2) {
       if (((s as any).katjaQW ?? 0)?.['anal_quest'] < 3) {
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['anal_quest'] = 3;
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
         scene.text('"Impressive. First time doing anal and you\'re already getting double penetrated. What a slut you\'ve become! How was it?" you ask Katja.');
         if (((s as any).katjaQW ?? 0)?.['horny'] === 0) {
           // TODO-QSP: dynamic text: "It was amazing! I came so hard. When they both really started to fuck me fast, ...
@@ -1919,7 +1924,7 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).katjaQW ?? 0)?.['dp'] === 1) {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
           scene.text('"Welcome to the slut club!" you smile. "So how was it getting it in both holes at the same time?"');
           if (((s as any).katjaQW ?? 0)?.['horny'] === 0) {
             // TODO-QSP: dynamic text: "It was amazing! I came so hard. When they both really started to fuck me fast, ...
@@ -1932,7 +1937,7 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min(5, ((s as any).katjaQW ?? 0)?.['dp']) + 1);
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min(5, ((s as any).katjaQW ?? 0)?.['dp']) + 1);
           scene.text('"So how were these guys compared to others that have destroyed both of your holes?" you ask.');
           if (((s as any).katjaQW ?? 0)?.['horny'] === 0) {
             // TODO-QSP: dynamic text: "It was pretty good. I came hard, '+iif(npc_ass['A14'] + 4*katjaQW['lube'] <dick...
@@ -1949,8 +1954,8 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 1) {
         if (((s as any).katjaQW ?? 0)?.['anal_quest'] < 3) {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['anal_quest'] = 3;
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
           scene.text('"So, how was anal sex? Was it what you expected?" you ask.');
           if (((s as any).katjaQW ?? 0)?.['horny'] === 0) {
             // TODO-QSP: dynamic text: "It was great. I didn't think I would be able to cum from a cock in my ass. '+ii...
@@ -1965,12 +1970,12 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('"So were they any good?" you ask.');
           if (((s as any).katjaQW ?? 0)?.['horny'] === 0) {
-            if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 4) + 2);
+            ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 4) + 2);
             // TODO-QSP: dynamic text: "They were pretty good, '+iif(npc_ass['A14'] + 4*katjaQW['lube'] <dick1, ' even ...
             scene.text(`"They were pretty good, '+iif(npc_ass['A14'] + 4*katjaQW['lube'] <dick1, ' even if ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s dick was so large it hurt.', ' no pain at all.')+' I say they're approved," she says as her face turns completely red and she laughs about how casually she talks about things like this now.`);
           } else {
             if (((s as any).npc_ass ?? 0)?.['A14'] + 4*((s as any).katjaQW ?? 0)?.['lube'] < ((s as any).dick1 ?? 0)) {
-              if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
+              ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
               scene.text('"No, they were not. It hurt a lot. Next time, I need a guy with a smaller dick," she answers, not looking satisfied at all.');
             } else {
               scene.text('"Not really. They did okay in not making it hurt, but they don\'t know how to please a lady, only thinking about how to get themselves off," she complains.');
@@ -1980,12 +1985,12 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('"So were they any good?" you ask.');
         if (((s as any).katjaQW ?? 0)?.['horny'] === 0) {
-          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
           // TODO-QSP: dynamic text: "They were pretty good, '+iif(npc_vag['A14']<dick1, ' even if <<$npc_nickname[$n...
           scene.text(`"They were pretty good, '+iif(npc_vag['A14']<dick1, ' even if ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s dick was so large it hurt.', ' ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s dick fit nicely in my pussy.')+' I say that he's approved, but I only sucked ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID2 ?? 0)] ?? ''}' cock, so I can't say anything about him," she replies as her face turns completely red and she laughs about how casually she rates sex skills now.`);
         } else {
           if (((s as any).npc_vag ?? 0)?.['A14'] <((s as any).dick1 ?? 0)) {
-            if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
+            ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
             // TODO-QSP: dynamic text: "No, they were not. It hurt a lot since <<$npc_nickname[$npcID1]>>'s cock was to...
             scene.text(`"No, they were not. It hurt a lot since ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID1 ?? 0)] ?? ''}'s cock was too big for my pussy. Next time, I need a guy with a smaller dick," she answers, not looking satisfied at all.`);
           } else {
@@ -2003,10 +2008,11 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk to the metro', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['on_date'] = 1;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['on_date'] = 1;
     if (((s as any).katjaQW ?? 0)?.['lube'] === 1) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['lube'] = 0;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['lube'] = 0;
     }
+    (s as any).location_type = 'public_outdoors';
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/walking_home_at_night.jpg');
     scene.text('You leave the apartment and walk out into the streets, heading in the direction of the nearest metro station.');
     scene.text('You discuss the sex you just had before you reach the station.');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/couple.jpg');
   scene.text('As you and Fedor arrive at the cinema, Fedor presented the tickets at the entrance then brought you to the concession stand.');
@@ -119,9 +120,9 @@ function enterFront(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue jerking him', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 10) + 1;
     if (((s as any).VK ?? 0) <= 8) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Front HJ'] }]);
+      qspGoto(s, 'FedorEv3', 'Front HJ');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Front Caught'] }]);
+      qspGoto(s, 'FedorEv3', 'Front Caught');
     }
   } },
       { label: 'Finish and continue watching the movie', goto: ['FedorEv3', 'Movies 2'] },
@@ -280,12 +281,12 @@ function enterBack(s: GameState, scene: SceneBuilder): void {
       { label: 'Spread your legs for him', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 10) + 1;
     if (((s as any).VK ?? 0) <= 7  &&  ((s as any).FedorLoveTalk ?? 0) < 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Back Sex'] }]);
+      qspGoto(s, 'FedorEv3', 'Back Sex');
     } else {
       if (((s as any).VK ?? 0) <= 7  &&  ((s as any).FedorLoveTalk ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Back Preg'] }]);
+        qspGoto(s, 'FedorEv3', 'Back Preg');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Back Caught'] }]);
+        qspGoto(s, 'FedorEv3', 'Back Caught');
       }
     }
   } },
@@ -368,9 +369,9 @@ function enterBackPreg(s: GameState, scene: SceneBuilder): void {
     { label: 'Pull out please', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 10) + 1;
     if (((s as any).VK ?? 0) <= 7) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Back Sex'] }]);
+      qspGoto(s, 'FedorEv3', 'Back Sex');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Back Caught'] }]);
+      qspGoto(s, 'FedorEv3', 'Back Caught');
     }
   } },
   ]);
@@ -423,6 +424,8 @@ function enterRestroomBreak(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'FedorEv3';
+  (s as any).menu_arg = 'Restroom';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/restrooms.jpg');
   scene.text('You give Fedor a kiss on the cheek then head to the restroom, once you get there you see the men\'s restroom and the ladies restroom.');
@@ -436,10 +439,12 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
 
 function enterLadiesRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv3', 'Ladies Room');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b><h4><font color=#ff00cc>Restroom</font></h4></b></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Ladies/ladiesrestroom.jpg');
-  scene.text('The ladies room is very clean and has 3 <a href="exec:gt \'mirror\', \'start\'">mirrors</a>, 3 sinks and 4 stalls.');
+  scene.text('The ladies room is very clean and has 3 <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a>, 3 sinks and 4 stalls.');
   if (((s as any).EndMovie ?? 0) === 1) {
     scene.actions([
       { label: 'Leave the restroom', goto: ['FedorEv3', 'Movies 3'] },
@@ -454,9 +459,9 @@ function enterLadiesRoom(s: GameState, scene: SceneBuilder): void {
     { label: 'Have a quick wash (0:10)', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 10) + 1;
     if (((s as any).VK ?? 0) <= 4) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Lady'] }]);
+      qspGoto(s, 'FedorEv3', 'Restroom Lady');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Wash'] }]);
+      qspGoto(s, 'FedorEv3', 'Restroom Wash');
     }
   } },
   ]);
@@ -465,10 +470,12 @@ function enterLadiesRoom(s: GameState, scene: SceneBuilder): void {
 
 function enterMensRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorEv3', 'Mens Room');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Restroom</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Ladies/ladiesrestroom.jpg');
-  scene.text('The men\'s room is a little dirty and has a long <a href="exec:gt \'mirror\', \'start\'">mirror</a>, 2 sinks and 4 stalls.');
+  scene.text('The men\'s room is a little dirty and has a long <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, 2 sinks and 4 stalls.');
   if (((s as any).EndMovie ?? 0) === 1) {
     scene.actions([
       { label: 'Leave the restroom', goto: ['FedorEv3', 'Movies 3'] },
@@ -483,18 +490,18 @@ function enterMensRoom(s: GameState, scene: SceneBuilder): void {
     { label: 'Have a quick wash (0:10)', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 20) + 1;
     if (((s as any).VK ?? 0) <= 5  &&  (!((s as any).WithFedor ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Man'] }]);
+      qspGoto(s, 'FedorEv3', 'Restroom Man');
     } else {
       if (((s as any).VK ?? 0) <= 10  &&  ((s as any).WithFedor ?? 0) === 0  &&  (((s as any).succubusflag ?? 0) !== 1  ||  ((s as any).succublvl ?? 0) < 2)) {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Man 2'] }]);
+        qspGoto(s, 'FedorEv3', 'Restroom Man 2');
       } else {
         if (((s as any).VK ?? 0) <= 15  &&  (!((s as any).WithFedor ?? 0))) {
-          scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Gang'] }]);
+          qspGoto(s, 'FedorEv3', 'Restroom Gang');
         } else {
           if (((s as any).VK ?? 0) <= 8  &&  ((s as any).WithFedor ?? 0) === 1) {
-            scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Rescue'] }]);
+            qspGoto(s, 'FedorEv3', 'Restroom Rescue');
           } else {
-            scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Wash 2'] }]);
+            qspGoto(s, 'FedorEv3', 'Restroom Wash 2');
           }
         }
       }
@@ -505,6 +512,8 @@ function enterMensRoom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomFedor(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'FedorEv3';
+  (s as any).menu_arg = 'Restroom Fedor';
   (s as any).FedorRest = 1;
   (s as any).WithFedor = 1;
   qspCall(s, 'stat', '');
@@ -752,6 +761,7 @@ function enterRestroomLady(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Ladies/lady7.jpg');
     scene.text('The pleasure begins building quickly as you close your eyes, surrendering yourself to the pleasure and soon you feel your entire body begin to heat up as you reach your breaking point. You suddenly feel your muscles stiffen as you hit an explosive orgasm causing your body to twitch and spasm as her soft tongue continues massaging your clit. You ride out your orgasm then take a few seconds to catch your breath before opening your eyes to see the woman\'s face in front of yours as she says, "It looks like you enjoyed yourself. I guess I still have it. I have to go now but I had a great time and I do hope to see you again." she then gets dressed and leaves the restroom.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Ladies/kiss1.jpg');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -889,9 +899,9 @@ function enterRestroomMan2(s: GameState, scene: SceneBuilder): void {
     { label: 'Splash water in his face', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 3) + 1;
     if (((s as any).VK ?? 0) === 1  ||  (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).succublvl ?? 0) > 1)) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Escape'] }]);
+      qspGoto(s, 'FedorEv3', 'Restroom Escape');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Rape'] }]);
+      qspGoto(s, 'FedorEv3', 'Restroom Rape');
     }
   } },
     { label: 'Submit', handler: (st: GameState) => {
@@ -957,7 +967,7 @@ function enterRestroomEscape(s: GameState, scene: SceneBuilder): void {
 function enterRestroomRape(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (10);
   qspCall(s, 'mood', 'lower', 'medium');
-  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (15);
+  ((s as any).pain = (s as any).pain ?? {})['tummy'] = ((s as any).pain['tummy'] ?? 0) + (15);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/rape.jpg');
   scene.text('You carefully move your hand under the tap and fill your hand with water and then splash it in the attackers face but sadly it only makes him angrier, he then slams you against the wall and then punches you in the stomach as he strips you. The man grabs you by the throat as he exclaims "STUPID BITCH! I warned you but you had to be a brave little bitch! now I\'m going to take my time with you!"');
@@ -976,7 +986,7 @@ function enterRestroomRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Do as he says', handler: (st: GameState) => {
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/mensrape1.mp4');
     scene.text('You start preparing to stand up when he lifts you up by your shoulders and then unzips his pants and you can feel his dick pressing against your anus. You plead with him "Please at least lube…" He then drives his cock into your ass causing a sharp pain. You scream loudly but then he places his hand over your mouth and whispers in your ear "No screaming for you. The only thing I want to hear out of your mouth is "Fuck me harder."');
@@ -984,14 +994,14 @@ function enterRestroomRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Let him fuck you', handler: (st: GameState) => {
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/mensrape1.mp4');
     scene.text('You continue to give in knowing that there is nothing more you can do. Feeling both pain and fear not knowing what will happen next, how long will this last or if he will even let you go after he is done. You can only try your best to distract yourself from the almost unbearable pain.');
     qspCall(s, 'arousal', 'anal', (-5), 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     (s as any).PyotrPhoto = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/mensrestroom.jpg');
@@ -1224,6 +1234,8 @@ function enterRestroomRescue(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomWash(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'FedorEv3';
+  (s as any).menu_arg = 'Restroom Wash';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).FedorRestTimes = ((s as any).FedorRestTimes ?? 0) + (1);
   (s as any).cumspclnt = 1;
@@ -1258,6 +1270,8 @@ function enterRestroomWash(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomWash2(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'FedorEv3';
+  (s as any).menu_arg = 'Restroom Wash 2';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).FedorRestTimes = ((s as any).FedorRestTimes ?? 0) + (1);
   (s as any).cumspclnt = 1;
@@ -1292,6 +1306,8 @@ function enterRestroomWash2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomWash3(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'FedorEv3';
+  (s as any).menu_arg = 'Restroom Wash 3';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).cumspclnt = 1;
   qspCall(s, 'cum_cleanup', '');
@@ -1437,7 +1453,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const FedorEv3: LocationDef = {
   name: 'FedorEv3',
-  title: '<<"Fyodor [Fedor] Kozlov">>',
   region: 'other',
   locationType: 'bathroom',
   locclass: 'restroom',

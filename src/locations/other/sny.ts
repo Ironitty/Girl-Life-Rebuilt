@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/newyear.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -277,7 +278,8 @@ function enter7(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_residential', ''] },
+    qspGoto(s, 'pav_residential', '');
+  } },
             ]);
           }
           scene.actions([
@@ -416,7 +418,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'wait', handler: (st: GameState) => {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A1'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A1'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/dimkahome/newyear/sex/fuck.jpg');
     qspCall(s, 'dinSex', 'wear_condom');
@@ -427,11 +429,11 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck him', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A127', 'a');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A4'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A4'] = 1;
     if (((s as any).protect ?? 0) === 1) {
       (s as any).condomDima = 1;
     }
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     scene.img('images/shared/sex/group/gang23.jpg');
     // TODO-QSP: dynamic text: You wrap your lips around Gosha's <<dick1>>cm <<$dick_girth1>> dick and start su...
     scene.text(`You wrap your lips around Gosha's ${((s as any).dick1 || '')}cm ${((s as any).dick_girth1 || '')} dick and start sucking it.`);
@@ -545,7 +547,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_residential', ''] },
+    qspGoto(s, 'pav_residential', '');
+  } },
   ]);
   scene.build();
 }

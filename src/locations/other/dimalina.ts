@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,27 +12,27 @@ function enterDimkalina0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).dimbadgirl = 0;
   if ((!((s as any).dimlinaQW ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina1'] }]);
+    qspGoto(s, 'dimalina', 'dimkalina1');
   } else {
     if (((s as any).dimlinaQW ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina2'] }]);
+      qspGoto(s, 'dimalina', 'dimkalina2');
     } else {
       if (((s as any).dimlinaQW ?? 0) === 2) {
-        scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina3'] }]);
+        qspGoto(s, 'dimalina', 'dimkalina3');
       } else {
         if (((s as any).dimlinaQW ?? 0) === 3) {
-          scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina4'] }]);
+          qspGoto(s, 'dimalina', 'dimkalina4');
         } else {
           if (((s as any).dimlinaQW ?? 0) === 4) {
-            scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina5'] }]);
+            qspGoto(s, 'dimalina', 'dimkalina5');
           } else {
             if (((s as any).dimlinaQW ?? 0) === 5) {
-              scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina6'] }]);
+              qspGoto(s, 'dimalina', 'dimkalina6');
             } else {
               if (((s as any).dimlinaQW ?? 0) === 6) {
-                scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina7'] }]);
+                qspGoto(s, 'dimalina', 'dimkalina7');
               } else {
-                scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina8'] }]);
+                qspGoto(s, 'dimalina', 'dimkalina8');
               }
             }
           }
@@ -148,7 +148,8 @@ function enterListen(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Try to help her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['dimalina', 'Help'] },
+    qspGoto(s, 'dimalina', 'Help');
+  } },
       ]);
     }
     scene.actions([
@@ -172,7 +173,8 @@ function enterListen(s: GameState, scene: SceneBuilder): void {
         { label: 'Try to help her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['dimalina', 'Help'] },
+    qspGoto(s, 'dimalina', 'Help');
+  } },
       ]);
     }
     scene.actions([
@@ -198,7 +200,8 @@ function enterListen(s: GameState, scene: SceneBuilder): void {
         { label: 'Try to help her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['dimalina', 'Help'] },
+    qspGoto(s, 'dimalina', 'Help');
+  } },
       ]);
     }
     scene.actions([
@@ -357,7 +360,8 @@ function enterDimkalina2(s: GameState, scene: SceneBuilder): void {
         { label: 'Cause a distraction', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['dimalina', 'distraction'] },
+    qspGoto(s, 'dimalina', 'distraction');
+  } },
       ]);
     }
     scene.actions([
@@ -380,7 +384,8 @@ function enterDimkalina2(s: GameState, scene: SceneBuilder): void {
         { label: 'Cause a distraction', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['dimalina', 'distraction'] },
+    qspGoto(s, 'dimalina', 'distraction');
+  } },
       ]);
     }
     scene.actions([
@@ -405,7 +410,8 @@ function enterDimkalina2(s: GameState, scene: SceneBuilder): void {
         { label: 'Cause a distraction', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['dimalina', 'distraction'] },
+    qspGoto(s, 'dimalina', 'distraction');
+  } },
       ]);
     }
     scene.actions([
@@ -883,7 +889,8 @@ function enterDimkalina7(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Help her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['dimalina', 'helplina'] },
+    qspGoto(s, 'dimalina', 'helplina');
+  } },
       ]);
     }
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -939,7 +946,8 @@ function enterDimkalina8(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '"Neither"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-  }, goto: ['dimalina', 'helplina'] },
+    qspGoto(s, 'dimalina', 'helplina');
+  } },
       ]);
     }
     if (((s as any).succubusflag ?? 0) === 1) {

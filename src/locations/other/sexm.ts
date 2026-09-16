@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
   // TODO-QSP: dynamic text: <<$npcdesc>> stops at the entrance of your building.
@@ -31,7 +32,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).husID ?? 0) === '') {
     scene.actions([
-      { label: 'Invite him in', goto: ['sexm', 'room'] },
+      { label: 'Invite him in', handler: (st: GameState) => {
+    qspGoto(s, 'sexm', 'room');
+  } },
     ]);
   } else {
     if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 17  &&  ((s as any).hour ?? 0) > 7) {
@@ -59,11 +62,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
           { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
     (s as any).boycherdaksex = 1;
-  }, goto: ['sexm', 'room'] },
+    qspGoto(s, 'sexm', 'room');
+  } },
         ]);
       }
     }
@@ -278,7 +283,8 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Give him a blowjob', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-  }, goto: ['sexm', 'minet'] },
+    qspGoto(s, 'sexm', 'minet');
+  } },
         ]);
       } else {
         if (((s as any).sexrand ?? 0) === 1) {
@@ -287,7 +293,8 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Anal', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 2);
-  }, goto: ['sexm', 'anal'] },
+    qspGoto(s, 'sexm', 'anal');
+  } },
           ]);
         } else {
           if (((s as any).sexrand ?? 0) === 2) {
@@ -335,7 +342,8 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Give blowjob', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 1);
-  }, goto: ['sexm', 'minet'] },
+    qspGoto(s, 'sexm', 'minet');
+  } },
           ]);
         } else {
           if (((s as any).sexrand ?? 0) === 1) {
@@ -344,7 +352,8 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Anal', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-  }, goto: ['sexm', 'anal'] },
+    qspGoto(s, 'sexm', 'anal');
+  } },
             ]);
           } else {
             if (((s as any).sexrand ?? 0) === 2) {
@@ -401,7 +410,8 @@ function enterVariant(s: GameState, scene: SceneBuilder): void {
         { label: 'Fuck him with your strapon', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['sexm', 'strapon'] },
+    qspGoto(s, 'sexm', 'strapon');
+  } },
       ]);
     }
   }
@@ -545,9 +555,10 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     { label: 'Further', handler: (st: GameState) => {
     if (((s as any).husID ?? 0) !== ''  &&  ((s as any).hour ?? 0) < 17  &&  ((s as any).hour ?? 0) > 7  &&  (!((s as any).boycherdaksex ?? 0))) {
       (s as any).popolaini = 2;
-      scene.actions([{ label: 'Continue', goto: ['sexm', 'popala'] }]);
+      qspGoto(s, 'sexm', 'popala');
     }
-  }, goto: ['sexm', 'variant'] },
+    qspGoto(s, 'sexm', 'variant');
+  } },
   ]);
   scene.build();
 }
@@ -565,7 +576,8 @@ function enterStrapon(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Wipe your hands and walk him to the door', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
   ]);
   scene.build();
 }
@@ -622,7 +634,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       scene.text(`You do not have any lubricant, so ${((s as any).npcdesc || '')} spits on his fingers to lubricate your ass.`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
         (s as any).lubonus = 10;
         scene.text('You take out a tube of lubricant and hand it to the guy. He squeezes a little on the palm of his hand and rubs your anus.');
       }
@@ -750,7 +762,8 @@ function enterStartPod(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'lover', 'remove_boyfriend', ((s as any).npcID ?? 0));
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
       ]);
     }
     scene.actions([
@@ -772,7 +785,8 @@ function enterStartPod(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'lover', 'remove_boyfriend', ((s as any).npcID ?? 0));
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
       ]);
     }
     scene.actions([
@@ -796,7 +810,9 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Collect clothes and leave', goto: ['homes_properties', 'go_straight_home'] },
+    { label: 'Collect clothes and leave', handler: (st: GameState) => {
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
   ]);
   scene.build();
 }
@@ -865,7 +881,8 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
     ]);
   } },
       ]);
@@ -879,7 +896,8 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
     ]);
   } },
     ]);
@@ -907,7 +925,8 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Wipe your hands and walk away', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
     ]);
   } },
   ]);
@@ -924,7 +943,8 @@ function enterGangrape(s: GameState, scene: SceneBuilder): void {
     { label: 'Start a fight', handler: (st: GameState) => {
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'stranger');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -935,7 +955,7 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'lover', 'remove_boyfriend', ((s as any).npcID ?? 0));
   }
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '', '', ((s as any).boy1 ?? 0));
@@ -994,6 +1014,8 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).pcs_horny ?? 0) >= 90) {
+      (s as any).orgasm_or = 'custom';
+      (s as any).orgasm_txt = 'You can feel the sensation in your stomach begin to grow, and soon, your whole body is overtaken by a shock as you moan through your orgasm.';
     }
     scene.text('It seems the guys have played enough with you, and they have decided to cum on your face. They remove their dicks from your holes and point them at you.');
     scene.actions([
@@ -1004,7 +1026,8 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
     ]);
   } },
     ]);
@@ -1052,7 +1075,8 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
     if (((s as any).popolaini ?? 0) === 3) {
       (s as any).picrand = 84;
     }
-  }, goto: ['sex', 'var'] },
+    qspGoto(s, 'sex', 'var');
+  } },
           ]);
         } else {
           // TODO-QSP: dynamic text: "This is a surprise, but oh well that clown ran away, and I am once again ready....
@@ -1060,14 +1084,16 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
             { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
     (s as any).picrand = 83;
     if (((s as any).popolaini ?? 0) === 3) {
       (s as any).picrand = 84;
     }
-  }, goto: ['sex', 'var'] },
+    qspGoto(s, 'sex', 'var');
+  } },
           ]);
         }
       }
@@ -1092,7 +1118,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
           scene.text(`"Sure, come on," pipes up ${((s as any).npcdesc || '')}. "Dear lie down on the bed."`);
           scene.actions([
             { label: 'Lie down', handler: (st: GameState) => {
-    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
     scene.img('images/characters/city/husband/sex/p1.jpg');
     // TODO-QSP: dynamic text: You lie down on the bed, and <<$npcdesc>> enters your pussy while <<$npcdesc1>> ...
     scene.text(`You lie down on the bed, and ${((s as any).npcdesc || '')} enters your pussy while ${((s as any).npcdesc1 || '')} lies before you and moves his cock to your mouth. You diligently work your husband's cock while not forgetting your lover's cock in your mouth.`);
@@ -1114,7 +1140,8 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
     ]);
   } },
           ]);
@@ -1125,7 +1152,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
           scene.text(`"Yeah, come to bed, see how I am going to love your ass," says ${((s as any).npcdesc || '')}.`);
           scene.actions([
             { label: 'Lie down', handler: (st: GameState) => {
-    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
     scene.img('images/characters/city/husband/sex/p2.jpg');
     // TODO-QSP: dynamic text: You lie down on the bed, and <<$npcdesc>> enters you in the anus, while <<$npcde...
     scene.text(`You lie down on the bed, and ${((s as any).npcdesc || '')} enters you in the anus, while ${((s as any).npcdesc1 || '')} lies before you, presenting his cock to your mouth. You diligently work your husband's cock in your ass while not forgetting your lover's cock in your mouth.`);
@@ -1147,7 +1174,8 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
     ]);
   } },
           ]);
@@ -1163,7 +1191,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + 120;
         (s as any).stolmoney = 0;
         qspCall(s, 'money', 'set', 0);
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_computer'] = 0;
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_computer'] = 0;
         // TODO-QSP: dynamic text: While getting up, you can see in the corner of the room your husband giving blow...
         scene.text(`While getting up, you can see in the corner of the room your husband giving blow after blow to ${((s as any).npcdesc1 || '')} as he tries hard to escape out the door. Finally, your lover succeeds, and he runs out of the apartment at a breakneck pace.`);
         // TODO-QSP: dynamic text: <<$npcdesc>> looks at you. "Here… you… whore… cock… and pussy… and ass… and in y...
@@ -1175,7 +1203,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         qspCall(s, 'lover', 'remove_boyfriend', ((s as any).npcID1 ?? 0));
-        if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
+        ((s as any).spouseVars = (s as any).spouseVars ?? {})['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
         // TODO-QSP: dynamic text: "Oh damn, she allowed you inside of her?" asks <<$npcdesc>>. "So now you will ne...
         scene.text(`"Oh damn, she allowed you inside of her?" asks ${((s as any).npcdesc || '')}. "So now you will need to pay me for the pleasure of using her. This is my slut!" he adds, referring to you. "Once that is settled, we will fuck her together," he continues, lifting you off the floor and throwing you on the bed.`);
         if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID1 ?? 0)] === 1) {
@@ -1203,7 +1231,8 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
         ]);
       }
     } else {
@@ -1232,7 +1261,8 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
     if (((s as any).popolaini ?? 0) === 3) {
       (s as any).picrand = 84;
     }
-  }, goto: ['sex', 'var'] },
+    qspGoto(s, 'sex', 'var');
+  } },
             ]);
           } else {
             // TODO-QSP: dynamic text: "Well this is a surprise, but oh well it looks like your hubby dumped you, and I...
@@ -1240,14 +1270,16 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
               { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
     (s as any).picrand = 83;
     if (((s as any).popolaini ?? 0) === 3) {
       (s as any).picrand = 84;
     }
-  }, goto: ['sex', 'var'] },
+    qspGoto(s, 'sex', 'var');
+  } },
             ]);
           }
         }
@@ -1272,7 +1304,8 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
     ]);
   } },
           ]);
@@ -1308,7 +1341,8 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
     ]);
   } },
             ]);
@@ -1342,7 +1376,8 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
     ]);
   } },
             ]);
@@ -1357,11 +1392,11 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
 
 function enterEndsex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).hour ?? 0) < 17  &&  ((s as any).hour ?? 0) > 7  &&  (!((s as any).boycherdaksex ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['sexm', 'popala'] }]);
+    qspGoto(s, 'sexm', 'popala');
   }
   (s as any).boycherdaksex = 0;
   qspCall(s, 'arousal', 'end');
-  scene.actions([{ label: 'Continue', goto: ['homes_properties', 'go_straight_home'] }]);
+  qspGoto(s, 'homes_properties', 'go_straight_home');
   // TODO-QSP: end
   scene.build();
 }

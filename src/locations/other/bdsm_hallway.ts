@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterFoyer(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckFoyerEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_hallway', 'foyer');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/foyer.jpg');
   scene.text('You stand in the grand foyer, your eye is draw towards and up the dual staircases. To your left is the Dinning room, to your right the dressing room.');
@@ -41,7 +42,7 @@ function enterCheckFoyerEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 85) {
     // TODO-QSP: exit
   }
-  scene.actions([{ label: 'Continue', goto: ['bdsm_hallway', 'foyer_event_<<rand(1, 5)>>'] }]);
+  qspGoto(s, 'bdsm_hallway', 'foyer_event_' + Math.floor(Math.random() * 5) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }

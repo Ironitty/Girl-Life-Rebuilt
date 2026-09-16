@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,13 +11,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterMarishaEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).marisha_day = ((s as any).daystart ?? 0);
   if (((s as any).MarishaQW ?? 0)?.['Event'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['marisha_ev', '0'] }]);
+    qspGoto(s, 'marisha_ev', '0');
   } else {
     if (((s as any).MarishaQW ?? 0)?.['Event'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['marisha_ev', '1'] }]);
+      qspGoto(s, 'marisha_ev', '1');
     } else {
       if (((s as any).MarishaQW ?? 0)?.['Event'] === 2) {
-        scene.actions([{ label: 'Continue', goto: ['marisha_ev', '2'] }]);
+        qspGoto(s, 'marisha_ev', '2');
       }
     }
   }
@@ -171,9 +171,12 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');
+    (s as any).loc = ((s as any).home ?? 0)?.['bedroom'];
+    (s as any).loc_arg = ((s as any).home ?? 0)?.['bedroom_arg'];
     // TODO-QSP: MarishaQW["marisha_sleepover"] = 1
     qspCall(s, 'stat', '');
-  }, goto: ['pre_sleep', 'prepare_sleep'] },
+    qspGoto(s, 'pre_sleep', 'prepare_sleep');
+  } },
     ]);
   } },
       { label: 'Ignore him', handler: (st: GameState) => {
@@ -185,9 +188,12 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');
+    (s as any).loc = ((s as any).home ?? 0)?.['bedroom'];
+    (s as any).loc_arg = ((s as any).home ?? 0)?.['bedroom_arg'];
     // TODO-QSP: MarishaQW["marisha_sleepover"] = 1
     qspCall(s, 'stat', '');
-  }, goto: ['pre_sleep', 'prepare_sleep'] },
+    qspGoto(s, 'pre_sleep', 'prepare_sleep');
+  } },
     ]);
   } },
     ]);

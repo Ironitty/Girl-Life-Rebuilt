@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,6 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'city_mall', '');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Shopping mall</b></center>');
@@ -17,8 +18,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).hour ?? 0) > 12  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).exhibitionQW ?? 0) >= 5  &&  ((s as any).KsenyaQW ?? 0) === 0  &&  ((s as any).Kignore ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['city_mall', 'ksenya_mall_event'] }]);
+    qspGoto(s, 'city_mall', 'ksenya_mall_event');
   }
+  (s as any).temp_table = '<center><table cellspacing=5 style="min-width:1000px; max-width:100%">';
   // TODO-QSP: $temp_table +=  '<tr>'
   // TODO-QSP: $temp_table +=    '<td align="center" width="33%"><a href="exec: minut += 3 & gt ''shop_pussycats'',...
   // TODO-QSP: $temp_table +=    '<td align="center" width="33%"><a href="exec:torg = 1 & minut += 3 & gt ''shop_gm...
@@ -100,7 +102,8 @@ function enterKsenyaMallEvent(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Say you don\'t have time right now and enter the mall', handler: (st: GameState) => {
     (s as any).Kignore = ((s as any).daystart ?? 0);
-  }, goto: ['city_mall', ''] },
+    qspGoto(s, 'city_mall', '');
+  } },
   ]);
   scene.build();
 }

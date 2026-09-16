@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -96,7 +96,8 @@ function enterBreakFun_2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons', 'short_break'] },
+    qspGoto(s, 'gschool_lessons', 'short_break');
+  } },
     ]);
   } else {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/bathroom/bathroom5.jpg');
@@ -116,6 +117,8 @@ function enterBreakFun_2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/bathroom/bathroom5.jpg');
     scene.text('You moan softly as she traces her tongue along your folds and over your clit. She does this for a few seconds before concentrating solely on your clit, expertly licking and sucking on it, her tongue piercing only adding to your pleasure.');
     scene.text('She teases you like this for only a few seconds before you feel your orgasm building, your breathing becoming more ragged.');
+    (s as any).orgasm_txt = 'Albina notices this and starts swirling her tongue over your engorged clit even faster, quickly bringing you to an explosive climax.';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'cuni', (-15), 'lesbian');
     qspCall(s, 'stat', '');
     scene.text('She keeps teasing your clit throughout your orgasm, increasing your pleasure even further. Once your orgasm passes, she pulls away and you look down at her with an appreciative smile.');
@@ -124,7 +127,8 @@ function enterBreakFun_2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons', 'short_break'] },
+    qspGoto(s, 'gschool_lessons', 'short_break');
+  } },
     ]);
   } },
     ]);
@@ -183,7 +187,7 @@ function enterLunchFun_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchFun_1_2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['julia_sex'] = 1;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['julia_sex'] = 1;
   qspCall(s, 'npcStat', 'A23');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/classroom/threesome1.jpg');
@@ -227,6 +231,8 @@ function enterLunchFun_1_2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/classroom/threesome5.jpg');
     scene.text('You feel a little left out, so you slide out from behind Albina and lay her flat on the desk before straddling her and sitting on her face, moaning loudly as she immediately starts eating your pussy.');
     scene.text('Albina gives out as much as she\'s receiving and you soon find yourself growing weak from the pleasure as her pierced tongue expertly swirls around your clit.');
+    (s as any).orgasm_txt = 'A few minutes of this is enough to bring you to an explosive orgasm and you muffle your screams as you cum over Albina\'s face.';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'cuni', (-15), 'lesbian');
     qspCall(s, 'stat', '');
     scene.text('Julia soon brings Albina over the edge and her muffled moans feel amazing against your sensitive clit before you climb off her and she flops back on the desk in ecstasy.');
@@ -252,7 +258,8 @@ function enterLunchFun_1_2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons', 'short_break'] },
+    qspGoto(s, 'gschool_lessons', 'short_break');
+  } },
     ]);
   } },
     ]);
@@ -276,6 +283,7 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You can sense the lust in her voice as she pushes you onto the floor, hikes up her skirt and pulls her thong off before sitting on your face.');
   scene.text('She moans loudly in pleasure as you start eating her out, her moans growing louder and her pussy growing wetter as she starts grinding against you, smearing her wetness across your face.');
   scene.text('After a few more seconds where she moans even louder and grinds even faster, she suddenly pulls herself off of you, her breath heavy.');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'cuni_give', 2);
   // TODO-QSP: end
   scene.actions([
@@ -298,6 +306,7 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Seeing this, she stops licking your pussy and stands up; you barely have time to ask what's happening before she jams her fingers deep inside you and starts fingerbanging you. "Cum for me, ${((s as any).pcs_nickname || '')}..." she whispers in your ear before making out with you.`);
     scene.text('You moan loudly into her mouth as she brings you to a powerful orgasm, leaving you panting on the desk as she pulls her fingers out and sucks on them. "You taste really fucking good, you know that?" she says teasingly with a wink.');
     qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'finger', (-5), 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -318,7 +327,8 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons', 'short_break'] },
+    qspGoto(s, 'gschool_lessons', 'short_break');
+  } },
     ]);
   } },
       { label: 'Finger her', handler: (st: GameState) => {
@@ -331,7 +341,8 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons', 'short_break'] },
+    qspGoto(s, 'gschool_lessons', 'short_break');
+  } },
     ]);
   } },
     ]);

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -20,7 +20,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     (s as any).bomzQW = (-1);
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'pay', 'resist');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -87,7 +87,8 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse and leave', handler: (st: GameState) => {
     (s as any).bomzQW = (-1);
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['city_industrial', ''] },
+    qspGoto(s, 'city_industrial', '');
+  } },
       ]);
     }
     if (((s as any).age ?? 0) < 18  &&  (!((s as any).fakepassport ?? 0))) {
@@ -96,7 +97,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m sorry, but I can\'t help you without a passport. Come back when you get one."');
     scene.text('Dimitri waves you out of his office and you leave the studio.');
     (s as any).bomzQW = 3;
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_pornstudio_delivery'] = 1;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['city_pornstudio_delivery'] = 1;
     scene.actions([
       { label: 'Leave', goto: ['city_industrial', ''] },
     ]);
@@ -203,6 +204,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/musorka.jpg');
   scene.text('A long line of trash cans for all the local apartments, shamefully hidden behind a corrugated iron fence.');
@@ -255,7 +257,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -279,7 +281,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -296,16 +298,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).podozrenie = ((s as any).podozrenie ?? 0) + (1);
     scene.text('"No, you just ogle away."');
     scene.text('The bum looks at you with suspicion.');
-    scene.actions([{ label: 'Continue', goto: ['city_trashplace', 'bomzstartqwestdi', '\'suspicious\''] }]);
+    qspGoto(s, 'city_trashplace', 'bomzstartqwestdi', 'suspicious');
   } },
         ]);
       } else {
         scene.text('"I\'d love to, but I don\'t have that kind of money."');
-        scene.actions([{ label: 'Continue', goto: ['city_trashplace', 'bomzstartqwestdi'] }]);
+        qspGoto(s, 'city_trashplace', 'bomzstartqwestdi');
       }
     } else {
       scene.text('"I\'m sorry mister, but I don\'t have that kind of money."');
-      scene.actions([{ label: 'Continue', goto: ['city_trashplace', 'bomzstartqwestdi'] }]);
+      qspGoto(s, 'city_trashplace', 'bomzstartqwestdi');
     }
   } },
       { label: 'Chase him off', handler: (st: GameState) => {
@@ -316,7 +318,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -428,12 +430,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0));
     qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0));
     qspCall(s, 'cum_call', 'face', ((s as any).npcID2 ?? 0));
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -449,7 +451,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

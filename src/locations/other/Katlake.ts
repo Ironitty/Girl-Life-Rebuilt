@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -128,10 +128,10 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   scene.text('You and Kat walk along the beach for a half hour, chatting merrily about all kinds of topics.');
   (s as any).kwalrand = Math.floor(Math.random() * 101) + 0;
   if (((s as any).kwalrand ?? 0) >= 80  &&  ((s as any).kwalrand ?? 0) < 90  &&  ((s as any).npc_rel ?? 0)?.['A219'] > 20) {
-    scene.actions([{ label: 'Continue', goto: ['Kwlake1', ''] }]);
+    qspGoto(s, 'Kwlake1', '');
   }
   if (((s as any).kwalrand ?? 0) >= 90  &&  ((s as any).npc_rel ?? 0)?.['A219'] > 20) {
-    scene.actions([{ label: 'Continue', goto: ['Kwlake2', ''] }]);
+    qspGoto(s, 'Kwlake2', '');
   }
   // TODO-QSP: end
   scene.actions([
@@ -164,7 +164,8 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
-  }, goto: ['kathouse0', ''] },
+    qspGoto(s, 'kathouse0', '');
+  } },
   ]);
   scene.build();
 }

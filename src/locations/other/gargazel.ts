@@ -5,6 +5,11 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'gargazel';
+  (s as any).menu_loc = 'gargazel';
+  (s as any).menu_arg = '';
+  (s as any).location_type = 'secluded';
   (s as any).fatherdrunk = 0;
   qspCall(s, 'family_schedule', '');
   qspCall(s, 'stat', '');
@@ -18,9 +23,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['Stepdad'] === 9) {
     if (((s as any).fatherdrunk ?? 0) === 1) {
-      scene.text('Your <a href="exec:gt \'garfather\'">stepfather and uncle Misha</a> are in the garage, drinking vodka.');
+      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027garfather\\u0027, \\u0027\\u0027); return false;">stepfather and uncle Misha</a> are in the garage, drinking vodka.');
     } else {
-      scene.text('Your <a href="exec:gt \'garfather\'">stepfather</a> is in the garage, working on his Gazelle pickup truck.');
+      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027garfather\\u0027, \\u0027\\u0027); return false;">stepfather</a> is in the garage, working on his Gazelle pickup truck.');
     }
   }
   if (((s as any).YouCanGar ?? 0) > 0) {
@@ -36,10 +41,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] > 0) {
           if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] >= ((s as any).trinkets_can_take ?? 0)) {
             scene.actions([
-              { label: 'Move <<trinkets_can_take>> trinkets to your home', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Move ' + String(((s as any).trinkets_can_take || '') ?? '') + ' trinkets to your home', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (((s as any).trinkets_can_take ?? 0));
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory['trinkets_garage'] ?? 0) - (((s as any).trinkets_can_take ?? 0));
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (((s as any).trinkets_can_take ?? 0));
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_garage'] = ((s as any).mc_inventory['trinkets_garage'] ?? 0) - (((s as any).trinkets_can_take ?? 0));
     qspCall(s, 'stat', '');
     scene.text('You spend an hour gathering your trinkets from various places, bringing them home and hiding them there.');
     scene.actions([
@@ -52,10 +57,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] < ((s as any).trinkets_can_take ?? 0)) {
             scene.actions([
-              { label: 'Collect <<mc_inventory[\'trinkets_garage\']>> trinkets to take with you', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Collect ' + String(((s as any).mc_inventory ?? 0)?.['trinkets_garage'] ?? '' ?? '') + ' trinkets to take with you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['trinkets_garage']);
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['trinkets_garage'] = 0;
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['trinkets_garage']);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_garage'] = 0;
     qspCall(s, 'stat', '');
     scene.text('You spend half an hour gathering your trinkets from various places in the garage, putting them in a bag so you can go sell them at the station.');
     scene.actions([

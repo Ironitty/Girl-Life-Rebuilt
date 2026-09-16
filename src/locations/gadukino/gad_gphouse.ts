@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gad_gphouse';
+  (s as any).region = 'gad';
   qspCall(s, 'homes_properties', 'give_access', 'grandparents_house');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudityTroubleLimit(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnterEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -22,9 +24,10 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prevloc ?? 0) !== 'gad_gphouse') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + 'locations/gadukino/gp_dacha/';
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = ((s as any).setloc ?? 0)?.['room_title'];
+  ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/gadukino/gp_dacha/';
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = ((s as any).setloc ?? 0)?.['room_title'];
   scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + (((s as any).setloc ?? {})?.['room_image'] ?? 0));
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'shortgs', 'clothing_status');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -44,37 +47,38 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   (s as any).temp_rand = Math.floor(Math.random() * 11) + 0;
   if (((s as any).temp_rand ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).locat ?? 0)?.['A31_loc'] === 'gad_gphouse'  &&  ((s as any).locat ?? 0)?.['A31_arg'] !== 'gp_room') {
-    scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'grandma_leave_event'] }]);
+    qspGoto(s, 'gad_gphouse', 'grandma_leave_event');
   } else {
     if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gphouse'  &&  ((s as any).locat ?? 0)?.['A32_arg'] !== 'gp_room') {
-      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'grandpa_leave_event'] }]);
+      qspGoto(s, 'gad_gphouse', 'grandpa_leave_event');
     }
   }
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['room_title'] = 'Your Grandparents\' Cottage';
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['room_image'] = 'izba.jpg';
+  ((s as any).setloc = (s as any).setloc ?? {})['room_title'] = 'Your Grandparents\' Cottage';
+  ((s as any).setloc = (s as any).setloc ?? {})['room_image'] = 'izba.jpg';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'main']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.text('A fairly simple cottage in the village of Gadukino which your grandparents call home. In the main room there is a huge <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a>. You share this with your grandparents to store anything that won\'t fit in your chest.');
-  scene.text('There is an old <a href="exec:gt \'TV\',\'gad\'">television</a> in the living room. It\'s positioned next to a body length <a href="exec:gt \'mirror\', \'start\'">mirror</a>.');
-  scene.text('Your grandfather\'s <a href="exec: newspaperVars[\'dbag\'] = 0 & gs \'newspaper\', \'start\'">newspaper</a> is lying to the side.');
+  (s as any).locclass = 'livingr';
+  scene.text('A fairly simple cottage in the village of Gadukino which your grandparents call home. In the main room there is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a>. You share this with your grandparents to store anything that won\'t fit in your chest.');
+  scene.text('There is an old <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027gad\\u0027); return false;">television</a> in the living room. It\'s positioned next to a body length <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>.');
+  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\\u0027dbag\\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027newspaper\\u0027, \\u0027start\\u0027); return false;">newspaper</a> is lying to the side.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVillagecatString(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A31_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A31_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).locat ?? 0)?.['A31_arg1'] === 'reading') {
-      scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> relaxing on the couch reading a book.');
+      scene.text('You see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gp_elene\\u0027, \\u0027talk\\u0027); return false;">grandmother</a> relaxing on the couch reading a book.');
     } else {
       if (((s as any).locat ?? 0)?.['A31_arg1'] === 'watching_tv') {
-        scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> relaxing on the couch watching TV.');
+        scene.text('You see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gp_elene\\u0027, \\u0027talk\\u0027); return false;">grandmother</a> relaxing on the couch watching TV.');
       } else {
         if (((s as any).locat ?? 0)?.['A31_arg1'] === 'repearing_clothes') {
-          scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> sittinng on the couch repairing some clothes.');
+          scene.text('You see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gp_elene\\u0027, \\u0027talk\\u0027); return false;">grandmother</a> sittinng on the couch repairing some clothes.');
         } else {
           if (((s as any).locat ?? 0)?.['A31_arg1'] === 'knitting') {
-            scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> sitting on the couch knitting.');
+            scene.text('You see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gp_elene\\u0027, \\u0027talk\\u0027); return false;">grandmother</a> sitting on the couch knitting.');
           }
         }
       }
@@ -82,10 +86,10 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['A32_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A32_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).locat ?? 0)?.['A32_arg1'] === 'reading') {
-      scene.text('You see your <a href="exec: gt \'gp_zlatek\', \'talk\' ">grandfather</a> relaxing on the couch reading a book.');
+      scene.text('You see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gp_zlatek\\u0027, \\u0027talk\\u0027); return false;">grandfather</a> relaxing on the couch reading a book.');
     } else {
       if (((s as any).locat ?? 0)?.['A32_arg1'] === 'watching_tv') {
-        scene.text('You see your <a href="exec: gt \'gp_zlatek\', \'talk\' ">grandfather</a> relaxing on the couch watching TV.');
+        scene.text('You see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gp_zlatek\\u0027, \\u0027talk\\u0027); return false;">grandfather</a> relaxing on the couch watching TV.');
       }
     }
   }
@@ -93,12 +97,12 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A60_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A60_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).MiraVars ?? 0)?.['guest'] === 0) {
       if (((s as any).MiraVars ?? 0)?.['follow_time'] < 1) {
-        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 1;
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
       }
-      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+      qspGoto(s, 'gad_gphouse', 'main');
     } else {
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 0;
-      scene.text('<a href="exec: gt \'miroslava\', \'start\'">Mira</a> is sitting next to you.');
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 0;
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027miroslava\\u0027, \\u0027start\\u0027); return false;">Mira</a> is sitting next to you.');
     }
   }
   if ((Math.floor(Math.random() * 3) + 0) !== 0) {
@@ -118,7 +122,8 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go to your room', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-  }, goto: ['gad_gpbarn', 'barn_room'] },
+    qspGoto(s, 'gad_gpbarn', 'barn_room');
+  } },
     { label: 'Go to the kitchen', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
   }, goto: ['gad_gphouse', 'kitchen'] },
@@ -127,18 +132,19 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['room_title'] = 'Your Grandparents\' Kitchenette';
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['room_image'] = 'gp_kitchen.jpg';
+  ((s as any).setloc = (s as any).setloc ?? {})['room_title'] = 'Your Grandparents\' Kitchenette';
+  ((s as any).setloc = (s as any).setloc ?? {})['room_image'] = 'gp_kitchen.jpg';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'kitchen']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  (s as any).locclass = 'kitchen';
   scene.text('A small area separated from the rest of the dacha reserved for cooking and eating meals.');
   if (((s as any).locat ?? 0)?.['A31_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A31_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).locat ?? 0)?.['A31_arg1'] === 'cooking') {
-      scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> in the kitchen preparing a meal.');
+      scene.text('You see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gp_elene\\u0027, \\u0027talk\\u0027); return false;">grandmother</a> in the kitchen preparing a meal.');
     }
   }
   if (((s as any).locat ?? 0)?.['A32_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A32_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).locat ?? 0)?.['A32_arg1'] === 'reading') {
-      scene.text('You see your <a href="exec: gt \'gp_zlatek\', \'talk\' ">grandfather</a> in the kitchen reading a newspaper.');
+      scene.text('You see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gp_zlatek\\u0027, \\u0027talk\\u0027); return false;">grandfather</a> in the kitchen reading a newspaper.');
     }
   }
   qspCall(s, 'core_library', 'kitchen', 'full');
@@ -162,17 +168,17 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterFamilyTrip(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) > 12  &&  ((s as any).locat ?? 0)?.['Fam_month_inGad'] !== ((s as any).month ?? 0)) {
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Fam_inGad'] = 1;
+    ((s as any).locat = (s as any).locat ?? {})['Fam_inGad'] = 1;
   }
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
     scene.text('Your parents are relaxing inside.');
     qspCall(s, 'mother', 'check_workout');
     if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20) {
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Fam_month_inGad'] = ((s as any).month ?? 0);
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Fam_inGad'] = 0;
+      ((s as any).locat = (s as any).locat ?? {})['Fam_month_inGad'] = ((s as any).month ?? 0);
+      ((s as any).locat = (s as any).locat ?? {})['Fam_inGad'] = 0;
       if (((s as any).daystart ?? 0) > ((s as any).gadstay_day ?? 0)  &&  ((s as any).hour ?? 0) === 20  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
         if ((((s as any).kanikuli ?? 0) === 4  ||  ((s as any).kanikuli ?? 0) === 5)  &&  ((((s as any).month ?? 0) === 6  ||  ((s as any).month ?? 0) === 7)  ||  (((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) <= 25))) {
-          scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'family_trip_ask_go_home'] }]);
+          qspGoto(s, 'gad_gphouse', 'family_trip_ask_go_home');
         } else {
           scene.actions([
             { label: 'Go home to Pavlovsk', goto: ['gad_gphouse', 'to_pavlovsk'] },
@@ -196,7 +202,8 @@ function enterFamilyTripAskGoHome(s: GameState, scene: SceneBuilder): void {
     { label: 'Stay with your grandparents', handler: (st: GameState) => {
     (s as any).gadstay = 1;
     (s as any).gadstay_day = ((s as any).daystart ?? 0);
-  }, goto: ['gad_gphouse', 'entry'] },
+    qspGoto(s, 'gad_gphouse', 'entry');
+  } },
     { label: 'Go home to Pavlovsk', goto: ['gad_gphouse', 'to_pavlovsk'] },
   ]);
   scene.build();
@@ -204,7 +211,7 @@ function enterFamilyTripAskGoHome(s: GameState, scene: SceneBuilder): void {
 
 function enterToPavlovsk(s: GameState, scene: SceneBuilder): void {
   (s as any).gadstay = 0;
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Fam_inGad'] = 0;
+  ((s as any).locat = (s as any).locat ?? {})['Fam_inGad'] = 0;
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 15);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Your grandmother</b></center>');
@@ -214,7 +221,7 @@ function enterToPavlovsk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: Before leaving, your grandma hugs you and gives you <<$func('money', 'string_pro...
     scene.text(`Before leaving, your grandma hugs you and gives you ${qspFunc(s, 'money', 'string_profit', (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0)*25)} for your help with chores.`);
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = 0;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = 0;
   } else {
     scene.text('Before leaving, your grandma gives you a big hug goodbye.');
   }
@@ -227,7 +234,7 @@ function enterToPavlovsk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToGadukino(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Fam_inGad'] = 1;
+  ((s as any).locat = (s as any).locat ?? {})['Fam_inGad'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 15);
   qspCall(s, 'stat', '');
   scene.text('You get into the Volga with the rest of your family, and before you know it, you\'ve arrived in Gadukino.');
@@ -242,38 +249,38 @@ function enterEnterEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) < 6) {
     if (((s as any).lost_girl ?? 0) === 1) {
       (s as any).lost_girl = 0;
-      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+      qspGoto(s, 'gad_gphouse', 'main');
     }
   } else {
     if (((s as any).gadstay ?? 0) === 1  &&  (((s as any).kanikuli ?? 0) === 4  ||  ((s as any).kanikuli ?? 0) === 5)  &&  ((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) >= 27) {
-      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'school_start'] }]);
+      qspGoto(s, 'gad_gphouse', 'school_start');
     } else {
       if (((s as any).lost_girl ?? 0) === 1) {
         if (((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0)) {
           (s as any).lost_girl = 0;
-          scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'was_lost_yesterday'] }]);
+          qspGoto(s, 'gad_gphouse', 'was_lost_yesterday');
         } else {
           (s as any).lost_girl = 0;
-          scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+          qspGoto(s, 'gad_gphouse', 'main');
         }
       } else {
         if (((s as any).grandmaQW ?? 0)?.['nudity_trouble_limit'] === 50) {
-          scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'nudity_trouble_kicked'] }]);
+          qspGoto(s, 'gad_gphouse', 'nudity_trouble_kicked');
         } else {
           if (((s as any).grandmaQW ?? 0)?.['nudity_trouble'] === ((s as any).grandmaQW ?? 0)?.['nudity_trouble_limit']) {
-            scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'nudity_trouble'] }]);
+            qspGoto(s, 'gad_gphouse', 'nudity_trouble');
           } else {
             if (((s as any).grandpaQW ?? 0)?.['disappointment'] === 1) {
-              scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'grandpa_disapointment'] }]);
+              qspGoto(s, 'gad_gphouse', 'grandpa_disapointment');
             } else {
               if (((s as any).grandmaQW ?? 0)?.['disappointment'] === 1) {
-                scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'grandma_disapointment'] }]);
+                qspGoto(s, 'gad_gphouse', 'grandma_disapointment');
               } else {
                 if (((s as any).grandmaQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20) {
-                  scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'first_visit'] }]);
+                  qspGoto(s, 'gad_gphouse', 'first_visit');
                 } else {
                   if (((s as any).grandmaQW ?? 0)?.['last_month_paid'] !== ((s as any).month ?? 0)  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20) {
-                    scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'chores_pay'] }]);
+                    qspGoto(s, 'gad_gphouse', 'chores_pay');
                   }
                 }
               }
@@ -290,7 +297,7 @@ function enterEnterEvents(s: GameState, scene: SceneBuilder): void {
 function enterNormalEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20) {
     if (qspFunc(s, 'miroslava_schedule', 'is_here', 'gp')  &&  ((s as any).MiraVars ?? 0)?.['guest'] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'mira_visit'] }]);
+      qspGoto(s, 'gad_gphouse', 'mira_visit');
     }
   }
   // TODO-QSP: end
@@ -299,52 +306,52 @@ function enterNormalEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterNudityTroubleLimit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'] === 0  ||  ((s as any).grandmaQW ?? 0)?.['nudity_trouble_limit'] === 0) {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_base'] = 10;
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_base'] = 10;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
   } else {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
   }
   if (((s as any).gschoolVars ?? 0)?.['block'] === 1) {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (5);
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (5);
   }
   if (((s as any).momKnowsKolka ?? 0) === 1) {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (10);
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (10);
   }
   if (((s as any).momKnowsVladimir ?? 0) === 1) {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (10);
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (10);
   }
   if (((s as any).momslut ?? 0) < 2) {
     if (((s as any).motherKnowWhore ?? 0) > 0) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
     }
     if (((s as any).motherKnowSpravka ?? 0) > 0) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
   if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
     if (((s as any).brotherQW ?? 0)?.['know_slut'] > 1) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
     }
     if (((s as any).brotherQW ?? 0)?.['know_slut'] > 0) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
   if (((s as any).sisterQW ?? 0)?.['roma3block'] === 1) {
     if (((s as any).sisterknowslut ?? 0) > 1  &&  ((s as any).sisboypartyQW ?? 0) > 1) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
     }
     if (((s as any).sisterknowslut ?? 0) > 0) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
   if (((s as any).GadBoy ?? 0)?.['river_gang'] === 2) {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (5);
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (5);
   } else {
     if (((s as any).npc_QW ?? 0)?.['A63'] >= 11) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
     }
     if (((s as any).MiraVars ?? 0)?.['QW'] >= 15) {
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
   // TODO-QSP: end
@@ -366,7 +373,7 @@ function enterSchoolStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Before leaving, your grandma hugs you and gives you <<$func('money', 'string_pro...
     scene.text(`Before leaving, your grandma hugs you and gives you ${qspFunc(s, 'money', 'string_profit', 25 * (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0))} for your help with chores.`);
     // TODO-QSP: gs 'money', 'earn', 25 * grandmaQW['help_amount'], 'cash'
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = 0;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = 0;
     qspCall(s, 'stat', '');
   } else {
     scene.text('Before leaving, your grandma gives you a big hug goodbye.');
@@ -383,10 +390,10 @@ function enterSchoolStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWasLostYesterday(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 0;
-  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 0;
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['last_day_helped'] = ((s as any).daystart ?? 0);
-  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['last_day_helped'] = ((s as any).daystart ?? 0);
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 0;
+  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 0;
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['last_day_helped'] = ((s as any).daystart ?? 0);
+  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['last_day_helped'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big32.jpg');
@@ -403,8 +410,8 @@ function enterWasLostYesterday(s: GameState, scene: SceneBuilder): void {
 
 function enterNudityTroubleKicked(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'block_access', 'grandparents_house');
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = 0;
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['block'] = 1;
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = 0;
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['block'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/grandparents/grandma.jpg');
@@ -422,12 +429,12 @@ function enterNudityTroubleKicked(s: GameState, scene: SceneBuilder): void {
 
 function enterNudityTrouble(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grandmaQW ?? 0)?.['nudity_trouble'] > ((s as any).grandmaQW ?? 0)?.['help_amount']) {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = 0;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = 0;
   } else {
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0) - (((s as any).grandmaQW ?? {})?.['nudity_trouble'] ?? 0);
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0) - (((s as any).grandmaQW ?? {})?.['nudity_trouble'] ?? 0);
   }
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = 0;
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble_base'] = ((s as any).grandmaQW['nudity_trouble_base'] ?? 0) + (1);
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble'] = 0;
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_base'] = ((s as any).grandmaQW['nudity_trouble_base'] ?? 0) + (1);
   scene.img('images/characters/shared/headshots_main/big32.jpg');
   scene.text('Suddenly your grandmother approaches you with a disappointed look on her face. "I had higher expectations of you, young lady! You should be ashamed of yourself for running around outdoors without clothes. You have embarrassed your grandfather and me! Our friends have seen you around naked, as have your grandfather and I, so don\'t even try to hide it."');
   scene.text('"This will be reflected in your allowance, don\'t act surprised at the beginning of the month."');
@@ -440,8 +447,8 @@ function enterNudityTrouble(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGrandpaDisapointment(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['disappointment'] = 0;
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
+  ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['disappointment'] = 0;
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'stat', '');
@@ -470,8 +477,8 @@ function enterGrandpaDisapointment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGrandmaDisapointment(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['disappointment'] = 0;
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['disappointment'] = 0;
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'stat', '');
@@ -493,7 +500,7 @@ function enterGrandmaDisapointment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['first_visit'] = 1;
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['first_visit'] = 1;
   qspCall(s, 'money', 'earn', 3000, 'cash');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -516,7 +523,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     (s as any).gadstay = 0;
     qspCall(s, 'homes_properties', 'give_access', 'parents_home');
     qspCall(s, 'homes_properties', 'set_home', 'parents_home');
-  }, goto: ['gad_gphouse', 'main'] },
+    qspGoto(s, 'gad_gphouse', 'main');
+  } },
     ]);
   } else {
     scene.actions([
@@ -528,7 +536,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQuickStart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['first_visit'] = 1;
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['first_visit'] = 1;
   qspCall(s, 'money', 'earn', 3000, 'cash');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -536,13 +544,13 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).kanikuli ?? 0) === 4  ||  ((s as any).kanikuli ?? 0) === 5)  &&  ((((s as any).month ?? 0) === 6  ||  ((s as any).month ?? 0) === 7)  ||  (((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) <= 25))) {
     (s as any).gadstay = 1;
   }
-  scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+  qspGoto(s, 'gad_gphouse', 'main');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterChoresPay(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['last_month_paid'] = ((s as any).month ?? 0);
+  ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['last_month_paid'] = ((s as any).month ?? 0);
   if (((s as any).grandmaQW ?? 0)?.['help_amount'] > 0) {
     // TODO-QSP: gs 'money', 'earn', (grandmaQW['help_amount'] * 25), 'cash'
   }
@@ -554,7 +562,7 @@ function enterChoresPay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grandmaQW ?? 0)?.['help_amount'] > 0) {
     // TODO-QSP: dynamic text: "You were quite helpful over the last few weeks, so here's <<$func('money', 'str...
     scene.text(`"You were quite helpful over the last few weeks, so here's ${qspFunc(s, 'money', 'string_profit', (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0) * 25)}." She starts to hand you the money, then lifts it away with a stern look, "But you can always do more work, young lady!" she scolds gently then smiles as she gives you the money.`);
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = 0;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = 0;
   } else {
     scene.text('"We really could have used your help last month," she says mournfully as she counts out some bills. "Maybe this month you\'ll do more to help us?" She looks at you sternly as she puts her purse away.');
   }
@@ -566,8 +574,8 @@ function enterChoresPay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiraVisit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guestday'] = ((s as any).daystart ?? 0) + 1;
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 1;
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0) + 1;
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');
@@ -585,53 +593,53 @@ function enterVillagecatString(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 8) {
     (s as any).temp = Math.floor(Math.random() * 10) + 0;
     if ((!((s as any).temp ?? 0))) {
-      scene.text('In a box filled with scraps of cloth, <a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a>is curled up, sleeping peacefully.');
+      scene.text('In a box filled with scraps of cloth, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a>is curled up, sleeping peacefully.');
     }
   } else {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).sunWeather ?? 0) === 1) {
       (s as any).temp = Math.floor(Math.random() * 3) + 0;
       if (((s as any).temp ?? 0) === 1) {
-        scene.text('<a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> is busy cleaning himself with his tongue on the table by the window.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> is busy cleaning himself with his tongue on the table by the window.');
       }
       if (((s as any).temp ?? 0) === 2) {
-        scene.text('<a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> lies lazily on the table by the window, soaking up some sunshine rays.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> lies lazily on the table by the window, soaking up some sunshine rays.');
       }
     } else {
       if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12  &&  (!((s as any).sunWeather ?? 0))) {
         (s as any).temp = Math.floor(Math.random() * 2) + 0;
         if ((!((s as any).temp ?? 0))) {
-          scene.text('In a box filled with scraps of cloth, <a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> is curled up, sleeping peacefully.');
+          scene.text('In a box filled with scraps of cloth, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> is curled up, sleeping peacefully.');
         }
         if (((s as any).temp ?? 0) === 1) {
-          scene.text('On the table by the window, <a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> stares in disgust at the rain outside.');
+          scene.text('On the table by the window, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> stares in disgust at the rain outside.');
         }
       } else {
         if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18) {
           (s as any).temp = Math.floor(Math.random() * 6) + 0;
           if (((s as any).temp ?? 0) === 3) {
-            scene.text('Next to the table by the window, <a href="exec:feedcat = 1 & gt \'gad_gphouse\',\'villagecat\'">Boniface</a> stretches and meows loudly. It\'s time for dinner.');
+            scene.text('Next to the table by the window, <a href="#" onclick="window.__gameStore.setState((s) => { s.feedcat = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> stretches and meows loudly. It\'s time for dinner.');
           }
           if (((s as any).temp ?? 0) === 4  &&  ((s as any).sunWeather ?? 0) === 1) {
-            scene.text('<a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> lies lazily on the table by the window, soaking up some sunshine rays.');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> lies lazily on the table by the window, soaking up some sunshine rays.');
           }
           if (((s as any).temp ?? 0) === 4  &&  (!((s as any).sunWeather ?? 0))) {
-            scene.text('In a box filled with scraps of cloth, <a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> is curled up, sleeping peacefully.');
+            scene.text('In a box filled with scraps of cloth, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> is curled up, sleeping peacefully.');
           }
         } else {
           if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).catout ?? 0) !== 2) {
             (s as any).temp = Math.floor(Math.random() * 4) + 0;
             if ((!((s as any).temp ?? 0))) {
-              scene.text('<a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> is stalking around the main floor, looking for a nice juicy mouse to play with.');
+              scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> is stalking around the main floor, looking for a nice juicy mouse to play with.');
             }
             if (((s as any).temp ?? 0) === 1  &&  (!((s as any).catout ?? 0))) {
               (s as any).catout = 1;
-              scene.text('<a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> twines around your ankles, then goes to the door, meowing pitifully.');
+              scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> twines around your ankles, then goes to the door, meowing pitifully.');
             }
           } else {
             if (((s as any).hour ?? 0) >= 22) {
               (s as any).temp = Math.floor(Math.random() * 3) + 0;
               if (((s as any).temp ?? 0) === 1) {
-                scene.text('In a box filled with scraps of cloth, <a href="exec: gt \'gad_gphouse\', \'villagecat\'">Boniface</a> is curled up, sleeping peacefully.');
+                scene.text('In a box filled with scraps of cloth, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gphouse\\u0027, \\u0027villagecat\\u0027); return false;">Boniface</a> is curled up, sleeping peacefully.');
               }
             }
           }
@@ -712,7 +720,7 @@ function enterGrandmaLeaveEvent(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -725,7 +733,7 @@ function enterGrandpaLeaveEvent(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -820,7 +828,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const gad_gphouse: LocationDef = {
   name: 'gad_gphouse',
-  title: 'Your mother, Natasha <<$pcs_lastname>>',
+  title: 'Your mother, Natasha',
   region: 'gadukino',
   locationType: 'public_indoors',
   locclass: 'kitchen',

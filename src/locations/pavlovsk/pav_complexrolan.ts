@@ -5,6 +5,9 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '';
+  (s as any).loc = 'pav_complexrolan';
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11) {
     if (((s as any).sunWeather ?? 0) === 1  &&  ((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] >= 9  &&  ((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] <= 10) {
@@ -27,7 +30,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You try to have a conversation with Rolan, but he dislikes you too much to even pretend to be interested in what you have to say.');
       scene.actions([
         { label: 'Chat anyway', handler: (st: GameState) => {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
     qspCall(s, 'stat', '');
     scene.text('You can tell his attitude towards you is slightly milder.');
     scene.actions([
@@ -41,7 +44,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('You have a nice chat with Rolan.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
     qspCall(s, 'stat', '');
     scene.text('You can tell your friendship is growing.');
     scene.actions([
@@ -55,7 +58,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('Rolan likes you too much to even pretend to not stare at your boobs.');
           scene.actions([
             { label: 'Friendly chat', handler: (st: GameState) => {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
     qspCall(s, 'stat', '');
     scene.text('You can see the bulge in his crotch growing.');
     scene.actions([
@@ -197,22 +200,49 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSpy(s: GameState, scene: SceneBuilder): void {
   (s as any).len_rol_ler = 0;
   if ((!((s as any).len_rol_ler ?? 0))) {
+    (s as any).court_texta = 'You notice two girls looking at each other; one is on the phone.';
+    (s as any).court_textb = 'Suddenly the girl without the phone pulls down the panties of her friend and starts eating her pussy while she continues the call… it seems they don\'t mind to play in the courtyard.';
+    (s as any).court_textc = 'The girl on the phone continues her call as she wants the listener on the other side to know she\'s busy. Her friend furiously rubs her pussy; causing her to lose control and suddenly cum. You think you have found a reason to visit the courtyard more often…';
   } else {
     if (((s as any).len_rol_ler ?? 0) === 1) {
+      (s as any).court_texta = 'Lena and Lera are walking in the park hand in hand.';
+      (s as any).court_textb = 'Suddenly they stop and start groping each other\'s butts…';
+      (s as any).court_textc = 'Both of them pull down their shorts, flashing their asses, and turn their heads… Ooops. They seem to have noticed Rolan…';
     } else {
       if (((s as any).len_rol_ler ?? 0) === 2) {
+        (s as any).court_texta = 'Two girls passionately kiss each other.';
+        (s as any).court_textb = 'They move onto a nearby wall, one of the girls sits spreading her legs. The other reaches for her panties and pulls them aside and starts to \'explore\' her friend.';
+        (s as any).court_textc = 'Soon they are both naked from the waist down and they start to make out. The blond girl kneels on her skirt and starts fingerfucking her friend.';
       } else {
         if (((s as any).len_rol_ler ?? 0) === 3) {
+          (s as any).court_texta = 'Lena and Lera kiss each other on a nearby bench…';
+          (s as any).court_textb = 'It seems it\'s not enough, because they immediately move a few steps away and both start undressing…';
+          (s as any).court_textc = 'When you hear the police sirens, Lera drags Lena away.';
         } else {
           if (((s as any).len_rol_ler ?? 0) === 4) {
+            (s as any).court_texta = 'Two stoned girls are flashing their pussy and tits. It seems really daring…';
+            (s as any).court_textb = 'They move on a bench, they must be in heat… one lifts herself onto a wall near the bench and spreads her legs, offering an easy access to the pussy; her friend starts licking and pulls out a dildo. She starts attacking the brunette with both her tongue and dildo…';
+            (s as any).court_textc = 'The brunette wants to return the favor and moves down to take lead. She starts fucking her friend\'s pussy as if nobody was there…';
           } else {
             if (((s as any).len_rol_ler ?? 0) === 5) {
+              (s as any).court_texta = 'You see Mrs Sokoloff coming and decide to move away. You don\'t want to listen to a lesson outside of school. You move away and turn to see if she\'s gone, but she\'s still there speaking with Rolan… wait… "Who\'s there?" you think. You see Lena and Lera exposing their bodies a few steps from Rolan and Mrs Sokoloff…';
+              (s as any).court_textb = 'Soon they move, you decide to follow them and hide behind a wall. Lera pulls out a dildo and start to lube it up, while Lena goes down and spreads Lera\'s lips…';
+              (s as any).court_textc = 'It seems too daring and soon they move on to a secluded spot to proceed unnoticed. You follow them and find a tree to crouch behind. Lena pushes the dildo further inside Lera and starts to fuck her. This spot passes as \'hidden\' and they continue to fuck free from unwanted viewers… at least they think so.';
             } else {
               if (((s as any).len_rol_ler ?? 0) === 6) {
+                (s as any).court_texta = 'Two girls sit on a nearby bench. They look around as if they were worried about something. Then you see one of the girls sticks a dildo up her ass. Guess she wasn\'t worried after all…';
+                (s as any).court_textb = 'Suddenly a man comes to the bench behind them. The girls turn a little to hide their actions, they clearly do not want to stop and stay as hidden as possible. The man picks up a newspaper he probably left behind and goes away…';
+                (s as any).court_textc = 'Once the man is out of their sight, the girl who was fucking her friend\'s ass turns her doggy on the bench to continue in that position. You leave, not wanting to be caught.';
               } else {
                 if (((s as any).len_rol_ler ?? 0) === 7) {
+                  (s as any).court_texta = 'You see two girls in a dress without underwear exposing their bodies. It seems they want to make a show…';
+                  (s as any).court_textb = 'The courtyard is crowded today and they constantly change position using a tree as a blindspot.';
+                  (s as any).court_textc = 'They kiss and touch one another, but they are obviously ashamed to go any further. Soon they move away, leaving you with a wetness in your crotch.';
                 } else {
                   if (((s as any).len_rol_ler ?? 0) === 8) {
+                    (s as any).court_texta = 'Rolan is pointing to the slipway and you wonder what\'s there. Wow Lena and Lera are putting on a show. They are completely naked on the slipway with their clothes nearby.';
+                    (s as any).court_textb = 'Suddenly, Mrs Sokoloff walks past, but she seems not to notice what\'s going on. Lena and Lera seem to find the situation funny and they continue trying to stay hidden from her.';
+                    (s as any).court_textc = 'Unbelievable. Mrs Sokoloff passes the slipway totally unaware. Lena and Lera start to kiss each other - it seems they want to party for their achievement.';
                   }
                 }
               }
@@ -338,14 +368,14 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
       { label: 'Ouch', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol2.jpg');
     scene.text('Rolan starts beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');
     scene.text('Your ass is red and painful, you are close to crying');
     scene.text('"I\'m sorry Rolan… I\'ve learned my lesson!"');
@@ -414,14 +444,14 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'ouch', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol2.jpg');
     scene.text('Rolan start beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');
     scene.text('Your ass is red and painful, you are close to crying');
     scene.text('"I\'m sorry Rolan… I\'ve learned my lesson!"');
@@ -487,14 +517,14 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
       { label: 'Ouch', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol2.jpg');
     scene.text('Rolan start beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
+    ((s as any).pain = (s as any).pain ?? {})['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');
     scene.text('Your ass is red and painful, you are close to crying.');
     scene.text('"I\'m sorry Rolan… I\'ve learned my lesson!"');

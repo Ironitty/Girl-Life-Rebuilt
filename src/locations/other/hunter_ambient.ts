@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,9 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNudeModelConvo(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['knowfoto'] = 1;
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (5);
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) + (3);
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['knowfoto'] = 1;
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (5);
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) + (3);
   scene.text('"I\'m telling you, I\'ve seen her pictures in a men\'s magazine." you overhear Igor.');
   scene.text('As soon as they notice you, the men stop talking and change the subject to another topic.');
   // TODO-QSP: end
@@ -19,9 +19,9 @@ function enterNudeModelConvo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripperConvo(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['knowstrip'] = 1;
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (5);
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (3);
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['knowstrip'] = 1;
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (5);
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (3);
   scene.text('"I promise you, it was her, I swear!" you overhear Sergei. "She was on the stage, stripping and dancing."');
   scene.text('As soon as they notice you, the men stop talking and change the subject to another topic.');
   // TODO-QSP: end
@@ -29,9 +29,9 @@ function enterStripperConvo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarConvo(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['knowfilm'] = 1;
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (7);
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (5);
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['knowfilm'] = 1;
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (7);
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (5);
   // TODO-QSP: dynamic text: "I recently downloaded some porn, and guess who was getting fucked in the video....
   scene.text(`"I recently downloaded some porn, and guess who was getting fucked in the video. Trust me, it was ${((s as any).pcs_firstname || '')}." you overhear Andrei.`);
   scene.text('As soon as they notice you, the men stop talking and change the subject to another topic.');
@@ -40,9 +40,9 @@ function enterPornstarConvo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRiverRapeConvo(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['Rape'] = 1;
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (7);
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (10);
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['Rape'] = 1;
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (7);
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (10);
   scene.text('"I\'m telling you, everyone in Gadukino has had the pleasure to "test out" the goods." you overhear Andrei.');
   // TODO-QSP: end
   scene.build();
@@ -105,7 +105,7 @@ function enterGenericConvo(s: GameState, scene: SceneBuilder): void {
                     scene.text('"So I was walking on the beach this one time…"');
                   } else {
                     if (((s as any).convo_rng_roll ?? 0) === 10) {
-                      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
+                      ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
                       scene.text('"I heard you beat down a snake with your bare hands once?"');
                       scene.text('"The rumors are true, my friend."');
                       scene.text('"So tell me, how did you manage that?"');
@@ -115,7 +115,7 @@ function enterGenericConvo(s: GameState, scene: SceneBuilder): void {
                         scene.text('If nothing comes by while you\'re hunting, you\'ve become one with the forest.');
                       } else {
                         if (((s as any).convo_rng_roll ?? 0) === 12) {
-                          if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
+                          ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
                           scene.text('I once went hunting. I brought my rifle but forgot the cartridges. So I let the dog sniff the gun, and she retrieved the ammo!');
                           scene.text('Something similar happened to me. I brought the bullets with me but forgot the rifle. So I let the dog sniff the ammo, and she retrieved the gun!');
                           scene.text('I went swimming with my wife, but she forgot the swimsuit. I let the dog sniff my wife between her legs, and she retrieved the neighbor by his balls!!!"');
@@ -136,7 +136,7 @@ function enterGenericConvo(s: GameState, scene: SceneBuilder): void {
                                 scene.text('"Not really. I drank it all up."');
                               } else {
                                 if (((s as any).convo_rng_roll ?? 0) === 16) {
-                                  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
+                                  ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
                                   scene.text('A hunter was chasing a bear. The bear was tough and healthy and sprinted, leaving the hunter behind. While looking backward, the bear got stuck between two trees. A rabbit runs by and asks the bear:');
                                   scene.text('"How did you get stuck there?"');
                                   scene.text('"Well…" the bear began its story, but the rabbit jumped on the bear and started fucking it in the ass. The bear got upset but could not get out.');
@@ -191,7 +191,7 @@ function enterGenericConvo(s: GameState, scene: SceneBuilder): void {
                                                     scene.text('"They were not, but their owner got pretty wild!"');
                                                   } else {
                                                     if (((s as any).convo_rng_roll ?? 0) === 26) {
-                                                      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
+                                                      ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
                                                       scene.text('A depressed man goes hunting. He finds a bear den, starts firing his rifle, shoots toward the bear and says:');
                                                       scene.text('"Listen here, either I kill you, or we fuck. Your choice! If you wanna survive, I suggest you pick the second option… Not satisfied, the hunter goes home, picks up more ammunition, returns to the den, and empties his clip. He forces the bear out, saying:');
                                                       scene.text('"Listen, either we fuck again, or I\'ll kill you, take your pick! The man survives even this time, wondering how he can still be alive. He goes home and returns with dynamite wanting to blow up the den. He sets up the dynamite, hides behind a rock and blows up the entrance to the den.');
@@ -202,7 +202,7 @@ function enterGenericConvo(s: GameState, scene: SceneBuilder): void {
                                                         scene.text('"Yeah, they do that, nasty bastards."');
                                                       } else {
                                                         if (((s as any).convo_rng_roll ?? 0) === 28) {
-                                                          if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
+                                                          ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
                                                           scene.text('So it was goose hunting season. A hunter, tired of staying hidden, finally saw a lone goose. He sneaks on it and gets as close as possible to take a shot.');
                                                           scene.text('He lets off a shot when he\'s finally close enough but misses the goose. It turns around and hisses towards the hunter.');
                                                           scene.text('"Shit! Do they bite?" asked the hunter. "What did you expect? That they suck?" answered his friend.');
@@ -290,56 +290,56 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'array', 'remove_element', 'hunterVars', 'chattime');
   if (((s as any).hunterVars ?? 0)?.['were_met'] > 0) {
     if (((s as any).hour ?? 0) === 7) {
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['breakfast'] = 1;
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['available'] = 1;
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['inside'] = 1;
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['breakfast'] = 1;
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['available'] = 1;
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['inside'] = 1;
     } else {
       if (((s as any).hour ?? 0) === 8) {
-        if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['available'] = 1;
-        if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['chattime'] = 1;
+        ((s as any).hunterVars = (s as any).hunterVars ?? {})['available'] = 1;
+        ((s as any).hunterVars = (s as any).hunterVars ?? {})['chattime'] = 1;
         if ((((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 15)) {
-          if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['inside'] = 1;
+          ((s as any).hunterVars = (s as any).hunterVars ?? {})['inside'] = 1;
         }
       } else {
         if (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 12) {
-          if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['hunting'] = 1;
+          ((s as any).hunterVars = (s as any).hunterVars ?? {})['hunting'] = 1;
         } else {
           if (((s as any).hour ?? 0) === 12  ||  ((s as any).hour ?? 0) === 13) {
-            if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['lunch'] = 1;
-            if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['available'] = 1;
+            ((s as any).hunterVars = (s as any).hunterVars ?? {})['lunch'] = 1;
+            ((s as any).hunterVars = (s as any).hunterVars ?? {})['available'] = 1;
             if (((s as any).hour ?? 0) === 13) {
-              if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['chattime'] = 1;
+              ((s as any).hunterVars = (s as any).hunterVars ?? {})['chattime'] = 1;
             }
-            if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['inside'] = 1;
+            ((s as any).hunterVars = (s as any).hunterVars ?? {})['inside'] = 1;
           } else {
             if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 17) {
-              if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['hunting'] = 1;
+              ((s as any).hunterVars = (s as any).hunterVars ?? {})['hunting'] = 1;
             } else {
               if (((s as any).hour ?? 0) === 18  ||  ((s as any).hour ?? 0) === 19) {
-                if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['evening'] = 1;
-                if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['available'] = 1;
+                ((s as any).hunterVars = (s as any).hunterVars ?? {})['evening'] = 1;
+                ((s as any).hunterVars = (s as any).hunterVars ?? {})['available'] = 1;
                 if (((s as any).hour ?? 0) === 19) {
-                  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['chattime'] = 1;
+                  ((s as any).hunterVars = (s as any).hunterVars ?? {})['chattime'] = 1;
                 }
                 if ((((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 15)  ||  (((s as any).campfire ?? 0) === 0)) {
-                  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['inside'] = 1;
+                  ((s as any).hunterVars = (s as any).hunterVars ?? {})['inside'] = 1;
                 }
               } else {
                 if (((s as any).hour ?? 0) === 20) {
-                  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['dinner'] = 1;
-                  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['available'] = 1;
-                  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['inside'] = 1;
+                  ((s as any).hunterVars = (s as any).hunterVars ?? {})['dinner'] = 1;
+                  ((s as any).hunterVars = (s as any).hunterVars ?? {})['available'] = 1;
+                  ((s as any).hunterVars = (s as any).hunterVars ?? {})['inside'] = 1;
                 } else {
                   if (((s as any).hour ?? 0) > 20  &&  ((s as any).hour ?? 0) < 23) {
-                    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['drink'] = 1;
-                    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['available'] = 1;
+                    ((s as any).hunterVars = (s as any).hunterVars ?? {})['drink'] = 1;
+                    ((s as any).hunterVars = (s as any).hunterVars ?? {})['available'] = 1;
                     if ((((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 15)  ||  (((s as any).campfire ?? 0) === 0)) {
-                      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['inside'] = 1;
+                      ((s as any).hunterVars = (s as any).hunterVars ?? {})['inside'] = 1;
                     }
                   } else {
                     if (((s as any).hour ?? 0) >= 23  ||  ((s as any).hour ?? 0) < 7) {
-                      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sleep'] = 1;
-                      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['inside'] = 1;
+                      ((s as any).hunterVars = (s as any).hunterVars ?? {})['sleep'] = 1;
+                      ((s as any).hunterVars = (s as any).hunterVars ?? {})['inside'] = 1;
                     }
                   }
                 }
@@ -350,7 +350,7 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['outside'] = ((((s as any).hunterVars ?? 0)?.['inside'] === 1) ? (0) : (1));
+  ((s as any).hunterVars = (s as any).hunterVars ?? {})['outside'] = ((((s as any).hunterVars ?? 0)?.['inside'] === 1) ? (0) : (1));
   // TODO-QSP: end
   scene.build();
 }
@@ -364,7 +364,7 @@ function enterBringFood(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', goto: ['gad_swamp_yard', 'start'] },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
+    qspGoto(s, 'gad_swamp_yard', 'start');
   }
   // TODO-QSP: end
   scene.build();

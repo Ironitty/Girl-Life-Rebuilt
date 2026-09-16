@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -13,9 +11,9 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).deodorant_on ?? 0) === 1) {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + (((s as any).rand ?? 0)(((s as any).ARGS ?? 0)[1] / 3, 2 * (((s as any).ARGS ?? 0)[1]+1) / 3));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + (((s as any).rand ?? 0)(((s as any).locArgs?.[1] ?? 0) / 3, 2 * (((s as any).locArgs?.[1] ?? 0)+1) / 3));
   } else {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "sweat" }));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   }
   // TODO-QSP: end
   scene.build();

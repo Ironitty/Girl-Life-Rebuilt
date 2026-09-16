@@ -42,14 +42,54 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'a') {
+    (s as any).xe1 = qspUntranslated(s, "pronounTmp[0]", { location: "pronouns" });
+    (s as any).xec1 = qspUntranslated(s, "pronounTmp[1]", { location: "pronouns" });
+    (s as any).xem1 = qspUntranslated(s, "pronounTmp[2]", { location: "pronouns" });
+    (s as any).xemc1 = qspUntranslated(s, "pronounTmp[3]", { location: "pronouns" });
+    (s as any).xyr1 = qspUntranslated(s, "pronounTmp[4]", { location: "pronouns" });
+    (s as any).xyrc1 = qspUntranslated(s, "pronounTmp[5]", { location: "pronouns" });
+    (s as any).xyrs1 = qspUntranslated(s, "pronounTmp[6]", { location: "pronouns" });
+    (s as any).xyrsc1 = qspUntranslated(s, "pronounTmp[7]", { location: "pronouns" });
+    (s as any).xemself1 = qspUntranslated(s, "pronounTmp[8]", { location: "pronouns" });
+    (s as any).xemselfc1 = qspUntranslated(s, "pronounTmp[9]", { location: "pronouns" });
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'b') {
+      (s as any).xe2 = qspUntranslated(s, "pronounTmp[0]", { location: "pronouns" });
+      (s as any).xec2 = qspUntranslated(s, "pronounTmp[1]", { location: "pronouns" });
+      (s as any).xem2 = qspUntranslated(s, "pronounTmp[2]", { location: "pronouns" });
+      (s as any).xemc2 = qspUntranslated(s, "pronounTmp[3]", { location: "pronouns" });
+      (s as any).xyr2 = qspUntranslated(s, "pronounTmp[4]", { location: "pronouns" });
+      (s as any).xyrc2 = qspUntranslated(s, "pronounTmp[5]", { location: "pronouns" });
+      (s as any).xyrs2 = qspUntranslated(s, "pronounTmp[6]", { location: "pronouns" });
+      (s as any).xyrsc2 = qspUntranslated(s, "pronounTmp[7]", { location: "pronouns" });
+      (s as any).xemself2 = qspUntranslated(s, "pronounTmp[8]", { location: "pronouns" });
+      (s as any).xemselfc2 = qspUntranslated(s, "pronounTmp[9]", { location: "pronouns" });
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'c') {
+        (s as any).xe3 = qspUntranslated(s, "pronounTmp[0]", { location: "pronouns" });
+        (s as any).xec3 = qspUntranslated(s, "pronounTmp[1]", { location: "pronouns" });
+        (s as any).xem3 = qspUntranslated(s, "pronounTmp[2]", { location: "pronouns" });
+        (s as any).xemc3 = qspUntranslated(s, "pronounTmp[3]", { location: "pronouns" });
+        (s as any).xyr3 = qspUntranslated(s, "pronounTmp[4]", { location: "pronouns" });
+        (s as any).xyrc3 = qspUntranslated(s, "pronounTmp[5]", { location: "pronouns" });
+        (s as any).xyrs3 = qspUntranslated(s, "pronounTmp[6]", { location: "pronouns" });
+        (s as any).xyrsc3 = qspUntranslated(s, "pronounTmp[7]", { location: "pronouns" });
+        (s as any).xemself3 = qspUntranslated(s, "pronounTmp[8]", { location: "pronouns" });
+        (s as any).xemselfc3 = qspUntranslated(s, "pronounTmp[9]", { location: "pronouns" });
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'd') {
+          (s as any).xe4 = qspUntranslated(s, "pronounTmp[0]", { location: "pronouns" });
+          (s as any).xec4 = qspUntranslated(s, "pronounTmp[1]", { location: "pronouns" });
+          (s as any).xem4 = qspUntranslated(s, "pronounTmp[2]", { location: "pronouns" });
+          (s as any).xemc4 = qspUntranslated(s, "pronounTmp[3]", { location: "pronouns" });
+          (s as any).xyr4 = qspUntranslated(s, "pronounTmp[4]", { location: "pronouns" });
+          (s as any).xyrc4 = qspUntranslated(s, "pronounTmp[5]", { location: "pronouns" });
+          (s as any).xyrs4 = qspUntranslated(s, "pronounTmp[6]", { location: "pronouns" });
+          (s as any).xyrsc4 = qspUntranslated(s, "pronounTmp[7]", { location: "pronouns" });
+          (s as any).xemself4 = qspUntranslated(s, "pronounTmp[8]", { location: "pronouns" });
+          (s as any).xemselfc4 = qspUntranslated(s, "pronounTmp[9]", { location: "pronouns" });
         } else {
-          (s as any).iterat = qspUntranslated(s, "ARGS[1]", { location: "pronouns" });
+          (s as any).iterat = ((s as any).locArgs?.[1] ?? 0);
           // TODO-QSP: $xe[iterat] = $pronounTmp[0]
           // TODO-QSP: $xec[iterat] = $pronounTmp[1]
           // TODO-QSP: $xem[iterat] = $pronounTmp[2]

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -22,7 +22,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).krolik = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'money', 'earn', 200);
-  }, goto: ['dina', 'brodila'] },
+    qspGoto(s, 'dina', 'brodila');
+  } },
   ]);
   scene.build();
 }

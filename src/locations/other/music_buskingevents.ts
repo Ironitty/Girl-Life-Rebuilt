@@ -13,8 +13,8 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).ml_buskingtime ?? 0));
   qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 1);
   qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 3) + 1);
-  if (!(s as any).ml_busking) (s as any).ml_busking = {}; (s as any).ml_busking['busking_count'] = ((s as any).ml_busking['busking_count'] ?? 0) + (1);
-  if (!(s as any).ml_busking) (s as any).ml_busking = {}; (s as any).ml_busking['busking_time'] = ((s as any).ml_busking['busking_time'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
+  ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_count'] = ((s as any).ml_busking['busking_count'] ?? 0) + (1);
+  ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_time'] = ((s as any).ml_busking['busking_time'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
   if (((s as any).perform_lvl ?? 0) < 50) {
     qspCall(s, 'exp_gain', 'perform', Math.floor(Math.random() * 3) + 1);
   }
@@ -22,11 +22,11 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', ((s as any).ml_tipsearned ?? 0));
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic '<<$ARGS[1]>>_music += rand(0,3)'
-  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['total_time_performed'] = ((s as any).ml_performance['total_time_performed'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
-  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['performed_minutes'] = ((s as any).ml_performance['performed_minutes'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
-  if (!(s as any).ml_busking) (s as any).ml_busking = {}; (s as any).ml_busking['busking_count'] = ((s as any).ml_busking['busking_count'] ?? 0) + (1);
-  if (!(s as any).ml_busking) (s as any).ml_busking = {}; (s as any).ml_busking['busking_time'] = ((s as any).ml_busking['busking_time'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
-  if (!(s as any).ml_busking) (s as any).ml_busking = {}; (s as any).ml_busking['total_earnings'] = ((s as any).ml_busking['total_earnings'] ?? 0) + (((s as any).ml_tipsearned ?? 0));
+  ((s as any).ml_performance = (s as any).ml_performance ?? {})['total_time_performed'] = ((s as any).ml_performance['total_time_performed'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
+  ((s as any).ml_performance = (s as any).ml_performance ?? {})['performed_minutes'] = ((s as any).ml_performance['performed_minutes'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
+  ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_count'] = ((s as any).ml_busking['busking_count'] ?? 0) + (1);
+  ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_time'] = ((s as any).ml_busking['busking_time'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
+  ((s as any).ml_busking = (s as any).ml_busking ?? {})['total_earnings'] = ((s as any).ml_busking['total_earnings'] ?? 0) + (((s as any).ml_tipsearned ?? 0));
   scene.img('images/pc/activities/music/guitarf\'+ rand(1, 2) +\'.jpg');
   // TODO-QSP: dynamic text: You start to play the songs you know, pushing your open guitar case forward a li...
   scene.text(`You start to play the songs you know, pushing your open guitar case forward a little in case people drop some change there.' + iif(ml_online['account'] = 1 and ml_online['active'] = 1, ' You also set up the sign with the link to your webprofile.', ') + ' After playing for an hour you have made ${((s as any).ml_tipsearned || '')} <b>P</b> in tips.`);

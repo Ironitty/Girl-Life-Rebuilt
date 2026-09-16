@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -15,6 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).sergehelppol_count = 1;
   }
   qspCall(s, 'core_library', 'setloc', 'Serge_kuh', '');
+  (s as any).locclass = 'kitr';
   qspCall(s, 'boyStat', 'A112');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -39,14 +40,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t want to get in his way and sit down on a chair near the kitchen table, so you can have a chat with him while he keeps preparing the food.');
     (s as any).serge_textbk_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).serge_textbk_rand ?? 0))) {
+      (s as any).serge_textbk = 'When you ask about Vasily\'s mother, Sergey shrugs: "It\'s a short story, really. I met Vasily\'s mother at my graduation party. We all got drunk and she and I had some fun. When she turned out to be pregnant, we got married. We didn\'t have much of a say in the matter, that\'s just how it worked back then. Shulga was born a few months after that. We tried to make it work, but she got bored and left me a year later when she got offered a job abroad, leaving Shulga with me. I haven\'t heard from her since. It\'s fine, though… me and him managed just fine, without her."';
     }
     if (((s as any).serge_textbk_rand ?? 0) === 1) {
+      (s as any).serge_textbk = 'You spend fifteen minutes talking to Sergey about everyday things.';
     }
     if (((s as any).serge_textbk_rand ?? 0) === 2) {
+      (s as any).serge_textbk = 'When you ask Sergey what he does for a living, he smiles and says: "I work in a factory where we produce bricks. I work the day shift, from ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + ' to ' + qspFunc(s, 'time', 'get_time_string', 15, 0) + ', five days a week. I\'m a foreman there, managing the labourers and keeping an eye on the machinery. Of course I pitch in as well, when the men need help. It\'s dusty, hard work, and it doesn\'t pay well, but it\'s work worth doing!"';
     }
     if (((s as any).serge_textbk_rand ?? 0) === 3) {
+      (s as any).serge_textbk = 'When you ask about his relationship with his son, Sergey shrugs and says in a tired voice: "Eh. We do okay, given the circumstances. He\'s… changed, though. He\'s rather difficult to handle nowadays. For the last year or so, he has shown no interest in school and he stays out until late every day, doing God knows what. I\'m just not sure how to get through to him any more."';
     }
     if (((s as any).serge_textbk_rand ?? 0) === 4) {
+      (s as any).serge_textbk = 'Sergey is actually a pretty smart guy, and you listen to him for fifteen minutes while he tells you stories about his past.';
     }
     if (((s as any).sergebazarkuh_count ?? 0) <= 0) {
       // TODO-QSP: dynamic text: Sergey says: "Listen, <<$pcs_nickname>>… I don't mind having you around the hous...
@@ -94,16 +100,22 @@ function enterKuhBuh(s: GameState, scene: SceneBuilder): void {
     scene.text('Sergey pours himself another glass and licks his lips, getting ready to tell a story. You sit down next to him, wondering what he\'s going to want to talk about today.');
     (s as any).remp_rand = Math.floor(Math.random() * 6) + 0;
     if ((!((s as any).remp_rand ?? 0))) {
+      (s as any).serge_textbuhk = 'You and Sergey listen to a radio while you chat, and mostly talk about events from the local news.';
     }
     if (((s as any).remp_rand ?? 0) === 1) {
+      (s as any).serge_textbuhk = 'Sergey seems a bit tipsy, and talks for fifteen minutes about why potato soup is better than turnip soup.';
     }
     if (((s as any).remp_rand ?? 0) === 2) {
+      (s as any).serge_textbuhk = 'Sergey makes you laugh, when he tells you another funny story.';
     }
     if (((s as any).remp_rand ?? 0) === 3) {
+      (s as any).serge_textbuhk = 'You try to talk to Sergey about clothing, but you can tell he\'s not all that interested in the subject. The only thing he can contribute is that there is a tailor at the garment factory, who adjusted some ill-fitting jeans for him a while ago.';
     }
     if (((s as any).remp_rand ?? 0) === 4) {
+      (s as any).serge_textbuhk = 'You spend fifteen minutes talking to Sergey about everyday things.';
     }
     if (((s as any).remp_rand ?? 0) === 5) {
+      (s as any).serge_textbuhk = 'Sergey laughs: "If I was forced to choose between Parkinson\'s and Alzheimer\'s, I\'d definitely choose Parkinson\'s. It\'s better to sometimes spill some vodka on your pants, than to forget where you stored the bottle!"';
     }
     if (((s as any).sergebazarkuh_count ?? 0) <= 0) {
       // TODO-QSP: dynamic text: Sergey looks at you a bit wearily and says: "Look, <<$pcs_nickname>>… you're a n...
@@ -192,7 +204,8 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['vasilyhome', 'vasilykitchen'] },
+    qspGoto(s, 'vasilyhome', 'vasilykitchen');
+  } },
       ]);
     }
     scene.actions([
@@ -204,7 +217,7 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He takes your hand and puts it on his penis, whispering: "Go on, <<$pcs_nickname...
     scene.text(`He takes your hand and puts it on his penis, whispering: "Go on, ${((s as any).pcs_nickname || '')}. Rub it… suck on it… make me feel good."`);
     scene.text('You nod and squeeze it lightly, beginning by masturbating him slowly. His cock grows a bit further while you stroke it, and you feel it pulsing strongly between your fingers when it\'s fully erect. He\'s definitely ready for more now.');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
     qspCall(s, 'boyStat', 'A112');
     qspCall(s, 'arousal', 'hj', 5, 'sub');
     qspCall(s, 'stat', '');
@@ -246,6 +259,7 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
     scene.text('"No hands… just your tongue please…" you moan, when he wants to slide two fingers inside you. He grins and pulls back his hand, and instead redoubles his efforts with his tongue.');
     scene.text('Within minutes he licks you to an orgasm and you groan and grab his hair, forcing his face against your groin as you feel a warm tingling sensation spread through your whole body. When it finally subsides, you feel goosebumps all over your skin.');
     scene.text('Sergey gives your cunny one more kiss and gets up, and you can\'t help but laugh when you see him trying to rub some feeling back into his legs. He pours himself another glass of vodka, while he winks at you. Wow… that was great!');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 5, 'dom');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -389,17 +403,23 @@ function enterPosuda(s: GameState, scene: SceneBuilder): void {
 
 function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    scene.actions([{ label: 'Continue', goto: ['Serge_kuh', 'izn1'] }]);
+    qspGoto(s, 'Serge_kuh', 'izn1');
   } else {
     if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+      (s as any).rand_kuh_izdev = 'izdev' + Math.floor(Math.random() * 3) + 1 + '';
     } else {
       if (((s as any).PCloSkirt ?? 0) > 0) {
+        (s as any).rand_kuh_izdev = 'izdev' + Math.floor(Math.random() * 4) + 4 + '';
       } else {
         if (((s as any).pantyworntype ?? 0) !== 'none') {
+          (s as any).rand_kuh_izdev = 'izdev' + Math.floor(Math.random() * 5) + 8 + '';
+        } else {
+          (s as any).rand_kuh_izdev = 'izdev' + Math.floor(Math.random() * 5) + 13 + '';
         }
       }
     }
   }
+  (s as any).rand_kuh_sex = 'sex' + Math.floor(Math.random() * 3) + 1 + '';
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -420,7 +440,8 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['vasilyhome', 'vasilykitchen'] },
+    qspGoto(s, 'vasilyhome', 'vasilykitchen');
+  } },
       ]);
     }
     scene.actions([
@@ -450,7 +471,8 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['vasilyhome', 'vasilykitchen'] },
+    qspGoto(s, 'vasilyhome', 'vasilykitchen');
+  } },
         ]);
       }
       scene.actions([
@@ -465,7 +487,7 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIzdev1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'boyStat', 'A112');
   qspCall(s, 'stat', '');
@@ -555,7 +577,7 @@ function enterIzdev1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIzdev2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'boyStat', 'A112');
   qspCall(s, 'stat', '');
@@ -616,7 +638,7 @@ function enterIzdev2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('With his cock still inside your pussy, he begins to finger your tight little asshole.');
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       if (((s as any).agape ?? 0) < 1) {
         (s as any).agape = 1;
       }
@@ -653,6 +675,8 @@ function enterIzdev2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'small');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex6-10.jpg');
     scene.text('Sergey pushes you with your back onto the table and pulls your legs up, immediately leading his cock back into your ass. He thrusts wildly against you and slaps your ass cheeks and thighs hard whenever he gets the chance, making you moan and cry out loudly.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = '"Ahhh, uncle Sergey! Please! I\'m… I\'m cumming!" you scream. At the same time, your whole body begins to tremble as you orgasm violently on his cock, while you were not even touching your pussy at all. Wow, this is intense!';
     qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -968,7 +992,7 @@ function enterIzdev7(s: GameState, scene: SceneBuilder): void {
 
 function enterIzdev8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex2-1.jpg');
@@ -1075,7 +1099,7 @@ function enterIzdev8(s: GameState, scene: SceneBuilder): void {
 
 function enterIzdev9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex3-1.jpg');
@@ -1137,7 +1161,7 @@ function enterIzdev9(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('He guides his hard cock to your anus and rubs it over your tight sphincter a few times.');
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       if (((s as any).agape ?? 0) < 1) {
         (s as any).agape = 1;
       }
@@ -1165,6 +1189,8 @@ function enterIzdev9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex5-8.jpg');
     // TODO-QSP: dynamic text: A few minutes later, Sergey grabs your <<$pcs_haircolor>> <<$curly_txt>> in his ...
     scene.text(`A few minutes later, Sergey grabs your ${((s as any).pcs_haircolor || '')} ${((s as any).curly_txt || '')} in his fist and guides you to the ground, his cock never leaving your ass. You meekly let him guide you, this feels way too good to object! You plunged several fingers in your vagina by now, and are fingerbanging yourself to an orgasm while Sergey has his fun with your backside.`);
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'It doesn\'t take long for you to reach orgasm, and you moan loudly while your body quivers against his, in your submissive kneeling position.';
     // TODO-QSP: dynamic text: Sergey grins as he feels your muscles tighten around his cock repeatedly and gri...
     scene.text(`Sergey grins as he feels your muscles tighten around his cock repeatedly and grins: "Just the way I like my sluts… on their knees, orgasming while I fuck their ass. Here it comes, ${((s as any).pcs_nickname || '')}!"`);
     scene.text('He pulls out of your ass and jerks himself off over your buttocks, his sperm landing all over your back and your ass as he lets out a primal roar.');
@@ -1382,7 +1408,7 @@ function enterIzdev12(s: GameState, scene: SceneBuilder): void {
 function enterIzdev13(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex1-1.jpg');
@@ -1447,6 +1473,8 @@ function enterIzdev13(s: GameState, scene: SceneBuilder): void {
     scene.text('Then Sergey turns you on your back, and continues to fuck you as intensely as before. You moan loudly, not even caring if anyone else can hear you.');
     scene.text('"Fuck me, uncle Sergey! Fuck me harder!" you cry out, rubbing your clitoris frantically.');
     scene.text('He grins and does as you ask, entertained by the thought of how eager you were to please him. His balls slap against your buttocks while he pounds you hard.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'Then your orgasm hits you: its powerful waves rip through your body, making your whole body tremble and tingle. Sergey has to actually hold you in place, to make sure you don\'t fall off the table.';
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -1499,7 +1527,7 @@ function enterIzdev13(s: GameState, scene: SceneBuilder): void {
 function enterIzdev14(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex4-1.jpg');
@@ -1746,9 +1774,9 @@ function enterIzdev17(s: GameState, scene: SceneBuilder): void {
 
 function enterIzn1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).pcs_hairbsh = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj\' + rand(1, 11) + \'.mp4');
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -1845,9 +1873,9 @@ function enterIzn1(s: GameState, scene: SceneBuilder): void {
 
 function enterIzn2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).pcs_hairbsh = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj\' + rand(1, 3) + \'.mp4');
   // TODO-QSP: dynamic text: "You're such a slut, <<$pcs_nickname>>… you're not even wearing a bra! Everyone ...
@@ -1875,6 +1903,7 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Get up, slut", Sergey orders you, barely giving you any time to recover. He pulls you up and makes you stand leaning on the countertop, and abruptly penetrates your vagina. He fucks you furiously from behind, forcing his hard cock all the way inside you. You\'re still very sensitive from your orgasm, and beg him: "Aaah, uncle Sergey! Slowly, please! Aaaahh!"');
     scene.text('His balls are slapping against your clit now, and the kitchen is filled with the obscene squishing and sopping sounds your vagina makes when Sergey enters you over and over.');
     scene.text('Then he stops, and rubs his cock against your puckered asshole.');
+    (s as any).orgasm_or = 'yes';
     if (((s as any).analPlugIn ?? 0) === 1) {
       (s as any).analPlugIn = 0;
       (s as any).analPlugOut = 1;
@@ -1885,6 +1914,7 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "From anal stimulation alone, <<$pcs_nickname>>!?" Sergey asks, with a hint of a...
     scene.text(`"From anal stimulation alone, ${((s as any).pcs_nickname || '')}!?" Sergey asks, with a hint of admiration in his voice. "That's two for you… it's time you do something for me in return!"`);
     scene.text('He leads his penis to your sphincter, and rubs the head against it.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'bj', 10, 'sub', 'rough', 'deepthroat');
     qspCall(s, 'arousal', 'vaginal_finger', 10, 'sub', 'rough');
     qspCall(s, 'arousal', 'vaginal', (-10), 'sub', 'rough');
@@ -1915,6 +1945,7 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Uncle Sergey, it feels so good! Fuck me! Fuck me harder!" you encourage him, while you feel yet another orgasm bubbling up deep inside of you.');
     scene.text('You close your eyes and moan like a whore, much to Sergey\'s delight. He rewards you by fucking your ass with long, firm thrusts regularly, while you finger yourself. Soon you can\'t hold back any more and your vagina and anus rhythmically contract while you\'re experiencing your third orgasm for this session. You groan wildly when you feel a warm liquid spread inside your ass; Sergey couldn\'t take it any more either and came right inside your used ass.');
     scene.text('Sergey sighs happily as he pulls out of you, and wipes his member on your ass cheeks before letting him self crash down onto the couch.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'clit_finger', 10, 'sub');
     qspCall(s, 'arousal', 'anal', (-10), 'sub', 'rough');
     qspCall(s, 'stat', '');
@@ -1949,7 +1980,7 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
 
 function enterSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex1-1.jpg');
   // TODO-QSP: dynamic text: Sergey moves up to you and starts fondling your boobs, whispering how sexy and g...
@@ -1984,6 +2015,7 @@ function enterSex1(s: GameState, scene: SceneBuilder): void {
     scene.text('He moves you onto a dining chair and makes you lean over on the dining table, sliding his cock back inside your wet slit. He gently stimulates your anus at the same time, and you feel your interrupted orgasm from before bubbling up again.');
     scene.text('"Uncle Sergey, please… fuck me! Tease my ass! Pinch my nipples! Fill me up with your cum!" you beg, and cry out when you orgasm. Your pussy contracts tightly around his penis, and he chuckles: "Told you you\'d get there!"');
     scene.text('You ride out the rest of your orgasm in silence, feeling hazy for a while. When you come back to your senses you realize - uncle Sergey is still fucking your pussy! You begin to move with him, grinding your hips eagerly against his to reward him for making you feel so great. Almost immediately he has to pull out, and shoots his load onto your face. You greedily open your mouth to catch some of it, but he deftly avoids your mouth.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['vasilyhome', 'vasilykitchen'] },
@@ -1999,7 +2031,7 @@ function enterSex1(s: GameState, scene: SceneBuilder): void {
 
 function enterSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex2-1.jpg');
   scene.text('You see Sergey hesitate, and decide to take matters into your own hands.');
@@ -2050,6 +2082,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
     scene.text('He kisses you gently on your lips, while one hand finds his way to your breasts while the other fondles your pussy, trying to find your clitoris. He ends up rubbing out some of his cum over your clit and rubs you to an explosive orgasm, kissing you passionately to drown out your cries.');
     scene.text('When your orgasm finally subsides, you quiet down and look at him shyly, feeling just a tiny bit ashamed. That was wrong to do, but it felt so right!');
     scene.text('You feel a bit confused though, you never would\'ve thought he could be such a caring man! Maybe you should go and help him out in the kitchen more often…');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['vasilyhome', 'vasilykitchen'] },
@@ -2067,7 +2100,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
 
 function enterSex3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'mood', 'raise', 'tiny');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex3-1.jpg');
@@ -2154,6 +2187,7 @@ function enterSex3(s: GameState, scene: SceneBuilder): void {
     scene.text('You were already close, and his rough touch pushes your over the edge! Your hips shiver and shake while you feel your orgasm exploding inside you, so intensely that you nearly black out for a second.');
     scene.text('Sergey slaps your ass a few times and continues to fuck you for another minute or so, before he too reaches his point of no return and deposits his load deep inside you. You whimper softly when you feel the hot jets of his sperm in you, and slowly feel it dribbling out of you when he pulls his dick out.');
     scene.text('"Good slut…" he sighs happily.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -2177,6 +2211,8 @@ function enterSex3(s: GameState, scene: SceneBuilder): void {
 function enterOrgasm(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 70) {
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'The abundance of surging emotions you with a loud groan finished.';
   }
   // TODO-QSP: end
   scene.build();

@@ -1,10 +1,15 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '';
+  (s as any).loc = 'pav_commclubs';
+  (s as any).menu_loc = 'pav_commclubs';
+  (s as any).menu_arg = '';
+  (s as any).location_type = 'public_indoors';
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -99,7 +104,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + ((60 - ((s as any).minut ?? 0)));
-      scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
+      qspGoto(s, 'music_guitarlesson', 'lesson');
     }
   } },
         ]);
@@ -110,7 +115,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
+      qspGoto(s, 'music_guitarlesson', 'lesson');
     }
   } },
         ]);

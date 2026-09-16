@@ -1,10 +1,15 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '';
+  (s as any).loc = 'nichStudy';
+  (s as any).menu_loc = 'nichStudy';
+  (s as any).menu_arg = '';
+  (s as any).nichLoc = 'study';
   qspCall(s, 'stat', '');
   (s as any).sexpartkno = 1;
   qspCall(s, 'boyStat', 'A52');
@@ -20,10 +25,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Return to the hallway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichApartment', ''] },
+    qspGoto(s, 'nichApartment', '');
+  } },
         ]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['nichStudy', 'gentleclubE1'] }]);
+        qspGoto(s, 'nichStudy', 'gentleclubE1');
       }
     }
   }
@@ -32,7 +38,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'study');
   (s as any).nichCleanAppropriate = 1;
   if (((s as any).nichNichPresent ?? 0) === 1) {
-    scene.text('<a href="exec: gt \'nichNicholas\', \'start\'">Nicholas</a> is sitting behind his desk working on his computer.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichNicholas\\u0027, \\u0027start\\u0027); return false;">Nicholas</a> is sitting behind his desk working on his computer.');
     (s as any).nichCleanAppropriate = 0;
   }
   if (((s as any).nichWork ?? 0) === 2) {
@@ -45,7 +51,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichApartment', ''] },
+    qspGoto(s, 'nichApartment', '');
+  } },
   ]);
   scene.build();
 }
@@ -81,7 +88,9 @@ function enterGentleclubE1(s: GameState, scene: SceneBuilder): void {
     scene.text('You agree to go to the club with Nicholas. He seems to be happy about this decision.');
     scene.text('"Great. That\'s what I was hoping for. There is no hurry to get to this club. Just tell me when you want to go there."');
     scene.actions([
-      { label: 'Leave', goto: ['nichStudy', 'return'] },
+      { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichStudy', 'return');
+  } },
     ]);
   } },
       { label: 'No', handler: (st: GameState) => {
@@ -89,7 +98,9 @@ function enterGentleclubE1(s: GameState, scene: SceneBuilder): void {
     scene.text('You tell Nicholas that you don\'t want to go to this club. There is only a very slight hint of disappointment in his face.');
     scene.text('"A pity. But as I told you, you have every right to make this decision. Let\'s not talk about this topic again."');
     scene.actions([
-      { label: 'Leave', goto: ['nichStudy', 'return'] },
+      { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'nichStudy', 'return');
+  } },
     ]);
   } },
     ]);
@@ -122,12 +133,16 @@ function enterReHire(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('"I missed your lips." He says as he moves away. "You are always welcome to work for me again." As he says this, he begins to unzip his pants.');
       scene.actions([
-        { label: 'Smile at your master.', goto: ['nichNicholas', 'sex'] },
+        { label: 'Smile at your master.', handler: (st: GameState) => {
+    qspGoto(s, 'nichNicholas', 'sex');
+  } },
       ]);
     } else {
       scene.text('"Of course, we are glad to have you back."');
       scene.actions([
-        { label: 'Head out.', goto: ['nichStudy', 'return'] },
+        { label: 'Head out.', handler: (st: GameState) => {
+    qspGoto(s, 'nichStudy', 'return');
+  } },
       ]);
     }
   } },

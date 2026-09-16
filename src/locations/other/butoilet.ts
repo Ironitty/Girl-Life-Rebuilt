@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'butoilet', '');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');

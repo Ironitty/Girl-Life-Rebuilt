@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-5));
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
           ]);
         }
@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Vitek poured you a beer and you began drinking with him. Vitek stared into your eyes and tells you. "You\'re a cool girl, you know that."');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -63,7 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-5));
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
             ]);
           }
@@ -83,7 +83,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).kotovQW ?? 0) < 5  ||  ((s as any).npc_rel ?? 0)?.['A9'] === 0) {
         scene.actions([
           { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
@@ -99,7 +99,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You refused and Vitek looks completely confused, but he was immediately angry. "Well, then fuck you, you cock sucking whore!"');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -111,7 +111,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Vitek was delighted "Sweet. I almost can\'t believe that you agreed to be my chick."');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -135,7 +135,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-5));
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
           ]);
         }
@@ -187,12 +187,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('It takes a bit but you convince Vitek that all this was just gossip and none of it was true. Vitek frowned, "I\'ll knock their teeth out if they whisper one more word about you then. Don\'t worry, baby I will shut their yapping mouths."');
     if (((s as any).loc ?? 0) === 'gschool_lunch') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     }
     if (((s as any).loc ?? 0) === 'pav_disco') {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -201,17 +201,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Accuse him of sleeping around', handler: (st: GameState) => {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel[String((s as any).static_num ?? 0)] = 0;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})[String((s as any).static_num ?? 0)] = 0;
     (s as any).kotovLoveQW = (-1);
     qspCall(s, 'stat', '');
     scene.text('You started yelling at Vitek that he has fucked other girls. Vitek started yelling at you and suddenly, there is a ringing in your head, your vision is blurry. You find you\'re on the floor, with Vitek standing over you. Your cheek burns with pain, it takes you a few moments to understand what happened, it seems he slapped you, so hard it knocked you off your feet. "Stay away from me you fucking whore, it\'s over between us!"');
     if (((s as any).loc ?? 0) === 'gschool_lunch') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     }
     if (((s as any).loc ?? 0) === 'pav_disco') {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -235,7 +235,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-5));
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
             ]);
           }
@@ -248,7 +248,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You drink the beer with his group of friends.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -259,7 +259,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).static_num ?? 0), (-5));
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);
         }
@@ -271,7 +271,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const kotovtalker: LocationDef = {
   name: 'kotovtalker',
-  title: '<<$npc_firstname[\'A9\']>> <<$npc_lastname[\'A9\']>>',
   region: 'other',
   enter: enter,
 };

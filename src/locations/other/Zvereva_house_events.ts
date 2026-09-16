@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,7 +12,7 @@ function enterChrisWalkHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big18.jpg');
   if (((s as any).christinaQW ?? 0)?.['subpath'] === 4) {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 5;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 5;
     scene.text('"About time, bitch. Come on, lets go." She starts walking away at a brisk pace. You follow, making sure to stay at least one step behind her.');
     scene.actions([
       { label: 'Follow her', handler: (st: GameState) => {
@@ -59,7 +59,8 @@ function enterChrisWalkHome(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/christina_home/front_door.jpg');
     scene.text('You follow her home and into her house, to her room.');
     qspCall(s, 'stat', '');
-  }, goto: ['Zvereva_house', 'chris_bedro'] },
+    qspGoto(s, 'Zvereva_house', 'chris_bedro');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -74,7 +75,8 @@ function enterChrisShower(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['Zvereva_house', 'hallw'] },
+    qspGoto(s, 'Zvereva_house', 'hallw');
+  } },
     { label: 'Join her', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big18.jpg');
     scene.text('Removing your clothes, you walk over to the glass door and softly clear your throat and wait to be noticed.');
@@ -94,7 +96,8 @@ function enterChrisShower(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish the shower', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['Zvereva_house', 'bathr'] },
+    qspGoto(s, 'Zvereva_house', 'bathr');
+  } },
     ]);
   } },
   ]);
@@ -110,7 +113,7 @@ function enterBedChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).christinaQW ?? 0)?.['lar_lina'] === 0) {
     scene.actions([
       { label: 'Ask about Lariska', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['lar_lina'] = 1;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['lar_lina'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/christina/home/bedroom/bed_chat.jpg');
     scene.text('"What made you decide to take Lariska in?"');
     scene.text('"Pfft. She doesn\'t know how to stand up for herself. When we were little, I found her getting bullied by some older boys and stepped in. Kicked one right in the balls, and the rest ran off. She just kinda started following me around after that."');
@@ -123,7 +126,7 @@ function enterBedChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).christinaQW ?? 0)?.['lar_lina'] === 1) {
     scene.actions([
       { label: 'Ask about Lina', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['lar_lina'] = 2;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['lar_lina'] = 2;
     scene.img('images/characters/pavlovsk/school/girl/christina/home/bedroom/bed_chat.jpg');
     scene.text('"What about Lina?"');
     scene.text('"That dumb bitch? She was friends with Lariska first, followed her around until Lariska started following me. At first she would ask Lariska what she should do, but Lariska is bad at making decisions, so when I started telling her what to do, she just automatically did it."');
@@ -165,7 +168,7 @@ function enterBedChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"What are you trying to say, slut? That I want to fuck him?! My brother?! That\'s disgusting!"');
     scene.actions([
       { label: 'Encourage her', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 6;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 6;
     scene.img('images/characters/pavlovsk/school/girl/christina/home/bedroom/bed_chat.jpg');
     scene.text('"It\'s ok, Mistress. I would understand if you did, he is a good catch, after all."');
     scene.text('Rather than yell at you some more, she bites her lip, seemingly lost in thought.');
@@ -182,7 +185,7 @@ function enterBedChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).slyQW ?? 0)?.['met'] === 0  &&  ((s as any).christinaQW ?? 0)?.['subpath'] < 6) {
     scene.actions([
       { label: 'Ask about Sly', handler: (st: GameState) => {
-    if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['met'] = 1;
+    ((s as any).slyQW = (s as any).slyQW ?? {})['met'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/christina/home/bedroom/bed_chat.jpg');
     scene.text('Can you tell me about your brother, Sly?');
     scene.text('Giving you an appraising look, she says "Silvestr is the youngest of my older brothers and the only one of them I actually like. He taught me how to fight, and where I learned to push my body to achieve the perfection you see today."');

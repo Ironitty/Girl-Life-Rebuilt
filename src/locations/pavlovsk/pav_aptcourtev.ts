@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,8 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBench(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_aptcourtev', 'bench');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/outsideschool.mp3';
     (s as any).volume = 80;
     (s as any).music_loop = 1;
   }
@@ -52,9 +54,9 @@ function enterBench(s: GameState, scene: SceneBuilder): void {
 function enterWait(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 10) + 1) === 1) {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
-      scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'events1'] }]);
+      qspGoto(s, 'pav_aptcourtev', 'events1');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'events2'] }]);
+      qspGoto(s, 'pav_aptcourtev', 'events2');
     }
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -140,6 +142,7 @@ function enterSmokeJoint(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   qspCall(s, 'anushka_konstantinov_schedule', '');
@@ -405,7 +408,8 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
           ]);
         }
         scene.actions([
@@ -433,7 +437,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                                         ]);
                                       } else {
                                         if (((s as any).events ?? 0) === 18) {
-                                          scene.actions([{ label: 'Continue', goto: ['pav_complexrolan', ''] }]);
+                                          qspGoto(s, 'pav_complexrolan', '');
                                         } else {
                                           qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
                                           scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim_friends.jpg');
@@ -448,7 +452,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                                               scene.actions([
                                                 { label: 'Go over and talk to him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).maksimQW) (s as any).maksimQW = {}; (s as any).maksimQW['blackmail'] = 2;
+    ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim.jpg');
     scene.text('You walk over to the boys and give them a smile. "What are you boys up to." you ask.');
@@ -687,10 +691,11 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMaksimFriendsFlash(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).maksimQW) (s as any).maksimQW = {}; (s as any).maksimQW['blackmail_flash_friends'] = ((s as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
+  ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail_flash_friends'] = ((s as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'sex', 3);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
   if (((s as any).maksimQW ?? 0)?.['blackmail_flash_friends'] < 5) {
+    (s as any).flash_image = 'images/locations/pavlovsk/resident/apartment/anushapt/maksim_blackmail/friends_tits.jpg';
     // TODO-QSP: $flash_text[0] = 'You sigh, knowing what he wants. "Fine!" You say as you start to show him your tit...
     // TODO-QSP: $flash_text[0] += '<br>He shakes his head and grins. "Not this time, show us your pussy!"'
     // TODO-QSP: $flash_text[0] += '<br>You can''t believe you let this little shit blackmail you, into showing him a...
@@ -710,8 +715,10 @@ function enterMaksimFriendsFlash(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $flash_text[0] += '<br><br>You sigh, you know the little snitch would tell Anushka, so you do as you...
       // TODO-QSP: $flash_text[1] = 'He stares are your pussy like the rest then looks up at your face and stares you r...
       if (((s as any).PCLoSkirt ?? 0) > 0) {
+        (s as any).flash_image = 'images/locations/pavlovsk/resident/apartment/anushapt/maksim_blackmail/friends_pussy2.jpg';
         // TODO-QSP: $flash_text[1] += 'You frown and drop your skirt, to cover your pussy back up. Then you walk away, n...
       } else {
+        (s as any).flash_image = 'images/pc/activities/flashing/pants/outside/pussy/7.jpg';
         // TODO-QSP: $flash_text[1] += '<br>You frown and pull your pants back up, to cover your pussy back up. Then you ...
       }
       // TODO-QSP: $flash_arousal[0] = 'humiliation'
@@ -723,8 +730,10 @@ function enterMaksimFriendsFlash(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $flash_text[0] += 'You sigh, you know the little snitch would tell Anushka, so you do as you are tol...
       // TODO-QSP: $flash_text[1] =  'He stares at you like the rest then looks up at your face and stares you right in...
       if (((s as any).PCLoSkirt ?? 0) > 0) {
+        (s as any).flash_image = 'images/pc/activities/flashing/dress/outside/full/4.jpg';
         // TODO-QSP: $flash_text[1] += 'You frown and drop your skirt, to cover your pussy back up, while pulling up your...
       } else {
+        (s as any).flash_image = 'images/locations/pavlovsk/resident/apartment/anushapt/maksim_blackmail/friends_full1.jpg';
         // TODO-QSP: $flash_text[1] += 'You frown and pull your pants up to cover your pussy back up, while pulling up yo...
       }
       // TODO-QSP: $flash_arousal[0] = 'humiliation'
@@ -740,6 +749,7 @@ function enterMaksimFriendsFlash(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents2(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   qspCall(s, 'anushka_konstantinov_schedule', '');
@@ -878,7 +888,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
@@ -911,7 +921,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Make excuse and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'stat', '');
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
       scene.img('images/locations/pavlovsk/resident/apartment/events/3stoogesw.jpg');
@@ -937,7 +947,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Ask for a beer', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
       scene.img('images/locations/pavlovsk/resident/apartment/events/3stoogesw.jpg');
@@ -988,7 +998,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/events/gopgirls.jpg');
@@ -1015,7 +1025,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Make excuse and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/events/gopgirls.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, I didn\'t notice the time, I need to get going." You wave at them and start walking away as you hear them laughing behind you.');
@@ -1031,7 +1041,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Ask for a beer', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/events/gopgirls.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
@@ -1079,7 +1089,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/events/gopgirls.jpg');
@@ -1108,7 +1118,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Make excuse and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, I didn\'t notice the time, I need to get going." You wave at them and start walking away as you hear them laughing behind you.');
     scene.actions([
@@ -1122,7 +1132,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Ask for a beer', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Lera laughs and hands you a beer.');
@@ -1169,7 +1179,8 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
           ]);
         }
         scene.actions([
@@ -1197,7 +1208,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
                         ]);
                       } else {
                         (s as any).pavComplex_met_dealer = ((s as any).pavComplex_met_dealer ?? 0) + (1);
-                        scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'dealer'] }]);
+                        qspGoto(s, 'pav_aptcourtev', 'dealer');
                       }
                     }
                   }
@@ -1230,7 +1241,7 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (1);
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'money', 'pay', 50, 'cash');
       qspCall(s, 'stat', '');
@@ -1246,7 +1257,7 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (12);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (12);
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'money', 'pay', 500, 'cash');
       qspCall(s, 'stat', '');
@@ -1266,7 +1277,7 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'drugs', 'alcohol', 'beer');
   qspCall(s, 'stat', '');
@@ -1283,7 +1294,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1305,7 +1317,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -1340,7 +1353,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
           ]);
         }
         scene.actions([
@@ -1401,7 +1415,7 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Threaten Dan', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-2));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'willpower', 'drink', 'force', 'hard');
     qspCall(s, 'willpower', 'pay', 'force');
@@ -1448,7 +1462,7 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-2));
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-2));
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-2));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/no.jpg');
@@ -1466,7 +1480,7 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 2);
     qspCall(s, 'arousal', 'flash', (-5));
     qspCall(s, 'arousal', 'end');
@@ -1497,7 +1511,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A44', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'drugs', 'alcohol', 'beer');
   qspCall(s, 'stat', '');
@@ -1514,7 +1528,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1536,7 +1551,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -1557,7 +1573,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -1617,7 +1634,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Threaten Lera', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-2));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'willpower', 'drink', 'force', 'hard');
@@ -1666,7 +1683,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-3));
     qspCall(s, 'npc_relationship', 'modify', 'A44', (-3));
     qspCall(s, 'npc_relationship', 'modify', 'A144', (-2));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/no.jpg');
@@ -1685,7 +1702,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A44', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'flash', 5);
@@ -1714,7 +1731,7 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A20', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A24', 1);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'drugs', 'alcohol', 'beer');
   qspCall(s, 'stat', '');
@@ -1731,7 +1748,8 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1753,7 +1771,8 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -1774,7 +1793,8 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -1796,7 +1816,8 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop drinking and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -1820,7 +1841,7 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A20', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A24', (-1));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/no.jpg');
     scene.text('You shake your head. "No thanks. I think I\'ve had enough. Thanks for the beers though."');
@@ -1836,7 +1857,7 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A20', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A24', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'drugs', 'alcohol', 'beer', 3);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -1856,7 +1877,7 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A20', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A24', (-1));
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/no.jpg');
     scene.text('You shake your head. "No thanks. I think I had enough. Thanks for the beers though."');
@@ -1872,7 +1893,7 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A20', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A24', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'drugs', 'alcohol', 'beer', 3);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 120;
@@ -1900,6 +1921,7 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEatlera(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'npcStat', 'A21');
   qspCall(s, 'fame', 'pav', 'sex', 3);
   qspCall(s, 'npc_relationship', 'modify', 'A21', 2);
@@ -1945,6 +1967,7 @@ function enterEatlera(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSmokeblowjob(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'fame', 'pav', 'sex', 3);
   qspCall(s, 'npcgeneratec', '', 0, 'Smoker', Math.floor(Math.random() * 4) + 17, 1, 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
@@ -1969,7 +1992,7 @@ function enterSmokeblowjob(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/smokebj3.jpg');
     scene.text('Suddenly, though not unexpectedly, cum starts splattering on your face. Seconds later, the other one starts to cum as well and soon both of them have coated your face in their cum. They then put their dicks away, "Hey, what about my cigarette?" you ask and one of them laughs and tosses you the rest of his pack of smokes.');
     scene.text('"Here you go, best investment I ever made," he tells his friend. "Come on, let\'s go buy some more." They both walk away, leaving you on your knees with some cigarettes and a face full of cum.');
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) + (Math.floor(Math.random() * 6) + 3);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) + (Math.floor(Math.random() * 6) + 3);
     qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID ?? 0), 'group', 'exhibitionism');
     qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'group', 'exhibitionism');
     qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0));

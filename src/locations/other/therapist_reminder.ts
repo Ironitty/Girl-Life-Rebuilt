@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -95,17 +95,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterIgnoreCost(s: GameState, scene: SceneBuilder): void {
   if (((s as any).reminderFreebee ?? 0) < 4) {
-    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['CostLow'] = 10;
-    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['CostHigh'] = 20;
+    ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['CostLow'] = 10;
+    ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['CostHigh'] = 20;
     (s as any).reminderMoodCostLow = 10;
     (s as any).reminderMoodCostHigh = 20;
   } else {
-    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['Mult'] = ((s as any).reminderCount ?? 0);
+    ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['Mult'] = ((s as any).reminderCount ?? 0);
     if (((s as any).reminderCount ?? 0) > 10) {
-      if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['Mult'] = 10;
+      ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['Mult'] = 10;
     }
-    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['CostLow'] = qspFunc(s, 'shortgs', 'sqrt', 30 * (((s as any).tempReminderVars ?? {})?.['Mult'] ?? 0));
-    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['CostHigh'] = qspFunc(s, 'shortgs', 'sqrt', 90 * (((s as any).tempReminderVars ?? {})?.['Mult'] ?? 0));
+    ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['CostLow'] = qspFunc(s, 'shortgs', 'sqrt', 30 * (((s as any).tempReminderVars ?? {})?.['Mult'] ?? 0));
+    ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['CostHigh'] = qspFunc(s, 'shortgs', 'sqrt', 90 * (((s as any).tempReminderVars ?? {})?.['Mult'] ?? 0));
   }
   qspCall(s, 'mood', 'lower', qspUntranslated(s, "rand(tempReminderVars['CostLow'], tempReminderVars['CostHigh'])", { location: "therapist_reminder" }));
   (s as any).daysSkippedHypno = ((s as any).daysSkippedHypno ?? 0) + (1);
@@ -148,13 +148,13 @@ function enterMoveToTherapist(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReturn(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_loc', 'menu_arg'); } }]);
+  dynamicGoto(s, 'menu_loc', 'menu_arg');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterTherapist(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['therapist', 'start'] }]);
+  qspGoto(s, 'therapist', 'start');
   // TODO-QSP: end
   scene.build();
 }

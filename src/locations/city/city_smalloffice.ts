@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_smalloffice';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'jobs', 'get_job_definition', 'city_office_cleaner');
   qspCall(s, 'jobs', 'get_job_definition', 'city_office_toilet_cleaner');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 17) {
@@ -20,7 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You notice several ads on one of the walls. As you look through them you see a notice that someone is searching for cleaners.');
   if (((s as any).svQW ?? 0) >= 1) {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).week ?? 0) < 6) {
-      scene.text('The door to the<a href="exec:gt \'city_trademission\'">Trade Mission</a> is open.');
+      scene.text('The door to the<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_trademission\\u0027, \\u0027\\u0027); return false;">Trade Mission</a> is open.');
     } else {
       // TODO-QSP: dynamic text: The door of the trade mission is closed. There's a note on the door, Open hours:...
       scene.text('The door of the trade mission is closed. There\'s a note on the door, Open hours: Saturday and Sunday 8:00--16:00');
@@ -235,7 +237,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask for more work', handler: (st: GameState) => {
     if (((s as any).job_hiring_step ?? 0)?.['city_office_toilet_cleaner'] === 0) {
-      if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_toilet_cleaner'] = 1;
+      ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['city_office_toilet_cleaner'] = 1;
     }
     // TODO-QSP: dynamic text: You ask Boris Ivanovich whether he has more work for you. He says that he needs ...
     scene.text(`You ask Boris Ivanovich whether he has more work for you. He says that he needs a cleaner to clean the toilets. You'll be almost able to work every day. Cleaning toilets for an hour earns you ${qspFunc(s, 'money', 'string_profit', 65)} upfront.`);
@@ -244,7 +246,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
       { label: 'Accept', handler: (st: GameState) => {
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_toilet_cleaner'] = 2;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['city_office_toilet_cleaner'] = 2;
     qspCall(s, 'jobs', 'set_employed', 'city_office_toilet_cleaner');
     scene.text('You agree to work as a cleaner.');
     scene.actions([
@@ -265,7 +267,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
       { label: 'Accept', handler: (st: GameState) => {
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_cleaner'] = 2;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['city_office_cleaner'] = 2;
     qspCall(s, 'jobs', 'set_employed', 'city_office_cleaner');
     scene.text('You agree to work as a cleaner.');
     scene.actions([
@@ -278,7 +280,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).job_status ?? 0)?.['city_office_cleaner'] === 'employed'  &&  ((s as any).job_last_work_day ?? 0)?.['city_office_cleaner'] !== ((s as any).daystart ?? 0)  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_office_cleaner') === 1) {
     scene.actions([
-      { label: 'Mop the floor in the office for <<$func(\'money\', \'string_profit\', 65)>> (1:00)', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Mop the floor in the office for ' + String(qspFunc(s, 'money', 'string_profit', 65) ?? '') + ' (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'jobs', 'clock', 'city_office_cleaner');
     qspCall(s, 'mood', 'lower', 'medium');
@@ -356,7 +358,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).job_status ?? 0)?.['city_office_toilet_cleaner'] === 'employed'  &&  ((s as any).job_last_work_day ?? 0)?.['city_office_toilet_cleaner'] !== ((s as any).daystart ?? 0)  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_office_toilet_cleaner') === 1) {
     scene.actions([
-      { label: 'Clean toilets for <<$func(\'money\', \'string_profit\', 65)>> (1:00)', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Clean toilets for ' + String(qspFunc(s, 'money', 'string_profit', 65) ?? '') + ' (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'exp_gain', 'cleaning', Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'jobs', 'clock', 'city_office_toilet_cleaner');

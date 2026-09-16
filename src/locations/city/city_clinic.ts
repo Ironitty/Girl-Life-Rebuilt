@@ -1,17 +1,20 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_clinic', 'start');
+  (s as any).location_type = 'public_indoors';
+  (s as any).sexloc = 'city_clinic';
   (s as any).hosprand = Math.floor(Math.random() * 11) + 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -31,11 +34,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('One area of the clinic is devoted to cosmetic surgery. A sign with directions on the wall point you to the surgeon\'s office.');
   if (((s as any).pcs_gpolimilkdonation ?? 0) >= 2  &&  ((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lact_ev ?? 0)?.['pcs_knows_milkbank'] < 1  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec: minut += 5 & gt 'city_clinic', 'milk_reception'">Ask</a> at the r...
-    scene.text('<a href="exec: minut += 5 & gt \'city_clinic\', \'milk_reception\'">Ask</a> at the reception if there is the possibility for breast milk donation');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027city_clinic\\u0027, \\u0027milk_reception\\u0027); return false;">Ask</a> at the reception if there is the possibility for breast milk donation');
   } else {
     if (((s as any).pcs_gpolimilkdonation ?? 0) < 2  &&  ((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lact_ev ?? 0)?.['pcs_knows_milkbank'] < 1  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
       // TODO-QSP: dynamic text: A small <a href="exec: minut += 5 & gt 'city_clinic', 'milk_advertisement'">adve...
-      scene.text('A small <a href="exec: minut += 5 & gt \'city_clinic\', \'milk_advertisement\'">advertisement</a> at reception catches your eye.');
+      scene.text('A small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027city_clinic\\u0027, \\u0027milk_advertisement\\u0027); return false;">advertisement</a> at reception catches your eye.');
     }
   }
   if (((s as any).job_status ?? 0)?.['city_hospital_nurse'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_hospital_nurse') === 1) {
@@ -54,7 +57,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'See a doctor now (urgent)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).clinic) (s as any).clinic = {}; (s as any).clinic['docheal'] = ((s as any).daystart ?? 0);
+    ((s as any).clinic = (s as any).clinic ?? {})['docheal'] = ((s as any).daystart ?? 0);
     qspCall(s, 'medical_din', 'healthTreatment');
     qspCall(s, 'stat', '');
     scene.text('The doctor guides you to a bed and tells you to lie down, after which he gives you a combined painkiller, steroid and vitamin shot.');
@@ -73,6 +76,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have an appointment with a doctor," you tell the receptionist.');
     scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
   }
+  (s as any).reception_category = 'City General practitioner';
   qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   // TODO-QSP: end
   if (((s as any).pcs_mood ?? 0) < 10) {
@@ -81,13 +85,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'raise', 'medium');
     if ((!((s as any).hosprand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['city_clinic', '0'] }]);
+      qspGoto(s, 'city_clinic', '0');
     }
     if (((s as any).hosprand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['city_clinic', '1'] }]);
+      qspGoto(s, 'city_clinic', '1');
     }
     if (((s as any).hosprand ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['city_clinic', '2'] }]);
+      qspGoto(s, 'city_clinic', '2');
     }
     scene.img('images/locations/pavlovsk/clinic/therapist/therapy1.jpg');
     scene.text('You lie down on the therapist\'s couch and tell him about your troubles. You immediately feel much better, but the therapist seems to be in a state of shock.');
@@ -100,10 +104,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'medical_din', 'birth_control');
   qspCall(s, 'clinic_functions', 'set_abortion_act');
   if (((s as any).experimentQW ?? 0)?.['discovered'] === 1) {
-    scene.text('In the far corner you spot the entrance to a signup area for <a href="exec: experimentQW[\'discovered\'] = 2 & gt \'city_experimental_trials\', \'front_desk\'">experimental trials</a>.');
+    scene.text('In the far corner you spot the entrance to a signup area for <a href="#" onclick="window.__gameStore.setState((s) => { (s.experimentQW ??= {})\\u0027discovered\\u0027 = s.2; return s; }); window.__gameStore.getState().doGoto(\\u0027city_experimental_trials\\u0027, \\u0027front_desk\\u0027); return false;">experimental trials</a>.');
   } else {
     if (((s as any).experimentQW ?? 0)?.['discovered'] === 10) {
-      scene.text('In the far corner you spot the entrance to a signup area for <a href="exec: experimentQW[\'discovered\'] = 2 & gt \'city_experimental_trials\', \'front_desk\'">experimental trials</a>. That must be the place your <i>husband</i> told you about.');
+      scene.text('In the far corner you spot the entrance to a signup area for <a href="#" onclick="window.__gameStore.setState((s) => { (s.experimentQW ??= {})\\u0027discovered\\u0027 = s.2; return s; }); window.__gameStore.getState().doGoto(\\u0027city_experimental_trials\\u0027, \\u0027front_desk\\u0027); return false;">experimental trials</a>. That must be the place your <i>husband</i> told you about.');
     } else {
       if (((s as any).experimentQW ?? 0)?.['discovered'] === 2) {
         scene.actions([
@@ -156,7 +160,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cumcondslip ?? 0) > 0  &&  ((s as any).cumcondslip_aware ?? 0) > 0) {
     scene.actions([
-      { label: 'See a doctor now (urgent)', goto: ['city_clinic', 'drPP'] },
+      { label: 'See a doctor now (urgent)', handler: (st: GameState) => {
+    qspGoto(s, 'city_clinic', 'drPP');
+  } },
     ]);
   }
   if (((s as any).katjob ?? 0) > 0) {
@@ -172,6 +178,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have an appointment with a dentist," you tell the receptionist.');
     scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
   }
+  (s as any).reception_category = 'City Dentist';
   qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   // TODO-QSP: end
   // TODO-QSP: act $func('clinic_functions', 'reception_option_label', 'City Optometrist', 'an optometrist'):
@@ -182,6 +189,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have an appointment with an optometrist," you tell the receptionist.');
     scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
   }
+  (s as any).reception_category = 'City Optometrist';
   qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
   // TODO-QSP: end
   // TODO-QSP: end
@@ -196,6 +204,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStdclinic(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
   scene.text('<center>The STD Clinic</center>');
   scene.text('You notice an advertisement In the waiting room.');
   scene.text('  Private Sexually Transmitted Disease Clinic provides the following test and treatments.');
@@ -285,7 +294,7 @@ function enterStdcheck(s: GameState, scene: SceneBuilder): void {
           scene.text('"You have genital herpes. The cure for this disease is very expensive, but it\'s only active some of the time."');
           if (((s as any).Gerpes ?? 0) >= 3) {
             if ((!((s as any).GerpesNapr ?? 0))) {
-              (s as any).GerpesNapr = 3;
+              (s as any).GerpesNapr = 3 + qspFunc(s, 'money', 'string_price', 450) + '."';
             } else {
               if (((s as any).GerpesNapr ?? 0) > 0) {
                 scene.text('"You need to see the nurse for your herpes injections."');
@@ -303,7 +312,7 @@ function enterStdcheck(s: GameState, scene: SceneBuilder): void {
         if (((s as any).TriperOnce ?? 0) === 1) {
           scene.text('"We found gonorrhea. In principle, this disease is curable."');
           if ((!((s as any).TriperNapr ?? 0))) {
-            (s as any).TriperNapr = 5;
+            (s as any).TriperNapr = 5 + qspFunc(s, 'money', 'string_price', 750) + '."';
           } else {
             if (((s as any).TriperNapr ?? 0) > 0) {
               scene.text('"You need to see the nurse for your gonorrhea injections."');
@@ -603,7 +612,7 @@ function enterNinel(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Brace yourself', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).pcs_horny = 0;
+    (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/clinic/sex/exam18.jpg');
     scene.text('Shes drives the dildo into your pussy with an unnatural amount of strength, causing you to gasp in surprise.');
@@ -617,6 +626,7 @@ function enterNinel(s: GameState, scene: SceneBuilder): void {
     scene.text('Ninel rolls onto the couch, pulling you with her. You find yourself on top and start frantically bouncing on her fake cock, screaming and grinding in almost unbearable pleasure.');
     scene.text('You soon cum, screaming and twitching in an incredibly long orgasm.');
     scene.text('"Now it\'s my turn," Ninel says beneath you.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_strap', 10, 'sub', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -720,7 +730,7 @@ function enterNinel2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Oh-h…!', handler: (st: GameState) => {
-    (s as any).pcs_horny = 0;
+    (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/clinic/sex/exam05.jpg');
@@ -756,6 +766,7 @@ function enterNinel2(s: GameState, scene: SceneBuilder): void {
     scene.text('The strap-on pushes into your pussy and Ninel goes at it like a jackhammer. You quickly explode in a wild orgasm, screaming in ecstasy.');
     scene.text('Your knees buckle and you fall to the floor, shuddering in the throes of sensual release. Ninel just watches as your orgasm seems to last forever…');
     scene.text('"Now you will appease me, my little slut. Come on, you know how!" Ninel commands.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_strap', 10, 'sub', 'lesbian', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -847,6 +858,7 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks doc. That was great…"');
     // TODO-QSP: dynamic text: "Do come again, <<$pcs_nickname>>."
     scene.text(`"Do come again, ${((s as any).pcs_nickname || '')}."`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_strap', 10, 'sub', 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -922,7 +934,7 @@ function enterBeginwork(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       qspCall(s, 'jobs', 'clock', 'city_hospital_nurse');
-      scene.actions([{ label: 'Continue', goto: ['WorkHosp', 'start'] }]);
+      qspGoto(s, 'WorkHosp', 'start');
     }
   } },
     { label: 'Quit your job', goto: ['city_clinic', 'discharge'] },
@@ -960,7 +972,8 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_clinic', 'start'] },
+    qspGoto(s, 'city_clinic', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -970,7 +983,8 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'npcgeneratec', '', 0, 'Doctor', Math.floor(Math.random() * 21) + 28);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['sex', 'var'] },
+    qspGoto(s, 'sex', 'var');
+  } },
   ]);
   scene.build();
 }
@@ -991,7 +1005,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_clinic', 'start'] },
+    qspGoto(s, 'city_clinic', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -1003,7 +1018,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $boy[1] = $npclastgenerated
     (s as any).picrand = 11;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
   ]);
   scene.build();
 }
@@ -1030,7 +1046,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'cuni', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_clinic', 'start'] },
+    qspGoto(s, 'city_clinic', 'start');
+  } },
       ]);
     }
     scene.actions([
@@ -1105,7 +1122,7 @@ function enterMilkAdvertisement(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re not sure why this caught your attention.');
   }
   if (((s as any).lact_ev ?? 0)?.['pcs_knows_milkbank'] < 1) {
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['pcs_knows_milkbank'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['pcs_knows_milkbank'] = 1;
   }
   // TODO-QSP: end
   scene.actions([
@@ -1119,7 +1136,7 @@ function enterMilkReception(s: GameState, scene: SceneBuilder): void {
   scene.text('The woman at the reception looks at you with an annoyed glare and stands up. "Yes, yes… Go this way."');
   scene.text('She waves into a general direction down the hallway. "There should be a sign on the door. It\'s only a small room."');
   if (((s as any).lact_ev ?? 0)?.['pcs_knows_milkbank'] < 1) {
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['pcs_knows_milkbank'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['pcs_knows_milkbank'] = 1;
   }
   // TODO-QSP: end
   scene.actions([
@@ -1172,55 +1189,55 @@ function enterMilkDonationRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sit down here. I\'ll prepare the pump and you can prepare yourself."');
     scene.text('You uncover your breasts and the woman puts the suction cups over your nipples.');
     scene.text('She starts the pump up and it starts drawing milk from your breasts.');
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_pumptime'] = qspFunc(s, 'lact_lib', '$get_breastmilk_time', 4, 50);
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_pumptime'] = qspFunc(s, 'lact_lib', '$get_breastmilk_time', 4, 50);
     if (((s as any).lact_ev ?? 0)?.['poli_pumptime'] > 15) {
       scene.text('After 15 minutes, the woman detaches the pump and tilts her head disappointment.');
       scene.text('"Hmmm… This isn\'t as much as we expected, but it should do."');
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
     } else {
       // TODO-QSP: dynamic text: After <<lact_ev['poli_pumptime']>> minutes, the woman detaches the pump with a s...
       scene.text(`After ${((s as any).lact_ev ?? 0)?.['poli_pumptime'] ?? ''} minutes, the woman detaches the pump with a smile.`);
       scene.text('"This should be enough."');
       scene.text('She nods and smiles at you.');
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).lact_ev ?? 0)?.['poli_pumptime']);
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, ((s as any).lact_ev ?? 0)?.['poli_pumptime']);
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, ((s as any).lact_ev ?? 0)?.['poli_pumptime']);
     }
     scene.img('images/locations/city/residential/clinic/milkbank/small_sample.jpg');
     scene.text('The woman takes your pumped milk and signals you to cover up.');
     scene.text('"Okay, we\'ll have this sample checked and you can come back later."');
     if (((s as any).pcs_mass ?? 0)?.['body'] > 40) {
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_sample_fat'] = (60 + (Math.floor(Math.random() * 10) + 0));
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_sample_fat'] = (60 + (Math.floor(Math.random() * 10) + 0));
     } else {
       if (((s as any).pcs_mass ?? 0)?.['body'] > 20) {
-        if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_sample_fat'] = (45 + (Math.floor(Math.random() * 10) + 0));
+        ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_sample_fat'] = (45 + (Math.floor(Math.random() * 10) + 0));
       } else {
         if (((s as any).pcs_mass ?? 0)?.['body'] > 15) {
-          if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_sample_fat'] = (20 + (Math.floor(Math.random() * 10) + 0));
+          ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_sample_fat'] = (20 + (Math.floor(Math.random() * 10) + 0));
         } else {
-          if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_sample_fat'] = (10 + (Math.floor(Math.random() * 10) + 0));
+          ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_sample_fat'] = (10 + (Math.floor(Math.random() * 10) + 0));
         }
       }
     }
     if (((s as any).pcs_energy ?? 0) > 30) {
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_sample_sugar'] = Math.floor(Math.random() * 12) + 69;
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_sample_sugar'] = Math.floor(Math.random() * 12) + 69;
     } else {
       if (((s as any).sick ?? 0) > 1) {
-        if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_sample_sugar'] = Math.floor(Math.random() * 46) + 0;
+        ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_sample_sugar'] = Math.floor(Math.random() * 46) + 0;
       } else {
-        if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_sample_sugar'] = Math.floor(Math.random() * 25) + 45;
+        ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_sample_sugar'] = Math.floor(Math.random() * 25) + 45;
       }
     }
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_sample_vol'] = ((s as any).lact_ev ?? 0)?.['poli_milkedvolume'];
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_milkedvolume'] = 0;
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['pcs_milkbank_firsttime'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_sample_vol'] = ((s as any).lact_ev ?? 0)?.['poli_milkedvolume'];
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_milkedvolume'] = 0;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['pcs_milkbank_firsttime'] = 1;
     scene.actions([
       { label: 'Leave', goto: ['city_clinic', 'start'] },
     ]);
   } },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_clinic', 'milk_bank'] }]);
+      qspGoto(s, 'city_clinic', 'milk_bank');
     }
   } },
       ]);
@@ -1259,8 +1276,8 @@ function enterMilkBank(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow them', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_donatemoney'] = 0;
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_donationsessioncount'] = 0;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_donatemoney'] = 0;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_donationsessioncount'] = 0;
     scene.img('images/locations/city/residential/clinic/milkbank/pumping_room.jpg');
     scene.text('The employee leads you into one of the free rooms and invites you to sit down.');
     scene.text('She prepares the breast pump and signals you to prepare yourself.');
@@ -1416,7 +1433,7 @@ function enterMilkBank(s: GameState, scene: SceneBuilder): void {
 function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 19) {
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
+    ((s as any).lactation = (s as any).lactation ?? {})['nipple_cream_applied'] = 1;
     scene.img('images/locations/pavlovsk/clinic/mward/pumping.jpg');
     scene.text('The employee attaches the pumps and switches them on.');
     if (((s as any).lactation ?? 0)?.['breastmv'] >= 0) {
@@ -1426,14 +1443,14 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
+    ((s as any).lactation = (s as any).lactation ?? {})['breastpumped'] = 1;
     scene.text('After 15 minutes, the employee detaches the pumps from your breasts.');
     if (((s as any).lact_ev ?? 0)?.['poli_milkedvolume'] >= 50000) {
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_donationsessioncount'] = ((s as any).lact_ev['poli_donationsessioncount'] ?? 0) + ((((s as any).lact_ev ?? {})?.['poli_milkedvolume'] ?? 0)/10000);
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_temp_var'] = ((((s as any).lact_ev ?? {})?.['poli_milkedvolume'] ?? 0)/50000);
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_totalmilkdonation_count'] = ((s as any).lact_ev['poli_totalmilkdonation_count'] ?? 0) + (1);
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_totalmilkdonated'] = ((s as any).lact_ev['poli_totalmilkdonated'] ?? 0) + (((((s as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50));
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_donationsessioncount'] = ((s as any).lact_ev['poli_donationsessioncount'] ?? 0) + ((((s as any).lact_ev ?? {})?.['poli_milkedvolume'] ?? 0)/10000);
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_temp_var'] = ((((s as any).lact_ev ?? {})?.['poli_milkedvolume'] ?? 0)/50000);
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totalmilkdonation_count'] = ((s as any).lact_ev['poli_totalmilkdonation_count'] ?? 0) + (1);
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totalmilkdonated'] = ((s as any).lact_ev['poli_totalmilkdonated'] ?? 0) + (((((s as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50));
       if (((s as any).lact_ev ?? 0)?.['poli_temp_var'] >= 12) {
         // TODO-QSP: dynamic text: She looks astonished at the generous amount of milk as she stores away <<lact_ev...
         scene.text(`She looks astonished at the generous amount of milk as she stores away ${(((s as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((s as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
@@ -1485,13 +1502,13 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
         scene.text('"Mhmm… I\'m sorry, but this isn\'t enough milk for a valid donation. You provided no breast milk at all."');
       }
     }
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_milkedvolume'] = 0;
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_milkedvolume'] = 0;
     if (((s as any).lact_ev ?? 0)?.['poli_donationsessioncount'] > 0) {
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_donatemoney'] = ((((s as any).lact_ev ?? {})?.['poli_donationsessioncount'] ?? 0) / 2) * 10;
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_donatemoney'] = ((((s as any).lact_ev ?? {})?.['poli_donationsessioncount'] ?? 0) / 2) * 10;
     } else {
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_donatemoney'] = 0;
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_donatemoney'] = 0;
     }
-    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 0;
+    ((s as any).lactation = (s as any).lactation ?? {})['nipple_cream_applied'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).lactation ?? 0)?.['breastmv'] > ((s as any).lactation ?? 0)?.['breastmm']/2  &&  ((s as any).lactation ?? 0)?.['breastmv'] >= 100000) {
       scene.text('The employee looks at your breasts.');
@@ -1509,7 +1526,7 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).lact_ev ?? 0)?.['poli_donationsessioncount'] > 0) {
       // TODO-QSP: gs 'money', 'earn', lact_ev['poli_donatemoney'], 'cash'
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_totaldonatemoney'] = ((s as any).lact_ev['poli_totaldonatemoney'] ?? 0) + (((s as any).lact_ev ?? 0)?.['poli_donatemoney']);
+      ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totaldonatemoney'] = ((s as any).lact_ev['poli_totaldonatemoney'] ?? 0) + (((s as any).lact_ev ?? 0)?.['poli_donatemoney']);
       // TODO-QSP: dynamic text: You put your top back on and the employee hands you <<$func('money', 'string_pro...
       scene.text(`You put your top back on and the employee hands you ${qspFunc(s, 'money', 'string_profit', ((s as any).lact_ev ?? 0)?.['poli_donatemoney'] ?? '')} for your donated breast milk.`);
     } else {
@@ -1517,8 +1534,9 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_milkedvolume'] = 0;
-  }, goto: ['city_clinic', 'milk_donation_room'] },
+    ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_milkedvolume'] = 0;
+    qspGoto(s, 'city_clinic', 'milk_donation_room');
+  } },
     ]);
   } },
     ]);
@@ -1562,9 +1580,9 @@ function enterDonateMilkBottle(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_total_pay = ((s as any).temp_total_pay ?? 0) + (((s as any).temp_pay ?? 0));
   qspCall(s, 'money', 'earn', ((s as any).temp_pay ?? 0), 'cash');
-  if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_totaldonatemoney'] = ((s as any).lact_ev['poli_totaldonatemoney'] ?? 0) + (((s as any).temp_pay ?? 0));
+  ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totaldonatemoney'] = ((s as any).lact_ev['poli_totaldonatemoney'] ?? 0) + (((s as any).temp_pay ?? 0));
   (s as any).temp_total_milk = ((s as any).temp_total_milk ?? 0) + (((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)]);
-  if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_totalmilkdonated'] = ((s as any).lact_ev['poli_totalmilkdonated'] ?? 0) + (((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)]);
+  ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totalmilkdonated'] = ((s as any).lact_ev['poli_totalmilkdonated'] ?? 0) + (((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)]);
   qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).temp_id ?? 0));
   if (((s as any).locArgs?.[1] ?? 0) === 'small') {
   }

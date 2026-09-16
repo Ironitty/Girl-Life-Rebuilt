@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_nightclub', 'start');
+  (s as any).location_type = 'public_outdoors';
+  (s as any).sexloc = 'city_nightclub';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -80,7 +82,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         qspCall(s, 'money', 'pay', 250);
         (s as any).frost = 0;
-        scene.actions([{ label: 'Continue', goto: ['city_nightclub', 'inside'] }]);
+        qspGoto(s, 'city_nightclub', 'inside');
       } else {
         if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
           scene.text('He shakes his head. "If you\'re looking for paying clients, try the road by the park. This is not a brothel."');
@@ -122,13 +124,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInside(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'city_nightclub';
+  (s as any).loc_arg = 'inside';
+  (s as any).menu_loc = 'city_nightclub';
+  (s as any).menu_arg = 'inside';
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Night club</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/club9.jpg');
-  scene.text('The nightclub is huge. The first floor consists of the dance floor surrounding the main bar. Along the upper level walkway are some <a href="exec:gt \'city_nightclub\', \'private_rooms\'">private booths</a> and some smaller bars.');
+  scene.text('The nightclub is huge. The first floor consists of the dance floor surrounding the main bar. Along the upper level walkway are some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_nightclub\\u0027, \\u0027private_rooms\\u0027); return false;">private booths</a> and some smaller bars.');
   scene.text('The music is loud and the bass is thumping. You see a laser show going on over at the stage, while on the poorly-lit dance floor, people are dancing like there\'s no tomorrow.');
   if (((s as any).hour ?? 0) >= 18  &&  ((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).clubwork ?? 0) === 0  &&  ((s as any).clubno ?? 0) === 0  &&  (!(Math.floor(Math.random() * 11) + 0))) {
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
@@ -216,12 +223,15 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave the club', handler: (st: GameState) => {
     (s as any).drunk = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
   ]);
   scene.build();
 }
 
 function enterDance(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_nightclub';
+  (s as any).menu_arg = 'dance';
   qspCall(s, 'stat', '');
   scene.text('<center><b>The dance floor</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/club9.jpg');
@@ -372,7 +382,8 @@ function enterDanceGuy(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave him', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_nightclub', 'dance'] },
+    qspGoto(s, 'city_nightclub', 'dance');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -408,7 +419,7 @@ function enterDanceGuy(s: GameState, scene: SceneBuilder): void {
     scene.text('You lean in and whisper in his ear. "How about we have fun at your place instead?"');
     scene.text('His eyes light up and he grabs your hand before quickly dragging you to the exit.');
     scene.actions([
-      { label: 'Go with him', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+      { label: 'Go with him', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
     ]);
@@ -426,7 +437,8 @@ function enterDanceCouple(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave them', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_nightclub', 'dance'] },
+    qspGoto(s, 'city_nightclub', 'dance');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -454,6 +466,7 @@ function enterDanceCouple(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/nightclub/sex/vip4.jpg');
     scene.text('She then turns around and puts it in her pussy. You both start grinding in an attempt to get the most pleasure possible while she goes back to giving a blowjob to the man. You have an explosive orgasm and can\'t wait to see what these two will do next for you.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'dom');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -467,7 +480,8 @@ function enterDanceCouple(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_nightclub', 'private_rooms'] },
+    qspGoto(s, 'city_nightclub', 'private_rooms');
+  } },
       { label: 'Lick her breasts', handler: (st: GameState) => {
     (s as any).spafinloc = 12;
     qspCall(s, 'cum_manage', '');
@@ -496,6 +510,10 @@ function enterDanceCouple(s: GameState, scene: SceneBuilder): void {
 
 function enterBar(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).loc = 'city_nightclub';
+  (s as any).loc_arg = 'bar';
+  (s as any).menu_loc = 'city_nightclub';
+  (s as any).menu_arg = 'bar';
   qspCall(s, 'stat', '');
   scene.text('<center><b>bar</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/club10.jpg');
@@ -505,11 +523,11 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
     (s as any).barsexrand = Math.floor(Math.random() * 11) + 0;
     if (((s as any).barsexrand ?? 0) === 1) {
       // TODO-QSP: killvar 'barsexrand'
-      scene.actions([{ label: 'Continue', goto: ['city_nightclub', 'bar0'] }]);
+      qspGoto(s, 'city_nightclub', 'bar0');
     }
     if (((s as any).barsexrand ?? 0) === 2) {
       // TODO-QSP: killvar 'barsexrand'
-      scene.actions([{ label: 'Continue', goto: ['city_nightclub', 'bar1'] }]);
+      qspGoto(s, 'city_nightclub', 'bar1');
     }
   }
   if (((s as any).alko ?? 0) >= 7) {
@@ -855,6 +873,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_horny ?? 0) > 90) {
+      (s as any).orgasm_or = 'custom';
+      (s as any).orgasm_txt = 'As your heartbeat slows and you catch your breath, you realize your arousal has peaked. A warmth fills you and your eyes lose focus.';
     }
     scene.text('You recover to find yourself alone in the cubicle and quickly re-dress.');
     qspCall(s, 'arousal', 'end');
@@ -937,6 +957,7 @@ function enterLezbsort2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>WC</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/sex/sortkuni.jpg');
   scene.text('You sit on the toilet and lift your feet up. "Lick it," you tell her. She seductively bites her lips and happily follows your orders, parting your pussy lips before she starts passionately eating you out. She doesn\'t stop until you cry out in pleasure and cum.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'dinSex', 'std_trigger_oral');
   qspCall(s, 'arousal', 'cuni', 10, 'sub', 'lesbian');
   qspCall(s, 'stat', '');

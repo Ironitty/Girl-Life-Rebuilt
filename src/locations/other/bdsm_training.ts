@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,18 +11,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSub(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 1, 'Elektra', 27);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   if (((s as any).bdsmclub ?? 0)?.['subtraining'] === 0) {
-    if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['subtraining'] = 1;
-    scene.actions([{ label: 'Continue', goto: ['bdsm_training', 'sub_1'] }]);
+    ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['subtraining'] = 1;
+    qspGoto(s, 'bdsm_training', 'sub_1');
   } else {
     if (((s as any).bdsmclub ?? 0)?.['subtraining'] === 1) {
-      if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['subtraining'] = 2;
-      scene.actions([{ label: 'Continue', goto: ['bdsm_training', 'sub_2'] }]);
+      ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['subtraining'] = 2;
+      qspGoto(s, 'bdsm_training', 'sub_2');
     } else {
       if (((s as any).bdsmclub ?? 0)?.['subtraining'] === 2) {
-        if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['subtraining'] = 3;
-        scene.actions([{ label: 'Continue', goto: ['bdsm_training', 'sub_3'] }]);
+        ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['subtraining'] = 3;
+        qspGoto(s, 'bdsm_training', 'sub_3');
       }
     }
   }
@@ -31,7 +31,7 @@ function enterSub(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSub_1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/r2_1.jpg');
@@ -100,6 +100,7 @@ function enterSub_1(s: GameState, scene: SceneBuilder): void {
     scene.text('Pain shoots through your face. You fall to your knees, your vision is a little blurry and you can taste copper. Mistress stands over you.');
     scene.text('"Do not dare!"');
     scene.text('You slowly work it out, earlier you were looking at a cattle prod, and now you have been formally introduced.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 10, 'sub', 'lesbian', 'maso', 'bound');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -128,6 +129,7 @@ function enterSub_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_horny ?? 0) < 100) {
       (s as any).pcs_horny = 100;
     }
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/suburb/bdsm_club/r2_8.jpg');
     scene.text('Eventually, you stop noticing the difference between pain and pleasure. Your face is covered in sweat, you squirm on the cross. You beg mistress to let you cum, but she is adamant.');
@@ -147,6 +149,7 @@ function enterSub_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'willpower', 'hj', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/suburb/bdsm_club/r2_9.jpg');
     scene.text('You decide to cheat and, with an incredible force of will, take control of the body. It goes unnoticed, Mistress continues, and you rapidly cum.');
@@ -166,6 +169,7 @@ function enterSub_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_horny ?? 0) < 100) {
       (s as any).pcs_horny = 100;
     }
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/suburb/bdsm_club/r2_8.jpg');
     scene.text('Mistress forbids you to cum, and you struggle, hampered.');
@@ -207,7 +211,7 @@ function enterBDSMend(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSub_2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'stat', '');
@@ -254,6 +258,7 @@ function enterSub_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mistress, cum! Please!');
     scene.text('"No! And don\'t look at me with those puppy dog eyes! Not allowed!');
     scene.text('Mistress almost brings you to orgasm, then takes the vibrator.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_vibe', 10, 'sub', 'lesbian', 'maso', 'bound');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -284,6 +289,7 @@ function enterSub_2(s: GameState, scene: SceneBuilder): void {
     scene.text('Mistress Fucks you with a strapon and again brings you to your peak, but does not give you the finish the desire.');
     scene.text('"Boring…" Disappointedly Mistress pulls out, while you try to catch your breath. "How about hanging you?"');
     scene.text('Mistresses fingers flash so quickly, you can\'t keep up. She changes the location of the ropes, turns to you and rattles some chains. You realize with horror, she has tied you hanging from the ceiling chain. The motor sounds, and your body rises.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_strap', 10, 'sub', 'lesbian', 'maso', 'bound');
     qspCall(s, 'arousal', 'foreplay', (-10), 'sub', 'lesbian', 'maso', 'bound');
     qspCall(s, 'stat', '');
@@ -323,6 +329,7 @@ function enterSub_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh fuck, cum! Please!" You can hardly form the words.');
     scene.text('"Fuck you, bitch! Fine, hurry it though!"');
     scene.text('With those words you are rapidly orgasming, which is immediately followed by a second extremely intense one. You squirm so much, that even the ropes are coming free.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal_strap', 10, 'sub', 'lesbian', 'maso', 'bound');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -379,7 +386,7 @@ function enterSub_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSub_3(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'stat', '');
@@ -460,6 +467,7 @@ function enterSub_3(s: GameState, scene: SceneBuilder): void {
     scene.text('You begin to pull at your clit, while grinding on the dick. Soon you feel, that you are at the brink, and ask permission.');
     scene.text('"Finish!" Allows Mistress.');
     scene.text('You shout "Cumming!". You are having an orgasm of unprecedented power. At the peak point, Mistress abruptly pulls the strings, tearing the clothespins from you. You think that she ripped off the skin, it is very painful and pleasant at the same time.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'maso');
     qspCall(s, 'arousal', 'vaginal_finger', 10, 'sub', 'maso');
     qspCall(s, 'stat', '');
@@ -498,7 +506,7 @@ function enterSub_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDom(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['domtraining'] = 1;
+  ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['domtraining'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/r2_1.jpg');

@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -47,7 +47,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).FShour = ((s as any).FShour ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
-  }, goto: ['FSroom', ''] },
+    qspGoto(s, 'FSroom', '');
+  } },
   ]);
   scene.build();
 }

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,12 +13,24 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_initialization', 'init');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+      (s as any).temp_image = '2_sg/start_sg.jpg';
+      (s as any).stat_explanation = 'sg';
     } else {
       if (((s as any).start_type ?? 0)?.['magic'] === 'magic') {
+        (s as any).temp_image = '2_sg/start_csg.jpg';
+        (s as any).stat_explanation = 'sg_m';
+      } else {
+        (s as any).temp_image = '2_sg/start_csg.jpg';
+        (s as any).stat_explanation = 'sg_tg';
       }
     }
   } else {
     if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
+      (s as any).temp_image = '6_uni/uni_start.jpg';
+      (s as any).stat_explanation = 'uni';
+    } else {
+      (s as any).temp_image = '5_city/city_start.jpg';
+      (s as any).stat_explanation = 'city';
     }
   }
   scene.img(`images/system/1_openings/${((s as any).temp_image || '')}`);
@@ -68,23 +80,23 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).music_loop = 0;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       if ((!((s as any).start_location ?? 0))) {
-        scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_pavlovsk'] }]);
+        qspGoto(s, 'intro_sg', 'intro_pavlovsk');
       } else {
         if (((s as any).start_location ?? 0) === 1) {
-          scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_gadukino'] }]);
+          qspGoto(s, 'intro_sg', 'intro_gadukino');
         } else {
           if (((s as any).start_location ?? 0) === 2) {
-            scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_pushkin'] }]);
+            qspGoto(s, 'intro_sg', 'intro_pushkin');
           } else {
-            scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_sharing'] }]);
+            qspGoto(s, 'intro_sg', 'intro_sharing');
           }
         }
       }
     } else {
       if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        scene.actions([{ label: 'Continue', goto: ['uni_grounds', ''] }]);
+        qspGoto(s, 'uni_grounds', '');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['korr', ''] }]);
+        qspGoto(s, 'korr', '');
       }
     }
   } },
@@ -101,12 +113,12 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      scene.actions([{ label: 'Continue', goto: ['intro_sg', 'quick_start', 'start_location'] }]);
+      qspGoto(s, 'intro_sg', 'quick_start', 'start_location');
     } else {
       if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        scene.actions([{ label: 'Continue', goto: ['uni_grounds', ''] }]);
+        qspGoto(s, 'uni_grounds', '');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['korr', ''] }]);
+        qspGoto(s, 'korr', '');
       }
     }
   } },

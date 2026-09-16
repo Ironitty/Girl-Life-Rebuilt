@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,48 +12,54 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).breakevent_lunch_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).breakevent_lunch_day = ((s as any).daystart ?? 0);
-    scene.actions([{ label: 'Continue', goto: ['gschool_events', 'break_events'] }]);
+    (s as any).eventtype = 'lunch';
+    qspGoto(s, 'gschool_events', 'break_events');
   }
   qspCall(s, 'dimaRevenge', 'dimaRevenge_event_check');
   if (((s as any).marcus_event ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).Marcus_sextype ?? 0) > 0  &&  (!(Math.floor(Math.random() * 4) + 0))) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'marcus_event'] }]);
+    qspGoto(s, 'gschool_lunch', 'marcus_event');
   }
   if (((s as any).cheerleadingQW ?? 0)?.['bella_stasya_gossip'] === 0  &&  ((s as any).cheerleadingQW ?? 0)?.['quest_stage'] === 0  &&  ((s as any).cheerleadingQW ?? 0)?.['gossip'] >= 3  &&  (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 200)) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_events1', 'cheerleading_notice'] }]);
+    qspGoto(s, 'gschool_events1', 'cheerleading_notice');
   }
   qspCall(s, 'natbel_friend', 'slut_reconcile_school_check');
-  scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'cafeteria'] }]);
+  qspGoto(s, 'gschool_lunch', 'cafeteria');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCafeteria(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gschool_lunch';
+  (s as any).loc_arg = 'cafeteria';
+  (s as any).menu_loc = 'gschool_lunch';
+  (s as any).menu_arg = 'cafeteria';
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   if ((!((s as any).school_lunch ?? 0))) {
     if (((s as any).NikoVolkovQW ?? 0) === 5  &&  ((s as any).NikoEv ?? 0) === 5  &&  ((s as any).NikoDate ?? 0) === 0  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).school_lunch = 1;
-      scene.actions([{ label: 'Continue', goto: ['NikoDates', 'hallway_strip'] }]);
+      qspGoto(s, 'NikoDates', 'hallway_strip');
     } else {
       if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 12) {
         (s as any).school_lunch = 1;
-        scene.actions([{ label: 'Continue', goto: ['NikoDreams', 'classroom_dream'] }]);
+        qspGoto(s, 'NikoDreams', 'classroom_dream');
       } else {
         if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 13  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
           (s as any).school_lunch = 1;
-          scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Lunch Chat'] }]);
+          qspGoto(s, 'NikoEv2', 'Lunch Chat');
         } else {
           if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 15  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
             (s as any).school_lunch = 1;
-            scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Lunch Chat 2'] }]);
+            qspGoto(s, 'NikoEv2', 'Lunch Chat 2');
           } else {
             if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 21  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
               (s as any).school_lunch = 1;
-              scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Natalia Talk 2'] }]);
+              qspGoto(s, 'NikoEv2', 'Natalia Talk 2');
             } else {
               if (((s as any).VKLenaBully ?? 0) === 1  &&  ((s as any).VKLena_Day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).VKWip ?? 0) === 100) {
                 (s as any).school_lunch = 1;
-                scene.actions([{ label: 'Continue', goto: ['NikoBully', 'Lena Bully'] }]);
+                qspGoto(s, 'NikoBully', 'Lena Bully');
               }
             }
           }
@@ -108,10 +114,16 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBreak(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gschool_lunch';
+  (s as any).loc_arg = 'break';
+  (s as any).menu_loc = 'gschool_lunch';
+  (s as any).menu_arg = 'break';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   (s as any).urand = Math.floor(Math.random() * 9) + 0;
   scene.img('images/locations/pavlovsk/school/chat/cooljocks.jpg');
   scene.text('During break, the students split up to hang out with those in their social groups. The nerds and outcasts hang out in the classrooms, the cool kids and jocks hang out in the hallway near the lockers, and the gopniks hang out in the stairwell near the disused classrooms.');
+  (s as any).eventtype = 'long_break';
   if (((s as any).cheerleadingQW ?? 0)?.['skipped_ev'] + ((s as any).cheerleadingQW ?? 0)?.['skipped_g_ev'] > 0) {
     qspCall(s, 'gschool_cheerleading', 'skipped_ev');
     return;
@@ -120,16 +132,16 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).week ?? 0) > 1  &&  (((s as any).grupTipe ?? 0) === 3  ||  ((s as any).nerd_game ?? 0)?.['stage'] > 0  ||  (Math.floor(Math.random() * (((s as any).npc_rel ?? 0)?.['A152'] - 80 + 1)) + (80)) > 95)  &&  ((s as any).nerd_game ?? 0)?.['invite_day'] < ((s as any).daystart ?? 0) - ((s as any).week ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', '\'lunch\''] }]);
+      qspGoto(s, 'nerd_game_night', 'invite', 'lunch');
     } else {
       if (((s as any).bella_goth ?? 0) === 0  &&  (((s as any).arch_vars ?? 0)?.['main_active'] === 'goth'  &&  ((s as any).PCloGoth ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) === 7)) {
         (s as any).bella_goth = 1;
-        scene.actions([{ label: 'Continue', goto: ['gschool_events1', 'bella_goth'] }]);
+        qspGoto(s, 'gschool_events1', 'bella_goth');
       }
     }
   }
   if (((s as any).katjaQW ?? 0)?.['QWstage'] === 0  &&  ((s as any).npc_rel ?? 0)?.['A14'] >= 60  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 50  &&  ((s as any).class ?? 0)?.['school_grade_average'] >= 65  &&  ((s as any).pcs_makupskl ?? 0) >= 40  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_coolkid_chats', 'Katjaproblems'] }]);
+    qspGoto(s, 'gschool_coolkid_chats', 'Katjaproblems');
   }
   if (((s as any).breaktype ?? 0) !== 'long') {
     if (((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 2  &&  ((s as any).hour ?? 0) < 10) {
@@ -137,43 +149,43 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
       scene.text(`<br>"Hi Nat, did you happen to see Dimka?" "Hey ${((s as any).pcs_nickname || '')}, he was here earlier, speaking with Lena and Lera."`);
     }
     if (((s as any).dimaRevenge ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '2'] }]);
+      qspGoto(s, 'dimaRevenge', '', '2');
     } else {
       if (((s as any).NikoVolkovQW ?? 0) === 0  &&  ((s as any).NikoLuv ?? 0) >= 4) {
-        scene.actions([{ label: 'Continue', goto: ['NikoEv', 'Date Intro'] }]);
+        qspGoto(s, 'NikoEv', 'Date Intro');
       } else {
         if (((s as any).NikoVolkovQW ?? 0) === 5  &&  ((s as any).NikoEv ?? 0) === 4  &&  (!((s as any).NikoDate ?? 0))) {
           (s as any).lunch_event = ((s as any).daystart ?? 0);
-          scene.actions([{ label: 'Continue', goto: ['NikoDates', 'cafeteria'] }]);
+          qspGoto(s, 'NikoDates', 'cafeteria');
         } else {
           if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).FedorVsNiko ?? 0) === 1) {
-            scene.actions([{ label: 'Continue', goto: ['NikoPayback', 'Fedor Help 2'] }]);
+            qspGoto(s, 'NikoPayback', 'Fedor Help 2');
           } else {
             if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).FyodorVsNiko ?? 0) === 1) {
-              scene.actions([{ label: 'Continue', goto: ['NikoPayback', 'Fyodor Help'] }]);
+              qspGoto(s, 'NikoPayback', 'Fyodor Help');
             } else {
               if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).IvanVsNiko ?? 0) === 1) {
-                scene.actions([{ label: 'Continue', goto: ['NikoPayback', 'Ivan Help 2'] }]);
+                qspGoto(s, 'NikoPayback', 'Ivan Help 2');
               } else {
                 if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).anushkaQW ?? 0)?.['vs_niko'] === 1) {
-                  scene.actions([{ label: 'Continue', goto: ['NikoPayback', 'Nush Help'] }]);
+                  qspGoto(s, 'NikoPayback', 'Nush Help');
                 } else {
                   if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).AlbinaQW ?? 0)?.['niko_help'] === 1) {
-                    scene.actions([{ label: 'Continue', goto: ['NikoPayback', 'Albina Help'] }]);
+                    qspGoto(s, 'NikoPayback', 'Albina Help');
                   } else {
                     if (((s as any).NikoPayback ?? 0) === 1  &&  ((s as any).NikoPayback_Day ?? 0) !== ((s as any).daystart ?? 0)) {
-                      scene.actions([{ label: 'Continue', goto: ['NikoPayback', 'Payback'] }]);
+                      qspGoto(s, 'NikoPayback', 'Payback');
                     } else {
                       if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).NikoPayback_Day ?? 0) !== ((s as any).daystart ?? 0)) {
-                        scene.actions([{ label: 'Continue', goto: ['NikoPayback', 'Payback 2'] }]);
+                        qspGoto(s, 'NikoPayback', 'Payback 2');
                       } else {
                         if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 14) {
                           (s as any).lunch_event = ((s as any).daystart ?? 0);
-                          scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Vicky Talk'] }]);
+                          qspGoto(s, 'NikoEv2', 'Vicky Talk');
                         } else {
                           if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 16) {
                             (s as any).lunch_event = ((s as any).daystart ?? 0);
-                            scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Natalia Talk'] }]);
+                            qspGoto(s, 'NikoEv2', 'Natalia Talk');
                           }
                         }
                       }
@@ -189,10 +201,10 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_period ?? 0) === 6) {
       if (((s as any).lunch_event ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).lunch_event = ((s as any).daystart ?? 0);
-        scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'events'] }]);
+        qspGoto(s, 'gschool_lunch', 'events');
       }
       if (((s as any).soniaQW ?? 0)?.['slut'] === 2) {
-        if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 3;
+        ((s as any).soniaQW = (s as any).soniaQW ?? {})['slut'] = 3;
         scene.text('During break, you\'re wandering through the school hallways killing time when you notice Sonia and Vitek talking about something. Sonia looks like she\'s about to cry, but eventually she gives a quiet nod as Vitek whispers something in her ear.');
       }
       scene.actions([
@@ -209,10 +221,10 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).breakevent_break_day ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).breakevent_break_day = ((s as any).daystart ?? 0);
-        scene.actions([{ label: 'Continue', goto: ['gschool_events', 'break_events'] }]);
+        qspGoto(s, 'gschool_events', 'break_events');
       }
       if (((s as any).soniaQW ?? 0)?.['slut'] === 2) {
-        if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 3;
+        ((s as any).soniaQW = (s as any).soniaQW ?? {})['slut'] = 3;
         scene.text('During break, you\'re wandering through the school hallways killing time when you notice Sonia and Vitek talking about something. Sonia looks like she\'s about to cry, but eventually she gives a quiet nod as Vitek whispers something in her ear.');
       }
       scene.actions([
@@ -356,7 +368,7 @@ function enterMarcusEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Help him out', handler: (st: GameState) => {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A146'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A146'] = 1;
     qspCall(s, 'boyStat', 'A146');
     scene.img('images/characters/pavlovsk/school/boy/marcus/sex/school/marcl.jpg');
     // TODO-QSP: dynamic text: You purse your lips in thought before grabbing him by the hand. When no one is l...
@@ -430,12 +442,12 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Eat Katja out', handler: (st: GameState) => {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
     if (((s as any).katjaQW ?? 0)?.['school_sex'] === 0) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['school_sex'] = 1;
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['school_sex'] = 1;
     }
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
     qspCall(s, 'npcStat', 'A14');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/lesbian.jpg');
@@ -480,7 +492,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Go with it', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['lunch'] = 2;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['lunch'] = 2;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 2);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
     scene.img('images/characters/pavlovsk/school/girl/anushka/makeout.mp4');
@@ -507,7 +519,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
             { label: 'Not today', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You think about it for a second, but decide that you have other things you need to do, so you shake your head. "Sorry Nush, but I\'ve got some stuff I need to do. Maybe some other time?"');
     scene.text('She just gives a little shrug. "Whatever," she quips before turning and walking off, leaving you wondering if you made the right decision.');
@@ -547,7 +559,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck Vitek\'s dick', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A9');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal', 'end');
@@ -610,7 +622,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
                       { label: 'Continue your break', goto: ['gschool_lunch', 'break'] },
                     ]);
                   } else {
-                    scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'break'] }]);
+                    qspGoto(s, 'gschool_lunch', 'break');
                   }
                 }
               }
@@ -855,6 +867,7 @@ function enterRolanMeet(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     (s as any).rolanmeet = ((s as any).rolanmeet ?? 0) + (1);
+    (s as any).track_loop = 'sound/windhowl.mp3';
     (s as any).volume = 50;
     (s as any).music_loop = 1;
     scene.img('images/characters/pavlovsk/school/teacher/rolan/school/rolanmeet13.jpg');

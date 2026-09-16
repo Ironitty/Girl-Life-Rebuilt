@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'Military', 'start');
+  (s as any).sexloc = 'Military';
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Army Camp</b></center>');
   scene.img('images/locations/city/shared/military/military.jpg');
@@ -29,10 +31,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
     qspCall(s, 'stat', '');
     if ((!((s as any).sanrand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['Military', 'san0'] }]);
+      qspGoto(s, 'Military', 'san0');
     }
     if (((s as any).sanrand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['Military', 'san1'] }]);
+      qspGoto(s, 'Military', 'san1');
     }
     scene.text('You are working in the infirmary.');
     scene.actions([
@@ -47,10 +49,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You walk for a while in the forest.');
     if ((!((s as any).milprorand ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['Military', 'pro0'] }]);
+      qspGoto(s, 'Military', 'pro0');
     }
     if (((s as any).milprorand ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['Military', 'pro1'] }]);
+      qspGoto(s, 'Military', 'pro1');
     }
     scene.actions([
       { label: 'Finish', goto: ['Military', 'start'] },
@@ -64,6 +66,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSan0(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'npcgeneratec', '', 0, 'soldier', Math.floor(Math.random() * 13) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   scene.img('images/locations/city/shared/military/sex/san0.jpg');
@@ -81,7 +84,8 @@ function enterSan0(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['Military', 'start'] },
+    qspGoto(s, 'Military', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -90,12 +94,14 @@ function enterSan0(s: GameState, scene: SceneBuilder): void {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).picrand = 41;
     (s as any).sexpartkno = 1;
-  }, goto: ['sex', 'minet'] },
+    qspGoto(s, 'sex', 'minet');
+  } },
   ]);
   scene.build();
 }
 
 function enterSan1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   qspCall(s, 'npcgeneratec', '', 0, 'army doctor', Math.floor(Math.random() * 11) + 22);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   scene.img('images/locations/city/shared/military/sex/san1.jpg');
@@ -113,7 +119,8 @@ function enterSan1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['Military', 'start'] },
+    qspGoto(s, 'Military', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -122,12 +129,14 @@ function enterSan1(s: GameState, scene: SceneBuilder): void {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).picrand = 42;
     (s as any).sexpartkno = 1;
-  }, goto: ['sex', 'minet'] },
+    qspGoto(s, 'sex', 'minet');
+  } },
   ]);
   scene.build();
 }
 
 function enterPro0(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.text('You met two soldiers whom ask you to help them out with a war game, in the role of a captive spy.');
   qspCall(s, 'willpower', 'gangbang', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -142,7 +151,8 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'gangbang', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['Military', 'start'] },
+    qspGoto(s, 'Military', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -161,7 +171,8 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
     (s as any).SUB = ((s as any).SUB ?? 0) + (1);
     (s as any).picrand = 21;
     (s as any).sexpartkno = 1;
-  }, goto: ['sexdvoe', 'var'] },
+    qspGoto(s, 'sexdvoe', 'var');
+  } },
     ]);
   } },
   ]);
@@ -169,6 +180,7 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPro1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.text('You notice that a guy follows you for several minutes.');
   qspCall(s, 'willpower', 'rape', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -245,7 +257,7 @@ function enterPro1(s: GameState, scene: SceneBuilder): void {
 function enterRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'rapist', Math.floor(Math.random() * 13) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.text('You suddenly feel a blow on the back of your head, and lose consciousness.');
   scene.text('…');

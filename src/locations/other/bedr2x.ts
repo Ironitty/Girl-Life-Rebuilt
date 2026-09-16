@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,18 +6,20 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bedr2x', '');
+  (s as any).locclass = 'bedr';
+  (s as any).location_type = 'private';
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.img('images/locations/city/residential/apartment/bedr2.jpg');
   if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['tobiQW', 'start'] }]);
+    qspGoto(s, 'tobiQW', 'start');
   }
   scene.text('A bright and beautiful bedroom, with modern and stylish furniture.');
-  scene.text('The room is dominated by <a href="exec:gt \'bed\',\'start\'">full sized bed</a>');
-  scene.text('Near the entrance stands a modern <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a>.');
-  scene.text('Against the wall is a table with a <a href="exec:gt \'mirror\',\'start\'">mirror</a> above it.');
+  scene.text('The room is dominated by <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">full sized bed</a>');
+  scene.text('Near the entrance stands a modern <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a>.');
+  scene.text('Against the wall is a table with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above it.');
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }

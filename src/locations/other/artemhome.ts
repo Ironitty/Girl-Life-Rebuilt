@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,9 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'artemhome', 'home');
+  (s as any).location_type = 'public_indoors';
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -68,14 +70,15 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Take a seat', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_livingroom');
-  }, goto: ['artemhome', 'livingroom'] },
+    qspGoto(s, 'artemhome', 'livingroom');
+  } },
           ]);
         }
       } else {
         if (((s as any).DoorOpenedBy ?? 0) === 1) {
           scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
           if (((s as any).artemQW ?? 0)?.['metArtemMom'] === 0) {
-            if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['metArtemMom'] = 1;
+            ((s as any).artemQW = (s as any).artemQW ?? {})['metArtemMom'] = 1;
             scene.text('You stand outside the Chebotarev household and knock on the door, which is quickly answered by Artem\'s mother, who has a friendly smile on her face. "Hello. Can I help you?"');
             scene.text('You return her smile. "Yes. Is Artem home?"');
             if (((s as any).fame ?? 0)?.['pav_slut'] >= 200  ||  ((s as any).grupTipe ?? 0) === 4) {
@@ -96,7 +99,8 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'Enter', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'hallway'] },
+    qspGoto(s, 'artemhome', 'hallway');
+  } },
                   ]);
                 } else {
                   scene.text('Her face tightens ever so slightly. "Well, he isn\'t home at the moment."');
@@ -178,6 +182,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'core_library', 'setloc', 'artemhome', 'hallway');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/hall.jpg');
@@ -190,7 +195,8 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
       { label: '<b>Leave Artem\'s apartment</b>', goto: ['pod_ezd', 'etaj_1'] },
       { label: 'Let\'s go to your room', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
     ]);
   } else {
     scene.actions([
@@ -208,16 +214,17 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A2'] === 'home_bathroom') {
-    scene.actions([{ label: 'Continue', goto: ['artemhome', 'bathroom_occupied'] }]);
+    qspGoto(s, 'artemhome', 'bathroom_occupied');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'core_library', 'setloc', 'artemhome', 'bathroom');
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/bathroom.jpg');
   scene.text('The first thing you notice is the god awful green tiles with matching sink in the bathroom. You don\'t know who picked them, but they clearly don\'t have good taste. Other than that, it\'s a fairly typical bathroom.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -265,14 +272,17 @@ function enterBathroomOccupied(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   (s as any).music_loop = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'core_library', 'setloc', 'artemhome', 'artemroom');
+  (s as any).location_type = 'public_indoors';
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Artem\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom.jpg');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 23) {
-    scene.text('The room is very clean and neat. Right next to the window is a bed, with a small <a href="exec:gt \'artemhome\', \'night_stand\'">night stand</a> next to it. Against the opposite wall is a small computer desk and a chair, with a <a href="exec:gt \'artemhome\', \'computer\'">laptop</a> on it. Next to the desk is a <a href="exec:gt \'artemhome\', \'artemdresser\'">dresser</a>. On the other side of the desk is a <a href="exec:gt \'artemhome\', \'bookshelf\'">bookshelf</a> with a fairly large collection of books.');
+    scene.text('The room is very clean and neat. Right next to the window is a bed, with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027artemhome\\u0027, \\u0027night_stand\\u0027); return false;">night stand</a> next to it. Against the opposite wall is a small computer desk and a chair, with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027artemhome\\u0027, \\u0027computer\\u0027); return false;">laptop</a> on it. Next to the desk is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027artemhome\\u0027, \\u0027artemdresser\\u0027); return false;">dresser</a>. On the other side of the desk is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027artemhome\\u0027, \\u0027bookshelf\\u0027); return false;">bookshelf</a> with a fairly large collection of books.');
   } else {
     scene.text('The room is very clean and neat. Right next to the window is a bed, with a small nightstand next to it. Against the opposite wall is a small computer desk and a chair, with a laptop on it. Next to the desk is a dresser. On the other side of the desk is a bookshelf with a fairly large collection of books.');
   }
@@ -324,7 +334,7 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
           { label: 'Kiss him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
     if (((s as any).artkissing ?? 0) !== ((s as any).daystart ?? 0)) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
       (s as any).artkissing = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'willpower', 'pay', 'self');
@@ -375,7 +385,8 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Refuse to strip', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['artem_events', 'artemdryhump'] },
+    qspGoto(s, 'artem_events', 'artemdryhump');
+  } },
             ]);
           }
           scene.actions([
@@ -403,7 +414,8 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Refuse to strip', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['artem_events', 'artemdryhump'] },
+    qspGoto(s, 'artem_events', 'artemdryhump');
+  } },
             ]);
           }
           scene.actions([
@@ -485,7 +497,8 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let\'s go to the living room', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_livingroom');
-  }, goto: ['artemhome', 'livingroom'] },
+    qspGoto(s, 'artemhome', 'livingroom');
+  } },
       { label: 'Talk to Artem', goto: ['artem_chat', 'chat'] },
       { label: 'Snacks', handler: (st: GameState) => {
     scene.text('<center><b>Artem\'s Room</b></center>');
@@ -504,6 +517,7 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
 
 function enterArtemdresser(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'artemhome', 'artemdresser');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'npc_relationship', 'modify', 'A2', 'dislike');
   qspCall(s, 'stat', '');
@@ -518,6 +532,8 @@ function enterArtemdresser(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBookshelf(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'artemhome';
+  (s as any).menu_arg = 'bookshelf';
   qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -528,9 +544,9 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask to borrow a book', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
     (s as any).artem_borrowed_book = 1;
-    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = Math.floor(Math.random() * 201) + 400;
+    ((s as any).BookVars = (s as any).BookVars ?? {})['artem_pages'] = Math.floor(Math.random() * 201) + 400;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/bookshelf.jpg');
     scene.text('You look through the books until you find one you like. "Do you mind if I borrow this?"');
@@ -548,7 +564,7 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
       { label: 'Return a book', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).artem_borrowed_book = 0;
-    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = 0;
+    ((s as any).BookVars = (s as any).BookVars ?? {})['artem_pages'] = 0;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/bookshelf.jpg');
     scene.text('"I brought your book back," you tell him as you take it out of your purse and put it back in place on the shelf, right where you got it from.');
@@ -654,7 +670,8 @@ function enterSnack(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Back to his room', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
   ]);
   scene.build();
 }
@@ -664,6 +681,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     (s as any).livingev = 0;
   }
   qspCall(s, 'core_library', 'setloc', 'artemhome', 'livingroom');
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living room</b></center>');
@@ -702,7 +720,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
     ]);
   } },
     ]);
@@ -730,7 +749,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
     ]);
   } },
     ]);
@@ -747,7 +767,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow Artem to his room', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
     ]);
   } },
         ]);
@@ -763,7 +784,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow Artem to his room', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
       { label: 'No', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/livingroom/watchplay.jpg');
@@ -778,7 +800,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
         { label: 'Play', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
     if (((s as any).artfalling ?? 0) !== ((s as any).daystart ?? 0)) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
       (s as any).artfalling = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'exp_gain', 'gaming', 1);
@@ -789,7 +811,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow Artem to his room', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
       { label: 'No', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/livingroom/watchplay.jpg');
     scene.text('You shake your head. "I had a lot of fun playing with you, but I need to get going. Maybe next time."');
@@ -986,6 +1009,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'core_library', 'setloc', 'artemhome', 'kitchen');
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   qspCall(s, 'kit_din', '');
   scene.text('<center><b>Kitchen</b></center>');
@@ -999,7 +1023,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['pav_slut'] >= 200  ||  ((s as any).grupTipe ?? 0) === 4) {
       scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
       if (((s as any).artemQW ?? 0)?.['metArtemMom'] === 0) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['metArtemMom'] = 1;
+        ((s as any).artemQW = (s as any).artemQW ?? {})['metArtemMom'] = 1;
         scene.text('As Artem starts talking, she stops what she was doing. "This is the girl I was telling you about…"');
         scene.text('"Oh." She\'s a bit taken aback, but replies politely. "Hello, I\'m Glinina, Artem\'s mother. Pleasure to meet you."');
         // TODO-QSP: dynamic text: You greet her back. "Hi, my name is <<$pcs_firstname>>. Nice to meet you."
@@ -1044,7 +1068,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
       if (((s as any).artemQW ?? 0)?.['metArtemMom'] === 0) {
-        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['metArtemMom'] = 1;
+        ((s as any).artemQW = (s as any).artemQW ?? {})['metArtemMom'] = 1;
         // TODO-QSP: dynamic text: Noticing you, she stops and smiles. "You must be <<$pcs_firstname>>. Artem has t...
         scene.text(`Noticing you, she stops and smiles. "You must be ${((s as any).pcs_firstname || '')}. Artem has told me a lot about you…"`);
         scene.text('"Hopefully only good things…" you joke and smile while looking at Artem.');
@@ -1133,14 +1157,29 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).artemlefto_count ?? 0) >= 1) {
+    (s as any).artem_lefto = ' some leftovers';
+  } else {
+    (s as any).artem_lefto = '';
   }
   if (((s as any).artemsup_count ?? 0) >= 1) {
+    (s as any).artem_sup = ' some soup';
+  } else {
+    (s as any).artem_sup = '';
   }
   if (((s as any).artemwater_count ?? 0) >= 1) {
+    (s as any).artem_water = ' some bottled water';
+  } else {
+    (s as any).artem_water = '';
   }
   if (((s as any).artemtea_count ?? 0) >= 1) {
+    (s as any).artem_tea = ' some tea';
+  } else {
+    (s as any).artem_tea = '';
   }
   if (((s as any).artemsanw_count ?? 0) >= 1) {
+    (s as any).artem_sanw = ' some stuff to make a sandwich';
+  } else {
+    (s as any).artem_sanw = '';
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$artem_tea>><<$artem_water>><<$artem_sup>><<$artem...
@@ -1325,10 +1364,10 @@ function enterArtemparents(s: GameState, scene: SceneBuilder): void {
 
 function enterTimecheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 23  ||  ((s as any).hour ?? 0) < 4) {
-    scene.actions([{ label: 'Continue', goto: ['artemhome', 'timecheck_late_exit'] }]);
+    qspGoto(s, 'artemhome', 'timecheck_late_exit');
   } else {
     if (((s as any).hour ?? 0) < 6) {
-      scene.actions([{ label: 'Continue', goto: ['artemhome', 'timecheck_early_exit'] }]);
+      qspGoto(s, 'artemhome', 'timecheck_early_exit');
     }
   }
   // TODO-QSP: end
@@ -1344,7 +1383,8 @@ function enterTimecheckEarlyExit(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       qspCall(s, 'shortgs', 'dress');
     }
-  }, goto: ['pod_ezd', 'etaj_1'] },
+    qspGoto(s, 'pod_ezd', 'etaj_1');
+  } },
   ]);
   scene.build();
 }
@@ -1358,7 +1398,8 @@ function enterTimecheckLateExit(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       qspCall(s, 'shortgs', 'dress');
     }
-  }, goto: ['pod_ezd', 'etaj_1'] },
+    qspGoto(s, 'pod_ezd', 'etaj_1');
+  } },
   ]);
   scene.build();
 }

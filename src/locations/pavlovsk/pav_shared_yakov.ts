@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterYakov(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
+  (s as any).loc_arg = 'Yakov';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: <h3><font color=#<<$Yakov['font']>>><<$npc_firstname[$boy]>></font></h3>
   scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
@@ -17,17 +18,17 @@ function enterYakov(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('npc_notes', $boy)
   if (((s as any).Yakov ?? 0)?.['hadSex'] === 1) {
     // TODO-QSP: dynamic text: As you know very well, <<$npc_firstname[$boy]>> has <<npc_dick[$boy]>> cm long <...
-    scene.text(`As you know very well, ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} has ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long <a href="exec:gt 'pav_shared_yakov', 'yakov_dick'">dick</a> with always smoothly shaved pubic hair.`);
+    scene.text(`As you know very well, ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} has ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_yakov\\u0027, \\u0027yakov_dick\\u0027); return false;">dick</a> with always smoothly shaved pubic hair.`);
   }
   // TODO-QSP: dynamic text: <b>Today he looks to be in a <<$Yakov['mood_txt']>> mood.</b>
   scene.text(`<b>Today he looks to be in a ${((s as any).Yakov ?? 0)?.['mood_txt'] ?? ''} mood.</b>`);
   if ((((s as any).totminut ?? 0) - ((s as any).Yakov ?? 0)?.['served']) < 180) {
-    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['serve'] = 0;
+    ((s as any).Yakov = (s as any).Yakov ?? {})['serve'] = 0;
     // TODO-QSP: dynamic text: It's not even been 3 hours since you last served <<$npc_firstname[$boy]>>
     scene.text(`It's not even been 3 hours since you last served ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}`);
   } else {
     if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 2) {
-      if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['serve'] = 1;
+      ((s as any).Yakov = (s as any).Yakov ?? {})['serve'] = 1;
     }
   }
   if (((s as any).cumloc ?? 0)[13] > 0  ||  ((s as any).cumloc ?? 0)[11] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0  ||  ((s as any).cumloc ?? 0)[10] > 0  ||  ((s as any).cumloc ?? 0)[9] > 0) {
@@ -54,7 +55,7 @@ function enterYakov(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Hey sweetie, how are you?"</font>
         scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Hey sweetie, how are you?"</font>`);
         if (((s as any).Yakov ?? 0)?.['serve'] === 1) {
-          scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_Serve'] }]);
+          qspGoto(s, 'pav_shared_yakov', 'Yakov_Serve');
           scene.actions([
             { label: 'Offer him to serve', handler: (st: GameState) => {
     // TODO-QSP: Yakov['served'] = totminut
@@ -74,16 +75,17 @@ function enterYakov(s: GameState, scene: SceneBuilder): void {
 
 function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
+  (s as any).loc_arg = 'Yakov_Chat';
   // TODO-QSP: dynamic text: <h3><font color=#<<$Yakov['font']>>><<$npc_firstname[$boy]>></font></h3>
   scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
   if (((s as any).hour ?? 0) >= ((s as any).Yakov ?? 0)?.['leaves']  &&  ((s as any).hour ?? 0) < ((s as any).Yakov ?? 0)?.['comes']) {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
-    scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'Yakov_Room'] }]);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
+    qspGoto(s, 'pav_shared_apt', 'Yakov_Room');
   } else {
     if (((s as any).hour ?? 0) >= ((s as any).Yakov ?? 0)?.['sleeps']  ||  ((s as any).hour ?? 0) < ((s as any).Yakov ?? 0)?.['wakes']) {
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
-      scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'Yakov_Room'] }]);
+      ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
+      qspGoto(s, 'pav_shared_apt', 'Yakov_Room');
     }
   }
   if (((s as any).shared_apt ?? 0)?.['chatLvl'] === 0) {
@@ -202,9 +204,9 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         (s as any).intimateTalkCh = Math.floor(Math.random() * 101) + 0;
         if (((s as any).Yakov ?? 0)?.['mood'] <= 4  &&  ((s as any).intimateTalkCh ?? 0) <= 50) {
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 20;
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 20;
         } else {
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
         }
         scene.actions([
           { label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_Chat'] },
@@ -263,9 +265,9 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
             (s as any).minut = ((s as any).minut ?? 0) + 5;
             // TODO-QSP: dynamic text: You get into rather passionate discussion about sex and all that stuff. <<$npc_f...
             scene.text(`You get into rather passionate discussion about sex and all that stuff. ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} seems to love to talk about such topics.`);
-            if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['resCh'] = Math.floor(Math.random() * 6) + 0;
+            ((s as any).shared_apt = (s as any).shared_apt ?? {})['resCh'] = Math.floor(Math.random() * 6) + 0;
             if (((s as any).shared_apt ?? 0)?.['resCh'] <= 3) {
-              if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['topicR'] = Math.floor(Math.random() * 5) + 1;
+              ((s as any).shared_apt = (s as any).shared_apt ?? {})['topicR'] = Math.floor(Math.random() * 5) + 1;
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 1) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> passionately tells you he loves looking at the girls fa...
                 scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} passionately tells you he loves looking at the girls face when she orgasms.`);
@@ -296,7 +298,7 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).Yakov ?? 0)?.['anal'] === 0) {
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> admits that no girl has yet allowed him to fuck her ass...
                   scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} admits that no girl has yet allowed him to fuck her ass.`);
-                  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['doAnal'] = 1;
+                  ((s as any).Yakov = (s as any).Yakov ?? {})['doAnal'] = 1;
                   scene.actions([
                     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 0
@@ -315,7 +317,7 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).Yakov ?? 0)?.['anal'] === 0) {
                     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> almost secretly tells you he owns a dildo so big that n...
                     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} almost secretly tells you he owns a dildo so big that no girl can insert it into her entirely.`);
-                    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['doDildo'] = 1;
+                    ((s as any).Yakov = (s as any).Yakov ?? {})['doDildo'] = 1;
                     scene.actions([
                       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 0
@@ -373,33 +375,43 @@ function enterYakovDick(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < -80) {
     // TODO-QSP: $rel_word[$boy] = 'terrible'
+    (s as any).color_rel = 'ff0000';
   } else {
     if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < -60) {
       // TODO-QSP: $rel_word[$boy] = 'very bad'
+      (s as any).color_rel = 'ff7824';
     } else {
       if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < -40) {
         // TODO-QSP: $rel_word[$boy] = 'bad'
+        (s as any).color_rel = 'fcb503';
       } else {
         if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < -20) {
           // TODO-QSP: $rel_word[$boy] = 'strained'
+          (s as any).color_rel = 'f0cc00';
         } else {
           if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < 0) {
             // TODO-QSP: $rel_word[$boy] = 'neutral'
+            (s as any).color_rel = 'fcfc0f';
           } else {
             if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < 20) {
               // TODO-QSP: $rel_word[$boy] = 'good'
+              (s as any).color_rel = 'abf246';
             } else {
               if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < 40) {
                 // TODO-QSP: $rel_word[$boy] = 'great'
+                (s as any).color_rel = '84fc03';
               } else {
                 if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < 60) {
                   // TODO-QSP: $rel_word[$boy] = 'excellent'
+                  (s as any).color_rel = '5eff00';
                 } else {
                   if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] < 80) {
                     // TODO-QSP: $rel_word[$boy] = 'fantastic'
+                    (s as any).color_rel = '03ff39';
                   } else {
                     if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] >= 80) {
                       // TODO-QSP: $rel_word[$boy] = 'incredible'
+                      (s as any).color_rel = '00ff7e';
                     }
                   }
                 }
@@ -547,14 +559,15 @@ function enterYakovDick(s: GameState, scene: SceneBuilder): void {
 function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
+  (s as any).loc_arg = 'Yakov_Serve';
   // TODO-QSP: dynamic text: <h3><font color=#<<$Yakov['font']>>><<$npc_firstname[$boy]>></font></h3>
   scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['subStep'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['sexCh'] = Math.floor(Math.random() * 101) + 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['sexCh'] = Math.floor(Math.random() * 101) + 0;
   if (((s as any).Yakov ?? 0)?.['mood'] >= 7) {
-    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['served'] = 0;
+    ((s as any).Yakov = (s as any).Yakov ?? {})['served'] = 0;
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Not now <<$pcs_firstname>>, I am exhausted."</f...
     scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Not now ${((s as any).pcs_firstname || '')}, I am exhausted."</font>`);
     scene.actions([
@@ -562,14 +575,14 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).shared_apt ?? 0)?.['sexCh'] < 40) {
-      if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['served'] = 0;
+      ((s as any).Yakov = (s as any).Yakov ?? {})['served'] = 0;
       // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Not now <<$pcs_firstname>>, I have to excersice...
       scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Not now ${((s as any).pcs_firstname || '')}, I have to excersice in a while."</font>`);
       scene.actions([
         { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
       ]);
     } else {
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['actionR'] = Math.floor(Math.random() * 4) + 2;
+      ((s as any).shared_apt = (s as any).shared_apt ?? {})['actionR'] = Math.floor(Math.random() * 4) + 2;
       if (((s as any).shared_apt ?? 0)?.['actionR'] === 2) {
         // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Sure <<$pcs_firstname>>, I could use a nice blo...
         scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname || '')}, I could use a nice blowjob."</font>`);
@@ -600,7 +613,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_shared_yakov', 'Yakov_SexAnal'] },
                 ]);
               } else {
-                scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_Serve'] }]);
+                qspGoto(s, 'pav_shared_yakov', 'Yakov_Serve');
               }
             } else {
               if (((s as any).Yakov ?? 0)?.['anal'] >= 1) {
@@ -626,7 +639,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_shared_yakov', 'Yakov_SexGiantdildo'] },
                   ]);
                 } else {
-                  scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_Serve'] }]);
+                  qspGoto(s, 'pav_shared_yakov', 'Yakov_Serve');
                 }
               } else {
                 if (((s as any).Yakov ?? 0)?.['dildo'] >= 1) {
@@ -646,9 +659,10 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
       if (((s as any).shared_apt ?? 0)?.['actionR'] > 1) {
         scene.actions([
           { label: 'Say you changed your mind and leave', handler: (st: GameState) => {
-    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['served'] = 0;
+    ((s as any).Yakov = (s as any).Yakov ?? {})['served'] = 0;
     qspCall(s, 'npc_relationship', 'modify', 'A264', (-1));
-  }, goto: ['pav_shared_apt', 'start'] },
+    qspGoto(s, 'pav_shared_apt', 'start');
+  } },
         ]);
       }
     }
@@ -685,7 +699,8 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><img height="250" src="images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg"> <img height="250" src="images/locations/pavlovsk/resident/sharedapt/sp/cockerect.jpg"></center>');
     }
   }
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price'] = ((s as any).shared_apt ?? 0)?.['price_blowjob'];
+  (s as any).loc_arg = 'Yakov_Suck';
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_blowjob'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: '+orgB+'/100`);
@@ -847,10 +862,10 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
               scene.text('You force yourself on to it, overcoming the gag reflex in your throat, saliva and tears almost squirting out of you.');
               scene.text('Even though his cock is not the largest one, it is long enough to make you gag.');
               scene.text('Doing this several times in a row, you try to hold on as long as you can with dick all the way down in your throat.');
-              if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['bjDeep'] = 1;
+              ((s as any).Yakov = (s as any).Yakov ?? {})['bjDeep'] = 1;
               qspCall(s, 'arousal', 'bj', 6);
               qspCall(s, 'stat', '');
-              if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['deepthroatFailCh'] = Math.floor(Math.random() * 101) + 0;
+              ((s as any).shared_apt = (s as any).shared_apt ?? {})['deepthroatFailCh'] = Math.floor(Math.random() * 101) + 0;
               (s as any).fadeOutCh = Math.floor(Math.random() * 101) + 0;
               if (((s as any).shared_apt ?? 0)?.['deepthroatFailCh'] <= 10) {
                 // TODO-QSP: dynamic text: <b>You try too hard to put it as far as possible, unable to hold the gag reflex ...
@@ -900,12 +915,12 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
                 scene.text('You decided that now it\'s time to try and make him finally cum.');
                 scene.text('Intensifying the pressure and pace, you expect him every moment to moan and be done with it.');
                 qspCall(s, 'arousal', 'bj', 5);
-                if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cumCh'] = Math.floor(Math.random() * 101) + 0;
+                ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumCh'] = Math.floor(Math.random() * 101) + 0;
                 if (((s as any).shared_apt ?? 0)?.['cumCh'] <= 70) {
                   scene.img('images/characters/pavlovsk/resident/leonid/sex/cummouth1.mp4');
                   // TODO-QSP: dynamic text: Your attempt is successful, as <<$npc_firstname[$boy]>> cums right into your mou...
                   scene.text(`Your attempt is successful, as ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cums right into your mouth and on your face.`);
-                  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                  ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                   qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
                   qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
                   scene.actions([
@@ -956,8 +971,8 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
                   // TODO-QSP: dynamic text: He looks annoyed:<font color=#<<$Yakov['font']>>>"Try better next time."</font>
                   scene.text(`He looks annoyed:<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Try better next time."</font>`);
                   qspCall(s, 'npc_relationship', 'modify', 'A264', (-3));
-                  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
-                  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['bjFail'] = ((s as any).Yakov['bjFail'] ?? 0) + (1);
+                  ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
+                  ((s as any).Yakov = (s as any).Yakov ?? {})['bjFail'] = ((s as any).Yakov['bjFail'] ?? 0) + (1);
                   scene.actions([
                     { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
                   ]);
@@ -971,9 +986,9 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Oh gosh <<$pcs_firstname>>, I think I'm gonna p...
                     scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Oh gosh ${((s as any).pcs_firstname || '')}, I think I'm gonna puke too! Do something!"</font>`);
                     qspCall(s, 'npc_relationship', 'modify', 'A264', (-5));
-                    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
-                    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['bjFail'] = ((s as any).Yakov['bjFail'] ?? 0) + (1);
-                    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['bjFailPuke'] = ((s as any).Yakov['bjFailPuke'] ?? 0) + (1);
+                    ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
+                    ((s as any).Yakov = (s as any).Yakov ?? {})['bjFail'] = ((s as any).Yakov['bjFail'] ?? 0) + (1);
+                    ((s as any).Yakov = (s as any).Yakov ?? {})['bjFailPuke'] = ((s as any).Yakov['bjFailPuke'] ?? 0) + (1);
                     scene.actions([
                       { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
                     ]);
@@ -987,15 +1002,15 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
                       // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"I think you have held your breath for too long ...
                       scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I think you have held your breath for too long and fainted, ${((s as any).pcs_firstname || '')}."</font> He is feeling compassionate to you.`);
                       qspCall(s, 'npc_relationship', 'modify', 'A264', 1);
-                      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
-                      if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['bjFail'] = ((s as any).Yakov['bjFail'] ?? 0) + (1);
-                      if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['bjFailFaint'] = ((s as any).Yakov['bjFailFaint'] ?? 0) + (1);
+                      ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
+                      ((s as any).Yakov = (s as any).Yakov ?? {})['bjFail'] = ((s as any).Yakov['bjFail'] ?? 0) + (1);
+                      ((s as any).Yakov = (s as any).Yakov ?? {})['bjFailFaint'] = ((s as any).Yakov['bjFailFaint'] ?? 0) + (1);
                       scene.actions([
                         { label: 'Get up and leave', goto: ['pav_shared_apt', 'start'] },
                       ]);
                     } else {
                       if (((s as any).shared_apt ?? 0)?.['step'] === 10) {
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['bj'] = ((s as any).Yakov['bj'] ?? 0) + (1);
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['bj'] = ((s as any).Yakov['bj'] ?? 0) + (1);
                         if (((s as any).Yakov ?? 0)?.['mood'] <= 7) {
                           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                           // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Thank you my sweetie."</font>
@@ -1003,13 +1018,13 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
                           // TODO-QSP: dynamic text: Cleaning your face and mouth off the cum: <font color=#<<$pcs_font>>>"You are al...
                           scene.text(`Cleaning your face and mouth off the cum: <font color=#${((s as any).pcs_font || '')}>"You are always welcome. Seeya!"</font>.`);
                           qspCall(s, 'npc_relationship', 'modify', 'A264', 1);
-                          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
+                          ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                         } else {
                           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> doesn't pay any more attention to you, getting back to ...
                           scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} doesn't pay any more attention to you, getting back to reading his sports magazine.`);
                           scene.text('You just pack your things and quietly leave through the door.');
-                          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
+                          ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                         }
                         qspCall(s, 'arousal', 'end');
                         scene.actions([
@@ -1053,13 +1068,15 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><img height="250" src="images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg"> <img height="250" src="images/locations/pavlovsk/resident/sharedapt/sp/cockerect.jpg"></center>');
     }
   }
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price'] = ((s as any).shared_apt ?? 0)?.['price_vaginal'];
+  (s as any).loc_arg = 'Yakov_SexVaginal';
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_vaginal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: '+orgB+'/100`);
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).clothingworntype = 'nude';
     scene.img('images/locations/city/residential/sauna/sex/simplystrip1.mp4');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to undress and you follow his example, stripping...
     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
@@ -1078,7 +1095,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Do you want to make love in a certain position,...
     scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Do you want to make love in a certain position, or should I choose?"</font>`);
     if (((s as any).Yakov ?? 0)?.['pornPos'] === 0) {
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['hisPos'] = Math.floor(Math.random() * 3) + 1;
+      ((s as any).shared_apt = (s as any).shared_apt ?? {})['hisPos'] = Math.floor(Math.random() * 3) + 1;
     }
     scene.actions([
       { label: 'Let him choose', handler: (st: GameState) => {
@@ -1125,7 +1142,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
           if (((s as any).orgB ?? 0) < 100) {
-            scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] }]);
+            qspGoto(s, 'pav_shared_yakov', 'Yakov_SexVaginal');
             scene.actions([
               { label: 'Let him continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1135,9 +1152,10 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
           if (((s as any).orgB ?? 0) >= 100) {
             scene.actions([
               { label: 'He is about to cum', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 10;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['subStep'] = 0;
-  }, goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] },
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 10;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
+    qspGoto(s, 'pav_shared_yakov', 'Yakov_SexVaginal');
+  } },
             ]);
           }
         }
@@ -1170,7 +1188,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
             if (((s as any).orgB ?? 0) < 100) {
-              scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] }]);
+              qspGoto(s, 'pav_shared_yakov', 'Yakov_SexVaginal');
               scene.actions([
                 { label: 'Let him continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1180,9 +1198,10 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
             if (((s as any).orgB ?? 0) >= 100) {
               scene.actions([
                 { label: 'He is about to cum', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 10;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['subStep'] = 0;
-  }, goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] },
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 10;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
+    qspGoto(s, 'pav_shared_yakov', 'Yakov_SexVaginal');
+  } },
               ]);
             }
           }
@@ -1216,7 +1235,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
               if (((s as any).orgB ?? 0) < 100) {
-                scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] }]);
+                qspGoto(s, 'pav_shared_yakov', 'Yakov_SexVaginal');
                 scene.actions([
                   { label: 'Let him continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1226,9 +1245,10 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
               if (((s as any).orgB ?? 0) >= 100) {
                 scene.actions([
                   { label: 'He is about to cum', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 10;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['subStep'] = 0;
-  }, goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] },
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 10;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
+    qspGoto(s, 'pav_shared_yakov', 'Yakov_SexVaginal');
+  } },
                 ]);
               }
             }
@@ -1240,8 +1260,8 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is groaning loudly, you can say that he is reaching his...
               scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is groaning loudly, you can say that he is reaching his orgasm.`);
               scene.text('You decide to tell him:');
-              if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['vag'] = ((s as any).Yakov['vag'] ?? 0) + (1);
-              if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cumOutL'] = Math.floor(Math.random() * 5) + 2;
+              ((s as any).Yakov = (s as any).Yakov ?? {})['vag'] = ((s as any).Yakov['vag'] ?? 0) + (1);
+              ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL'] = Math.floor(Math.random() * 5) + 2;
               scene.actions([
                 { label: 'Cum inside me', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1255,9 +1275,9 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                 scene.img('images/locations/shared/abduction/sex/slavewhorecumpussy3.mp4');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end, pumping his load <<npc_d...
                 scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end, pumping his load ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm deep inside your pussy.`);
-                if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['vagCumInside'] = ((s as any).Yakov['vagCumInside'] ?? 0) + (1);
-                if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['cumVag'] = ((s as any).Yakov['cumVag'] ?? 0) + (1);
-                if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                ((s as any).Yakov = (s as any).Yakov ?? {})['vagCumInside'] = ((s as any).Yakov['vagCumInside'] ?? 0) + (1);
+                ((s as any).Yakov = (s as any).Yakov ?? {})['cumVag'] = ((s as any).Yakov['cumVag'] ?? 0) + (1);
+                ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                 qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
                 qspCall(s, 'arousal', 'vaginal', 2);
                 qspCall(s, 'arousal', 'end');
@@ -1273,7 +1293,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                   scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and starts spouting his seed, he takes his dick out and points it on your stomach.`);
                   scene.text('An extensive pool of cum lands on your abdomen, feeling warm but sticky.');
                   (s as any).minut = ((s as any).minut ?? 0) + 2;
-                  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                  ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                   qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 1);
                   qspCall(s, 'arousal', 'end');
                   scene.actions([
@@ -1288,7 +1308,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and in the moment he starts spouting his seed, he takes his dick out and points it on your ass.`);
                     scene.text('Both your asscheeks are covered in sticky, warm seed.');
                     (s as any).minut = ((s as any).minut ?? 0) + 2;
-                    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                    ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
                     qspCall(s, 'arousal', 'end');
                     scene.actions([
@@ -1303,7 +1323,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                       scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and in the moment he starts spouting his seed, he gently pushes you on your knees and points his tip in front of your face.`);
                       scene.text('The seed starts squirting, splashing your face with surprisingly strong force, leaking to your nose and eyes and hair…');
                       (s as any).minut = ((s as any).minut ?? 0) + 2;
-                      if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                      ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                       qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
                       qspCall(s, 'arousal', 'end');
                       scene.actions([
@@ -1329,9 +1349,9 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'npc_relationship', 'modify', 'A264', (-5));
                         }
                         scene.text('Annoyed you get up from the bed, putting your clothes between your legs to catch the remainder of the cum, so it doesn\'t land on your legs and carpet.');
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['cumVag'] = ((s as any).Yakov['cumVag'] ?? 0) + (1);
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['vagCumInsideUnwanted'] = ((s as any).Yakov['vagCumInsideUnwanted'] ?? 0) + (1);
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['cumVag'] = ((s as any).Yakov['cumVag'] ?? 0) + (1);
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['vagCumInsideUnwanted'] = ((s as any).Yakov['vagCumInsideUnwanted'] ?? 0) + (1);
                         qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
                         qspCall(s, 'arousal', 'vaginal', 5, 'sub');
                         qspCall(s, 'arousal', 'end');
@@ -1361,8 +1381,8 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> spins the last of his cum dry from his cock, you close ...
                             scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
                             scene.text('Afterwards you show him your tongue as proof that not a drop was left unconsumed…');
-                            if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
-                            if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['swall'] = ((s as any).Yakov['swall'] ?? 0) + (1);
+                            ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
+                            ((s as any).Yakov = (s as any).Yakov ?? {})['swall'] = ((s as any).Yakov['swall'] ?? 0) + (1);
                             qspCall(s, 'npc_relationship', 'modify', 'A264', 1);
                             (s as any).minut = ((s as any).minut ?? 0) + 5;
                             qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
@@ -1377,7 +1397,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                               // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"All right I'll cum elsewhere…"</font>
                               scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"All right I'll cum elsewhere…"</font>`);
                               qspCall(s, 'npc_relationship', 'modify', 'A264', (-3));
-                              if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cumOutL2'] = Math.floor(Math.random() * 4) + 2;
+                              ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL2'] = Math.floor(Math.random() * 4) + 2;
                               scene.actions([
                                 { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = shared_apt['cumOutL2']
@@ -1422,13 +1442,15 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><img height="250" src="images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg"> <img height="250" src="images/locations/pavlovsk/resident/sharedapt/sp/cockerect.jpg"></center>');
     }
   }
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price'] = ((s as any).shared_apt ?? 0)?.['price_anal'];
+  (s as any).loc_arg = 'Yakov_SexAnal';
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_anal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: '+orgB+'/100`);
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).clothingworntype = 'nude';
     scene.img('images/locations/city/residential/sauna/sex/simplystrip1.mp4');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to undress and you follow his example, stripping...
     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
@@ -1447,7 +1469,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Do you want to make love in a certain position,...
     scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Do you want to make love in a certain position, or should I choose?"</font>`);
     if (((s as any).Yakov ?? 0)?.['pornPos'] === 0) {
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['hisPos'] = Math.floor(Math.random() * 3) + 1;
+      ((s as any).shared_apt = (s as any).shared_apt ?? {})['hisPos'] = Math.floor(Math.random() * 3) + 1;
     }
     scene.actions([
       { label: 'Let him choose', handler: (st: GameState) => {
@@ -1493,7 +1515,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
           if (((s as any).orgB ?? 0) < 100) {
-            scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexAnal'] }]);
+            qspGoto(s, 'pav_shared_yakov', 'Yakov_SexAnal');
             scene.actions([
               { label: 'Let him continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1503,9 +1525,10 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
           if (((s as any).orgB ?? 0) >= 100) {
             scene.actions([
               { label: 'He is about to cum', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 10;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['subStep'] = 0;
-  }, goto: ['pav_shared_yakov', 'Yakov_SexAnal'] },
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 10;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
+    qspGoto(s, 'pav_shared_yakov', 'Yakov_SexAnal');
+  } },
             ]);
           }
         }
@@ -1537,7 +1560,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
             if (((s as any).orgB ?? 0) < 100) {
-              scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexAnal'] }]);
+              qspGoto(s, 'pav_shared_yakov', 'Yakov_SexAnal');
               scene.actions([
                 { label: 'Let him continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1547,9 +1570,10 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
             if (((s as any).orgB ?? 0) >= 100) {
               scene.actions([
                 { label: 'He is about to cum', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 10;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['subStep'] = 0;
-  }, goto: ['pav_shared_yakov', 'Yakov_SexAnal'] },
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 10;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
+    qspGoto(s, 'pav_shared_yakov', 'Yakov_SexAnal');
+  } },
               ]);
             }
           }
@@ -1582,7 +1606,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
               if (((s as any).orgB ?? 0) < 100) {
-                scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexAnal'] }]);
+                qspGoto(s, 'pav_shared_yakov', 'Yakov_SexAnal');
                 scene.actions([
                   { label: 'Let him continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1592,9 +1616,10 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
               if (((s as any).orgB ?? 0) >= 100) {
                 scene.actions([
                   { label: 'He is about to cum', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 10;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['subStep'] = 0;
-  }, goto: ['pav_shared_yakov', 'Yakov_SexAnal'] },
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 10;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
+    qspGoto(s, 'pav_shared_yakov', 'Yakov_SexAnal');
+  } },
                 ]);
               }
             }
@@ -1606,8 +1631,8 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is groaning loudly, you can say that he is reaching his...
               scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is groaning loudly, you can say that he is reaching his orgasm.`);
               scene.text('You decide to tell him:');
-              if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['anal'] = ((s as any).Yakov['anal'] ?? 0) + (1);
-              if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cumOutL'] = Math.floor(Math.random() * 5) + 2;
+              ((s as any).Yakov = (s as any).Yakov ?? {})['anal'] = ((s as any).Yakov['anal'] ?? 0) + (1);
+              ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL'] = Math.floor(Math.random() * 5) + 2;
               scene.actions([
                 { label: 'Cum inside me', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1621,9 +1646,9 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                 scene.img('images/shared/sex/cum/analcreampie/cumanal2.mp4');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end, pumping his load <<npc_d...
                 scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end, pumping his load ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm deep inside your anus.`);
-                if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['analCumInside'] = ((s as any).Yakov['analCumInside'] ?? 0) + (1);
-                if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
-                if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['cumAnal'] = ((s as any).Yakov['cumAnal'] ?? 0) + (1);
+                ((s as any).Yakov = (s as any).Yakov ?? {})['analCumInside'] = ((s as any).Yakov['analCumInside'] ?? 0) + (1);
+                ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
+                ((s as any).Yakov = (s as any).Yakov ?? {})['cumAnal'] = ((s as any).Yakov['cumAnal'] ?? 0) + (1);
                 qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
                 qspCall(s, 'arousal', 'anal', 2);
                 qspCall(s, 'arousal', 'end');
@@ -1639,7 +1664,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                   scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and at the moment he starts spouting his seed, he takes his dick out and points it on your stomach.`);
                   scene.text('A small pool of cum lands on your abdomen, feeling warm but sticky.');
                   (s as any).minut = ((s as any).minut ?? 0) + 2;
-                  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                  ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                   qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 1);
                   qspCall(s, 'arousal', 'end');
                   scene.actions([
@@ -1654,7 +1679,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and in the moment he starts spouting his seed, he takes his dick out and points it on your ass.`);
                     scene.text('Both your asscheeks are covered in sticky, warm seed.');
                     (s as any).minut = ((s as any).minut ?? 0) + 2;
-                    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                    ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
                     qspCall(s, 'arousal', 'end');
                     scene.actions([
@@ -1669,7 +1694,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                       scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and in the moment he starts spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
                       scene.text('The seed starts squirting, splashing your face with surprisingly strong force, leaking to your nose and eyes and hair…');
                       (s as any).minut = ((s as any).minut ?? 0) + 2;
-                      if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                      ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                       qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
                       qspCall(s, 'arousal', 'end');
                       scene.actions([
@@ -1691,9 +1716,9 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                         // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"I am sorry sweetie, you are just too good a lov...
                         scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I am sorry sweetie, you are just too good a lover."</font>`);
                         scene.text('He is obvously displeased by your reaction.');
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['analCumInsideUnwanted'] = ((s as any).Yakov['analCumInsideUnwanted'] ?? 0) + (1);
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['cumAnal'] = ((s as any).Yakov['cumAnal'] ?? 0) + (1);
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['analCumInsideUnwanted'] = ((s as any).Yakov['analCumInsideUnwanted'] ?? 0) + (1);
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['cumAnal'] = ((s as any).Yakov['cumAnal'] ?? 0) + (1);
                         qspCall(s, 'npc_relationship', 'modify', 'A264', (-5));
                         scene.text('You angrily get up from the bed, putting your clothes between your legs to catch the remainder of the cum, so it doesn\'t spur on your legs and carpet.');
                         qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
@@ -1725,10 +1750,10 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> spins the last of his cum dry from his cock, you close ...
                             scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
                             scene.text('Afterwards you show him your tongue as proof that not a drop was left unconsumed…');
-                            if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['swall'] = ((s as any).Yakov['swall'] ?? 0) + (1);
+                            ((s as any).Yakov = (s as any).Yakov ?? {})['swall'] = ((s as any).Yakov['swall'] ?? 0) + (1);
                             qspCall(s, 'npc_relationship', 'modify', 'A264', 1);
                             (s as any).minut = ((s as any).minut ?? 0) + 5;
-                            if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['lastCum'] = ((s as any).daystart ?? 0);
+                            ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                             qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
                             qspCall(s, 'arousal', 'end');
                             scene.actions([
@@ -1741,7 +1766,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                               // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"All right I'll cum elsewhere…"</font>
                               scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"All right I'll cum elsewhere…"</font>`);
                               qspCall(s, 'npc_relationship', 'modify', 'A264', (-3));
-                              if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cumOutL2'] = Math.floor(Math.random() * 4) + 2;
+                              ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL2'] = Math.floor(Math.random() * 4) + 2;
                               scene.actions([
                                 { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = shared_apt['cumOutL2']
@@ -1786,9 +1811,11 @@ function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><img height="250" src="images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg"> <img height="250" src="images/locations/pavlovsk/resident/sharedapt/sp/cockerect.jpg"></center>');
     }
   }
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price'] = ((s as any).shared_apt ?? 0)?.['price_special'];
+  (s as any).loc_arg = 'Yakov_SexGiantdildo';
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_special'];
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).clothingworntype = 'nude';
     scene.img('images/locations/city/residential/sauna/sex/simplystrip1.mp4');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to undress and you follow his example, stripping...
     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
@@ -2008,25 +2035,25 @@ function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).shared_apt ?? 0)?.['step'] === 110) {
                         // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"I see. That's bad. I think you should leave now...
                         scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I see. That's bad. I think you should leave now, ${((s as any).pcs_firstname || '')}, I am really sad now."</font>`);
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['dildo'] = (-4);
-                        if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['mood'] = 10;
-                        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['dildo'] = (-4);
+                        ((s as any).Yakov = (s as any).Yakov ?? {})['mood'] = 10;
+                        ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                         scene.actions([
                           { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
                         ]);
                       } else {
                         if (((s as any).shared_apt ?? 0)?.['step'] === 120) {
-                          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
+                          ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                           // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"I see. At least some hope is left. See you late...
                           scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I see. At least some hope is left. See you later ${((s as any).pcs_firstname || '')}."</font>`);
-                          if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['mood'] = 8;
+                          ((s as any).Yakov = (s as any).Yakov ?? {})['mood'] = 8;
                           scene.actions([
                             { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
                           ]);
                         } else {
                           if (((s as any).shared_apt ?? 0)?.['step'] === 200) {
-                            if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['dildo'] = ((s as any).Yakov['dildo'] ?? 0) + (1);
-                            if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['step'] = 0;
+                            ((s as any).Yakov = (s as any).Yakov ?? {})['dildo'] = ((s as any).Yakov['dildo'] ?? 0) + (1);
+                            ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                             qspCall(s, 'arousal', 'end');
                             qspCall(s, 'pav_shared_apt', 'payService');
                           }

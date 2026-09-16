@@ -42,7 +42,7 @@ function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['total_creampies'] === 1) {
     scene.actions([
       { label: 'First creampie', handler: (st: GameState) => {
-    if (!(s as any).npc_first_creampie) (s as any).npc_first_creampie = {}; (s as any).npc_first_creampie[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_first_creampie = (s as any).npc_first_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.actions([
         { label: '"You\'re my first"', handler: (st: GameState) => {
@@ -204,7 +204,7 @@ function enterCreampieSafeDay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
       scene.actions([
         { label: 'It\'s a safe day', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['preg_risk'] = 'safe';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['preg_risk'] = 'safe';
     if (((s as any).mesec ?? 0) > 0) {
       if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampiePullOutImage(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -294,7 +294,7 @@ function enterCreampieSafeDay(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
       if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampiePullOutImage(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).sex_ev ?? 0)?.['last_cum'] === 'broken_condom') {
@@ -337,7 +337,7 @@ function enterCreampieSafeDay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
         scene.actions([
           { label: 'It should be a safe day', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['preg_risk'] = 'prob_safe';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['preg_risk'] = 'prob_safe';
     if (((s as any).mesec ?? 0) > 0) {
       if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampiePullOutImage(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -469,7 +469,7 @@ function enterCreampieCumTogetherReact(s: GameState, scene: SceneBuilder): void 
   if (((s as any).sex_ev ?? 0)?.['came_together'] !== 3  &&  (((s as any).sex_ev ?? 0)?.['came_together'] === 2  ||  ((s as any).sex_ev ?? 0)?.['surprise_cum_together'] === 1)  &&  ((s as any).sex_ev ?? 0)?.['hypno_came_together'] !== 1) {
     scene.actions([
       { label: 'Did we come together?', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['came_together'] = 3;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['came_together'] = 3;
     if (((s as any).sex_ev ?? 0)?.['did_we_cum_together'] === 1) {
       scene.text('You nod hazily, mind still swimming from your orgasm.');
     } else {
@@ -538,7 +538,7 @@ function enterCreampieCumTogetherReact(s: GameState, scene: SceneBuilder): void 
         scene.text('"Did you...? did we...? together..?" you pant. He just nods back, breathing just as hard with a faint smile.');
       }
     }
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['did_we_cum_together'] = 2;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['did_we_cum_together'] = 2;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieReact(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -633,8 +633,8 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_ask_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       scene.actions([
         { label: '(Not mad)', handler: (st: GameState) => {
-    if (!(s as any).npc_ask_creampie) (s as any).npc_ask_creampie = {}; (s as any).npc_ask_creampie[String((s as any).npcID ?? 0)] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ask_next_time'] = 'not_mad';
+    ((s as any).npc_ask_creampie = (s as any).npc_ask_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ask_next_time'] = 'not_mad';
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       scene.text('"Just... ask next time..." you pant, smiling exhaustedly at him.');
     } else {
@@ -665,7 +665,7 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: '(A little mad)', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ask_next_time'] = 'little_mad';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ask_next_time'] = 'little_mad';
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       scene.text('"If you\'re going to... come inside me..." you pant. "... you need to ask..."');
       scene.text('You try to give him a look of annoyance, but it\'s very difficult to produce angry vibes off the back of an orgasm.');
@@ -691,7 +691,7 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).npc_ask_creampie) (s as any).npc_ask_creampie = {}; (s as any).npc_ask_creampie[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_ask_creampie = (s as any).npc_ask_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
       ]);
@@ -719,8 +719,8 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
           { label: 'I thought I told you to ask (nice)', handler: (st: GameState) => {
-    if (!(s as any).npc_ask_creampie) (s as any).npc_ask_creampie = {}; (s as any).npc_ask_creampie[String((s as any).npcID ?? 0)] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ask_next_time'] = 'not_mad';
+    ((s as any).npc_ask_creampie = (s as any).npc_ask_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ask_next_time'] = 'not_mad';
     scene.text('"I thought I told you to ask...?" you say.');
     if (((s as any).sex_ev ?? 0)?.['cum_wherever'] === 1) {
       scene.text('"You told me I could come wherever I wanted," he grins in return.');
@@ -746,8 +746,8 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'I thought I told you to ask (annoyed)', handler: (st: GameState) => {
-    if (!(s as any).npc_ask_creampie) (s as any).npc_ask_creampie = {}; (s as any).npc_ask_creampie[String((s as any).npcID ?? 0)] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ask_next_time'] = 'annoyed';
+    ((s as any).npc_ask_creampie = (s as any).npc_ask_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ask_next_time'] = 'annoyed';
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       // TODO-QSP: dynamic text: "What happened... to asking...?" you pant, glaring at <<$npcdesc>> through your ...
       scene.text(`"What happened... to asking...?" you pant, glaring at ${((s as any).npcdesc || '')} through your post orgasm haze.`);
@@ -911,7 +911,7 @@ function enterCreampieAskNextTimeMad(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).npc_ask_creampie) (s as any).npc_ask_creampie = {}; (s as any).npc_ask_creampie[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_ask_creampie = (s as any).npc_ask_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieAskNextTimeMad2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -952,7 +952,7 @@ function enterCreampieAskNextTimeMad2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (!(s as any).npc_ask_creampie) (s as any).npc_ask_creampie = {}; (s as any).npc_ask_creampie[String((s as any).npcID ?? 0)] = 1;
+  ((s as any).npc_ask_creampie = (s as any).npc_ask_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
   qspCall(s, 'sex_ev_sex', 'sex_end');
   // TODO-QSP: end
   scene.build();
@@ -965,7 +965,7 @@ function enterCumTogetherNoBc1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pillcon2 ?? 0) > 0) {
       scene.actions([
         { label: 'Not effective yet (not mad)', handler: (st: GameState) => {
-    if (!(s as any).npc_know_bc_not_effective) (s as any).npc_know_bc_not_effective = {}; (s as any).npc_know_bc_not_effective[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_bc_not_effective = (s as any).npc_know_bc_not_effective ?? {})[String((s as any).npcID ?? 0)] = 1;
     // TODO-QSP: dynamic text: "You need to be more careful," you murmur, smiling affectionately at <<$npcdesc>...
     scene.text(`"You need to be more careful," you murmur, smiling affectionately at ${((s as any).npcdesc || '')}. "My birth control pills haven't kicked in yet..."`);
     qspCall(s, 'sex_ev_sex', 'sex_end');
@@ -998,7 +998,7 @@ function enterCumTogetherNoBc1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Hey," you pant, smiling wryly at <<$npcdesc>>. "Didn't I tell you something abo...
       scene.text(`"Hey," you pant, smiling wryly at ${((s as any).npcdesc || '')}. "Didn't I tell you something about today being a dangerous day for me...?"`);
     } else {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['preg_risk'] = 'danger';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['preg_risk'] = 'danger';
       // TODO-QSP: dynamic text: "Well that's not good," you pant, smiling wryly at <<$npcdesc>>. "Pretty sure I'...
       scene.text(`"Well that's not good," you pant, smiling wryly at ${((s as any).npcdesc || '')}. "Pretty sure I'm ovulating today..."`);
     }
@@ -1062,7 +1062,7 @@ function enterCumTogetherNoBc2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pillcon2 ?? 0) > 0) {
       scene.actions([
         { label: 'Birth control pill not effective yet', handler: (st: GameState) => {
-    if (!(s as any).npc_know_bc_not_effective) (s as any).npc_know_bc_not_effective = {}; (s as any).npc_know_bc_not_effective[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_bc_not_effective = (s as any).npc_know_bc_not_effective ?? {})[String((s as any).npcID ?? 0)] = 1;
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       if (((s as any).npc_creampie_count ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
         scene.text('"You can\'t keep doing that..." you pant. "My birth control pills haven\'t kicked in yet..."');
@@ -1090,14 +1090,14 @@ function enterCumTogetherNoBc2(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger') {
         scene.text('"I thought I told you," you pant nervously. "I\'m ovulating today... I could get pregnant..."');
       } else {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['preg_risk'] = 'danger';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['preg_risk'] = 'danger';
         scene.text('"Oh fuck," you pant. "This is really bad. I think I\'m ovulating today..."');
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger') {
         scene.text('"What the fuck dude!" you growl. "I told you I\'m ovulating today! Do you <i>want</i> me to get pregnant?!"');
       } else {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['preg_risk'] = 'danger';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['preg_risk'] = 'danger';
         scene.text('"Oh fuck," you say, going pale. "This is really bad. I think I\'m ovulating today..."');
       }
     }
@@ -1113,7 +1113,7 @@ function enterCumTogetherNoBc2(s: GameState, scene: SceneBuilder): void {
 function enterPullOutFinish(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1  ||  ((s as any).sex_ev ?? 0)?.['not_inside'] === 1)  &&  ((s as any).sex_ev ?? 0)?.['creampie_surprise'] === 1  &&  ((s as any).sex_ev ?? 0)?.['pull-out_fail_react'] === 0) {
     // TODO-QSP: act iif(sex_ev['not_inside'] = 1, '[not]... inside...', '[pull]... out...'):
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pull-out_fail_react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['pull-out_fail_react'] = 1;
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       // TODO-QSP: iif(sex_ev['not_inside'] = 1, '"not... in... side..."', '"... out..."') + ' you finish belatedly. Yo...
     } else {
@@ -1130,10 +1130,10 @@ function enterCreampieGross(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_ask'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_orgasm'] === 0) {
     scene.actions([
       { label: 'That was gross', handler: (st: GameState) => {
-    if (!(s as any).npc_dont_like_creampie) (s as any).npc_dont_like_creampie = {}; (s as any).npc_dont_like_creampie[String((s as any).npcID ?? 0)] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_gross'] = 1;
+    ((s as any).npc_dont_like_creampie = (s as any).npc_dont_like_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_gross'] = 1;
     if (((s as any).sex_ev ?? 0)?.['just_cum_inside_me'] === 1) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampiePullOutImage(s, scene); (s as any).locArgs = __savedLocArgs; }
       // TODO-QSP: dynamic text: "Gross," you cringe as <<$npcdesc>> slips his cock out from inside you, releasin...
       scene.text(`"Gross," you cringe as ${((s as any).npcdesc || '')} slips his cock out from inside you, releasing a flood of cum that comes spilling out of your pussy.`);
@@ -1193,7 +1193,7 @@ function enterCreampieGross2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
     { label: 'Not ready for kids', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['no_kids'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['no_kids'] = 1;
     if (((s as any).birth_control ?? 0)?.['think_safe'] !== 1) {
       qspCall(s, 'sex_ev_stats', 'no_birth_control_know');
       scene.text('"I\'m not on birth control," you grimace. "I can practically <i>feel</i> the little bastards swimming around inside me and trying to knock me up. Just the thought of getting pregnant grosses me out."');
@@ -1234,7 +1234,7 @@ function enterPromisedNoCreampie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['promise_no_creampie'] === 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_ask'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['he_ask_creampie_yes'] !== 1  &&  (((s as any).npc_free_creampies_count ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  (((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === 'when_safe'  &&  ((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger'))) {
     scene.actions([
       { label: 'You promised you wouldn\'t come inside!', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['mad'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['mad'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/3.jpg');
     } else {
@@ -1320,13 +1320,13 @@ function enterThanksForAsking(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
                   { label: 'Got used to it', handler: (st: GameState) => {
-    if (!(s as any).npc_dont_like_creampie) (s as any).npc_dont_like_creampie = {}; (s as any).npc_dont_like_creampie[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_dont_like_creampie = (s as any).npc_dont_like_creampie ?? {})[String((s as any).npcID ?? 0)] = 0;
     scene.text('"I got used to it," you shrug. "I don\'t mind them so much anymore."');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
                   { label: 'Changed my mind', handler: (st: GameState) => {
-    if (!(s as any).npc_dont_like_creampie) (s as any).npc_dont_like_creampie = {}; (s as any).npc_dont_like_creampie[String((s as any).npcID ?? 0)] = 0;
-    if (!(s as any).npc_know_love_creampie) (s as any).npc_know_love_creampie = {}; (s as any).npc_know_love_creampie[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_dont_like_creampie = (s as any).npc_dont_like_creampie ?? {})[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_know_love_creampie = (s as any).npc_know_love_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Changed my mind," you grin. "I like them now. So long as you ask."');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
@@ -1449,13 +1449,13 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
       if ((!((s as any).pcs_lover ?? 0))) {
         scene.actions([
           { label: 'Yeah', handler: (st: GameState) => {
-    if (!(s as any).npc_boyfriend_creampie_rule) (s as any).npc_boyfriend_creampie_rule = {}; (s as any).npc_boyfriend_creampie_rule[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_boyfriend_creampie_rule = (s as any).npc_boyfriend_creampie_rule ?? {})[String((s as any).npcID ?? 0)] = 0;
     scene.text('"Yeah," you smile back. "I\'m single again. Which means all the creampies in the world for me. At least until I start dating again."');
     scene.text('You give him a wink.');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
           { label: 'Get sad', handler: (st: GameState) => {
-    if (!(s as any).npc_boyfriend_creampie_rule) (s as any).npc_boyfriend_creampie_rule = {}; (s as any).npc_boyfriend_creampie_rule[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_boyfriend_creampie_rule = (s as any).npc_boyfriend_creampie_rule ?? {})[String((s as any).npcID ?? 0)] = 0;
     scene.text('An ache immediately pulses inside your chest.');
     scene.text('"Yeah..." you mumble, turning your head. "It was a bad breakup..."');
     qspCall(s, 'sex_ev_sex', 'sex_end');
@@ -1467,7 +1467,7 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
       if ((!((s as any).pcs_lover ?? 0))) {
         scene.actions([
           { label: 'I\'m single now', handler: (st: GameState) => {
-    if (!(s as any).npc_boyfriend_creampie_rule) (s as any).npc_boyfriend_creampie_rule = {}; (s as any).npc_boyfriend_creampie_rule[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_boyfriend_creampie_rule = (s as any).npc_boyfriend_creampie_rule ?? {})[String((s as any).npcID ?? 0)] = 0;
     scene.text('"My boyfriend and I broke up," you smile back. "Which means I\'m single again. Which means all the creampies in the world for me. At least until I get a new boyfriend."');
     scene.text('You wink.');
     qspCall(s, 'sex_ev_sex', 'sex_end');
@@ -1477,7 +1477,7 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: end !}
       scene.actions([
         { label: 'Changed my rules', handler: (st: GameState) => {
-    if (!(s as any).npc_boyfriend_creampie_rule) (s as any).npc_boyfriend_creampie_rule = {}; (s as any).npc_boyfriend_creampie_rule[String((s as any).npcID ?? 0)] = 3;
+    ((s as any).npc_boyfriend_creampie_rule = (s as any).npc_boyfriend_creampie_rule ?? {})[String((s as any).npcID ?? 0)] = 3;
     scene.text('"No, we\'re still together. But I decided to change my rules," you smile.');
     scene.actions([
       { label: 'Only emotional cheating counts', handler: (st: GameState) => {
@@ -1485,12 +1485,12 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'No kissing', handler: (st: GameState) => {
-    if (!(s as any).npc_no_kiss) (s as any).npc_no_kiss = {}; (s as any).npc_no_kiss[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_no_kiss = (s as any).npc_no_kiss ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"It\'s only cheating if I kiss you. As long as we\'re just fucking each other\'s brains out, I\'m not cheating!"');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'No anal', handler: (st: GameState) => {
-    if (!(s as any).npc_no_anal) (s as any).npc_no_anal = {}; (s as any).npc_no_anal[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_no_anal = (s as any).npc_no_anal ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"It\'s only cheating if I let you fuck my ass. That\'s reserved for boyfriends and husbands. So as long as we don\'t do that, it\'s not cheating!"');
     // TODO-QSP: dynamic text: "It's usually the other way around, isn't it?" <<$npcdesc>> snickers
     scene.text(`"It's usually the other way around, isn't it?" ${((s as any).npcdesc || '')} snickers`);
@@ -1499,7 +1499,7 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I\'m cheating', handler: (st: GameState) => {
-    if (!(s as any).npc_boyfriend_creampie_rule) (s as any).npc_boyfriend_creampie_rule = {}; (s as any).npc_boyfriend_creampie_rule[String((s as any).npcID ?? 0)] = 3;
+    ((s as any).npc_boyfriend_creampie_rule = (s as any).npc_boyfriend_creampie_rule ?? {})[String((s as any).npcID ?? 0)] = 3;
     scene.text('"No, we\'re still together," you smile. "But I decided to start cheating on him."');
     scene.text('You wink.');
     qspCall(s, 'sex_ev_sex', 'sex_end');
@@ -1511,7 +1511,7 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
       if ((!((s as any).pcs_lover ?? 0))) {
         scene.actions([
           { label: 'I\'m single now', handler: (st: GameState) => {
-    if (!(s as any).npc_boyfriend_creampie_rule) (s as any).npc_boyfriend_creampie_rule = {}; (s as any).npc_boyfriend_creampie_rule[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_boyfriend_creampie_rule = (s as any).npc_boyfriend_creampie_rule ?? {})[String((s as any).npcID ?? 0)] = 0;
     scene.text('"My boyfriend and I broke up," you smile back. "Which means I\'m single again. Which means all the creampies in the world for me. At least until I get a new boyfriend."');
     scene.text('You wink.');
     qspCall(s, 'sex_ev_sex', 'sex_end');
@@ -1520,7 +1520,7 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Changed my rules', handler: (st: GameState) => {
-    if (!(s as any).npc_boyfriend_creampie_rule) (s as any).npc_boyfriend_creampie_rule = {}; (s as any).npc_boyfriend_creampie_rule[String((s as any).npcID ?? 0)] = 3;
+    ((s as any).npc_boyfriend_creampie_rule = (s as any).npc_boyfriend_creampie_rule ?? {})[String((s as any).npcID ?? 0)] = 3;
     scene.text('"I decided to change my rules," you smile.');
     scene.actions([
       { label: 'Only emotional cheating counts', handler: (st: GameState) => {
@@ -1528,19 +1528,19 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'No kissing', handler: (st: GameState) => {
-    if (!(s as any).npc_no_kiss) (s as any).npc_no_kiss = {}; (s as any).npc_no_kiss[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_no_kiss = (s as any).npc_no_kiss ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"It\'s only cheating if I kiss you. As long as we\'re just fucking each other\'s brains out, I\'m not cheating!"');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'No anal', handler: (st: GameState) => {
-    if (!(s as any).npc_no_anal) (s as any).npc_no_anal = {}; (s as any).npc_no_anal[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_no_anal = (s as any).npc_no_anal ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"It\'s only cheating if I let you fuck my ass. That\'s reserved for boyfriends and husbands. So as long as we don\'t do that, it\'s not cheating!"');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
     ]);
   } },
         { label: 'I\'m cheating', handler: (st: GameState) => {
-    if (!(s as any).npc_boyfriend_creampie_rule) (s as any).npc_boyfriend_creampie_rule = {}; (s as any).npc_boyfriend_creampie_rule[String((s as any).npcID ?? 0)] = 3;
+    ((s as any).npc_boyfriend_creampie_rule = (s as any).npc_boyfriend_creampie_rule ?? {})[String((s as any).npcID ?? 0)] = 3;
     scene.text('"Well, the thing is..." you say, letting a smile creep onto your face. "I decided to start cheating on him. So you can come inside me all you want..."');
     scene.text('You wink.');
     qspCall(s, 'sex_ev_sex', 'sex_end');
@@ -1563,7 +1563,7 @@ function enterCumTogetherYeah(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_know_love_creampie ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
     scene.actions([
       { label: 'Yeah', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 4) + 2);
     qspCall(s, 'stat', '');
     if (((s as any).sex_ev ?? 0)?.['cum_together_fake'] === 0) {
@@ -1601,8 +1601,8 @@ function enterCreampieFeltGreat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['surprise_cum_together'] !== 1) {
     scene.actions([
       { label: 'That felt great', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampiePullOutImage(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).orgasm ?? 0) > ((s as any).sex_ev ?? 0)?.['orgasm']) {
@@ -1686,7 +1686,7 @@ function enterFeelFull(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'I feel full', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       // TODO-QSP: iif(sex_ev['cock_inserted'] = 1, '<center><img <<$set_imgh>> src="images/shared/sex/vag/miss/2.jpg">...
       if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
@@ -1737,7 +1737,7 @@ function enterFeelFull(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'stat', '');
     qspCall(s, 'sex_ev_sex', 'sex_end');
@@ -1751,8 +1751,8 @@ function enterLoveCreampies(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_know_love_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       scene.actions([
         { label: 'I love it when you come inside', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 4) + 2);
     qspCall(s, 'stat', '');
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -1784,8 +1784,8 @@ function enterLoveCreampies(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'I love creampies', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 4) + 2);
     qspCall(s, 'stat', '');
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -1799,7 +1799,7 @@ function enterLoveCreampies(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).npc_know_love_creampie) (s as any).npc_know_love_creampie = {}; (s as any).npc_know_love_creampie[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_love_creampie = (s as any).npc_know_love_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       scene.text('"I love how it feels when a guy comes inside me," you sigh contently, still giddy from your orgasm. "It always makes me come too."');
     } else {
@@ -1827,7 +1827,7 @@ function enterCumTogetherKiss(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Kiss him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
       // TODO-QSP: iif($sex_ev['position'] = 'cowgirl', '<center><img <<$set_imgh>> src="images/shared/sex/vag/cowgirl/...
       // TODO-QSP: dynamic text: Overwhelmed with endorphins and emotion, you lean into <<$npcdesc>> and kiss him...
@@ -1844,7 +1844,7 @@ function enterCumTogetherKiss(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).npc_no_kiss ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      if (!(s as any).npc_no_kiss) (s as any).npc_no_kiss = {}; (s as any).npc_no_kiss[String((s as any).npcID ?? 0)] = 2;
+      ((s as any).npc_no_kiss = (s as any).npc_no_kiss ?? {})[String((s as any).npcID ?? 0)] = 2;
       scene.text('"I thought you said no kissing," he smiles, breaking the kiss.');
       scene.actions([
         { label: 'Changed my mind', handler: (st: GameState) => {
@@ -1865,7 +1865,7 @@ function enterCumTogetherKiss(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (!(s as any).npc_no_kiss) (s as any).npc_no_kiss = {}; (s as any).npc_no_kiss[String((s as any).npcID ?? 0)] = 2;
+      ((s as any).npc_no_kiss = (s as any).npc_no_kiss ?? {})[String((s as any).npcID ?? 0)] = 2;
       scene.text('He returns the kiss eagerly and your entire body tingles with pleasure. The warmth of his cum inside you, his cock still filling you up, and his lips on yours create a mixture of indescribable satisfaction inside you.');
       qspCall(s, 'sex_ev_sex', 'sex_end');
     }
@@ -1880,7 +1880,7 @@ function enterCumTogetherBest(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
     scene.actions([
       { label: 'Simultaneous orgasms are the best', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
     } else {
@@ -1910,7 +1910,7 @@ function enterCreampieApologize(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_force'] === 1) {
     scene.actions([
       { label: 'Couldn\'t resist', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
       // TODO-QSP: dynamic text: "Sorry," you tease as you unlock your legs from behind <<$npcdesc>>. "I couldn't...
@@ -1977,7 +1977,7 @@ function enterCreampiePcStartled(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_ask'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_force'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['came_together'] === 0  &&  ((s as any).npc_free_creampies_count ?? 0)?.[String((s as any).npcID ?? 0)] !== 2  &&  ((s as any).sex_ev ?? 0)?.['reaction'] !== 'startled') {
     scene.actions([
       { label: 'Startled', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['reaction'] = 'startled';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['reaction'] = 'startled';
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/3.jpg');
     } else {
@@ -2010,8 +2010,8 @@ function enterTakeInStride1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['take_in_stride'] === 0) {
     scene.actions([
       { label: 'Take it in stride', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['take_in_stride'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['take_in_stride'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['reaction'] === 'startled') {
       if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
         // TODO-QSP: dynamic text: After your momentary surprise, you take it in stride, smiling as you resume thro...
@@ -2061,9 +2061,9 @@ function enterDidYouComeInside(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_ask'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_force'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['came_together'] !== 3  &&  (((s as any).sex_ev ?? 0)?.['came_together'] < 3  ||  ((s as any).sex_ev ?? 0)?.['surprise_cum_together'] === 1)  &&  ((s as any).sex_ev ?? 0)?.['just_cum_inside_me'] === 0  &&  ((s as any).sex_ev ?? 0)?.['creampie_surprise'] === 1  &&  ((s as any).sex_ev ?? 0)?.['last_cum'] === 'creampie') {
     scene.actions([
       { label: 'Did you just come inside me?', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['just_cum_inside_me'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['just_cum_inside_me'] = 1;
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['came_together'] = 3;
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['came_together'] = 3;
     }
     if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
       if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -2299,10 +2299,11 @@ function enterDelayedCreampieOrgasm1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).orgasm ?? 0) === ((s as any).sex_ev ?? 0)?.['orgasm']  &&  ((s as any).sex_ev ?? 0)?.['came_together'] === 0) {
     scene.actions([
       { label: 'Delayed creampie orgasm', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm_count'] = ((s as any).sex_ev['orgasm_count'] ?? 0) + (1);
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['simultaneous_orgasm_count'] = ((s as any).sex_ev['simultaneous_orgasm_count'] ?? 0) + (1);
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['came_together'] = 2;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['orgasm_count'] = ((s as any).sex_ev['orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = ((s as any).sex_ev['simultaneous_orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['came_together'] = 2;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react'] = 1;
+    (s as any).orgasm_or = 'yes';
     // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
     qspCall(s, 'stat', '');
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -2429,8 +2430,8 @@ function enterDidYouComeInsideBoyReact1(s: GameState, scene: SceneBuilder): void
     if (((s as any).stat ?? 0)?.['total_creampies'] > ((s as any).sex_ev ?? 0)?.['creampie_count']) {
       scene.actions([
         { label: '"I love creampies"', handler: (st: GameState) => {
-    if (!(s as any).npc_know_love_creampie) (s as any).npc_know_love_creampie = {}; (s as any).npc_know_love_creampie[String((s as any).npcID ?? 0)] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).npc_know_love_creampie = (s as any).npc_know_love_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     scene.text('"I love creampies," you grin back at him. "Why would I be mad?"');
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
@@ -2447,7 +2448,7 @@ function enterDidYouComeInsideBoyReact1(s: GameState, scene: SceneBuilder): void
     }
     scene.actions([
       { label: '"Why would I be mad?"', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     scene.text('"No?" you reply. "Why would I be mad?"');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
@@ -2474,7 +2475,7 @@ function enterAccidentsHappen1(s: GameState, scene: SceneBuilder): void {
         scene.text('"I told you before didn\'t I? Accidents happen," you smile. "No big deal."');
       }
     }
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['accidents_happen'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['accidents_happen'] = 1;
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
   ]);
@@ -2495,22 +2496,22 @@ function enterCreampieFeltTooGood(s: GameState, scene: SceneBuilder): void {
 
 function enterCreampieAccidentFine(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).sex_ev ?? 0)?.['virgin_creampie_request'] === 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_count'] === 1)  ||  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] > 0) {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['its_fine'] = 'Yeah';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['its_fine'] = 'Yeah';
   } else {
     if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['its_fine'] = 'It\'s fine';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['its_fine'] = 'It\'s fine';
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_wherever'] === 1) {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['its_fine'] = 'Yeah';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['its_fine'] = 'Yeah';
       } else {
-        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['its_fine'] = 'It\'s fine';
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['its_fine'] = 'It\'s fine';
       }
     }
   }
   // TODO-QSP: end
   scene.actions([
-    { label: '<<$sex_ev[\'its_fine\']>>', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    { label: '', labelFn: (s: GameState) => String(((s as any).sex_ev ?? 0)?.['its_fine'] ?? '' ?? ''), handler: (st: GameState) => {
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
     } else {
@@ -2557,7 +2558,7 @@ function enterCreampieJustChecking(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Just checking', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
     } else {
@@ -2608,7 +2609,7 @@ function enterCreampieThatExplains(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['surprise_cum_together'] === 1) {
     scene.actions([
       { label: 'That explains it', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
     } else {
@@ -2667,7 +2668,7 @@ function enterCreampieThoughtSo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['surprise_cum_together'] === 1) {
     scene.actions([
       { label: 'I thought so', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
     } else {
@@ -2718,7 +2719,7 @@ function enterCreampieYeah(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['surprise_cum_together'] === 1) {
     scene.actions([
       { label: 'Yeah', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
     } else {
@@ -2769,7 +2770,7 @@ function enterNotMad(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'I\'m not mad', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_allowance'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
       scene.img('images/shared/sex/cum/vagcreampie/drip2.mp4');
     } else {
@@ -2886,7 +2887,7 @@ function enterCreampieFurious(s: GameState, scene: SceneBuilder): void {
       scene.text('"So... did you want to keep going?" he asks awkwardly.');
       scene.actions([
         { label: 'We\'re done', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['angry_after'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['angry_after'] = 1;
     scene.text('"Are you fucking kidding me?" you scoff. "No, we\'re done fucking now."');
     qspCall(s, 'sex_ev_after', 'after_sex1');
   } },
@@ -2943,7 +2944,7 @@ function enterCreampieWtfImage2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCreampieWtfImage3(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
   if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
     scene.img('images/shared/sex/cum/vagcreampie/oops.jpg');
   } else {
@@ -2963,9 +2964,9 @@ function enterCreampieWtfInstant(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_allowance'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_ask'] !== 1  &&  ((s as any).npc_free_creampies_count ?? 0)?.[String((s as any).npcID ?? 0)] !== 2  &&  ((s as any).sex_ev ?? 0)?.['virgin_creampie_request'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['last_cum'] === 'creampie') {
     scene.actions([
       { label: 'What the fuck!', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['mad'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_wtf'] = ((s as any).sex_ev['creampie_wtf'] ?? 0) + (1);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['mad'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_wtf'] = ((s as any).sex_ev['creampie_wtf'] ?? 0) + (1);
     if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage1(s, scene); (s as any).locArgs = __savedLocArgs; }
       // TODO-QSP: dynamic text: "What the fuck!" you scream, frantically trying to pull <<$npcdesc>>'s cock out ...
@@ -2986,9 +2987,9 @@ function enterCreampieWtfAfter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_allowance'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_ask'] !== 1  &&  ((s as any).npc_free_creampies_count ?? 0)?.[String((s as any).npcID ?? 0)] !== 2  &&  ((s as any).sex_ev ?? 0)?.['virgin_creampie_request'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['last_cum'] === 'creampie') {
     scene.actions([
       { label: 'What the fuck!', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['mad'] = 1;
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_wtf'] = ((s as any).sex_ev['creampie_wtf'] ?? 0) + (1);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['mad'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_wtf'] = ((s as any).sex_ev['creampie_wtf'] ?? 0) + (1);
     if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage1(s, scene); (s as any).locArgs = __savedLocArgs; }
       // TODO-QSP: dynamic text: "What the fuck! What the fuck did you do?" you scream, frantically trying to pul...
@@ -3012,7 +3013,7 @@ function enterCreampieWtfMenu(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: iif(sex_ev['cock_inserted'] = 1, 'When <<$npcdesc>> finally lets his cock slip from your pussy, the ...
     // TODO-QSP: '"You said you''d pull out!" you hiss.' + iif(sex_ev['creampie_count'] = 1, '', ' "How many times ar...
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfNoBc(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoyCreampieReact(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -3028,7 +3029,7 @@ function enterCreampieWtfMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'You asshole!', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: '"You asshole!" ' + iif(sex_ev['cock_inserted'] = 1, 'you shout as <<$npcdesc>> finally lets his coc...
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1)  &&  (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
       if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'creampie') {
         // TODO-QSP: dynamic text: "Sorry," <<$npcdesc>> says, not looking sorry at all. "It just felt too good. I ...
@@ -3069,7 +3070,7 @@ function enterCreampieForgive(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Forgive him', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['forgive_creampie'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['forgive_creampie'] = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage3(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You take a deep breath and close your eyes, feeling the cum continue trickling out of you.');
     if (((s as any).sex_ev ?? 0)?.['accidental_creampie'] >= 1) {
@@ -3089,14 +3090,14 @@ function enterCreampieForgive2(s: GameState, scene: SceneBuilder): void {
     { label: 'Forgive him', handler: (st: GameState) => {
     scene.actions([
       { label: 'Amused', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['forgive_creampie'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['forgive_creampie'] = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage3(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You take a deep breath and close your eyes, feeling the cum continue trickling out of you.');
     scene.text('"It\'s... fine I guess," you sigh. "If it was really an accident, I forgive you."');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'Begrudging', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['forgive_creampie'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['forgive_creampie'] = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage3(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You take a deep breath and close your eyes, feeling the cum continue trickling out of you.');
     scene.text('"It\'s... fine I guess," you sigh. "If it was really an accident, I forgive you."');
@@ -3114,7 +3115,7 @@ function enterCreampieWtfNoBc(s: GameState, scene: SceneBuilder): void {
       { label: 'I\'m not on birth control!', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: iif(npc_know_not_bc[$npcID] = 1, '"You know I''m not on birth control you fucking moron!" you hiss b...
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     if (((s as any).sex_ev ?? 0)?.['ma_pill_tomorrow'] === 1) {
       if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0)) {
         scene.text('"So what? You said you were gonna get the pill tomorrow anyways."');
@@ -3148,7 +3149,7 @@ function enterCreampieAgain(s: GameState, scene: SceneBuilder): void {
       { label: 'Again?!', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: '"<i>Again?!</i>" ' + iif(sex_ev['cock_inserted'] = 1, ' you screech as <<$npcdesc>> finally lets hi...
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1)  &&  (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
       scene.text('"Your pussy\'s just too tight," he says, not looking even slightly sorry for his actions. "It keeps sucking me in."');
     } else {
@@ -3177,7 +3178,7 @@ function enterCreampieAskFirst(s: GameState, scene: SceneBuilder): void {
       { label: 'I told you to ask!', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: '"I thought I fucking told you to ask!" ' + iif(sex_ev['cock_inserted'] = 1, ' you hiss as <<$npcdes...
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1)  &&  (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
       if (((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         scene.text('"Don\'t be such a bitch," he says, rolling his eyes. "You\'re on birth control anyways. Why does it matter?"');
@@ -3208,11 +3209,11 @@ function enterCreampieAskFirst(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'You need to ask first!', handler: (st: GameState) => {
-    if (!(s as any).npc_ask_creampie) (s as any).npc_ask_creampie = {}; (s as any).npc_ask_creampie[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_ask_creampie = (s as any).npc_ask_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "You can't just come inside me like that!" ' + iif(sex_ev['cock_inserted'] = 1, ...
     scene.text(`"You can't just come inside me like that!" ' + iif(sex_ev['cock_inserted'] = 1, 'you hiss as ${((s as any).npcdesc || '')} lets his cock slip from your pussy, the flow of liquid you were expecting following out quickly after.', 'you hiss, gaping at the stream of cum flowing from your pussy.') + ' "You need to ask first!"`);
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1)  &&  (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
       if (((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         scene.text('"Don\'t be such a bitch," he says, rolling his eyes. "You\'re on birth control anyways. Why does it matter?"');
@@ -3244,7 +3245,7 @@ function enterIdkYouMad(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "What the fuck are you doing?" ' + iif(sex_ev['cock_inserted'] = 1, 'you hiss as...
     scene.text(`"What the fuck are you doing?" ' + iif(sex_ev['cock_inserted'] = 1, 'you hiss as ${((s as any).npcdesc || '')} finally lets his cock slip from your pussy and the flow of cum you were expecting quickly trickles out after.', 'you hiss, gaping at the stream of cum flowing from your pussy.') + ' "Did you really come inside me? Are you fucking kidding me? I don't even know you!"`);
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieForgive(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfNoBc(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -3331,7 +3332,7 @@ function enterIdkYouPanicInstant(s: GameState, scene: SceneBuilder): void {
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     // TODO-QSP: dynamic text: You watch in horror as <<$npcdesc>> finally removes his cock from your pussy and...
     scene.text(`You watch in horror as ${((s as any).npcdesc || '')} finally removes his cock from your pussy and a fat wet glob of cum spills out.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieFreakout(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -3361,7 +3362,7 @@ function enterIdkYouPanicAfter(s: GameState, scene: SceneBuilder): void {
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 0;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 0;
     // TODO-QSP: dynamic text: You watch in horror as <<$npcdesc>> finally removes his cock from your pussy and...
     scene.text(`You watch in horror as ${((s as any).npcdesc || '')} finally removes his cock from your pussy and a fat wet glob of cum spills out.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieFreakout(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -3457,7 +3458,7 @@ function enterOhShitOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'This isn\'t good', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (!(s as any).ex_ev) (s as any).ex_ev = {}; (s as any).ex_ev['cock_inserted'] = 0;
+    ((s as any).ex_ev = (s as any).ex_ev ?? {})['cock_inserted'] = 0;
     qspCall(s, 'sex_ev_stats', 'no_birth_control_know');
     // TODO-QSP: dynamic text: "Well this isn't good," you gulp, looking horrified at <<$npcdesc>>. "I'm not on...
     scene.text(`"Well this isn't good," you gulp, looking horrified at ${((s as any).npcdesc || '')}. "I'm not on birth control..."`);
@@ -3466,27 +3467,27 @@ function enterOhShitOptions(s: GameState, scene: SceneBuilder): void {
       { label: 'I guess I need a pill', handler: (st: GameState) => {
     scene.actions([
       { label: 'Annoyed', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill_tomorrow'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill_tomorrow'] = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (!(s as any).ex_ev) (s as any).ex_ev = {}; (s as any).ex_ev['cock_inserted'] = 0;
+    ((s as any).ex_ev = (s as any).ex_ev ?? {})['cock_inserted'] = 0;
     scene.text('"I guess I\'m going to need a pill tomorrow," you say, frowning.');
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
       { label: 'Unconcerned', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill_tomorrow'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill_tomorrow'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/cum/vagcreampie/miss1.mp4');
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
-    if (!(s as any).ex_ev) (s as any).ex_ev = {}; (s as any).ex_ev['cock_inserted'] = 0;
+    ((s as any).ex_ev = (s as any).ex_ev ?? {})['cock_inserted'] = 0;
     scene.text('"I guess I\'m going to need a pill tomorrow," you shrug, unconcerned.');
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
       { label: 'Humorous', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill_tomorrow'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill_tomorrow'] = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCreampieWtfImage2(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (!(s as any).ex_ev) (s as any).ex_ev = {}; (s as any).ex_ev['cock_inserted'] = 0;
+    ((s as any).ex_ev = (s as any).ex_ev ?? {})['cock_inserted'] = 0;
     // TODO-QSP: dynamic text: "I guess I'm going to need a pill tomorrow," you say, giving <<$npcdesc>> a wry ...
     scene.text(`"I guess I'm going to need a pill tomorrow," you say, giving ${((s as any).npcdesc || '')} a wry smirk to let him know you're not mad.`);
     qspCall(s, 'sex_ev_cum', 'what_now');
@@ -3506,12 +3507,12 @@ function enterHavePlanB(s: GameState, scene: SceneBuilder): void {
         { label: 'I have some plan B', handler: (st: GameState) => {
     scene.actions([
       { label: 'Calm', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill'] = 1;
     scene.text('"I have a morning after pill," you say calmly. "I\'ll be okay."');
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
       { label: 'Amused', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill'] = 1;
     if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       // TODO-QSP: dynamic text: "It's okay," you giggle, finding a strange amusement in how unapologetic <<$npcd...
       scene.text(`"It's okay," you giggle, finding a strange amusement in how unapologetic ${((s as any).npcdesc || '')} is about it. "I have a morning after pill."`);
@@ -3522,7 +3523,7 @@ function enterHavePlanB(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
       { label: 'Sexy', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill'] = 1;
     scene.text('"It\'s okay," you say with a sexy smile. "I have a morning after pill."');
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
@@ -3534,7 +3535,7 @@ function enterHavePlanB(s: GameState, scene: SceneBuilder): void {
         { label: 'I\'ll buy some plan B', handler: (st: GameState) => {
     scene.actions([
       { label: 'Calm', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['plan_b_buy'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['plan_b_buy'] = 1;
     if (((s as any).npc_pay_for_ma_pill ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       scene.text('"I\'ll get a morning after pill later," you shrug. "You\'re paying for it after all."');
       scene.text('"Yeah..."');
@@ -3544,7 +3545,7 @@ function enterHavePlanB(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
       { label: 'Amused', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['plan_b_buy'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['plan_b_buy'] = 1;
     if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       if (((s as any).npc_pay_for_ma_pill ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         // TODO-QSP: dynamic text: "I'll get a morning after pill later," you giggle, finding a strange amusement i...
@@ -3567,7 +3568,7 @@ function enterHavePlanB(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_cum', 'what_now');
   } },
       { label: 'Sexy', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['plan_b_buy'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['plan_b_buy'] = 1;
     if (((s as any).npc_pay_for_ma_pill ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       scene.text('"It\'s okay, I\'ll get a morning after pill later," you say with a sexy smirk. "You\'re paying for it after all."');
       scene.text('"Yeah..."');
@@ -3597,17 +3598,17 @@ function enterHavePlanB2(s: GameState, scene: SceneBuilder): void {
         { label: 'I have some plan B', handler: (st: GameState) => {
     scene.actions([
       { label: 'Calm', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill'] = 1;
     scene.text('"Don\'t worry," you say calmly. "I have a morning after pill."');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'Amused', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill'] = 1;
     scene.text('"Don\'t worry," you giggle with glee. "I have a morning after pill."');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'Sexy', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['ma_pill'] = 1;
     scene.text('"Don\'t worry," you say with a sexy smile. "I have a morning after pill."');
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
@@ -3617,7 +3618,7 @@ function enterHavePlanB2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'I\'ll buy some plan B', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['plan_b_buy'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['plan_b_buy'] = 1;
     scene.actions([
       { label: 'Calm', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
@@ -3698,15 +3699,15 @@ function enterHavePlanB2(s: GameState, scene: SceneBuilder): void {
 function enterCreampieAccidentBirthControl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
     if (((s as any).tabletkishot ?? 0) > 0) {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bc_type'] = 'shot';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['bc_type'] = 'shot';
     } else {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bc_type'] = 'pill';
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['bc_type'] = 'pill';
     }
     if (((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       scene.actions([
-        { label: 'I\'m on the <<$sex_ev[\'bc_type\']>>', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I\'m on the ' + String(((s as any).sex_ev ?? 0)?.['bc_type'] ?? '' ?? ''), handler: (st: GameState) => {
     qspCall(s, 'sex_ev_stats', 'birth_control_know');
-    if (!(s as any).npc_know_not_bc) (s as any).npc_know_not_bc = {}; (s as any).npc_know_not_bc[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_know_not_bc = (s as any).npc_know_not_bc ?? {})[String((s as any).npcID ?? 0)] = 0;
     if (((s as any).sex_ev ?? 0)?.['no_condom'] === 1) {
       // TODO-QSP: dynamic text: "It's okay." you reassure him. "I'm on the <<$sex_ev['bc_type']>>."
       scene.text(`"It's okay." you reassure him. "I'm on the ${((s as any).sex_ev ?? 0)?.['bc_type'] ?? ''}."`);
@@ -3766,7 +3767,7 @@ function enterCreampieAccidentBirthControl(s: GameState, scene: SceneBuilder): v
         scene.actions([
           { label: 'I\'m on birth control (lie)', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_stats', 'birth_control_know');
-    if (!(s as any).npc_know_not_bc) (s as any).npc_know_not_bc = {}; (s as any).npc_know_not_bc[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_know_not_bc = (s as any).npc_know_not_bc ?? {})[String((s as any).npcID ?? 0)] = 0;
     scene.text('"It\'s okay," you smile, telling a barefaced lie. "I\'m on birth control."');
     // TODO-QSP: dynamic text: <<$npcdesc>> seems to relax, relieved that you're not upset.
     scene.text(`${((s as any).npcdesc || '')} seems to relax, relieved that you're not upset.`);
@@ -3791,7 +3792,7 @@ function enterCreampieFreakout(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_ask'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] === 0  &&  (((s as any).npc_free_creampies_count ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  (((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === 'when_safe'  &&  ((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger'))) {
     scene.actions([
       { label: 'Freak the fuck out', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_wtf'] = ((s as any).sex_ev['creampie_wtf'] ?? 0) + (1);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_wtf'] = ((s as any).sex_ev['creampie_wtf'] ?? 0) + (1);
     scene.img('images/shared/sex/cum/cum111.jpg');
     if (((s as any).sex_ev ?? 0)?.['skip_condom'] === 1) {
       // TODO-QSP: '"Ohmygodohmygodohmygodohmygod!" You start hyperventilating, a torrent of words spilling from your m...
@@ -3991,7 +3992,7 @@ function enterPulloutGameTease(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['pullout_game'] > 0  &&  ((s as any).sex_ev ?? 0)?.['last_cum'] === 'creampie'  &&  ((s as any).sex_ev ?? 0)?.['creampie_surprise'] === 1  &&  ((s as any).sex_ev ?? 0)?.['pullout_game_react'] === 0  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] === 0) {
     scene.actions([
       { label: 'Pullout game, huh? (laugh it off)', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pullout_game_react'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['pullout_game_react'] = 1;
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
     } else {
@@ -4045,7 +4046,7 @@ function enterPulloutGameTease(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['preg_risk'] = 'safe';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['preg_risk'] = 'safe';
   } },
       ]);
     }

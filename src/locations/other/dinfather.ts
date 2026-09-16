@@ -39,7 +39,7 @@ function enterFatherAct1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -79,7 +79,7 @@ function enterFatherAct2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -128,7 +128,7 @@ function enterFatherAct3(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -144,12 +144,12 @@ function enterFather1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apologize', handler: (st: GameState) => {
     (s as any).sorryday = ((s as any).daystart ?? 0);
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You profusely apologize to your stepfather, and after a while you can tell his attitude towards you is slightly milder.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -165,12 +165,12 @@ function enterFather2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Try to get on his good side', handler: (st: GameState) => {
     (s as any).sorryday = ((s as any).daystart ?? 0);
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You spend some time trying to get on your stepfather\'s good side, and you feel like he likes you a bit more after you show interest in the things he enjoys.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -265,7 +265,7 @@ function enterGarAct1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -307,7 +307,7 @@ function enterGarAct2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -370,7 +370,7 @@ function enterGarAct3(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -417,7 +417,7 @@ function enterWatchtvAct1(s: GameState, scene: SceneBuilder): void {
       scene.text(`As you lay against him with your eyes closed, you feel his arm shifting. Seconds later you feel his hand on your hip, slowly moving its way up until he rests it on your ${((s as any).titsize || '')} breasts. He keeps his hand there, gently kneading them as he watches TV. You do your best to stay still, but your heart is racing and you rapidly feel your pussy moisten.`);
       scene.actions([
         { label: 'Stay still and see if he goes any further', handler: (st: GameState) => {
-    (s as any).pcs_horny = 0;
+    (s as any).pcs_horny = Math.max(Math.floor(Math.random() * 6) + 90, ((s as any).pcs_horny ?? 0));
     qspCall(s, 'stat', '');
     (s as any).TouchedByFather = 1;
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim18.jpg');
@@ -438,7 +438,7 @@ function enterWatchtvAct1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -476,7 +476,7 @@ function enterWatchtvAct1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -485,7 +485,7 @@ function enterWatchtvAct1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -526,7 +526,7 @@ function enterWatchtvAct2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -584,7 +584,7 @@ function enterWatchtvAct3(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -599,13 +599,13 @@ function enterWatchtv1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apologize', handler: (st: GameState) => {
     (s as any).sorryday = ((s as any).daystart ?? 0);
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim36.jpg');
     scene.text('You profusely apologize to your stepfather, and after a while you can tell his attitude towards you is slightly milder.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -621,12 +621,12 @@ function enterWatchtv2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Try to get on his good side', handler: (st: GameState) => {
     (s as any).sorryday = ((s as any).daystart ?? 0);
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You spend some time trying to get on your stepfather\'s good side, and you feel like he likes you a bit more after you show interest in the things he enjoys.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -725,7 +725,7 @@ function enterDFatherdrunkAct1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -784,7 +784,7 @@ function enterDFatherdrunkAct2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Uncle Misha is onto your act, and decides to push you to your limits. He smiles and says: "Oh really, ${((s as any).pcs_nickname || '')}? Why don't you show us, maybe we can help you. Isn't that right, Vladimir?" Too turned on to decline, you pull your panties to the side and show them your pussy. It's really not all that sore, but your arousal has coloured it nice and red and it makes your pussy lips look a bit more puffy. The guys didn't think you would actually follow through with this, and are flabbergasted when you do.`);
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -801,7 +801,7 @@ function enterDFatherdrunkAct2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -860,7 +860,7 @@ function enterDFatherdrunkAct3(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -895,7 +895,7 @@ function enterGarchat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -926,7 +926,7 @@ function enterGarhelpchat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

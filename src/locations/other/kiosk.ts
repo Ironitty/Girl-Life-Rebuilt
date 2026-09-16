@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kioskloc ?? 0) === 'counter'  &&  ((s as any).args ?? 0)[0] !== 'counter') {
-    scene.actions([{ label: 'Continue', goto: ['kiosk', 'counter'] }]);
+    qspGoto(s, 'kiosk', 'counter');
   }
   scene.build();
 }
@@ -57,20 +57,25 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Wait in line (0:20)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
   }, goto: ['kiosk', 'counter'] },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['kiosk', 'counter'] }]);
+    qspGoto(s, 'kiosk', 'counter');
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCounter(s: GameState, scene: SceneBuilder): void {
+  (s as any).kioskloc = 'counter';
+  (s as any).args_s = 'counter';
+  (s as any).loc_s = 'kiosk';
+  (s as any).menu_loc = 'kiosk';
+  (s as any).menu_arg = 'counter';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'outdoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'kiosk');
@@ -147,7 +152,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You alrea...
       scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You already own today\'s newspaper.</td></tr></table></center>');
     } else {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['newspaper'] = 1;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['newspaper'] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 100);
       qspCall(s, 'stat', '');
@@ -167,7 +172,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'View phone themes', handler: (st: GameState) => {
     // TODO-QSP: $kioskloc = ''
@@ -186,34 +191,47 @@ function enterThemes(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :phonethemeloop
     if (((s as any).i ?? 0) === 1) {
+      (s as any).phoneNameTemp = 'Bimbo';
     }
     if (((s as any).i ?? 0) === 2) {
+      (s as any).phoneNameTemp = 'Aluminus';
     }
     if (((s as any).i ?? 0) === 3) {
+      (s as any).phoneNameTemp = 'Bottlecapped';
     }
     if (((s as any).i ?? 0) === 4) {
+      (s as any).phoneNameTemp = 'Galactic';
     }
     if (((s as any).i ?? 0) === 5) {
+      (s as any).phoneNameTemp = 'Vectored';
     }
     if (((s as any).i ?? 0) === 6) {
+      (s as any).phoneNameTemp = 'Veneer';
     }
     if (((s as any).i ?? 0) === 7) {
+      (s as any).phoneNameTemp = 'Voidwalker';
     }
     if (((s as any).i ?? 0) === 8) {
+      (s as any).phoneNameTemp = 'Voidwalker Red';
     }
     if (((s as any).i ?? 0) === 9) {
+      (s as any).phoneNameTemp = 'Voidwalker Toxic';
     }
     if (((s as any).i ?? 0) === 10) {
+      (s as any).phoneNameTemp = 'Gopnik';
     }
     if (((s as any).i ?? 0) === 11) {
+      (s as any).phoneNameTemp = 'Sports';
     }
     if (((s as any).i ?? 0) === 12) {
+      (s as any).phoneNameTemp = 'Succubus';
     }
     if (((s as any).i ?? 0) === 13) {
+      (s as any).phoneNameTemp = 'Woodshop';
     }
     if (((s as any).phonetheme ?? 0)?.[String((s as any).i ?? 0)] === 0) {
       // TODO-QSP: dynamic text: <a href="exec: VIEW 'images/system/phone/previews/<<$lcase($phoneNameTemp)>>.png...
-      scene.text(`<a href="exec: VIEW 'images/system/phone/previews/${qspUntranslated(s, "lcase(phoneNameTemp)", { location: "kiosk" })}.png'">Preview</a> <a href="exec: gs 'money', 'pay', 500 & phonetheme[${((s as any).i || '')}] = 1 & gt 'kiosk', 'themes'">Buy</a> the <b>${((s as any).phoneNameTemp || '')}</b> theme.`);
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW \\u0027images/system/phone/previews/${qspUntranslated(s, "lcase(phoneNameTemp)", { location: "kiosk" })}.png\\u0027 */ return s; }); return false;">Preview</a> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: phonetheme[${((s as any).i || '')}] = 1 */ return s; }); window.__gameStore.getState().doGoto(\\u0027money\\u0027, \\u0027pay\\u0027, String(window.__gameStore.getState().500 ?? \\u0027\\u0027)); return false;">Buy</a> the <b>${((s as any).phoneNameTemp || '')}</b> theme.`);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) < 14) {

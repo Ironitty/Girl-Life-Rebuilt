@@ -9,6 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'uni_shop';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'uni_shop';
+  (s as any).menu_arg = 'start';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -22,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_island', ''] },
     ]);
   }
-  scene.text('In the store is an <a href="exec: gt \'uni_shop\', \'atm\'">ATM</a>, from which you can withdraw money and deposit money into your bank account.');
+  scene.text('In the store is an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027uni_shop\\u0027, \\u0027atm\\u0027); return false;">ATM</a>, from which you can withdraw money and deposit money into your bank account.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Browse the aisles', goto: ['uni_shop', 'cart'] },
@@ -100,6 +105,8 @@ function enterAtm(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_s = 'uni_shop';
+  (s as any).args_s = 'cart';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'uni');

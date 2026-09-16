@@ -5,8 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + 'locations/pavlovsk/resident/apartment/home';
+  ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/pavlovsk/resident/apartment/home';
+  (s as any).mother_img_path = 'images/characters/pavlovsk/resident/mom/';
   (s as any).music_loop = 0;
+  (s as any).location_type = 'private';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');

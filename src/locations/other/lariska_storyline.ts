@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
   (s as any).lariska_ball = ((s as any).daystart ?? 0);
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 1;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 1;
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   scene.text('You carefully walk up behind her, trying your best not to distract her as she effortlessly smacks the ball into the wall and having it return to her hands over and over again…');
   // TODO-QSP: $OpenInnerThought + '"What is she doing hanging around here,"' + $CloseInnerThought + ' you wonder.'
@@ -39,7 +39,8 @@ function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
       { label: 'Pretend not to see that', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
       { label: 'Make sure she is OK', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
     scene.text('You rush over to her and take her face in your hands, looking at the spot where the ball smacked her in the face. She tries to tell you she is fine, even though the spot is even more red than her blushing face.');
@@ -61,7 +62,7 @@ function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
     scene.text('You slide one hand to the back of her head, cup her chin with the other, and lean in. As soon as your lips touch hers she panics, looks around like a deer caught in headlights, and bolts away looking terrified.');
     scene.text('Chuckling to yourself, you pick up the forgotten volleyball and take it with you. Returning it could be a good excuse to talk to her at school.');
-    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 2;
+    ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 2;
     scene.actions([
       { label: 'Continue', goto: ['pav_complex', 'start'] },
     ]);
@@ -90,7 +91,7 @@ function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGettingToKnow(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 8;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 8;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big13.jpg');
@@ -129,7 +130,7 @@ function enterGettingToKnow(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyfriend_1(s: GameState, scene: SceneBuilder): void {
   (s as any).LariskaBoyDay = ((s as any).daystart ?? 0) + 7;
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 11;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 11;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   // TODO-QSP: dynamic text: "So… uuh…<<$pcs_nickname>>, I was wondering what you think about me finding a bo...
@@ -143,7 +144,7 @@ function enterBoyfriend_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, that\'s ok with me. You should be able to have some fun, enjoy your life." You give her a smile, trying to let her know it won\'t bother you.');
     // TODO-QSP: dynamic text: "Thanks, <<$pcs_nickname>>. I was worried you would be mad at me for wanting tha...
     scene.text(`"Thanks, ${((s as any).pcs_nickname || '')}. I was worried you would be mad at me for wanting that." She leans in and gives you a kiss on the cheek.`);
-    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['boyfriend'] = 1;
+    ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['boyfriend'] = 1;
     (s as any).lariskalove = ((s as any).lariskalove ?? 0) + (2);
     qspCall(s, 'npc_relationship', 'modify', 'A13', 'adore');
     qspCall(s, 'mood', 'raise', 'tiny');
@@ -157,7 +158,7 @@ function enterBoyfriend_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well what about us? Don\'t you like what we\'ve been doing?"');
     scene.text('"Yes! I love it, I just feel like I\'m missing out on something important, you know?"');
     scene.text('You sigh. "If you feel you need to, then go for it."');
-    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['boyfriend'] = 2;
+    ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['boyfriend'] = 2;
     if (((s as any).lariskalove ?? 0) > 6) {
       (s as any).lariskalove = ((s as any).lariskalove ?? 0) - (1);
     } else {
@@ -175,7 +176,7 @@ function enterBoyfriend_1(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyfriend_2(s: GameState, scene: SceneBuilder): void {
   (s as any).LariskaBoyDay = 0;
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 12;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 12;
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_cooking_2.jpg');
   scene.text('Finding Lariska in the kitchen cooking dinner, you decide to join her and help prepare the food. Grabbing a knife, you start chopping vegetables while chatting with her.');
   scene.text('It doesn\'t take long before the two of you are laughing at each other\'s jokes and having a great time together. Suddenly her cellphone starts ringing, so she stops to answer it.');
@@ -226,7 +227,7 @@ function enterBoyfriend_2(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyfriend_3(s: GameState, scene: SceneBuilder): void {
   (s as any).LariskaBoyDay = ((s as any).daystart ?? 0) + 7;
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 13;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 13;
   scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/lev_lariska_meal.jpg');
   scene.text('You go into the restaurant and find Lariska and Lev already seated. They wave you over and you join them.');
   // TODO-QSP: dynamic text: "Lev, this is <<$pcs_firstname>>. <<$pcs_nickname>>, this is Lev, my new boyfrie...
@@ -282,7 +283,7 @@ function enterBoyfriend_3(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyfriend_4(s: GameState, scene: SceneBuilder): void {
   (s as any).LariskaBoyDay = 0;
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 14;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 14;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big13.jpg');
@@ -318,7 +319,8 @@ function enterBoyfriend_4(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['LariskaSex', 'boyfriend_sex'] },
+    qspGoto(s, 'LariskaSex', 'boyfriend_sex');
+  } },
     ]);
   } },
     ]);
@@ -351,7 +353,8 @@ function enterBoyfriend_4(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['LariskaSex', 'boyfriend_sex'] },
+    qspGoto(s, 'LariskaSex', 'boyfriend_sex');
+  } },
     ]);
   } },
     ]);
@@ -361,7 +364,7 @@ function enterBoyfriend_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyfriend_5(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 15;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 15;
   scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/lev_nightclub.jpg');
   scene.text('As you enter the nightclub and look around, you recognize someone on the dancefloor. Looking closer, you realize it\'s Lev with his arms wrapped around someone with blonde hair. Surprised to find Lariska not only at the disco but actually dancing, you head towards them. About halfway there you catch a glimpse of her face and realize the girl he\'s groping isn\'t Lariska.');
   scene.text('You consider making a scene, but decide against it. Better to just tell Lariska the next time you are at her house. She is going to be devastated, she really liked him!');
@@ -374,7 +377,7 @@ function enterBoyfriend_5(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyfriend_6(s: GameState, scene: SceneBuilder): void {
   (s as any).LariskaBoyDay = ((s as any).daystart ?? 0) + 14;
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 16;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 16;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big13.jpg');
@@ -417,7 +420,7 @@ function enterBoyfriend_6(s: GameState, scene: SceneBuilder): void {
 function enterBoyfriend_7(s: GameState, scene: SceneBuilder): void {
   (s as any).LariskaBoyDay = 0;
   (s as any).LariskaBoyDay = ((s as any).daystart ?? 0) + 3;
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 17;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 17;
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   scene.text('You can tell at a glance that Lariska is freaking out about something. "Honey, what\'s wrong?"');
   scene.text('Tears spring into her eyes and she bursts out "I\'m pregnant! Lev got me pregnant! We only had sex without a condom once and now I\'m pregnant and I don\'t know what to do… I wanted to play sports and go to University, but I\'m pregnant now and I don\'t know how he\'s gonna react. What\'s Mom going to say? What do I do? Oh God!"');
@@ -437,7 +440,7 @@ function enterBoyfriend_7(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Thanks, ${((s as any).pcs_nickname || '')}," she says, still sniffling. "I'm not getting an abortion, I just can't do that. I don't want to give up on my dreams."`);
     scene.text('"There is no reason you cannot go to college because you\'re pregnant or a mother, and you can still exercise until the baby comes, then do your sports thing after. We\'ll figure it out, I promise."');
     scene.text('"O-Ok. I will wait until I\'ve calmed down a bit before I tell Lev, and him and I can tell Mom together."');
-    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['abort_no'] = 1;
+    ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['abort_no'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.actions([
@@ -456,7 +459,7 @@ function enterBoyfriend_7(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m just giving you options. You can always get pregnant again, later on in life."');
     scene.text('"No. That\'s not an option." She takes a deep breath. "I have to figure out how I\'m going to tell Lev. Then I\'m going to have to tell Mom."');
     scene.text('"You got this, girl. I have faith in you, and I will help you however I can."');
-    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['abort_yes'] = 1;
+    ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['abort_yes'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.actions([
@@ -470,7 +473,7 @@ function enterBoyfriend_7(s: GameState, scene: SceneBuilder): void {
 function enterBoyfriend_8(s: GameState, scene: SceneBuilder): void {
   (s as any).LariskaBoyDay = 0;
   (s as any).LariskaBoyDay = ((s as any).daystart ?? 0) + 14;
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 18;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 18;
   (s as any).lariskalove = ((s as any).lariskalove ?? 0) + (2);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
@@ -495,7 +498,7 @@ function enterBoyfriend_8(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyfriend_9(s: GameState, scene: SceneBuilder): void {
   (s as any).LariskaBoyDay = 0;
-  if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 19;
+  ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 19;
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big13.jpg');

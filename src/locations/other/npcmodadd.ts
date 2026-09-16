@@ -7,6 +7,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npclastmodaddedn = 1000;
   }
   (s as any).npclastmodaddedn = ((s as any).npclastmodaddedn ?? 0) + (1);
+  (s as any).npclastmodadded = 'M' + ((s as any).npclastmodaddedn ?? 0) + '';
   scene.build();
 }
 

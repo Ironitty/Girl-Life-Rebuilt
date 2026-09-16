@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'community_center';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Community Center</b></center>');
   if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20) {
@@ -38,6 +40,8 @@ function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisco(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'disco';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Disco</b></center>');
   if (((s as any).hour ?? 0) < 23) {
@@ -140,6 +144,8 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReception(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'reception';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Reception</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_holl.jpg');
@@ -147,8 +153,8 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed'  &&  ((s as any).teacher ?? 0)?.['on_notice'] === 1) {
     qspCall(s, 'mood', 'lower', 'huge');
     qspCall(s, 'jobs', 'set_fired', 'pav_voc_school_teacher');
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = 0;
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['on_notice'] = 0;
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = 0;
+    ((s as any).teacher = (s as any).teacher ?? {})['on_notice'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Principal\'s Office</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_angdir.jpg');
@@ -229,7 +235,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
       { label: 'Become a teacher', handler: (st: GameState) => {
     qspCall(s, 'jobs', 'set_employed', 'pav_voc_school_teacher');
     qspCall(s, 'jobs', 'set_rank', 'pav_voc_school_teacher', 1);
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = 16;
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = 16;
     scene.text('You bring your work book and say that you can start work the next business day.');
     scene.actions([
       { label: 'Exit to Hall', goto: ['pav_voc_school', 'reception'] },
@@ -240,7 +246,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.text('You are told that you cannot take the job without a diploma from an institute of higher education.');
-          if (!(s as any).university) (s as any).university = {}; (s as any).university['fakediplom'] = 2;
+          ((s as any).university = (s as any).university ?? {})['fakediplom'] = 2;
         }
         scene.actions([
           { label: 'Exit to Hall', goto: ['pav_voc_school', 'reception'] },
@@ -259,15 +265,17 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOutside(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'outside';
   qspCall(s, 'stat', '');
   scene.text('<center><b>High School</b></center>');
   scene.img('images/locations/pavlovsk/altschool/lizey.jpg');
   scene.text('On the door hangs a poster: "The Vocational School has been teaching for 11 years in the fields of: (a comprehensive list). We are devoted to the training of future employees of large enterprises. The college creates optimal conditions for personal and professional development of students under a modern curriculum."');
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
-    scene.text('There\'s a <a href="exec:gt \'pav_voc_school\', \'sports_area\'">sports area</a>.');
+    scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_voc_school\\u0027, \\u0027sports_area\\u0027); return false;">sports area</a>.');
   }
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed'  &&  ((s as any).teacher ?? 0)?.['level'] > 0  &&  ((s as any).teacher ?? 0)?.['level'] < 10) {
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['on_notice'] = 1;
+    ((s as any).teacher = (s as any).teacher ?? {})['on_notice'] = 1;
   }
   // TODO-QSP: end
   scene.actions([
@@ -280,6 +288,8 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSportsArea(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'first_floor';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Playground</b></center>');
   scene.img('images/locations/pavlovsk/altschool/stadion.jpg');
@@ -290,7 +300,7 @@ function enterSportsArea(s: GameState, scene: SceneBuilder): void {
     scene.text('You see a group of girls mocking and kicking a young man.');
     scene.actions([
       { label: 'Intervene for the man', handler: (st: GameState) => {
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) + (1);
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) + (1);
     scene.text('"What are you doing? Stop immediately, or I\'ll call the police!" You yell at the girls. They snort: "He\'s an asshole; he deserved it!" But they still leave the guy alone.');
     scene.text('You set a good example by helping the defenseless man. This will positively impact your reputation.');
     scene.actions([
@@ -308,6 +318,8 @@ function enterSportsArea(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstFloor(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'first_floor';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Corridor (1st floor)</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_1korr.jpg');
@@ -332,6 +344,8 @@ function enterFirstFloor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'second_floor';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Corridor (2nd floor)</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_2korr.jpg');
@@ -356,6 +370,8 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThirdFloor(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'third_floor';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Corridor (3rd floor)</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_3korr.jpg');
@@ -388,12 +404,18 @@ function enterThirdFloor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'staff_room';
+  (s as any).locM = 'pav_voc_school';
+  (s as any).locM_arg = 'staff_room';
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'staff_room';
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Teachers\' Room</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_tk.jpg');
   scene.text('A place for teachers to relax.');
-  scene.text('On the wall near the front door hangs a <a href="exec:gt \'mirror\',\'start\'">mirror</a>.');
+  scene.text('On the wall near the front door hangs a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>.');
   scene.text('In one corner, there is a small old sofa.');
   if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 15) {
     (s as any).temp = Math.floor(Math.random() * 100) + 1;
@@ -409,8 +431,8 @@ function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
           { label: 'Apologize to the Principal', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['apology'] = 1;
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['class_state'] = 1;
+    ((s as any).teacher = (s as any).teacher ?? {})['apology'] = 1;
+    ((s as any).teacher = (s as any).teacher ?? {})['class_state'] = 1;
     scene.img('images/locations/pavlovsk/altschool/ptu_angdir.jpg');
     scene.text('You stand and face the Principal, apologizing for your actions.');
     scene.text('The Principal tells you that you need to come to her office during your free time.');
@@ -439,7 +461,7 @@ function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
       (s as any).temp = Math.floor(Math.random() * 100) + 1;
       if (((s as any).temp ?? 0) >= 90) {
         (s as any).minut = ((s as any).minut ?? 0) + 60;
-        if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) + (2);
+        ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) + (2);
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/altschool/21ptu.jpg');
         scene.text('A student approaches you and asks for help with her work.');
@@ -479,7 +501,7 @@ function enterClassroom(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).job_rank ?? 0)?.['pav_voc_school_teacher'] >= 2  &&  ((s as any).hostel ?? 0)?.['status'] === 4) {
       (s as any).hour = 14;
-      if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 5;
+      ((s as any).hostel = (s as any).hostel ?? {})['status'] = 5;
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/altschool/cera_nerd2.jpg');
       scene.text('You spot Eugene Isenberg, the Botany and Chemistry teacher, in the hallway. Someone has scribbled something on his nose—likely another prank by the students.');
@@ -555,7 +577,7 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
         { label: 'Drop your pencil on the ground', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (40);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (5);
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (5);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Classroom</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_karandash.jpg');
@@ -564,7 +586,7 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
       (s as any).temp = Math.floor(Math.random() * 100) + 1;
       if (((s as any).temp ?? 0) >= 90) {
         qspCall(s, 'mood', 'lower', 'tiny');
-        if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (2);
+        ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (2);
         // TODO-QSP: dynamic text: You hear a barely audible whisper: "Look at that! <<$pcs_nickname>> doesn't have...
         scene.text(`You hear a barely audible whisper: "Look at that! ${((s as any).pcs_nickname || '')} doesn't have any panties on, and we can see her pussy!"`);
         scene.text('You feel your face begin to burn with shame after what you heard.');
@@ -585,7 +607,7 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
           { label: 'Sit on the table', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (40);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (2);
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Classroom</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_urok1.jpg');
@@ -601,7 +623,7 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
             { label: 'Drop the chalk', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (40);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (5);
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (5);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Classroom</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_rak.jpg');
@@ -610,7 +632,7 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
       (s as any).temp = Math.floor(Math.random() * 100) + 1;
       if (((s as any).temp ?? 0) >= 90) {
         qspCall(s, 'mood', 'lower', 'tiny');
-        if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (2);
+        ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (2);
         // TODO-QSP: dynamic text: You hear a barely audible whisper: "Look at that! <<$pcs_nickname>> doesn't have...
         scene.text(`You hear a barely audible whisper: "Look at that! ${((s as any).pcs_nickname || '')} doesn't have any panties on, and we can see her pussy!"`);
         scene.text('You feel your face begin to burn with shame after what you heard.');
@@ -631,7 +653,7 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
               { label: 'Sit sexily on the table', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (40);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (2);
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Classroom</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_nastol.jpg');
@@ -647,7 +669,7 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
                 { label: 'Show stockings', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (40);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (2);
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Classroom</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_urok2.jpg');
@@ -672,10 +694,10 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'intel', 1);
     }
     if (((s as any).clothing ?? 0)?.['style'] === 5  &&  (((s as any).pcs_makeup ?? 0) === 1  ||  ((s as any).pcs_makeup ?? 0) === 2)  &&  ((s as any).teacher ?? 0)?.['level'] < 70) {
-      if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) + (1);
+      ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) + (1);
     }
     if (((s as any).pcs_makeup ?? 0) === 4) {
-      if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (1);
+      ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (1);
     }
     qspCall(s, 'money', 'earn', 150);
     qspCall(s, 'stat', '');
@@ -728,6 +750,8 @@ function enterPrincipalsOffice(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGymnasium(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'gymnasium';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Gym</b></center>');
   scene.img('images/locations/pavlovsk/altschool/sportzal.jpg');
@@ -742,6 +766,8 @@ function enterGymnasium(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWomensShower(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'womens_shower';
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Women\'s Shower</b></center>');
@@ -776,7 +802,7 @@ function enterWomensShower(s: GameState, scene: SceneBuilder): void {
 
 function enterMensShower(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (1);
+  ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) - (1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Men\'s Shower</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_muz.jpg');
@@ -789,6 +815,8 @@ function enterMensShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMedicalOffice(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_voc_school';
+  (s as any).menu_arg = 'medical_office';
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Medical Office</b></center>');
@@ -824,7 +852,7 @@ function enterDiningRoom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Greet the Principal', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (!(s as any).teacher) (s as any).teacher = {}; (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) + (1);
+    ((s as any).teacher = (s as any).teacher ?? {})['level'] = ((s as any).teacher['level'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Dining Room</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_stoldir.jpg');
@@ -843,7 +871,7 @@ function enterDiningRoom(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'money', 'pay', 100);
       qspCall(s, 'food', 'medium_meal');
-      scene.actions([{ label: 'Continue', goto: ['pav_voc_school', 'dining_room'] }]);
+      qspGoto(s, 'pav_voc_school', 'dining_room');
     }
   } },
     { label: 'To the corridor (1st Floor)', goto: ['pav_voc_school', 'first_floor'] },
@@ -873,7 +901,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Search the Web for "Tetrodotoxin"', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 6;
+    ((s as any).hostel = (s as any).hostel ?? {})['status'] = 6;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/altschool/ptu_comp.jpg');
     scene.text('The only information you can find about this substance is that it\'s used in experimental pharmacology.');
@@ -900,14 +928,14 @@ function enterTeachersToilet(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Remove underwear', handler: (st: GameState) => {
     qspCall(st, 'underwear', 'remove');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['tampons'] > 0  &&  (((s as any).mesec ?? 0) > 0  ||  (((s as any).placebopart ?? 0) > 0  &&  ((s as any).pillcon ?? 0) < 40000))  &&  (((s as any).isprok ?? 0) === 1  ||  (((s as any).isprok ?? 0) === 0  &&  ((s as any).isprokp ?? 0) === 0))  &&  (!((s as any).knowpreg ?? 0))) {
     scene.actions([
       { label: 'Change tampon', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = ((s as any).mc_inventory['tampons'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tampons'] = ((s as any).mc_inventory['tampons'] ?? 0) - (1);
     (s as any).isprok = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'mood', 'lower', 'tiny');
@@ -915,7 +943,7 @@ function enterTeachersToilet(s: GameState, scene: SceneBuilder): void {
     scene.text('You change your tampon.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -949,7 +977,7 @@ function enterSchoolMagazine(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Lonely Heart', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 7;
+    ((s as any).hostel = (s as any).hostel ?? {})['status'] = 7;
     scene.img('images/locations/pavlovsk/altschool/ptu_tech.jpg');
     scene.text('In front of you is Eugene A., the school\'s chemistry teacher.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you are always so attractive. You must be very popular with ...
@@ -968,14 +996,16 @@ function enterSchoolMagazine(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['pav_voc_school', 'third_floor'] },
+    { label: 'Leave', handler: (st: GameState) => {
+    qspGoto(s, 'pav_voc_school', 'third_floor');
+  } },
   ]);
   scene.build();
 }
 
 function enterDatingProfile(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 8;
+  ((s as any).hostel = (s as any).hostel ?? {})['status'] = 8;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/altschool/ptu_tech.jpg');
   // TODO-QSP: dynamic text: "Good afternoon, <<$pcs_nickname>>! As you requested, I tried to take a picture ...

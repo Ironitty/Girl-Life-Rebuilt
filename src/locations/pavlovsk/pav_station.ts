@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStationOutside(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_station';
+  (s as any).menu_arg = 'station_outside';
+  (s as any).location_type = 'public_indoors';
+  (s as any).region = 'pav';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/police/pavext.jpg');
   scene.text('The police station is gleaming in a bright yellow color, clearly making it clear that it can\'t be missed by anyone.');
@@ -26,6 +30,10 @@ function enterStationOutside(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStationInside(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_station';
+  (s as any).menu_arg = 'station_inside';
+  (s as any).location_type = 'public_indoors';
+  (s as any).region = 'pav';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/police/pavrec.jpg');
   scene.text('You\'re welcomed by a tiny reception area with someone always just lazily hanging around waiting for something to happen.');
@@ -86,36 +94,36 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   scene.text('The officer drags you in by the arm, his grip tightening whenever he feels the slightest bit of resistance from you.');
   scene.text('As the officer leads you by the reception area, the clerk pops his head out and looks down the corridor, appearing very unimpressed.');
   if (((s as any).locArgs?.[1] ?? 0) === 'shplft'  ||  ((s as any).locArgs?.[1] ?? 0) === 'shoplift') {
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['shoplift_booked_pav'] = ((s as any).policeQW['shoplift_booked_pav'] ?? 0) + (1);
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['crime_flag_pav'] = 'shoplift';
+    ((s as any).policeQW = (s as any).policeQW ?? {})['shoplift_booked_pav'] = ((s as any).policeQW['shoplift_booked_pav'] ?? 0) + (1);
+    ((s as any).policeQW = (s as any).policeQW ?? {})['crime_flag_pav'] = 'shoplift';
     (s as any).temp_tot_booked_pav = ((s as any).temp_tot_booked_pav ?? 0) + (1);
     if (((s as any).temp_tot_booked_pav ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pav_station', 'first_shoplift'] }]);
+      qspGoto(s, 'pav_station', 'first_shoplift');
     } else {
       if (((s as any).temp_tot_booked_pav ?? 0) <= 5) {
-        scene.actions([{ label: 'Continue', goto: ['pav_station', 'repeat'] }]);
+        qspGoto(s, 'pav_station', 'repeat');
       } else {
         if (((s as any).temp_tot_booked_pav ?? 0) <= 10) {
-          scene.actions([{ label: 'Continue', goto: ['pav_station', 'multiple'] }]);
+          qspGoto(s, 'pav_station', 'multiple');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['pav_station', 'regular'] }]);
+          qspGoto(s, 'pav_station', 'regular');
         }
       }
     }
   } else {
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['prostitution_booked_pav'] = ((s as any).policeQW['prostitution_booked_pav'] ?? 0) + (1);
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['crime_flag_pav'] = 'prostitution';
+    ((s as any).policeQW = (s as any).policeQW ?? {})['prostitution_booked_pav'] = ((s as any).policeQW['prostitution_booked_pav'] ?? 0) + (1);
+    ((s as any).policeQW = (s as any).policeQW ?? {})['crime_flag_pav'] = 'prostitution';
     (s as any).temp_tot_booked_pav = ((s as any).temp_tot_booked_pav ?? 0) + (1);
     if (((s as any).temp_tot_booked_pav ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pav_station', 'first_prostitution'] }]);
+      qspGoto(s, 'pav_station', 'first_prostitution');
     } else {
       if (((s as any).temp_tot_booked_pav ?? 0) <= 5) {
-        scene.actions([{ label: 'Continue', goto: ['pav_station', 'repeat'] }]);
+        qspGoto(s, 'pav_station', 'repeat');
       } else {
         if (((s as any).temp_tot_booked_pav ?? 0) <= 10) {
-          scene.actions([{ label: 'Continue', goto: ['pav_station', 'multiple'] }]);
+          qspGoto(s, 'pav_station', 'multiple');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['pav_station', 'regular'] }]);
+          qspGoto(s, 'pav_station', 'regular');
         }
       }
     }
@@ -336,9 +344,9 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
 
 function enterBooking(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_tot_booked_pav ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['pav_station', 'booking1'] }]);
+    qspGoto(s, 'pav_station', 'booking1');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['pav_station', 'booking2'] }]);
+    qspGoto(s, 'pav_station', 'booking2');
   }
   // TODO-QSP: end
   scene.build();
@@ -582,7 +590,7 @@ function enterBooking1Undress(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Comply', handler: (st: GameState) => {
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_sex_pav'] = 1;
+    ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_sex_pav'] = 1;
     qspCall(s, 'arousal', 'bj', 5, 'inhibition', 'sub');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/police/bookingbj1.jpg');
@@ -903,7 +911,7 @@ function enterBooking2Undress(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Comply', handler: (st: GameState) => {
-    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_sex_pav'] = ((s as any).policeQW['bookingofficer_sex_pav'] ?? 0) + (1);
+    ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_sex_pav'] = ((s as any).policeQW['bookingofficer_sex_pav'] ?? 0) + (1);
     qspCall(s, 'arousal', 'bj', 5, 'inhibition', 'sub');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/police/bookingbj1.jpg');
@@ -966,7 +974,7 @@ function enterBooking2Undress(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBookingVaginal(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_sex_pav'] = ((s as any).policeQW['bookingofficer_sex_pav'] ?? 0) + (1);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_sex_pav'] = ((s as any).policeQW['bookingofficer_sex_pav'] ?? 0) + (1);
   qspCall(s, 'arousal', 'vaginal', 2, 'inhibition', 'sub', 'rough');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/police/sex/bookingvag1.jpg');
@@ -1026,7 +1034,7 @@ function enterBookingVaginal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBookingAnal(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['bookingofficer_sex_pav'] = ((s as any).policeQW['bookingofficer_sex_pav'] ?? 0) + (1);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_sex_pav'] = ((s as any).policeQW['bookingofficer_sex_pav'] ?? 0) + (1);
   qspCall(s, 'arousal', 'anal', 2, 'inhibition', 'sub', 'rough');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/police/sex/bookinganal1.jpg');
@@ -1088,6 +1096,9 @@ function enterBookingAnal(s: GameState, scene: SceneBuilder): void {
 function enterHoldingcell(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (5 * (Math.floor(Math.random() * 7) + 6));
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
+    (s as any).temp_rescuer = 'mom';
+  } else {
+    (s as any).temp_rescuer = 'step-dad';
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/police/injail.jpg');

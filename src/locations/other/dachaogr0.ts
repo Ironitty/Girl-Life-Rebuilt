@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'secluded';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Vegetable</b></center>');
@@ -45,7 +46,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 3000, 'cash');
-      if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 16;
+      ((s as any).exhib = (s as any).exhib ?? {})['status'] = 16;
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: You paid the workers ' + $func('money', 'string_price', 3000) + '.
       scene.text('You paid the workers 3000₽.');

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,9 +9,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMorning(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'gschool_lessons';
+  (s as any).menu_arg = 'morning';
+  (s as any).location_type = 'public_indoors';
   if (((s as any).gschoolVars ?? 0)?.['last_attendance'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['last_attendance'] = ((s as any).daystart ?? 0);
-    if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = ((s as any).gschoolVars['absence_count'] ?? 0) - (1);
+    ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['last_attendance'] = ((s as any).daystart ?? 0);
+    ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['absence_count'] = ((s as any).gschoolVars['absence_count'] ?? 0) - (1);
     (s as any).school_lunch = 0;
     if (((s as any).missing_class ?? 0) > 9) {
       (s as any).missing_class = ((s as any).missing_class ?? 0) - (9);
@@ -23,7 +26,7 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
     (s as any).lernSkill = ((s as any).lernSkill ?? 0) + (1);
     (s as any).lernHome = ((s as any).lernHome ?? 0) + (1);
     if (((s as any).runnerQW ?? 0)?.['pav_racetype'] === 1) {
-      if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_racetype'] = 0;
+      ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_racetype'] = 0;
     }
     if (((s as any).hour ?? 0) < 8) {
       qspCall(s, 'gschool_socialchg', 'test');
@@ -46,10 +49,10 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).week ?? 0) < 4  &&  ((s as any).class ?? 0)?.['first_grade_check'] === 0) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'grade_check'] }]);
+          qspGoto(s, 'gschool_lessons', 'grade_check');
         } else {
           if (((s as any).week ?? 0) > 1  &&  (((s as any).grupTipe ?? 0) === 3  ||  ((s as any).nerd_game ?? 0)?.['stage'] > 0  ||  (Math.floor(Math.random() * (((s as any).npc_rel ?? 0)?.['A152'] - 80 + 1)) + (80)) > 95)  &&  ((s as any).nerd_game ?? 0)?.['invite_day'] < ((s as any).daystart ?? 0) - ((s as any).week ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', '\'morning\''] }]);
+            qspGoto(s, 'nerd_game_night', 'invite', 'morning');
           } else {
             qspCall(s, 'gschool_gossip', 'morning');
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUniformCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -120,7 +123,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
             scene.text('Time to go to your next class.');
           } else {
             (s as any).school_period = 2;
-            scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+            qspGoto(s, 'gschool_lessons', 'short_break');
           }
         }
       }
@@ -137,7 +140,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
             scene.text('Time to go to your next class.');
           } else {
             (s as any).school_period = 4;
-            scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+            qspGoto(s, 'gschool_lessons', 'short_break');
           }
         }
       }
@@ -149,7 +152,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
             scene.text('Time to go to your next class.');
           } else {
             (s as any).school_period = 4;
-            scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+            qspGoto(s, 'gschool_lessons', 'short_break');
           }
         } else {
           if (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 46) {
@@ -168,7 +171,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
                 scene.text('Time to go to your next class.');
               } else {
                 (s as any).school_period = 5;
-                scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+                qspGoto(s, 'gschool_lessons', 'short_break');
               }
             }
           }
@@ -182,11 +185,11 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).hour ?? 0) === 12  &&  ((s as any).minut ?? 0) < 25  &&  ((s as any).minut ?? 0) > 20) {
                   (s as any).school_period = 6;
-                  scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+                  qspGoto(s, 'gschool_lessons', 'short_break');
                 } else {
                   if ((((s as any).hour ?? 0) === 12  &&  ((s as any).minut ?? 0) > 25 )  ||  ((s as any).hour ?? 0) > 12) {
                     (s as any).school_period = 6;
-                    scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+                    qspGoto(s, 'gschool_lessons', 'short_break');
                   }
                 }
               }
@@ -194,7 +197,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
             if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 12) {
               (s as any).school_lunch = 1;
               (s as any).school_period = 6;
-              scene.actions([{ label: 'Continue', goto: ['NikoDreams', 'classroom_dream'] }]);
+              qspGoto(s, 'NikoDreams', 'classroom_dream');
             }
           } else {
             if (((s as any).school_period ?? 0) === 6) {
@@ -209,7 +212,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
                       (s as any).minut = ((s as any).minut ?? 0) + (25-((s as any).minut ?? 0));
                     } else {
                       (s as any).school_period = 7;
-                      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+                      qspGoto(s, 'gschool_lessons', 'short_break');
                     }
                   }
                 }
@@ -229,7 +232,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
                         scene.text('Time to go to your next class.');
                       } else {
                         (s as any).school_period = 8;
-                        scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+                        qspGoto(s, 'gschool_lessons', 'short_break');
                       }
                     }
                   }
@@ -285,7 +288,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).week ?? 0) > 1  &&  (((s as any).grupTipe ?? 0) === 3  ||  ((s as any).nerd_game ?? 0)?.['stage'] > 0  ||  (Math.floor(Math.random() * (((s as any).npc_rel ?? 0)?.['A152'] - 80 + 1)) + (80)) > 95)  &&  ((s as any).nerd_game ?? 0)?.['invite_day'] < ((s as any).daystart ?? 0) - ((s as any).week ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', '\'short_break\''] }]);
+            qspGoto(s, 'nerd_game_night', 'invite', 'short_break');
           }
         }
         scene.actions([
@@ -304,7 +307,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
             { label: 'Leave the school', goto: ['gschool_lessons', 'schedule'] },
           ]);
         } else {
-          scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'schedule'] }]);
+          qspGoto(s, 'gschool_lessons', 'schedule');
         }
       }
     }
@@ -314,6 +317,9 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSkip(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'gschool_lessons';
+  (s as any).menu_arg = 'skip';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>School Hallway</b></center>');
   scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
@@ -336,19 +342,19 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
     (s as any).school_period = 1;
     if (((s as any).hour ?? 0) >= 8) {
       if (((s as any).week ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'math_late'] }]);
+        qspGoto(s, 'gschool_lessons4', 'math_late');
       }
       if (((s as any).week ?? 0) === 2) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons3', 'literature_late'] }]);
+        qspGoto(s, 'gschool_lessons3', 'literature_late');
       }
       if (((s as any).week ?? 0) === 3) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'math_late'] }]);
+        qspGoto(s, 'gschool_lessons4', 'math_late');
       }
       if (((s as any).week ?? 0) === 4) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons3', 'literature_late'] }]);
+        qspGoto(s, 'gschool_lessons3', 'literature_late');
       }
       if (((s as any).week ?? 0) === 5) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'math_late'] }]);
+        qspGoto(s, 'gschool_lessons4', 'math_late');
       }
     } else {
       if (((s as any).hour ?? 0) === 7) {
@@ -358,19 +364,19 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + (120 - ((s as any).minut ?? 0));
       }
       if (((s as any).week ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'math'] }]);
+        qspGoto(s, 'gschool_lessons4', 'math');
       }
       if (((s as any).week ?? 0) === 2) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons3', 'literature'] }]);
+        qspGoto(s, 'gschool_lessons3', 'literature');
       }
       if (((s as any).week ?? 0) === 3) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'math'] }]);
+        qspGoto(s, 'gschool_lessons4', 'math');
       }
       if (((s as any).week ?? 0) === 4) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons3', 'literature'] }]);
+        qspGoto(s, 'gschool_lessons3', 'literature');
       }
       if (((s as any).week ?? 0) === 5) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'math'] }]);
+        qspGoto(s, 'gschool_lessons4', 'math');
       }
     }
   } else {
@@ -380,24 +386,24 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + (50 - ((s as any).minut ?? 0));
       }
       if (((s as any).week ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons1', 'russian'] }]);
+        qspGoto(s, 'gschool_lessons1', 'russian');
       }
       if (((s as any).week ?? 0) === 2) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons1', 'geography'] }]);
+        qspGoto(s, 'gschool_lessons1', 'geography');
       }
       if (((s as any).week ?? 0) === 3) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons1', 'russian'] }]);
+        qspGoto(s, 'gschool_lessons1', 'russian');
       }
       if (((s as any).week ?? 0) === 4) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons1', 'geography'] }]);
+        qspGoto(s, 'gschool_lessons1', 'geography');
       }
       if (((s as any).week ?? 0) === 5) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons1', 'russian'] }]);
+        qspGoto(s, 'gschool_lessons1', 'russian');
       }
     } else {
       if (((s as any).school_period ?? 0) === 2) {
         (s as any).school_period = 3;
-        scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'break'] }]);
+        qspGoto(s, 'gschool_lunch', 'break');
       } else {
         if (((s as any).school_period ?? 0) === 3) {
           (s as any).school_period = 4;
@@ -405,19 +411,19 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
             (s as any).minut = ((s as any).minut ?? 0) + (55 - ((s as any).minut ?? 0));
           }
           if (((s as any).week ?? 0) === 1) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'english'] }]);
+            qspGoto(s, 'gschool_lessons4', 'english');
           }
           if (((s as any).week ?? 0) === 2) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'science'] }]);
+            qspGoto(s, 'gschool_lessons2', 'science');
           }
           if (((s as any).week ?? 0) === 3) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'biology'] }]);
+            qspGoto(s, 'gschool_lessons2', 'biology');
           }
           if (((s as any).week ?? 0) === 4) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'science'] }]);
+            qspGoto(s, 'gschool_lessons2', 'science');
           }
           if (((s as any).week ?? 0) === 5) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'english'] }]);
+            qspGoto(s, 'gschool_lessons4', 'english');
           }
         } else {
           if (((s as any).school_period ?? 0) === 4) {
@@ -426,24 +432,24 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
               (s as any).minut = ((s as any).minut ?? 0) + (45 - ((s as any).minut ?? 0));
             }
             if (((s as any).week ?? 0) === 1) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_lessons3', 'art'] }]);
+              qspGoto(s, 'gschool_lessons3', 'art');
             }
             if (((s as any).week ?? 0) === 2) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_lessons3', 'shop'] }]);
+              qspGoto(s, 'gschool_lessons3', 'shop');
             }
             if (((s as any).week ?? 0) === 3) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_lessons1', 'history'] }]);
+              qspGoto(s, 'gschool_lessons1', 'history');
             }
             if (((s as any).week ?? 0) === 4) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_lessons3', 'shop'] }]);
+              qspGoto(s, 'gschool_lessons3', 'shop');
             }
             if (((s as any).week ?? 0) === 5) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_lessons3', 'art'] }]);
+              qspGoto(s, 'gschool_lessons3', 'art');
             }
           } else {
             if (((s as any).school_period ?? 0) === 5) {
               (s as any).school_period = 6;
-              scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'lunch'] }]);
+              qspGoto(s, 'gschool_lunch', 'lunch');
             } else {
               if (((s as any).school_period ?? 0) === 6) {
                 (s as any).school_period = 7;
@@ -451,19 +457,19 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
                   (s as any).minut = ((s as any).minut ?? 0) + (25 - ((s as any).minut ?? 0));
                 }
                 if (((s as any).week ?? 0) === 1) {
-                  scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'biology'] }]);
+                  qspGoto(s, 'gschool_lessons2', 'biology');
                 }
                 if (((s as any).week ?? 0) === 2) {
-                  scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'computer'] }]);
+                  qspGoto(s, 'gschool_lessons2', 'computer');
                 }
                 if (((s as any).week ?? 0) === 3) {
-                  scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'computer'] }]);
+                  qspGoto(s, 'gschool_lessons2', 'computer');
                 }
                 if (((s as any).week ?? 0) === 4) {
-                  scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'computer'] }]);
+                  qspGoto(s, 'gschool_lessons2', 'computer');
                 }
                 if (((s as any).week ?? 0) === 5) {
-                  scene.actions([{ label: 'Continue', goto: ['gschool_lessons1', 'history'] }]);
+                  qspGoto(s, 'gschool_lessons1', 'history');
                 }
               } else {
                 if (((s as any).school_period ?? 0) === 7) {
@@ -472,23 +478,23 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
                     (s as any).minut = ((s as any).minut ?? 0) + (15 - ((s as any).minut ?? 0));
                   }
                   if (((s as any).week ?? 0) === 1) {
-                    scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'pe'] }]);
+                    qspGoto(s, 'gschool_lessons4', 'pe');
                   }
                   if (((s as any).week ?? 0) === 2) {
-                    scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'music'] }]);
+                    qspGoto(s, 'gschool_lessons2', 'music');
                   }
                   if (((s as any).week ?? 0) === 3) {
-                    scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'pe'] }]);
+                    qspGoto(s, 'gschool_lessons4', 'pe');
                   }
                   if (((s as any).week ?? 0) === 4) {
-                    scene.actions([{ label: 'Continue', goto: ['gschool_lessons2', 'music'] }]);
+                    qspGoto(s, 'gschool_lessons2', 'music');
                   }
                   if (((s as any).week ?? 0) === 5) {
-                    scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'pe'] }]);
+                    qspGoto(s, 'gschool_lessons4', 'pe');
                   }
                 } else {
                   (s as any).school_period = 0;
-                  scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+                  qspGoto(s, 'gschool_grounds', 'main');
                 }
               }
             }
@@ -502,17 +508,18 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).class) (s as any).class = {}; (s as any).class['grade_check_day'] = ((s as any).daystart ?? 0);
+  ((s as any).class = (s as any).class ?? {})['grade_check_day'] = ((s as any).daystart ?? 0);
   scene.text('<center><b>School Hallway</b></center>');
   scene.img(`images/locations/pavlovsk/school/building/grade_results${Math.floor(Math.random() * 2) + 1}.jpg`);
   if (((s as any).class ?? 0)?.['first_grade_check'] === 0) {
-    if (!(s as any).class) (s as any).class = {}; (s as any).class['first_grade_check'] = 1;
+    ((s as any).class = (s as any).class ?? {})['first_grade_check'] = 1;
     scene.text('You walk to the wall where the grades are posted and check your grades. You see that your final grade from last year is still there. Grades are updated every Monday, but you note your grade down in your journal so you can always check it.');
   } else {
     scene.text('You walk over to the wall where the grades are posted and check your grades to see what has changed since last week. You note your grade down in your journal so you can check it later.');
   }
   qspCall(s, 'grades', 'assign_grade_description', 'school');
   scene.text('Your grades are as follows:');
+  (s as any).temp_grade_thr = '20,40,70,90';
   scene.text('<table cellpadding="2" cellspacing="0">');
   // TODO-QSP: dynamic text: '<tr><td>Math:</td><td><<$class_grade_desc[''school_math_grade'']>></td><td>' + ...
   scene.text(`<tr><td>Math:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_math_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_math_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_math_grade'] ?? ''}</td></tr>`);

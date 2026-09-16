@@ -252,7 +252,7 @@ function getFaceImagePath(s: import('../../core/clothingImage').FaceImageState):
   if (s.pcs_makeup === 1) makeup = 'no_makeup';
   else if (s.pcs_makeup >= 2 && s.pcs_makeup <= 6) makeup = 'vibrant';
   else makeup = 'smeared';
-  const hasCum = (s.cumloc[11] ?? 0) === 1;
+  const hasCum = (s.cumloc?.[11] ?? 0) === 1;
   const cum = hasCum ? 'decent' : 'no_cum';
   return `images/pc/body/head/${glasses}/${eye}/${hairCol}/${hairLen}/${style}/${makeup}_${cum}.jpg`;
 }

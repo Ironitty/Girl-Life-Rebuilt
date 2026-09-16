@@ -5,6 +5,9 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'pav_hotelAdmin';
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/goteladmin.jpg');
   scene.text('A man who looks to be in his early 30s is sitting behind a desk, busy with some paperwork. He\'s dressed quite sharply; you never expected the hotel manager would be this young.');
@@ -23,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sounds great', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 3;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 3;
     qspCall(s, 'jobs', 'set_employed', 'pav_hotel_maid');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/goteladmin.jpg');
@@ -62,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sounds great', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 3;
+    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 3;
     qspCall(s, 'jobs', 'set_employed', 'pav_hotel_maid');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/goteladmin.jpg');

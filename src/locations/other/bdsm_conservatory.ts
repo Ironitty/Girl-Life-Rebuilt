@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_conservatory', '');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/conservatory.jpg');
   scene.text('This huge glass fronted room is kept very warm and houses a number of rare and exotic plants.');

@@ -38,15 +38,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).tiprand = Math.floor(Math.random() * 2) + 0;
     if ((!((s as any).tiprand ?? 0))) {
       (s as any).pose = 1;
+      (s as any).fbhactname = 'Get on your hands and knees';
       // TODO-QSP: dynamic text: <<$boydesc>> gets up and helps you take off your clothes, before he puts his han...
       scene.text(`${((s as any).boydesc || '')} gets up and helps you take off your clothes, before he puts his hands on your shoulders and motions for you to get on your hands and knees so he can fuck you from behind.`);
     } else {
       (s as any).pose = 0;
+      (s as any).fbhactname = 'Get down on your back';
       // TODO-QSP: dynamic text: <<$boydesc>> gets up and helps you take off your clothes, before he puts his han...
       scene.text(`${((s as any).boydesc || '')} gets up and helps you take off your clothes, before he puts his hands on your shoulders and pushes you back against the couch, telling you to lie down on your back and spread your legs for him.`);
     }
     scene.actions([
-      { label: '<<$fbhactname>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).fbhactname || '') ?? ''), handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).ppsex = ((s as any).ppsex ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -66,16 +68,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Brush up', handler: (st: GameState) => {
     if (((s as any).ppbj ?? 0) > 0) {
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+      ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
     }
     if (((s as any).pphj ?? 0) > 0) {
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hj'] = ((s as any).stat['hj'] ?? 0) + (1);
+      ((s as any).stat = (s as any).stat ?? {})['hj'] = ((s as any).stat['hj'] ?? 0) + (1);
     }
     if (((s as any).ppsex ?? 0) > 0) {
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+      ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
     }
     if (((s as any).ppanal ?? 0) > 0) {
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
+      ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');

@@ -29,6 +29,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).loc = 'city_church';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'city_church';
+  (s as any).menu_arg = 'start';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'outdoors');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kazan Cathedral</b></center>');
@@ -148,6 +153,8 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNarthex(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'city_church';
+  (s as any).menu_arg = 'Narthex';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -225,6 +232,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fame', 'city', 'sex', 2);
     qspCall(s, 'archetypes', 'gain', 'bimbo', 'tiny', 'Flashing in church', 1);
     (s as any).pcs_faith = Math.max(0, ((s as any).pcs_faith ?? 0) - 15);
+    (s as any).flash_image = 'images/locations/pavlovsk/church/ch_prayingflash.jpg';
     // TODO-QSP: $flash_text[0] = 'While you''re praying, you get a devious idea. With a sly smile, you expose your a...
     qspCall(s, 'flash', 'butt', 'indoors', 2, 2);
     qspCall(s, 'stat', '');
@@ -278,7 +286,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
+                ((s as any).drugVars = (s as any).drugVars ?? {})['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
               }
               scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness, but you find it comforting. You get the urge to pray very intensely and before you know it, an hour has passed and you feel cleansed.');
             } else {
@@ -287,7 +295,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + 60;
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 2;
+                ((s as any).drugVars = (s as any).drugVars ?? {})['cocaine_system'] = (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 2;
               }
               scene.text('The Nave is lit only with candles and small presence lights and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely and before you know it, more than an hour has passed and you feel reborn and cleansed.');
             }

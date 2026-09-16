@@ -63,7 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).age = ((s as any).age ?? 0) - (1);
   }
   if (((s as any).day ?? 0) === ((s as any).birthday ?? 0)  &&  ((s as any).month ?? 0) === ((s as any).birthmonth ?? 0)  &&  ((s as any).model ?? 0)?.['age'] > 0) {
-    if (!(s as any).model) (s as any).model = {}; (s as any).model['age'] = ((s as any).model['age'] ?? 0) + (1);
+    ((s as any).model = (s as any).model ?? {})['age'] = ((s as any).model['age'] ?? 0) + (1);
   }
   if (((s as any).fingal ?? 0) > 0) {
     (s as any).fingal = ((s as any).fingal ?? 0) - (1);
@@ -87,10 +87,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).streetevent_hour = (-2);
   (s as any).Clothingstock = Math.floor(Math.random() * 120) + 0;
-  if (!(s as any).ciklVars) (s as any).ciklVars = {}; (s as any).ciklVars['i'] = 1;
+  ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = 1;
   // TODO-QSP: :loopprice
   // TODO-QSP: Clothingstock[ciklVars['i']] = rand(0, 100)
-  if (!(s as any).ciklVars) (s as any).ciklVars = {}; (s as any).ciklVars['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
+  ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
   if (((s as any).ciklVars ?? 0)?.['i'] <= 293) {
     // TODO-QSP: jump 'loopprice'
   }
@@ -187,7 +187,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fertility', 'daily_update');
   if (((s as any).cycle ?? 0) < 4  &&  (((s as any).calCycleOpts ?? 0)?.['tracked_cycle'] !== ((s as any).cycle ?? 0)  ||  ((s as any).calCycleOpts ?? 0)['phase_start_' + ((s as any).cycle ?? 0)] === 0)) {
     // TODO-QSP: calCycleOpts['phase_start_' + cycle] = daystart
-    if (!(s as any).calCycleOpts) (s as any).calCycleOpts = {}; (s as any).calCycleOpts['tracked_cycle'] = ((s as any).cycle ?? 0);
+    ((s as any).calCycleOpts = (s as any).calCycleOpts ?? {})['tracked_cycle'] = ((s as any).cycle ?? 0);
   }
   qspCall(s, 'calendar', 'cycle_rebuild');
   if (((s as any).pcs_breath ?? 0) === 1) {

@@ -33,7 +33,7 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A157', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A158', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfight2.jpg');
     scene.text('Not wanting to get involved, you do your best to avoid them, just barely being missed by Arkadi wrestling a guy to the ground. Valentin ends up getting hit in the face, which causes him to join in as Roman gets on top of the guy he headbutted and starts beating him to a pulp. You get out the door, just in time to see Anushka jump on the back of some guy that was hitting Valentin. Once outside, the sounds of the fight continue, but nothing you need to worry about now.');
     scene.actions([
@@ -44,7 +44,7 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A156', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A157', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A158', 'dislike');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfight2.jpg');
     if (((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('Not wanting to get involved, but wanting to see this, you stay seated and watch them fight. Valentin ends up getting hit in the face, which causes him join in as Roman gets on top of the guy he headbutted and starts beating him to a pulp. You see Radomir pulling some girl along and making it out, but have to leap out of your seat as Arkadi and some guy come crashing through before you turn to see Anushka grab two beer bottles and bust them on each side of a guy\'s head for hitting Valentin while Alyona grabs a hub cap off the wall and bashes the guy on the head as well, causing him to crumple to the ground.');
@@ -240,7 +240,7 @@ function enterRadnushLove(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNikoConfront(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).NikoVolkovQW) (s as any).NikoVolkovQW = {}; (s as any).NikoVolkovQW['lena_lara_flirt'] = 1;
+  ((s as any).NikoVolkovQW = (s as any).NikoVolkovQW ?? {})['lena_lara_flirt'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/charmer2.jpg');
   scene.text('As Niko is leaving, you quickly walk in front of him, cutting him off. "Niko? What the fuck is this? Are you hitting on other girls?"');
   scene.text('He seems completely caught off guard. "No! It\'s nothing like that! We were just harmlessly flirting. Listen. Don\'t tell anyone, but I heard that Lena just broke up with a guy recently, a jerk that called her ugly, so I wanted to cheer her up by making her feel pretty. It\'s just what a good friend does. I would never cheat on my perfect princess. You know that, right?"');
@@ -276,7 +276,7 @@ function enterAlyonaDad(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to Alyona', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A143', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/alyona_slapped.jpg');
     scene.text('You rush over to Alyona with Anushka and you both check if she\'s okay. Even in the dim light, you can see a bruise forming on her face and her mouth is bleeding from a split lip. This is the first time you\'ve ever seen Alyona afraid, but there\'s no mistake with how hard she\'s staring at the man. She doesn\'t seem to even register you or Anushka checking on her.');
@@ -286,7 +286,7 @@ function enterAlyonaDad(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to stop him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/zuykov.jpg');
     scene.text('The man gets Valentin on the ground and starts really pounding on him. Valentin does his best to cover up as Alyona finally seems to snap out of it. "Dad! Leave him alone!" She doesn\'t get off the ground though, even as Anushka jumps on her dad\'s back. He only pauses hitting Valentin long enough to grab Anushka and fling her off him, causing her to crash into the door of one of the garages before he goes back to beating on Valentin.');
@@ -306,7 +306,7 @@ function enterAlyonaDad(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to stop him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/zuykov.jpg');
     scene.text('The man gets Valentin on the ground and starts really pounding on him. Valentin does his best to cover up as Alyona finally seems to snap out of it. "Dad! Leave him alone!" She doesn\'t get off the ground though, even as Anushka jumps on her dad\'s back. He only pauses hitting Valentin long enough to grab Anushka and fling her off him, causing her to crash into the door of one of the garages before he goes back to beating on Valentin.');
@@ -346,7 +346,7 @@ function enterEdwardGarage(s: GameState, scene: SceneBuilder): void {
     scene.text('Edward responds by punching him in the face. "What the fuck is wrong with you, Zoykov? Beating on fucking kids?" Alyona goes over to check on Anushka, who you guess tried to stop Zoykov and got tossed for it, but she doesn\'t look like she\'s hurt. Valentin sits up with his back to the garage, his face bloodied and bruised.');
     scene.actions([
       { label: 'Watch them fight', handler: (st: GameState) => {
-    if (!(s as any).alyonaQW) (s as any).alyonaQW = {}; (s as any).alyonaQW['meet_father'] = 1;
+    ((s as any).alyonaQW = (s as any).alyonaQW ?? {})['meet_father'] = 1;
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/ed_zuykov2.jpg');
     scene.text('Zoykov lunges at Edward and they both go down as you stand there and watch them fight. They trade a few blows, but it doesn\'t take long for Zoykov to end up pinned to the ground with Edward hitting him until he gives up fighting back. Once Edward is sure the fight is over, he gets off Zoykov and looks around at all of you before glaring again at Zoykov. "You touch one of these kids again and I\'ll beat you within an inch of your sorry life."');
     scene.text('He glances over at Anushka, who is checking on Valentin\'s injuries before looking back at Zoykov again. "If you ever so much as look at my daughter again, I swear they\'ll never find your body. We clear?" When Zoykov doesn\'t respond, Edward repeats himself. "I said \'are we clear\'?"');

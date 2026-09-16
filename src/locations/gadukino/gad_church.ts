@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -29,6 +29,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).loc = 'gad_church';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'gad_church';
+  (s as any).menu_arg = 'start';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'outdoors');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Local Church</b></center>');
@@ -143,6 +148,8 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNarthex(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'gad_church';
+  (s as any).menu_arg = 'Narthex';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -158,7 +165,7 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_church', 'candle1'] }]);
+      qspGoto(s, 'gad_church', 'candle1');
     }
   } },
     { label: 'Pray', goto: ['gad_church', 'pray'] },
@@ -209,6 +216,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fame', 'gad', 'sex', 2);
     qspCall(s, 'archetypes', 'gain', 'bimbo', 'tiny', 'Flashing in church', 1);
     (s as any).pcs_faith = Math.max(0, ((s as any).pcs_faith ?? 0) - 15);
+    (s as any).flash_image = 'images/locations/pavlovsk/church/ch_prayingflash.jpg';
     // TODO-QSP: $flash_text[0] = 'While you''re praying, you get a devious idea. With a sly smile, you expose your a...
     qspCall(s, 'flash', 'butt', 'indoors', 2, 2);
     qspCall(s, 'stat', '');
@@ -271,7 +279,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + 60;
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 2;
+                ((s as any).drugVars = (s as any).drugVars ?? {})['cocaine_system'] = (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 2;
               }
               scene.text('The Nave is lit only with candles and small presence lights, and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely, and before you know it, more than an hour has passed, and you feel reborn and cleansed.');
             }

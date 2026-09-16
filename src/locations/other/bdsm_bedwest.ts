@@ -1,16 +1,19 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
   scene.build();
 }
 
 function enterMaster(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckMasterEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_bedwest', 'master');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/masterbed.jpg');
   scene.text('Master bedroom');
@@ -24,17 +27,17 @@ function enterMaster(s: GameState, scene: SceneBuilder): void {
 function enterCheckMasterEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_rand ?? 0) < 3) {
-    scene.actions([{ label: 'Continue', goto: ['bdsm_bedwest', 'master_event_1'] }]);
+    qspGoto(s, 'bdsm_bedwest', 'master_event_1');
   } else {
     if (((s as any).temp_rand ?? 0) < 6) {
-      scene.actions([{ label: 'Continue', goto: ['bdsm_bedwest', 'master_event_2'] }]);
+      qspGoto(s, 'bdsm_bedwest', 'master_event_2');
     } else {
       if (((s as any).temp_rand ?? 0) < 9) {
-        scene.actions([{ label: 'Continue', goto: ['bdsm_bedwest', 'master_event_3'] }]);
+        qspGoto(s, 'bdsm_bedwest', 'master_event_3');
       } else {
         if (((s as any).temp_rand ?? 0) < 12) {
           if (((s as any).bdsmclub ?? 0)?.['role'] === 'sub') {
-            scene.actions([{ label: 'Continue', goto: ['bdsm_bedwest', 'master_event_4'] }]);
+            qspGoto(s, 'bdsm_bedwest', 'master_event_4');
           }
         }
       }
@@ -100,6 +103,8 @@ function enterMasterEvent_4(s: GameState, scene: SceneBuilder): void {
 function enterGuest(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckGuestEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_bedwest', 'guest');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/beda.jpg');
   scene.text('Guest bedroom');
@@ -114,7 +119,7 @@ function enterCheckGuestEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 96) {
     // TODO-QSP: exit
   }
-  scene.actions([{ label: 'Continue', goto: ['bdsm_bedwest', 'guest_event_<<rand(1, 2)>>'] }]);
+  qspGoto(s, 'bdsm_bedwest', 'guest_event_' + Math.floor(Math.random() * 2) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }

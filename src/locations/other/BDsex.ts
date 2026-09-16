@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -187,6 +187,8 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'tiny');
+    (s as any).orgasm_txt = 'His skill is enough to spark an orgasm deep within you.';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'stat', '');
   } else {
     scene.text('His tongue work is exciting, but after a while, you begin to grow bored.');
@@ -424,11 +426,13 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
                 { label: '"I do not want to!" Lie on your back and spread your legs', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'anal', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['BDsex', 'sex'] },
+    qspGoto(s, 'BDsex', 'sex');
+  } },
                 { label: '"I\'ll do it doggy style, but not in the ass!"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'anal', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['BDsex', 'sex2'] },
+    qspGoto(s, 'BDsex', 'sex2');
+  } },
               ]);
             }
             qspCall(s, 'willpower', 'bj', 'force');
@@ -443,7 +447,8 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
                 { label: 'Take him into your mouth', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'force');
     qspCall(s, 'willpower', 'pay', 'force');
-  }, goto: ['BDsex', 'minet'] },
+    qspGoto(s, 'BDsex', 'minet');
+  } },
               ]);
             }
             scene.actions([
@@ -573,10 +578,12 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: '"I do not want to!" Lie on your back and spread your legs', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['BDsex', 'sex'] },
+    qspGoto(s, 'BDsex', 'sex');
+  } },
               { label: '"I\'ll do it doggy style, but not in the ass!"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['BDsex', 'sex2'] },
+    qspGoto(s, 'BDsex', 'sex2');
+  } },
             ]);
           }
           scene.actions([
@@ -707,7 +714,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  ((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-                  if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).npcID ?? 0)] = 1;
+                  ((s as any).npc_gentle = (s as any).npc_gentle ?? {})[String((s as any).npcID ?? 0)] = 1;
                   (s as any).cumspclnt = 4;
                   qspCall(s, 'cum_cleanup', '');
                   // TODO-QSP: dynamic text: You wash quickly in shower and <<$npcdesc>> begins to hurry you out.
@@ -746,15 +753,15 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     (s as any).tmpgorand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).tmpgorand ?? 0))) {
       // TODO-QSP: killvar 'tmpgorand'
-      scene.actions([{ label: 'Continue', goto: ['dina', 'brodilr'] }]);
+      qspGoto(s, 'dina', 'brodilr');
     }
     if (((s as any).tmpgorand ?? 0) === 1) {
       // TODO-QSP: killvar 'tmpgorand'
-      scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+      qspGoto(s, 'city_center', '');
     }
     if (((s as any).tmpgorand ?? 0) === 2) {
       // TODO-QSP: killvar 'tmpgorand'
-      scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
+      qspGoto(s, 'city_industrial', '');
     }
   } },
                         ]);
@@ -796,6 +803,7 @@ function enterOrg(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
     // TODO-QSP: dynamic text: It is your time of the month and, as his member rams into you, vaginal blood flo...
     scene.text(`It is your time of the month and, as his member rams into you, vaginal blood flows slowly around his girth. Painful sensations and pleasure mix. You moan while his strong ${((s as any).dick || '')} centimeter dick fucks your pussy.`);
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'stat', '');
   } else {
     if (((s as any).mesec ?? 0) <= 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -1002,6 +1010,7 @@ function enterOrg(s: GameState, scene: SceneBuilder): void {
                   // TODO-QSP: dynamic text: You gasp at the feeling as your pussy spreads for his dick. Your groin becomes v...
                   scene.text(`You gasp at the feeling as your pussy spreads for his dick. Your groin becomes very warm and pleasant, when his strong ${((s as any).dick || '')} centimeter dick hammers your pussy. Gradually the pleasant warmth ripples in your lower abdomen and then the feeling intensifies and your whole body tenses as the hot waves of orgasm rush over you. You can not help screaming in pleasure as you writhe under the sensation.`);
                   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
+                  (s as any).orgasm_or = 'yes';
                   qspCall(s, 'stat', '');
                 } else {
                   if (((s as any).orgazm ?? 0) === 6) {
@@ -1128,6 +1137,7 @@ function enterAutobj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     scene.text('As you suck the dick before you, a fire smolders between your legs, building into a conflagration of orgasm. You moan around the cock in your mouth, never once slowing your pace.');
     qspCall(s, 'arousal', 'bj', (-5), 'sub');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
   }
   // TODO-QSP: end
@@ -1199,6 +1209,7 @@ function enterAncum(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_horny ?? 0) >= 100) {
       scene.text('A blazing fire of pleasure explodes from your ass and spreads in waves of ecstasy up your body. Moaning, you instinctively drive yourself to impale your ass on his dick.');
+      (s as any).orgasm_or = 'yes';
       qspCall(s, 'arousal', 'anal', (-5), 'sub');
       qspCall(s, 'stat', '');
     }

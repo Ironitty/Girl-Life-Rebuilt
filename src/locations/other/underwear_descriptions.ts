@@ -3,6 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).description = '';
   scene.build();
 }
 
@@ -140,16 +141,22 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
 
 function enterBras(s: GameState, scene: SceneBuilder): void {
   if (((s as any).BraQuality ?? 0) === 1) {
+    (s as any).description = 'This very low quality';
   } else {
     if (((s as any).BraQuality ?? 0) === 2) {
+      (s as any).description = 'This low quality';
     } else {
       if (((s as any).BraQuality ?? 0) === 3) {
+        (s as any).description = 'This average quality';
       } else {
         if (((s as any).BraQuality ?? 0) === 4) {
+          (s as any).description = 'This reasonable quality';
         } else {
           if (((s as any).BraQuality ?? 0) === 5) {
+            (s as any).description = 'This good quality';
           } else {
             if (((s as any).BraQuality ?? 0) === 6) {
+              (s as any).description = 'This outstanding quality';
             }
           }
         }
@@ -262,16 +269,22 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
 
 function enterBodysuit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).BraQuality ?? 0) === 1) {
+    (s as any).description = 'This very low quality';
   } else {
     if (((s as any).BraQuality ?? 0) === 2) {
+      (s as any).description = 'This low quality';
     } else {
       if (((s as any).BraQuality ?? 0) === 3) {
+        (s as any).description = 'This average quality';
       } else {
         if (((s as any).BraQuality ?? 0) === 4) {
+          (s as any).description = 'This reasonable quality';
         } else {
           if (((s as any).BraQuality ?? 0) === 5) {
+            (s as any).description = 'This good quality';
           } else {
             if (((s as any).BraQuality ?? 0) === 6) {
+              (s as any).description = 'This outstanding quality';
             }
           }
         }

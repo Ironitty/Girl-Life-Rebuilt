@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -57,7 +57,8 @@ function enterDPpHand(s: GameState, scene: SceneBuilder): void {
         { label: 'Give him a handjob', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['skverdin', 'd_pp_hjcum'] },
+    qspGoto(s, 'skverdin', 'd_pp_hjcum');
+  } },
       ]);
     }
     scene.actions([

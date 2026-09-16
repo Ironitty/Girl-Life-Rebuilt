@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,193 +14,193 @@ function enterPhoneSelfieTotals(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $selfieLoc[0] = 'misc'
   // TODO-QSP: $selfieLocDesc[0] = 'Me'
   // TODO-QSP: $selfieFilePrefix[0] = 'phone_selfie'
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[0] = 2;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[0] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[0] = 0;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[0] = 0;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[0] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[0] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[0] = 0;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[0] = 0;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[0] = 0;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[0] = 2;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[0] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[0] = 0;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[0] = 0;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[0] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[0] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[0] = 0;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[0] = 0;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[0] = 0;
   // TODO-QSP: $selfieLoc[1] = 'bathroom'
   // TODO-QSP: $selfieLocDesc[1] = 'Bathroom'
   // TODO-QSP: $selfieFilePrefix[1] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[1] = 30;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[1] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[1] = 23;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[1] = 30;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[1] = 30;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[1] = 27;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[1] = 30;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[1] = 5;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[1] = 22;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[1] = 30;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[1] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[1] = 23;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[1] = 30;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[1] = 30;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[1] = 27;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[1] = 30;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[1] = 5;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[1] = 22;
   // TODO-QSP: $selfieLoc[2] = 'bedroom'
   // TODO-QSP: $selfieLocDesc[2] = 'Bedroom'
   // TODO-QSP: $selfieFilePrefix[2] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[2] = 30;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[2] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[2] = 22;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[2] = 30;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[2] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[2] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[2] = 30;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[2] = 26;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[2] = 25;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[2] = 30;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[2] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[2] = 22;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[2] = 30;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[2] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[2] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[2] = 30;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[2] = 26;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[2] = 25;
   // TODO-QSP: $selfieLoc[3] = 'kitchen'
   // TODO-QSP: $selfieLocDesc[3] = 'Kitchen'
   // TODO-QSP: $selfieFilePrefix[3] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[3] = 27;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[3] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[3] = 23;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[3] = 23;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[3] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[3] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[3] = 21;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[3] = 1;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[3] = 10;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[3] = 27;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[3] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[3] = 23;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[3] = 23;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[3] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[3] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[3] = 21;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[3] = 1;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[3] = 10;
   // TODO-QSP: $selfieLoc[4] = 'livingroom'
   // TODO-QSP: $selfieLocDesc[4] = 'Livingroom'
   // TODO-QSP: $selfieFilePrefix[4] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[4] = 30;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[4] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[4] = 28;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[4] = 30;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[4] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[4] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[4] = 30;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[4] = 6;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[4] = 20;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[4] = 30;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[4] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[4] = 28;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[4] = 30;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[4] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[4] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[4] = 30;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[4] = 6;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[4] = 20;
   // TODO-QSP: $selfieLoc[5] = 'changingroom'
   // TODO-QSP: $selfieLocDesc[5] = 'Changingroom'
   // TODO-QSP: $selfieFilePrefix[5] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[5] = 30;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[5] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[5] = 30;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[5] = 30;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[5] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[5] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[5] = 30;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[5] = 20;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[5] = 27;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[5] = 30;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[5] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[5] = 30;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[5] = 30;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[5] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[5] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[5] = 30;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[5] = 20;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[5] = 27;
   // TODO-QSP: $selfieLoc[6] = 'park'
   // TODO-QSP: $selfieLocDesc[6] = 'Park'
   // TODO-QSP: $selfieFilePrefix[6] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[6] = 30;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[6] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[6] = 4;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[6] = 17;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[6] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[6] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[6] = 26;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[6] = 2;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[6] = 8;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[6] = 30;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[6] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[6] = 4;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[6] = 17;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[6] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[6] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[6] = 26;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[6] = 2;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[6] = 8;
   // TODO-QSP: $selfieLoc[7] = 'locker'
   // TODO-QSP: $selfieLocDesc[7] = 'locker'
   // TODO-QSP: $selfieFilePrefix[7] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[7] = 26;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[7] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[7] = 21;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[7] = 14;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[7] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[7] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[7] = 17;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[7] = 3;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[7] = 4;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[7] = 26;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[7] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[7] = 21;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[7] = 14;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[7] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[7] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[7] = 17;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[7] = 3;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[7] = 4;
   // TODO-QSP: $selfieLoc[8] = 'beach'
   // TODO-QSP: $selfieLocDesc[8] = 'Beach'
   // TODO-QSP: $selfieFilePrefix[8] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[8] = 0;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[8] = 21;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[8] = 0;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[8] = 22;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[8] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[8] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[8] = 18;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[8] = 3;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[8] = 4;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[8] = 0;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[8] = 21;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[8] = 0;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[8] = 22;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[8] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[8] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[8] = 18;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[8] = 3;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[8] = 4;
   // TODO-QSP: $selfieLoc[9] = 'school_classroom'
   // TODO-QSP: $selfieLocDesc[9] = 'School Classroom'
   // TODO-QSP: $selfieFilePrefix[9] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[9] = 15;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[9] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[9] = 2;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[9] = 0;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[9] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[9] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[9] = 3;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[9] = 0;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[9] = 3;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[9] = 15;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[9] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[9] = 2;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[9] = 0;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[9] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[9] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[9] = 3;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[9] = 0;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[9] = 3;
   // TODO-QSP: $selfieLoc[10] = 'school_bathroom'
   // TODO-QSP: $selfieLocDesc[10] = 'School Bathroom'
   // TODO-QSP: $selfieFilePrefix[10] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[10] = 28;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[10] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[10] = 12;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[10] = 0;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[10] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[10] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[10] = 8;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[10] = 1;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[10] = 8;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[10] = 28;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[10] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[10] = 12;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[10] = 0;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[10] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[10] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[10] = 8;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[10] = 1;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[10] = 8;
   // TODO-QSP: $selfieLoc[11] = 'restroom'
   // TODO-QSP: $selfieLocDesc[11] = 'Restroom'
   // TODO-QSP: $selfieFilePrefix[11] = ''
-  if (!(s as any).selfieCloTot) (s as any).selfieCloTot = {}; (s as any).selfieCloTot[11] = 34;
-  if (!(s as any).selfieSwimTot) (s as any).selfieSwimTot = {}; (s as any).selfieSwimTot[11] = 0;
-  if (!(s as any).selfieUndTot) (s as any).selfieUndTot = {}; (s as any).selfieUndTot[11] = 25;
-  if (!(s as any).selfieNudTot) (s as any).selfieNudTot = {}; (s as any).selfieNudTot[11] = 3;
-  if (!(s as any).selfieBathTot) (s as any).selfieBathTot = {}; (s as any).selfieBathTot[11] = 0;
-  if (!(s as any).selfieShowerTot) (s as any).selfieShowerTot = {}; (s as any).selfieShowerTot[11] = 0;
-  if (!(s as any).selfieTitFlashTot) (s as any).selfieTitFlashTot = {}; (s as any).selfieTitFlashTot[11] = 34;
-  if (!(s as any).selfieAssFlashTot) (s as any).selfieAssFlashTot = {}; (s as any).selfieAssFlashTot[11] = 13;
-  if (!(s as any).selfiePussyFlashTot) (s as any).selfiePussyFlashTot = {}; (s as any).selfiePussyFlashTot[11] = 21;
+  ((s as any).selfieCloTot = (s as any).selfieCloTot ?? {})[11] = 34;
+  ((s as any).selfieSwimTot = (s as any).selfieSwimTot ?? {})[11] = 0;
+  ((s as any).selfieUndTot = (s as any).selfieUndTot ?? {})[11] = 25;
+  ((s as any).selfieNudTot = (s as any).selfieNudTot ?? {})[11] = 3;
+  ((s as any).selfieBathTot = (s as any).selfieBathTot ?? {})[11] = 0;
+  ((s as any).selfieShowerTot = (s as any).selfieShowerTot ?? {})[11] = 0;
+  ((s as any).selfieTitFlashTot = (s as any).selfieTitFlashTot ?? {})[11] = 34;
+  ((s as any).selfieAssFlashTot = (s as any).selfieAssFlashTot ?? {})[11] = 13;
+  ((s as any).selfiePussyFlashTot = (s as any).selfiePussyFlashTot ?? {})[11] = 21;
   if (((s as any).locclass ?? 0) === 'school_bathroom') {
-    if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'school_bathroom';
-    if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+    ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'school_bathroom';
+    ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
   } else {
     if (((s as any).locclass ?? 0) === 'changingroom') {
-      if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'changingroom';
-      if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+      ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'changingroom';
+      ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
     } else {
       if (((s as any).locclass ?? 0) === 'city_park'  ||  ((s as any).locclass ?? 0) === 'park') {
-        if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'park';
-        if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+        ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'park';
+        ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
       } else {
         if (((s as any).locclass ?? 0) === 'locker') {
-          if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'locker';
-          if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+          ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'locker';
+          ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
         } else {
           if (((s as any).locclass ?? 0) === 'beach') {
-            if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'beach';
-            if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+            ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'beach';
+            ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
           } else {
             if (((s as any).locclass ?? 0) === 'classroom') {
-              if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'classroom';
-              if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+              ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'classroom';
+              ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
             } else {
               if (((s as any).locclass ?? 0) === 'restroom'  ||  ((s as any).location_type ?? 0) === 'restroom') {
-                if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'restroom';
-                if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+                ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'restroom';
+                ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
               } else {
                 if (((s as any).locclass ?? 0) === 'bathroom'  ||  ((s as any).location_type ?? 0) === 'bathroom') {
-                  if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'bathroom';
-                  if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'private';
+                  ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'bathroom';
+                  ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'private';
                 } else {
                   if (((s as any).locclass ?? 0) === 'bedroom'  ||  ((s as any).locclass ?? 0) === 'bedr'  ||  ((s as any).location_type ?? 0) === 'bedroom') {
-                    if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'bedroom';
-                    if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'private';
+                    ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'bedroom';
+                    ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'private';
                   } else {
                     if (((s as any).locclass ?? 0) === 'kitchen'  ||  ((s as any).locclass ?? 0) === 'kitr'  ||  ((s as any).location_type ?? 0) === 'kitchen') {
-                      if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'kitchen';
-                      if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+                      ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'kitchen';
+                      ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
                     } else {
                       if (((s as any).locclass ?? 0) === 'livingr'  ||  ((s as any).locclass ?? 0) === 'livingroom') {
-                        if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'livingroom';
-                        if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+                        ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'livingroom';
+                        ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
                       } else {
-                        if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['class'] = 'misc';
-                        if (!(s as any).phone_loc) (s as any).phone_loc = {}; (s as any).phone_loc['type'] = 'public';
+                        ((s as any).phone_loc = (s as any).phone_loc ?? {})['class'] = 'misc';
+                        ((s as any).phone_loc = (s as any).phone_loc ?? {})['type'] = 'public';
                       }
                     }
                   }
@@ -243,8 +243,9 @@ function enterCameraTakeSelfie(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 5);
   qspCall(s, 'exp_gain', 'photoskl', 1);
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 'misc';
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'misc';
   }
+  (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'stat', '');
   if (((s as any).cfg_vars ?? 0)?.['use_popups'] === 1) {
   } else {
@@ -263,6 +264,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_titflash ?? 0) > 0) {
       (s as any).phone_rand = 0;
       // TODO-QSP: dynamic '<<$ARGS[1]>>_titflash[<<phone_rand>>] = 1'
+      (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/titflash/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
     }
   } else {
     if (((s as any).locArgs?.[2] ?? 0) === 'ass'  ||  ((s as any).locArgs?.[2] ?? 0) === 'assflash') {
@@ -270,6 +272,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_assflash ?? 0) > 0) {
         (s as any).phone_rand = 0;
         // TODO-QSP: dynamic '<<$ARGS[1]>>_assflash[<<phone_rand>>] = 1'
+        (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/assflash/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
       }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'pussy'  ||  ((s as any).locArgs?.[2] ?? 0) === 'pussyflash') {
@@ -277,6 +280,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_pussyflash ?? 0) > 0) {
           (s as any).phone_rand = 0;
           // TODO-QSP: dynamic '<<$ARGS[1]>>_pussyflash[<<phone_rand>>] = 1'
+          (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/pussyflash/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
         }
       } else {
         if (((s as any).PSwim ?? 0)) {
@@ -284,6 +288,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_swim ?? 0) > 0) {
             (s as any).phone_rand = 0;
             // TODO-QSP: dynamic '<<$ARGS[1]>>_swim[<<phone_rand>>] = 1'
+            (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/bikini/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
           }
         } else {
           if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -291,6 +296,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
             if (((s as any).temp_clotot ?? 0) > 0) {
               (s as any).phone_rand = 0;
               // TODO-QSP: dynamic '<<$ARGS[1]>>_closelfie[<<phone_rand>>] = 1'
+              (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/clothed/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
             }
           } else {
             if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -298,12 +304,14 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
               if (((s as any).temp_undtot ?? 0) > 0) {
                 (s as any).phone_rand = 0;
                 // TODO-QSP: dynamic '<<$ARGS[1]>>_undselfie[<<phone_rand>>] = 1'
+                (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/underwear/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
               }
             } else {
               (s as any).temp_nudtot = ((s as any).selfieNudTot ?? 0)?.[String((s as any).locIndex ?? 0)];
               if (((s as any).temp_nudtot ?? 0) > 0) {
                 (s as any).phone_rand = 0;
                 // TODO-QSP: dynamic '<<$ARGS[1]>>_nudselfie[<<phone_rand>>] = 1'
+                (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/nude/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
               }
             }
           }
@@ -314,6 +322,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).result ?? 0) === '') {
     (s as any).phone_rand = 0;
     // TODO-QSP: dynamic '<<$selfieLoc[0]>>_closelfie[<<phone_rand>>] = 1'
+    (s as any).result = 'images/pc/activities/phone/selfies/' + qspUntranslated(s, "selfieLoc[0]", { location: "phone_selfies" }) + '/clothed/' + qspUntranslated(s, "selfieFilePrefix[0]", { location: "phone_selfies" }) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
   }
   return;
   // TODO-QSP: end
@@ -323,8 +332,10 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
 function enterCameraTakeSelfieBathing(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPhoneSelfieTotals(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locArgs?.[1] ?? 0) === 'bath') {
+    (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image_bathing');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'shower') {
+      (s as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image_shower');
     }
   }
   qspCall(s, 'stat', '');
@@ -342,7 +353,8 @@ function enterSelfieImageShower(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locIndex ?? 0) >= 0) {
     (s as any).temp_showertot = ((s as any).selfieShowerTot ?? 0)?.[String((s as any).locIndex ?? 0)];
     (s as any).phone_rand = 0;
-    if (!(s as any).bathroom_showerselfie) (s as any).bathroom_showerselfie = {}; (s as any).bathroom_showerselfie[String((s as any).phone_rand ?? 0)] = 1;
+    ((s as any).bathroom_showerselfie = (s as any).bathroom_showerselfie ?? {})[String((s as any).phone_rand ?? 0)] = 1;
+    (s as any).result = 'images/pc/activities/phone/selfies/bathroom/shower/' + ((s as any).phone_rand ?? 0) + '.jpg';
   }
   return;
   // TODO-QSP: end
@@ -354,7 +366,8 @@ function enterSelfieImageBathing(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locIndex ?? 0) >= 0) {
     (s as any).temp_bathtot = ((s as any).selfieBathTot ?? 0)?.[String((s as any).locIndex ?? 0)];
     (s as any).phone_rand = 0;
-    if (!(s as any).bathroom_bathselfie) (s as any).bathroom_bathselfie = {}; (s as any).bathroom_bathselfie[String((s as any).phone_rand ?? 0)] = 1;
+    ((s as any).bathroom_bathselfie = (s as any).bathroom_bathselfie ?? {})[String((s as any).phone_rand ?? 0)] = 1;
+    (s as any).result = 'images/pc/activities/phone/selfies/bathroom/bath/' + ((s as any).phone_rand ?? 0) + '.jpg';
   }
   return;
   // TODO-QSP: end
@@ -362,8 +375,10 @@ function enterSelfieImageBathing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSendSelfieHandler(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_ssh_ret_loc = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).temp_ssh_ret_arg = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_suppress_other_selfies = 1;
-  scene.actions([{ label: 'Continue', goto: ['phone_selfies', 'view_selfies'] }]);
+  qspGoto(s, 'phone_selfies', 'view_selfies');
   // TODO-QSP: end
   scene.build();
 }
@@ -383,9 +398,9 @@ function enterActExit(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Stop watching selfies', handler: (st: GameState) => {
     if ((!((s as any).temp_suppress_other_selfies ?? 0))) {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_loc', 'menu_arg'); } }]);
+      dynamicGoto(s, 'menu_loc', 'menu_arg');
     } else {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'temp_ssh_ret_loc', 'temp_ssh_ret_arg'); } }]);
+      dynamicGoto(s, 'temp_ssh_ret_loc', 'temp_ssh_ret_arg');
     }
   } },
   ]);
@@ -393,6 +408,7 @@ function enterActExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetSelfieLayout(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = qspFunc(s, 'wrap', 'header h4 center', 'Photo library');
   // TODO-QSP: $result += '<br>'
   // TODO-QSP: $result += '<table><tr><th>Selfies</th></tr>'
   (s as any).temp_locationCnt = 0;
@@ -419,7 +435,7 @@ function enterGetSelfieLayout(s: GameState, scene: SceneBuilder): void {
 function enterShowlocation(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${qspUntranslated(s, "selfieLocDesc[ARGS[1]]", { location: "phone_selfies" })} selfies</b></center>`);
   // TODO-QSP: dynamic text: $func('phone_selfies', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]])
-  scene.text(qspFunc(s, 'phone_selfies', 'listretrieve', qspUntranslated(s, "ARGS[1]", { location: "phone_selfies" }), qspUntranslated(s, "selfieLoc[ARGS[1]]", { location: "phone_selfies" })));
+  scene.text(qspFunc(s, 'phone_selfies', 'listretrieve', ((s as any).locArgs?.[1] ?? ''), qspUntranslated(s, "selfieLoc[ARGS[1]]", { location: "phone_selfies" })));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -430,6 +446,7 @@ function enterShowlocation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterListretrieve(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = '<center><table width=80%>';
   // TODO-QSP: $result += $func('phone_selfies', 'retrieve_clothed_selfies',  ARGS[1], $ARGS[2])
   // TODO-QSP: $result += $func('phone_selfies', 'retrieve_swim_selfies',    ARGS[1], $ARGS[2])
   // TODO-QSP: $result += $func('phone_selfies', 'retrieve_underwear_selfies',  ARGS[1], $ARGS[2])
@@ -709,6 +726,9 @@ function enterRetrievePussyflashSelfies(s: GameState, scene: SceneBuilder): void
 
 function enterGetNpcSelfie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_lastname ?? 0)['A' + ((s as any).locArgs?.[1] ?? 0)] !== '') {
+    (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027phone_selfies\\u0027, \\u0027listretrieve2\\u0027, \\u0027' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027); return false;">' + ((s as any).npc_firstname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))] + ' ' + ((s as any).npc_lastname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))] + '</a>';
+  } else {
+    (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027phone_selfies\\u0027, \\u0027listretrieve2\\u0027, \\u0027' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027); return false;">' + ((s as any).npc_firstname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))] + '</a>';
   }
   return;
   // TODO-QSP: end
@@ -717,6 +737,7 @@ function enterGetNpcSelfie(s: GameState, scene: SceneBuilder): void {
 
 function enterFamily(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Family members</b></center>');
+  (s as any).textgrup = '';
   (s as any).count1 = 0;
   (s as any).i = 1;
   scene.text('<center><table cellspacing="3" width=80%>');
@@ -747,6 +768,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
 
 function enterSchool(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>School friends</b></center>');
+  (s as any).textgrup = '';
   (s as any).count1 = 0;
   (s as any).i = 1;
   scene.text('<center><table cellspacing="3" width=80%>');
@@ -777,6 +799,7 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
 
 function enterTeacher(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Teachers</b></center>');
+  (s as any).textgrup = '';
   (s as any).count1 = 0;
   (s as any).i = 1;
   scene.text('<center><table cellspacing="3" width=80%>');
@@ -807,6 +830,7 @@ function enterTeacher(s: GameState, scene: SceneBuilder): void {
 
 function enterPavlovsk(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Pavlovsk friends</b></center>');
+  (s as any).textgrup = '';
   (s as any).count1 = 0;
   (s as any).i = 1;
   scene.text('<center><table cellspacing="3" width=80%>');
@@ -895,7 +919,11 @@ function enterPopulateSelfiesList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPopulateClothesType(s: GameState, scene: SceneBuilder): void {
-  (s as any).CloMaxSize = qspUntranslated(s, "ARGS[4]", { location: "phone_selfies" });
+  (s as any).CloTypePrefix = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).CloArraySize = 'arrsize(\'' + ((s as any).locArgs?.[2] ?? 0) + '\')';
+  (s as any).CloFolder = ((s as any).locArgs?.[3] ?? 0);
+  (s as any).CloVar = '' + ((s as any).locArgs?.[2] ?? 0) + '[tmpIndex]';
+  (s as any).CloMaxSize = ((s as any).locArgs?.[4] ?? 0);
   (s as any).temp_clocnt = 0;
   // TODO-QSP: :tempCloTakenLoop
   // TODO-QSP: dynamic 'phone_locval = <<$selfieLoc[temp_locationCnt]>>_<<$CloTypePrefix>>[<<temp_clocnt>>]'
@@ -918,157 +946,370 @@ function enterGetNpcSelfieTotals(s: GameState, scene: SceneBuilder): void {
   (s as any).ps_loopmaxsveta = 0;
   (s as any).ps_loopmaxsex = 0;
   if (((s as any).locArgs?.[1] ?? 0) === 'A1') {
+    (s as any).ps_photoloc = 'images/pc/activities/phone/dimka/';
+    (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/dimka/selfies/';
+    (s as any).ps_selfienpc = 'dimka';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'A2') {
+      (s as any).ps_photoloc = 'images/pc/activities/phone/artem/';
+      (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/artem/selfies/';
+      (s as any).ps_selfienpc = 'artem';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'A3') {
+        (s as any).ps_photoloc = 'images/pc/activities/phone/ivan/';
+        (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/ivan/selfies/';
+        (s as any).ps_selfienpc = 'ivan';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'A4') {
+          (s as any).ps_photoloc = 'images/pc/activities/phone/igor/';
+          (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/igor/selfies/';
+          (s as any).ps_selfienpc = 'igor';
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 'A5') {
+            (s as any).ps_photoloc = 'images/pc/activities/phone/fedor/';
+            (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/fedor/selfies/';
+            (s as any).ps_selfienpc = 'fedor';
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 'A6') {
+              (s as any).ps_photoloc = 'images/pc/activities/phone/petka/';
+              (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/petka/selfies/';
+              (s as any).ps_selfienpc = 'petka';
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 'A7') {
+                (s as any).ps_photoloc = 'images/pc/activities/phone/lesco/';
+                (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/lesco/selfies/';
+                (s as any).ps_selfienpc = 'lesco';
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 'A8') {
+                  (s as any).ps_photoloc = 'images/pc/activities/phone/svyatoslav/';
+                  (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/svyatoslav/selfies/';
+                  (s as any).ps_selfienpc = 'svyatoslav';
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 'A9') {
+                    (s as any).ps_photoloc = 'images/pc/activities/phone/vitek/';
+                    (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/vitek/selfies/';
+                    (s as any).ps_selfienpc = 'vitek';
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) === 'A10') {
+                      (s as any).ps_photoloc = 'images/pc/activities/phone/dan/';
+                      (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/dan/selfies/';
+                      (s as any).ps_selfienpc = 'dan';
                     } else {
                       if (((s as any).locArgs?.[1] ?? 0) === 'A11') {
+                        (s as any).ps_photoloc = 'images/pc/activities/phone/vasily/';
+                        (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/vasily/selfies/';
+                        (s as any).ps_selfienpc = 'vasily';
                       } else {
                         if (((s as any).locArgs?.[1] ?? 0) === 'A12') {
+                          (s as any).ps_photoloc = 'images/pc/activities/phone/julia/';
+                          (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/julia/selfies/';
+                          (s as any).ps_selfienpc = 'julia';
                         } else {
                           if (((s as any).locArgs?.[1] ?? 0) === 'A13') {
+                            (s as any).ps_photoloc = 'images/pc/activities/phone/lariska/';
+                            (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/lariska/selfies/';
+                            (s as any).ps_selfienpc = 'lariska';
                           } else {
                             if (((s as any).locArgs?.[1] ?? 0) === 'A14') {
+                              (s as any).ps_photoloc = 'images/pc/activities/phone/katja/';
+                              (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/katja/selfies/';
+                              (s as any).ps_selfienpc = 'katja';
                             } else {
                               if (((s as any).locArgs?.[1] ?? 0) === 'A15') {
+                                (s as any).ps_photoloc = 'images/pc/activities/phone/vicky/';
+                                (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/vicky/selfies/';
+                                (s as any).ps_selfienpc = 'vicky';
                               } else {
                                 if (((s as any).locArgs?.[1] ?? 0) === 'A16') {
+                                  (s as any).ps_photoloc = 'images/pc/activities/phone/natasha/';
+                                  (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/natasha/selfies/';
+                                  (s as any).ps_selfienpc = 'natasha';
                                 } else {
                                   if (((s as any).locArgs?.[1] ?? 0) === 'A17') {
+                                    (s as any).ps_photoloc = 'images/pc/activities/phone/inna/';
+                                    (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/inna/selfies/';
+                                    (s as any).ps_selfienpc = 'inna';
                                   } else {
                                     if (((s as any).locArgs?.[1] ?? 0) === 'A18') {
+                                      (s as any).ps_photoloc = 'images/pc/activities/phone/christina/';
+                                      (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/christina/selfies/';
+                                      (s as any).ps_selfienpc = 'christina';
                                     } else {
                                       if (((s as any).locArgs?.[1] ?? 0) === 'A19') {
+                                        (s as any).ps_photoloc = 'images/pc/activities/phone/lina/';
+                                        (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/lina/selfies/';
+                                        (s as any).ps_selfienpc = 'lina';
                                       } else {
                                         if (((s as any).locArgs?.[1] ?? 0) === 'A20') {
+                                          (s as any).ps_photoloc = 'images/pc/activities/phone/lena/';
+                                          (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/lena/selfies/';
+                                          (s as any).ps_selfienpc = 'lena';
                                         } else {
                                           if (((s as any).locArgs?.[1] ?? 0) === 'A21') {
+                                            (s as any).ps_photoloc = 'images/pc/activities/phone/lera/';
+                                            (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/lera/selfies/';
+                                            (s as any).ps_selfienpc = 'lera';
                                           } else {
                                             if (((s as any).locArgs?.[1] ?? 0) === 'A22') {
+                                              (s as any).ps_photoloc = 'images/pc/activities/phone/bella/';
+                                              (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/bella/selfies/';
+                                              (s as any).ps_selfienpc = 'bella';
                                             } else {
                                               if (((s as any).locArgs?.[1] ?? 0) === 'A23') {
+                                                (s as any).ps_photoloc = 'images/pc/activities/phone/albina/';
+                                                (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/albina/selfies/';
+                                                (s as any).ps_selfienpc = 'albina';
                                               } else {
                                                 if (((s as any).locArgs?.[1] ?? 0) === 'A24') {
+                                                  (s as any).ps_photoloc = 'images/pc/activities/phone/pauline/';
+                                                  (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/pauline/selfies/';
+                                                  (s as any).ps_selfienpc = 'pauline';
                                                 } else {
                                                   if (((s as any).locArgs?.[1] ?? 0) === 'A25') {
+                                                    (s as any).ps_photoloc = 'images/pc/activities/phone/sonia/';
+                                                    (s as any).ps_imgloc = 'images/characters/pavlovsk/school/girl/sonia/selfies/';
+                                                    (s as any).ps_selfienpc = 'sonia';
                                                     (s as any).ps_loopmax = 0;
                                                     (s as any).ps_loopmaxsveta = 0;
                                                     (s as any).ps_loopmaxsex = 0;
                                                   } else {
                                                     if (((s as any).locArgs?.[1] ?? 0) === 'A26') {
+                                                      (s as any).ps_photoloc = 'images/pc/activities/phone/anatoly/';
+                                                      (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/anatoly/selfies/';
+                                                      (s as any).ps_selfienpc = 'anatoly';
                                                     } else {
                                                       if (((s as any).locArgs?.[1] ?? 0) === 'A28') {
+                                                        (s as any).ps_photoloc = 'images/pc/activities/phone/vladimir/';
+                                                        (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/vladimir/selfies/';
+                                                        (s as any).ps_selfienpc = 'vladimir';
                                                       } else {
                                                         if (((s as any).locArgs?.[1] ?? 0) === 'A29') {
+                                                          (s as any).ps_photoloc = 'images/pc/activities/phone/mom/';
+                                                          (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/mom/selfies/';
+                                                          (s as any).ps_selfienpc = 'mom';
                                                         } else {
                                                           if (((s as any).locArgs?.[1] ?? 0) === 'A33') {
+                                                            (s as any).ps_photoloc = 'images/pc/activities/phone/anya/';
+                                                            (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/anya/selfies/';
+                                                            (s as any).ps_selfienpc = 'anya';
                                                           } else {
                                                             if (((s as any).locArgs?.[1] ?? 0) === 'A34') {
+                                                              (s as any).ps_photoloc = 'images/pc/activities/phone/kolka/';
+                                                              (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/kolka/selfies/';
+                                                              (s as any).ps_selfienpc = 'kolka';
                                                             } else {
                                                               if (((s as any).locArgs?.[1] ?? 0) === 'A35') {
+                                                                (s as any).ps_photoloc = 'images/pc/activities/phone/???/';
+                                                                (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/???/selfies/';
+                                                                (s as any).ps_selfienpc = 'father';
                                                               } else {
                                                                 if (((s as any).locArgs?.[1] ?? 0) === 'A54') {
+                                                                  (s as any).ps_photoloc = 'images/pc/activities/phone/misha/';
+                                                                  (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/misha/selfies/';
+                                                                  (s as any).ps_selfienpc = 'misha';
                                                                 } else {
                                                                   if (((s as any).locArgs?.[1] ?? 0) === 'A56') {
+                                                                    (s as any).ps_photoloc = 'images/pc/activities/phone/roma/';
+                                                                    (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/roma/selfies/';
+                                                                    (s as any).ps_selfienpc = 'roma';
                                                                   } else {
                                                                     if (((s as any).locArgs?.[1] ?? 0) === 'A57') {
+                                                                      (s as any).ps_photoloc = 'images/pc/activities/phone/rex/';
+                                                                      (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/rex/selfies/';
+                                                                      (s as any).ps_selfienpc = 'rex';
                                                                     } else {
                                                                       if (((s as any).locArgs?.[1] ?? 0) === 'A69') {
+                                                                        (s as any).ps_photoloc = 'images/pc/activities/phone/mikhail/';
+                                                                        (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/mikhail/selfies/';
+                                                                        (s as any).ps_selfienpc = 'coachmikhail';
                                                                       } else {
                                                                         if (((s as any).locArgs?.[1] ?? 0) === 'A82') {
+                                                                          (s as any).ps_photoloc = 'images/pc/activities/phone/djibril/';
+                                                                          (s as any).ps_imgloc = 'images/characters/city/university/boy/djibril/selfies/';
+                                                                          (s as any).ps_selfienpc = 'djibril';
                                                                           (s as any).ps_loopmaxev = 2;
                                                                           (s as any).ps_loopmax = 0;
                                                                           (s as any).ps_loopmaxsveta = 0;
                                                                           (s as any).ps_loopmaxsex = 0;
                                                                         } else {
                                                                           if (((s as any).locArgs?.[1] ?? 0) === 'A112') {
+                                                                            (s as any).ps_photoloc = 'images/pc/activities/phone/sergey/';
+                                                                            (s as any).ps_imgloc = 'images/characters/pavlovsk/resident/sergey/selfies/';
+                                                                            (s as any).ps_selfienpc = 'sergey';
                                                                           } else {
                                                                             if (((s as any).locArgs?.[1] ?? 0) === 'A128') {
+                                                                              (s as any).ps_photoloc = 'images/pc/activities/phone/makar/';
+                                                                              (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/makar/selfies/';
+                                                                              (s as any).ps_selfienpc = 'makar';
                                                                             } else {
                                                                               if (((s as any).locArgs?.[1] ?? 0) === 'A129') {
+                                                                                (s as any).ps_photoloc = 'images/pc/activities/phone/serafim/';
+                                                                                (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/serafim/selfies/';
+                                                                                (s as any).ps_selfienpc = 'serafim';
                                                                               } else {
                                                                                 if (((s as any).locArgs?.[1] ?? 0) === 'A130') {
+                                                                                  (s as any).ps_photoloc = 'images/pc/activities/phone/ilya/';
+                                                                                  (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/ilya/selfies/';
+                                                                                  (s as any).ps_selfienpc = 'ilya';
                                                                                 } else {
                                                                                   if (((s as any).locArgs?.[1] ?? 0) === 'A131') {
+                                                                                    (s as any).ps_photoloc = 'images/pc/activities/phone/viktor/';
+                                                                                    (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/viktor/selfies/';
+                                                                                    (s as any).ps_selfienpc = 'viktor';
                                                                                   } else {
                                                                                     if (((s as any).locArgs?.[1] ?? 0) === 'A132') {
+                                                                                      (s as any).ps_photoloc = 'images/pc/activities/phone/ruslan/';
+                                                                                      (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/ruslan/selfies/';
+                                                                                      (s as any).ps_selfienpc = 'ruslan';
                                                                                     } else {
                                                                                       if (((s as any).locArgs?.[1] ?? 0) === 'A133') {
+                                                                                        (s as any).ps_photoloc = 'images/pc/activities/phone/rolan/';
+                                                                                        (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/rolan/selfies/';
+                                                                                        (s as any).ps_selfienpc = 'rolan';
                                                                                       } else {
                                                                                         if (((s as any).locArgs?.[1] ?? 0) === 'A134') {
+                                                                                          (s as any).ps_photoloc = 'images/pc/activities/phone/aleksandrina/';
+                                                                                          (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/aleksandrina/selfies/';
+                                                                                          (s as any).ps_selfienpc = 'aleksandrina';
                                                                                         } else {
                                                                                           if (((s as any).locArgs?.[1] ?? 0) === 'A135') {
+                                                                                            (s as any).ps_photoloc = 'images/pc/activities/phone/yeva/';
+                                                                                            (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/yeva/selfies/';
+                                                                                            (s as any).ps_selfienpc = 'yeva';
                                                                                           } else {
                                                                                             if (((s as any).locArgs?.[1] ?? 0) === 'A136') {
+                                                                                              (s as any).ps_photoloc = 'images/pc/activities/phone/olga/';
+                                                                                              (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/olga/selfies/';
+                                                                                              (s as any).ps_selfienpc = 'olga';
                                                                                             } else {
                                                                                               if (((s as any).locArgs?.[1] ?? 0) === 'A137') {
+                                                                                                (s as any).ps_photoloc = 'images/pc/activities/phone/raven/';
+                                                                                                (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/raven/selfies/';
+                                                                                                (s as any).ps_selfienpc = 'raven';
                                                                                               } else {
                                                                                                 if (((s as any).locArgs?.[1] ?? 0) === 'A138') {
+                                                                                                  (s as any).ps_photoloc = 'images/pc/activities/phone/arina/';
+                                                                                                  (s as any).ps_imgloc = 'images/characters/pavlovsk/school/teacher/arina/selfies/';
+                                                                                                  (s as any).ps_selfienpc = 'arina';
                                                                                                 } else {
                                                                                                   if (((s as any).locArgs?.[1] ?? 0) === 'A139') {
+                                                                                                    (s as any).ps_photoloc = 'images/pc/activities/phone/stasya/';
+                                                                                                    (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/stasya/selfies/';
+                                                                                                    (s as any).ps_selfienpc = 'stasya';
                                                                                                   } else {
                                                                                                     if (((s as any).locArgs?.[1] ?? 0) === 'A140') {
+                                                                                                      (s as any).ps_photoloc = 'images/pc/activities/phone/lizaveta/';
+                                                                                                      (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/lizaveta/selfies/';
+                                                                                                      (s as any).ps_selfienpc = 'lizaveta';
                                                                                                     } else {
                                                                                                       if (((s as any).locArgs?.[1] ?? 0) === 'A141') {
+                                                                                                        (s as any).ps_photoloc = 'images/pc/activities/phone/veronika/';
+                                                                                                        (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/veronika/selfies/';
+                                                                                                        (s as any).ps_selfienpc = 'veronika';
                                                                                                       } else {
                                                                                                         if (((s as any).locArgs?.[1] ?? 0) === 'A142') {
+                                                                                                          (s as any).ps_photoloc = 'images/pc/activities/phone/zinaida/';
+                                                                                                          (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/zinaida/selfies/';
+                                                                                                          (s as any).ps_selfienpc = 'zinaida';
                                                                                                         } else {
                                                                                                           if (((s as any).locArgs?.[1] ?? 0) === 'A143') {
+                                                                                                            (s as any).ps_photoloc = 'images/pc/activities/phone/alyona/';
+                                                                                                            (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/alyona/selfies/';
+                                                                                                            (s as any).ps_selfienpc = 'alyona';
                                                                                                           } else {
                                                                                                             if (((s as any).locArgs?.[1] ?? 0) === 'A144') {
+                                                                                                              (s as any).ps_photoloc = 'images/pc/activities/phone/anushka/';
+                                                                                                              (s as any).ps_imgloc = 'images/characters/pavlovsk/school/girl/anushka/selfies/';
+                                                                                                              (s as any).ps_selfienpc = 'anushka';
                                                                                                               (s as any).ps_loopmaxev = 9;
                                                                                                               (s as any).ps_loopmax = 0;
                                                                                                               (s as any).ps_loopmaxsveta = 0;
                                                                                                               (s as any).ps_loopmaxsex = 0;
                                                                                                             } else {
                                                                                                               if (((s as any).locArgs?.[1] ?? 0) === 'A145') {
+                                                                                                                (s as any).ps_photoloc = 'images/pc/activities/phone/ekaterina/';
+                                                                                                                (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/ekaterina/selfies/';
+                                                                                                                (s as any).ps_selfienpc = 'ekaterina';
                                                                                                               } else {
                                                                                                                 if (((s as any).locArgs?.[1] ?? 0) === 'A146') {
+                                                                                                                  (s as any).ps_photoloc = 'images/pc/activities/phone/marcus/';
+                                                                                                                  (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/marcus/selfies/';
+                                                                                                                  (s as any).ps_selfienpc = 'marcus';
                                                                                                                 } else {
                                                                                                                   if (((s as any).locArgs?.[1] ?? 0) === 'A147') {
+                                                                                                                    (s as any).ps_photoloc = 'images/pc/activities/phone/andrey/';
+                                                                                                                    (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/andrey/selfies/';
+                                                                                                                    (s as any).ps_selfienpc = 'andrey';
                                                                                                                   } else {
                                                                                                                     if (((s as any).locArgs?.[1] ?? 0) === 'A148') {
+                                                                                                                      (s as any).ps_photoloc = 'images/pc/activities/phone/mefodiy/';
+                                                                                                                      (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/mefodiy/selfies/';
+                                                                                                                      (s as any).ps_selfienpc = 'mefodiy';
                                                                                                                     } else {
                                                                                                                       if (((s as any).locArgs?.[1] ?? 0) === 'A149') {
+                                                                                                                        (s as any).ps_photoloc = 'images/pc/activities/phone/lazar/';
+                                                                                                                        (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/lazar/selfies/';
+                                                                                                                        (s as any).ps_selfienpc = 'lazar';
                                                                                                                       } else {
                                                                                                                         if (((s as any).locArgs?.[1] ?? 0) === 'A150') {
+                                                                                                                          (s as any).ps_photoloc = 'images/pc/activities/phone/erast/';
+                                                                                                                          (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/erast/selfies/';
+                                                                                                                          (s as any).ps_selfienpc = 'erast';
                                                                                                                         } else {
                                                                                                                           if (((s as any).locArgs?.[1] ?? 0) === 'A151') {
+                                                                                                                            (s as any).ps_photoloc = 'images/pc/activities/phone/evgeny/';
+                                                                                                                            (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/evgeny/selfies/';
+                                                                                                                            (s as any).ps_selfienpc = 'evgeny';
                                                                                                                           } else {
                                                                                                                             if (((s as any).locArgs?.[1] ?? 0) === 'A152') {
+                                                                                                                              (s as any).ps_photoloc = 'images/pc/activities/phone/feofan/';
+                                                                                                                              (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/feofan/selfies/';
+                                                                                                                              (s as any).ps_selfienpc = 'feofan';
                                                                                                                             } else {
                                                                                                                               if (((s as any).locArgs?.[1] ?? 0) === 'A153') {
+                                                                                                                                (s as any).ps_photoloc = 'images/pc/activities/phone/gerasim/';
+                                                                                                                                (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/gerasim/selfies/';
+                                                                                                                                (s as any).ps_selfienpc = 'gerasim';
                                                                                                                               } else {
                                                                                                                                 if (((s as any).locArgs?.[1] ?? 0) === 'A154') {
+                                                                                                                                  (s as any).ps_photoloc = 'images/pc/activities/phone/radomir/';
+                                                                                                                                  (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/radomir/selfies/';
+                                                                                                                                  (s as any).ps_selfienpc = 'radomir';
                                                                                                                                 } else {
                                                                                                                                   if (((s as any).locArgs?.[1] ?? 0) === 'A155') {
+                                                                                                                                    (s as any).ps_photoloc = 'images/pc/activities/phone/lavrenti/';
+                                                                                                                                    (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/lavrenti/selfies/';
+                                                                                                                                    (s as any).ps_selfienpc = 'lavrenti';
                                                                                                                                   } else {
                                                                                                                                     if (((s as any).locArgs?.[1] ?? 0) === 'A156') {
+                                                                                                                                      (s as any).ps_photoloc = 'images/pc/activities/phone/arkadi/';
+                                                                                                                                      (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/arkadi/selfies/';
+                                                                                                                                      (s as any).ps_selfienpc = 'arkadi';
                                                                                                                                     } else {
                                                                                                                                       if (((s as any).locArgs?.[1] ?? 0) === 'A157') {
+                                                                                                                                        (s as any).ps_photoloc = 'images/pc/activities/phone/roman/';
+                                                                                                                                        (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/roman/selfies/';
+                                                                                                                                        (s as any).ps_selfienpc = 'roman';
                                                                                                                                       } else {
                                                                                                                                         if (((s as any).locArgs?.[1] ?? 0) === 'A158') {
+                                                                                                                                          (s as any).ps_photoloc = 'images/pc/activities/phone/valentin/';
+                                                                                                                                          (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/valentin/selfies/';
+                                                                                                                                          (s as any).ps_selfienpc = 'valentin';
                                                                                                                                         } else {
                                                                                                                                           if (((s as any).locArgs?.[1] ?? 0) === 'A159') {
+                                                                                                                                            (s as any).ps_photoloc = 'images/pc/activities/phone/petia/';
+                                                                                                                                            (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/petia/selfies/';
+                                                                                                                                            (s as any).ps_selfienpc = 'petia';
                                                                                                                                           } else {
                                                                                                                                             if (((s as any).locArgs?.[1] ?? 0) === 'A165') {
+                                                                                                                                              (s as any).ps_photoloc = 'images/pc/activities/phone/vanya/';
+                                                                                                                                              (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/vanya/selfies/';
+                                                                                                                                              (s as any).ps_selfienpc = 'vanya';
                                                                                                                                             } else {
                                                                                                                                               if (((s as any).locArgs?.[1] ?? 0) === 'A189') {
+                                                                                                                                                (s as any).ps_photoloc = 'images/pc/activities/phone/nikolai/';
+                                                                                                                                                (s as any).ps_imgloc = 'images/characters/pavlovsk/school/boy/nikolai/selfies/';
+                                                                                                                                                (s as any).ps_selfienpc = 'nikolai';
                                                                                                                                               }
                                                                                                                                             }
                                                                                                                                           }
@@ -1148,6 +1389,7 @@ function enterGetNpcSelfieTotals(s: GameState, scene: SceneBuilder): void {
 function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetNpcSelfieTotals(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text(`<center><b>${((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} pictures</b></center>`);
+  (s as any).ps_temp_table = '<table>';
   if (((s as any).ps_loopmaxev ?? 0) > 0) {
     // TODO-QSP: $ps_temp_table += '<tr><th colspan=5>Pictures</th></tr>'
     // TODO-QSP: $ps_temp_table += '<tr></tr><tr>'
@@ -1246,7 +1488,7 @@ function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $ps_temp_table += '</table>'
   // TODO-QSP: dynamic text: $ps_temp_table
-  scene.text('$ps_temp_table');
+  scene.text(String((s as any).ps_temp_table ?? ''));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end

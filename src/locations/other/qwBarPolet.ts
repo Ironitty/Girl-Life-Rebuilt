@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,11 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
+  (s as any).loc = 'qwBarPolet';
+  (s as any).loc_arg = '';
+  (s as any).menu_loc = 'qwBarPolet';
+  (s as any).menu_arg = '';
+  (s as any).location_type = 'public_indoors';
   (s as any).alko_temp = ((s as any).alko ?? 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'qwBarPolet', 'intro');
@@ -48,9 +53,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBar(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'qwBarPolet';
+  (s as any).loc_arg = 'bar';
+  (s as any).menu_loc = 'qwBarPolet';
+  (s as any).menu_arg = 'bar';
   if (((s as any).orderDrink ?? 0) < ((s as any).pcs_drank ?? 0)) {
     (s as any).orderDrink = ((s as any).pcs_drank ?? 0);
-    scene.actions([{ label: 'Continue', goto: ['qwbarPolet', 'DrinkingBooze'] }]);
+    qspGoto(s, 'qwbarPolet', 'DrinkingBooze');
   }
   scene.text('<center><b>Bar "Rabotnik"</b></center>');
   scene.img('images/locations/city/industrial/bar/bar.jpg');
@@ -113,7 +122,8 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).bill_rand ?? 0))) {
       (s as any).VicArt_BillDay = 1;
     }
-  }, goto: ['qwBarBilliard', 'billiard_ev2'] },
+    qspGoto(s, 'qwBarBilliard', 'billiard_ev2');
+  } },
     ]);
   }
   if ((((s as any).week ?? 0) < 5  ||  ((s as any).week ?? 0) === 7)  &&  ((((s as any).hour ?? 0) < 16)  ||  (((s as any).hour ?? 0) === 23  &&  ((s as any).minut ?? 0) >= 45))) {
@@ -216,17 +226,18 @@ function enterDrinkingBooze(s: GameState, scene: SceneBuilder): void {
           { label: 'Order the drink and chat with Martin', handler: (st: GameState) => {
     (s as any).MartinTalkDay = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A216', Math.floor(Math.random() * 2) + 1);
-  }, goto: ['MartinTalk', ''] },
+    qspGoto(s, 'MartinTalk', '');
+  } },
         ]);
       }
       scene.actions([
         { label: 'Enjoy your drink alone', handler: (st: GameState) => {
     (s as any).MartinRand = Math.floor(Math.random() * 7) + 1;
     if (((s as any).MartinRand ?? 0) <= 2) {
-      scene.actions([{ label: 'Continue', goto: ['qwBarPolet', 'RandomDrinkEvents'] }]);
+      qspGoto(s, 'qwBarPolet', 'RandomDrinkEvents');
     } else {
       if (((s as any).MartinRand ?? 0) <= 4) {
-        scene.actions([{ label: 'Continue', goto: ['qwBarEncounters', ''] }]);
+        qspGoto(s, 'qwBarEncounters', '');
       } else {
         scene.text('Safe from the friendly smile and words of gratitude you exchange with Martin, you were quickly left alone with your drink and nothing interesting seemed to be happening around the bar.');
         scene.text('You therefore spent the last 15 minutes in peace, taking the occasional sip from your glass as you reflect the events of the day, think about your life and the people in it. You barely notice how your glass gets emptier and emptier until, finally, you notice that you have nothing left to drink.');

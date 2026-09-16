@@ -9,10 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSisboyQWParty(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['partycount'] = ((s as any).sisterQW['partycount'] ?? 0) + (1);
-  if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = 2;
+  ((s as any).sisterQW = (s as any).sisterQW ?? {})['partycount'] = ((s as any).sisterQW['partycount'] ?? 0) + (1);
+  ((s as any).sisterQW = (s as any).sisterQW ?? {})['party'] = 2;
   if (((s as any).sisterQW ?? 0)?.['rexbday'] === 1) {
-    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['rexbday'] = 2;
+    ((s as any).sisterQW = (s as any).sisterQW ?? {})['rexbday'] = 2;
   }
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
@@ -141,7 +141,8 @@ function enterAnyaKit(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + (((20 - ((s as any).hour ?? 0)) * 60) + (60 - ((s as any).minut ?? 0)));
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['AnyaRomaQW'] = 1;
+  (s as any).locclass = 'kitr';
+  ((s as any).sisterQW = (s as any).sisterQW ?? {})['AnyaRomaQW'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_24.jpg');
   scene.text('You walk into the kitchen and look around for your sister. You see two drunk girls having fun in the corner of the room, but neither of them know where your sister is. Suddenly, you hear heavy breathing behind you.');

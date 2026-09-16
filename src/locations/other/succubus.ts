@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -38,7 +38,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).sucself1 || '')} continues rising toward the surface of your being.`);
       (s as any).succonfail = 1;
       (s as any).scpopt = 0;
-      scene.actions([{ label: 'Continue', goto: ['succubus', 'init'] }]);
+      qspGoto(s, 'succubus', 'init');
     } else {
       qspCall(s, 'willpower', 'pay', 'resist');
       qspCall(s, 'stat', '');
@@ -55,7 +55,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).succubusQW ?? 0) === 11) {
-      scene.actions([{ label: 'Continue', goto: ['succubus', 'firsttime'] }]);
+      qspGoto(s, 'succubus', 'firsttime');
     } else {
       if (((s as any).succonfail ?? 0) !== 1) {
         // TODO-QSP: dynamic text: You call <<$sucself1>> up from its resting place
@@ -92,14 +92,16 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).scpopt = 0;
     (s as any).succubusQW = 14;
-  }, goto: ['succubus', 'init'] },
+    qspGoto(s, 'succubus', 'init');
+  } },
     ]);
   } else {
     scene.actions([
       { label: 'Let go…', handler: (st: GameState) => {
     (s as any).scpopt = 0;
     (s as any).succubusQW = 14;
-  }, goto: ['succubus', 'init'] },
+    qspGoto(s, 'succubus', 'init');
+  } },
       { label: 'Push it back down', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You try to contain <<$sucself1>>…
     scene.text(`You try to contain ${((s as any).sucself1 || '')}…`);
@@ -111,7 +113,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
       (s as any).succonfail = 1;
       (s as any).scpopt = 0;
       (s as any).succubusQW = 14;
-      scene.actions([{ label: 'Continue', goto: ['succubus', 'init'] }]);
+      qspGoto(s, 'succubus', 'init');
     } else {
       qspCall(s, 'willpower', 'pay', 'resist');
       qspCall(s, 'stat', '');
@@ -132,7 +134,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['std'] = 1;
+  ((s as any).cheatVars = (s as any).cheatVars ?? {})['std'] = 1;
   qspCall(s, 'cheatmenu_din', 'std_cure');
   if (((s as any).sucxpsnapshot ?? 0) >= ((s as any).succubxp ?? 0)) {
     (s as any).succhungry = ((s as any).succhungry ?? 0) + (1);
@@ -143,20 +145,24 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).succubxp ?? 0) < 60) {
     (s as any).succublvl = 1;
+    (s as any).sucself1 = 'that feeling';
     (s as any).sucstorecap = 0;
     (s as any).succappbonus = 1;
   } else {
     if (((s as any).succubxp ?? 0) < 150) {
       (s as any).succublvl = 2;
+      (s as any).sucself1 = 'the power';
       (s as any).sucstorecap = 0;
       (s as any).succappbonus = 3;
     } else {
       if (((s as any).succubxp ?? 0) < 270) {
         (s as any).succublvl = 3;
+        (s as any).sucself1 = 'your other self';
         (s as any).sucstorecap = 100;
         (s as any).succappbonus = 6;
       } else {
         (s as any).succublvl = 4;
+        (s as any).sucself1 = 'your true self';
         (s as any).sucstorecap = 200;
         (s as any).succappbonus = 10;
       }
@@ -247,11 +253,11 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).temp_ideal_body_mass = qspFunc(s, 'body', 'CalcOptBodyMass');
     if (((s as any).pcs_mass ?? 0)?.['body'] < ((s as any).temp_ideal_body_mass ?? 0) - 1) {
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (2);
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (2);
       (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (10);
     } else {
       if (((s as any).pcs_mass ?? 0)?.['body'] > ((s as any).temp_ideal_body_mass ?? 0) + 1) {
-        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (2);
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (2);
         (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (10);
       }
     }
@@ -291,11 +297,12 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRapistFight(s: GameState, scene: SceneBuilder): void {
+  (s as any).scsubloc = ((s as any).locArgs?.[0] ?? 0);
   if ((!((s as any).suceatinit ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['succubus', 'init'] }]);
+    qspGoto(s, 'succubus', 'init');
   }
   (s as any).suceatinit = 0;
-  (s as any).pcs_horny = 0;
+  (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
   qspCall(s, 'stat', '');
   scene.img('images/pc/body/succubusself.jpg');
   scene.text('Instinctively, you are barely aware of what causes your power to reach out and take hold of your would-be rapist\'s mind.');
@@ -329,6 +336,9 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
     if (((s as any).scrand ?? 0) < ((s as any).succublvl ?? 0)) {
       (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       if (((s as any).scfeed ?? 0) === 2) {
+        (s as any).scxcum = 'twice';
+      } else {
+        (s as any).scxcum = 'multiple times';
       }
       scene.text('You quickly drag him out of sight, then rip off his pants and expose your now hungry pussy.');
       scene.text('You force him to the ground and immediately mount him, your now hair-trigger snatch sending you into orgasm.');
@@ -338,10 +348,11 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
       scene.text('');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).succubusQW) (s as any).succubusQW = {}; (s as any).succubusQW['rapist_cash'] = Math.floor(Math.random() * 251) + 50;
+    ((s as any).succubusQW = (s as any).succubusQW ?? {})['rapist_cash'] = Math.floor(Math.random() * 251) + 50;
     (s as any).i = 0;
     // TODO-QSP: :sucfeeding_loop
     (s as any).i = ((s as any).i ?? 0) + (1);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
     if (((s as any).scfeed ?? 0) > ((s as any).i ?? 0)) {
       // TODO-QSP: jump 'sucfeeding_loop'
@@ -360,7 +371,7 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'money', 'earn', succubusQW['rapist_cash'], 'cash'
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -373,7 +384,7 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
       scene.text('By the time you pull yourself back to the physical world, he is long gone.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -404,6 +415,7 @@ function enterPavResfeed(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     // TODO-QSP: :sucfeeding_loop2
     (s as any).i = ((s as any).i ?? 0) + (1);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
     if (((s as any).scfeed ?? 0) > ((s as any).i ?? 0)) {
       // TODO-QSP: jump 'sucfeeding_loop2'
@@ -446,6 +458,9 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: Distantly, you hear Tatiana mutter, "Huh, what's this?" and her power pokes <<$s...
     scene.text(`Distantly, you hear Tatiana mutter, "Huh, what's this?" and her power pokes ${((s as any).sucself1 || '')}.`);
+    (s as any).sclocrt = 'succubus';
+    (s as any).scargrt = 'tatianaask';
+    (s as any).scsubloc = 'tatianasex';
     (s as any).scpopt = 1;
     (s as any).sucpcinfo = 3;
     return;
@@ -540,8 +555,9 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTatianasex(s: GameState, scene: SceneBuilder): void {
+  (s as any).scsubloc = 'tatianasex';
   if ((!((s as any).suceatinit ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['succubus', 'init'] }]);
+    qspGoto(s, 'succubus', 'init');
   }
   (s as any).suceatinit = 0;
   qspCall(s, 'stat', '');
@@ -573,7 +589,7 @@ function enterTatianasex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).sucpcinfo ?? 0) >= 6  &&  ((s as any).sucskill ?? 0) < 3  &&  ((s as any).sctrainprep ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['succubus', 'training3sex'] }]);
+      qspGoto(s, 'succubus', 'training3sex');
     }
     scene.img('images/characters/city/tatiana/sex/karinsucsex3.jpg');
     scene.text('You continue this way for some time, flipping back and forth, having multiple simultaneous orgasms until you sense her body is tiring even though her power level is a bit higher than when you two started.');
@@ -585,6 +601,7 @@ function enterTatianasex(s: GameState, scene: SceneBuilder): void {
       (s as any).tatianaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'cuni', 20, 'lesbian');
     qspCall(s, 'arousal', 'end');
     (s as any).pcs_horny = 0;
@@ -597,7 +614,7 @@ function enterTatianasex(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + (20 + (20 * ((s as any).scfeed ?? 0)) / ((s as any).succublvl ?? 0));
     (s as any).tatisucsexday = ((s as any).daystart ?? 0) + 1 + ((s as any).scfeed ?? 0) / 3;
     if (((s as any).sucpcinfo ?? 0) < 4) {
-      scene.actions([{ label: 'Continue', goto: ['succubus', 'tatianaask'] }]);
+      qspGoto(s, 'succubus', 'tatianaask');
     }
     (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) + (1);
     if ((!((s as any).tatisucsex ?? 0))) {
@@ -633,6 +650,7 @@ function enterTraining3sex(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).tatianaSex ?? 0))) {
       (s as any).tatianaSex = 1;
     }
+    (s as any).orgasm_or = 'no';
     // TODO-QSP: gs 'arousal', 'cuni', 15 * rand(1, 8), 'dom', 'lesbian'
     qspCall(s, 'arousal', 'cuni_give', (-15), 'dom', 'lesbian');
     qspCall(s, 'arousal', 'end');
@@ -722,7 +740,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).succublvl ?? 0) === 1  &&  ((s as any).lastwornclothingtype ?? 0) !== 'nude') {
     qspCall(s, 'outfit', 'wear_last_worn');
-    scene.actions([{ label: 'Continue', goto: ['succubus', 'sucwalkinggo'] }]);
+    qspGoto(s, 'succubus', 'sucwalkinggo');
   }
   // TODO-QSP: $succlocat[0] = 'eroto_dress'
   // TODO-QSP: $succlocat[1] = 'eroto_outfits'
@@ -764,7 +782,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loopclonum
   if (qspFunc(s, 'clothing', 'can_wear', ((s as any).succlocat ?? 0)?.[String((s as any).temp_succubus_j ?? 0)], ((s as any).temp_succubus_i ?? 0))) {
     // TODO-QSP: $succlolistn[temp_succubus_x] = $succlocat[temp_succubus_j]
-    if (!(s as any).succlolisti) (s as any).succlolisti = {}; (s as any).succlolisti[String((s as any).temp_succubus_x ?? 0)] = ((s as any).temp_succubus_i ?? 0);
+    ((s as any).succlolisti = (s as any).succlolisti ?? {})[String((s as any).temp_succubus_x ?? 0)] = ((s as any).temp_succubus_i ?? 0);
     (s as any).temp_succubus_x = ((s as any).temp_succubus_x ?? 0) + (1);
   }
   (s as any).temp_succubus_i = ((s as any).temp_succubus_i ?? 0) + (1);
@@ -782,7 +800,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'oops'
     }
     // TODO-QSP: gs 'clothing', 'wear', $succlolistn[clopickrand], succlolisti[clopickrand]
-    scene.actions([{ label: 'Continue', goto: ['succubus', 'sucwalkinggo'] }]);
+    qspGoto(s, 'succubus', 'sucwalkinggo');
   }
   (s as any).z = 0;
   (s as any).scclocatcnt = 0;
@@ -793,7 +811,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing_attributes', $succlolistn[y], succlolisti[y]
     if (((s as any).CloBimbo ?? 0) === 1) {
       // TODO-QSP: $succlorandn[z] = $succlolistn[y]
-      if (!(s as any).succlorandi) (s as any).succlorandi = {}; (s as any).succlorandi[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
+      ((s as any).succlorandi = (s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
       (s as any).z = ((s as any).z ?? 0) + (1);
     }
   }
@@ -821,7 +839,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :randpoploop_full_inner
     if (((s as any).succlocat ?? 0)?.[String((s as any).scclocatcnt ?? 0)] === ((s as any).succlolistn ?? 0)?.[String((s as any).y ?? 0)]) {
       // TODO-QSP: $succlorandn[z] = $succlolistn[y]
-      if (!(s as any).succlorandi) (s as any).succlorandi = {}; (s as any).succlorandi[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
+      ((s as any).succlorandi = (s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
       (s as any).z = ((s as any).z ?? 0) + (1);
     }
     (s as any).y = ((s as any).y ?? 0) + (1);
@@ -856,13 +874,13 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'clothing', 'wear', $succlorandn[clopickrand], succlorandi[clopickrand]
   if (((s as any).succublvl ?? 0) < 4) {
-    scene.actions([{ label: 'Continue', goto: ['succubus', 'sucwalkinggo'] }]);
+    qspGoto(s, 'succubus', 'sucwalkinggo');
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
     (s as any).pcs_hairbsh = 1;
   }
   if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) - (1);
     (s as any).lipkoef = ((s as any).lipkoef ?? 0) + (Math.floor(Math.random() * 2) + 0);
     if (((s as any).lipkoef ?? 0) > 50) {
       (s as any).lipkoef = 0;
@@ -882,18 +900,18 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_makeup = 1;
     } else {
       if (((s as any).pcs_makeup ?? 0) === 2) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
       }
       if (((s as any).pcs_makeup ?? 0) === 3) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (2);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (2);
       }
       if (((s as any).pcs_makeup ?? 0) === 4) {
         (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
       }
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['succubus', 'sucwalkinggo'] }]);
+  qspGoto(s, 'succubus', 'sucwalkinggo');
   // TODO-QSP: end
   scene.build();
 }
@@ -901,6 +919,9 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
 function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bedroom/dream/sucrandream3.jpg');
   if (((s as any).succublvl ?? 0) < 3) {
+    (s as any).sucselftmp = 'a personification of ' + ((s as any).sucself1 ?? 0) + ' in your core';
+  } else {
+    (s as any).sucselftmp = ((s as any).sucself1 ?? 0);
   }
   // TODO-QSP: dynamic text: You dream that you are arguing with <<$sucselftmp>>.
   scene.text(`You dream that you are arguing with ${((s as any).sucselftmp || '')}.`);
@@ -910,7 +931,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (180 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0)));
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5 * (360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))));
   (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (15 * ((360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))) / 60));
-  if (!(s as any).pcs_condition) (s as any).pcs_condition = {}; (s as any).pcs_condition['lack_of_sleep'] = 0;
+  ((s as any).pcs_condition = (s as any).pcs_condition ?? {})['lack_of_sleep'] = 0;
   qspCall(s, 'stat', '');
   (s as any).inSleep = 0;
   (s as any).pcs_horny = 0;
@@ -944,15 +965,15 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
     if (((s as any).car ?? 0)?.['fuel'] < 5) {
       if (qspFunc(s, 'money', 'can_afford', (30 * (((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel'])), 'cash')) {
         // TODO-QSP: gs 'money', 'pay', (30 * (car['fuel'] - car['fuel'])), 'cash'
-        if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car ?? 0)?.['tank'];
+        ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
       } else {
         if (((s as any).kanistra ?? 0) > 0) {
-          if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) + (5);
+          ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) + (5);
           (s as any).kanistra = ((s as any).kanistra ?? 0) - (1);
         } else {
           qspCall(s, 'money', 'set', 0, 'cash');
           (s as any).scwalkmon = 0;
-          if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) + (qspUntranslated(s, "rand(10, car['tank'])", { location: "succubus" }));
+          ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) + (qspUntranslated(s, "rand(10, car['tank'])", { location: "succubus" }));
         }
       }
     }
@@ -998,70 +1019,120 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) - (Math.floor(Math.random() * 4) + 1);
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - (Math.floor(Math.random() * 4) + 3);
+    ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) - (Math.floor(Math.random() * 4) + 1);
+    ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).car['current_condition'] ?? 0) - (Math.floor(Math.random() * 4) + 3);
     qspCall(s, 'carF', '');
     (s as any).sccarflag = 1;
   } else {
     (s as any).sctemp = Math.floor(Math.random() * 5) + 1;
     if (((s as any).sucslpzone ?? 0) === 1) {
       if (((s as any).sctemp ?? 0) === 1) {
+        (s as any).sucgoloc = 'city_industrial';
+        (s as any).sucgometka = '';
       }
       if (((s as any).sctemp ?? 0) === 2) {
+        (s as any).sucgoloc = 'city_residential';
+        (s as any).sucgometka = '';
       }
       if (((s as any).sctemp ?? 0) === 3) {
+        (s as any).sucgoloc = 'city_center';
+        (s as any).sucgometka = '';
       }
       if (((s as any).sctemp ?? 0) === 4) {
+        (s as any).sucgoloc = 'city_park';
+        (s as any).sucgometka = 'start';
       }
       if (((s as any).sctemp ?? 0) === 5) {
+        (s as any).sucgoloc = 'city_lake';
+        (s as any).sucgometka = 'start';
       }
     } else {
       if (((s as any).sucslpzone ?? 0) === 2) {
         if (((s as any).sctemp ?? 0) === 1) {
+          (s as any).sucgoloc = 'pav_commercial';
+          (s as any).sucgometka = '';
         }
         if (((s as any).sctemp ?? 0) === 2) {
+          (s as any).sucgoloc = 'pav_residential';
+          (s as any).sucgometka = '';
         }
         if (((s as any).sctemp ?? 0) === 3) {
+          (s as any).sucgoloc = 'pav_park';
+          (s as any).sucgometka = 'start';
         }
         if (((s as any).sctemp ?? 0) === 4) {
+          (s as any).sucgoloc = 'pav_market';
+          (s as any).sucgometka = '';
         }
         if (((s as any).sctemp ?? 0) === 5) {
+          (s as any).sucgoloc = 'pav_lake';
+          (s as any).sucgometka = '';
         }
       } else {
         if (((s as any).sucslpzone ?? 0) === 3) {
           if (((s as any).sctemp ?? 0) === 1) {
+            (s as any).sucgoloc = 'city_industrial';
+            (s as any).sucgometka = '';
           }
           if (((s as any).sctemp ?? 0) === 2) {
+            (s as any).sucgoloc = 'city_park';
+            (s as any).sucgometka = 'start';
           }
           if (((s as any).sctemp ?? 0) === 3) {
+            (s as any).sucgoloc = 'pav_commercial';
+            (s as any).sucgometka = '';
           }
           if (((s as any).sctemp ?? 0) === 4) {
+            (s as any).sucgoloc = 'pav_market';
+            (s as any).sucgometka = '';
           }
           if (((s as any).sctemp ?? 0) === 5) {
+            (s as any).sucgoloc = 'motel';
+            (s as any).sucgometka = '';
           }
         } else {
           if (((s as any).sucslpzone ?? 0) === 4) {
             if (((s as any).sctemp ?? 0) === 1) {
+              (s as any).sucgoloc = 'pushkin';
+              (s as any).sucgometka = '';
             }
             if (((s as any).sctemp ?? 0) === 2) {
+              (s as any).sucgoloc = 'pushkin_sq';
+              (s as any).sucgometka = '';
             }
             if (((s as any).sctemp ?? 0) === 3) {
+              (s as any).sucgoloc = 'pushkin_parks';
+              (s as any).sucgometka = '';
             }
             if (((s as any).sctemp ?? 0) === 4) {
+              (s as any).sucgoloc = 'pav_market';
+              (s as any).sucgometka = '';
             }
             if (((s as any).sctemp ?? 0) === 5) {
+              (s as any).sucgoloc = 'city_industrial';
+              (s as any).sucgometka = '';
             }
           } else {
             if (((s as any).sucslpzone ?? 0) === 5) {
               if (((s as any).sctemp ?? 0) === 1) {
+                (s as any).sucgoloc = 'gadukino';
+                (s as any).sucgometka = '';
               }
               if (((s as any).sctemp ?? 0) === 2) {
+                (s as any).sucgoloc = 'pav_market';
+                (s as any).sucgometka = '';
               }
               if (((s as any).sctemp ?? 0) === 3) {
+                (s as any).sucgoloc = 'motel';
+                (s as any).sucgometka = '';
               }
               if (((s as any).sctemp ?? 0) === 4) {
+                (s as any).sucgoloc = 'city_industrial';
+                (s as any).sucgometka = '';
               }
               if (((s as any).sctemp ?? 0) === 5) {
+                (s as any).sucgoloc = 'city_park';
+                (s as any).sucgometka = 'start';
               }
             }
           }
@@ -1081,9 +1152,11 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mana = (((s as any).pcs_intel ?? 0) * ((s as any).pcs_magik ?? 0)) + ((s as any).pcs_magik ?? 0) * 100 + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
+    (s as any).scwrdtmp = '.';
     scene.text('');
     scene.text('You wake up and realize that you\'re not in your bed…');
     if (((s as any).pcs_hairbsh ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) > 1) {
+      (s as any).scwrdtmp = ', your hair is brushed, and you\'re wearing makeup.';
     }
     // TODO-QSP: dynamic text: Instead, you are fully dressed<<$scwrdtmp>>
     scene.text(`Instead, you are fully dressed${((s as any).scwrdtmp || '')}`);
@@ -1099,7 +1172,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
       { label: 'Look around to see where you are', handler: (st: GameState) => {
     if (((s as any).sccarflag ?? 0) === 1) {
     } else {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'sucgoloc', 'sucgometka'); } }]);
+      dynamicGoto(s, 'sucgoloc', 'sucgometka');
     }
   } },
     ]);

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -37,7 +35,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterImageView(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/pc/activities/photography/foto/${((s as any).locArgs?.[1] ?? '')}/${qspUntranslated(s, "ARGS[2]", { location: "journal_portfolio" })}.jpg`);
+  scene.img(`images/pc/activities/photography/foto/${((s as any).locArgs?.[1] ?? '')}/${((s as any).locArgs?.[2] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['journal_portfolio', ''] },

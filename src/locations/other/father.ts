@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   scene.text('<center><b>Your stepfather, Vladimir Mikhailovich Scriabin</b></center>');
   scene.img('images/characters/shared/headshots_main/big28.jpg');
   // TODO-QSP: dynamic text: Your stepfather is a greying, slightly flabby man working as a truck driver. He ...
@@ -20,14 +21,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hcolfatherremember ?? 0) !== ((s as any).pcs_haircol ?? 0)) {
     if (((s as any).pcs_haircol ?? 0) === ((s as any).nathcol ?? 0)) {
+      (s as any).texthcol = 'Or, rather, un-dyed your hair. So you decided to go back to your natural color?';
     } else {
       if ((!((s as any).pcs_haircol ?? 0))) {
+        (s as any).texthcol = 'So you decided to go with black hair?';
       } else {
         if (((s as any).pcs_haircol ?? 0) === 1) {
+          (s as any).texthcol = 'So you decided to become a brunette?';
         } else {
           if (((s as any).pcs_haircol ?? 0) === 2) {
+            (s as any).texthcol = 'So you decided to become a brazen redhead?';
           } else {
             if (((s as any).pcs_haircol ?? 0) === 3) {
+              (s as any).texthcol = 'So you decided to become a blonde?';
             }
           }
         }
@@ -40,7 +46,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stepfatherQW ?? 0)?.['piercing_talkday'] !== ((s as any).daystart ?? 0)) {
     if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).stepfatherQW ?? 0)?.['piercing_tongue'] === 0) {
       (s as any).temp_rand = Math.floor(Math.random() * 100) + 1;
-      if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
+      ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
       if (((s as any).temp_rand ?? 0) >= 75) {
         // TODO-QSP: dynamic text: Your stepfather looks at your mouth with a curious look as you greet him. "<<$pc...
         scene.text(`Your stepfather looks at your mouth with a curious look as you greet him. "${((s as any).pcs_nickname || '')}, do you have something shiny in your mouth?"`);
@@ -51,12 +57,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly turn away before he can get a good look at your tongue piercing.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
           { label: '"Yes, would you like to see it?"', handler: (st: GameState) => {
-    if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_tongue'] = 1;
+    ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_tongue'] = 1;
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/piercings/a${((s as any).pcs_piercings ?? 0)?.['tongue'] ?? ''}.jpg`);
     scene.text('You open your mouth and stick out your tongue and wiggle it at him showing him your piercing.');
@@ -69,7 +75,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -77,12 +83,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).pcs_piercings ?? 0)?.['lip'] > 0  &&  ((s as any).stepfatherQW ?? 0)?.['piercing_lip'] === 0) {
-      if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
+      ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
       scene.text('Your stepfather takes a long look at your mouth, specifically at your new piercing. He seems confused and asks: "Why did you get that?"');
       return;
       scene.actions([
         { label: '"Don\'t you like it? I thought it looked kind of cute."', handler: (st: GameState) => {
-    if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_lip'] = 1;
+    ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_lip'] = 1;
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/piercings/b${((s as any).pcs_piercings ?? 0)?.['lip'] ?? ''}.jpg`);
     scene.text('You shrug. "I don\'t know… I just like the way lip rings look, so I got one. Don\'t you think it looks cute?"');
@@ -99,19 +105,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pcs_piercings ?? 0)?.['ears'] > 0  &&  ((s as any).stepfatherQW ?? 0)?.['piercing_ears'] === 0) {
-      if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
-      if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_ears'] = 1;
+      ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
+      ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_ears'] = 1;
       scene.text('Your stepfather looks at your ears, noting your earrings: "I see you got your ears pierced, Your earrings are very cute."');
     }
     if (((s as any).pcs_piercings ?? 0)?.['nose'] > 0  &&  ((s as any).stepfatherQW ?? 0)?.['piercing_nose'] === 0) {
-      if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
-      if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_nose'] = 1;
+      ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
+      ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_nose'] = 1;
       // TODO-QSP: dynamic text: Your stepfather looks a bit shocked at your nose ring: "Jesus, <<$pcs_nickname>>...
       scene.text(`Your stepfather looks a bit shocked at your nose ring: "Jesus, ${((s as any).pcs_nickname || '')}, what is- why?! I understand putting a ring in a bull's nose to lead them by, but on a person? There's no reason to do that!"`);
     }
     if (((s as any).pcs_piercings ?? 0)?.['brow'] > 0  &&  ((s as any).stepfatherQW ?? 0)?.['piercing_brow'] === 0) {
-      if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
-      if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_brow'] = 1;
+      ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
+      ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_brow'] = 1;
       // TODO-QSP: dynamic text: Your stepfather looks surprised when he sees your eyebrow piercing: "<<$pcs_nick...
       scene.text(`Your stepfather looks surprised when he sees your eyebrow piercing: "${((s as any).pcs_nickname || '')}, why would you want that thing in your eyebrow?" He shakes his head in exasperation. "Kids these days…"`);
     }
@@ -119,19 +125,21 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Show him your lip tattoo', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
-    if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['tattoo_lip'] = 1;
+    ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
+    ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['tattoo_lip'] = 1;
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/tattoos/lip/tatlip${((s as any).pcs_tattoos ?? 0)?.['lip'] ?? ''}.jpg`);
     if (((s as any).pcs_tattoos ?? 0)?.['lip'] === 2) {
+      (s as any).textFatherTatLip = 'A tattoo on the inside of your lip?! That must\'ve hurt like hell… it is cute, though.';
     }
     if (((s as any).pcs_tattoos ?? 0)?.['lip'] !== 2) {
+      (s as any).textFatherTatLip = 'That\'s crazy! Why would you get something like that written on you, much less there?! No one would even think of doing that when I was your age.';
     }
     // TODO-QSP: dynamic text: You pull your lip down, showing your stepfather the tattoo on the inside of your...
     scene.text(`You pull your lip down, showing your stepfather the tattoo on the inside of your lip. Your stepfather looks surprised: "${((s as any).textFatherTatLip || '')}"`);
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -145,7 +153,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You see him hesitate for a second, as if weighing whether he should say somethin...
       scene.text(`You see him hesitate for a second, as if weighing whether he should say something or not. He finally does: "All I can say is that I hope the baby is not mine… i'm so disappointed in you "${((s as any).pcs_nickname || '')}"`);
     }
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A28'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A28'] = 1;
   } else {
     if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).npc_pregtalk ?? 0)?.['A28'] === 0  &&  qspFunc(s, 'body_din', 'pregnancyVisibility') === 1) {
       // TODO-QSP: dynamic text: Your stepfather looks at your belly with a surprised look on his face. He shakes...
@@ -154,7 +162,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You see him hesitate for a second, as if weighing whether he should say somethin...
         scene.text(`You see him hesitate for a second, as if weighing whether he should say something or not. He finally does: "All I can say is that I hope that the baby is not mine… i'm so disappointed in you "${((s as any).pcs_nickname || '')}"`);
       }
-      if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A28'] = 1;
+      ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A28'] = 1;
     }
   }
   if (((s as any).week ?? 0) < 6  &&  ((((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) > 30)  ||  ((s as any).hour ?? 0) >= 9)  &&  ((s as any).hour ?? 0) < 17) {
@@ -163,7 +171,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     return;
     scene.actions([
       { label: '<b>Continue</b>', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -173,7 +181,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     return;
     scene.actions([
       { label: '<b>Continue</b>', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -218,7 +226,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"Here you go, you leech! You know you shouldn\'t be taking advantage of me like that! Here, take your money and get out of here. Just keep your mouth shut!" You nod and pocket the money, feeling slightly worse for blackmailing him for it.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -255,7 +263,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -305,7 +313,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"Dad, I am pregnant. I lied to mom about being raped, to protect us."');
     // TODO-QSP: dynamic text: You see him hesitate for a second, as if weighing whether he should say somethin...
     scene.text(`You see him hesitate for a second, as if weighing whether he should say something or not. He finally does: "All I can say is that I hope that the baby is not mine… i'm so disappointed in you "${((s as any).pcs_nickname || '')}"`);
-    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A28'] = 1;
+    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A28'] = 1;
     // TODO-QSP: delact 'Tell him he is the father'
   } },
         ]);
@@ -373,7 +381,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -480,7 +488,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`Wanting to see just how riled up you can get your stepfather, you bend over and slowly pull your panties down. "Is this better, Daddy?" you sweetly ask him, and your stepfather panics while you run your hands over your naked ass, gently kneading your ass cheeks. "${((s as any).pcs_nickname || '')}, please don't do that! Someone could come in at any second! What do you think your mother would do to you AND me if she saw this!?" he whispers, as he moves to you and frantically tries to cover you up. You sweetly smile at him and whisper: "Relax daddy, we're fine! Here, for later," as you stuff your panties in his pocket.`);
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -496,7 +504,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -543,7 +551,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -598,7 +606,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -661,12 +669,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A28'] >= 70) {
         scene.text('With your naked body on display, your pubic tattoo catches your stepfather\'s eye. "Wow, that is one hard to miss tattoo. Obviously you didn\'t get that one just for yourself", he says as he moves towards you and has a closer look.');
         qspCall(s, 'npc_relationship', 'modify', 'A28', 1);
-        if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['tattoo_pussy'] = 1;
+        ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['tattoo_pussy'] = 1;
         return;
       } else {
         scene.text('"Damn tattoo, I can\'t believe you would soil your body like that." Your stepfather obviously doesn\'t like the tattoo you have in your pubic area. ');
         qspCall(s, 'npc_relationship', 'modify', 'A28', (-1));
-        if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['tattoo_pussy'] = 1;
+        ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['tattoo_pussy'] = 1;
         return;
       }
     }
@@ -675,7 +683,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_rel ?? 0)?.['A28'] >= 60) {
           scene.text('"Hey, those look nice on you!" your stepfather says, nodding at your nipple piercings. He seems to like them.');
           qspCall(s, 'npc_relationship', 'modify', 'A28', 3);
-          if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_nipples'] = 1;
+          ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_nipples'] = 1;
           return;
         } else {
           scene.text('"Why would you do that… you should probably take those out", your stepfather says as he shakes his head, pointing at the piercings in your nipples.');
@@ -686,12 +694,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 21) {
           scene.text('"Hey, those look nice on you!" your stepfather says, nodding at your nipple piercings. He seems to like them.');
           qspCall(s, 'npc_relationship', 'modify', 'A28', 3);
-          if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_nipples'] = 1;
+          ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_nipples'] = 1;
           return;
         } else {
           scene.text('"Wow, those are sexy!" your stepfather says, as he reaches out and touches your nipple piercings. You can\'t help but let out an involuntary groan. He admires them for a moment, rubbing his fingers on your nipples and lightly tugging at them before he lets you go.');
           qspCall(s, 'npc_relationship', 'modify', 'A28', 3);
-          if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_nipples'] = 1;
+          ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_nipples'] = 1;
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
           return;
         }
@@ -700,6 +708,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your stepfather stares at your naked body, you can't help but notice the admirin...
     scene.text(`Your stepfather stares at your naked body, you can't help but notice the admiring look on his face mixed with the torment of him knowing that he should know better. "${((s as any).pcs_nickname || '')}, have you no shame? You shouldn't be flaunting your naked body like that, you have no idea what kind of effect it has on men!"`);
     if (((s as any).locat ?? 0)?.['Mom_athome'] === 1) {
+      (s as any).mother_go_text = '"You really should go put some clothes on though, your mother is home. Who knows what she\'ll do when she sees you walking around like this!"';
     }
     if (((s as any).npc_had_sex ?? 0)?.['A28']) {
       // TODO-QSP: dynamic text: His eyes never stop looking at your naked body, you can tell he's very much impr...
@@ -725,13 +734,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
     qspCall(s, 'stat', '');
-    if (!(s as any).stepfatherQW) (s as any).stepfatherQW = {}; (s as any).stepfatherQW['piercing_pussy'] = 1;
+    ((s as any).stepfatherQW = (s as any).stepfatherQW ?? {})['piercing_pussy'] = 1;
     scene.img(`images/pc/body/piercings/g${((s as any).pcs_piercings ?? 0)?.['pussy'] ?? ''}.jpg`);
     // TODO-QSP: dynamic text: Moving closer to your stepfather, you tease him by showing him your pussy. He do...
     scene.text(`Moving closer to your stepfather, you tease him by showing him your pussy. He doesn't know you have a pubic piercing yet, and you plan on showing it off today. As you absently rub your fingers across your labia, the glint of metal catches his eye and he pushes your hand away before you get a chance to tell him about it. "Well well, what do we have here?" he mutters, gently rubbing his fingers over the shiny new piercing. "${((s as any).pcs_nickname || '')}, you are such a horny devil… I love it, we're going to have a lot of fun with this." He spends the next few minutes rubbing and tugging on your new piercing, making lewd comments the whole time. After that he reluctantly lets you go, leaving you hornier than before.`);
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -754,7 +763,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`No words are necessary, your stepfather simply unbuttons his pants revealing his stiff cock. "${((s as any).pcs_nickname || '')}, help your old man out will you?"`);
     scene.actions([
       { label: 'Change your mind and leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(st, 'fathersex', 'fatherblow4');
@@ -763,7 +772,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Chat', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 10);

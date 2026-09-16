@@ -16,47 +16,47 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ShoHeels ?? 0) < 2) {
     (s as any).ShoSkill = 0;
-    if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['severe'] = 0;
-    if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['medium'] = 0;
-    if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['mild'] = 0;
+    ((s as any).ShoPain = (s as any).ShoPain ?? {})['severe'] = 0;
+    ((s as any).ShoPain = (s as any).ShoPain ?? {})['medium'] = 0;
+    ((s as any).ShoPain = (s as any).ShoPain ?? {})['mild'] = 0;
   } else {
     if (((s as any).ShoHeels ?? 0) === 2) {
       (s as any).ShoSkill = 0;
-      if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['severe'] = 0;
-      if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['medium'] = 25;
-      if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['mild'] = 40;
+      ((s as any).ShoPain = (s as any).ShoPain ?? {})['severe'] = 0;
+      ((s as any).ShoPain = (s as any).ShoPain ?? {})['medium'] = 25;
+      ((s as any).ShoPain = (s as any).ShoPain ?? {})['mild'] = 40;
     } else {
       if (((s as any).ShoHeels ?? 0) === 3) {
         (s as any).ShoSkill = 15;
-        if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['severe'] = 0;
-        if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['medium'] = 35;
-        if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['mild'] = 50;
+        ((s as any).ShoPain = (s as any).ShoPain ?? {})['severe'] = 0;
+        ((s as any).ShoPain = (s as any).ShoPain ?? {})['medium'] = 35;
+        ((s as any).ShoPain = (s as any).ShoPain ?? {})['mild'] = 50;
       } else {
         if (((s as any).ShoHeels ?? 0) === 4) {
           (s as any).ShoSkill = 30;
-          if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['severe'] = 0;
-          if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['medium'] = 45;
-          if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['mild'] = 60;
+          ((s as any).ShoPain = (s as any).ShoPain ?? {})['severe'] = 0;
+          ((s as any).ShoPain = (s as any).ShoPain ?? {})['medium'] = 45;
+          ((s as any).ShoPain = (s as any).ShoPain ?? {})['mild'] = 60;
         } else {
           if (((s as any).ShoHeels ?? 0) === 5) {
             (s as any).ShoSkill = 45;
-            if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['severe'] = 55;
-            if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['medium'] = 65;
-            if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['mild'] = 75;
+            ((s as any).ShoPain = (s as any).ShoPain ?? {})['severe'] = 55;
+            ((s as any).ShoPain = (s as any).ShoPain ?? {})['medium'] = 65;
+            ((s as any).ShoPain = (s as any).ShoPain ?? {})['mild'] = 75;
           } else {
             (s as any).ShoSkill = 60;
-            if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['severe'] = 70;
-            if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['medium'] = 80;
-            if (!(s as any).ShoPain) (s as any).ShoPain = {}; (s as any).ShoPain['mild'] = 90;
+            ((s as any).ShoPain = (s as any).ShoPain ?? {})['severe'] = 70;
+            ((s as any).ShoPain = (s as any).ShoPain ?? {})['medium'] = 80;
+            ((s as any).ShoPain = (s as any).ShoPain ?? {})['mild'] = 90;
           }
         }
       }
     }
   }
   (s as any).ShoMaxStrength = ((s as any).ShoStrength ?? 0);
-  if (qspFunc(s, 'shoes', 'is_owned', ((s as any).locArgs?.[0] ?? 0), qspUntranslated(s, "ARGS[1]", { location: "shoe_attributes" }))) {
+  if (qspFunc(s, 'shoes', 'is_owned', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: dynamic "
-    (s as any).ShoStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_shoe_h[qspUntranslated(s, \"ARGS[1]\", { location: \"shoe_attributes\" })]", { location: "shoe_attributes" });
+    (s as any).ShoStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_shoe_h[((s as any).locArgs?.[1] ?? 0)]", { location: "shoe_attributes" });
     // TODO-QSP: "
   }
   scene.build();

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -11,8 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_id = 'beta_journal';
   qspCall(s, 'stat', '');
   // TODO-QSP: gs $loc_id, 'init_array'
+  (s as any).hot_link = 'default';
   // TODO-QSP: gs $loc_id, 'nav_construct'
   if (((s as any).hot_link ?? 0) === '') {
     // TODO-QSP: gs $loc_id, 'default'
@@ -40,11 +40,13 @@ function enterInitArray(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $array_link[7] = 'beta_journal_notifications'
   // TODO-QSP: $array_tab[8] = 'Glossary'
   // TODO-QSP: $array_link[8] = 'beta_journal_glossary'
+  (s as any).nav_banner = '' + ((s as any).pcs_nickname ?? 0) + '\'s Quests and Relationships';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault2(s: GameState, scene: SceneBuilder): void {
+  (s as any).hot_link = ((s as any).locArgs?.[0] ?? 0);
   // TODO-QSP: gs $loc_id, 'nav_construct'
   scene.text('<center>');
   // TODO-QSP: gs $loc_id, 'game_events'
@@ -56,6 +58,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
 
 function enterNavConstruct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nav_banner ?? 0) === '') {
+    (s as any).nav_banner = '' + ((s as any).pcs_firstname ?? 0) + '\'s Quests and Relationships';
   }
   (s as any).nav_i = 0;
   if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
@@ -123,8 +126,9 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).table_columns = 3;
   } else {
-    (s as any).table_columns = qspUntranslated(s, "ARGS[1]", { location: "beta_journal" });
+    (s as any).table_columns = ((s as any).locArgs?.[1] ?? 0);
   }
+  (s as any).bjq_temp_table = '<center><table cellspacing="3" bgcolor="' + ((s as any).theme ?? 0)?.['table_bg_alt'] + '" width="80%" align="center">';
   // TODO-QSP: :jmp_table_gen
   // TODO-QSP: $bjq_temp_table +=  '<tr width="100px">'
   // TODO-QSP: :jmp_table_gen2
@@ -168,7 +172,7 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
     (s as any).jclose = 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -176,16 +180,16 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
 
 function enterFailure(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'id') {
-    if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['journal'] = 'NPC ID not set, vcard not generated.';
+    ((s as any).debug = (s as any).debug ?? {})['journal'] = 'NPC ID not set, vcard not generated.';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'quest_body') {
-      if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['journal'] = 'Quest body not set, quests details was not set.';
+      ((s as any).debug = (s as any).debug ?? {})['journal'] = 'Quest body not set, quests details was not set.';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'nav_forward') {
-        if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['journal'] = 'No forward navigation set - please ensure you have set the var in quest_data';
+        ((s as any).debug = (s as any).debug ?? {})['journal'] = 'No forward navigation set - please ensure you have set the var in quest_data';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'nav_back') {
-          if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['journal'] = 'No back navigation set - please ensure you have set the var in quest_data';
+          ((s as any).debug = (s as any).debug ?? {})['journal'] = 'No back navigation set - please ensure you have set the var in quest_data';
         }
       }
     }

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -18,7 +18,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300);
-      scene.actions([{ label: 'Continue', goto: ['city_cinema', 'watch_movie'] }]);
+      qspGoto(s, 'city_cinema', 'watch_movie');
     }
   } },
     ]);
@@ -46,7 +46,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).temp_rand ?? 0) === 8) {
-      scene.actions([{ label: 'Continue', goto: ['city_cinema', 'sex2'] }]);
+      qspGoto(s, 'city_cinema', 'sex2');
     } else {
       scene.text('The theater is deserted, except for one man.');
       scene.text('When he notices you looking at him he smiles and waves to you');
@@ -151,7 +151,8 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
       { label: 'Run away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_cinema', ''] },
+    qspGoto(s, 'city_cinema', '');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -203,6 +204,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/cinema/sex/kinosex8.jpg');
     scene.text('You lie back on the seats, and open your legs to the stranger. Now in charge, his thrusts come hard and fast. When he reaches a fever pitch, you cry out in pleasure, as he finishes inside you.');
     qspCall(s, 'arousal', 'vaginal', 10, 'exhibitionism');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Oh, Shit', handler: (st: GameState) => {

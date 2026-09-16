@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -39,7 +39,7 @@ function enterWorkofdebt(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'This week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
     scene.actions([
       { label: 'Move on', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -65,7 +65,7 @@ function enterWorkofdebt(s: GameState, scene: SceneBuilder): void {
       scene.text('A few minutes later you arrive at an apartment block, it isn\'t is great shape but Vadim leads you inside and up to a second floor apartment.');
       scene.text('The apartment is actually in decent shape. The minimal amount of furniture and decorations don\'t make it look very hospitable though, and you assume this might just be one of the places Vadim rented for business or pleasure, not for living in.');
       scene.text('Noticing you\'re spending too much time looking around and aren\'t following him swiftly enough, he grabs you by your hair and pulls your face to his, roughly shoving his tongue in your mouth. You can smell the tobacco on his breath, and do your best to ignore the taste as he kisses you.');
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+      ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
       scene.actions([
         { label: 'Kiss him', goto: ['BelSex', 'sex'] },
       ]);
@@ -117,7 +117,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
     scene.actions([
       { label: 'Move on', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -148,7 +148,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
     scene.actions([
       { label: 'Move on', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -181,7 +181,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
       scene.actions([
         { label: 'Move on', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
@@ -200,7 +200,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
         scene.actions([
           { label: 'Move on', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
         ]);
       } else {
@@ -238,7 +238,7 @@ function enterPayremaining(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'debt_pay', 'belgangPay', 0, 'cash');
   qspCall(s, 'calendar', 'remove', 'belgang_payment_deadline');
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A113'] = 2;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A113'] = 2;
   scene.img('images/characters/pavlovsk/vadim/belymoney.jpg');
   scene.text('No, today you won\'t work for him, you will never work for him again, today you will finally be free. "Here is everything. My debts are paid." You hand it over to Vadim while his henchmen keep a lookout. Once again, he gives you an awkward smile, very pleased how things have turned out. "It\'s all there, right? I would hate to have to come back for the rest."');
   scene.text('You nod at him, reassuring him. "It\'s all there, mister Bely. Count it if you don\'t believe me."');
@@ -249,7 +249,7 @@ function enterPayremaining(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move on', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -281,10 +281,10 @@ function enterUpdateDebtCalendar(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_QW ?? 0)?.['A113'] === 0  &&  (!((s as any).workDolg ?? 0))) {
-    scene.text('<a href="exec:gs \'belgang\', \'cheatmenu_start\'">Vadim Bely debt: Start storyline (50,000 debt at 5,000/week)</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027belgang\\u0027, \\u0027cheatmenu_start\\u0027); return false;">Vadim Bely debt: Start storyline (50,000 debt at 5,000/week)</a>');
   } else {
     if (((s as any).npc_QW ?? 0)?.['A113'] === 1) {
-      scene.text('<a href="exec:gs \'belgang\', \'cheatmenu_clear\'">Vadim Bely debt: Clear debt and end storyline</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027belgang\\u0027, \\u0027cheatmenu_clear\\u0027); return false;">Vadim Bely debt: Clear debt and end storyline</a>');
     }
   }
   // TODO-QSP: end
@@ -292,7 +292,7 @@ function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheatmenuStart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A113'] = 1;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A113'] = 1;
   (s as any).daybelisex = ((s as any).daystart ?? 0);
   qspCall(s, 'money', 'debt_add', 'belgangPay', 50000);
   (s as any).belgangday = ((s as any).daystart ?? 0);
@@ -309,7 +309,7 @@ function enterCheatmenuStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'debt_add', 'belgangPayWeek', ((s as any).belgangPayWeekAmount ?? 0));
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateDebtCalendar(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'story'] }]);
+  qspGoto(s, 'cheatmenu_din', 'story');
   // TODO-QSP: end
   scene.build();
 }
@@ -317,8 +317,8 @@ function enterCheatmenuStart(s: GameState, scene: SceneBuilder): void {
 function enterCheatmenuClear(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'debt_pay', 'belgangPay', 0, 'none');
   qspCall(s, 'calendar', 'remove', 'belgang_payment_deadline');
-  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A113'] = 2;
-  scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'story'] }]);
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})['A113'] = 2;
+  qspGoto(s, 'cheatmenu_din', 'story');
   // TODO-QSP: end
   scene.build();
 }

@@ -1,3 +1,5 @@
+import { qspFunc } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -6,86 +8,86 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).yearstart ?? 0) === 1  &&  (((s as any).month ?? 0) < 6  ||  ((s as any).year ?? 0) === 2016)) {
     if (((s as any).week ?? 0) < 6) {
       if (((s as any).hour ?? 0) < 8) {
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 20;
+        ((s as any).locat = (s as any).locat ?? {})['A144'] = 20;
       } else {
         if (((s as any).hour ?? 0) < 14) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 21;
+          ((s as any).locat = (s as any).locat ?? {})['A144'] = 21;
         } else {
           if (((s as any).hour ?? 0) < 15) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+            ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
           } else {
             if (((s as any).hour ?? 0) < 16) {
               if (((s as any).locat ?? 0)?.['A144_rand1'] !== ((s as any).daystart ?? 0)) {
                 if ((!(Math.floor(Math.random() * 5) + 0))) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                 }
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand1'] = ((s as any).daystart ?? 0);
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save1'] = ((s as any).locat ?? 0)?.['144'];
+                ((s as any).locat = (s as any).locat ?? {})['144_rand1'] = ((s as any).daystart ?? 0);
+                ((s as any).locat = (s as any).locat ?? {})['144_save1'] = ((s as any).locat ?? 0)?.['144'];
               } else {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save1'];
+                ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save1'];
               }
             } else {
               if (((s as any).hour ?? 0) < 18) {
                 if (((s as any).week ?? 0) ===3) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 24;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 24;
                 } else {
                   if (((s as any).locat ?? 0)?.['A144_rand2'] !== ((s as any).daystart ?? 0)) {
                     if ((!(Math.floor(Math.random() * 2) + 0))) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                     }
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand2'] = ((s as any).daystart ?? 0);
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save2'] = ((s as any).locat ?? 0)?.['144'];
+                    ((s as any).locat = (s as any).locat ?? {})['144_rand2'] = ((s as any).daystart ?? 0);
+                    ((s as any).locat = (s as any).locat ?? {})['144_save2'] = ((s as any).locat ?? 0)?.['144'];
                   } else {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save2'];
+                    ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save2'];
                   }
                 }
               } else {
                 if (((s as any).hour ?? 0) < 20) {
                   if (((s as any).week ?? 0) === 3) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 24;
+                    ((s as any).locat = (s as any).locat ?? {})['A144'] = 24;
                   } else {
                     if (((s as any).locat ?? 0)?.['A144_rand3'] !== ((s as any).daystart ?? 0)) {
                       if ((!(Math.floor(Math.random() * 4) + 0))) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                        ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                        ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                       }
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand3'] = ((s as any).daystart ?? 0);
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save3'] = ((s as any).locat ?? 0)?.['144'];
+                      ((s as any).locat = (s as any).locat ?? {})['144_rand3'] = ((s as any).daystart ?? 0);
+                      ((s as any).locat = (s as any).locat ?? {})['144_save3'] = ((s as any).locat ?? 0)?.['144'];
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save3'];
+                      ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save3'];
                     }
                   }
                 } else {
                   if (((s as any).hour ?? 0) < 22) {
                     if (((s as any).week ?? 0) === 3) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 24;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 24;
                     } else {
                       if (((s as any).week ?? 0) === 5) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 25;
+                        ((s as any).locat = (s as any).locat ?? {})['A144'] = 25;
                       } else {
                         if (((s as any).locat ?? 0)?.['A144_rand4'] !== ((s as any).daystart ?? 0)) {
                           if ((!(Math.floor(Math.random() * 4) + 0))) {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                            ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                            ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                           }
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand4'] = ((s as any).daystart ?? 0);
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save4'] = ((s as any).locat ?? 0)?.['144'];
+                          ((s as any).locat = (s as any).locat ?? {})['144_rand4'] = ((s as any).daystart ?? 0);
+                          ((s as any).locat = (s as any).locat ?? {})['144_save4'] = ((s as any).locat ?? 0)?.['144'];
                         } else {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save4'];
+                          ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save4'];
                         }
                       }
                     }
                   } else {
                     if (((s as any).week ?? 0) === 5) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 25;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 25;
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 20;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 20;
                     }
                   }
                 }
@@ -97,73 +99,73 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).week ?? 0) === 6) {
         if (((s as any).hour ?? 0) < 9) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 20;
+          ((s as any).locat = (s as any).locat ?? {})['A144'] = 20;
         } else {
           if (((s as any).hour ?? 0)< 13) {
             if (((s as any).day ?? 0) < 8) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 11;
+              ((s as any).locat = (s as any).locat ?? {})['A144'] = 11;
             } else {
               if (((s as any).locat ?? 0)?.['A144_rand1'] !== ((s as any).daystart ?? 0)) {
                 if ((!(Math.floor(Math.random() * 4) + 0))) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                 }
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand1'] = ((s as any).daystart ?? 0);
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save1'] = ((s as any).locat ?? 0)?.['144'];
+                ((s as any).locat = (s as any).locat ?? {})['144_rand1'] = ((s as any).daystart ?? 0);
+                ((s as any).locat = (s as any).locat ?? {})['144_save1'] = ((s as any).locat ?? 0)?.['144'];
               } else {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save1'];
+                ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save1'];
               }
             }
           } else {
             if (((s as any).hour ?? 0) < 16) {
               if (((s as any).day ?? 0) < 8) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 11;
+                ((s as any).locat = (s as any).locat ?? {})['A144'] = 11;
               } else {
                 if (((s as any).locat ?? 0)?.['A144_rand2'] !== ((s as any).daystart ?? 0)) {
                   if ((!(Math.floor(Math.random() * 2) + 0))) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                    ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                   } else {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                    ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                   }
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand2'] = ((s as any).daystart ?? 0);
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save2'] = ((s as any).locat ?? 0)?.['144'];
+                  ((s as any).locat = (s as any).locat ?? {})['144_rand2'] = ((s as any).daystart ?? 0);
+                  ((s as any).locat = (s as any).locat ?? {})['144_save2'] = ((s as any).locat ?? 0)?.['144'];
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save2'];
+                  ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save2'];
                 }
               }
             } else {
               if (((s as any).hour ?? 0) < 18) {
                 if (((s as any).day ?? 0) < 8) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                 } else {
                   if (((s as any).locat ?? 0)?.['A144_rand3'] !== ((s as any).daystart ?? 0)) {
                     if ((!(Math.floor(Math.random() * 2) + 0))) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                     }
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand3'] = ((s as any).daystart ?? 0);
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save3'] = ((s as any).locat ?? 0)?.['144'];
+                    ((s as any).locat = (s as any).locat ?? {})['144_rand3'] = ((s as any).daystart ?? 0);
+                    ((s as any).locat = (s as any).locat ?? {})['144_save3'] = ((s as any).locat ?? 0)?.['144'];
                   } else {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save3'];
+                    ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save3'];
                   }
                 }
               } else {
                 if (((s as any).hour ?? 0) < 20) {
                   if (((s as any).locat ?? 0)?.['A144_rand4'] !== ((s as any).daystart ?? 0)) {
                     if ((!(Math.floor(Math.random() * 4) + 0))) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                     }
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand4'] = ((s as any).daystart ?? 0);
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save4'] = ((s as any).locat ?? 0)?.['144'];
+                    ((s as any).locat = (s as any).locat ?? {})['144_rand4'] = ((s as any).daystart ?? 0);
+                    ((s as any).locat = (s as any).locat ?? {})['144_save4'] = ((s as any).locat ?? 0)?.['144'];
                   } else {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save4'];
+                    ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save4'];
                   }
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 25;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 25;
                 }
               }
             }
@@ -171,61 +173,61 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).hour ?? 0) < 9) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 20;
+          ((s as any).locat = (s as any).locat ?? {})['A144'] = 20;
         } else {
           if (((s as any).hour ?? 0) < 13) {
             if (((s as any).locat ?? 0)?.['A144_rand1'] !== ((s as any).daystart ?? 0)) {
               if ((!(Math.floor(Math.random() * 4) + 0))) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
               } else {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
               }
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand1'] = ((s as any).daystart ?? 0);
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save1'] = ((s as any).locat ?? 0)?.['144'];
+              ((s as any).locat = (s as any).locat ?? {})['144_rand1'] = ((s as any).daystart ?? 0);
+              ((s as any).locat = (s as any).locat ?? {})['144_save1'] = ((s as any).locat ?? 0)?.['144'];
             } else {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save1'];
+              ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save1'];
             }
           } else {
             if (((s as any).hour ?? 0) < 17) {
               if (((s as any).locat ?? 0)?.['A144_rand2'] !== ((s as any).daystart ?? 0)) {
                 if ((!(Math.floor(Math.random() * 2) + 0))) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                 }
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand2'] = ((s as any).daystart ?? 0);
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save2'] = ((s as any).locat ?? 0)?.['144'];
+                ((s as any).locat = (s as any).locat ?? {})['144_rand2'] = ((s as any).daystart ?? 0);
+                ((s as any).locat = (s as any).locat ?? {})['144_save2'] = ((s as any).locat ?? 0)?.['144'];
               } else {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save2'];
+                ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save2'];
               }
             } else {
               if (((s as any).hour ?? 0) < 20) {
                 if (((s as any).locat ?? 0)?.['A144_rand3'] !== ((s as any).daystart ?? 0)) {
                   if ((!(Math.floor(Math.random() * 2) + 0))) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                    ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                   } else {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                    ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                   }
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand3'] = ((s as any).daystart ?? 0);
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save3'] = ((s as any).locat ?? 0)?.['144'];
+                  ((s as any).locat = (s as any).locat ?? {})['144_rand3'] = ((s as any).daystart ?? 0);
+                  ((s as any).locat = (s as any).locat ?? {})['144_save3'] = ((s as any).locat ?? 0)?.['144'];
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save3'];
+                  ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save3'];
                 }
               } else {
                 if (((s as any).hour ?? 0) < 22) {
                   if (((s as any).locat ?? 0)?.['A144_rand4'] !== ((s as any).daystart ?? 0)) {
                     if ((!(Math.floor(Math.random() * 4) + 0))) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 23;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 23;
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 22;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 22;
                     }
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_rand4'] = ((s as any).daystart ?? 0);
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144_save4'] = ((s as any).locat ?? 0)?.['144'];
+                    ((s as any).locat = (s as any).locat ?? {})['144_rand4'] = ((s as any).daystart ?? 0);
+                    ((s as any).locat = (s as any).locat ?? {})['144_save4'] = ((s as any).locat ?? 0)?.['144'];
                   } else {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['144'] = ((s as any).locat ?? 0)?.['144_save4'];
+                    ((s as any).locat = (s as any).locat ?? {})['144'] = ((s as any).locat ?? 0)?.['144_save4'];
                   }
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 20;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 20;
                 }
               }
             }
@@ -235,78 +237,78 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).yearstart ?? 0) === 1  ||  (((s as any).yearstart ?? 0) === 2  &&  ((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) < 10)) {
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 30;
+      ((s as any).locat = (s as any).locat ?? {})['A144'] = 30;
     } else {
       if (((s as any).week ?? 0) === 1) {
         if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 15) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 10;
+          ((s as any).locat = (s as any).locat ?? {})['A144'] = 10;
         } else {
           if (((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 18) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 12;
+            ((s as any).locat = (s as any).locat ?? {})['A144'] = 12;
           } else {
             if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) <= 23) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 2;
+              ((s as any).locat = (s as any).locat ?? {})['A144'] = 2;
             } else {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+              ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
             }
           }
         }
       } else {
         if (((s as any).week ?? 0) === 2) {
           if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 15) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 10;
+            ((s as any).locat = (s as any).locat ?? {})['A144'] = 10;
           } else {
             if (((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 18) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 2;
+              ((s as any).locat = (s as any).locat ?? {})['A144'] = 2;
             } else {
               if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) <23) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 9;
+                ((s as any).locat = (s as any).locat ?? {})['A144'] = 9;
               } else {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+                ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
               }
             }
           }
         } else {
           if (((s as any).week ?? 0) === 3) {
             if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 15) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 10;
+              ((s as any).locat = (s as any).locat ?? {})['A144'] = 10;
             } else {
               if (((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 18) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 12;
+                ((s as any).locat = (s as any).locat ?? {})['A144'] = 12;
               } else {
                 if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 23) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 8;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 8;
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
                 }
               }
             }
           } else {
             if (((s as any).week ?? 0) === 4) {
               if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 15) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 10;
+                ((s as any).locat = (s as any).locat ?? {})['A144'] = 10;
               } else {
                 if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) <23) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 9;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 9;
                 } else {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
                 }
               }
             } else {
               if (((s as any).week ?? 0) === 5) {
                 if (((s as any).hour ?? 0) < 9) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+                  ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
                 } else {
                   if (((s as any).hour ?? 0) < 10) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 10;
+                    ((s as any).locat = (s as any).locat ?? {})['A144'] = 10;
                   } else {
                     if (((s as any).hour ?? 0) < 16) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 9;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 9;
                     } else {
                       if (((s as any).hour ?? 0) < 20) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 2;
+                        ((s as any).locat = (s as any).locat ?? {})['A144'] = 2;
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+                        ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
                       }
                     }
                   }
@@ -315,26 +317,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).week ?? 0) === 6) {
                   if (((s as any).day ?? 0) <= 7) {
                     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 16) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 11;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 11;
                     } else {
                       if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 2;
+                        ((s as any).locat = (s as any).locat ?? {})['A144'] = 2;
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+                        ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
                       }
                     }
                   } else {
                     if (((s as any).hour ?? 0) <= 8  &&  ((s as any).hour ?? 0) < 20) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 2;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 2;
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+                      ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
                     }
                   }
                 } else {
                   if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) <23) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 9;
+                    ((s as any).locat = (s as any).locat ?? {})['A144'] = 9;
                   } else {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 0;
+                    ((s as any).locat = (s as any).locat ?? {})['A144'] = 0;
                   }
                 }
               }
@@ -345,49 +347,52 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).locat ?? 0)?.['A144'] > 0  &&  ((s as any).locat ?? 0)?.['A144'] < 8) {
+    (s as any).AnushkaLocCity = 'home';
+  } else {
+    (s as any).AnushkaLocCity = 'notHome';
   }
   scene.build();
 }
 
 function enterGetLocation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A144'] === 0) {
-    if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka not home Fri and Sat \'+func(\'time\', \'get_time_string\', 20, 0)+\' for rest of night';
+    ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka not home Fri and Sat ' + qspFunc(s, 'time', 'get_time_string', 20, 0) + ' for rest of night';
   } else {
     if (((s as any).locat ?? 0)?.['A144'] === 1) {
-      if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka in the hallway at her city apartment';
+      ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka in the hallway at her city apartment';
     } else {
       if (((s as any).locat ?? 0)?.['A144'] === 2) {
-        if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka in her room at her city apartment';
+        ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka in her room at her city apartment';
       } else {
         if (((s as any).locat ?? 0)?.['A144'] === 3) {
-          if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka in Radomir\'s room at her city apartment';
+          ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka in Radomir\'s room at her city apartment';
         } else {
           if (((s as any).locat ?? 0)?.['A144'] === 4) {
-            if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka in the kitchen at her city apartment';
+            ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka in the kitchen at her city apartment';
           } else {
             if (((s as any).locat ?? 0)?.['A144'] === 5) {
-              if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka in the livingroom at her city apartment';
+              ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka in the livingroom at her city apartment';
             } else {
               if (((s as any).locat ?? 0)?.['A144'] === 6) {
-                if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka in Valentin and Arkadi\'s room';
+                ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka in Valentin and Arkadi\'s room';
               } else {
                 if (((s as any).locat ?? 0)?.['A144'] === 7) {
-                  if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka in the bathroom';
+                  ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka in the bathroom';
                 } else {
                   if (((s as any).locat ?? 0)?.['A144'] === 8) {
-                    if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka is in the garage with the band Wed \'+func(\'time\', \'get_time_string\', 18, 0)+\' - \'+func(\'time\', \'get_time_string\', 23, 0)+\'';
+                    ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka is in the garage with the band Wed ' + qspFunc(s, 'time', 'get_time_string', 18, 0) + ' - ' + qspFunc(s, 'time', 'get_time_string', 23, 0) + '';
                   } else {
                     if (((s as any).locat ?? 0)?.['A144'] === 9) {
-                      if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka is at her job at the The Coffee Hole';
+                      ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka is at her job at the The Coffee Hole';
                     } else {
                       if (((s as any).locat ?? 0)?.['A144'] === 10) {
-                        if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka is at the University classes \'+func(\'time\', \'get_time_string\', 9, 0)+\' to \'+func(\'time\', \'get_time_string\', 15, 0)+\'';
+                        ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka is at the University classes ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + ' to ' + qspFunc(s, 'time', 'get_time_string', 15, 0) + '';
                       } else {
                         if (((s as any).locat ?? 0)?.['A144'] === 11) {
-                          if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka is at the modeling studio First Sat of each month \'+func(\'time\', \'get_time_string\', 8, 0)+\' to \'+func(\'time\', \'get_time_string\', 16, 0)+\'';
+                          ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka is at the modeling studio First Sat of each month ' + qspFunc(s, 'time', 'get_time_string', 8, 0) + ' to ' + qspFunc(s, 'time', 'get_time_string', 16, 0) + '';
                         } else {
                           if (((s as any).locat ?? 0)?.['A144'] === 12) {
-                            if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A144'] = 'Anushka is at the University Library Mon and Wed from \'+func(\'time\', \'get_time_string\', 15, 0)+\' till \'+func(\'time\', \'get_time_string\', 18, 0)+\'';
+                            ((s as any).npcLocation = (s as any).npcLocation ?? {})['A144'] = 'Anushka is at the University Library Mon and Wed from ' + qspFunc(s, 'time', 'get_time_string', 15, 0) + ' till ' + qspFunc(s, 'time', 'get_time_string', 18, 0) + '';
                           }
                         }
                       }

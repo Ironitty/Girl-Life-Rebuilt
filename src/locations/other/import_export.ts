@@ -15,6 +15,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: showstat 0
     (s as any).usehtml = 0;
+    (s as any).export_str = 'cfg_vars[\'disable_autosave\'] = ' + ((s as any).cfg_vars ?? 0)?.['disable_autosave'] + '';
     // TODO-QSP: $export_str += ' & ' + "cheatVars['gameover'] = <<cheatVars['gameover']>>"
     // TODO-QSP: $export_str += ' & ' + "sound_settings['music_off'] = <<sound_settings['music_off']>>"
     // TODO-QSP: $export_str += ' & ' + "sound_settings['environment_off'] = <<sound_settings['environment_off']>>"
@@ -301,7 +302,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $export_str += ' & ' + "$rel_group_order[7] = '<<$rel_group_order[7]>>'"
     // TODO-QSP: $export_str += ' & ' + "$rel_group_order[8] = '<<$rel_group_order[8]>>'"
     // TODO-QSP: dynamic text: $export_str
-    scene.text('$export_str');
+    scene.text(String((s as any).export_str ?? ''));
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).usehtml = 1;
@@ -320,6 +321,7 @@ function enterImport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
+    (s as any).initext = String(((s as any).usrtxt ?? 0));
     // TODO-QSP: cmdclear
     // TODO-QSP: showinput 0
     if (((s as any).initext ?? 0) === '') {
@@ -343,7 +345,7 @@ function enterImport(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'calendar', 'cycle_rebuild', 1);
     // TODO-QSP: showobjs cfg_vars['debug']
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'menu_settings');
+    dynamicGoto(s, 'menu_settings');
   } },
   ]);
   scene.build();

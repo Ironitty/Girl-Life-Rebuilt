@@ -5,6 +5,9 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'krupo';
+  (s as any).location_type = 'event';
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -26,7 +29,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('You can\'t do your lesson without fabric so there is nothing you can do here now.');
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 60;
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
         qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0)/10 - ((s as any).pcs_intel ?? 0)/20 + 1)) + (((s as any).pcs_intel ?? 0)/20)));
         scene.text('For an hour you learn more advanced techniques and practice cutting and sewing the fabric you purchased.');
         if (((s as any).pcs_sewng ?? 0) >= 60  &&  (!((s as any).poTalk ?? 0))) {

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,9 +12,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   (s as any).girl = ((s as any).girl ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
-  scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
+  qspGoto(s, 'podrsex', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -50,6 +50,7 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= (((s as any).randhorny ?? 0) - ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'])) {
     scene.text('You\'re very close to having a spontaneous orgasm with the guy\'s cock still in your mouth, which the other girl notices.');
     scene.text('She gives you a sweet wink before she takes over, giving you some time to rub your clit furiously.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
     qspCall(s, 'stat', '');
   }
@@ -57,9 +58,9 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>The man groans that he will cum soon.');
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
+    qspGoto(s, 'podrsex', 'var');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['podrsex', 'end'] }]);
+    qspGoto(s, 'podrsex', 'end');
   }
   // TODO-QSP: end
   scene.build();
@@ -83,13 +84,14 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= (((s as any).randhorny ?? 0) - ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'])) {
     scene.text('You close your eyes and surrender yourself to the moment, reaching an explosive orgasm without ever touching yourself.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
   }
   if (((s as any).sexvar ?? 0) === 1) {
     scene.text('<br>The man groans that he will cum soon.');
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
+    qspGoto(s, 'podrsex', 'var');
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -118,13 +120,14 @@ function enterAss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= (((s as any).randhorny ?? 0) - ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'])) {
     scene.text('You close your eyes and surrender yourself to the moment, reaching an explosive orgasm without ever touching yourself.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
   }
   if (((s as any).sexvar ?? 0) === 1) {
     scene.text('<br>The man groans that he will cum soon.');
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
+    qspGoto(s, 'podrsex', 'var');
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -139,6 +142,8 @@ function enterVoy(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinsex2', 'stamina_npc');
   if (((s as any).pcs_horny ?? 0) >= (((s as any).randhorny ?? 0) - ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'])) {
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You have an orgasm.';
     qspCall(s, 'stat', '');
   }
   if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -160,7 +165,7 @@ function enterVoy(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>The man groans that he will cum soon.');
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
+    qspGoto(s, 'podrsex', 'var');
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -227,19 +232,19 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).picrand ?? 0) === 26  ||  ((s as any).picrand ?? 0) === 27  ||  ((s as any).picrand ?? 0) === 29) {
-      scene.actions([{ label: 'Continue', goto: ['office', 'work'] }]);
+      qspGoto(s, 'office', 'work');
     }
     if (((s as any).picrand ?? 0) >= 30  &&  ((s as any).picrand ?? 0) <= 32) {
-      scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+      qspGoto(s, 'city_center', '');
     }
     if (((s as any).picrand ?? 0) === 19) {
-      scene.actions([{ label: 'Continue', goto: ['nichLivingroom', ''] }]);
+      qspGoto(s, 'nichLivingroom', '');
     }
     if (((s as any).kazsexdva ?? 0) === 1) {
       (s as any).kazsexdva = 0;
-      scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+      qspGoto(s, 'kazinosvid', '3');
     }
-    dynamicGoto(st, 'sexloc');
+    dynamicGoto(s, 'sexloc');
   } },
   ]);
   scene.build();

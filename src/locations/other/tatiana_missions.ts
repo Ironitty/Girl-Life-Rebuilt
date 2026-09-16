@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -7,6 +7,8 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'stat', '');
+  (s as any).loc_arg = '';
+  (s as any).loc = 'tatiana_missions';
   qspCall(s, 'themes', 'indoors');
   scene.build();
 }
@@ -14,10 +16,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).TatianaCall = 0;
   if (((s as any).TatianaMissionQW ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission1'] }]);
+    qspGoto(s, 'tatiana_missions', 'mission1');
   } else {
     if (((s as any).TatianaMissionQW ?? 0) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission2'] }]);
+      qspGoto(s, 'tatiana_missions', 'mission2');
     }
   }
   // TODO-QSP: end
@@ -38,7 +40,7 @@ function enterPhoneIntro(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish the call', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -55,7 +57,7 @@ function enterPhoneMission(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish the call', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -439,7 +441,8 @@ function enterMission2A(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['tatiana_missions', 'mission2C'] },
+    qspGoto(s, 'tatiana_missions', 'mission2C');
+  } },
         ]);
       }
       scene.actions([
@@ -499,7 +502,7 @@ function enterMission2A(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
     if (((s as any).succubusQW ?? 0) !== 5) {
-      scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission2sex'] }]);
+      qspGoto(s, 'tatiana_missions', 'mission2sex');
     } else {
       scene.img('images/characters/city/btatiana/ST1.jpg');
       scene.text('You find yourself lying face down, wearing only panties in what appears to be a photography set. \'Tatiana\' kneels by your side in a somewhat diaphanous robe.');
@@ -525,15 +528,18 @@ function enterMission2A(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'npc_relationship', 'modify_exact', 'A241', 2);
     qspCall(s, 'stat', '');
-  }, goto: ['tatiana_missions', 'mission2E'] },
+    qspGoto(s, 'tatiana_missions', 'mission2E');
+  } },
         ]);
       }
       scene.actions([
         { label: 'Kick her ass!', handler: (st: GameState) => {
+    (s as any).boydesc = 'Sword-wielding bitch';
     scene.img('images/characters/city/btatiana/ST1.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'btatiana');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
       ]);
     }
   } },
@@ -562,7 +568,7 @@ function enterMission2B(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'PAIN!', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (360);
+    ((s as any).pain = (s as any).pain ?? {})['head'] = ((s as any).pain['head'] ?? 0) + (360);
     qspCall(s, 'stat', '');
     scene.text('<center><b>YOU!?</b></center>');
     scene.img(`images/locations/shared/${Math.floor(Math.random() * 30) + 31}.jpg`);
@@ -683,7 +689,8 @@ function enterMission2D(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
   ]);
   scene.build();
 }
@@ -859,7 +866,7 @@ function enterMission2sex(s: GameState, scene: SceneBuilder): void {
     scene.text('She then grabs your head and pushes it towards her rising thighs, so you can drink from her orgasming cunt. As you feast, half-forgotten memories get clearer, your insight gets sharper, and a calming sensation melts away all your problems.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Cuddles', handler: (st: GameState) => {
@@ -952,7 +959,7 @@ function enterMission2sex(s: GameState, scene: SceneBuilder): void {
       { label: 'She fingers you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/btatiana/Sex/MT8.jpg');
     scene.text('At some point, between your moans, calls to God and screaming her name, Tatiana has managed to turn you face down. She lies over you, kissing your back and whispering sweet-nothings at the same time as her finger penetrates your vulva.');

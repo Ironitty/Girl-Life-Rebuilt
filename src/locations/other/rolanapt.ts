@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,6 +13,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'rolanapt', 'home');
+  (s as any).location_type = 'private';
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -61,7 +62,9 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRolanroute(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><b>Entrance hall</b></center>');
@@ -124,11 +127,13 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
     (s as any).rolan_steal_count = 0;
   }
   if (((s as any).rolanworker ?? 0) === 4  &&  ((s as any).rolanknow ?? 0) === 1) {
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[String((s as any).hour ?? 0)] = 6;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[String((s as any).hour ?? 0)] = 6;
     qspCall(s, 'stat', '');
     scene.text('You should check on Rolan, he seems really upset…');
     scene.actions([
-      { label: '<b>Leave Rolan\'s apartment</b>', goto: ['rolanapt', 'hallway'] },
+      { label: '<b>Leave Rolan\'s apartment</b>', handler: (st: GameState) => {
+    qspGoto(s, 'rolanapt', 'hallway');
+  } },
     ]);
   } else {
     scene.actions([
@@ -149,6 +154,8 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Rolan\'s bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/bedroom.jpg');
@@ -175,6 +182,8 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
 
 function enterGuestroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Guest Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/guestroom.jpg');
@@ -191,6 +200,7 @@ function enterGuestroom(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).locclass = 'livingr';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/livingroom.jpg');
@@ -227,6 +237,11 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).locclass = 'kitr';
+  (s as any).loc = 'rolanapt';
+  (s as any).loc_arg = 'kitchen';
+  (s as any).menu_loc = 'rolanapt';
+  (s as any).menu_arg = 'kitchen';
   qspCall(s, 'kit_din', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kitchen</b></center>');
@@ -243,9 +258,9 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 4) {
     scene.text('Rolan is here.');
     if ((Math.floor(Math.random() * 100) + 1) < 50) {
-      scene.text('When you enter the kitchen, <a href="exec:gt \'rolanapt\',\'kuh_buh\'">Rolan</a> gives you a friendly nod. He\'s sitting at the table, eating an apple.');
+      scene.text('When you enter the kitchen, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027rolanapt\\u0027, \\u0027kuh_buh\\u0027); return false;">Rolan</a> gives you a friendly nod. He\'s sitting at the table, eating an apple.');
     } else {
-      scene.text('When you enter the kitchen, <a href="exec:gt \'rolanapt\',\'bend\'">Rolan</a> is sitting at the table holding an apple. He smiles when he notices you.');
+      scene.text('When you enter the kitchen, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027rolanapt\\u0027, \\u0027bend\\u0027); return false;">Rolan</a> is sitting at the table holding an apple. He smiles when he notices you.');
     }
     if (((s as any).rolanpantyconfession ?? 0) === 1  &&  ((s as any).rolancooklesson ?? 0) < 1  &&  ((s as any).sup_count ?? 0) === 0  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
@@ -343,21 +358,36 @@ function enterHolodil(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   if (((s as any).guavacoco_count ?? 0) === 2) {
+    (s as any).r_guavacoco = ' 2 guavacoco,';
   } else {
     if (((s as any).guavacoco_count ?? 0) === 1) {
+      (s as any).r_guavacoco = ' 1 guavacoco,';
+    } else {
+      (s as any).r_guavacoco = '';
     }
   }
   if (((s as any).kvass_count ?? 0) === 5) {
+    (s as any).r_kvass = ' a full bottle of homemade kvass beer,';
   } else {
     if (((s as any).kvass_count ?? 0) === 3) {
+      (s as any).r_kvass = ' a half-empty bottle of homemade kvass beer,';
     } else {
       if (((s as any).kvass_count ?? 0) === 1) {
+        (s as any).r_kvass = ' a nearly empty bottle of homemade kvass beer,';
+      } else {
+        (s as any).r_kvass = '';
       }
     }
   }
   if (((s as any).sup_count ?? 0) >= 1) {
+    (s as any).r_sup = ' a large pot of soup';
+  } else {
+    (s as any).r_sup = '';
   }
   if (((s as any).guavacoco_count ?? 0) === 0  &&  ((s as any).kvass_count ?? 0) === 0  &&  (!((s as any).sup_count ?? 0))) {
+    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holodpusto.jpg"></center><br>You open the fridge and see:<br><font color = red>empty shelves.</font>';
+  } else {
+    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/kitch/selfservice\' + rand(0, 8) + \'.jpg"></center><br>You open the fridge and see:';
   }
   // TODO-QSP: dynamic text: <<$r_pusto>><br><<$r_kvass>><<$r_guavacoco>><<$r_sup>>
   scene.text(`${((s as any).r_pusto || '')}<br>${((s as any).r_kvass || '')}${((s as any).r_guavacoco || '')}${((s as any).r_sup || '')}`);
@@ -716,20 +746,28 @@ function enterKuhbaz(s: GameState, scene: SceneBuilder): void {
     (s as any).rolan_textb_vanna = Math.floor(Math.random() * 8) + 1;
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitchen.jpg');
     if (((s as any).rolan_textb_vanna ?? 0) === 1) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you that he doesn\'t mind if you take a shower here.';
     }
     if (((s as any).rolan_textb_vanna ?? 0) === 2) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you that he see often sees some of your classmates buying clothes at G&M Stores, though he doesn\'t know how it\'s possible for young girls to have so much money.';
     }
     if (((s as any).rolan_textb_vanna ?? 0) === 3) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you that he wants to run for mayor and end the discrimination he sees in Pavlovsk.';
     }
     if (((s as any).rolan_textb_vanna ?? 0) === 4) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you that the day before Ms. Sokoloff stopped to chat with him as he was coming back from the supermarket.';
     }
     if (((s as any).rolan_textb_vanna ?? 0) === 5) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you that he saw two of your classmates arguing outside.';
     }
     if (((s as any).rolan_textb_vanna ?? 0) === 6) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you that the courtyard is dangerous at night.';
     }
     if (((s as any).rolan_textb_vanna ?? 0) === 7) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you he saw two girls walking in the park, hand in hand, like they were in love. He wonders what is wrong with people these days. Girls need a man after all.';
     }
     if (((s as any).rolan_textb_vanna ?? 0) === 8) {
+      (s as any).rolan_textb_kuh = 'Rolan tells you he saw Anushka and Alyona kissing on the playground, in the apartment courtyard. He thinks it is very unbecoming of them, they should be with men.';
     }
     // TODO-QSP: dynamic text: <br><<$rolan_imgb_kuh>><br>
     scene.text(`<br>${((s as any).rolan_imgb_kuh || '')}<br>`);
@@ -810,16 +848,28 @@ function enterDrawer(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Drawer</b></center>');
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).rolan_pantext_baz = '<i>Grudzeva</i>, <i>Artamonov</i>, <i>Starov</i>, and <i>Zvereva</i>';
+      (s as any).rolan_pantpic_baz = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/drawer/collection0.jpg"></center>';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rolan_pantext_baz = '<i>Meynold sisters</i>, <i>Berlovskay</i>, <i>Davyatova</i>, <i>Ivanko</i>, and <i>Petrov</i>';
+      (s as any).rolan_pantpic_baz = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/drawer/collection1.jpg"></center>';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rolan_pantext_baz = '<i>Maksimov</i>, <i>Zima</i>, <i>Sebagotulina</i>, <i>Kostantinov</i>, and <i>Tsarev</i>';
+      (s as any).rolan_pantpic_baz = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/drawer/collection2.jpg"></center>';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rolan_pantext_baz = '<i>Milov</i>, <i>Alkaev</i>, <i>Braakman</i>, <i>Orlov</i>, <i>Sokoloff</i>, and <i>Belova</i>';
+      (s as any).rolan_pantpic_baz = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/drawer/collection3.jpg"></center>';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).rolan_pantext_baz = '<i>Sokolov</i>, <i>Pavlov</i>, and <i>Kotov</i>';
+      (s as any).rolan_pantpic_baz = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/drawer/collection4.jpg"></center>';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).rolan_pantext_baz = '<i>Aleksandrov</i> and <i>Volkov</i>';
+      (s as any).rolan_pantpic_baz = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/drawer/collection5.jpg"></center>';
     }
     // TODO-QSP: dynamic text: <br><<$rolan_pantext_baz>><br>
     scene.text(`<br>${((s as any).rolan_pantext_baz || '')}<br>`);
@@ -2100,56 +2150,56 @@ function enterWorker(s: GameState, scene: SceneBuilder): void {
 
 function enterRolanroute(s: GameState, scene: SceneBuilder): void {
   if (((s as any).RolanLocSet ?? 0) !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[0] = 3;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[1] = 3;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[2] = 3;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[3] = 3;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[4] = 3;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[5] = 3;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[6] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[7] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[8] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[9] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[10] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[11] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[12] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[0] = 3;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[1] = 3;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[2] = 3;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[3] = 3;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[4] = 3;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[5] = 3;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[6] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[7] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[8] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[9] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[10] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[11] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[12] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[13] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[13] = 0;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[13] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[13] = 0;
     }
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[14] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[14] = 0;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[14] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[14] = 0;
     }
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[15] = Math.floor(Math.random() * 4) + 4;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[15] = Math.floor(Math.random() * 4) + 4;
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[16] = Math.floor(Math.random() * 7) + 2;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[16] = Math.floor(Math.random() * 7) + 2;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[16] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[16] = 0;
     }
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[17] = Math.floor(Math.random() * 7) + 2;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[17] = Math.floor(Math.random() * 7) + 2;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[17] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[17] = 0;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[18] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[18] = 0;
     }
     if (((s as any).week ?? 0) !== 6) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[19] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[19] = 0;
     }
     if (((s as any).week ?? 0) !== 6) {
-      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[20] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[20] = 0;
     }
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[21] = Math.floor(Math.random() * 4) + 4;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[22] = 3;
-    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[23] = 3;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[21] = Math.floor(Math.random() * 4) + 4;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[22] = 3;
+    ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[23] = 3;
     (s as any).RolanLocSet = ((s as any).daystart ?? 0);
   }
   // TODO-QSP: end

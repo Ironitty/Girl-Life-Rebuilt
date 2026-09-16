@@ -101,12 +101,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).BikeLoc ?? 0) !== 1) {
       if (((s as any).BikeLoc ?? 0) === 2) {
+        (s as any).bikeaction = 'Bike to your grandparents\' barn (0:12)';
       } else {
         if (((s as any).BikeLoc ?? 0) === 3) {
+          (s as any).bikeaction = 'Bike to your grandparents\' barn (0:44)';
         }
       }
       scene.actions([
-        { label: '<<$bikeaction>>', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((s as any).bikeaction || '') ?? ''), handler: (st: GameState) => {
     if (((s as any).BikeLoc ?? 0) === 2) {
       (s as any).minut = ((s as any).minut ?? 0) + 12;
       qspCall(s, 'exp_gain', 'run', Math.floor(Math.random() * 2) + 0);
@@ -146,12 +148,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).BikeLoc ?? 0) !== 2  &&  ((s as any).pcs_bushcraft ?? 0) > 10) {
       if (((s as any).BikeLoc ?? 0) === 1) {
+        (s as any).bikeaction = 'Bike to the forest edge (0:12)';
       } else {
         if (((s as any).BikeLoc ?? 0) === 3) {
+          (s as any).bikeaction = 'Bike to the forest edge (0:32)';
         }
       }
       scene.actions([
-        { label: '<<$bikeaction>>', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((s as any).bikeaction || '') ?? ''), handler: (st: GameState) => {
     if (((s as any).BikeLoc ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 12;
       qspCall(s, 'exp_gain', 'run', Math.floor(Math.random() * 2) + 0);
@@ -180,12 +184,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).BikeLoc ?? 0) !== 3  &&  ((s as any).hunterVars ?? 0)?.['cabin'] === 1  &&  ((s as any).hunterVars ?? 0)?.['were_met'] === 1) {
       if (((s as any).BikeLoc ?? 0) === 1) {
+        (s as any).bikeaction = 'Bike to the hunters cabin (0:44)';
       } else {
         if (((s as any).BikeLoc ?? 0) === 2) {
+          (s as any).bikeaction = 'Bike to the hunters cabin (0:32)';
         }
       }
       scene.actions([
-        { label: '<<$bikeaction>>', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((s as any).bikeaction || '') ?? ''), handler: (st: GameState) => {
     if (((s as any).BikeLoc ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 44;
       qspCall(s, 'exp_gain', 'run', Math.floor(Math.random() * 4) + 0);

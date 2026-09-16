@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_road', 'start');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'schedule', 'A60');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
@@ -31,20 +32,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The forest ' + iif(gad_meadow_found = 1, 'and meadow ', ') + 'can be found furth...
   scene.text('The forest \' + iif(gad_meadow_found = 1, \'and meadow \', \') + \'can be found further down the road, away from the village.');
   if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).GadBoy ?? 0)?.['first_drink'] > 0  &&  ((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 20  &&  (((s as any).npc_QW ?? 0)?.['A63'] < 11  ||  ((s as any).GadBoy ?? 0)?.['river_gang'] > 2)) {
-    scene.text('<a href="exec:gt \'mitka\'">Mitka</a> is smoking near the road, he smiles at you as you walk by.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitka\\u0027, \\u0027\\u0027); return false;">Mitka</a> is smoking near the road, he smiles at you as you walk by.');
   } else {
     if (((s as any).GadBoy ?? 0)?.['first_drink'] > 0  &&  ((s as any).hour ?? 0) === 20  &&  ((s as any).alko ?? 0) < 10  &&  ((s as any).GadBoy ?? 0)?.['drinkday'] !== ((s as any).daystart ?? 0)) {
-      scene.text('<a href="exec:gt \'gad_road\', \'drinking_invite\'">Mitka, Kolyamba, and Vasyan</a> are walking down the road towards the woods, drinking moonshine and talking loudly.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_road\\u0027, \\u0027drinking_invite\\u0027); return false;">Mitka, Kolyamba, and Vasyan</a> are walking down the road towards the woods, drinking moonshine and talking loudly.');
     } else {
       if (((s as any).GadBoy ?? 0)?.['first_drink'] === 2  &&  ((s as any).hour ?? 0) > 20  &&  ((s as any).alko ?? 0) < 10  &&  ((s as any).GadBoy ?? 0)?.['drinkday'] !== ((s as any).daystart ?? 0)) {
         if (((s as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group') {
           if (((s as any).MiraVars ?? 0)?.['QW'] >= 16  &&  ((s as any).GadBoy ?? 0)?.['river_gang'] === 2) {
-            scene.text('You can go drink with Mira, Mitka, Kolyamba and Vasyan at their <a href="exec:gt \'mitkabuh_group\'">trailer</a> hidden in the woods.');
+            scene.text('You can go drink with Mira, Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkabuh_group\\u0027, \\u0027\\u0027); return false;">trailer</a> hidden in the woods.');
           } else {
-            scene.text('You can go drink with Mira, Mitka, Kolyamba and Vasyan at their <a href="exec:gt \'mitkabuh\'">trailer</a> hidden in the woods.');
+            scene.text('You can go drink with Mira, Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkabuh\\u0027, \\u0027\\u0027); return false;">trailer</a> hidden in the woods.');
           }
         } else {
-          scene.text('You can go drink with Mitka, Kolyamba and Vasyan at their <a href="exec:gt \'mitkabuh\'">trailer</a> hidden in the woods.');
+          scene.text('You can go drink with Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkabuh\\u0027, \\u0027\\u0027); return false;">trailer</a> hidden in the woods.');
         }
       }
     }
@@ -124,6 +125,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_road', 'drinking_invite');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'miroslava_schedule', '');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -154,7 +156,8 @@ function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['gad_road', 'start'] },
+    qspGoto(s, 'gad_road', 'start');
+  } },
       ]);
     }
   }
@@ -205,7 +208,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const gad_road: LocationDef = {
   name: 'gad_road',
-  title: '<br>You are too exhausted to do this. Recover your stamina before trying to go for a run.',
+  title: '<br>You are too exhausted to do this. Recover your stamina b',
   region: 'gadukino',
   locationType: 'secluded',
   enter: enter,

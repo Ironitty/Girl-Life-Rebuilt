@@ -1,14 +1,21 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'Prostitute';
+  (s as any).metkaSex = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).locSex = 'Prostitute';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Road near the park, among prostitutes</b></center>');
@@ -39,7 +46,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'prostitute');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
           { label: '"How do I become one of you?"', handler: (st: GameState) => {
     scene.text('You raise your hands disarmingly and say: "Whoa, relax! I only wanted to ask… how do I become one of you? I want to work here!"');
     scene.text('The prostitute grins meanly and spits on the ground before you, saying: "That\'s what I thought, bitch. Stella runs this area! You pay her if you want to work here, you got that?"');
@@ -74,7 +82,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('He looks at you with disdain. "Time for you to pay your tribute, slut."');
         if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 1) {
           scene.actions([
-            { label: 'Give him <<$func(\'money\', \'string_price\', 1000)>>', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Give him ' + String(qspFunc(s, 'money', 'string_price', 1000) ?? ''), handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 1000, 'cash');
     // TODO-QSP: dynamic text: You give the man <<$func('money', 'string_price', 1000)>>, which he pockets righ...
     scene.text(`You give the man ${qspFunc(s, 'money', 'string_price', 1000)}, which he pockets right away. Then he drives off, without saying another word.`);
@@ -95,7 +103,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Reach for his groin', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Bandit', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['blowPR', 'start'] },
+    qspGoto(s, 'blowPR', 'start');
+  } },
     ]);
   } },
           ]);
@@ -107,14 +116,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'bandit');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
         ]);
       } else {
         if (((s as any).proseventrand ?? 0) === 2) {
           scene.text('A rather scrawny looking prostitute approaches you and says: "Listen up, skank. It\'s time you pay Stella!"');
           if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 1) {
             scene.actions([
-              { label: 'Give her <<$func(\'money\', \'string_price\', 500)>>', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Give her ' + String(qspFunc(s, 'money', 'string_price', 500) ?? ''), handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 500, 'cash');
     scene.text('As you give her the money, you\'d swear you see a twinge of relief in her eyes. The girl was clearly worried you were going to give her a hard time.');
     scene.text('She quickly walks away, not saying anything else.');
@@ -142,7 +152,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'prostitute2');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
           ]);
         } else {
           scene.text('A car stops near you and the driver rolls his window down.');
@@ -158,7 +169,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).ProsMoney ?? 0) > 0) {
             scene.actions([
-              { label: '<<$func(\'money\', \'string_profit\', ProsMoney * 100)>>', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'money', 'string_profit', ((s as any).ProsMoney ?? '') * 100) ?? ''), handler: (st: GameState) => {
     // TODO-QSP: gt 'prostitute', 'work1', iif(proseventrand <= 8, 'blow job', iif(proseventrand <= 14, 'sex', 'anal'...
   } },
             ]);
@@ -193,12 +204,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go back to the park', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_park', 'start'] },
+    qspGoto(s, 'city_park', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterWork1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   scene.img('images/locations/city/centralpark/park2.jpg');
   // TODO-QSP: dynamic text: You pretend to think it over for a moment, then look at the man again and smile:...
   scene.text(`You pretend to think it over for a moment, then look at the man again and smile: "For you, babe? Only ${qspFunc(s, 'money', 'string_profit', ((s as any).ProsMoney ?? '') * 100, 1)}."`);
@@ -323,9 +336,11 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
     (s as any).ProsMoney = ((s as any).KlientMON ?? 0);
-    scene.actions([{ label: 'Continue', goto: ['prostitute', 'work2', '\'<<$ARGS[1]>>\''] }]);
+    qspGoto(s, 'prostitute', 'work2', qspUntranslated(s, "'<<ARGS[1]>>'", { location: "Prostitute" }));
   } },
-          { label: 'Refuse', goto: ['prostitute', 'start'] },
+          { label: 'Refuse', handler: (st: GameState) => {
+    qspGoto(s, 'prostitute', 'start');
+  } },
         ]);
       }
     }
@@ -340,6 +355,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork2(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   scene.text('The client grins and gives you a nod: "Get in."');
   // TODO-QSP: end
   scene.actions([

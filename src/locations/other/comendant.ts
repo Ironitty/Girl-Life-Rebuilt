@@ -23,7 +23,7 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
 
 function enterPos2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 1;
+  ((s as any).hostel = (s as any).hostel ?? {})['status'] = 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hostel owner</b></center>');
   scene.img('images/locations/pavlovsk/hostel/comendant.jpg');
@@ -43,7 +43,7 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
 
 function enterPos3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 3;
+  ((s as any).hostel = (s as any).hostel ?? {})['status'] = 3;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hostel owner</b></center>');
   scene.img('images/locations/pavlovsk/hostel/comendant_what.jpg');

@@ -1,10 +1,11 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).svidboy_home_arg = '';
   scene.build();
 }
 
@@ -14,6 +15,9 @@ function enterKinosvid(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'stat', '');
   if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
+    (s as any).svidboy_home = 'pav_cinema';
+  } else {
+    (s as any).svidboy_home = 'city_mall';
   }
   scene.text('<center><b>Cinema</b></center>');
   scene.img('images/characters/city/boyfriend/sex/event/kino0.jpg');
@@ -71,6 +75,11 @@ function enterKinosvid(s: GameState, scene: SceneBuilder): void {
 
 function enterParksvid(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
+    (s as any).svidboy_home = 'pav_park';
+    (s as any).svidboy_home_arg = 'start';
+  } else {
+    (s as any).svidboy_home = 'city_park';
+    (s as any).svidboy_home_arg = 'start';
   }
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -84,7 +93,7 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go for a walk', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['svidboy', 'parksvid2'] }]);
+      qspGoto(s, 'svidboy', 'parksvid2');
     }
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     scene.img('images/characters/city/boyfriend/sex/event/sex_park1.jpg');
@@ -187,7 +196,8 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = 49;
     (s as any).svidboysex = 1;
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-  }, goto: ['sex', 'kuni'] },
+    qspGoto(s, 'sex', 'kuni');
+  } },
     ]);
   } },
     ]);
@@ -202,6 +212,11 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
 
 function enterParksvid2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
+    (s as any).svidboy_home = 'pav_park';
+    (s as any).svidboy_home_arg = 'start';
+  } else {
+    (s as any).svidboy_home = 'city_park';
+    (s as any).svidboy_home_arg = 'start';
   }
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/boyfriend/sex/event/sex_park5.jpg');
@@ -236,10 +251,13 @@ function enterParksvid2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
+    (s as any).svidboy_home = 'svidboy';
+    (s as any).svidboy_home_arg = 'parksvid21';
     (s as any).picrand = 50;
     (s as any).svidboysex = 1;
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-  }, goto: ['sex', 'minet'] },
+    qspGoto(s, 'sex', 'minet');
+  } },
     ]);
   } else {
     if (((s as any).pcs_inhib ?? 0) >= 40  ||  ((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -276,10 +294,13 @@ function enterParksvid2(s: GameState, scene: SceneBuilder): void {
     scene.text('"And I do not have a problem with that," he says, coming up to you and unfastening his fly.');
     scene.actions([
       { label: 'Blowjob', handler: (st: GameState) => {
+    (s as any).svidboy_home = 'svidboy';
+    (s as any).svidboy_home_arg = 'parksvid22';
     (s as any).picrand = 50;
     (s as any).svidboysex = 1;
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-  }, goto: ['sex', 'minet'] },
+    qspGoto(s, 'sex', 'minet');
+  } },
     ]);
   } },
       ]);
@@ -297,6 +318,11 @@ function enterParksvid2(s: GameState, scene: SceneBuilder): void {
 
 function enterParksvid21(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
+    (s as any).svidboy_home = 'pav_park';
+    (s as any).svidboy_home_arg = 'start';
+  } else {
+    (s as any).svidboy_home = 'city_park';
+    (s as any).svidboy_home_arg = 'start';
   }
   scene.img('images/characters/city/boyfriend/sex/event/sex_park7.jpg');
   // TODO-QSP: dynamic text: Once <<$npcdesc>> finishes, he asks you, "Well is our little friend still here?"
@@ -360,6 +386,11 @@ function enterParksvid21(s: GameState, scene: SceneBuilder): void {
 
 function enterParksvid22(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
+    (s as any).svidboy_home = 'pav_park';
+    (s as any).svidboy_home_arg = 'start';
+  } else {
+    (s as any).svidboy_home = 'city_park';
+    (s as any).svidboy_home_arg = 'start';
   }
   scene.img('images/characters/city/boyfriend/sex/event/sex_park7.jpg');
   // TODO-QSP: dynamic text: After <<$npcdesc>> finishes, he notices you watching the African. "Damn, this pe...
@@ -395,7 +426,7 @@ function enterParksvid22(s: GameState, scene: SceneBuilder): void {
     { label: 'Annoy him', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'African guy', Math.floor(Math.random() * 15) + 21);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
     scene.img('images/characters/city/boyfriend/sex/event/sex_park8.jpg');
     scene.text('"And what if I do want to suck him off?" you snap back at him.');
     // TODO-QSP: dynamic text: "Oh hey, let me call him over then. Hey man, come here, free whore sucks just fo...
@@ -419,6 +450,7 @@ function enterBillsvid(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 1);
+  (s as any).svidboy_home = 'city_mall';
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 2) + 51;
   scene.img(`images/characters/city/boyfriend/sex/event/bil${((s as any).picrand || '')}.jpg`);
@@ -490,7 +522,8 @@ function enterBillsvid(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him continue', handler: (st: GameState) => {
     (s as any).svidboysex = 1;
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-  }, goto: ['sex', 'kuni'] },
+    qspGoto(s, 'sex', 'kuni');
+  } },
     ]);
   } },
     ]);
@@ -505,6 +538,9 @@ function enterKafesvid(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'stat', '');
   if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
+    (s as any).svidboy_home = 'pav_commercial';
+  } else {
+    (s as any).svidboy_home = 'city_center';
   }
   scene.img('images/characters/city/boyfriend/sex/event/kafe0.jpg');
   // TODO-QSP: dynamic text: You and <<$npcdesc>> go into a small cafe. It seems that it does not enjoy popul...
@@ -576,7 +612,8 @@ function enterKafesvid(s: GameState, scene: SceneBuilder): void {
     (s as any).svidboysex = 1;
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
     (s as any).picrand = 53;
-  }, goto: ['sex', 'kuni'] },
+    qspGoto(s, 'sex', 'kuni');
+  } },
     ]);
   } },
     ]);

@@ -14,12 +14,12 @@ function enterDMother1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apologize', handler: (st: GameState) => {
     (s as any).mothersorryday = ((s as any).daystart ?? 0);
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A29'] = ((s as any).npc_rel['A29'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A29'] = ((s as any).npc_rel['A29'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You profusely apologize to your mother and promise you\'ll try to be a better person. Even though she\'s still upset with you, you can tell her attitude towards you is slightly milder than before.');
     scene.actions([
       { label: 'Move away from her', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -35,12 +35,12 @@ function enterDMother2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Try to get on her good side', handler: (st: GameState) => {
     (s as any).mothersorryday = ((s as any).daystart ?? 0);
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A29'] = ((s as any).npc_rel['A29'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A29'] = ((s as any).npc_rel['A29'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You cling onto your mother and try to butter her up a little, talking about things she enjoys. This actually gets her to engage in conversation with you and after a while she seems to be a bit friendlier towards you.');
     scene.actions([
       { label: 'Move away from her', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -99,26 +99,31 @@ function enterDMother3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDMother4(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/posuda\'+rand(1, 3)+\'.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mother\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_nickname ?? 0)?.['A29'] + '</a> stands near the sink, washing dishes.';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother5(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/gotovka.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mother\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_nickname ?? 0)?.['A29'] + '</a> is preparing meals.';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother6(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/tea.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mother\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_nickname ?? 0)?.['A29'] + '</a> is drinking tea.';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother7(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/prost\'+rand(1, 11)+\'.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mother\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_nickname ?? 0)?.['A29'] + '</a> is busy in the kitchen and unaware of your presence.';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother8(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/uborka\'+rand(1, 3)+\'.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mother\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_nickname ?? 0)?.['A29'] + '</a> is cleaning with a broom in her hand.';
   // TODO-QSP: end
   scene.build();
 }

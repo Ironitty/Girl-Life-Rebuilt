@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -78,10 +78,10 @@ function enterLookClient(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
   }
   if (((s as any).prostitute ?? 0)?.['regular'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'client_regular', '\'look_client\''] }]);
+    qspGoto(s, 'prostitution_car_negotiation', 'client_regular', 'look_client');
   } else {
     if (((s as any).prostitute ?? 0)?.['client_chance'] > 100  &&  ((s as any).prostitute ?? 0)?.['regular'] === 0) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pity_counter'] = 0;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['pity_counter'] = 0;
       scene.img('images/shared/prostitution/car/normal/negotiation/chat\'+rand(0, 1)+\'.mp4');
       scene.text('A car stops next to you. "Hey sweetie, are you looking for a good time?" You say to him.');
       if (((s as any).prostitute ?? 0)?.['rough'] === 0) {
@@ -120,33 +120,36 @@ function enterLookClient(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'A blowjob', handler: (st: GameState) => {
     if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['propose'] = 2;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 2;
     }
-  }, goto: ['prostitution_car_negotiation', 'negotiation_start'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_start');
+  } },
                 { label: 'Your pussy', handler: (st: GameState) => {
     if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Vaginal') {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['propose'] = 2;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 2;
     }
-  }, goto: ['prostitution_car_negotiation', 'negotiation_start'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_start');
+  } },
                 { label: 'Your ass', handler: (st: GameState) => {
     if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Anal') {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['propose'] = 2;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 2;
     }
-  }, goto: ['prostitution_car_negotiation', 'negotiation_start'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_start');
+  } },
               ]);
             }
           }
         }
       } else {
-        scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'rough'] }]);
+        qspGoto(s, 'prostitution_car_negotiation', 'rough');
       }
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['pity_counter'] = ((s as any).prostitute['pity_counter'] ?? 0) + (Math.floor(Math.random() * 5) + 4);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['pity_counter'] = ((s as any).prostitute['pity_counter'] ?? 0) + (Math.floor(Math.random() * 5) + 4);
       scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
       scene.text('<br>Some cars drive by, but nobody stops.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'work');
+    dynamicGoto(st, 'prevLoc', 'work');
   } },
       ]);
     }
@@ -186,7 +189,8 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: '… you\'re not in the mood', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['prostitution_car_negotiation', 'client_regular_fail'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'client_regular_fail');
+  } },
         ]);
       }
       scene.actions([
@@ -204,6 +208,8 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: '… always use a condom.'+iif((mc_inventory['normal_condoms'] < 1 and mc_inventory['equipped_condoms'...
     scene.actions([
       { label: 'Don\'t make an exception', handler: (st: GameState) => {
+    (s as any).prostitute_client_condom = 'Yes';
+    (s as any).prostitute_client_cumshot = 'Outside or Condom';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_yes', 'inside_no');
     if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0  ||  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
       // TODO-QSP: dynamic text: You pull out a condom out of your '+iif(bag = 1, 'purse', 'pocket')+' and he nod...
@@ -223,7 +229,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
         scene.text('"Perfect, you nearly gave me a heart attack." You grin. "I mean it," he says half serious, half joking. "I can\'t go a week without fucking you."');
         (s as any).minut = ((s as any).minut ?? 0) + 2;
         qspCall(s, 'money', 'pay', 60);
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = 1;
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = 1;
         qspCall(s, 'stat', '');
         scene.actions([
           { label: 'Continue', goto: ['prostitution_car_negotiation', 'client_regular_success'] },
@@ -233,18 +239,20 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
         scene.text(`He sighs and after a second he shrugs. "Fine," he looks at you and reassures you. "Don't worry about it ${((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] ?? ''}, you're always worth waiting for."`);
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'work');
+    dynamicGoto(st, 'prevLoc', 'work');
   } },
         ]);
       }
     }
   } },
       { label: 'Make an exception', handler: (st: GameState) => {
+    (s as any).prostitute_client_condom = 'No';
     scene.text('"You know what, how about we do it without a condom today?" You ask and quickly add: "But you have to pay for that."');
     scene.text('He looks at you surprised but pleased. "I can fuck you raw? Really?" You nod. "Wow, nice. Sure let\'s do it like god intended."');
     scene.text('You smile and tell him that he…');
     scene.actions([
       { label: 'Can\'t cum inside you', handler: (st: GameState) => {
+    (s as any).prostitute_client_cumshot = 'Outside';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_no');
     scene.text('… can\'t cum inside you. "Yeah, raw is the best way to fuck, but don\'t cum inside me, OK? I\'ll suck you off at the end."');
     scene.text('"Sure thing, babe."');
@@ -253,6 +261,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Can cum inside you', handler: (st: GameState) => {
+    (s as any).prostitute_client_cumshot = 'Inside';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
     scene.text('… can cum inside you. "And don\'t be afraid to cum inside me if you want and pay for it."');
     // TODO-QSP: dynamic text: "Of course I'll pay for it. You're the best, <<$prostitute_names[$prostitution_l...
@@ -266,12 +275,14 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Never use a condom', handler: (st: GameState) => {
+    (s as any).prostitute_client_condom = 'No';
     scene.text('… never use a condom. "You want to fuck me raw as always?"');
     // TODO-QSP: dynamic text: He nods. "Of course, it just isn't the same with a condom. It's really great tha...
     scene.text(`He nods. "Of course, it just isn't the same with a condom. It's really great that you do that, ${((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] ?? ''}. You know that, right? There aren't many girls your age that do it raw."`);
     scene.text('You smile and tell him that he…');
     scene.actions([
       { label: 'Can\'t cum inside you', handler: (st: GameState) => {
+    (s as any).prostitute_client_cumshot = 'Outside';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_no');
     scene.text('… can\'t cum inside you. "Yeah, raw is the best way to fuck, but remember don\'t cum inside me. I\'ll suck you off at the end."');
     scene.text('He nods. "Sure thing, babe."');
@@ -280,6 +291,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Can cum inside you', handler: (st: GameState) => {
+    (s as any).prostitute_client_cumshot = 'Inside';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
     scene.text('… can cum inside you. "Yeah, raw is the best way to fuck and remember don\'t be afraid to cum anywhere you want."');
     // TODO-QSP: dynamic text: "You're the best whore in the whole area, <<$prostitute_names[$prostitution_loca...
@@ -294,17 +306,25 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).prostitute ?? 0)?.['std_mod'] === 0  &&  ((s as any).prostitute_auto ?? 0)?.['regular'] === 1) {
         if ((((s as any).prostitute_auto ?? 0)?.['reg_vag_condom'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal')  ||  (((s as any).prostitute_auto ?? 0)?.['reg_anal_condom'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal')) {
+          (s as any).prostitute_client_condom = 'Yes';
+          (s as any).prostitute_client_cumshot = 'Outside or Condom';
           if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] < 1) {
-            if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = 1;
+            ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = 1;
             qspCall(s, 'money', 'pay', 60);
           }
         } else {
+          (s as any).prostitute_client_condom = 'No';
           if ((((s as any).prostitute_auto ?? 0)?.['reg_vag_creampie'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal')  ||  (((s as any).prostitute_auto ?? 0)?.['reg_anal_creampie'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal')) {
+            (s as any).prostitute_client_cumshot = 'Inside';
+          } else {
+            (s as any).prostitute_client_cumshot = 'Outside';
           }
         }
         qspCall(s, 'prostitution_functions', 'payment', ((((s as any).prostitute_client_condom ?? 0) === 'Yes') ? ('condom_yes') : ('condom_no')), ((((s as any).prostitute_client_cumshot ?? 0) === 'Inside') ? ('inside_yes') : ('inside_no')));
-        scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'client_regular_success'] }]);
+        qspGoto(s, 'prostitution_car_negotiation', 'client_regular_success');
       } else {
+        (s as any).prostitute_client_condom = 'Yes';
+        (s as any).prostitute_client_cumshot = 'Outside or Condom';
         qspCall(s, 'prostitution_functions', 'payment', 'condom_yes', 'inside_no');
         scene.text('… should always use a condom. He was always nice, never mistreated you and without a condom he would surely catch your STD.');
         scene.actions([
@@ -339,7 +359,7 @@ function enterClientRegularFail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'work');
+    dynamicGoto(st, 'prevLoc', 'work');
   } },
   ]);
   scene.build();
@@ -349,7 +369,7 @@ function enterClientRegularSuccess(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['regular_timer'] = ((s as any).daystart ?? 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['regular_timer'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/shared/prostitution/car/regular/negotiation/drive.mp4');
   scene.text('You get into his car and he takes you to your regular spot at the end of the parking lot.');
@@ -375,11 +395,11 @@ function enterClientRegularSuccess(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Happy?" He asks as you take the ${qspFunc(s, 'money', 'string_profit', ((s as any).prostitute ?? 0)?.['payment'] ?? '')}.`);
     scene.text('"Yes, now let me make you happy," you reply.');
     qspCall(s, 'arousal', 'breasts', 2);
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
+    ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
     if (((s as any).prostitute ?? 0)?.['payment_method'] === 1) {
       // TODO-QSP: gs 'money', 'earn', prostitute['payment'], 'cash'
     }
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 0;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['prostitution_car_sex', 'regular_start'] },
@@ -393,14 +413,14 @@ function enterClientRegularSuccess(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Thanks," you say and take the <<$func('money', 'string_profit', prostitute['pay...
       scene.text(`"Thanks," you say and take the ${qspFunc(s, 'money', 'string_profit', ((s as any).prostitute ?? 0)?.['payment'] ?? '')}.`);
       scene.text('Now it\'s for you to keep up your end of the bargain.');
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
       if (((s as any).prostitute ?? 0)?.['payment_method'] === 1) {
         // TODO-QSP: gs 'money', 'earn', prostitute['payment'], 'cash'
       }
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 0;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 0;
       qspCall(s, 'stat', '');
       if (((s as any).prostitute ?? 0)?.['skip_start'] === 1) {
-        scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'regular_start'] }]);
+        qspGoto(s, 'prostitution_car_sex', 'regular_start');
       } else {
         scene.actions([
           { label: 'Get undressed', goto: ['prostitution_car_sex', 'regular_start'] },
@@ -416,7 +436,7 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   if (((s as any).prostitute_auto ?? 0)?.['normal'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_automatic'] }]);
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_automatic');
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/chat\'+rand(0, 1)+\'.mp4');
   // TODO-QSP: iif(prostitute['propose'] = 0, 'You lean into his car and chat with him about the price and what he ...
@@ -451,7 +471,7 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Decline and move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
       ]);
     }
@@ -469,7 +489,7 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Decline and move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'prostitution', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
         ]);
       }
@@ -489,36 +509,36 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
             // TODO-QSP: act 'Decline and offer him a blowjob instead' + $func('willpower', 'get_willcost_string'): prostitut...
             qspCall(s, 'willpower', 'pay', 'resist');
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Blowjob';
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['propose'] = 1;
-            scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_start'] }]);
+            ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Blowjob';
+            ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 1;
+            qspGoto(s, 'prostitution_car_negotiation', 'negotiation_start');
           }
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Anal') {
             // TODO-QSP: act 'Decline and offer him your ass instead' + $func('willpower', 'get_willcost_string'): prostitute...
             qspCall(s, 'willpower', 'pay', 'resist');
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Anal';
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['propose'] = 1;
-            scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_start'] }]);
+            ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Anal';
+            ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 1;
+            qspGoto(s, 'prostitution_car_negotiation', 'negotiation_start');
           }
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Vaginal') {
             // TODO-QSP: act 'Decline and offer him your pussy instead' + $func('willpower', 'get_willcost_string'): prostitu...
             qspCall(s, 'willpower', 'pay', 'resist');
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Vaginal';
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['propose'] = 1;
-            scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_start'] }]);
+            ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Vaginal';
+            ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 1;
+            qspGoto(s, 'prostitution_car_negotiation', 'negotiation_start');
           }
         } else {
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
             // TODO-QSP: act 'Decline and offer him a blowjob instead' + $func('willpower', 'get_willcost_string'): gs 'willp...
-            scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+            qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
           }
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Anal') {
             // TODO-QSP: act 'Decline and offer him your ass instead' + $func('willpower', 'get_willcost_string'): gs 'willpo...
-            scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+            qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
           }
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Vaginal') {
             // TODO-QSP: act 'Decline and offer him your pussy instead' + $func('willpower', 'get_willcost_string'): gs 'will...
-            scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+            qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
           }
         }
       }
@@ -550,9 +570,9 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Tell him you don\'t have a condom', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 1) < 9) {
-      scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+      qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_scene'] = 'Blowjob';
+      ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Blowjob';
       // TODO-QSP: 'After a moment he reluctantly accepts doing it without a condom'+iif($prostitute['client_scene'] = ...
       // TODO-QSP: dynamic text: Sex: <<$prostitute['client_scene']>>
       scene.text(`Sex: ${((s as any).prostitute ?? 0)?.['client_scene'] ?? ''}`);
@@ -570,7 +590,7 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Decline and move away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
         ]);
       }
@@ -610,8 +630,10 @@ function enterNegotiationCondomYes(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get into his car', handler: (st: GameState) => {
+    (s as any).prostitute_client_cumshot = 'Outside or Condom';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_yes', 'Outside or Condom');
-  }, goto: ['prostitution_car_negotiation', 'negotiation_success'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_success');
+  } },
     ]);
   } else {
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'not_discussed');
@@ -629,14 +651,15 @@ function enterNegotiationCondomYes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     if ((Math.floor(Math.random() * 10) + 1) < 7) {
       scene.text('He finally accepts.');
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
+      (s as any).prostitute_client_cumshot = 'Outside or Condom';
+      ((s as any).prostitute = (s as any).prostitute ?? {})['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
       qspCall(s, 'prostitution_functions', 'payment', 'condom_yes', 'inside_no');
       scene.actions([
         { label: 'Get into his car', goto: ['prostitution_car_negotiation', 'negotiation_success'] },
       ]);
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_condom'] = 1;
-      scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['fail_condom'] = 1;
+      qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
     }
   } },
       ]);
@@ -687,14 +710,15 @@ function enterNegotiationCondomNo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     if ((Math.floor(Math.random() * 10) + 1) < 10  ||  ((s as any).prostitute ?? 0)?.['client_creampie'] === 1) {
       scene.text('He accepts your decision.');
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
+      (s as any).prostitute_client_cumshot = 'Outside';
+      ((s as any).prostitute = (s as any).prostitute ?? {})['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
       qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_no');
       scene.actions([
         { label: 'Get into his car', goto: ['prostitution_car_negotiation', 'negotiation_success'] },
       ]);
     } else {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_creampie'] = 1;
-      scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['fail_creampie'] = 1;
+      qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
     }
   } },
     ]);
@@ -702,26 +726,30 @@ function enterNegotiationCondomNo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept and get into his car', handler: (st: GameState) => {
+    (s as any).prostitute_client_cumshot = 'Inside';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
-  }, goto: ['prostitution_car_negotiation', 'negotiation_success'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_success');
+  } },
   ]);
   scene.build();
 }
 
 function enterNegotiationAutomatic(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).prostitute_auto) (s as any).prostitute_auto = {}; (s as any).prostitute_auto['negotiation'] = 1;
+  ((s as any).prostitute_auto = (s as any).prostitute_auto ?? {})['negotiation'] = 1;
   qspCall(s, 'willpower', 'prostitution', 'resist');
   if (((((s as any).prostitute_auto ?? 0)?.['norm_bj'] === 0  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob')  ||  (((s as any).prostitute_auto ?? 0)?.['norm_vag'] === 0  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal')  ||  (((s as any).prostitute_auto ?? 0)?.['norm_anal'] === 0  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal'))) {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      if (!(s as any).prostitute_auto) (s as any).prostitute_auto = {}; (s as any).prostitute_auto['willpower'] = 1;
+      ((s as any).prostitute_auto = (s as any).prostitute_auto ?? {})['willpower'] = 1;
     } else {
       qspCall(s, 'willpower', 'pay', 'resist');
-      scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+      qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
     }
   }
   if (((((s as any).prostitute_auto ?? 0)?.['norm_bj_condom'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob')  ||  (((s as any).prostitute_auto ?? 0)?.['norm_vag_condom'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal')  ||  (((s as any).prostitute_auto ?? 0)?.['norm_anal_condom'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal'))  &&  (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0  ||  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0)) {
     qspCall(s, 'prostitution_functions', 'will_unprotected', 'resist');
     if (((s as any).prostitute ?? 0)?.['std_mod'] === 1  ||  (Math.floor(Math.random() * 10) + 1) < 7  ||  (((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal'  &&  ((s as any).mesec ?? 0) > 0  &&  ((s as any).prostitute ?? 0)?.['mesec_mod'] === 0)  ||  (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal'  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).prostitute ?? 0)?.['dirty_anal_mod'] === 0)) {
+      (s as any).prostitute_client_condom = 'Yes';
+      (s as any).prostitute_client_cumshot = 'Outside or Condom';
       qspCall(s, 'prostitution_functions', 'payment', 'condom_yes', 'inside_no');
     } else {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -735,49 +763,59 @@ function enterNegotiationAutomatic(s: GameState, scene: SceneBuilder): void {
           }
         }
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          if (!(s as any).prostitute_auto) (s as any).prostitute_auto = {}; (s as any).prostitute_auto['willpower'] = 1;
+          ((s as any).prostitute_auto = (s as any).prostitute_auto ?? {})['willpower'] = 1;
+          (s as any).prostitute_client_condom = 'No';
+          (s as any).prostitute_client_cumshot = 'Inside';
           qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
         } else {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
+          (s as any).prostitute_client_condom = 'No';
+          (s as any).prostitute_client_cumshot = 'Outside';
+          ((s as any).prostitute = (s as any).prostitute ?? {})['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
           qspCall(s, 'willpower', 'pay', 'resist');
           qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_no');
           if ((Math.floor(Math.random() * 10) + 1) === 10  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0) {
-            scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+            qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
           }
         }
       } else {
-        if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
+        (s as any).prostitute_client_condom = 'Yes';
+        (s as any).prostitute_client_cumshot = 'Outside or Condom';
+        ((s as any).prostitute = (s as any).prostitute ?? {})['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
         qspCall(s, 'willpower', 'pay', 'resist');
         qspCall(s, 'prostitution_functions', 'payment', 'condom_yes', 'inside_no');
         if ((Math.floor(Math.random() * 10) + 1) < 4) {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_condom'] = 1;
-          scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+          ((s as any).prostitute = (s as any).prostitute ?? {})['fail_condom'] = 1;
+          qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
         }
       }
     }
-    scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_success'] }]);
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_success');
   } else {
     if ((Math.floor(Math.random() * 10) + 1) < 9  &&  ((s as any).prostitute ?? 0)?.['std_mod'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+      qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
     } else {
+      (s as any).prostitute_client_condom = 'No';
       qspCall(s, 'prostitution_functions', 'will_unprotected', 'resist');
       if (((((s as any).prostitute_auto ?? 0)?.['norm_bj_creampie'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob')  ||  (((s as any).prostitute_auto ?? 0)?.['norm_vag_creampie'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal')  ||  (((s as any).prostitute_auto ?? 0)?.['norm_anal_creampie'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal'))) {
+        (s as any).prostitute_client_cumshot = 'Inside';
         qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
       } else {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          if (!(s as any).prostitute_auto) (s as any).prostitute_auto = {}; (s as any).prostitute_auto['willpower'] = 1;
+          ((s as any).prostitute_auto = (s as any).prostitute_auto ?? {})['willpower'] = 1;
+          (s as any).prostitute_client_cumshot = 'Inside';
           qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
         } else {
-          if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
+          (s as any).prostitute_client_cumshot = 'Outside';
+          ((s as any).prostitute = (s as any).prostitute ?? {})['client_satisfaction'] = ((s as any).prostitute['client_satisfaction'] ?? 0) - (10);
           qspCall(s, 'willpower', 'pay', 'resist');
           qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_no');
           if ((Math.floor(Math.random() * 10) + 1) === 10  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0) {
-            if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_creampie'] = 1;
-            scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+            ((s as any).prostitute = (s as any).prostitute ?? {})['fail_creampie'] = 1;
+            qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
           }
         }
       }
-      scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_success'] }]);
+      qspGoto(s, 'prostitution_car_negotiation', 'negotiation_success');
     }
   }
   // TODO-QSP: end
@@ -791,24 +829,28 @@ function enterNegotiationFail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: He shakes his head. "I have changed my mind'+iif(rand(1, 10) < 7, '", sorry girl...
   scene.text('He shakes his head. "I have changed my mind\'+iif(rand(1, 10) < 7, \'", sorry girl maybe next time."\', \', bitch. Get away from my car."\')+\' He says.');
   if (((s as any).prostitute ?? 0)?.['fail_condom'] === 1) {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_condom'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['fail_condom'] = 0;
     scene.actions([
       { label: 'Change your mind and do it without a condom', goto: ['prostitution_car_negotiation', 'negotiation_condom_no'] },
     ]);
   } else {
     if (((s as any).prostitute ?? 0)?.['fail_creampie'] === 1) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_creampie'] = 0;
+      ((s as any).prostitute = (s as any).prostitute ?? {})['fail_creampie'] = 0;
       scene.actions([
         { label: 'Change your mind and allow him to cum inside you', handler: (st: GameState) => {
+    (s as any).prostitute_client_cumshot = 'Inside';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
-  }, goto: ['prostitution_car_negotiation', 'negotiation_success'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_success');
+  } },
       ]);
     } else {
       if (((s as any).prostitute ?? 0)?.['fail_pay'] === 1) {
         scene.actions([
           { label: 'Change your mind and accept his offer', handler: (st: GameState) => {
+    (s as any).prostitute_client_cumshot = 'Inside';
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
-  }, goto: ['prostitution_car_negotiation', 'negotiation_success'] },
+    qspGoto(s, 'prostitution_car_negotiation', 'negotiation_success');
+  } },
         ]);
       }
     }
@@ -816,9 +858,9 @@ function enterNegotiationFail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Step back from the car', handler: (st: GameState) => {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_pay'] = 0;
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_satisfaction'] = 0;
-    dynamicGoto(st, 'loc');
+    ((s as any).prostitute = (s as any).prostitute ?? {})['fail_pay'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['client_satisfaction'] = 0;
+    dynamicGoto(s, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -839,12 +881,12 @@ function enterNegotiationSuccess(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Condom: <<$prostitute_client_condom>>
     scene.text(`Condom: ${((s as any).prostitute_client_condom || '')}`);
     // TODO-QSP: 'Cumshot: '+iif($prostitute_client_cumshot = 'Outside or Condom', 'Outside', '<<$prostitute_client_c...
-    if (!(s as any).prostitute_auto) (s as any).prostitute_auto = {}; (s as any).prostitute_auto['willpower'] = 0;
-    if (!(s as any).prostitute_auto) (s as any).prostitute_auto = {}; (s as any).prostitute_auto['negotiation'] = 0;
+    ((s as any).prostitute_auto = (s as any).prostitute_auto ?? {})['willpower'] = 0;
+    ((s as any).prostitute_auto = (s as any).prostitute_auto ?? {})['negotiation'] = 0;
   }
   // TODO-QSP: 'You get inside the car and tell him to drive to a more secluded part of the parking lot.'+iif(rand(...
   if (((s as any).prostitute_client_condom ?? 0) === '!') {
-    if (!(s as any).prostitute_stat) (s as any).prostitute_stat = {}; (s as any).prostitute_stat['unprotected'] = ((s as any).prostitute_stat['unprotected'] ?? 0) + (1);
+    ((s as any).prostitute_stat = (s as any).prostitute_stat ?? {})['unprotected'] = ((s as any).prostitute_stat['unprotected'] ?? 0) + (1);
   }
   if (((s as any).prostitute ?? 0)?.['client_satisfaction'] < 0  &&  ((s as any).prostitute ?? 0)?.['fail_pay'] === 0) {
     scene.text('You get the feeling that he isn\'t satisfied with all the choices and that he would have paid 10% or maybe even 20% more. You could try to convince him to pay you a bit more.');
@@ -864,10 +906,10 @@ function enterNegotiationSuccess(s: GameState, scene: SceneBuilder): void {
         { label: 'Ask for more money', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if ((Math.floor(Math.random() * 10) + 1) === 10) {
-      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_pay'] = 1;
-      scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_fail'] }]);
+      ((s as any).prostitute = (s as any).prostitute ?? {})['fail_pay'] = 1;
+      qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
     }
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = ((s as any).prostitute ?? 0)?.['payment_backup'];
+    ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute ?? 0)?.['payment_backup'];
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: He grudgingly accepts and agrees to pay you <<$func('money', 'string_profit', pr...
     scene.text(`He grudgingly accepts and agrees to pay you ${qspFunc(s, 'money', 'string_profit', ((s as any).prostitute ?? 0)?.['payment'] ?? '')} instead.`);
@@ -881,10 +923,10 @@ function enterNegotiationSuccess(s: GameState, scene: SceneBuilder): void {
       { label: 'Don\'t haggle', goto: ['prostitution_car_negotiation', 'money'] },
     ]);
   } else {
-    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['fail_pay'] = 0;
+    ((s as any).prostitute = (s as any).prostitute ?? {})['fail_pay'] = 0;
     scene.text('When you arrive you have only one thing left to do…');
     if (((s as any).prostitute ?? 0)?.['skip_start'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'money'] }]);
+      qspGoto(s, 'prostitution_car_negotiation', 'money');
     } else {
       scene.actions([
         { label: '… ask for your money', goto: ['prostitution_car_negotiation', 'money'] },
@@ -897,20 +939,20 @@ function enterNegotiationSuccess(s: GameState, scene: SceneBuilder): void {
 
 function enterMoney(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['client_satisfaction'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['client_satisfaction'] = 0;
   scene.img('images/shared/prostitution/car/normal/negotiation/money.mp4');
   scene.text('"So…," you say when he parks his car, but he already knows what you\'re going to say. "Yeah, I know, you want your money."');
   // TODO-QSP: dynamic text: He pulls out his wallet and hands you <<$func('money', 'string_profit', prostitu...
   scene.text(`He pulls out his wallet and hands you ${qspFunc(s, 'money', 'string_profit', ((s as any).prostitute ?? 0)?.['payment'] ?? '')}.`);
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
   if (((s as any).prostitute ?? 0)?.['payment_method'] === 1) {
     // TODO-QSP: gs 'money', 'earn', prostitute['payment'], 'cash'
   }
-  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['payment'] = 0;
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 0;
   qspCall(s, 'stat', '');
   scene.text('<br>The moment you have put your money away his hands move to your body starting to undress you.');
   if (((s as any).prostitute ?? 0)?.['skip_start'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'start'] }]);
+    qspGoto(s, 'prostitution_car_sex', 'start');
   } else {
     scene.actions([
       { label: 'Get to work', goto: ['prostitution_car_sex', 'start'] },

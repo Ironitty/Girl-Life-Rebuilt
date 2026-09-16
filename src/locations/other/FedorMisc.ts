@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -32,6 +32,8 @@ function enterFedorIntro(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFedorChat(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'Fedor Chat';
+  (s as any).loc = 'FedorMisc';
   (s as any).numnpc = 5;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -59,7 +61,7 @@ function enterFedorChat(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
     // TODO-QSP: dynamic text: Fedor notices your messy hair and pulls out his <a href="exec:gt 'FedorMisc', 'C...
-    scene.text(`Fedor notices your messy hair and pulls out his <a href="exec:gt 'FedorMisc', 'Comb', ${qspUntranslated(s, "ARGS[1]", { location: "FedorMisc" })}">comb</a>.`);
+    scene.text(`Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.`);
   }
   if (((s as any).npc_grupTipe ?? 0)?.['A5'] === 5) {
     scene.text('Fedor is an outcast in school, and doesn\'t have anyone to sit with during lunch.');
@@ -209,7 +211,7 @@ function enterComb(s: GameState, scene: SceneBuilder): void {
   scene.text('Fedor combs your hair for you as you watch him, admiring how handsome he is. After Fedor finishes combing your hair, he says, "There is my beautiful girlfriend. Your hair is too pretty to be all knotted up like that." you give Fedor a kiss on the cheek as he puts his comb away.');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorMisc" })} [${((s as any).pcs_nickname || '')}] ${((s as any).pcs_lastname || '')}">></font></h4></b></center>`);
-  scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorMisc" }) + '');
+  scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "FedorMisc" }) + '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
@@ -231,12 +233,12 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue.', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 3) + 1;
     if (((s as any).VK ?? 0) <= 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Locker Room 1'] }]);
+      qspGoto(s, 'FedorMisc', 'Locker Room 1');
     } else {
       if (((s as any).VK ?? 0) <= 2) {
-        scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Locker Room 2'] }]);
+        qspGoto(s, 'FedorMisc', 'Locker Room 2');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Locker Room 3'] }]);
+        qspGoto(s, 'FedorMisc', 'Locker Room 3');
       }
     }
   } },
@@ -514,11 +516,13 @@ function enterHall(s: GameState, scene: SceneBuilder): void {
 
 function enterRestroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'FedorMisc', 'Restroom');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'school_bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><h4><font color=#00ffe4>Girl\'s Restroom</font></h4></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/Restroom/girlsrestroom.jpg');
-  scene.text('The girls restroom is fairly clean and has 6 <a href="exec:gt \'fedormisc\', \'Quick Wash\'">sinks</a>, 6 <a href="exec:gt \'mirror\', \'start\'">mirrors</a> and 5 stalls arranged symmetrically.');
+  scene.text('The girls restroom is fairly clean and has 6 <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027fedormisc\\u0027, \\u0027Quick Wash\\u0027); return false;">sinks</a>, 6 <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a> and 5 stalls arranged symmetrically.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave restroom', goto: ['gschool_lessons', 'short_break'] },
@@ -604,9 +608,9 @@ function enterFedorWorkout(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a break', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 3) + 1;
     if (((s as any).VK ?? 0) === 1  &&  ((s as any).strelaQW ?? 0) === -1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Vitek Event'] }]);
+      qspGoto(s, 'FedorMisc', 'Vitek Event');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Workout 2'] }]);
+      qspGoto(s, 'FedorMisc', 'Fedor Workout 2');
     }
   } },
     ]);
@@ -626,9 +630,9 @@ function enterFedorWorkout(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a break', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 3) + 1;
     if (((s as any).VK ?? 0) === 1  &&  ((s as any).strelaQW ?? 0) === -1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Vitek Event'] }]);
+      qspGoto(s, 'FedorMisc', 'Vitek Event');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Workout 2'] }]);
+      qspGoto(s, 'FedorMisc', 'Fedor Workout 2');
     }
   } },
     ]);
@@ -643,9 +647,9 @@ function enterFedorWorkout(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a break', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 3) + 1;
     if (((s as any).VK ?? 0) === 1  &&  ((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).strelaQW ?? 0) === -1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Vitek Event'] }]);
+      qspGoto(s, 'FedorMisc', 'Vitek Event');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Workout 2'] }]);
+      qspGoto(s, 'FedorMisc', 'Fedor Workout 2');
     }
   } },
     ]);
@@ -1046,7 +1050,7 @@ function enterFedorVsDimka(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (10);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (10);
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/school/Events/Dimka/anal.mp4');
@@ -1089,7 +1093,8 @@ function enterFedorVsDimka(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get dressed then leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['pav_residential', ''] },
+    qspGoto(s, 'pav_residential', '');
+  } },
     ]);
   } },
     ]);
@@ -1203,7 +1208,7 @@ function enterWorkoutTime(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/hold.jpg');
     scene.text('Fedor gives you a warm smile as he responds, "Great, I love a girl that keeps herself in shape." you give him a grin as you respond, "Well I already know that, duhh." Fedor chuckles as he fetches your coat then walks you out of the house, toward the sports center then says, "Let me just warm up a sec." Fedor then begins punching a punching bag.');
     scene.actions([
-      { label: 'Work out with him', goto: ['FedorMisc', 'Fedor Workout', '\'workout_date\''] },
+      { label: 'Work out with him', goto: ['FedorMisc', 'Fedor Workout', 'workout_date'] },
     ]);
   } },
     { label: 'I need to head home', goto: ['FedorEv4', 'End Date 2'] },
@@ -1303,7 +1308,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const FedorMisc: LocationDef = {
   name: 'FedorMisc',
-  title: '<<"Fyodor [Fedor] Kozlov">>',
   region: 'other',
   locationType: 'bathroom',
   locclass: 'school_bathroom',

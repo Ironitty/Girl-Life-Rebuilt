@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).menu_loc = 'kakuzu';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Mansion Kakuzu</b></center>');
@@ -24,6 +26,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMansion(s: GameState, scene: SceneBuilder): void {
+  (s as any).location = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Mansion Kakuzu</b></center>');
@@ -38,6 +41,7 @@ function enterMansion(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMansion1(s: GameState, scene: SceneBuilder): void {
+  (s as any).location = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kakuzu</b></center>');
@@ -157,10 +161,12 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
     (s as any).tobiQW = 3;
     (s as any).stihia = ((s as any).srodrand ?? 0);
     (s as any).srodstvo = 0;
-  }, goto: ['kakuzu', 'mansion1'] },
+    qspGoto(s, 'kakuzu', 'mansion1');
+  } },
           { label: 'Unsubscribe from this affinity', handler: (st: GameState) => {
     (s as any).srodstvo = 0;
-  }, goto: ['kakuzu', 'mansion1'] },
+    qspGoto(s, 'kakuzu', 'mansion1');
+  } },
         ]);
       }
     }

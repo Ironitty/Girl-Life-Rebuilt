@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -66,7 +66,8 @@ function enterA(s: GameState, scene: SceneBuilder): void {
       { label: 'Hug his arm', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
     scene.text('You lean against him and hold his arm, taking his hand in yours. He leans over and kisses you in response. The two of you sit there holding hands for the entire movie.');
-  }, goto: ['kinoM', 'b'] },
+    qspGoto(s, 'kinoM', 'b');
+  } },
     ]);
   } else {
     scene.actions([
@@ -90,7 +91,8 @@ function enterA(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
     qspCall(s, 'exp_gain', 'intel', 1);
     scene.text('The movie proves interesting and you sit through the whole thing without interruption.');
-  }, goto: ['kinoM', 'b'] },
+    qspGoto(s, 'kinoM', 'b');
+  } },
   ]);
   scene.build();
 }
@@ -107,6 +109,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'As you feel pleasure growing inside of you, you start moaning involuntarily, louder and louder. ' + ((s as any).npcdesc ?? 0) + ' puts his hand over your mouth in an effort to muffle the noises. Then a massive orgasm hits you, leaving you shuddering and quivering on his cock.';
   }
   // TODO-QSP: dynamic text: <<$npcdesc>> cannot take it any longer and shoots his load into the condom. Once...
   scene.text(`${((s as any).npcdesc || '')} cannot take it any longer and shoots his load into the condom. Once he is finished, you move back to your seat and straighten out your clothes. Once you both are fully dressed again, you look at each other and stifle a laugh. Your act went unnoticed and you watch the rest of the movie holding hands.`);

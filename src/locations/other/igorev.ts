@@ -1,11 +1,12 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['igorhome', 'chat'] }]);
+  (s as any).location_type = 'event';
+  qspGoto(s, 'igorhome', 'chat');
   scene.build();
 }
 
@@ -42,7 +43,7 @@ function enterMovies(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Make out', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Lover'] = 1;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['Lover'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/kissmovie.jpg');
     scene.text('The movie is fairly boring and Igor strokes your thigh, so you return the favor and lean in close to him. He turns to you and you share a kiss. You spend the rest of the movie making out, with no idea what the movie is even about.');
@@ -76,8 +77,8 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorQW ?? 0)?.['horny'] < 40  &&  ((s as any).pcs_horny ?? 0) < 40) {
     qspCall(s, 'mood', 'raise', 'large');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Horny'] = ((s as any).IgorQW['Horny'] ?? 0) + (15);
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Love'] = ((s as any).IgorQW['Love'] ?? 0) + (5);
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['Horny'] = ((s as any).IgorQW['Horny'] ?? 0) + (15);
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['Love'] = ((s as any).IgorQW['Love'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/kiss.mp4');
     scene.text('You start kissing each other, Igor is really being gentle, kissing your neck as you sigh at the sensation.');
@@ -90,8 +91,8 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'mood', 'raise', 'large');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Horny'] = ((s as any).IgorQW['Horny'] ?? 0) + (10);
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Love'] = ((s as any).IgorQW['Love'] ?? 0) + (10);
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['Horny'] = ((s as any).IgorQW['Horny'] ?? 0) + (10);
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['Love'] = ((s as any).IgorQW['Love'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/kiss.mp4');
     scene.text('The two of you kiss as he starts groping your breasts and stroking your crotch.');
@@ -132,7 +133,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: IgorQW['Love'] += 10
   }, goto: ['igorsex', 'din_sex'] },
       { label: 'Stop him', handler: (st: GameState) => {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['sub'] = ((s as any).IgorQW['sub'] ?? 0) + (1);
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['sub'] = ((s as any).IgorQW['sub'] ?? 0) + (1);
     scene.text('"Please, let\'s stop now," you tell him, but he continues to kiss your neck and lightly blows in your ear, not taking no for an answer.');
     scene.actions([
       { label: 'I said NO', handler: (st: GameState) => {
@@ -149,7 +150,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
 
 function enterDinSisterkom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorQW ?? 0)?.['Lover'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['igorsex', 'din_sisterkom_krossdress'] }]);
+    qspGoto(s, 'igorsex', 'din_sisterkom_krossdress');
   }
   scene.text('<center><b>Igor\'s sister\'s room</b></center>');
   scene.img('images/locations/pavlovsk/resident/igorhome/komsister.jpg');
@@ -194,7 +195,7 @@ function enterDinSisterkom(s: GameState, scene: SceneBuilder): void {
     scene.text('"You look good in whatever you wear," he answers.');
     scene.actions([
       { label: 'Call it a day', handler: (st: GameState) => {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['eqwtday'] = ((s as any).daystart ?? 0);
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['eqwtday'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/ystala.jpg');
@@ -225,7 +226,7 @@ function enterCaught(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to his room', handler: (st: GameState) => {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['crossdress'] = 1;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['crossdress'] = 1;
     scene.text('<center><b>Igor\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/igorhome/kom.jpg');
     scene.text('Once you\'re both in his room, you sit down on the edge of his bed and take a deep breath as he sits next to you. "I saw you through the window."');
@@ -269,7 +270,7 @@ function enterCaught(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Blackmail him', handler: (st: GameState) => {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['blackmail'] = 1;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['blackmail'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/igor/talk.jpg');
     scene.text('You lean back and smile at him. "Okay, I\'ll keep your secret, but you\'ll owe me. I want to have some fun with this."');
     scene.text('He looks at you in shock. "What?! No!"');
@@ -340,7 +341,7 @@ function enterCaught(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Dress like a girl or be a girl?', handler: (st: GameState) => {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bi_curious'] = 1;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['bi_curious'] = 1;
     scene.text('<center><b>Igor\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/boy/igor/talk.jpg');
     scene.text('You consider what he said. "Do you like dressing up and looking like a girl or do you really want to be a girl?"');
@@ -450,7 +451,7 @@ function enterCrossdressWalk1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go for a walk around town', handler: (st: GameState) => {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['kdwalk'] = 2;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['kdwalk'] = 2;
     scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/progulka_1.jpg');
     scene.text('You go for a walk in the park. Igor is very scared, leaning onto you and holding your hand. You\'re both constantly looking around, fearing seeing someone you know.');
     scene.text('"Igor, please calm down! You\'re drawing attention to yourself. Just act like you\'re enjoying yourself and no one will notice," you tell him as you hold his hand.');
@@ -522,7 +523,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Go for a walk around town', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['kdwalk'] = 2;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['kdwalk'] = 2;
     scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/progulka_1.jpg');
     scene.text('You go for a walk in the park. Igor is very scared, leaning onto you and holding your hand. You\'re both constantly looking around, fearing seeing someone you know.');
     scene.text('"Igor, please calm down! You\'re drawing attention to yourself. Just act like you\'re enjoying yourself and no one will notice," you tell him as you hold his hand.');
@@ -580,7 +581,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes, let\'s go."');
     scene.actions([
       { label: 'Go out for a walk', handler: (st: GameState) => {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['kdwalk'] = 3;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['kdwalk'] = 3;
     scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/progulka_2.jpg');
     scene.text('You go for a walk in the park, Igor slowly building up his confidence as he walks with you. He even waves at a man who was staring at him.');
     scene.actions([
@@ -609,7 +610,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['event1'] = 0;
+      ((s as any).IgorQW = (s as any).IgorQW ?? {})['event1'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKruglovDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
@@ -649,7 +650,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
             { label: 'Back to Igor\'s house', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['event1'] = 1;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['event1'] = 1;
     scene.text('<center><b>Entrance hall</b></center>');
     scene.img('images/locations/pavlovsk/resident/igorhome/kor.jpg');
     scene.text('You return to Igor\'s home. "So how was the walk today?" you ask with a smile.');
@@ -682,7 +683,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
 
 function enterDimkaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorQW ?? 0)?.['DimaNos'] === 0) {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['DimaNos'] = 1;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/progulka_4.jpg');
     // TODO-QSP: dynamic text: As you walk, you hear someone shouting you. "<<$pcs_nickname>>, wait up!"
     scene.text(`As you walk, you hear someone shouting you. "${((s as any).pcs_nickname || '')}, wait up!"`);
@@ -716,7 +717,7 @@ function enterDimkaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide not to put Igor through any more stress and tell Dimka that you\'re both in a hurry and have no time. You both say goodbye to Dimka and quickly leave.');
     scene.actions([
       { label: 'Back to Igor\'s house', handler: (st: GameState) => {
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['nomore'] = 1;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['nomore'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Entrance hall</b></center>');
@@ -784,7 +785,7 @@ function enterDimkaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to Igor\'s house', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['nomore'] = 1;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['nomore'] = 1;
     scene.text('<center><b>Entrance hall</b></center>');
     scene.img('images/locations/pavlovsk/resident/igorhome/kor.jpg');
     scene.text('You\'re panting as you enter Igor\'s home, but are still laughing. "So? How did you enjoy the walk?" you manage to ask between fits of giggles.');
@@ -886,11 +887,11 @@ function enterDimkaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Persuade him to go on the date', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['DimaNos'] = 2;
+    ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos'] = 2;
     if (((s as any).week ?? 0) > 4) {
-      if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['DimaNos_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
+      ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
     } else {
-      if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['DimaNos_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 6;
+      ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 6;
     }
     qspCall(s, 'stat', '');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKruglovDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -924,7 +925,7 @@ function enterDimkaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
 
 function enterAnushkaCrossdressWalkFirst(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/progulka_4.jpg');
-  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['nushcross'] = 1;
+  ((s as any).IgorQW = (s as any).IgorQW ?? {})['nushcross'] = 1;
   if (((s as any).npc_rel ?? 0)?.['A144'] >= 50) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -996,7 +997,7 @@ function enterAnushkaCrossdressWalkFirst(s: GameState, scene: SceneBuilder): voi
 }
 
 function enterNatashaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['natashacross'] = 1;
+  ((s as any).IgorQW = (s as any).IgorQW ?? {})['natashacross'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/progulka_4.jpg');
   if (((s as any).npc_rel ?? 0)?.['A16'] >= 60) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1066,11 +1067,11 @@ function enterNatashaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   if (((s as any).locArgs?.[0] ?? 0) === 'Ask about Diana\'s date') {
     if (((s as any).IgorQW ?? 0)?.['DimaNos'] === 2) {
-      if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['DimaNos'] = 3;
+      ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos'] = 3;
       if (((s as any).week ?? 0) > 4) {
-        if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['DimaNos_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
+        ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
       } else {
-        if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['DimaNos_day'] = ((s as any).daystart ?? 0) -((s as any).week ?? 0) + 6;
+        ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos_day'] = ((s as any).daystart ?? 0) -((s as any).week ?? 0) + 6;
       }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKruglovDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.img('images/characters/pavlovsk/school/boy/igor/talk.jpg');
@@ -1215,7 +1216,7 @@ function enterNatashaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['DimaNos'] = 4;
+      ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos'] = 4;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKruglovDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.img('images/characters/pavlovsk/school/boy/igor/talk.jpg');
       scene.text('"How did your second date with Dimka go?" you ask.');
@@ -1336,6 +1337,7 @@ function enterParkwalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKruglovDesc(s: GameState, scene: SceneBuilder): void {
+  (s as any).ren_str = '<center><font size=4><table cellspacing=0 cellpadding=0>';
   // TODO-QSP: $ren_str += '<tr><td align=center><b><font size=5> Igor Kruglov </font></b></td></tr>'
   // TODO-QSP: $ren_str += '<tr><td align=center><img <<$set_imgh>> src="images/characters/shared/headshots_main/bi...
   // TODO-QSP: $ren_str += '</table></font></center>'

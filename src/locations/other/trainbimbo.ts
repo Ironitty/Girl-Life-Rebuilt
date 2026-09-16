@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -32,7 +32,8 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
         { label: 'Look at him and smile', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'young man', Math.floor(Math.random() * 8) + 18, 0, 1);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['trainbimbo', 'pos2'] },
+    qspGoto(s, 'trainbimbo', 'pos2');
+  } },
       ]);
     }
     scene.actions([
@@ -46,7 +47,8 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
           { label: 'Look at him and smile', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'fifty year old man', Math.floor(Math.random() * 10) + 50, 0, 1);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  }, goto: ['trainbimbo', 'pos3'] },
+    qspGoto(s, 'trainbimbo', 'pos3');
+  } },
         ]);
       }
       scene.actions([
@@ -102,7 +104,7 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 9);
     qspCall(s, 'fame', 'pav', 'sex', 'tiny', 'local');
     qspCall(s, 'stat', '');
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
     if (((s as any).bimbo_rand1 ?? 0) < 10) {
       scene.img('images/locations/pavlovsk/trainstation/sex/vokbimbo22.jpg');
     } else {
@@ -156,9 +158,11 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'sexcum');
     (s as any).horand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
+      (s as any).orgasm_or = 'no';
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       scene.text('You have not managed to cum.');
     } else {
+      (s as any).orgasm_or = 'yes';
       scene.text('When you feel him cumming, your own orgasm sweeps through you.');
     }
     qspCall(s, 'arousal', 'vaginal', (-1), 'no_orgasm_msg');
@@ -214,7 +218,7 @@ function enterPos333(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'rough', 'deepthroat');
   qspCall(s, 'arousal', 'clit_finger', (-5), 'masturbation');
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 0, 0, 1, 1);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/bimbo.strip\'+rand(0, 6)+\'.mp4');
   scene.text('You start rubbing your clit as the guy fucks your mouth and throat. After a bit, you are completely naked. He pulls you up and pushes you down on the floor where you sprawl before him, your clothes lying around you.');
@@ -239,6 +243,7 @@ function enterPos3333(s: GameState, scene: SceneBuilder): void {
   scene.text('He turns your face to the wall and enters your ass from behind. You are not prepared for this. With no lubrication on your ass and only your saliva on his dick, the pain is sharp. You wince and tear up. You try to pull away, but strong hands hold you firm. As you struggle more, he pushes you tight up against the wall, leaving you nowhere to go.');
   scene.text('He pounds your ass furiously, balls deep with out mercy. The more you whimper the harder he pounds you. He seems to have supernatural stamina as he ravishes your ass. You completely lose track of time as tears start to stream down your face.');
   scene.text('"Like that girl? Yeah I know a little slut like you loves having your ass tore up. You can be my ass whore anytime, ha ha!" With these words, his cock begins to twitch, and you feel spurts of hot sperm shooting deep into your ass. Once he has finished cumming, he pushes your head against the wall while he pulls his dick out of you and wipes it off on your butt cheeks.');
+  (s as any).orgasm_txt = 'As you feel him cumming, your own orgasm sweeps through you.';
   qspCall(s, 'arousal', 'anal', 10, 'lube');
   qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0));
   qspCall(s, 'stat', '');
@@ -260,6 +265,7 @@ function enterPos3334(s: GameState, scene: SceneBuilder): void {
   scene.text('He turns your face to the wall and enters your pussy from behind. You are not prepared for this. It hurts as he forces himself into you. You try to pull away, but his quite strong hands hold you in place. Unable to pull away, you start rubbing your clit and getting yourself wet.');
   scene.text('He abuses your poor vagina while he lets loose various vulgar comments at you. He uses you for a long time, and to your surprise, once you get yourself wet, the pain gradually starts to recede. You begin to enjoy his rough handling of your body, and you begin to moan softly.');
   scene.text('"So, you actually like it slut? If you visit here again, you can be a my toilet whore any time, ha ha!" With these words, his cock begins to twitch, and you can feel spurts of hot sperm shooting deep into your pussy. Once he has finished cumming, he pushes your head against the wall while he pulls his dick out of you and wipes it off on your butt cheeks.');
+  (s as any).orgasm_txt = 'As you feel him cumming, your own orgasm sweeps through you.';
   qspCall(s, 'arousal', 'vaginal', 10);
   // TODO-QSP: gs 'cum_call', '', $npcID, 0, 0, 500*rand(16, 24), rand(30, 50)
   qspCall(s, 'stat', '');

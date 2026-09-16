@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -428,15 +428,15 @@ function enterMartinTease(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease1'] }]);
+      qspGoto(s, 'MartinSex', 'MartinTease1');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease2'] }]);
+      qspGoto(s, 'MartinSex', 'MartinTease2');
     }
   } else {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease3'] }]);
+      qspGoto(s, 'MartinSex', 'MartinTease3');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease4'] }]);
+      qspGoto(s, 'MartinSex', 'MartinTease4');
     }
   }
   // TODO-QSP: end
@@ -910,6 +910,7 @@ function enterMartinTeaseDildo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Tired of teasing yourself, you put the ' + iif(dildo = 1, '10cm', '15cm') + ' ru...
   scene.text('Tired of teasing yourself, you put the \' + iif(dildo = 1, \'10cm\', \'15cm\') + \' rubber dick inside your wet slit. The sensation is incredible - you knew that stripping for Martin had aroused you but it is only now that you realize how aroused and longing for something hard inside you really were.');
   scene.text('You smile at Martin as you slowly push it deeper inside, but involuntary moans are escaping you now.');
+  (s as any).orgasm_txt = 'no';
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'exhibitionism');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -921,6 +922,7 @@ function enterMartinTeaseDildo(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You can sense every tiny movement of the dildo inside your <<$pc_desc['pussy']>>...
     scene.text(`You can sense every tiny movement of the dildo inside your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy as you shift around, move it in and out, rubbing it against this wall and that and making sure to brush against your clit every now and then.`);
     scene.text('There are plenty of instances when you wouldn\'t be able to cum without rubbing your sensitive nub, but this situation is so hot that you have no trouble at all getting yourself off.');
+    (s as any).orgasm_txt = 'no';
     qspCall(s, 'arousal', 'vaginal_dildo', 5, 'exhibitionism');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -931,6 +933,7 @@ function enterMartinTeaseDildo(s: GameState, scene: SceneBuilder): void {
     scene.text('As you come down from your high, you regain awareness of your surroundings and open your eyes. Martin is still there, spellbound.');
     scene.text('You give him an almost shy smile and, opting to give him a little tease-cherry on top, lick your dildo clean before you put it away.');
     scene.text('The question of whether he enjoyed the show entirely superfluous. The question of whether you still want to leave him with blue (or, at this point, deep purple) balls, however, still stands.');
+    (s as any).orgasm_txt = 'yes';
     qspCall(s, 'arousal', 'vaginal_dildo', 5, 'exhibitionism');
     qspCall(s, 'stat', '');
     (s as any).temp = Math.floor(Math.random() * 3) + 1;

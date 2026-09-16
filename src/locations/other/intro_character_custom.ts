@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,26 +11,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('If you want to set your skills and attributes to a certain number, use the cheat menu to do it, the options to do it here were removed.');
   if (((s as any).start_type ?? 0)?.['group']  === '') {
-    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'custom';
+    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'custom';
   }
   if (((s as any).start_type ?? 0)?.['cat']  === '') {
-    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'custom';
+    ((s as any).start_type = (s as any).start_type ?? {})['cat'] = 'custom';
   }
   if (((s as any).clothingworntype ?? 0) === '') {
     qspCall(s, 'outfit', 'clear_all');
   }
-  if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['money'] = (-1);
-  if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc'] = '';
-  if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc_arg'] = '';
-  if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc_s'] = '';
-  if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['args_s'] = '';
-  if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['menu_loc'] = '';
-  if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['menu_arg'] = '';
+  ((s as any).intro_custom = (s as any).intro_custom ?? {})['money'] = (-1);
+  ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc'] = '';
+  ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc_arg'] = '';
+  ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc_s'] = '';
+  ((s as any).intro_custom = (s as any).intro_custom ?? {})['args_s'] = '';
+  ((s as any).intro_custom = (s as any).intro_custom ?? {})['menu_loc'] = '';
+  ((s as any).intro_custom = (s as any).intro_custom ?? {})['menu_arg'] = '';
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === 0) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_gen'] = 22;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 22;
   }
   if (((s as any).pcs_mass ?? 0)?.['bust_gen'] === 0) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_gen'] = 22;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 22;
   }
   if (((s as any).soc_grup ?? 0) === '') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNone(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -44,12 +42,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Confirm these options', handler: (st: GameState) => {
     // TODO-QSP: dynamic 'grupvalue[<<grupTipe>>] = 600'
     if (((s as any).soc_grup ?? 0) === 'nerd') {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = 350;
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic'] = 2;
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nerd_learn_home'] = 5;
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 350;
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic'] = 2;
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['nerd_learn_home'] = 5;
     } else {
       if (((s as any).soc_grup ?? 0) === 'gopnik') {
-        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = (-20);
+        ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = (-20);
       }
     }
     if (((s as any).pcs_inhib ?? 0) < 10) {
@@ -64,9 +62,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'intro_functions', 'reset_school');
     if (((s as any).loc ?? 0) === 'intro_tg_teen_start') {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+      dynamicGoto(s, 'prevLoc', 'prevArg');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'appearance_hub'] }]);
+      qspGoto(s, 'intro_character_creation', 'appearance_hub');
     }
   } },
     ]);
@@ -77,7 +75,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'purses', 'add_item', ((s as any).currentpursetype ?? 0), ((s as any).currentpursenumber ?? 0));
       qspCall(s, 'obj_din', 'old');
     }
-  }, goto: ['intro_character_creation', 'appearance_hub'] },
+    qspGoto(s, 'intro_character_creation', 'appearance_hub');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -88,9 +87,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Set purse', goto: ['intro_character_custom', 'modpur'] },
     { label: 'Set items', goto: ['intro_character_custom', 'modite'] },
     { label: 'Set clothes', goto: ['intro_character_custom', 'modclo_menu'] },
-    { label: 'Set money (<<$func(\'money\', \'format\', money)>>)', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Set money (' + String(qspFunc(s, 'money', 'format', ((s as any).money || '')) ?? '') + ')', handler: (st: GameState) => {
     (s as any).money = 0;
-  }, goto: ['intro_character_custom', 'start'] },
+    qspGoto(s, 'intro_character_custom', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -102,16 +102,16 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'tattoo_management', 'count');
   qspCall(s, 'piercing_management', 'count');
   if (((s as any).intro_custom ?? 0)?.['money'] === -1) {
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['money'] = ((s as any).money ?? 0);
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['money'] = ((s as any).money ?? 0);
     (s as any).money = 999999999;
   }
   if (((s as any).intro_custom ?? 0)?.['loc'] === '') {
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc'] = ((s as any).loc ?? 0);
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc_arg'] = ((s as any).loc_arg ?? 0);
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc_s'] = ((s as any).loc_s ?? 0);
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['args_s'] = ((s as any).args_s ?? 0);
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['menu_loc'] = ((s as any).menu_loc ?? 0);
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['menu_arg'] = ((s as any).menu_arg ?? 0);
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc'] = ((s as any).loc ?? 0);
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc_arg'] = ((s as any).loc_arg ?? 0);
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc_s'] = ((s as any).loc_s ?? 0);
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['args_s'] = ((s as any).args_s ?? 0);
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['menu_loc'] = ((s as any).menu_loc ?? 0);
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['menu_arg'] = ((s as any).menu_arg ?? 0);
     (s as any).intro_custom_shop_return = 1;
     (s as any).intro_custom_step = 1;
   }
@@ -130,19 +130,31 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).money = ((s as any).intro_custom ?? 0)?.['money'];
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['money'] = (-1);
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc'] = '';
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc_arg'] = '';
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['menu_loc'] = '';
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['menu_arg'] = '';
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['loc_s'] = '';
-    if (!(s as any).intro_custom) (s as any).intro_custom = {}; (s as any).intro_custom['args_s'] = '';
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['money'] = (-1);
+    (s as any).loc = ((s as any).intro_custom ?? 0)?.['loc'];
+    (s as any).loc_arg = ((s as any).intro_custom ?? 0)?.['loc_arg'];
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc'] = '';
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc_arg'] = '';
+    (s as any).menu_loc = ((s as any).intro_custom ?? 0)?.['menu_loc'];
+    (s as any).menu_arg = ((s as any).intro_custom ?? 0)?.['menu_arg'];
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['menu_loc'] = '';
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['menu_arg'] = '';
+    (s as any).loc_s = ((s as any).intro_custom ?? 0)?.['loc_s'];
+    (s as any).args_s = ((s as any).intro_custom ?? 0)?.['args_s'];
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc_s'] = '';
+    ((s as any).intro_custom = (s as any).intro_custom ?? {})['args_s'] = '';
     (s as any).intro_custom_shop_return = 0;
-  }, goto: ['intro_character_custom', 'start'] },
-    { label: 'Browse', goto: ['intro_character_custom', 'modclo'] },
-    { label: 'Open wardrobe', goto: ['wardrobe', 'main'] },
+    qspGoto(s, 'intro_character_custom', 'start');
+  } },
+    { label: 'Browse', handler: (st: GameState) => {
+    (s as any).menu_name = '';
+    qspGoto(s, 'intro_character_custom', 'modclo');
+  } },
+    { label: 'Open wardrobe', handler: (st: GameState) => {
+    qspGoto(s, 'wardrobe', 'main');
+  } },
     { label: 'View looks', handler: (st: GameState) => {
-    dynamicGoto(st, 'menu_looks');
+    dynamicGoto(s, 'menu_looks');
   } },
   ]);
   scene.build();
@@ -150,7 +162,7 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_tattoos ?? 0)?.['total'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_menu'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_menu');
     scene.actions([
       { label: 'Remove all tattoos', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'full_reset');
@@ -158,7 +170,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['face'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove face tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'face');
@@ -166,7 +178,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['lip'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove lip tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'lip');
@@ -174,7 +186,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['neck'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove neck tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'neck');
@@ -182,7 +194,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['back'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove back tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'back');
@@ -190,7 +202,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove shoulder tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'shoulder');
@@ -198,7 +210,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['breast'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove breast tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'breast');
@@ -206,7 +218,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['under'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove under tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'under');
@@ -214,7 +226,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['chest'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove chest tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'chest');
@@ -222,7 +234,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['side'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove side tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'side');
@@ -230,7 +242,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['belly'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove belly tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'belly');
@@ -238,7 +250,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['arm'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove arm tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'arm');
@@ -246,7 +258,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['wrist'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove wrist tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'wrist');
@@ -254,7 +266,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['hand'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove hand tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'hand');
@@ -262,7 +274,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['leg'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove leg tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'leg');
@@ -270,7 +282,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ankle'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove ankle tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'ankle');
@@ -278,7 +290,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['tramp'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove tramp tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'tramp');
@@ -286,7 +298,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ass'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove ass tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'ass');
@@ -294,7 +306,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['pussy'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove pussy tattoo', handler: (st: GameState) => {
     qspCall(st, 'tattoo_management', 'remove', 'pussy');
@@ -310,6 +322,8 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
 
 function enterModclo(s: GameState, scene: SceneBuilder): void {
   scene.text('Make sure to finalize appearance stats before choosing clothing otherwise they might not fit once the game starts.');
+  (s as any).loc_s = 'intro_character_custom';
+  (s as any).args_s = 'modclo';
   if (((s as any).menu_name ?? 0) === '') {
     scene.actions([
       { label: 'Return', goto: ['intro_character_custom', 'modclo_menu'] },
@@ -931,7 +945,7 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
 
 function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shop_display ?? 0)?.['init'] === 0) {
-    if (!(s as any).intro_custom_shop) (s as any).intro_custom_shop = {}; (s as any).intro_custom_shop['slot'] = ((s as any).locArgs?.[1] ?? 0);
+    ((s as any).intro_custom_shop = (s as any).intro_custom_shop ?? {})['slot'] = ((s as any).locArgs?.[1] ?? 0);
     qspCall(s, 'core_library', 'setloc', 'intro_character_custom', 'modclo_loop');
     if (((s as any).intro_custom_shop ?? 0)?.['slot'] === 'clothing') {
       qspCall(s, 'clothing', 'set_shop_display_exceptions', ((s as any).locArgs?.[2] ?? 0));
@@ -972,7 +986,7 @@ function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'add_type', ((s as any).locArgs?.[2] ?? 0));
     qspCall(s, 'shop_utils', 'init', 'end');
   }
-  qspCall(s, 'shop_utils', '', 'display_' + qspUntranslated(s, "intro_custom_shop['slot']>", { location: "intro_character_custom" }) + '_grid_shop');
+  qspCall(s, 'shop_utils', '', 'display_' + ((s as any).intro_custom_shop ?? 0)?.['slot'] + '_grid_shop');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
@@ -984,10 +998,10 @@ function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterModapp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_mass ?? 0)?.['bust_gen'] === 0) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust_gen'] = 12;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 12;
   }
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === 0) {
-    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_gen'] = 22;
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 22;
   }
   scene.text('Your body weight may vary between characters as breast and butt size will be taken into account.');
   scene.text('Choose base genetic breast size: (this is the genetic disposition and not the actual size at game start)');
@@ -996,22 +1010,31 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :modapp_bust_loop
   (s as any).temp_val = ((s as any).temp_idx ?? 0) * 5 + 2;
   if ((!((s as any).temp_idx ?? 0))) {
+    (s as any).temp_label = 'Very small';
   } else {
     if (((s as any).temp_idx ?? 0) === 1) {
+      (s as any).temp_label = 'Below average';
     } else {
       if (((s as any).temp_idx ?? 0) === 2) {
+        (s as any).temp_label = 'Average';
       } else {
         if (((s as any).temp_idx ?? 0) === 3) {
+          (s as any).temp_label = 'Above average';
         } else {
           if (((s as any).temp_idx ?? 0) === 4) {
+            (s as any).temp_label = 'Large';
           } else {
             if (((s as any).temp_idx ?? 0) === 5) {
+              (s as any).temp_label = 'Extra large';
             } else {
               if (((s as any).temp_idx ?? 0) === 6) {
+                (s as any).temp_label = 'Really big';
               } else {
                 if (((s as any).temp_idx ?? 0) === 7) {
+                  (s as any).temp_label = 'Massive';
                 } else {
                   if (((s as any).temp_idx ?? 0) === 8) {
+                    (s as any).temp_label = 'Getting silly';
                   }
                 }
               }
@@ -1026,7 +1049,7 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).temp_label || '')} - Currently set`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:pcs_mass['bust_gen'] = <<temp_val>> & gt 'intro_character_custom',...
-    scene.text(`<a href="exec:pcs_mass['bust_gen'] = ${((s as any).temp_val || '')} & gt 'intro_character_custom', 'modapp'">${((s as any).temp_label || '')}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})\\u0027bust_gen\\u0027 = ${((s as any).temp_val || '')}; return s; }); window.__gameStore.getState().doGoto(\\u0027intro_character_custom\\u0027, \\u0027modapp\\u0027); return false;">${((s as any).temp_label || '')}</a>`);
   }
   (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
   if (((s as any).temp_idx ?? 0) < 9) {
@@ -1037,22 +1060,31 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :modapp_butt_loop
   (s as any).temp_val = ((s as any).temp_idx ?? 0) * 5 + 2;
   if ((!((s as any).temp_idx ?? 0))) {
+    (s as any).temp_label = 'Flat';
   } else {
     if (((s as any).temp_idx ?? 0) === 1) {
+      (s as any).temp_label = 'Mostly Flat';
     } else {
       if (((s as any).temp_idx ?? 0) === 2) {
+        (s as any).temp_label = 'Small';
       } else {
         if (((s as any).temp_idx ?? 0) === 3) {
+          (s as any).temp_label = 'Below Average';
         } else {
           if (((s as any).temp_idx ?? 0) === 4) {
+            (s as any).temp_label = 'Average';
           } else {
             if (((s as any).temp_idx ?? 0) === 5) {
+              (s as any).temp_label = 'Above Average';
             } else {
               if (((s as any).temp_idx ?? 0) === 6) {
+                (s as any).temp_label = 'Big';
               } else {
                 if (((s as any).temp_idx ?? 0) === 7) {
+                  (s as any).temp_label = 'Massive';
                 } else {
                   if (((s as any).temp_idx ?? 0) === 8) {
+                    (s as any).temp_label = 'Getting silly';
                   }
                 }
               }
@@ -1067,7 +1099,7 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).temp_label || '')} - Currently set`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:pcs_mass['butt_gen'] = <<temp_val>> & gt 'intro_character_custom',...
-    scene.text(`<a href="exec:pcs_mass['butt_gen'] = ${((s as any).temp_val || '')} & gt 'intro_character_custom', 'modapp'">${((s as any).temp_label || '')}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})\\u0027butt_gen\\u0027 = ${((s as any).temp_val || '')}; return s; }); window.__gameStore.getState().doGoto(\\u0027intro_character_custom\\u0027, \\u0027modapp\\u0027); return false;">${((s as any).temp_label || '')}</a>`);
   }
   (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
   if (((s as any).temp_idx ?? 0) < 9) {
@@ -1075,7 +1107,7 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Body fat (<<pcs_mass[\'body\']>>/200)', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Body fat (' + String(((s as any).pcs_mass ?? 0)?.['body'] ?? '' ?? '') + '/200)', handler: (st: GameState) => {
     qspCall(st, 'intro_character_custom', 'setbodymass');
     // TODO-QSP: pcs_mass['body'] = nstat
   }, goto: ['intro_character_custom', 'modapp'] },
@@ -1107,20 +1139,22 @@ function enterSetgenbsize(s: GameState, scene: SceneBuilder): void {
 function enterModite(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
-    { label: 'Fake passport (<<fakepassport>>/1)', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Fake passport (' + String(((s as any).fakepassport || '') ?? '') + '/1)', handler: (st: GameState) => {
     if ((!((s as any).fakepassport ?? 0))) {
       (s as any).fakepassport = 1;
     } else {
       (s as any).fakepassport = 0;
     }
-  }, goto: ['intro_character_custom', 'modite'] },
-    { label: 'Computer (<<mc_inventory[\'tech_computer\']>>/1)', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'modite');
+  } },
+    { label: '', labelFn: (s: GameState) => 'Computer (' + String(((s as any).mc_inventory ?? 0)?.['tech_computer'] ?? '' ?? '') + '/1)', handler: (st: GameState) => {
     if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_computer'] = 1;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_computer'] = 1;
     } else {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_computer'] = 0;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_computer'] = 0;
     }
-  }, goto: ['intro_character_custom', 'modite'] },
+    qspGoto(s, 'intro_character_custom', 'modite');
+  } },
     { label: 'Cosmetic items', goto: ['intro_character_custom', 'modite_cos'] },
     { label: 'Pharmacy items', goto: ['intro_character_custom', 'modite_pha'] },
     { label: 'Miscellaneous items', goto: ['intro_character_custom', 'modite_mis'] },
@@ -1157,6 +1191,7 @@ function enterModrelSetup4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModiteCos(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modite_cos';
   scene.text('<center><b>Cosmetic items</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mc_inventory[\'cosmetics\']', 'Cosmetics']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mc_inventory[\'razor\']', 'Razors (number of shaves)']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1175,6 +1210,7 @@ function enterModiteCos(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModitePha(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modite_pha';
   scene.text('<center><b>Pharmaceutical items</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mc_inventory[\'equipped_condoms\']', 'Condoms']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mc_inventory[\'pregnancy_test\']', 'Pregnancy tests']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1199,6 +1235,7 @@ function enterModitePha(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModiteMis(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modite_mis';
   scene.text('<center><b>Misc items</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mc_inventory[\'cigarettes\']', 'Cigarettes']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dur', 'Cocaine']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1215,9 +1252,11 @@ function enterModiteMis(s: GameState, scene: SceneBuilder): void {
 
 function enterModpur(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== '') {
-    (s as any).currentpursenumber = qspUntranslated(s, "ARGS[2]", { location: "intro_character_custom" });
+    (s as any).currentpursetype = ((s as any).locArgs?.[1] ?? 0);
+    (s as any).currentpursenumber = ((s as any).locArgs?.[2] ?? 0);
   }
   if (((s as any).currentpursetype ?? 0) === ''  ||  ((s as any).currentpursetype ?? 0) === 'none') {
+    (s as any).currentpursetype = 'none';
     scene.text('You do not own a purse.');
   } else {
     (s as any).bag = 1;
@@ -1227,7 +1266,9 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['intro_character_custom', 'start'] },
+    { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'start');
+  } },
     { label: 'Get G&M', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/gm.png');
     (s as any).i = 1;
@@ -1320,8 +1361,10 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'I do not want a purse', handler: (st: GameState) => {
     (s as any).bag = 0;
+    (s as any).currentpursetype = 'none';
     (s as any).currentpursenumber = 0;
-  }, goto: ['intro_character_custom', 'modpur'] },
+    qspGoto(s, 'intro_character_custom', 'modpur');
+  } },
   ]);
   scene.build();
 }
@@ -1416,6 +1459,7 @@ function enterSetbodymass(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModatt(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modatt';
   scene.text('<center><b>Attributes</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_inhib', 'Inhibition']; enterModrelSetup4(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpowermax', 'Willpower']; enterModrelSetup3(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1436,7 +1480,9 @@ function enterModatt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: nl
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['intro_character_custom', 'start'] },
+    { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -1456,6 +1502,7 @@ function enterModskl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModsklMen(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modskl_men';
   scene.text('<center><b>Mental Skills</b></center>');
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_splcstng', 'Spell Casting']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1469,12 +1516,15 @@ function enterModsklMen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: nl
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
+    { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'modskl');
+  } },
   ]);
   scene.build();
 }
 
 function enterModsklSpo(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modskl_spo';
   scene.text('<center><b>Sport Skills</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_run', 'Running']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_vball', 'Volleyball']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1491,12 +1541,15 @@ function enterModsklSpo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: nl
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
+    { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'modskl');
+  } },
   ]);
   scene.build();
 }
 
 function enterModsklCom(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modskl_com';
   scene.text('<center><b>Combat Skills</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_jab', 'Jabs']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_punch', 'Power Strikes']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1510,12 +1563,15 @@ function enterModsklCom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: nl
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
+    { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'modskl');
+  } },
   ]);
   scene.build();
 }
 
 function enterModsklBea(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modskl_bea';
   scene.text('<center><b>Beauty skills</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_makupskl', 'Makeup Skills']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_danc', 'Modern Dancing']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1529,12 +1585,15 @@ function enterModsklBea(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: nl
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
+    { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'modskl');
+  } },
   ]);
   scene.build();
 }
 
 function enterModsklArt(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modskl_art';
   scene.text('<center><b>Artistic Skills</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_vokal', 'Singing']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_instrmusic', 'Instrumental Music']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1548,12 +1607,15 @@ function enterModsklArt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: nl
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
+    { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'modskl');
+  } },
   ]);
   scene.build();
 }
 
 function enterModsklJob(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modskl_job';
   scene.text('<center><b>Job Skills</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_compskl', 'Computer Skills']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pcs_comphckng', 'Hacking']; enterModrelSetup2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1569,13 +1631,15 @@ function enterModsklJob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: nl
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
+    { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'intro_character_custom', 'modskl');
+  } },
   ]);
   scene.build();
 }
 
 function enterBirthday(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'core_birthday'] }]);
+  qspGoto(s, 'intro_character_creation', 'core_birthday');
   // TODO-QSP: end
   scene.build();
 }
@@ -1586,50 +1650,60 @@ function enterModgrup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Nerd', handler: (st: GameState) => {
-    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'nerd';
+    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'nerd';
+    (s as any).soc_grup = 'Nerd';
     (s as any).grupTipe = 3;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 200;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 100;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 800;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = 100;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[6] = 600;
-  }, goto: ['intro_character_custom', 'modgrup'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 200;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 100;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 800;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 100;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 600;
+    qspGoto(s, 'intro_character_custom', 'modgrup');
+  } },
     { label: 'Jock', handler: (st: GameState) => {
-    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'jock';
+    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'jock';
+    (s as any).soc_grup = 'Jock';
     (s as any).grupTipe = 2;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 400;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 800;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 100;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = 200;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[6] = 400;
-  }, goto: ['intro_character_custom', 'modgrup'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 400;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 800;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 100;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 200;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 400;
+    qspGoto(s, 'intro_character_custom', 'modgrup');
+  } },
     { label: 'Popular', handler: (st: GameState) => {
-    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'cool';
+    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'cool';
+    (s as any).soc_grup = 'Cool';
     (s as any).grupTipe = 1;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 800;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 400;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 200;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = 100;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[6] = 400;
-  }, goto: ['intro_character_custom', 'modgrup'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 800;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 400;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 200;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 100;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 400;
+    qspGoto(s, 'intro_character_custom', 'modgrup');
+  } },
     { label: 'Gopnik', handler: (st: GameState) => {
-    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'gopnik';
+    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'gopnik';
+    (s as any).soc_grup = 'Gopnik';
     (s as any).grupTipe = 4;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 200;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 300;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 100;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = 800;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[6] = 100;
-  }, goto: ['intro_character_custom', 'modgrup'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 200;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 300;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 100;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 800;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 100;
+    qspGoto(s, 'intro_character_custom', 'modgrup');
+  } },
     { label: 'Outcast', handler: (st: GameState) => {
-    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'outcast';
+    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'outcast';
+    (s as any).soc_grup = 'Outcast';
     (s as any).grupTipe = 5;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 200;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 200;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 200;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = 200;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[6] = 200;
-  }, goto: ['intro_character_custom', 'modgrup'] },
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 200;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 200;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 200;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 200;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 200;
+    qspGoto(s, 'intro_character_custom', 'modgrup');
+  } },
     { label: 'Return', goto: ['intro_character_custom', 'start'] },
   ]);
   scene.build();
@@ -1637,6 +1711,7 @@ function enterModgrup(s: GameState, scene: SceneBuilder): void {
 
 function enterNone(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'reset_all');
+  (s as any).soc_grup = 'outcast';
   (s as any).grupTipe = 5;
   // TODO-QSP: end
   scene.build();
@@ -1660,39 +1735,39 @@ function enterModrel(s: GameState, scene: SceneBuilder): void {
 
 function enterModrelFam(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A28'] < 0) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = 0;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A28'] = 0;
   }
   if (((s as any).npc_rel ?? 0)?.['A29'] < 0) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A29'] = 0;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A29'] = 0;
   }
   if (((s as any).npc_rel ?? 0)?.['A33'] < 0) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A33'] = 0;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A33'] = 0;
   }
   if (((s as any).npc_rel ?? 0)?.['A34'] < 0) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A34'] = 0;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A34'] = 0;
   }
   if (((s as any).npc_rel ?? 0)?.['A28'] > 100) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = 100;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A28'] = 100;
   }
   if (((s as any).npc_rel ?? 0)?.['A29'] > 100) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A29'] = 100;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A29'] = 100;
   }
   if (((s as any).npc_rel ?? 0)?.['A33'] > 100) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A33'] = 100;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A33'] = 100;
   }
   if (((s as any).npc_rel ?? 0)?.['A34'] > 100) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A34'] = 100;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A34'] = 100;
   }
   scene.text('<center><b>Family relationship levels</b></center>');
   scene.text('<center><table border=0 cellspacing=0 cellpadding=25 bgcolor=#808080><th></th><th>Set to zero</th><th>Minus 10</th><th>Minus 5</th><th>Plus 5</th><th>Plus 10</th><th>Set to 100</th>');
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Stepfather: <<npc_rel['A28']>></td><td><a...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Stepfather: ${((s as any).npc_rel ?? 0)?.['A28'] ?? ''}</td><td><a href="exec:gs 'npc_relationship', 'set', 'A28', 0 & gt 'intro_character_custom', 'modrel_fam'">zero</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A28', -10 & gt 'intro_character_custom', 'modrel_fam'">minus 10</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A28', -5 & gt 'intro_character_custom', 'modrel_fam'">minus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A28', 5 & gt 'intro_character_custom', 'modrel_fam'">plus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A28', 10 & gt 'intro_character_custom', 'modrel_fam'">plus 10</a></td><td><a href="exec:gs 'npc_relationship', 'set', 'A28', 100 & gt 'intro_character_custom', 'modrel_fam'">100</a></td>`);
+  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Stepfather: ${((s as any).npc_rel ?? 0)?.['A28'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A28\\u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A28\\u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A28\\u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A28\\u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A28\\u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A28\\u0027); return false;">100</a></td>`);
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Mother: <<npc_rel['A29']>></td><td><a hre...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Mother: ${((s as any).npc_rel ?? 0)?.['A29'] ?? ''}</td><td><a href="exec:gs 'npc_relationship', 'set', 'A29', 0 & gt 'intro_character_custom', 'modrel_fam'">zero</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A29', -10 & gt 'intro_character_custom', 'modrel_fam'">minus 10</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A29', -5 & gt 'intro_character_custom', 'modrel_fam'">minus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A29', 5 & gt 'intro_character_custom', 'modrel_fam'">plus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A29', 10 & gt 'intro_character_custom', 'modrel_fam'">plus 10</a></td><td><a href="exec:gs 'npc_relationship', 'set', 'A29', 100 & gt 'intro_character_custom', 'modrel_fam'">100</a></td>`);
+  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Mother: ${((s as any).npc_rel ?? 0)?.['A29'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A29\\u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A29\\u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A29\\u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A29\\u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A29\\u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A29\\u0027); return false;">100</a></td>`);
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Sister: <<npc_rel['A33']>></td><td><a hre...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Sister: ${((s as any).npc_rel ?? 0)?.['A33'] ?? ''}</td><td><a href="exec:gs 'npc_relationship', 'set', 'A33', 0 & gt 'intro_character_custom', 'modrel_fam'">zero</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A33', -10 & gt 'intro_character_custom', 'modrel_fam'">minus 10</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A33', -5 & gt 'intro_character_custom', 'modrel_fam'">minus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A33', 5 & gt 'intro_character_custom', 'modrel_fam'">plus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A33', 10 & gt 'intro_character_custom', 'modrel_fam'">plus 10</a></td><td><a href="exec:gs 'npc_relationship', 'set', 'A33', 100 & gt 'intro_character_custom', 'modrel_fam'">100</a></td>`);
+  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Sister: ${((s as any).npc_rel ?? 0)?.['A33'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A33\\u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A33\\u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A33\\u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A33\\u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A33\\u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A33\\u0027); return false;">100</a></td>`);
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Brother: <<npc_rel['A34']>></td><td><a hr...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Brother: ${((s as any).npc_rel ?? 0)?.['A34'] ?? ''}</td><td><a href="exec:gs 'npc_relationship', 'set', 'A34', 0 & gt 'intro_character_custom', 'modrel_fam'">zero</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A34', -10 & gt 'intro_character_custom', 'modrel_fam'">minus 10</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A34', -5 & gt 'intro_character_custom', 'modrel_fam'">minus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A34', 5 & gt 'intro_character_custom', 'modrel_fam'">plus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A34', 10 & gt 'intro_character_custom', 'modrel_fam'">plus 10</a></td><td><a href="exec:gs 'npc_relationship', 'set', 'A34', 100 & gt 'intro_character_custom', 'modrel_fam'">100</a></td>`);
+  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Brother: ${((s as any).npc_rel ?? 0)?.['A34'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A34\\u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A34\\u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A34\\u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A34\\u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A34\\u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A34\\u0027); return false;">100</a></td>`);
   scene.text('</table></center>');
   // TODO-QSP: end
   scene.actions([
@@ -1703,10 +1778,10 @@ function enterModrelFam(s: GameState, scene: SceneBuilder): void {
 
 function enterModrelSetup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)[((s as any).locArgs?.[1] ?? 0)] < 0) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['' + String((s as any).$ARGS[1] || '') + ''] = 0;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = 0;
   }
   if (((s as any).npc_rel ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 100) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['' + String((s as any).$ARGS[1] || '') + ''] = 100;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = 100;
   }
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$npc_firstname[''<<$ARGS[1]>>'']>> <<$...
   // TODO-QSP: end
@@ -1714,6 +1789,7 @@ function enterModrelSetup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelPop(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modrel_pop';
   scene.text('<center><b>Popular kids relationship levels</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A1']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A4']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1740,6 +1816,7 @@ function enterModrelPop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelAth(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modrel_ath';
   scene.text('<center><b>Jocks relationship levels</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A3']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1764,6 +1841,7 @@ function enterModrelAth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelNer(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modrel_ner';
   scene.text('<center><b>Nerds relationship levels</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A2']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A6']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1786,6 +1864,7 @@ function enterModrelNer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelGop(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modrel_gop';
   scene.text('<center><b>Gopnik kids relationship levels</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A9']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A10']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1814,6 +1893,7 @@ function enterModrelGop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelOut(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modrel_out';
   scene.text('<center><b>Outcast kids relationship levels</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A7']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A159']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1829,6 +1909,7 @@ function enterModrelOut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelTea(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modrel_tea';
   scene.text('<center><b>Teacher relationship levels</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A26']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A128']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1855,6 +1936,7 @@ function enterModrelTea(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelOth(s: GameState, scene: SceneBuilder): void {
+  (s as any).locM_arg = 'modrel_oth';
   scene.text('<center><b>Others relationship levels</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A69']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A112']; enterModrelSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1872,7 +1954,7 @@ function enterPolGrupSet(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :pol_grup_set_loop
   if (((s as any).npc_gender ?? 0)['A' + ((s as any).r ?? 0)] === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === ((s as any).locArgs?.[2] ?? 0)) {
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A' + String((s as any).r || '') + ''] = qspUntranslated(s, "ARGS[3]", { location: "intro_character_custom" });
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A' + String((s as any).r || '') + ''] = ((s as any).locArgs?.[3] ?? 0);
   }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {

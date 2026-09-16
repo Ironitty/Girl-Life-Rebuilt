@@ -166,7 +166,7 @@ export function parseQsp(content: string, fileName: string): QspLocation {
 
   if (!title) {
     const firstText = findFirstText(allNodes);
-    if (firstText) title = firstText.slice(0, 60);
+    if (firstText) title = firstText;
   }
 
   return { name, title, region, locationType, locclass, scenes, topLevel, lineCount: lines.length, unsupported };
@@ -197,10 +197,11 @@ interface ParseResult {
     let i = startIdx;
     let inBlockComment = false;
 
-     while (i < lines.length) {
-      const raw = lines[i];
-      const trimmed = raw.trim();
-      if (!trimmed) { i++; continue; }
+      while (i < lines.length) {
+       const raw = lines[i];
+       const trimmed = raw.trim();
+       if (!trimmed) { i++; continue; }
+
 
         // QSP block comment: !{ ... !} or !!{ ... end} or !!{ ... } (may span lines)
          if (inBlockComment) {
@@ -424,7 +425,36 @@ interface ParseResult {
       }
       if (colonIdx !== -1) {
       const condition = rest.slice(0, colonIdx).trim();
-      const stmtStr = rest.slice(colonIdx + 1).trim();
+      let stmtStr = rest.slice(colonIdx + 1).trim();
+      // Multi-line string in inline if: if the stmt has an unclosed quote, consume subsequent lines
+      const qMatch = stmtStr.match(/['"]/);
+      if (qMatch) {
+        const q = qMatch[0];
+        let quoteCount = 0;
+        for (let qi = 0; qi < stmtStr.length; qi++) {
+          if (stmtStr[qi] === q) {
+            if (stmtStr[qi + 1] === q) { qi++; continue; }
+            quoteCount++;
+          }
+        }
+        if (quoteCount % 2 === 1) {
+          let next = i + 1;
+          while (next < lines.length) {
+            const cont = lines[next].trim();
+            stmtStr += '\n' + cont;
+            let qc = 0;
+            for (let qi = 0; qi < stmtStr.length; qi++) {
+              if (stmtStr[qi] === q) {
+                if (stmtStr[qi + 1] === q) { qi++; continue; }
+                qc++;
+              }
+            }
+            if (qc % 2 === 0) break;
+            next++;
+          }
+          i = next - 1;
+        }
+      }
       const stmts = splitTopLevelAmp(stmtStr);
       const thenBody: QspNode[] = [];
       for (const stmt of stmts) {
@@ -501,7 +531,39 @@ interface ParseResult {
     // Dollar assignment (metadata): $var = value
     const dollarMatch = trimmed.match(/^\$(\w+)\s*=\s*(.+)$/);
     if (dollarMatch) {
-      nodes.push({ kind: 'setup', raw: trimmed });
+      let raw = trimmed;
+      const valPart = dollarMatch[2];
+      if (valPart.includes("'") || valPart.includes('"')) {
+        const q = valPart.startsWith("'") ? "'" : valPart.startsWith('"') ? '"' : (valPart.match(/['"]/)?.[0] ?? '');
+        if (q) {
+          let quoteCount = 0;
+          for (let qi = 0; qi < valPart.length; qi++) {
+            if (valPart[qi] === q) {
+              if (valPart[qi + 1] === q) { qi++; continue; }
+              quoteCount++;
+            }
+          }
+          if (quoteCount % 2 === 1) {
+            let next = i + 1;
+            while (next < lines.length) {
+              const cont = lines[next].trim();
+              raw += '\n' + cont;
+              const fullVal = raw.slice(trimmed.indexOf('=') + 1).trim();
+              let qc = 0;
+              for (let qi = 0; qi < fullVal.length; qi++) {
+                if (fullVal[qi] === q) {
+                  if (fullVal[qi + 1] === q) { qi++; continue; }
+                  qc++;
+                }
+              }
+              if (qc % 2 === 0) break;
+              next++;
+            }
+            i = next - 1;
+          }
+        }
+      }
+      nodes.push({ kind: 'setup', raw });
       i++;
       continue;
     }
@@ -854,7 +916,36 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     }
     if (colonIdx !== -1) {
       const condition = rest.slice(0, colonIdx).trim();
-      const stmtStr = rest.slice(colonIdx + 1).trim();
+      let stmtStr = rest.slice(colonIdx + 1).trim();
+      let consumedLines = 0;
+      const qMatch = stmtStr.match(/['"]/);
+      if (qMatch) {
+        const q = qMatch[0];
+        let quoteCount = 0;
+        for (let qi = 0; qi < stmtStr.length; qi++) {
+          if (stmtStr[qi] === q) {
+            if (stmtStr[qi + 1] === q) { qi++; continue; }
+            quoteCount++;
+          }
+        }
+        if (quoteCount % 2 === 1) {
+          let next = idx + 1;
+          while (next < lines.length) {
+            const cont = lines[next].trim();
+            stmtStr += '\n' + cont;
+            consumedLines++;
+            let qc = 0;
+            for (let qi = 0; qi < stmtStr.length; qi++) {
+              if (stmtStr[qi] === q) {
+                if (stmtStr[qi + 1] === q) { qi++; continue; }
+                qc++;
+              }
+            }
+            if (qc % 2 === 0) break;
+            next++;
+          }
+        }
+      }
       const stmts = splitTopLevelAmp(stmtStr);
       const thenBody: QspNode[] = [];
       for (const stmt of stmts) {
@@ -862,7 +953,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
         thenBody.push(...parsed);
       }
       nodes.push({ kind: 'if', condition, thenBody, elseBody: [] });
-      return { nodes, nextIdx: idx + 1 };
+      return { nodes, nextIdx: idx + 1 + consumedLines };
     }
   }
 
@@ -1200,7 +1291,7 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
-  const dollarAssignMatch = trimmed.match(/^\$(\w+)\s*=\s*(.+)$/);
+  const dollarAssignMatch = trimmed.match(/^\$(\w+)\s*=\s*([\s\S]+)$/);
   if (dollarAssignMatch) {
     nodes.push({ kind: 'setup', raw: trimmed });
     return nodes;

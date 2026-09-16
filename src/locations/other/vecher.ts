@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'vecher';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/sex/party/vecher.jpg');
   scene.text('You turn up to a Friday night party.');
@@ -36,7 +38,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'drugs', 'alcohol', 'beer');
     scene.text('You have fun, drinking and dancing.');
     (s as any).itrand = Math.floor(Math.random() * 12) + 1;
-  }, goto: ['vecher', 'end<<itrand>>'] },
+    qspGoto(s, 'vecher', 'end' + ((s as any).itrand ?? 0) + '');
+  } },
   ]);
   scene.build();
 }
@@ -74,7 +77,9 @@ function enterEnd2(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).vikasex ?? 0))) {
       (s as any).vikasex = 1;
     }
-  }, goto: ['lezbsex', 'start'] },
+    (s as any).sexloc = 'uni_dorm';
+    qspGoto(s, 'lezbsex', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -93,7 +98,8 @@ function enterEnd3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['uni_dorm', 'tenth_floor'] },
+    qspGoto(s, 'uni_dorm', 'tenth_floor');
+  } },
       { label: 'Stay and enjoy yourself', handler: (st: GameState) => {
     if ((!((s as any).vikasex ?? 0))) {
       (s as any).vikasex = 1;
@@ -137,14 +143,16 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).vikasex ?? 0))) {
       (s as any).vikasex = 1;
     }
-  }, goto: ['lezbsex', 'start'] },
+    (s as any).sexloc = 'uni_dorm';
+    qspGoto(s, 'lezbsex', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterEnd5(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
   scene.img('images/locations/city/island/university/dorm/sex/party/itog5.jpg');
   scene.text('You wake up on the floor in the hallway, halfway to your room. Panting over your body is a pimply young man, dick inside you, trying to fuck your vagina carefully so you don\'t wake up. Noticing that you\'re awake, he quickly jumps to his feet and runs off, leaving you lying confused and naked on the dirty floor.');
   // TODO-QSP: end
@@ -250,6 +258,7 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/locations/city/island/university/dorm/sex/party/itog81.jpg');
     scene.text('You kiss and fondle at Vika\'s breasts, making her wriggle and moan. She soon offers to reward you with some cunnilingus.');
+    (s as any).orgasm_txt = 'The muscles of your vagina start to clench and ripple with pleasure, a warm wave of pleasure suffusing your lower body as you howl in orgasm.';
     qspCall(s, 'arousal', 'kuni', 10, 'lesbian');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
@@ -328,10 +337,12 @@ function enterEnd10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Grab his crotch', handler: (st: GameState) => {
+    (s as any).sexloc = 'uni_dorm';
     qspCall(s, 'npcgeneratec', '', 0, 'stranger from a party', Math.floor(Math.random() * 11) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).picrand = Math.floor(Math.random() * 21) + 20;
-  }, goto: ['sex', 'start'] },
+    qspGoto(s, 'sex', 'start');
+  } },
   ]);
   scene.build();
 }

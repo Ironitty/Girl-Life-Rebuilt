@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -99,6 +99,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
 
 function enterWoods(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/happyhome/HappyHome.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -406,9 +407,9 @@ function enterWoodsHome(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/mansion/happyhome.jpg');
   if ((!((s as any).VKTeeHee ?? 0))) {
     // TODO-QSP: dynamic text: You finally approach the end of the forest and see a derelict house. As you walk...
-    scene.text('You finally approach the end of the forest and see a derelict house. As you walk towards it, you can can see what appears to be a woman standing in the middle of the path leading to the house crying. \' + $OpenInnerThought + \'She must be stranded here like me. Maybe I can help her.\' + $CloseInnerThought + \' You suddenly feel a cold chill run down your spine before seeing a strange looking <a href="exec:gt \'NikoDreams\', \'teehee\'">cat</a> sitting on a tree stump, licking its paw.');
+    scene.text('You finally approach the end of the forest and see a derelict house. As you walk towards it, you can can see what appears to be a woman standing in the middle of the path leading to the house crying. \' + $OpenInnerThought + \'She must be stranded here like me. Maybe I can help her.\' + $CloseInnerThought + \' You suddenly feel a cold chill run down your spine before seeing a strange looking <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoDreams\\u0027, \\u0027teehee\\u0027); return false;">cat</a> sitting on a tree stump, licking its paw.');
   } else {
-    scene.text('There is an old derelict house in the distance, but the path to the house is blocked by a crying woman. <a href="exec:gt \'NikoDreams\', \'teehee\'">TeeHee</a> continuously rubs against your leg while purring softly.');
+    scene.text('There is an old derelict house in the distance, but the path to the house is blocked by a crying woman. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NikoDreams\\u0027, \\u0027teehee\\u0027); return false;">TeeHee</a> continuously rubs against your leg while purring softly.');
   }
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/residents/weepeeidle.jpg');
   // TODO-QSP: end
@@ -503,13 +504,13 @@ function enterWoodsHide(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     }
   } else {
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoDreams" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoDreams" }) + '');
     scene.text('You quickly duck behind a tree and stare into the forest. You wait for a few seconds before realizing that there\'s nothing there. You get out from behind the tree and brush the dirt from your leg.');
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/woods/${((s as any).VKWoods || '')}.jpg`);
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', goto: ['NikoDreams', 'woods<<VKWoods>>'] },
+    { label: 'Continue', goto: ['NikoDreams', 'woods' + ((s as any).VKWoods ?? 0) + ''] },
   ]);
   scene.build();
 }
@@ -625,7 +626,7 @@ function enterClassroomDream(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Who me?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoDreams" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     scene.text('You recoil in shock. "Wha… Me?" The teacher places both hands on your desk. "Of course I mean you. Do you know of any other whores that haven\'t already volunteered?" You can just barely make out Sonia under the table sucking on the teacher\'s dick.');
     scene.actions([
       { label: 'Walk to the front of the class', handler: (st: GameState) => {
@@ -696,6 +697,7 @@ function enterPuppeteer(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the hallway', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/happyhome/happyhome.mp3';
       (s as any).volume = 40;
       (s as any).music_loop = 1;
     }
@@ -745,7 +747,7 @@ function enterPuppeteer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <center><b><h4><font color=#FF00CC><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#FF00CC>${qspUntranslated(s, "\"<<pcs_firstname", { location: "NikoDreams" })} [${((s as any).pcs_nickname || '')}] ${((s as any).pcs_lastname || '')}">></font></h4></b></center>`);
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoDreams" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     // TODO-QSP: dynamic text: You quickly jump up screaming, only to notice that you're still in class. The wh...
     scene.text(`You quickly jump up screaming, only to notice that you're still in class. The whole class is staring at you in shock. "Miss ${((s as any).pcs_lastname || '')}, what's wrong?" Mr Tsarev asks softly in a concerned voice. You sit completely speechless for a few seconds before hearing the bell ringing. You quickly pack up your things and head for the door as some of your classmates whisper to each other.`);
     scene.text('"Whoa, what\'s her problem?" Arkadi asks.');
@@ -835,7 +837,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const NikoDreams: LocationDef = {
   name: 'NikoDreams',
-  title: '<<"Smiley">>',
   region: 'other',
   enter: enter,
 };

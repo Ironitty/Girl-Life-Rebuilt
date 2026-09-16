@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'balkon';
+  (s as any).menu_arg = 'start';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Apartment Balcony</b></center>');
@@ -61,7 +63,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Smoke a joint', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'joint');
-  }, goto: ['balkon', 'start'] },
+    qspGoto(s, 'balkon', 'start');
+  } },
     ]);
   }
   if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).pcs_inhib ?? 0) > 30) {
@@ -73,9 +76,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the living room', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'sitr') {
-      scene.actions([{ label: 'Continue', goto: ['sitr', ''] }]);
+      qspGoto(s, 'sitr', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sitr2x', ''] }]);
+      qspGoto(s, 'sitr2x', '');
     }
   } },
     { label: 'Approach the railing', goto: ['balkon2', 'niz'] },

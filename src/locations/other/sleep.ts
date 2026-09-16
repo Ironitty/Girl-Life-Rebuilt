@@ -1,63 +1,63 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterFull(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'start'] }]);
+  qspGoto(s, 'pre_sleep', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSleep(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'prepare_sleep'] }]);
+  qspGoto(s, 'pre_sleep', 'prepare_sleep');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDream(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['sleep', 'start'] }]);
+  qspGoto(s, 'sleep', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterWake(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['wakeup', 'start'] }]);
+  qspGoto(s, 'wakeup', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out', 'start'] }]);
+  qspGoto(s, 'bed_get_out', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'start'] }]);
+  qspGoto(s, 'pre_sleep', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 353) / 100;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 353) / 100;
   } else {
     if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === -1) {
-      if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 636) / 100;
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 636) / 100;
     } else {
-      if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
     }
   }
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
-  scene.actions([{ label: 'Continue', goto: ['dream_events', 'start'] }]);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
+  qspGoto(s, 'dream_events', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPostDream(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['sleep', 'sleep_handler'] }]);
+  qspGoto(s, 'sleep', 'sleep_handler');
   // TODO-QSP: end
   scene.build();
 }
@@ -65,28 +65,28 @@ function enterPostDream(s: GameState, scene: SceneBuilder): void {
 function enterSleepHandler(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalcMinutesToWakeup(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).sleepVars ?? 0)?.['minutes_to_wakeup'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['sleep', 'sleep_loop'] }]);
+    qspGoto(s, 'sleep', 'sleep_loop');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['sleep', 'post_sleep'] }]);
+    qspGoto(s, 'sleep', 'post_sleep');
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCalcMinutesToWakeup(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
   if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1  &&  ((s as any).sleepVars ?? 0)?.['slept_in'] === 0) {
     if ((((s as any).hour ?? 0) < ((s as any).alarmVars ?? 0)?.['timerEndH']  &&  ((((s as any).alarmVars ?? 0)?.['alarm_holiday'] === 1  &&  ((s as any).kanikuli ?? 0) !== 0)  ||  (((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7)))  ||  (((s as any).hour ?? 0) >= ((s as any).alarmVars ?? 0)?.['timerEndH']  &&  ((((s as any).alarmVars ?? 0)?.['alarm_holiday'] === 1  &&  qspFunc(s, 'sleep', 'is_tomorrow_school_vacation') !== 0)  ||  (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6)))) {
-      if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['alarm_time'] = ((s as any).daystart ?? 0) * 1440 + (((s as any).alarmVars ?? {})?.['timerEndH'] ?? 0) * 60 + (((s as any).alarmVars ?? {})?.['timerEndM'] ?? 0);
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['alarm_time'] = ((s as any).daystart ?? 0) * 1440 + (((s as any).alarmVars ?? {})?.['timerEndH'] ?? 0) * 60 + (((s as any).alarmVars ?? {})?.['timerEndM'] ?? 0);
     } else {
-      if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['alarm_time'] = ((s as any).daystart ?? 0) * 1440 + (((s as any).alarmVars ?? {})?.['timerH'] ?? 0) * 60 + (((s as any).alarmVars ?? {})?.['timerM'] ?? 0);
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['alarm_time'] = ((s as any).daystart ?? 0) * 1440 + (((s as any).alarmVars ?? {})?.['timerH'] ?? 0) * 60 + (((s as any).alarmVars ?? {})?.['timerM'] ?? 0);
     }
     if (((s as any).sleepVars ?? 0)?.['time_now'] > ((s as any).sleepVars ?? 0)?.['alarm_time']) {
-      if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['alarm_time'] = ((s as any).sleepVars['alarm_time'] ?? 0) + (1440);
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['alarm_time'] = ((s as any).sleepVars['alarm_time'] ?? 0) + (1440);
     }
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['minutes_to_wakeup'] = Math.min(((s as any).sleepVars ?? 0)?.['time_to_full'], (((s as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((s as any).sleepVars ?? {})?.['time_now'] ?? 0));
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = Math.min(((s as any).sleepVars ?? 0)?.['time_to_full'], (((s as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((s as any).sleepVars ?? {})?.['time_now'] ?? 0));
   } else {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['minutes_to_wakeup'] = ((s as any).sleepVars ?? 0)?.['time_to_full'];
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = ((s as any).sleepVars ?? 0)?.['time_to_full'];
   }
   // TODO-QSP: end
   scene.build();
@@ -116,26 +116,26 @@ function enterIsTomorrowSchoolVacation(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterSleepLoop(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
   // TODO-QSP: :sleep_loop_loop
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stime'] = ((s as any).sleepVars['stime'] ?? 0) + (1);
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_now'] = ((s as any).sleepVars['time_now'] ?? 0) + (1);
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['minutes_to_wakeup'] = ((s as any).sleepVars['minutes_to_wakeup'] ?? 0) - (1);
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) - (1);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stime'] = ((s as any).sleepVars['stime'] ?? 0) + (1);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_now'] = ((s as any).sleepVars['time_now'] ?? 0) + (1);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = ((s as any).sleepVars['minutes_to_wakeup'] ?? 0) - (1);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) - (1);
   if (((s as any).vibratorIN ?? 0) === 1) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['vtime'] = ((s as any).sleepVars['vtime'] ?? 0) + (1);
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['vtime'] = ((s as any).sleepVars['vtime'] ?? 0) + (1);
     if (((s as any).sleepVars ?? 0)?.['vtime'] >= 5) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
-      if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['vtime'] = 0;
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['vtime'] = 0;
     }
   }
   if (((s as any).recuperation ?? 0) === 0  ||  ((s as any).sleepVars ?? 0)?.['no_health'] === 1) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['health_stock'] = ((s as any).sleepVars['health_stock'] ?? 0) + (((s as any).healthmax ?? 0));
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['health_stock'] = ((s as any).sleepVars['health_stock'] ?? 0) + (((s as any).healthmax ?? 0));
   }
   if (((s as any).sleepVars ?? 0)?.['health_stock'] >= 960) {
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + ((((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) / 960);
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['health_stock'] = (((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) % 960;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['health_stock'] = (((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) % 960;
   }
   if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
     if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
@@ -159,12 +159,12 @@ function enterSleepLoop(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sleepVars ?? 0)?.['stime'] >= 60) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stime'] = 0;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['stime'] = 0;
     if (((s as any).pcs_sleep ?? 0) >= 100  ||  ((s as any).succublvl ?? 0) > 0) {
-      if (!(s as any).pcs_condition) (s as any).pcs_condition = {}; (s as any).pcs_condition['lack_of_sleep'] = 0;
+      ((s as any).pcs_condition = (s as any).pcs_condition ?? {})['lack_of_sleep'] = 0;
     } else {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] > 0) {
-        if (!(s as any).pcs_condition) (s as any).pcs_condition = {}; (s as any).pcs_condition['lack_of_sleep'] = ((s as any).pcs_condition['lack_of_sleep'] ?? 0) - (1);
+        ((s as any).pcs_condition = (s as any).pcs_condition ?? {})['lack_of_sleep'] = ((s as any).pcs_condition['lack_of_sleep'] ?? 0) - (1);
       }
     }
     qspCall(s, 'stat', '');
@@ -179,8 +179,8 @@ function enterSleepLoop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['minutes_to_wakeup'] > 0) {
     // TODO-QSP: jump 'sleep_loop_loop'
   }
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['no_health'] = 0;
-  scene.actions([{ label: 'Continue', goto: ['sleep', 'post_sleep'] }]);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['no_health'] = 0;
+  qspGoto(s, 'sleep', 'post_sleep');
   // TODO-QSP: end
   scene.build();
 }
@@ -210,7 +210,7 @@ function enterPostSleep(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', goto: ['wakeup', 'start'] }]);
+  qspGoto(s, 'wakeup', 'start');
   // TODO-QSP: end
   scene.build();
 }

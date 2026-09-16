@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -28,7 +28,7 @@ function enterWineInvite(s: GameState, scene: SceneBuilder): void {
         { label: 'Go and shower', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You wash up in one of the guest showers, scrubbing the chlorine off your skin before drying off and putting your clothes back on.');
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
     qspCall(s, 'din_van', 'showerdin');
     scene.actions([
       { label: 'Head out', handler: (st: GameState) => {
@@ -53,7 +53,7 @@ function enterWineInvite(s: GameState, scene: SceneBuilder): void {
       { label: 'Go and shower', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You wash up in one of the guest showers, scrubbing the chlorine off your skin before drying off and putting your clothes back on.');
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
     qspCall(s, 'din_van', 'showerdin');
     scene.actions([
       { label: 'Head out', handler: (st: GameState) => {
@@ -125,7 +125,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Drunkenly converse with Albina', goto: ['albina_wine_event', 'wine_chat1'] },
     ]);
   }
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine'] = ((s as any).AlbinaQW['wine'] ?? 0) + (1);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine'] = ((s as any).AlbinaQW['wine'] ?? 0) + (1);
   // TODO-QSP: end
   scene.build();
 }
@@ -133,79 +133,79 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterWineChat1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
   if (((s as any).AlbinaQW ?? 0)?.['wine_date'] !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_date'] = ((s as any).daystart ?? 0);
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_limit'] = Math.floor(Math.random() * 5) + 4;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_date'] = ((s as any).daystart ?? 0);
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_limit'] = Math.floor(Math.random() * 5) + 4;
   }
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo'] = Math.floor(Math.random() * 8) + 1;
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_count'] = ((s as any).AlbinaQW['wine_count'] ?? 0) + (1);
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo'] = Math.floor(Math.random() * 8) + 1;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_count'] = ((s as any).AlbinaQW['wine_count'] ?? 0) + (1);
   if (((s as any).AlbinaQW ?? 0)?.['wine_count'] >= ((s as any).AlbinaQW ?? 0)?.['wine_limit']) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 1) {
       if (((s as any).AlbinaQW ?? 0)?.['wine_convo_1'] === ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+        qspGoto(s, 'albina_wine_event', 'wine_chat1');
       } else {
-        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo_1'] = ((s as any).daystart ?? 0);
+        ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo_1'] = ((s as any).daystart ?? 0);
       }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPussyTaste(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 2) {
         if (((s as any).AlbinaQW ?? 0)?.['wine_convo_2'] === ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+          qspGoto(s, 'albina_wine_event', 'wine_chat1');
         } else {
-          if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo_2'] = ((s as any).daystart ?? 0);
+          ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo_2'] = ((s as any).daystart ?? 0);
         }
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShaveTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 3) {
           if (((s as any).AlbinaQW ?? 0)?.['wine_convo_3'] === ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+            qspGoto(s, 'albina_wine_event', 'wine_chat1');
           } else {
-            if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo_3'] = ((s as any).daystart ?? 0);
+            ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo_3'] = ((s as any).daystart ?? 0);
           }
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDominateAlbina(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 4) {
             if (((s as any).AlbinaQW ?? 0)?.['wine_convo_4'] === ((s as any).daystart ?? 0)) {
-              scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+              qspGoto(s, 'albina_wine_event', 'wine_chat1');
             } else {
-              if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo_4'] = ((s as any).daystart ?? 0);
+              ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo_4'] = ((s as any).daystart ?? 0);
             }
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMasturbationTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 5) {
               if (((s as any).AlbinaQW ?? 0)?.['wine_convo_5'] === ((s as any).daystart ?? 0)) {
-                scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                qspGoto(s, 'albina_wine_event', 'wine_chat1');
               } else {
-                if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo_5'] = ((s as any).daystart ?? 0);
+                ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo_5'] = ((s as any).daystart ?? 0);
               }
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPornTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 6) {
                 if (((s as any).AlbinaQW ?? 0)?.['wine_convo_6'] === ((s as any).daystart ?? 0)) {
-                  scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                  qspGoto(s, 'albina_wine_event', 'wine_chat1');
                 } else {
-                  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo_6'] = ((s as any).daystart ?? 0);
+                  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo_6'] = ((s as any).daystart ?? 0);
                 }
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoobSizeTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 7) {
                   if (((s as any).AlbinaQW ?? 0)?.['commando_know'] === 0) {
-                    scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                    qspGoto(s, 'albina_wine_event', 'wine_chat1');
                   }
                   if (((s as any).AlbinaQW ?? 0)?.['wine_convo_7'] === ((s as any).daystart ?? 0)) {
-                    scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                    qspGoto(s, 'albina_wine_event', 'wine_chat1');
                   } else {
-                    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo_7'] = ((s as any).daystart ?? 0);
+                    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo_7'] = ((s as any).daystart ?? 0);
                   }
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCommandoTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 8) {
                     if (((s as any).AlbinaQW ?? 0)?.['wine_convo_8'] === ((s as any).daystart ?? 0)) {
-                      scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                      qspGoto(s, 'albina_wine_event', 'wine_chat1');
                     } else {
-                      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_convo_8'] = ((s as any).daystart ?? 0);
+                      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_convo_8'] = ((s as any).daystart ?? 0);
                     }
                     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripperTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
                   }
@@ -524,7 +524,7 @@ function enterPornTalk(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWineChat2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Incest porn', handler: (st: GameState) => {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['incest_porn'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['incest_porn'] = 1;
     scene.text('"I kind of like watching incest porn…" you admit.');
     if (((s as any).AlbinaQW ?? 0)?.['kolka_know'] < 1) {
       scene.text('"Oh God, you\'re one of <i>those</i> people?" she replies and makes a face at you. "One of those \'What are you doing STEP bro\' types?"');
@@ -1076,7 +1076,7 @@ function enterShaveAnswer6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShaveElaborate(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['shave_story'] = 1;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['shave_story'] = 1;
   scene.text('"I only used to shave because of my dad," she says unblinking, like she didn\'t even hear what you said. "When he started renting me out, he demanded that I shave it. Wanted my pussy \'smooth as a baby down there\' for all his rapist friends. I tried to grow it out once just to spite him, but it was so fucking <i>itchy</i> I couldn\'t stand it. In the end, I didn\'t even last a week before giving up. Fuck pussy hair! I should get it all lasered off."');
   scene.text('With that, she tilts her glass back and drains the whole thing in one large swallow before reaching for the bottle to top herself off again.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWineChat2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1459,9 +1459,9 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterCaught(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 10);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_count'] = 0;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_count'] = 0;
   if (((s as any).AlbinaQW ?? 0)?.['wine_caught'] === 0) {
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_caught'] = 1;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_caught'] = 1;
   }
   scene.img('images/locations/pavlovsk/resident/albinahome/livingroom.jpg');
   scene.text('"<i><b>ALBINA BARLOVSKAYA!</b></i>"');
@@ -1506,7 +1506,7 @@ function enterCaught(s: GameState, scene: SceneBuilder): void {
 
 function enterWakeup(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 20);
-  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['wine_count'] = 0;
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['wine_count'] = 0;
   scene.img('images/locations/pavlovsk/resident/albinahome/livingroom.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>… <<$pcs_nickname>>!"
   scene.text(`"${((s as any).pcs_nickname || '')}… ${((s as any).pcs_nickname || '')}!"`);

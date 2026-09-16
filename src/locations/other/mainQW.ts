@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -69,12 +69,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
-      scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+      qspGoto(s, 'city_residential', '');
     } else {
       if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
+        qspGoto(s, 'city_island', '');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+        qspGoto(s, 'pav_residential', '');
       }
     }
   } },

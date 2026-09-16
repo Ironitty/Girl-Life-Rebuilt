@@ -89,8 +89,8 @@ function enterInitiation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWalkoff(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = Math.floor(Math.random() * 51) + 600;
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 51) + 600;
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
@@ -131,7 +131,7 @@ function enterAgreesteal(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Steal', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/events/gopnikinvite/steal.jpg');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (50);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (50);
     qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -162,8 +162,8 @@ function enterAgreesteal(s: GameState, scene: SceneBuilder): void {
       { label: 'Stay silent', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
     scene.text('You stay silent and watch them walk away. You know you just painted a target on your back, but you couldn\'t bring yourself to steal. Sighing, you walk back to the street.');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = Math.floor(Math.random() * 51) + 600;
-    if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 51) + 600;
+    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
     qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
     qspCall(s, 'stat', '');
     scene.actions([
@@ -206,8 +206,8 @@ function enterNoslut(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
   scene.text('You shake your head. "I\'m not a slut."');
   scene.text('They turn around and start walking away again. "Then fuck you bitch!" You know you\'re a target for the gopniks now, but it\'s better than being their personal slut. You turn and make your way back to the street.');
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = Math.floor(Math.random() * 51) + 600;
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 51) + 600;
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -218,24 +218,24 @@ function enterNoslut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 0;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 0;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 0;
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min(Math.floor(Math.random() * 51) + 625, qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" }));
   if (((s as any).grupTipe ?? 0) === 1) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = Math.floor(Math.random() * 101) + 500;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.floor(Math.random() * 101) + 500;
   }
   if (((s as any).grupTipe ?? 0) === 2) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = Math.floor(Math.random() * 101) + 500;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.floor(Math.random() * 101) + 500;
   }
   if (((s as any).grupTipe ?? 0) === 3) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = Math.floor(Math.random() * 101) + 500;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.floor(Math.random() * 101) + 500;
   }
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
   (s as any).grupTipe = 4;
-  if (!(s as any).grupTipe) (s as any).grupTipe = {}; (s as any).grupTipe['joined_gopnik'] = 1;
+  ((s as any).grupTipe = (s as any).grupTipe ?? {})['joined_gopnik'] = 1;
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 10);
   scene.img('images/locations/pavlovsk/school/oldschool/hall.jpg');
   scene.text('You follow Lena and Lera, who talk the whole way about how you did such a good job. Upon arriving at the old school, Lena and Lera slip through the busted front door and down the main hallway to see Vitek, who is waiting in the old school offices with the rest of the gopniks.');
@@ -310,9 +310,12 @@ function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExplore(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'gopnik_initiation';
+  (s as any).menu_arg = 'explore';
+  (s as any).location_type = 'public_indoors';
   scene.img('images/locations/pavlovsk/school/oldschool/gophangout/party/party.jpg');
-  scene.text('Once your story has been told and everyone has taken a drink or more of the vodka, the large crowd disperses and smaller groups have formed instead. <a href="exec:gt \'gopnik_initiation\', \'tVitek\'">Vitek</a> and <a href="exec:gt \'gopnik_initiation\', \'tLavrenti\'">Lavrenti</a> are discussing something, while <a href="exec:gt \'gopnik_initiation\', \'tDan\'">Dan</a> is sitting on the sofa with a drink in his hand carefully listening to the discussion.');
-  scene.text('You can see <a href="exec:gt \'gopnik_initiation\', \'Niko\'">Niko</a> leaning against a wall, chatting with Roman. <a href="exec:gt \'gopnik_initiation\', \'tVasily\'">Vasily</a> is standing nearby pouring himself a drink. <a href="exec:gt \'gopnik_initiation\', \'tLena\'">Lena</a> and <a href="exec:gt \'gopnik_initiation\', \'tLera\'">Lera</a> are standing a little farther away talking to each other while <a href="exec:gt \'gopnik_initiation\', \'tPauline\'">Pauline</a> is standing by the window smoking a cigarette.');
+  scene.text('Once your story has been told and everyone has taken a drink or more of the vodka, the large crowd disperses and smaller groups have formed instead. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tVitek\\u0027); return false;">Vitek</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tLavrenti\\u0027); return false;">Lavrenti</a> are discussing something, while <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tDan\\u0027); return false;">Dan</a> is sitting on the sofa with a drink in his hand carefully listening to the discussion.');
+  scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027Niko\\u0027); return false;">Niko</a> leaning against a wall, chatting with Roman. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tVasily\\u0027); return false;">Vasily</a> is standing nearby pouring himself a drink. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tLena\\u0027); return false;">Lena</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tLera\\u0027); return false;">Lera</a> are standing a little farther away talking to each other while <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tPauline\\u0027); return false;">Pauline</a> is standing by the window smoking a cigarette.');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -406,7 +409,7 @@ function enterTDan(s: GameState, scene: SceneBuilder): void {
     scene.text('You can hear Lavrenti and Vasily laughing before Vasily rubs salt in the wound. "She has a point, Dan. I\'ve never seen that place empty." Dan turns and gives Vasily a dirty look before turning it on you, but he doesn\'t say anything more.');
     scene.text('You stick out your tongue as you move away from him, feeling very satisfied that you managed to put Dan in his place. You know you scored some points with some of them, even if it pissed off Dan, but he\'ll get over it.');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
@@ -877,8 +880,8 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
 
 function enterLounge(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/oldschool/teachloung.jpg');
-  scene.text('Upon entering the teachers lounge, you are struck by the strong scent of marijuana. It\'s so strong that you think you already have a contact buzz. Through the smoky haze, you see <a href="exec:gt \'gopnik_initiation\', \'tRadomir\'">Radomir</a> intensely explaining something to <a href="exec:gt \'gopnik_initiation\', \'tValentin\'">Valentin</a> and <a href="exec:gt \'gopnik_initiation\', \'tArkadi\'">Arkadi</a> by a makeshift table as they\'re pouring themselves a drink.');
-  scene.text('<a href="exec:gt \'gopnik_initiation\', \'tAnushka\'">Anushka</a> and <a href="exec:gt \'gopnik_initiation\', \'tAlyona\'">Alyona</a> are sitting on a sofa looking spaced out while passing a joint back and forth. <a href="exec:gt \'gopnik_initiation\', \'tEkaterina\'">Katyusha</a> is standing in one of the corners by herself, deep in her own thoughts.');
+  scene.text('Upon entering the teachers lounge, you are struck by the strong scent of marijuana. It\'s so strong that you think you already have a contact buzz. Through the smoky haze, you see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tRadomir\\u0027); return false;">Radomir</a> intensely explaining something to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tValentin\\u0027); return false;">Valentin</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tArkadi\\u0027); return false;">Arkadi</a> by a makeshift table as they\'re pouring themselves a drink.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tAnushka\\u0027); return false;">Anushka</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tAlyona\\u0027); return false;">Alyona</a> are sitting on a sofa looking spaced out while passing a joint back and forth. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gopnik_initiation\\u0027, \\u0027tEkaterina\\u0027); return false;">Katyusha</a> is standing in one of the corners by herself, deep in her own thoughts.');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1208,22 +1211,22 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   (s as any).gopnik_slut = 1;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 0;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 0;
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 0;
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min(Math.floor(Math.random() * 51) + 625, qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" }));
   if (((s as any).grupTipe ?? 0) === 1) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = Math.floor(Math.random() * 101) + 500;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.floor(Math.random() * 101) + 500;
   }
   if (((s as any).grupTipe ?? 0) === 2) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = Math.floor(Math.random() * 101) + 500;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.floor(Math.random() * 101) + 500;
   }
   if (((s as any).grupTipe ?? 0) === 3) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = Math.floor(Math.random() * 101) + 500;
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.floor(Math.random() * 101) + 500;
   }
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
-  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
   (s as any).grupTipe = 4;
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 5);
   scene.img('images/locations/pavlovsk/school/oldschool/hall.jpg');

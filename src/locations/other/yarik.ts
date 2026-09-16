@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).menu_loc = 'yarik';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Apartment businessman Yaroslav</b></center>');
@@ -31,7 +33,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
   ]);
   scene.build();
 }
@@ -218,6 +221,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
       { label: 'Finger yourself', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_15.jpg');
     scene.text('You stick 2 fingers into your vagina, and thrust them back and forth. You feel your excitement grow.');
+    (s as any).orgasm_txt = 'You are caught off guard by your arousal and have a surprising, but pleasing orgasm.';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'masturbate');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
@@ -227,7 +231,8 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     (s as any).noshampoo = 1;
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'money', 'earn', 2250);
-  }, goto: ['yarik', 'end'] },
+    qspGoto(s, 'yarik', 'end');
+  } },
     ]);
   } },
     ]);
@@ -276,7 +281,8 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     (s as any).noshampoo = 1;
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'money', 'earn', 2250);
-  }, goto: ['yarik', 'end'] },
+    qspGoto(s, 'yarik', 'end');
+  } },
     ]);
   } },
     ]);
@@ -346,7 +352,8 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     (s as any).noshampoo = 1;
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'money', 'earn', 3000);
-  }, goto: ['yarik', 'end'] },
+    qspGoto(s, 'yarik', 'end');
+  } },
     ]);
   } },
     ]);
@@ -411,7 +418,8 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     (s as any).noshampoo = 1;
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'money', 'earn', 3500);
-  }, goto: ['yarik', 'end'] },
+    qspGoto(s, 'yarik', 'end');
+  } },
     ]);
   } },
     ]);
@@ -437,7 +445,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get dressed and leave', handler: (st: GameState) => {
     (s as any).yarikwork = ((s as any).yarikwork ?? 0) + (1);
-  }, goto: ['city_center', ''] },
+    qspGoto(s, 'city_center', '');
+  } },
   ]);
   scene.build();
 }

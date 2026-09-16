@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
+  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -576,9 +577,9 @@ function enterElectric1(s: GameState, scene: SceneBuilder): void {
       { label: 'You awake in somewhere else', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'nice1'] }]);
+      qspGoto(s, 'alexandriaSex', 'nice1');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'grumpy1'] }]);
+      qspGoto(s, 'alexandriaSex', 'grumpy1');
     }
   } },
     ]);
@@ -611,10 +612,10 @@ function enterElectric2(s: GameState, scene: SceneBuilder): void {
 function enterElectric3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).AlexandriaQW ?? 0) === 7) {
-    scene.actions([{ label: 'Continue', goto: ['alexandriaChat', 'electric1'] }]);
+    qspGoto(s, 'alexandriaChat', 'electric1');
   } else {
     if (((s as any).AlexandriaQW ?? 0) < 12  ||  ((s as any).AlexandriaQW ?? 0) > 19  &&  ((s as any).AlexandriaQW ?? 0) < 23) {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaChat', 'electric2'] }]);
+      qspGoto(s, 'alexandriaChat', 'electric2');
     } else {
       if (((s as any).AlexandriaQW ?? 0) === 12) {
         scene.img('images/characters/city/alexandria/saber.jpg');

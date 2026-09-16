@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -29,6 +29,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).loc = 'pav_church';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'pav_church';
+  (s as any).menu_arg = 'start';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'outdoors');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Church of Saint Nikolas</b></center>');
@@ -468,14 +473,14 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
 function enterServiceEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/enterchurch.jpg');
   if (((s as any).fame ?? 0)?.['pav_prostitute'] > (Math.floor(Math.random() * 1000) + 1)) {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['approach_type'] = 'prostitute';
+    ((s as any).temp = (s as any).temp ?? {})['approach_type'] = 'prostitute';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexApproach1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).fame ?? 0)?.['pav_slut'] > (Math.floor(Math.random() * 1000) + 1)) {
-      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['approach_type'] = 'slut';
+      ((s as any).temp = (s as any).temp ?? {})['approach_type'] = 'slut';
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexApproach1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pav_church', 'start'] }]);
+      qspGoto(s, 'pav_church', 'start');
     }
   }
   // TODO-QSP: end
@@ -509,19 +514,19 @@ function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Answer (shy)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'shy';
+    ((s as any).temp = (s as any).temp ?? {})['prost_response'] = 'shy';
     scene.text('"Yes, that\'s me," you mumble meekly.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Answer (normal)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'normal';
+    ((s as any).temp = (s as any).temp ?? {})['prost_response'] = 'normal';
     scene.text('"Yes, that\'s me," you answer naturally, meeting his eyes like any other conversation.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Answer (slutty)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'slutty';
+    ((s as any).temp = (s as any).temp ?? {})['prost_response'] = 'slutty';
     scene.text('"Sure am," you answer, stepping closer and returning his gaze with a lascivious smirk of your own.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
@@ -532,19 +537,19 @@ function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
 function enterSexOffer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
     if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'blowjob') {
-      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'blowjob';
-      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_money'] = 400;
+      ((s as any).temp = (s as any).temp ?? {})['offer_type'] = 'blowjob';
+      ((s as any).temp = (s as any).temp ?? {})['prost_money'] = 400;
       // TODO-QSP: dynamic text: "I'll give you ' + $func('money', 'string_profit', 400) + ' for a blowjob," he w...
       scene.text('"I\'ll give you \' + $func(\'money\', \'string_profit\', 400) + \' for a blowjob," he whispers.');
     } else {
       if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'miss'  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'doggy'  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'cowgirl') {
-        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'fuck';
-        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_money'] = 1000;
+        ((s as any).temp = (s as any).temp ?? {})['offer_type'] = 'fuck';
+        ((s as any).temp = (s as any).temp ?? {})['prost_money'] = 1000;
         // TODO-QSP: dynamic text: "I'll give you ' + $func('money', 'string_profit', 1000) + ' to fuck your pussy,...
         scene.text('"I\'ll give you \' + $func(\'money\', \'string_profit\', 1000) + \' to fuck your pussy," he whispers.');
       } else {
-        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'handjob';
-        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_money'] = 200;
+        ((s as any).temp = (s as any).temp ?? {})['offer_type'] = 'handjob';
+        ((s as any).temp = (s as any).temp ?? {})['prost_money'] = 200;
         // TODO-QSP: dynamic text: "I'll give you ' + $func('money', 'string_profit', 200) + ' for a handjob," he w...
         scene.text('"I\'ll give you \' + $func(\'money\', \'string_profit\', 200) + \' for a handjob," he whispers.');
       }
@@ -552,14 +557,14 @@ function enterSexOffer(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).temp ?? 0)?.['approach_type'] === 'slut') {
       if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'blowjob') {
-        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'blowjob';
+        ((s as any).temp = (s as any).temp ?? {})['offer_type'] = 'blowjob';
         scene.text('"How about you and I find somewhere private so you can suck my cock?" he whispers.');
       } else {
         if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'miss'  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'doggy'  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'cowgirl') {
-          if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'fuck';
+          ((s as any).temp = (s as any).temp ?? {})['offer_type'] = 'fuck';
           scene.text('"How about you and I find somewhere private so I can fuck you silly?" he whispers.');
         } else {
-          if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'handjob';
+          ((s as any).temp = (s as any).temp ?? {})['offer_type'] = 'handjob';
           scene.text('"How about you and I find somewhere private so you can jerk me off?" he whispers.');
         }
       }
@@ -654,7 +659,7 @@ function enterRestroomBlowjob(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['orgasm'] = ((s as any).orgasm ?? 0);
+  ((s as any).temp = (s as any).temp ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   scene.img('images/locations/pavlovsk/church/supplycloset.jpg');
   if (((s as any).npc_condom_conscious ?? 0)?.[String((s as any).boy ?? 0)] > 0) {
     // TODO-QSP: 'Inside the restroom, the man pulls down his pants and wraps his cock in a condom as you ' + iif(PCl...
@@ -723,7 +728,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomFuckBareback(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['condom_use'] = 0;
+  ((s as any).temp = (s as any).temp ?? {})['condom_use'] = 0;
   scene.img('images/shared/sex/public/restroom/fuck_stand1.mp4');
   scene.text('Once in a stall, the man pushes you up against the wall and roughly fucks your pussy.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckThoughts(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -732,7 +737,7 @@ function enterRestroomFuckBareback(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomFuckCondom(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['condom_use'] = 1;
+  ((s as any).temp = (s as any).temp ?? {})['condom_use'] = 1;
   scene.img('images/shared/sex/public/restroom/fuck_stand1.mp4');
   scene.text('Once in a stall, the man pushes you up against the wall and roughly fucks your pussy.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckThoughts(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -770,6 +775,7 @@ function enterRestroomFuckThoughts(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Boring', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal', Math.floor(Math.random() * 6) + 5, 'prostitution', 'no_orgasm_msg');
     scene.text('<i>Ugh, how boring…</i> you sigh silently as the man keeps grunting, shoving his cock into your pussy as you mechanically thrust back in time. This is taking forever and you stifle another sigh waiting for him to finish.');
     if (((s as any).temp ?? 0)?.['condom_use'] === 0) {
@@ -779,6 +785,7 @@ function enterRestroomFuckThoughts(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Think happy thoughts', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal', Math.floor(Math.random() * 6) + 5, 'prostitution', 'no_orgasm_msg');
     scene.text('As the man keeps grunting, uncomfortably shoving his cock into your pussy, you close your eyes and try to disassociate from the experience, thinking of the happiest thoughts you can muster.');
     if (((s as any).temp ?? 0)?.['condom_use'] === 0) {
@@ -943,16 +950,18 @@ function enterRestroomCumMouth(s: GameState, scene: SceneBuilder): void {
 
 function enterRestroomSexEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
-  scene.actions([{ label: 'Continue', goto: ['pav_church', 'Narthex'] }]);
+  qspGoto(s, 'pav_church', 'Narthex');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterNarthex(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_church';
+  (s as any).menu_arg = 'Narthex';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'family_schedule', '');
   if (((s as any).locat ?? 0)?.['Mother'] === 16  &&  ((s as any).mom_church ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['pav_church', 'Mom'] }]);
+    qspGoto(s, 'pav_church', 'Mom');
   }
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -961,7 +970,7 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the church and the scent of incense and beeswax fills your lungs. Your eyes are drawn past the Narthex into the Nave with its walls covered in lovingly painted icons while a thousand points of light dance in joy throughout God\'s house from the magnificent chandelier that hangs from the ceiling.');
   scene.text('To your left is a counter where a deacon sells candles, icons and prayer books. He smiles and nods at you absently, acknowledging your presence without really seeing you.');
   if (((((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 9)  ||  (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).confessday ?? 0) !== ((s as any).daystart ?? 0)) {
-    scene.actions([{ label: 'Continue', goto: ['pav_church2', 'confession'] }]);
+    qspGoto(s, 'pav_church2', 'confession');
     scene.actions([
       { label: 'Go to confession', handler: (st: GameState) => {
     (st as any).confessday = ((st as any).daystart ?? 0);
@@ -979,6 +988,8 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNarthexMom(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'pav_church';
+  (s as any).menu_arg = 'Narthex_mom';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1032,18 +1043,18 @@ function enterNarthexMom(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >=19  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
               scene.actions([
-                { label: 'Attend vigil', goto: ['pav_church', 'vigil', '\'mom\''] },
+                { label: 'Attend vigil', goto: ['pav_church', 'vigil', 'mom'] },
               ]);
             } else {
               if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
                 scene.actions([
-                  { label: 'Attend Divine Liturgy', goto: ['pav_church', 'liturgy', '\'mom\''] },
+                  { label: 'Attend Divine Liturgy', goto: ['pav_church', 'liturgy', 'mom'] },
                 ]);
               }
             }
             scene.actions([
-              { label: 'Light a candle', goto: ['pav_church', 'candle', '\'mom\''] },
-              { label: 'Pray', goto: ['pav_church', 'pray', '\'mom\''] },
+              { label: 'Light a candle', goto: ['pav_church', 'candle', 'mom'] },
+              { label: 'Pray', goto: ['pav_church', 'pray', 'mom'] },
             ]);
           }
         }
@@ -1224,6 +1235,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fame', 'pav', 'sex', 2);
     qspCall(s, 'archetypes', 'gain', 'bimbo', 'tiny', 'Flashing in church', 1);
     (s as any).pcs_faith = Math.max(0, ((s as any).pcs_faith ?? 0) - 15);
+    (s as any).flash_image = 'images/locations/pavlovsk/church/ch_prayingflash.jpg';
     // TODO-QSP: $flash_text[0] = 'As you''re praying, you get a devious idea. With a sly smile, you expose your ass,...
     qspCall(s, 'flash', 'butt', 'indoors', 2, 2);
     qspCall(s, 'stat', '');
@@ -1278,7 +1290,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
+                ((s as any).drugVars = (s as any).drugVars ?? {})['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
               }
               scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness, but you find it comforting. You get the urge to pray very intensely and before you know it, an hour has passed and you feel cleansed.');
             } else {
@@ -1288,6 +1300,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
                 (s as any).Godslut = 1;
                 scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness, but it\'s comforting, like being in the womb of God. You get the urge to pray very intensely and lose yourself in the presence of God, overcome by religious ecstasy.');
                 scene.text('You fight back a sob as your body trembles with an uncontrollable orgasm. You wipe the tears from your eyes and gaze with adoration at the face of Christ, your newest lover.');
+                (s as any).orgasm_or = 'yes';
                 qspCall(s, 'arousal', 'erotic', (-10));
                 qspCall(s, 'arousal', 'end');
               } else {
@@ -1296,7 +1309,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
                 (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
                 (s as any).minut = ((s as any).minut ?? 0) + 60;
                 if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
+                  ((s as any).drugVars = (s as any).drugVars ?? {})['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
                 }
                 scene.text('The Nave is lit only with candles and small presence lights and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely and before you know it, more than an hour has passed and you feel reborn and cleansed.');
               }
@@ -1467,7 +1480,8 @@ function enterTease(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave the church', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_church', 'start'] },
+    qspGoto(s, 'pav_church', 'start');
+  } },
         ]);
       }
       scene.actions([
@@ -1609,41 +1623,58 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
 function enterFillers(s: GameState, scene: SceneBuilder): void {
   (s as any).randtext = Math.floor(Math.random() * 10) + 0;
   if (((s as any).randtext ?? 0) === 0  &&  ((s as any).gsAboDance ?? 0) > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] === 0) {
+    (s as any).safesub = 'your dance lessons';
   } else {
     if (((s as any).randtext ?? 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0) {
+      (s as any).safesub = 'dancing with the Starlets';
     } else {
       if (((s as any).randtext ?? 0) === 0  &&  ((s as any).gsAboBeg ?? 0) > 0) {
+        (s as any).safesub = 'your race training';
       } else {
         if (((s as any).randtext ?? 0) === 0  &&  ((s as any).vballVars ?? 0)?.['lessons_remaining'] > 0  &&  ((s as any).vballVars ?? 0)?.['on_team'] === 0) {
+          (s as any).safesub = 'playing intramural volleyball';
         } else {
           if (((s as any).randtext ?? 0) === 0  &&  ((s as any).vballVars ?? 0)?.['on_team'] === 1) {
+            (s as any).safesub = 'playing competitive volleyball';
           } else {
             if (((s as any).randtext ?? 0) === 0  &&  ((s as any).month ?? 0) >= 9  &&  ((s as any).month ?? 0) < 6  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
+              (s as any).safesub = 'your schoolwork';
             } else {
               if (((s as any).randtext ?? 0) === 1) {
+                (s as any).safesub = 'your mother';
               } else {
                 if (((s as any).randtext ?? 0) === 2) {
+                  (s as any).safesub = 'your stepfather';
                 } else {
                   if (((s as any).randtext ?? 0) === 3) {
+                    (s as any).safesub = 'your brother';
                   } else {
                     if (((s as any).randtext ?? 0) === 4) {
+                      (s as any).safesub = 'your sister';
                     } else {
                       if (((s as any).randtext ?? 0) === 5) {
+                        (s as any).safesub = 'your childhood friend Vasily';
                       } else {
                         if (((s as any).randtext ?? 0) === 6) {
+                          (s as any).safesub = 'trying to earn money';
                         } else {
                           if (((s as any).randtext ?? 0) === 7) {
                             (s as any).Kirill = ((s as any).Kirill ?? 0) + (1);
+                            (s as any).safesub = 'the Russian Orthodox Church';
                           } else {
                             if (((s as any).randtext ?? 0) === 8  &&  ((s as any).soniaQW ?? 0)?.['slut'] !== 0) {
                               (s as any).Kirill_Crpt = ((s as any).Kirill_Crpt ?? 0) + (1);
+                              (s as any).safesub = 'what Sonia has been doing';
                             } else {
                               if (((s as any).randtext ?? 0) === 8  &&  ((s as any).soniaQW ?? 0)?.['slut'] === 0) {
+                                (s as any).safesub = 'your curfew on weekends';
                               } else {
                                 if (((s as any).randtext ?? 0) === 9) {
+                                  (s as any).safesub = 'your grandparents';
                                 } else {
                                   if ((!((s as any).randtext ?? 0))) {
                                     (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
+                                    (s as any).safesub = 'God and Jesus';
                                   }
                                 }
                               }

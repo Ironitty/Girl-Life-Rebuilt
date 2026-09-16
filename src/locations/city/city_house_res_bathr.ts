@@ -10,12 +10,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBathr(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_house_res_bathr', 'bathr');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'bathroom';
+  (s as any).bathtype = 'bathtub shower';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/city/residential/house/crh_bathroom.jpg');
   // TODO-QSP: dynamic text: The ornate room holds a shower, toilet, sink, <a href="exec:gt 'mirror','start'"...
-  scene.text('The ornate room holds a shower, toilet, sink, <a href="exec:gt \'mirror\',\'start\'">mirror</a> where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair, and even a bath tub.');
+  scene.text('The ornate room holds a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> where you can \' + iif(pcs_hairbsh < 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair, and even a bath tub.');
   qspCall(s, 'selfplay', 'suction_dildo');
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'din_van', 'misery');

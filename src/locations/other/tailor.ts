@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -55,7 +55,7 @@ function enterSetResizeOtherAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Resize your other clothes', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_lists_list', '\'resize\''] }]);
+    qspGoto(s, 'clothing_view', 'view_lists_list', 'resize');
   } },
   ]);
   scene.build();
@@ -71,7 +71,7 @@ function enterSetResizeAllAct(s: GameState, scene: SceneBuilder): void {
       scene.text(`You do not have enough money to resize all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).tailor_total_resize_cost || ''))}.`);
     } else {
       scene.actions([
-        { label: 'Resize all your clothes (0:10, <<$func(\'money\', \'string_price\', tailor_total_resize_cost)>>)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Resize all your clothes (0:10, ' + String(qspFunc(s, 'money', 'string_price', ((s as any).tailor_total_resize_cost || '')) ?? '') + ')', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'money', 'pay', ((s as any).tailor_total_resize_cost ?? 0));
     // TODO-QSP: dynamic text: You resize all clothing for <<$func('money', 'string_price', tailor_total_resize...
@@ -88,9 +88,9 @@ function enterSetResizeAllAct(s: GameState, scene: SceneBuilder): void {
 
 function enterSetLeaveAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['clothing_resize_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['clothing_resize_cost'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+  if (((s as any).locArgs?.[0] ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]) {
     if (((((s as any).locArgs?.[0] ?? 0)((s as any)._b ?? 0)[((s as any).locArgs?.[1] ?? 0)] > ((s as any).pcs_hips ?? 0) + 8)  ||  (((s as any).locArgs?.[0] ?? 0)((s as any)._b ?? 0)[((s as any).locArgs?.[1] ?? 0)] < ((s as any).pcs_hips ?? 0) - 8))) {
       // TODO-QSP: gs 'clothing_attributes', '<<$ARGS[0]>>', <<ARGS[1]>>
       if (((s as any).CloSport ?? 0) === 0  &&  ((s as any).CloStyle ?? 0) !== 5) {
@@ -99,9 +99,9 @@ function enterSetLeaveAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['clothing_resize'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['clothing_resize'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+  if (((s as any).locArgs?.[0] ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]) {
     if (((((s as any).locArgs?.[0] ?? 0)((s as any)._b ?? 0)[((s as any).locArgs?.[1] ?? 0)] > ((s as any).pcs_hips ?? 0) + 8)  ||  (((s as any).locArgs?.[0] ?? 0)((s as any)._b ?? 0)[((s as any).locArgs?.[1] ?? 0)] < ((s as any).pcs_hips ?? 0) - 8))) {
       // TODO-QSP: <<$ARGS[0]>>_b[<<ARGS[1]>>] = pcs_hips
     }
@@ -109,7 +109,7 @@ function enterSetLeaveAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -117,39 +117,41 @@ function enterSetLeaveAct(s: GameState, scene: SceneBuilder): void {
 
 function enterSetResizeCost(s: GameState, scene: SceneBuilder): void {
   (s as any).tailor_total_resize_cost = 0;
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_resize_cost'];
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterResizeAll(s: GameState, scene: SceneBuilder): void {
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_resize'];
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['clothing_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['clothing_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+  if (((s as any).locArgs?.[0] ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
       (s as any).tailor_total_repair_cost = ((s as any).tailor_total_repair_cost ?? 0) + (500);
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['clothing_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['clothing_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+  if (((s as any).locArgs?.[0] ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: if <<$ARGS[0]>>_h[<<ARGS[1]>>] <= 1000
     // TODO-QSP: gs 'clothing_attributes', '<<$ARGS[0]>>', <<ARGS[1]>>
     // TODO-QSP: <<$ARGS[0]>>_h[<<ARGS[1]>>] = CloMaxStrength / 4
   }
   // TODO-QSP: end
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['clothing_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['clothing_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+  if (((s as any).locArgs?.[0] ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: gs 'clothing_attributes', '<<$ARGS[0]>>', <<ARGS[1]>>
     // TODO-QSP: <<$ARGS[0]>>_h[<<ARGS[1]>>] = CloMaxStrength
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['bra_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['bra_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._bras ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._bras_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -157,7 +159,7 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['bra_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['bra_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._bras ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: if <<$ARGS[0]>>_bras_h[<<ARGS[1]>>] <= 1000
@@ -166,14 +168,14 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['bra_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['bra_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._bras ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: gs 'underwear_attributes', '<<$ARGS[0]>>_bras', <<ARGS[1]>>
     // TODO-QSP: <<$ARGS[0]>>_bras_h[<<ARGS[1]>>] = BraMaxStrength
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['panty_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['panty_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._panties ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._panties_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -181,7 +183,7 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['panty_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['panty_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._panties ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._panties_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -190,14 +192,14 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['panty_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['panty_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._panties ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: gs 'underwear_attributes', '<<$ARGS[0]>>_panties', <<ARGS[1]>>
     // TODO-QSP: <<$ARGS[0]>>_panties_h[<<ARGS[1]>>] = PanMaxStrength
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['bodysuit_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['bodysuit_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._bodysuits ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._bodysuits_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -205,7 +207,7 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['bodysuit_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['bodysuit_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._bodysuits ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._bodysuits_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -214,14 +216,14 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['bodysuit_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['bodysuit_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._bodysuits ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: gs 'underwear_attributes', '<<$ARGS[0]>>_bodysuits', <<ARGS[1]>>
     // TODO-QSP: <<$ARGS[0]>>_bodysuits_h[<<ARGS[1]>>] = BraMaxStrength
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['coat_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['coat_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._coats ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._coats_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -229,7 +231,7 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['coat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['coat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._coats ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._coats_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -238,14 +240,14 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['coat_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['coat_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._coats ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: gs 'coat_attributes', '<<$ARGS[0]>>', <<ARGS[1]>>
     // TODO-QSP: <<$ARGS[0]>>_coats_h[<<ARGS[1]>>] = CoatMaxStrength
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['shoe_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['shoe_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._shoe ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._shoe_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -253,7 +255,7 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['shoe_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['shoe_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._shoe ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     if (((s as any).locArgs?.[0] ?? 0)((s as any)._shoe_h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
@@ -262,7 +264,7 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
-  if (!(s as any).tailor_funcs) (s as any).tailor_funcs = {}; (s as any).tailor_funcs['shoe_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['shoe_cheat_repair'] = qspUntranslated(s, "{", { location: "tailor" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)((s as any)._shoe ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: gs 'shoe_attributes', '<<$ARGS[0]>>', <<ARGS[1]>>
@@ -274,34 +276,46 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
 
 function enterSetRepairCost(s: GameState, scene: SceneBuilder): void {
   (s as any).tailor_total_repair_cost = 0;
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_repair_cost'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_bras';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bra_repair_cost'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bras';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_panties';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['panty_repair_cost'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_panties';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_bodysuits';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bodysuit_repair_cost'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bodysuits';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_coats';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['coat_repair_cost'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_coats';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoatsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_shoe';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['shoe_repair_cost'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_shoe';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShoesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterRepairAll(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_bras';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bra_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bras';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_panties';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['panty_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_panties';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_bodysuits';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bodysuit_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bodysuits';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_coats';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['coat_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_coats';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoatsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_shoe';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['shoe_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_shoe';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShoesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -309,17 +323,23 @@ function enterRepairAll(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRepairAllCheat(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_cheat_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_bras';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bra_cheat_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bras';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_panties';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['panty_cheat_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_panties';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_bodysuits';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bodysuit_cheat_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bodysuits';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_coats';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['coat_cheat_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_coats';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoatsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['array_postfix'] = '_shoe';
+  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['shoe_cheat_repair'];
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_shoe';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShoesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -327,23 +347,23 @@ function enterRepairAllCheat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['j_max'] = 0;
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['j_max'] = 0;
   if (((s as any).temp_tailorVars ?? 0)?.['j_max'] === 0) {
     return;
   }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['j'] = 0;
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['j'] = 0;
   // TODO-QSP: :core_loop_outer
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['type'] = qspUntranslated(s, "shop_display_types[temp_tailorVars['j']]", { location: "tailor" });
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['type'] = qspUntranslated(s, "shop_display_types[temp_tailorVars['j']]", { location: "tailor" });
   if (((s as any).temp_tailorVars ?? 0)?.['type'] !== '') {
-    if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['total'] = 0;
-    if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['number'] = 1;
+    ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['total'] = 0;
+    ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['number'] = 1;
     // TODO-QSP: :core_loop_inner
-    if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['number'] = ((s as any).temp_tailorVars['number'] ?? 0) + (1);
+    ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['number'] = ((s as any).temp_tailorVars['number'] ?? 0) + (1);
     if (((s as any).temp_tailorVars ?? 0)?.['number'] < ((s as any).temp_tailorVars ?? 0)?.['total']) {
       // TODO-QSP: jump 'core_loop_inner'
     }
   }
-  if (!(s as any).temp_tailorVars) (s as any).temp_tailorVars = {}; (s as any).temp_tailorVars['j'] = ((s as any).temp_tailorVars['j'] ?? 0) + (1);
+  ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['j'] = ((s as any).temp_tailorVars['j'] ?? 0) + (1);
   if (((s as any).temp_tailorVars ?? 0)?.['j'] < ((s as any).temp_tailorVars ?? 0)?.['j_max']) {
     // TODO-QSP: jump 'core_loop_outer'
   }

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,49 +9,50 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUpdate(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekly'] = 2000;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekly'] = 2000;
   if (((s as any).shared_apt ?? 0)?.['rentLeft'] <= 0) {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = 0;
   }
   if (((s as any).daystart ?? 0) - ((s as any).shared_apt ?? 0)?.['intro_daystart'] >= 7) {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = (((s as any).daystart ?? 0) - (((s as any).shared_apt ?? {})?.['intro_daystart'] ?? 0)) / 7;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = (((s as any).daystart ?? 0) - (((s as any).shared_apt ?? {})?.['intro_daystart'] ?? 0)) / 7;
   } else {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = 0;
   }
   if (((s as any).orgB ?? 0) > 100) {
     (s as any).orgB = 100;
   }
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price_cook'] = 50;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price_clean'] = 50;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price_handjob'] = 50;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price_blowjob'] = 100;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price_vaginal'] = 150;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price_anal'] = 200;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price_special'] = 250;
-  if (!(s as any).Oleg) (s as any).Oleg = {}; (s as any).Oleg['font'] = '007bff';
-  if (!(s as any).Oleg) (s as any).Oleg = {}; (s as any).Oleg['leaves'] = 9;
-  if (!(s as any).Oleg) (s as any).Oleg = {}; (s as any).Oleg['comes'] = 18;
-  if (!(s as any).Oleg) (s as any).Oleg = {}; (s as any).Oleg['sleeps'] = 23;
-  if (!(s as any).Oleg) (s as any).Oleg = {}; (s as any).Oleg['wakes'] = 8;
-  if (!(s as any).Nestor) (s as any).Nestor = {}; (s as any).Nestor['font'] = '8a0000';
-  if (!(s as any).Nestor) (s as any).Nestor = {}; (s as any).Nestor['leaves'] = 11;
-  if (!(s as any).Nestor) (s as any).Nestor = {}; (s as any).Nestor['comes'] = 19;
-  if (!(s as any).Nestor) (s as any).Nestor = {}; (s as any).Nestor['sleeps'] = 23;
-  if (!(s as any).Nestor) (s as any).Nestor = {}; (s as any).Nestor['wakes'] = 9;
-  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['font'] = '017a01';
-  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['leaves'] = 7;
-  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['comes'] = 16;
-  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['sleeps'] = 22;
-  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['wakes'] = 5;
-  if (!(s as any).Oleg) (s as any).Oleg = {}; (s as any).Oleg['mood_txt'] = ((((s as any).Oleg ?? 0)?.['mood'] === 1) ? ('great') : (''));
-  if (!(s as any).Nestor) (s as any).Nestor = {}; (s as any).Nestor['mood_txt'] = ((((s as any).Nestor ?? 0)?.['mood'] === 1) ? ('great') : (''));
-  if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['mood_txt'] = ((((s as any).Yakov ?? 0)?.['mood'] === 1) ? ('great') : (''));
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price_cook'] = 50;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price_clean'] = 50;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price_handjob'] = 50;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price_blowjob'] = 100;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price_vaginal'] = 150;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price_anal'] = 200;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price_special'] = 250;
+  (s as any).pcs_font = '990099';
+  ((s as any).Oleg = (s as any).Oleg ?? {})['font'] = '007bff';
+  ((s as any).Oleg = (s as any).Oleg ?? {})['leaves'] = 9;
+  ((s as any).Oleg = (s as any).Oleg ?? {})['comes'] = 18;
+  ((s as any).Oleg = (s as any).Oleg ?? {})['sleeps'] = 23;
+  ((s as any).Oleg = (s as any).Oleg ?? {})['wakes'] = 8;
+  ((s as any).Nestor = (s as any).Nestor ?? {})['font'] = '8a0000';
+  ((s as any).Nestor = (s as any).Nestor ?? {})['leaves'] = 11;
+  ((s as any).Nestor = (s as any).Nestor ?? {})['comes'] = 19;
+  ((s as any).Nestor = (s as any).Nestor ?? {})['sleeps'] = 23;
+  ((s as any).Nestor = (s as any).Nestor ?? {})['wakes'] = 9;
+  ((s as any).Yakov = (s as any).Yakov ?? {})['font'] = '017a01';
+  ((s as any).Yakov = (s as any).Yakov ?? {})['leaves'] = 7;
+  ((s as any).Yakov = (s as any).Yakov ?? {})['comes'] = 16;
+  ((s as any).Yakov = (s as any).Yakov ?? {})['sleeps'] = 22;
+  ((s as any).Yakov = (s as any).Yakov ?? {})['wakes'] = 5;
+  ((s as any).Oleg = (s as any).Oleg ?? {})['mood_txt'] = ((((s as any).Oleg ?? 0)?.['mood'] === 1) ? ('great') : (''));
+  ((s as any).Nestor = (s as any).Nestor ?? {})['mood_txt'] = ((((s as any).Nestor ?? 0)?.['mood'] === 1) ? ('great') : (''));
+  ((s as any).Yakov = (s as any).Yakov ?? {})['mood_txt'] = ((((s as any).Yakov ?? 0)?.['mood'] === 1) ? ('great') : (''));
   if (((s as any).shared_apt ?? 0)?.['childWarning'] === 1  &&  ((s as any).shared_apt ?? 0)?.['childWarningDay'] === 0) {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['childWarningDay'] = ((s as any).daystart ?? 0);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['childWarningDay'] = ((s as any).daystart ?? 0);
   }
   qspCall(s, 'stat', '');
   if (((s as any).shared_apt ?? 0)?.['debug'] === 1) {
-    scene.text('<a href="exec:shared_apt[\'debug\']=2">Debug</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.shared_apt ??= {})\\u0027debug\\u0027 = s.2; return s; }); return false;">Debug</a>');
   } else {
     if (((s as any).shared_apt ?? 0)?.['debug'] === 2) {
       scene.actions([
@@ -70,22 +71,22 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shared_apt ?? 0)?.['enabled'] === 1) {
     if (((s as any).shared_apt ?? 0)?.['alreadyProcessed'] !== ((s as any).daystart ?? 0)) {
       if (((s as any).daystart ?? 0) - ((s as any).shared_apt ?? 0)?.['intro_daystart'] >= 7) {
-        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = (((s as any).daystart ?? 0) - (((s as any).shared_apt ?? {})?.['intro_daystart'] ?? 0)) / 7;
+        ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = (((s as any).daystart ?? 0) - (((s as any).shared_apt ?? {})?.['intro_daystart'] ?? 0)) / 7;
       } else {
-        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
+        ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = 0;
       }
       if (((s as any).shared_apt ?? 0)?.['weekNum'] >= ((s as any).shared_apt ?? 0)?.['rentWeekNum']) {
         if (((s as any).shared_apt ?? 0)?.['rentLeft'] > 0) {
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = ((s as any).shared_apt['rentLeft'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentWeekly']);
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['missedWeeks'] = ((s as any).shared_apt['missedWeeks'] ?? 0) + (1);
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['Lockrent'] = 1;
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentPaid'] = 0;
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt['rentLeft'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentWeekly']);
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = ((s as any).shared_apt['missedWeeks'] ?? 0) + (1);
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['Lockrent'] = 1;
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 0;
         } else {
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['missedWeeks'] = 0;
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentPaid'] = 1;
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = 0;
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
         }
-        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = (((s as any).shared_apt ?? {})?.['weekNum'] ?? 0) + 1;
+        ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = (((s as any).shared_apt ?? {})?.['weekNum'] ?? 0) + 1;
         if (((s as any).shared_apt ?? 0)?.['missedWeeks'] >= 2) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterBlockApt(s, scene); (s as any).locArgs = __savedLocArgs; }
           // TODO-QSP: gs 'notification', 'add', $func('wrap', 'neg', 'You''ve been evicted from the shared apartment for n...
@@ -97,7 +98,7 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['alreadyProcessed'] = ((s as any).daystart ?? 0);
+      ((s as any).shared_apt = (s as any).shared_apt ?? {})['alreadyProcessed'] = ((s as any).daystart ?? 0);
     }
   }
   // TODO-QSP: end
@@ -107,8 +108,12 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
 function enterGetRentStatus(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shared_apt ?? 0)?.['rentLeft'] > 0) {
     if (((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) {
+      (s as any).result = '<font color=red>You owe ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft']) + ' for ' + qspFunc(s, 'string', 'parse_number', ((s as any).shared_apt ?? 0)?.['missedWeeks']) + ' week' + ((((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) ? ('s') : ('')) + ' of overdue rent.</font>';
     } else {
       if (((s as any).shared_apt ?? 0)?.['missedWeeks'] === 1) {
+        (s as any).result = '<font color=red>You have ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft']) + ' of overdue rent to pay.</font>';
+      } else {
+        (s as any).result = 'You have ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft']) + ' of rent left to pay for next week.';
       }
     }
     if (qspFunc(s, 'money', 'can_afford', ((s as any).shared_apt ?? 0)?.['rentLeft'])) {
@@ -116,6 +121,8 @@ function enterGetRentStatus(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: $result += '<br>You may pay it in cash when you have enough money.'
     }
+  } else {
+    (s as any).result = 'You have already paid the full rent for next week.';
   }
   // TODO-QSP: end
   scene.build();
@@ -124,21 +131,22 @@ function enterGetRentStatus(s: GameState, scene: SceneBuilder): void {
 function enterBlockApt(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'block_access', 'shared_apartment', 0);
   (s as any).servitudelvl_bak = ((s as any).shared_apt ?? 0)?.['servitudeLvl'];
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['seenAd'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['seenAd'] = 1;
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['evicted'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['evicted'] = 1;
   }
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['previousTenant'] = 1;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['servitudeLvl'] = ((s as any).servitudelvl_bak ?? 0);
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['previousTenant'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = ((s as any).servitudelvl_bak ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_shared_apt', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'private';
   qspCall(s, 'themes', 'indoors');
   if (((s as any).shared_apt ?? 0)?.['introDone'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'intro'] }]);
+    qspGoto(s, 'pav_shared_apt', 'intro');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -146,12 +154,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWeeklyReset(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).daystart ?? 0) >= ((s as any).tomorrow ?? 0)) {
     (s as any).tomorrow = ((s as any).daystart ?? 0) + 1;
-    if (!(s as any).Oleg) (s as any).Oleg = {}; (s as any).Oleg['mood'] = Math.floor(Math.random() * 10) + 1;
-    if (!(s as any).Oleg) (s as any).Oleg = {}; (s as any).Oleg['cleaned'] = 0;
-    if (!(s as any).Nestor) (s as any).Nestor = {}; (s as any).Nestor['mood'] = Math.floor(Math.random() * 10) + 1;
-    if (!(s as any).Nestor) (s as any).Nestor = {}; (s as any).Nestor['cleaned'] = 0;
-    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['mood'] = Math.floor(Math.random() * 10) + 1;
-    if (!(s as any).Yakov) (s as any).Yakov = {}; (s as any).Yakov['cleaned'] = 0;
+    ((s as any).Oleg = (s as any).Oleg ?? {})['mood'] = Math.floor(Math.random() * 10) + 1;
+    ((s as any).Oleg = (s as any).Oleg ?? {})['cleaned'] = 0;
+    ((s as any).Nestor = (s as any).Nestor ?? {})['mood'] = Math.floor(Math.random() * 10) + 1;
+    ((s as any).Nestor = (s as any).Nestor ?? {})['cleaned'] = 0;
+    ((s as any).Yakov = (s as any).Yakov ?? {})['mood'] = Math.floor(Math.random() * 10) + 1;
+    ((s as any).Yakov = (s as any).Yakov ?? {})['cleaned'] = 0;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h3>Hallway</h3></center>');
@@ -164,27 +172,27 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   // TODO-QSP: dynamic text: A large apartment currently serves as shared living. As well as the normal livin...
-  scene.text(`A large apartment currently serves as shared living. As well as the normal living spaces, there are four bedrooms, one rented by you and three occupied by <a href="exec: gt 'pav_shared_oleg', 'oleg_dick'"><font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}</font></a>, <a href="exec: gt 'pav_shared_nestor', 'nestor_dick'"><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}</font></a>, <a href="exec: gt 'pav_shared_yakov', 'yakov_dick'"><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}</font></a>.`);
+  scene.text(`A large apartment currently serves as shared living. As well as the normal living spaces, there are four bedrooms, one rented by you and three occupied by <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_oleg\\u0027, \\u0027oleg_dick\\u0027); return false;"><font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_nestor\\u0027, \\u0027nestor_dick\\u0027); return false;"><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_yakov\\u0027, \\u0027yakov_dick\\u0027); return false;"><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}</font></a>.`);
   scene.text('You stand in the hallway.');
   if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1) {
     // TODO-QSP: dynamic text: From the hallway, several doors lead to <a href="exec:gt 'pav_shared_apt', 'Oleg...
-    scene.text(`From the hallway, several doors lead to <a href="exec:gt 'pav_shared_apt', 'Oleg_Room'">${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}'s</a>, <a href="exec:gt 'pav_shared_apt', 'Nestor_Room'">${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}'s</a>, and <a href="exec:gt 'pav_shared_apt', 'Yakov_Room'">${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}'s</a> rooms.`);
-    scene.text('The last doors lead to the <a href="exec:gt \'pav_shared_apt\', \'pcsRoom\'">room</a> you have rented.');
+    scene.text(`From the hallway, several doors lead to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_apt\\u0027, \\u0027Oleg_Room\\u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}'s</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_apt\\u0027, \\u0027Nestor_Room\\u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}'s</a>, and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_apt\\u0027, \\u0027Yakov_Room\\u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}'s</a> rooms.`);
+    scene.text('The last doors lead to the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_apt\\u0027, \\u0027pcsRoom\\u0027); return false;">room</a> you have rented.');
   }
   if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
-    scene.text('Your bedroom doesn\'t have any cupboards, but there are several hallway <a href="exec:gt \'wardrobe\', \'start\'">closets</a> you can use to store your clothes. One of them has a large, tall <a href="exec:gt \'mirror\', \'start\'">mirror</a> attached.');
+    scene.text('Your bedroom doesn\'t have any cupboards, but there are several hallway <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">closets</a> you can use to store your clothes. One of them has a large, tall <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> attached.');
   }
   if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1) {
     if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] >= 1) {
-      scene.text('A computer-printed <a href="exec:gt \'pav_shared_apt\', \'list\'">list</a> hangs on the exit door.');
+      scene.text('A computer-printed <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_apt\\u0027, \\u0027list\\u0027); return false;">list</a> hangs on the exit door.');
     }
     scene.actions([
       { label: 'Go to your room', goto: ['pav_shared_apt', 'pcsRoom'] },
       { label: 'Go to the bathroom', goto: ['pav_shared_apt', 'bathroom'] },
       { label: 'Go to the kitchen', goto: ['pav_shared_apt', 'kitchen'] },
-      { label: '<font color=#<<$Oleg[\'font\']>>><<$npc_firstname[\'A266\']>>\'s room</font>', goto: ['pav_shared_apt', 'Oleg_Room'] },
-      { label: '<font color=#<<$Nestor[\'font\']>>><<$npc_firstname[\'A265\']>>\'s room</font>', goto: ['pav_shared_apt', 'Nestor_Room'] },
-      { label: '<font color=#<<$Yakov[\'font\']>>><<$npc_firstname[\'A264\']>>\'s room</font>', goto: ['pav_shared_apt', 'Yakov_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Oleg ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A266'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Oleg_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Nestor ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A265'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Nestor_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Yakov ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A264'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Yakov_Room'] },
     ]);
   }
   qspCall(s, 'wardrobe', 'default_clothing_options');
@@ -199,8 +207,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  ((s as any).kid ?? 0) > 0) {
     if (((s as any).shared_apt ?? 0)?.['childWarning'] === 0) {
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['childWarning'] = 1;
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['childWarningDay'] = ((s as any).daystart ?? 0);
+      ((s as any).shared_apt = (s as any).shared_apt ?? {})['childWarning'] = 1;
+      ((s as any).shared_apt = (s as any).shared_apt ?? {})['childWarningDay'] = ((s as any).daystart ?? 0);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/crying.jpg');
       scene.text('The guys call you for a house meeting. They look uncomfortable.');
@@ -213,8 +221,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).daystart ?? 0) >= ((s as any).shared_apt ?? 0)?.['childWarningDay'] + 7) {
-        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 0;
-        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['introDone'] = 0;
+        ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 0;
+        ((s as any).shared_apt = (s as any).shared_apt ?? {})['introDone'] = 0;
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/crying.jpg');
         scene.text('You\'ve been asked to leave the apartment due to having children against the house rules.');
@@ -225,8 +233,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['childWarning'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['childWarningDay'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['childWarning'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['childWarningDay'] = 0;
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).shared_apt ?? 0)?.['enabled'] === 0) {
     qspCall(s, 'outfit', 'wear_last_worn');
@@ -236,9 +244,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '<b>Leave and go outside</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+      qspGoto(s, 'pav_complex', 'start');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'start'] }]);
+      qspGoto(s, 'pav_shared_apt', 'start');
     }
   } },
     { label: '<font color=red>End your rental agreement and move out</font>', goto: ['pav_shared_apt', 'eoleg_agreement'] },
@@ -272,7 +280,7 @@ function enterList(s: GameState, scene: SceneBuilder): void {
   scene.text('---------------------');
   scene.text('Not having paid the full weekly rent at the beginning of a new week will lead to termination of the accommodation services.');
   // TODO-QSP: dynamic text: Signed: <a href="exec: gt 'pav_shared_oleg', 'oleg_dick'"><font color=#<<$Oleg['...
-  scene.text(`Signed: <a href="exec: gt 'pav_shared_oleg', 'oleg_dick'"><font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}</font></a>, <a href="exec: gt 'pav_shared_nestor', 'nestor_dick'"><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}</font></a>, <a href="exec: gt 'pav_shared_yakov', 'yakov_dick'"><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}</font></a>, ${((s as any).pcs_firstname || '')}.`);
+  scene.text(`Signed: <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_oleg\\u0027, \\u0027oleg_dick\\u0027); return false;"><font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_nestor\\u0027, \\u0027nestor_dick\\u0027); return false;"><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_yakov\\u0027, \\u0027yakov_dick\\u0027); return false;"><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}</font></a>, ${((s as any).pcs_firstname || '')}.`);
   scene.text('---------------------');
   // TODO-QSP: end
   scene.actions([
@@ -283,13 +291,14 @@ function enterList(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_shared_apt', 'bathroom');
+  (s as any).location_type = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><h3>Bathroom</h3></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg');
   scene.text('This is a modest bathroom, containing everything that young people need for their daily life, such as:');
   // TODO-QSP: dynamic text: A shower, toilet, <a href="exec:gt 'mirror','start'">mirror</a>, where you can '...
-  scene.text('A shower, toilet, <a href="exec:gt \'mirror\',\'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair, a sink and even a bath tub.');
+  scene.text('A shower, toilet, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair, a sink and even a bath tub.');
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
   // TODO-QSP: end
@@ -302,6 +311,8 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_shared_apt', 'kitchen');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   qspCall(s, 'kit_din', '');
   scene.text('<center><h3>Kitchen</h3></center>');
@@ -317,7 +328,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
     // TODO-QSP: dynamic text: The sink has <b><<dirttarelka>></b> dirty dishes. <a href="exec: gs 'kit_din', '...
-    scene.text(`The sink has <b>${((s as any).dirttarelka || '')}</b> dirty dishes. <a href="exec: gs 'kit_din', 'dirtarm'">that need to be washed</a>.`);
+    scene.text(`The sink has <b>${((s as any).dirttarelka || '')}</b> dirty dishes. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027dirtarm\\u0027); return false;">that need to be washed</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
     // TODO-QSP: dynamic text: Above the sink is some detergent to wash the dishes with. There is enough for <b...
@@ -327,8 +338,10 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] === 0  ||  ((s as any).edahot ?? 0) > 0) {
+      (s as any).edagot = '';
     }
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
+      (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027edagotd\\u0027); return false;">Cook a meal for yourself (0:30)</a>';
     }
     // TODO-QSP: dynamic text: In the refrigerator there's enough (your own) food for <b><<mc_inventory['food_b...
     scene.text(`In the refrigerator there's enough (your own) food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> servings. ${((s as any).edagot || '')}`);
@@ -338,7 +351,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $func('wrap', 'v_neg b', 'You have nothing to eat, the refrigerator is empty!')
   }
   if (((s as any).hour ?? 0) === 6  ||  ((s as any).hour ?? 0) === 18) {
-    scene.text('<a href="exec: gt \'pav_shared_apt\', \'cookForGuys\'">Cook meals for the guys (1:30)</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_shared_apt\\u0027, \\u0027cookForGuys\\u0027); return false;">Cook meals for the guys (1:30)</a>');
   }
   qspCall(s, 'core_library', 'kitchen', 'full');
   // TODO-QSP: end
@@ -350,28 +363,32 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_shared_apt', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'music_actions', 'clear_restrictions');
   if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['tobiQW', 'start'] }]);
+    qspGoto(s, 'tobiQW', 'start');
   }
   scene.text('<center><b>Living Room</b></center>');
   scene.img('images/shared/home/bedroom/sofabed.jpg');
-  scene.text('The living room was never used by the other apartment occupants, so it\'s now rented out as a bedroom. It\'s sparsely decorated, with, a <a href="exec:gt \'bed\', \'start\'">sofa bed</a>, against the back wall.');
-  scene.text('Beside the sofa bed is an old cabinet, with your <a href="exec:gt \'alarmclock\', \'start\'">alarm clock</a> on top.');
+  scene.text('The living room was never used by the other apartment occupants, so it\'s now rented out as a bedroom. It\'s sparsely decorated, with, a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">sofa bed</a>, against the back wall.');
+  scene.text('Beside the sofa bed is an old cabinet, with your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027alarmclock\\u0027, \\u0027start\\u0027); return false;">alarm clock</a> on top.');
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_tv'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['plasma_tv'] === 0) {
+    (s as any).temp_TV_text = 'a great place for a TV, if you had one';
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_tv'] >= 1) {
+    (s as any).temp_TV_text = 'an old CRT <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027start\\u0027); return false;">TV</a> sits on the shelf';
   }
   // TODO-QSP: dynamic text: There is an wall unit at the other side of the room, <<$temp_TV_text>>. Everyone...
   scene.text(`There is an wall unit at the other side of the room, ${((s as any).temp_TV_text || '')}. Everyone in the household spends their time in their own rooms, so there was never a reason to use the living room for its intended purpose.`);
-  scene.text('In the corner is an old scratched <a href="exec:gt \'stol\', \'start\'">table</a>.');
-  scene.text('There is no door to the living room, instead there\'s <a href="exec:view\'images/shared/home/bedroom/curtain.jpg\'">curtain</a> covering entry to the room, which gives you a modicum of privacy; not much better than the state of the non-existent window curtains.');
+  scene.text('In the corner is an old scratched <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">table</a>.');
+  scene.text('There is no door to the living room, instead there\'s <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/shared/home/bedroom/curtain.jpg\\u0027; return s; }); return false;">curtain</a> covering entry to the room, which gives you a modicum of privacy; not much better than the state of the non-existent window curtains.');
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('<br>A hula hoop stands in corner of the room. ');
   }
@@ -387,10 +404,10 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 2) {
       qspCall(s, 'internet_mobile', 'remove_limitation', 'nocamshow');
     }
-    scene.text('Your <a href="exec:gorodokKomp = 1 & gt \'komp\',\'start\'">computer</a> is sitting on small table.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.setState((s) => { s.gorodokKomp = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> is sitting on small table.');
   }
   if (((s as any).mc_inventory ?? 0)?.['vintage_card'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['card', ''] }]);
+    qspGoto(s, 'card', '');
     scene.actions([
       { label: 'View your vintage porn cards', handler: (st: GameState) => {
     (st as any).card_deck = 0;
@@ -398,7 +415,7 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['card'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['card', ''] }]);
+    qspGoto(s, 'card', '');
     scene.actions([
       { label: 'View your new porn cards', handler: (st: GameState) => {
     (st as any).card_deck = 1;
@@ -448,18 +465,18 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-    scene.text('Your <a href="exec:gt \'stol\', \'bc\'">birth control</a> tablets are in the cabinet next to your bed, along with some <a href="exec:gt \'stol\', \'bc\'">condoms</a>.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027bc\\u0027); return false;">birth control</a> tablets are in the cabinet next to your bed, along with some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027bc\\u0027); return false;">condoms</a>.');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0) {
-      scene.text('Your <a href="exec:gt \'stol\', \'bc\'">birth control</a> tablets are in the cabinet next to your bed.');
+      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027bc\\u0027); return false;">birth control</a> tablets are in the cabinet next to your bed.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-        scene.text('Your <a href="exec:gt \'stol\', \'bc\'">condoms</a> are in the cabinet next to your bed.');
+        scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027bc\\u0027); return false;">condoms</a> are in the cabinet next to your bed.');
       }
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['sewing_kit'] === 1) {
-    scene.text('Your <a href="exec:gt \'sewing\',\'start\'">sewing kit</a> is stored on a shelf.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027sewing\\u0027, \\u0027start\\u0027); return false;">sewing kit</a> is stored on a shelf.');
   }
   if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] > 0) {
     // TODO-QSP: dynamic text: You currently have <<mc_inventory['trinkets_home']>> trinkets to sell at the sta...
@@ -673,12 +690,14 @@ function enterYakov_Room(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCookForGuys(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'pav_shared_apt';
+  (s as any).loc_arg = 'kitchen';
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'stat', '');
   scene.img('images/shared/home/kitchen/cook.jpg');
   scene.text('You prepare three meals, using what you can from the guys\' food. It\'s not very healthy but you\'re not planning to offer to do their shopping too.');
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price'] = ((s as any).shared_apt ?? 0)?.['price_cook'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_cook'];
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the meal', goto: ['pav_shared_apt', 'payService'] },
@@ -688,11 +707,11 @@ function enterCookForGuys(s: GameState, scene: SceneBuilder): void {
 
 function enterCleanForGuys(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stir.jpg');
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price'] = ((s as any).shared_apt ?? 0)?.['price_clean'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_clean'];
   scene.text('You collect piles of dirty clothes around the room, carry them into the bathroom, put them in a basin and then pour washing powder on them. You wash them until they are finally clean.');
   if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 2  &&  (Math.floor(Math.random() * 101) + 0) <= 50) {
     scene.text('<i>You notice bedsheets with what seems as dried out cum. Probably remainder of one of your "servings". Maybe it really is better to swallow every time…</i>');
@@ -713,7 +732,8 @@ function enterEolegAgreement(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '"Yes." End agreement', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterBlockApt(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['pav_complex', 'start'] },
+    qspGoto(s, 'pav_complex', 'start');
+  } },
     { label: '"Maybe you are right, I\'ll stay here with you guys"', goto: ['pav_shared_apt', 'start'] },
   ]);
   scene.build();
@@ -746,12 +766,12 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
       scene.text(`You paid ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft'] ?? '')} in cash for next week's rent.`);
     }
     // TODO-QSP: gs 'money', 'pay', shared_apt['rentLeft'], 'cash'
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cashPaid'] = ((s as any).shared_apt['cashPaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentLeft']);
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['Lockrent'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentPaid'] = 1;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['missedWeeks'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = (((s as any).shared_apt ?? {})?.['weekNum'] ?? 0) + 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = ((s as any).shared_apt['cashPaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentLeft']);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['Lockrent'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = (((s as any).shared_apt ?? {})?.['weekNum'] ?? 0) + 1;
     qspCall(s, 'homes_properties', 'give_access');
   } else {
     scene.text('You do not have enough money to pay the rent.');
@@ -765,23 +785,23 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
 
 function enterPayService(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['servicePaid'] = ((s as any).shared_apt['servicePaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['price']);
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = ((s as any).shared_apt['rentLeft'] ?? 0) - (((s as any).shared_apt ?? 0)?.['price']);
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['servicePaid'] = ((s as any).shared_apt['servicePaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['price']);
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt['rentLeft'] ?? 0) - (((s as any).shared_apt ?? 0)?.['price']);
   // TODO-QSP: dynamic text: You've performed services worth <<$func('money', 'string_price', shared_apt['pri...
   scene.text(`You've performed services worth ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['price'] ?? '')}.`);
   if (((s as any).shared_apt ?? 0)?.['rentLeft'] <= 0) {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentPaid'] = 1;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['missedWeeks'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['Lockrent'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = (((s as any).shared_apt ?? {})?.['weekNum'] ?? 0) + 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['Lockrent'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = (((s as any).shared_apt ?? {})?.['weekNum'] ?? 0) + 1;
     scene.text('Your rent is now fully paid for next week!');
     qspCall(s, 'homes_properties', 'give_access');
   } else {
     // TODO-QSP: dynamic text: You still owe <<$func('money', 'string_price', shared_apt['rentLeft'])>> for you...
     scene.text(`You still owe ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft'] ?? '')} for your rent.`);
   }
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['price'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = 0;
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_shared_apt', 'start'] },
@@ -792,7 +812,7 @@ function enterPayService(s: GameState, scene: SceneBuilder): void {
 function enterAdvertNo30(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_shared_apt', ((s as any).locArgs?.[0] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['seenAd'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['seenAd'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob\'+rand(1, 2)+\'.jpg');
   scene.text('<br>As you pass by the advertisements, you notice a sign - "сдаeтся в аренду комната" (Room for rent!). Some guys are looking for a roommate. They live in an apartment in one of the other buildings in the apartment complex.');
@@ -848,17 +868,17 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Ignore him. The room is still available, but we'll need the first week's rent upfront this time."</font>`);
       if (qspFunc(s, 'money', 'can_afford', ((s as any).shared_apt ?? 0)?.['rentWeekly'], 'cash')) {
         scene.actions([
-          { label: 'Pay the first week\'s rent (<<$func(\'money\', \'string_price\', shared_apt[\'rentWeekly\'])>>)', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Pay the first week\'s rent (' + String(qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? '') ?? '') + ')', handler: (st: GameState) => {
     // TODO-QSP: gs 'money', 'pay', shared_apt['rentWeekly'], 'cash'
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cashPaid'] = ((s as any).shared_apt['cashPaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentWeekly']);
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['enabled'] = 1;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentPaid'] = 1;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['evicted'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['missedWeeks'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['intro_daystart'] = ((s as any).daystart ?? 0);
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = ((s as any).shared_apt['cashPaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentWeekly']);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['enabled'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['evicted'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['intro_daystart'] = ((s as any).daystart ?? 0);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = 1;
     qspCall(s, 'homes_properties', 'give_access', 'shared_apartment');
     scene.img('images/locations/pavlovsk/resident/sharedapt/hallway.jpg');
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Well, welcome back then. Same rules as before."...
@@ -919,12 +939,12 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     scene.text(`<font color=#${((s as any).pcs_font || '')}>"I was thinking about helping with cooking and cleaning this time, to reduce my rent costs."</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"That would be great! We'll put together the lis...
     scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"That would be great! We'll put together the list of service charges again."</font>`);
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['enabled'] = 1;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['servitudeLvl'] = 1;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['intro_daystart'] = ((s as any).daystart ?? 0);
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['enabled'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['intro_daystart'] = ((s as any).daystart ?? 0);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = 1;
     qspCall(s, 'homes_properties', 'give_access', 'shared_apartment');
     // TODO-QSP: dynamic text: <font color=#<<$Oleg['font']>>>"The room is yours. Welcome back."</font>
     scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"The room is yours. Welcome back."</font>`);
@@ -945,12 +965,12 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Are you sure about this, ${((s as any).pcs_firstname || '')}?"</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"We'll update the service list with those option...
     scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"We'll update the service list with those options too."</font>`);
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['enabled'] = 1;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['servitudeLvl'] = 2;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['intro_daystart'] = ((s as any).daystart ?? 0);
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['enabled'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 2;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['intro_daystart'] = ((s as any).daystart ?? 0);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = 1;
     qspCall(s, 'homes_properties', 'give_access', 'shared_apartment');
     // TODO-QSP: dynamic text: <font color=#<<$Nestor['font']>>>"This is gonna be fun."</font>
     scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"This is gonna be fun."</font>`);
@@ -964,11 +984,11 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Continue with the same arrangement', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['enabled'] = 1;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['intro_daystart'] = ((s as any).daystart ?? 0);
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['enabled'] = 1;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['intro_daystart'] = ((s as any).daystart ?? 0);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = 1;
     qspCall(s, 'homes_properties', 'give_access', 'shared_apartment');
     scene.img('images/locations/pavlovsk/resident/sharedapt/hallway.jpg');
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Well, welcome back then. We didn't change anyth...
@@ -984,7 +1004,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 0) {
       (s as any).minut = ((s as any).minut ?? 0) + 2;
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 1;
+      ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 1;
       scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
       scene.text('The door is opened by a young, nice-looking athletic man.');
       // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Hi sweetie! What do you need?"</font>
@@ -999,7 +1019,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 1) {
         (s as any).minut = ((s as any).minut ?? 0) + 3;
-        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 2;
+        ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 2;
         scene.text('You enter a hallway filled with coats and shoes, indicating that 3 or 4 people live here.');
         scene.text('The guy disappears into one of the rooms, and you overhear him talking to someone.');
         scene.text('They attempt to speak quietly, but you catch a sentence or two…:');
@@ -1034,7 +1054,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
         if (((s as any).knowpreg ?? 0) === 1) {
           scene.actions([
             { label: 'Ask about children', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 50;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 50;
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I thought I should tell you, I'm currently pregnant....
     scene.text(`<font color=#${((s as any).pcs_font || '')}>"I thought I should tell you, I'm currently pregnant. How do you feel about having children in the apartment, will this be a problem?"</font>`);
     scene.actions([
@@ -1046,7 +1066,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
           if (((s as any).kid ?? 0) > 0) {
             scene.actions([
               { label: 'Ask about children', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 50;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 50;
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I thought I should tell, I'm a mother. How do you fe...
     scene.text(`<font color=#${((s as any).pcs_font || '')}>"I thought I should tell, I'm a mother. How do you feel about having children in the apartment, will this be a problem?"</font>`);
     scene.actions([
@@ -1063,7 +1083,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 2) {
           (s as any).minut = ((s as any).minut ?? 0) + 3;
-          if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 3;
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 3;
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"So what do you guys say, will you take me in?"</font...
           scene.text(`<font color=#${((s as any).pcs_font || '')}>"So what do you guys say, will you take me in?"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Oleg['font']>>>"We may. But first, do you have the money to pay ...
@@ -1157,7 +1177,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
               scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"See ya later girlie…"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Later guys!"</font>
               scene.text(`<font color=#${((s as any).pcs_font || '')}>"Later guys!"</font>`);
-              if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['servitudeLvl'] = 0;
+              ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 0;
               scene.actions([
                 { label: 'Continue', goto: ['pav_shared_apt', 'rentSetup'] },
               ]);
@@ -1184,7 +1204,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
                 scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"See ya later, girlie…"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Later, guys!"</font>
                 scene.text(`<font color=#${((s as any).pcs_font || '')}>"Later, guys!"</font>`);
-                if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['servitudeLvl'] = 1;
+                ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 1;
                 scene.actions([
                   { label: 'Continue', goto: ['pav_shared_apt', 'rentSetup'] },
                 ]);
@@ -1213,7 +1233,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
                   scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"See ya later, girlie…"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Later, guys!"</font>
                   scene.text(`<font color=#${((s as any).pcs_font || '')}>"Later, guys!"</font>`);
-                  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['servitudeLvl'] = 2;
+                  ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 2;
                   scene.actions([
                     { label: 'Continue', goto: ['pav_shared_apt', 'rentSetup'] },
                   ]);
@@ -1246,7 +1266,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
                       if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
                         scene.actions([
                           { label: 'Suggest a compromise', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 2;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 2;
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I can leave them with my parents for the time being,...
     scene.text(`<font color=#${((s as any).pcs_font || '')}>"I can leave them with my parents for the time being, and keep them away from the apartment, how does this sound?`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Are you certain you want to do this?"</font>
@@ -1260,7 +1280,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                           { label: 'I won\'t leave my children', handler: (st: GameState) => {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 0;
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 0;
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"OK, I will make do with my current accommodation.
     scene.text(`<font color=#${((s as any).pcs_font || '')}>"OK, I will make do with my current accommodation.`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"We understand"</font>
@@ -1301,16 +1321,16 @@ function enterRentSetup(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: You signed a rental agreement. The weekly rent is <<$func('money', 'string_price...
   scene.text(`You signed a rental agreement. The weekly rent is ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? '')}.`);
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentPaid'] = 1;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cashPaid'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['introDone'] = 1;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['intro_daystart'] = ((s as any).daystart ?? 0);
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['missedWeeks'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['Lockrent'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['introDone'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['intro_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['Lockrent'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = 1;
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_shared_apt', 'start'] },
@@ -1322,24 +1342,24 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 7;
   if (((s as any).knowpreg ?? 0) === 1  ||  ((s as any).kid ?? 0) > 0) {
-    if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 50;
-    scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 50;
+    qspGoto(s, 'pav_complex', 'start');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 8;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['enabled'] = 1;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['servitudeLvl'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['enabled'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 0;
   qspCall(s, 'homes_properties', 'set_home', 'shared_apartment');
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentPaid'] = 1;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['cashPaid'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['introDone'] = 1;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['intro_daystart'] = ((s as any).daystart ?? 0);
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['pavIntroStep'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['missedWeeks'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['Lockrent'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
-  if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = 1;
-  scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'start'] }]);
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['introDone'] = 1;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['intro_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['Lockrent'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['weekNum'] = 0;
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = 1;
+  qspGoto(s, 'pav_shared_apt', 'start');
   // TODO-QSP: end
   scene.build();
 }
@@ -1434,7 +1454,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1526,7 +1546,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const pav_shared_apt: LocationDef = {
   name: 'pav_shared_apt',
-  title: 'You\'ve been evicted from the shared apartment for not paying rent for multiple weeks!',
+  title: 'You\'ve been evicted from the shared apartment for not paying',
   region: 'pavlovsk',
   locationType: 'private',
   locclass: 'bedr',

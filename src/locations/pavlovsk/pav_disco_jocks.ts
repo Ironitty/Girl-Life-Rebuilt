@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -295,9 +295,9 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big5.jpg');
   if (((s as any).FedorLove ?? 0) < 0) {
-    scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Hate', '1'] }]);
+    qspGoto(s, 'FedorMisc', 'Fedor Hate', '1');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Chat', '1'] }]);
+    qspGoto(s, 'FedorMisc', 'Fedor Chat', '1');
   }
   // TODO-QSP: end
   scene.build();
@@ -972,6 +972,7 @@ function enterChristinaDance(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/disco/club.jpg');
     scene.text('The two of you start dancing, separately at first, before she starts sliding closer to you. Getting behind you, she wraps an arm around your waist and begins grinding her crotch up against your ass.');
     scene.text('Your skirt slides up enough to show your bare pussy and you desperately hope no one is paying enough attention to notice.');
+    (s as any).orgasm_or = 'no';
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
     qspCall(s, 'sweat', 'add', 3);
     (s as any).fat = ((s as any).fat ?? 0) - (1);
@@ -983,7 +984,8 @@ function enterChristinaDance(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Do something else', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_disco_classmates', 'classmates'] },
+    qspGoto(s, 'pav_disco_classmates', 'classmates');
+  } },
       { label: 'Keep dancing', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
@@ -999,7 +1001,8 @@ function enterChristinaDance(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Do something else', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_disco_classmates', 'classmates'] },
+    qspGoto(s, 'pav_disco_classmates', 'classmates');
+  } },
     ]);
   } },
     ]);
@@ -1445,7 +1448,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const pav_disco_jocks: LocationDef = {
   name: 'pav_disco_jocks',
-  title: '<<"Ivan Prokhorov">>',
   region: 'pavlovsk',
   enter: enter,
 };

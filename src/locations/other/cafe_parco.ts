@@ -1,10 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -92,8 +93,9 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
               }
               scene.actions([
                 { label: 'Agree', handler: (st: GameState) => {
-    if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['mey_vika_qw'] = 15;
-  }, goto: ['mey_vika_events', 'cafe_qw'] },
+    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 15;
+    qspGoto(s, 'mey_vika_events', 'cafe_qw');
+  } },
               ]);
             } else {
               if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 7) {
@@ -118,7 +120,7 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 350);
-      scene.actions([{ label: 'Continue', goto: ['food', 'fast_food'] }]);
+      qspGoto(s, 'food', 'fast_food');
     }
   } },
   ]);

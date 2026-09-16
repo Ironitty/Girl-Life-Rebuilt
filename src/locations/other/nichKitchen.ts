@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'nichKitchen', '');
+  (s as any).location_type = 'private';
+  (s as any).nichLoc = 'kitchen';
   qspCall(s, 'stat', '');
   qspCall(s, 'kit_din', '');
   (s as any).sexpartkno = 1;
@@ -18,15 +20,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).nichCookPresent = qspFunc(s, 'nichUtil', 'isPresent', 'cook', 'kitchen');
   if (((s as any).nichCookPresent ?? 0) === 1) {
     if (((s as any).nichKnowsCook ?? 0) === 1) {
-      scene.text('<a href="exec: gt \'nichCook\', \'desc\'">Jegor</a>, the cook of the family, is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichCook\\u0027, \\u0027desc\\u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
     } else {
-      scene.text('<a href="exec: gt \'nichCook\', \'desc\'">The cook of the family</a> is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichCook\\u0027, \\u0027desc\\u0027); return false;">The cook of the family</a> is preparing some meals.');
     }
   }
   if (((s as any).nichWork ?? 0) === 2) {
     if (((s as any).nichBreakfLast ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).week ?? 0) <= 5  &&  (((s as any).hour ?? 0) === 6  ||  ((s as any).hour ?? 0) === 7  ||  (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) < 15)))  ||  (((s as any).week ?? 0) > 5  &&  (((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 8  ||  (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 15))))) {
       scene.actions([
-        { label: 'Prepare breakfast', goto: ['nichLivingroom', 'breakfast'] },
+        { label: 'Prepare breakfast', handler: (st: GameState) => {
+    qspGoto(s, 'nichLivingroom', 'breakfast');
+  } },
       ]);
     }
     qspCall(s, 'nichChore', 'inspect', 'kitchen');
@@ -37,7 +41,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go to the living room', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichLivingroom', ''] },
+    qspGoto(s, 'nichLivingroom', '');
+  } },
   ]);
   scene.build();
 }

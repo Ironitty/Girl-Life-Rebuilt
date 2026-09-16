@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,7 +13,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'clothing', 'wear_last_worn');
   }
   qspCall(s, 'outfit', 'remove_backup', 'lifeguard');
-  scene.actions([{ label: 'Continue', goto: ['pav_pool', 'entrance'] }]);
+  qspGoto(s, 'pav_pool', 'entrance');
   // TODO-QSP: end
   scene.build();
 }
@@ -84,7 +84,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTraining1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_pool_lifeguard'] = 2;
+  ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_pool_lifeguard'] = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 240;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/training.jpg');
@@ -109,12 +109,12 @@ function enterTraining1(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'outfit', 'restore', 'lifeguard');
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/photoclothing.jpg');
     scene.text('As you change back into your clothes, you\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
     // TODO-QSP: dynamic text: Once you're finished, you spot a set of <a href="exec:minut += 1 & gt 'pav_pool_...
-    scene.text('Once you\'re finished, you spot a set of <a href="exec:minut += 1 & gt \'pav_pool_lifeguard\', \'mirror\'">mirrors</a> where you can brush your hair or do your makeup.');
+    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_pool_lifeguard\\u0027, \\u0027mirror\\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool_lifeguard', 'leave'] },
     ]);
@@ -127,7 +127,7 @@ function enterTraining1(s: GameState, scene: SceneBuilder): void {
 
 function enterTraining2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'set_employed', 'pav_pool_lifeguard');
-  if (!(s as any).job_last_work_day) (s as any).job_last_work_day = {}; (s as any).job_last_work_day['pav_pool_lifeguard'] = ((s as any).daystart ?? 0);
+  ((s as any).job_last_work_day = (s as any).job_last_work_day ?? {})['pav_pool_lifeguard'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 240;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/training.jpg');
@@ -170,12 +170,12 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'outfit', 'restore', 'lifeguard');
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/photoclothing.jpg');
     scene.text('As you change back into your clothes, you\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
     // TODO-QSP: dynamic text: Once you're finished, you spot a set of <a href="exec:minut += 1 & gt 'pav_pool_...
-    scene.text('Once you\'re finished, you spot a set of <a href="exec:minut += 1 & gt \'pav_pool_lifeguard\', \'mirror\'">mirrors</a> where you can brush your hair or do your makeup.');
+    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_pool_lifeguard\\u0027, \\u0027mirror\\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool_lifeguard', 'leave'] },
     ]);
@@ -192,7 +192,7 @@ function enterStaffLockerRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('The staff locker room is just as run down and grimy as the rest of the building. The unisex design offers little privacy, but you rarely encounter any of your fellow staff members here.');
   scene.text('A row of dilapidated lockers line one wall, with a group of old benches provided as a seating area. The showers are towards the back of the room.');
   // TODO-QSP: dynamic text: A set of <a href="exec:minut += 1 & gt 'pav_pool_lifeguard', 'mirror'">mirrors</...
-  scene.text('A set of <a href="exec:minut += 1 & gt \'pav_pool_lifeguard\', \'mirror\'">mirrors</a> where you can brush your hair or do your makeup line the wall opposite the lockers, while an old water fountain provides hydration to anyone desperate enough to use it.');
+  scene.text('A set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_pool_lifeguard\\u0027, \\u0027mirror\\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup line the wall opposite the lockers, while an old water fountain provides hydration to anyone desperate enough to use it.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -240,7 +240,7 @@ function enterMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/mirrorsink.jpg');
   // TODO-QSP: dynamic text: The <a href="exec:minut += 1 & gt 'mirror', 'start'">mirrors</a> are is just as ...
-  scene.text('The <a href="exec:minut += 1 & gt \'mirror\', \'start\'">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the changing room', goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
@@ -299,7 +299,7 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You slip out of your swimsuit and get dressed back into your clothes.');
     if ((!(Math.floor(Math.random() * 3) + 0))) {
-      if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
+      ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
       scene.text('You\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
     }
     scene.actions([
@@ -314,7 +314,7 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 3) + 0) > 0  ||  ((s as any).pav_swimpool ?? 0)?.['vadim_shower_reject'] !== 0  ||  ((s as any).pcs_hotcat ?? 0) < 6) {
       scene.text('Once you\'re finished, you step out and wrap yourself in one of the poor quality towels that have been provided for staff use before heading to your locker and getting dressed.');
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
+        ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
         scene.text('You\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
       }
       scene.actions([
@@ -344,7 +344,8 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish getting dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'lifeguard');
-  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    qspGoto(s, 'pav_pool_lifeguard', 'staff_locker_room');
+  } },
     ]);
   } },
       { label: 'Have some fun', handler: (st: GameState) => {
@@ -368,7 +369,7 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Be polite', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['vadim_shower_reject'] = 1;
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['vadim_shower_reject'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
     scene.text('"I don\'t want to be rude, but you\'re not exactly… big…" you reply.');
@@ -381,12 +382,13 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'lifeguard');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    qspGoto(s, 'pav_pool_lifeguard', 'staff_locker_room');
+  } },
     ]);
   } },
       { label: 'Be blunt', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['vadim_shower_reject'] = 1;
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['vadim_shower_reject'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
     scene.text('"Maybe because you have a tiny dick and suck at sex? I barely felt you inside me!"');
@@ -400,7 +402,8 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'lifeguard');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    qspGoto(s, 'pav_pool_lifeguard', 'staff_locker_room');
+  } },
     ]);
   } },
     ]);
@@ -410,7 +413,7 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Tell him to leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['vadim_shower_reject'] = 1;
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['vadim_shower_reject'] = 1;
     qspCall(s, 'stat', '');
     scene.text('"What are you doing?! I\'m showering here!" you cry out as you cover yourself up.');
     scene.text('"It\'s a unisex locker room. You should expect guys to walk in on you," he bluntly replies while continuing to check you out.');
@@ -440,7 +443,8 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'lifeguard');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    qspGoto(s, 'pav_pool_lifeguard', 'staff_locker_room');
+  } },
     ]);
   } },
         { label: 'Have some fun', handler: (st: GameState) => {
@@ -488,7 +492,7 @@ function enterShiftPart1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Learn the ropes', handler: (st: GameState) => {
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['first_lifeguard_shift'] = 1;
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['first_lifeguard_shift'] = 1;
     qspCall(s, 'stat', '');
     if (((s as any).pcs_hotcat ?? 0) >= 6) {
       scene.text('Vadim gives you a rundown on what you\'re expected to do, mainly keeping an eye on the swimmers and making sure they follow the rules. You get the sense that Vadim is more interested in checking you out than explaining things to you, though.');
@@ -915,7 +919,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 3);
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['vadim_sex'] = 1;
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['vadim_sex'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/shower/bj3.mp4');
     scene.text('You spin around and get down on your knees, looking up to see him smiling down at you.');
@@ -1270,7 +1274,8 @@ function enterVadimShowerPostsex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'lifeguard');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    qspGoto(s, 'pav_pool_lifeguard', 'staff_locker_room');
+  } },
     ]);
   } },
     { label: 'No', handler: (st: GameState) => {
@@ -1279,7 +1284,7 @@ function enterVadimShowerPostsex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Be polite', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['vadim_shower_reject'] = 1;
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['vadim_shower_reject'] = 1;
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
@@ -1294,12 +1299,13 @@ function enterVadimShowerPostsex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'lifeguard');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    qspGoto(s, 'pav_pool_lifeguard', 'staff_locker_room');
+  } },
     ]);
   } },
       { label: 'Be blunt', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['vadim_shower_reject'] = 1;
+    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['vadim_shower_reject'] = 1;
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
@@ -1314,7 +1320,8 @@ function enterVadimShowerPostsex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'lifeguard');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    qspGoto(s, 'pav_pool_lifeguard', 'staff_locker_room');
+  } },
     ]);
   } },
     ]);

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_like_hair_talk'] = 1;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['boy_like_hair_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
   // TODO-QSP: dynamic text: "I love your hair," <<$npc_usedname[$npcID]>> murmurs, running his fingers throu...
   scene.text(`"I love your hair," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} murmurs, running his fingers through your locks.`);
@@ -22,14 +22,14 @@ function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
       scene.text('"You do?" you ask, surprised.');
       scene.text('"Don\'t know why everybody is into blondes," he smiles. "Black hair is so sexy."');
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+      qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
     }
     if (((s as any).pcs_haircolor ?? 0) === 'brown') {
       // TODO-QSP: act'You do?':
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
       scene.text('"You do?" you ask, surprised.');
       scene.text('"Don\'t know why everybody is into blondes," he smiles. "Brunettes are gorgeous."');
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+      qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
     }
     if (((s as any).pcs_haircolor ?? 0) === 'red') {
       // TODO-QSP: act'You do?':
@@ -40,14 +40,14 @@ function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('"Who doesn\'t think redheads are hot?" he grins back. ');
       }
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+      qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
     }
     if (((s as any).pcs_haircolor ?? 0) === 'blonde') {
       // TODO-QSP: act'You do?':
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
       scene.text('"You do?" you ask, surprised.');
       scene.text('"It\'s gorgeous," he smiles. "Blondes are so sexy."');
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+      qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
     }
   } },
   ]);
@@ -55,7 +55,7 @@ function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoobFondle(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boob_fondle'] = 1;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['boob_fondle'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   scene.img('images/shared/sex/after/boobs1.mp4');
   // TODO-QSP: dynamic text: One thing leads to another and you find yourself with <<$npcdesc>> on top of you...
@@ -66,7 +66,8 @@ function enterBoobFondle(s: GameState, scene: SceneBuilder): void {
     { label: 'Get embarrassed', handler: (st: GameState) => {
     scene.text('"Don\'t touch them so much," you softly protest, a flush heating your face. "It\'s embarrassing."');
     scene.text('"I can\'t help it," he says before repeating himself, "They\'re so soft."');
-  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
+    qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+  } },
     { label: '"Boys and boobs"', handler: (st: GameState) => {
     scene.text('"What is it with boys and boobs?" you ask, magnanimously unflinching as you watch him grope you.');
     if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
@@ -75,13 +76,14 @@ function enterBoobFondle(s: GameState, scene: SceneBuilder): void {
       scene.text('"I don\'t know, but I love them," he says, squeezing again.');
       scene.text('"Yeah, I got that," you observe dryly.');
     }
-  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
+    qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+  } },
   ]);
   scene.build();
 }
 
 function enterTitsAdmire(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boob_fondle'] = 1;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['boob_fondle'] = 1;
   qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'body_tits');
   qspCall(s, 'arousal', 'foreplay', Math.floor(Math.random() * 3) + 3);
   scene.img('images/shared/sex/after/boobs1.mp4');
@@ -99,15 +101,18 @@ function enterTitsAdmire(s: GameState, scene: SceneBuilder): void {
     { label: 'Get embarrassed', handler: (st: GameState) => {
     scene.text('"Don\'t touch them so much," you protest softly, a flush heating your face. "It\'s embarrassing."');
     scene.text('"I can\'t help it," he says before repeating himself, "They\'re so soft."');
-  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
+    qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+  } },
     { label: 'Giggle', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react_desc'] = 'laughing';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react_desc'] = 'laughing';
     scene.text('You can\'t help but giggle at his fascination with your boobs.');
-  }, goto: ['sex_ev_body_talk', 'tits_admire_menu'] },
+    qspGoto(s, 'sex_ev_body_talk', 'tits_admire_menu');
+  } },
     { label: 'Roll your eyes', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react_desc'] = 'dryly';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['react_desc'] = 'dryly';
     scene.text('You can\'t help but roll your eyes at the way he\'s practically drooling over your boobs.');
-  }, goto: ['sex_ev_body_talk', 'tits_admire_menu'] },
+    qspGoto(s, 'sex_ev_body_talk', 'tits_admire_menu');
+  } },
   ]);
   scene.build();
 }
@@ -118,15 +123,19 @@ function enterTitsAdmireMenu(s: GameState, scene: SceneBuilder): void {
     { label: '"Thank you"', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Thank you very much," you say, <<$sex_ev['react_desc']>>. "My tits accept your ...
     scene.text(`"Thank you very much," you say, ${((s as any).sex_ev ?? 0)?.['react_desc'] ?? ''}. "My tits accept your compliment and will continue letting you squeeze them."`);
-  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
+    qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+  } },
     { label: 'You like my tits?', handler: (st: GameState) => {
     if (qspFunc(s, 'pcs_has_attr', 'body_tits_small')) {
       scene.text('"You like these itty bitty titties?"');
     } else {
       scene.text('"You like them that much?"');
     }
-  }, goto: ['sex_ev_body_talk', 'like_my_tits'] },
-    { label: 'They\'re just breasts', goto: ['sex_ev_body_talk', 'just_breasts'] },
+    qspGoto(s, 'sex_ev_body_talk', 'like_my_tits');
+  } },
+    { label: 'They\'re just breasts', handler: (st: GameState) => {
+    qspGoto(s, 'sex_ev_body_talk', 'just_breasts');
+  } },
     { label: 'What do you like about them?', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_body_talk', 'what_do_you_like'
   } },
@@ -138,7 +147,8 @@ function enterTitsAdmireMenu(s: GameState, scene: SceneBuilder): void {
       scene.text('"I don\'t know, but I love them," he says, squeezing again.');
       scene.text('"Yeah, I got that," you observe dryly.');
     }
-  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
+    qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+  } },
   ]);
   scene.build();
 }
@@ -169,7 +179,7 @@ function enterLikeMyTits(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
   // TODO-QSP: end
   scene.build();
 }
@@ -188,7 +198,7 @@ function enterJustBreasts(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
   // TODO-QSP: end
   scene.build();
 }
@@ -209,7 +219,7 @@ function enterWhatDoYouLike(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
   // TODO-QSP: end
   scene.build();
 }
@@ -231,25 +241,25 @@ function enterBoyPubeTalkStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'hair_pube_style');
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
-  scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'boy_pube_talk_first'] }]);
+  qspGoto(s, 'sex_ev_body_talk', 'boy_pube_talk_first');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterBoyPubeTalkFirst(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_pube_talk'] = 1;
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_topics'] = ((s as any).sex_ev['boy_topics'] ?? 0) - (1);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['boy_pube_talk'] = 1;
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['boy_topics'] = ((s as any).sex_ev['boy_topics'] ?? 0) - (1);
   if (qspFunc(s, 'pcs_has_attr', 'hair_pubes_shaven')) {
-    scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'pubes_shaved_response'] }]);
+    qspGoto(s, 'sex_ev_body_talk', 'pubes_shaved_response');
   } else {
     if (((s as any).pube_style ?? 0)?.['word'] === 'stubble') {
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'pubes_stubble_response'] }]);
+      qspGoto(s, 'sex_ev_body_talk', 'pubes_stubble_response');
     } else {
       if (qspFunc(s, 'pcs_has_attr', 'hair_pubes_trimmed')) {
-        scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'pubes_trimmed_response'] }]);
+        qspGoto(s, 'sex_ev_body_talk', 'pubes_trimmed_response');
       } else {
         if (qspFunc(s, 'pcs_has_attr', 'hair_pubes_bush')  ||  qspFunc(s, 'pcs_has_attr', 'hair_pubes_untrimmed')) {
-          scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'pubes_bush_response'] }]);
+          qspGoto(s, 'sex_ev_body_talk', 'pubes_bush_response');
         }
       }
     }
@@ -259,7 +269,7 @@ function enterBoyPubeTalkFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
-  if ((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1 > 0  &&  (String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1 > 0) {
+  if (((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1) > 0  &&  ((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1) > 0) {
     // TODO-QSP: dynamic text: "I love how sexy your pussy is," <<$npcdesc>> says, admiringly running his finge...
     scene.text(`"I love how sexy your pussy is," ${((s as any).npcdesc || '')} says, admiringly running his fingers across the smooth skin of your pubic area.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoyLikesPubes2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -269,37 +279,43 @@ function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'It\'s for work', handler: (st: GameState) => {
     scene.text('"It\'s for work," you shrug. "I\'m a model, so it\'s better to keep it shaved."');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       ]);
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPubesProblem(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPubesOtherLovers(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'I like it this way', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['like_pubes'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['like_pubes'] = 1;
     scene.actions([
       { label: 'You just like it', handler: (st: GameState) => {
     scene.text('"Yeah," you say. "I just like it this way. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It feels good', handler: (st: GameState) => {
     scene.text('"I like it this way," you say. "It feels nice to have a smooth pussy. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It\'s classy', handler: (st: GameState) => {
     scene.text('"I like it this way," you say. "I think it\'s classier keep a clean shave. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It\'s sexy', handler: (st: GameState) => {
     scene.text('"I like it this way," you say. "It\'s sexy to keep a smooth pussy. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
     ]);
   } },
       { label: 'When I feel like it', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['lazy_shave'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['lazy_shave'] = 1;
     if (((s as any).pubestyle ?? 0) === 11) {
       scene.text('"Sometimes," you shrug. "I\'ll give it a shave when it starts turning into bush, but I\'ll live with the stubble for a few days at a time. Why do you ask?"');
     } else {
       scene.text('"Sometimes," you shrug. "On some days I\'ll just give it a trim, on other days I\'ll shave it all off. Sometimes I just go full bush. Why do you ask?"');
     }
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -307,7 +323,7 @@ function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
-  if ((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1 > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === 'shaved') {
+  if (((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1) > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === 'shaved') {
     // TODO-QSP: dynamic text: "You forget to shave today?" <<$npcdesc>> says eyeing your stubbly pussy.
     scene.text(`"You forget to shave today?" ${((s as any).npcdesc || '')} says eyeing your stubbly pussy.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoyLikesPubes2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -318,7 +334,8 @@ function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'It\'s for work', handler: (st: GameState) => {
     scene.text('"It\'s for work," you shrug. "I\'m a model, so it\'s better to keep it shaved."');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       ]);
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPubesOtherLovers2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -327,26 +344,31 @@ function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Shrug', handler: (st: GameState) => {
     scene.text('"Yeah," you say with a shrug. "Happens sometimes. What of it?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'Annoyance', handler: (st: GameState) => {
     scene.text('"Yeah," you say, drawing your eyebrows together in irritation. "I forgot. So what? Got a problem with that?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
     ]);
   } },
       { label: 'Growing it out', handler: (st: GameState) => {
     scene.text('"No I didn\'t," you reply. "I\'m growing it out. But you gotta go through stubble to get to hair."');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'No time', handler: (st: GameState) => {
     scene.text('"Wanted to but I didn\'t have time this morning," you reply.');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'I\'m lazy', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['lazy_shave'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['lazy_shave'] = 1;
     if (((s as any).pubestyle ?? 0) === 11) {
       scene.text('"I\'m just lazy," you sigh. "Too much work to keep it smooth down there all the time. I\'ll do it when it gets to be too annoying. Why do you ask?"');
     } else {
       scene.text('"I\'m just lazy," you sigh. "Didn\'t feel like doing it today. Why do you ask?"');
     }
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -354,7 +376,7 @@ function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesTrimmedResponse(s: GameState, scene: SceneBuilder): void {
-  if ((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1 > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['word']) {
+  if (((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1) > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['word']) {
     if (((s as any).npc_know_pubeshape ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['shape']) {
       // TODO-QSP: dynamic text: "I still can't get over how sexy your bush is," <<$npcdesc>> says, looking admir...
       scene.text(`"I still can't get over how sexy your bush is," ${((s as any).npcdesc || '')} says, looking admiringly at your neatly trimmed pussy hair.`);
@@ -370,27 +392,32 @@ function enterPubesTrimmedResponse(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'It\'s for work', handler: (st: GameState) => {
     scene.text('"It\'s for work," you shrug. "I\'m a model, so it\'s better to keep things tidy between the legs."');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       ]);
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPubesProblem(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPubesOtherLovers(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'I like it this way', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['like_pubes'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['like_pubes'] = 1;
     scene.actions([
       { label: 'You just like it', handler: (st: GameState) => {
     scene.text('"Yeah," you say. "I just like it this way. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It feels good', handler: (st: GameState) => {
     scene.text('"I like it tidy down there," you say. "It feels better than full bush. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It\'s classy', handler: (st: GameState) => {
     scene.text('"I like it tidy down there," you say. "I think it\'s classier to have some hair down there without going full bush. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It\'s sexy', handler: (st: GameState) => {
     scene.text('"I like it tidy down there," you say. "Makes me feel sexy. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
     ]);
   } },
     ]);
@@ -414,46 +441,54 @@ function enterPubesBushResponse(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Just trim', handler: (st: GameState) => {
     scene.text('"I just trim," you sigh. "Don\'t really like going \'full jungle\' down there, but don\'t really like shaving either. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       ]);
     }
     scene.actions([
       { label: 'I like it this way', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['like_pubes'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['like_pubes'] = 1;
     scene.actions([
       { label: 'You just like it', handler: (st: GameState) => {
     scene.text('"Yeah," you say. "I just like it this way. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It feels good', handler: (st: GameState) => {
     scene.text('"I like it this way," you say. "There\'s just something comfortable about having a full bush between my legs. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It\'s classy', handler: (st: GameState) => {
     scene.text('"I like it this way," you say. "I think it\'s classy to go full bush instead of shaving it off. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'It\'s sexy', handler: (st: GameState) => {
     scene.text('"I like it this way," you say. "I think bush is sexy. Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
     ]);
   } },
       { label: 'Lazy', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['lazy_shave'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['lazy_shave'] = 1;
     if (((s as any).pubestyle ?? 0) === 10) {
       scene.text('"I\'m just lazy," you shrug. "I\'ll trim it back if it starts getting out of hand, but it\'s too much hassle to maintain a landing strip or anything like that. Why do you ask?"');
     } else {
       scene.text('"I\'m just lazy," you shrug. "It\'s too much trouble to maintain. Easier to just let it grow. Why do you ask?"');
     }
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'Hate shaving', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['lazy_shave'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['lazy_shave'] = 1;
     if (((s as any).pubestyle ?? 0) === 10) {
       scene.text('"I hate shaving," you sigh. "I\'ll trim it back if it starts getting out of hand, but it\'s such a pain in the ass to do anything more than that. Why do you ask?"');
     } else {
       scene.text('"I hate shaving," you sigh. "It\'s such a pain in the ass. Can\'t stand it. Easier to just let it grow. Why do you ask?"');
     }
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'Joke about it', handler: (st: GameState) => {
     scene.text('"I\'m a terrible gardener," you smirk wryly. "Can never manage to keep the grass trimmed right so I just don\'t even bother.');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -461,7 +496,7 @@ function enterPubesBushResponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyPubesResponse(s: GameState, scene: SceneBuilder): void {
-  if ((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1 > 0) {
+  if (((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1) > 0) {
     if (qspFunc(s, 'pcs_has_attr', 'hair_pubes_shaven')) {
       scene.text('"I think it\'s hot," he grins. "No one likes to find a gorilla between a girl\'s legs. Bare pussy is the best."');
     } else {
@@ -469,13 +504,13 @@ function enterBoyPubesResponse(s: GameState, scene: SceneBuilder): void {
         scene.text('"I just think it\'s super hot," he grins. "I love the look of a pussy with a well-kept garden."');
       } else {
         if (qspFunc(s, 'pcs_has_attr', 'hair_pubes_bush')  ||  qspFunc(s, 'pcs_has_attr', 'hair_pubes_untrimmed')) {
-          scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'boy_bush_response'] }]);
+          qspGoto(s, 'sex_ev_body_talk', 'boy_bush_response');
         } else {
           scene.text('"I just think it\'s hot," he grins.');
         }
       }
     }
-    scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'boy_likes_pubes'] }]);
+    qspGoto(s, 'sex_ev_body_talk', 'boy_likes_pubes');
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_shaven') {
       scene.text('"You\'d look super hot if you shaved it clean," he says.');
@@ -487,7 +522,7 @@ function enterBoyPubesResponse(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('"Would you ever consider letting it grow out a little?"');
         }
-        scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'boy_asks_trim'] }]);
+        qspGoto(s, 'sex_ev_body_talk', 'boy_asks_trim');
       } else {
         if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_bush'  ||  ((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_untrimmed') {
           scene.text('"Ever considered letting it grow out more?"');
@@ -496,10 +531,10 @@ function enterBoyPubesResponse(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_bush_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
             // TODO-QSP: $npc_like_pubestyle[$npcID] = 'none'
             scene.text('"Just noting. Some girls shave, some don\'t. Some guys want it one way, other guys another. Me? I don\'t care if it\'s more like an apple, a kiwi, or a coconut," he laughs aloud. "I just like pussy."');
-            scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'pube_talk_end'] }]);
+            qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
           } else {
             scene.text('Bug report: boy_pubes_response dead-end');
-            scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'pube_talk_end'] }]);
+            qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
           }
         }
       }
@@ -516,19 +551,19 @@ function enterDontShaveLikeTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyBushResponse(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_style_label ?? 0)?.[String((s as any).npcID ?? 0)] === 'fashionable') {
-    if ((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1 > 0) {
+    if (((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1) > 0) {
       scene.text('"Most girls consider it unfashionable to keep a bush. Not that I mind. I love a nice beautiful bush. But I\'m surprised to find a girl who doesn\'t mind either."');
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'boy_likes_pubes'] }]);
+      qspGoto(s, 'sex_ev_body_talk', 'boy_likes_pubes');
     } else {
       if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_patch'  ||  ((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_trimmed') {
         scene.text('"Most girls consider it unfashionable to keep a bush. Would you ever consider trimming it down?"');
-        scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'boy_asks_trim'] }]);
+        qspGoto(s, 'sex_ev_body_talk', 'boy_asks_trim');
       } else {
         if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_shaven') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoyLikesPubes(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           scene.text('"Most girls consider it unfashionable to keep a bush. But me? I think it\'s up to every girl to decide what she does with her pussy garden."');
-          scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'pube_talk_end'] }]);
+          qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
         }
       }
     }
@@ -553,7 +588,8 @@ function enterBoyAsksCleanshave(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'I\'ll get to it later', handler: (st: GameState) => {
     scene.text('"Yeah, yeah," you wave your hand absently. "I\'ll get to it eventually."');
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -566,7 +602,8 @@ function enterBoyAsksCleanshave(s: GameState, scene: SceneBuilder): void {
         scene.text('"No way," you say, giving him a look. "If I\'m already too lazy to do it for me, what makes you think I\'m going to do it for you?"');
       }
     }
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'No thanks', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['like_pubes'] === 1) {
       scene.text('"No thanks," you reply with a humorous smirk. "I think I\'ll just keep it the way I like it."');
@@ -577,7 +614,8 @@ function enterBoyAsksCleanshave(s: GameState, scene: SceneBuilder): void {
         scene.text('"No thanks," you reply with a humorous smirk. "I think I\'ll just keep doing what I\'m doing."');
       }
     }
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'You think I should?', handler: (st: GameState) => {
     scene.text('"You think I should?" you ask him, looking down and inspecting your pussy.');
     // TODO-QSP: dynamic text: "Yeah," <<$npcdesc>> says. "I think you'd look super sexy without any hair down ...
@@ -606,7 +644,8 @@ function enterBoyAsksTrim(s: GameState, scene: SceneBuilder): void {
         scene.text('"No way," you say, giving him a look. "If I\'m already lazy about it, what makes you think I\'m going to do it for you?"');
       }
     }
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'You think I should?', handler: (st: GameState) => {
     if (((s as any).pcs_pubes ?? 0) < 4) {
       scene.text('"You think I should?" you ask him, looking down and inspecting your smooth pussy.');
@@ -645,7 +684,8 @@ function enterBoyAsksBush(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Not really," you say, giving him a look. "What makes you think I\'d grow a bush just for you?"');
     }
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'You think I should?', handler: (st: GameState) => {
     if (((s as any).pcs_pubes ?? 0) < 4) {
       scene.text('"You think I should?" you ask him, looking down and inspecting your smooth pussy.');
@@ -682,35 +722,40 @@ function enterChangePubesForBoy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'I\'ll think about it', handler: (st: GameState) => {
-    if (!(s as any).npc_shave_think) (s as any).npc_shave_think = {}; (s as any).npc_shave_think[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    ((s as any).npc_shave_think = (s as any).npc_shave_think ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.img('images/shared/sex/after/pillow_talk3.mp4');
     scene.text('"I\'ll think about it," you say. "But no promises."');
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'Sure', handler: (st: GameState) => {
-    if (!(s as any).npc_shave_promise) (s as any).npc_shave_promise = {}; (s as any).npc_shave_promise[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    ((s as any).npc_shave_promise = (s as any).npc_shave_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     // TODO-QSP: dynamic text: "Sure," you smile at <<$npcdesc>>. "I could give it a try..."
     scene.text(`"Sure," you smile at ${((s as any).npcdesc || '')}. "I could give it a try..."`);
     // TODO-QSP: dynamic text: <<$npcdesc>> grins back eagerly at you.
     scene.text(`${((s as any).npcdesc || '')} grins back eagerly at you.`);
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'I guess I could', handler: (st: GameState) => {
-    if (!(s as any).npc_shave_promise) (s as any).npc_shave_promise = {}; (s as any).npc_shave_promise[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    ((s as any).npc_shave_promise = (s as any).npc_shave_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"Well..." you say. "I guess I could give it a try..."');
     // TODO-QSP: dynamic text: <<$npcdesc>> grins back eagerly at you.
     scene.text(`${((s as any).npcdesc || '')} grins back eagerly at you.`);
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'For you (hesitant)', handler: (st: GameState) => {
-    if (!(s as any).npc_shave_promise) (s as any).npc_shave_promise = {}; (s as any).npc_shave_promise[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    ((s as any).npc_shave_promise = (s as any).npc_shave_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"Well..." you say. "I guess I could try it? For you."');
     // TODO-QSP: dynamic text: You punctuate your promise with an affectionate smile, returned with an eager gr...
     scene.text(`You punctuate your promise with an affectionate smile, returned with an eager grin from ${((s as any).npcdesc || '')}.`);
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'For you (affectionate)', handler: (st: GameState) => {
-    if (!(s as any).npc_shave_promise) (s as any).npc_shave_promise = {}; (s as any).npc_shave_promise[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    ((s as any).npc_shave_promise = (s as any).npc_shave_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"If it will make you happy, then of course I\'ll do it."');
     // TODO-QSP: dynamic text: You smile affectionately at <<$npcdesc>>, who returns it with an eager grin.
     scene.text(`You smile affectionately at ${((s as any).npcdesc || '')}, who returns it with an eager grin.`);
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
   ]);
   scene.build();
 }
@@ -736,7 +781,8 @@ function enterAnnoyedShave(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
   ]);
   scene.build();
 }
@@ -748,10 +794,12 @@ function enterBoyLikesPubes(s: GameState, scene: SceneBuilder): void {
     { label: 'Good to know', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk3.mp4');
     scene.text('"Well good to know," you laugh. "I\'ll keep it in mind next time I look at a razor."');
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'Glad you think so', handler: (st: GameState) => {
     scene.text('"I\'m glad you think so. It\'s always nice to know someone thinks you\'re sexy," you say, giving him a soft smile.');
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'Glad I have your permission (sarcastic)', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
     scene.text('"Well I\'m glad I have your permission to shave the way I like it," you huff, acerbically rolling your eyes.');
@@ -766,13 +814,15 @@ function enterBoyLikesPubes(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m sorry," you say. "I... I don\'t know why I snapped at you like that. You\'re right. I should be happy you think I\'m sexy."');
     // TODO-QSP: dynamic text: You give him an apologetic smile and though <<$npcdesc>> still seems a little an...
     scene.text(`You give him an apologetic smile and though ${((s as any).npcdesc || '')} still seems a little annoyed with you, he mostly calms down as well.`);
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
         { label: 'I didn\'t ask!', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['angry_after'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['angry_after'] = 1;
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     scene.text('"Well I didn\'t ask for your opinion!" you snap back. "It\'s my body and my bush, I can do whatever I want without hearing how you feel about it!"');
     scene.text('<i>Ugh! Men!</i> you grumble internally.');
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
       ]);
     } else {
       // TODO-QSP: dynamic text: "I didn't mean it like that," <<$npcdesc>> says, looking bemused. "I just wanted...
@@ -784,13 +834,15 @@ function enterBoyLikesPubes(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m sorry," you say. "I... I don\'t know why I snapped at you like that. That was... uncalled for..."');
     // TODO-QSP: dynamic text: You give him an embarrassed smile and <<$npcdesc>> smiles back, letting you know...
     scene.text(`You give him an embarrassed smile and ${((s as any).npcdesc || '')} smiles back, letting you know he accepts your apology.`);
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
         { label: 'I didn\'t ask for a man\'s opinion!', handler: (st: GameState) => {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['angry_after'] = 1;
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['angry_after'] = 1;
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     scene.text('"Well I didn\'t ask for your opinion!" you snap back. "It\'s my body and my bush, I can do whatever I want without hearing how a man feels about it!"');
     scene.text('<i>Ugh! Men!</i> you grumble internally.');
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
       ]);
     }
   } },
@@ -805,7 +857,8 @@ function enterBoyLikesPubes(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"It\'s beautiful."');
     }
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
   ]);
   scene.build();
 }
@@ -815,10 +868,12 @@ function enterBoyLikesPubes2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Thanks', handler: (st: GameState) => {
     scene.text('"Thanks," you smile back. "It\'s always nice to be complimented."');
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'I like it too', handler: (st: GameState) => {
     scene.text('"Me too," you smile back before taking an admiring look yourself. "I love the look of my pussy."');
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'Don\'t do it for you', handler: (st: GameState) => {
     scene.text('"It\'s not like I do it for you," you say, brushing his compliment aside and rolling your eyes.');
     if (((s as any).npc_argumentative ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -826,7 +881,8 @@ function enterBoyLikesPubes2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Doesn\'t mean I can\'t appreciate it for myself," he grins back.');
     }
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
     { label: 'Compliment his cock', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     if (((s as any).dick_desc ?? 0) === 'tiny') {
@@ -879,7 +935,8 @@ function enterBoyLikesPubes2(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
+    qspGoto(s, 'sex_ev_body_talk', 'pube_talk_end');
+  } },
   ]);
   scene.build();
 }
@@ -893,7 +950,8 @@ function enterPubesYoung(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I tried it once but I didn\'t like it," you grimace. "Made me feel like a little girl. It was weird. So now I always make sure I have some hair down there. Why do you ask?"');
     }
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
   ]);
   scene.build();
 }
@@ -926,7 +984,8 @@ function enterPubesProblem(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
   ]);
   scene.build();
 }
@@ -942,30 +1001,35 @@ function enterPubesOtherLovers(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'My boyfriend likes it', handler: (st: GameState) => {
     scene.text('"My boyfriend likes it this way," you shrug. "Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       ]);
     }
     if (((s as any).stat ?? 0)?.['girlfriends_current'] > 0) {
       scene.actions([
         { label: 'My girlfriend likes it', handler: (st: GameState) => {
     scene.text('"My girlfriend likes it this way," you shrug. "Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       ]);
     }
     if (Object.keys((s as any).fuckbuddy ?? {}).length > 1) {
       scene.actions([
         { label: 'My other fuckbuddy likes it', handler: (st: GameState) => {
     scene.text('"My other fuckbuddy likes it this way," you shrug. "Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       ]);
     }
     scene.actions([
       { label: 'My ex liked it', handler: (st: GameState) => {
     scene.text('"My ex preferred it this way," you shrug. "Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
       { label: 'My last fuckbuddy liked it', handler: (st: GameState) => {
     scene.text('"A fuckbuddy I used to have liked it this way," you shrug. "Why do you ask?"');
-  }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
+    qspGoto(s, 'sex_ev_body_talk', 'boy_pubes_response');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -973,11 +1037,11 @@ function enterPubesOtherLovers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubeTalkEnd(s: GameState, scene: SceneBuilder): void {
-  if ((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1 === 0) {
+  if ((!((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1))) {
     qspCall(s, 'lover', 'add_topic', ((s as any).npcID ?? 0), 'pube_talk');
   }
   // TODO-QSP: $npc_know_pubes[$npcID] = $pube_style['word']
-  scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
   // TODO-QSP: end
   scene.build();
 }

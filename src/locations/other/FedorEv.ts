@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,38 +6,39 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).numnpc = 5;
+  (s as any).static_num = 'A5';
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A5'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A5'] ?? ''}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big5.jpg');
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).kotovVSkozlov ?? 0) === 0  &&  ((s as any).fedorKozlovQW ?? 0) >= 10) {
-    scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Vitek Vs Fedor'] }]);
+    qspGoto(s, 'FedorEv', 'Vitek Vs Fedor');
   } else {
     if (((s as any).kotovVSkozlov ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Strela Chat'] }]);
+      qspGoto(s, 'FedorEv', 'Strela Chat');
     } else {
       if (((s as any).FedorvsDimka ?? 0) === 2) {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Dimka Aftermath'] }]);
+        qspGoto(s, 'FedorEv4', 'Dimka Aftermath');
       } else {
         if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250  &&  ((s as any).fedorkoztalk ?? 0) === 0  &&  (!((s as any).FedorLove ?? 0))) {
-          scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Gorslut'] }]);
+          qspGoto(s, 'FedorEv', 'Gorslut');
         } else {
           if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  (!((s as any).FedorLove ?? 0))) {
-            scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Gorslut 2'] }]);
+            qspGoto(s, 'FedorEv', 'Gorslut 2');
           } else {
             if (((s as any).fedorKozlovQW ?? 0) === 10  &&  ((s as any).FedorLuv ?? 0) < -5) {
-              scene.actions([{ label: 'Continue', goto: ['FedorEv2', 'Fedor Breakup'] }]);
+              qspGoto(s, 'FedorEv2', 'Fedor Breakup');
             } else {
               if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).FedorvsDimka ?? 0) === 1) {
-                scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Vs Dimka'] }]);
+                qspGoto(s, 'FedorMisc', 'Fedor Vs Dimka');
               } else {
                 if (((s as any).fedorKozlovQW ?? 0) >= 20  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
                   if ((!(Math.floor(Math.random() * 2) + 0))) {
-                    scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Fedor Date 2'] }]);
+                    qspGoto(s, 'FedorEv', 'Fedor Date 2');
                   } else {
-                    scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Fedor Date 3'] }]);
+                    qspGoto(s, 'FedorEv', 'Fedor Date 3');
                   }
                 } else {
-                  scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Fedor Date'] }]);
+                  qspGoto(s, 'FedorEv', 'Fedor Date');
                 }
               }
             }
@@ -145,9 +146,9 @@ function enterGorslut(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'gschool_lunch') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+      qspGoto(s, 'gschool_grounds', 'main');
     }
   } },
     ]);
@@ -162,9 +163,9 @@ function enterGorslut(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'gschool_lunch') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+      qspGoto(s, 'gschool_grounds', 'main');
     }
   } },
     ]);
@@ -180,9 +181,9 @@ function enterGorslut(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'gschool_lunch') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+      qspGoto(s, 'gschool_grounds', 'main');
     }
   } },
     ]);
@@ -202,9 +203,9 @@ function enterGorslut2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'gschool_lunch') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+      qspGoto(s, 'gschool_grounds', 'main');
     }
   } },
   ]);
@@ -358,9 +359,9 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
 
 function enterSkate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) === 12  ||  ((s as any).month ?? 0) < 3) {
-    scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Skate Date'] }]);
+    qspGoto(s, 'FedorEv', 'Skate Date');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Park 3'] }]);
+    qspGoto(s, 'FedorEv', 'Park 3');
   }
   // TODO-QSP: end
   scene.build();
@@ -429,15 +430,24 @@ function enterFedorDate2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/fedor.jpg');
   scene.text('You look Fedor in the eyes, lean forward and give him a passionate kiss, feeling his warm lips on yours and his tongue enter your mouth and begin to softly massage yours.');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/kiss2.mp4');
+  (s as any).ev_name = 'Fedor';
+  (s as any).ev_name_a = 'Fedor';
+  (s as any).ev_name_om = 'Fedor';
   qspCall(s, 'arousal', 'kiss', 5);
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
   (s as any).placerand = Math.floor(Math.random() * 2) + 1;
   if ((!((s as any).placerand ?? 0))) {
+    (s as any).place = 'Park 2';
+    (s as any).textEvent = '"Wanna go for a walk in the park and see what kind of trouble we can get into?"';
   }
   if (((s as any).placerand ?? 0) === 1) {
+    (s as any).place = 'Cinema 2';
+    (s as any).textEvent = '"' + ((s as any).pcs_nickname ?? 0) + ' are you up for another movie?"';
   }
   if (((s as any).placerand ?? 0) === 2) {
+    (s as any).place = 'Home 2';
+    (s as any).textEvent = '"Would you like some "Alone time" at my place?"';
   }
   // TODO-QSP: dynamic text: You continue to kiss Fedor passionately, neither of you willing to break it off....
   scene.text(`You continue to kiss Fedor passionately, neither of you willing to break it off. After what felt like an hour ${((s as any).ev_name || '')} finishes kissing you and suggests: ${((s as any).textEvent || '')}.`);
@@ -589,7 +599,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const FedorEv: LocationDef = {
   name: 'FedorEv',
-  title: '<<$npc_firstname[\'A5\']>> <<$npc_lastname[\'A5\']>>',
   region: 'other',
   enter: enter,
 };

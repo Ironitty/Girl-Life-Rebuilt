@@ -1,10 +1,14 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).sexloc = 'billiard';
+  (s as any).menu_loc = 'billiard';
+  (s as any).menu_arg = '';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pool</b></center>');
   scene.img('images/locations/city/citycenter/mall/pool/bil.jpg');
@@ -24,7 +28,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if ((!((s as any).billrand ?? 0))) {
         scene.text('You play one of the guys here and he asks if you want to make it more interesting.');
         if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1) {
-          scene.actions([{ label: 'Continue', goto: ['billiard', 'randwin'] }]);
+          qspGoto(s, 'billiard', 'randwin');
           scene.actions([
             { label: 'Play for his ass, sex if you lose', handler: (st: GameState) => {
     (st as any).billvar = 1;
@@ -44,7 +48,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'anal', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['billiard', ''] },
+    qspGoto(s, 'billiard', '');
+  } },
           ]);
         }
         scene.actions([
@@ -53,20 +58,21 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).billvar = 0;
-      scene.actions([{ label: 'Continue', goto: ['billiard', 'randwin'] }]);
+      qspGoto(s, 'billiard', 'randwin');
     }
   } },
           { label: 'Let him have the table instead', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 125);
     qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'stat', '');
-  }, goto: ['billiard', ''] },
+    qspGoto(s, 'billiard', '');
+  } },
         ]);
       } else {
         if (((s as any).billrand ?? 0) === 1) {
           scene.text('You play a couple of the guys here and they ask if you want to make it more interesting.');
           if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1) {
-            scene.actions([{ label: 'Continue', goto: ['billiard', 'randwin'] }]);
+            qspGoto(s, 'billiard', 'randwin');
             scene.actions([
               { label: 'Play for their asses, sex if you lose', handler: (st: GameState) => {
     (st as any).billvar = 2;
@@ -86,7 +92,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'anal', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['billiard', ''] },
+    qspGoto(s, 'billiard', '');
+  } },
             ]);
           }
           scene.actions([
@@ -95,14 +102,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).billvar = 0;
-      scene.actions([{ label: 'Continue', goto: ['billiard', 'randwin'] }]);
+      qspGoto(s, 'billiard', 'randwin');
     }
   } },
             { label: 'Let him have the table instead', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 125);
     qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'stat', '');
-  }, goto: ['billiard', ''] },
+    qspGoto(s, 'billiard', '');
+  } },
           ]);
         } else {
           if (((s as any).billrand ?? 0) >= 2) {
@@ -122,7 +130,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 2) + 0);
       (s as any).billvar = 3;
-      scene.actions([{ label: 'Continue', goto: ['billiard', 'randwin'] }]);
+      qspGoto(s, 'billiard', 'randwin');
     }
   } },
     ]);
@@ -257,6 +265,8 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'billiard';
+  (s as any).menu_arg = 'start';
   scene.text('<center><b>Pool</b></center>');
   scene.img('images/locations/city/citycenter/mall/pool/bil.jpg');
   // TODO-QSP: end

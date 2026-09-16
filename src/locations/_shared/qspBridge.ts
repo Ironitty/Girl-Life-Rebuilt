@@ -49,6 +49,10 @@ export function dynamicGoto(s: GameState, targetVar: string, argVar?: string): v
   goto(s, t, a);
 }
 
+export function qspGoto(s: GameState, target: string, arg: string, arg2?: string, arg3?: string): void {
+  goto(s, target, arg, arg2, arg3);
+}
+
 export function hasLocation(name: string): boolean {
   return getLocation(name) != null;
 }
@@ -213,6 +217,7 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
         case 'setloc':
           s.loc = str(args[0]);
           s.locArg = str(args[1]);
+          (s as any).locArgs = [s.locArg, '', ''];
           return;
       }
       warn(module, func, args);

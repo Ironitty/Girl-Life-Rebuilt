@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStairwellChat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).tryndinQW) (s as any).tryndinQW = {}; (s as any).tryndinQW['stairwell_chat'] = ((s as any).tryndinQW['stairwell_chat'] ?? 0) + (1);
+  ((s as any).tryndinQW = (s as any).tryndinQW ?? {})['stairwell_chat'] = ((s as any).tryndinQW['stairwell_chat'] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'modify', 'A77', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big77.jpg');
@@ -122,7 +122,7 @@ function enterTryndinmetro(s: GameState, scene: SceneBuilder): void {
 
 function enterModel(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).tryndinQW) (s as any).tryndinQW = {}; (s as any).tryndinQW['model'] = 1;
+  ((s as any).tryndinQW = (s as any).tryndinQW ?? {})['model'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A77', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/photos/big77.jpg');
@@ -137,7 +137,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
 
 function enterPornstar(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).tryndinQW) (s as any).tryndinQW = {}; (s as any).tryndinQW['pornstar'] = 1;
+  ((s as any).tryndinQW = (s as any).tryndinQW ?? {})['pornstar'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A77', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/photos/big77.jpg');
@@ -152,7 +152,7 @@ function enterPornstar(s: GameState, scene: SceneBuilder): void {
 
 function enterUniStudent(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).tryndinQW) (s as any).tryndinQW = {}; (s as any).tryndinQW['uni_student'] = 1;
+  ((s as any).tryndinQW = (s as any).tryndinQW ?? {})['uni_student'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A77', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/photos/big77.jpg');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -7,13 +7,14 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'pav_commcenter', '');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'family_schedule', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Community Center</b></center>');
   scene.img('images/locations/pavlovsk/community/\' + iif(DayStage < 4, \'dk.jpg\', \'dk_night.jpg\') + \'');
   if (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) >= 40  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
     scene.actions([
-      { label: 'Wait in line for the disco to open (0:<<iif(60-minut < 10, "0<<60-minut>>", 60-minut)>>)', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Wait in line for the disco to open (0:' + String('TODO' ?? '') + '", 60-minut)>>)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -25,7 +26,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
       scene.text('The entrance to the community center is full of young people. The guys are hanging around smoking and joking while the girls are in small groups, all dressed up and gossiping. You see the bushes moving - Pavlovsk\'s famous make out garden.');
       // TODO-QSP: dynamic text: You hear people in the alley beside the club. <a href="exec:minut += 5 & gt 'pav...
-      scene.text('You hear people in the alley beside the club. <a href="exec:minut += 5 & gt \'pav_commcenter\', \'alley\'">Investigate</a>.');
+      scene.text('You hear people in the alley beside the club. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_commcenter\\u0027, \\u0027alley\\u0027); return false;">Investigate</a>.');
       if (((s as any).gdkincum ?? 0) === ((s as any).daystart ?? 0)  &&  (((s as any).cumloc ?? 0)[6] === 0  &&  ((s as any).cumloc ?? 0)[7] === 0)  &&  ((s as any).cumloc ?? 0)[11] === 0) {
         (s as any).gdkincum = 0;
       }
@@ -74,7 +75,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if ((((s as any).daystart ?? 0) % 365) !== 1) {
     if (((s as any).month ?? 0) > 8  &&  ((s as any).ml_guitarlesson ?? 0)?.['advertisement'] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'advertisement'] }]);
+      qspGoto(s, 'music_guitarlesson', 'advertisement');
     }
     if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20)) {
       scene.actions([
@@ -95,7 +96,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The community center is closed for New Years Eve.');
   }
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 19  &&  ((s as any).yearstart ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'game'] }]);
+    qspGoto(s, 'nerd_game_night', 'game');
     scene.actions([
       { label: 'Wait for game night to start', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
@@ -117,13 +118,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Smoke a joint', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'joint');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
   qspCall(s, 'pushkin_ballet_res', 'check_start_evt');
   if (((s as any).locat ?? 0)?.['Anya'] === 10) {
-    scene.text('Your sister <a href="exec:gt \'sister\', \'pav_commcenter\'">Anya</a> is sitting with a group of boys and girls, drinking beer.');
+    scene.text('Your sister <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027sister\\u0027, \\u0027pav_commcenter\\u0027); return false;">Anya</a> is sitting with a group of boys and girls, drinking beer.');
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: end

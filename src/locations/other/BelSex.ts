@@ -402,6 +402,7 @@ function enterCowgirl(s: GameState, scene: SceneBuilder): void {
   scene.text('He grabs your hips, controlling the rhythm as you ride him. He wants it fast. Fast, deep and hard, without any regard to you, or that he actually bumps into your cervix in this position. You keep riding him at the same rhythm as he moves his hands grabbing your breasts instead.');
   // TODO-QSP: dynamic text: Unable to think of anything but the pleasure, you moan so loudly that you are al...
   scene.text(`Unable to think of anything but the pleasure, you moan so loudly that you are almost screaming. Wanting to ride out this intense feeling, you completely forget that you're supposed to please ${((s as any).boydesc || '')} as you orgasm while riding him.`);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'prostitution');
   qspCall(s, 'stat', '');
   if (((s as any).belact ?? 0) <= 0) {
@@ -576,7 +577,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },

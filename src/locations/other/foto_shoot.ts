@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -42,15 +42,15 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
     { label: 'Actually I\'d like to practice', goto: ['foto_practice', 'start'] },
     { label: '"I\'d like to do a catalog shoot"', handler: (st: GameState) => {
     if (((s as any).modelfoto ?? 0)?.['shoots'] >= 10  &&  ((s as any).pcs_mdlng ?? 0) > 20  &&  ((s as any).modelfoto ?? 0)?.['fashion'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'fashion_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'fashion_persuasion');
     }
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Alright, what kind of shoot? Clothing or swimsuits?"');
     scene.actions([
       { label: 'Look at something else', goto: ['foto_shoot', 'model'] },
       { label: 'Clothing', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'catalog';
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['catalog'] = ((s as any).modelfoto['catalog'] ?? 0) + (1);
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'catalog';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['catalog'] = ((s as any).modelfoto['catalog'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 2);
     (s as any).model_week = (((s as any).daystart ?? 0) - ((s as any).week ?? 0)) / 7;
     qspCall(s, 'fame', 'city', 'modelling', 'tiny');
@@ -70,8 +70,8 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Swimsuits', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'swim_catalog';
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['catalog'] = ((s as any).modelfoto['catalog'] ?? 0) + (1);
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'swim_catalog';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['catalog'] = ((s as any).modelfoto['catalog'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 2);
     (s as any).model_week = (((s as any).daystart ?? 0) - ((s as any).week ?? 0)) / 7;
     qspCall(s, 'fame', 'city', 'modelling', 'tiny');
@@ -90,19 +90,19 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
     { label: '"I\'d like to do a fashion shoot"', handler: (st: GameState) => {
     if (((s as any).pcs_mdlng ?? 0) < 20) {
     } else {
-      scene.actions([{ label: 'Continue', goto: ['foto_shoot', 'fashion_shoot'] }]);
+      qspGoto(s, 'foto_shoot', 'fashion_shoot');
     }
   } },
     { label: '"I\'d like to do a glamour shoot"', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 30  &&  ((s as any).modelfoto ?? 0)?.['glamour'] < 1) {
     } else {
-      scene.actions([{ label: 'Continue', goto: ['foto_shoot', 'glamour_shoot'] }]);
+      qspGoto(s, 'foto_shoot', 'glamour_shoot');
     }
   } },
     { label: '"I\'d like to do a nude shoot"', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 30  &&  ((s as any).modelfoto ?? 0)?.['nude'] < 1) {
     } else {
-      scene.actions([{ label: 'Continue', goto: ['foto_shoot', 'nude_shoot'] }]);
+      qspGoto(s, 'foto_shoot', 'nude_shoot');
     }
   } },
   ]);
@@ -115,9 +115,9 @@ function enterFashionShoot(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fashion', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'fashion';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'fashion';
     if (((s as any).modelfoto ?? 0)?.['fashion'] >= 10  &&  ((s as any).modelfoto ?? 0)?.['bikini'] + ((s as any).modelfoto ?? 0)?.['lingerie'] < 1  &&  ((s as any).modelfoto ?? 0)?.['glamour'] < 1  &&  ((s as any).modelfoto ?? 0)?.['nude'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'lingerie_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'lingerie_persuasion');
     }
     scene.actions([
       { label: 'Look at something else', goto: ['foto_shoot', 'model'] },
@@ -126,9 +126,9 @@ function enterFashionShoot(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Bikini', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'bikini';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'bikini';
     if (((s as any).modelfoto ?? 0)?.['bikini'] + ((s as any).modelfoto ?? 0)?.['lingerie'] >= 10  &&  ((s as any).pcs_mdlng ?? 0) > 20  &&  ((s as any).modelfoto ?? 0)?.['glamour'] < 1  &&  ((s as any).modelfoto ?? 0)?.['nude'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'glamour_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'glamour_persuasion');
     }
     if (((s as any).pcs_inhib ?? 0) >= 20) {
       scene.actions([
@@ -146,7 +146,8 @@ function enterFashionShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'bikini'] },
+    qspGoto(s, 'foto_shoot', 'bikini');
+  } },
         ]);
       }
     }
@@ -156,9 +157,9 @@ function enterFashionShoot(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Lingerie modelling', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'lingerie';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'lingerie';
     if (((s as any).modelfoto ?? 0)?.['bikini'] + ((s as any).modelfoto ?? 0)?.['lingerie'] >= 10  &&  ((s as any).modelfoto ?? 0)?.['glamour'] < 1  &&  ((s as any).modelfoto ?? 0)?.['nude'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'glamour_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'glamour_persuasion');
     }
     if (((s as any).pcs_inhib ?? 0) >= 25) {
       scene.actions([
@@ -176,7 +177,8 @@ function enterFashionShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'lingerie'] },
+    qspGoto(s, 'foto_shoot', 'lingerie');
+  } },
         ]);
       }
     }
@@ -195,9 +197,9 @@ function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sexy clothing', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'sexy_clo';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'sexy_clo';
     if (((s as any).modelfoto ?? 0)?.['sexy'] >= 10  &&  ((s as any).modelfoto ?? 0)?.['transparent'] + ((s as any).modelfoto ?? 0)?.['trans_ling'] < 1  &&  ((s as any).modelfoto ?? 0)?.['nip'] < 1  &&  ((s as any).modelfoto ?? 0)?.['nude'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'trans_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'trans_persuasion');
     }
     if (((s as any).pcs_inhib ?? 0) >= 30) {
       scene.actions([
@@ -219,7 +221,8 @@ function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'sexy'] },
+    qspGoto(s, 'foto_shoot', 'sexy');
+  } },
         ]);
       }
     }
@@ -229,9 +232,9 @@ function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Transparent clothing', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'trans_clo';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'trans_clo';
     if (((s as any).modelfoto ?? 0)?.['trans_ling'] + ((s as any).modelfoto ?? 0)?.['transparent'] >= 5  &&  ((s as any).modelfoto ?? 0)?.['topless'] < 1  &&  ((s as any).modelfoto ?? 0)?.['nude'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'topless_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'topless_persuasion');
     }
     if (((s as any).pcs_inhib ?? 0) >= 45) {
       scene.actions([
@@ -253,7 +256,8 @@ function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'transparent'] },
+    qspGoto(s, 'foto_shoot', 'transparent');
+  } },
         ]);
       }
     }
@@ -263,10 +267,10 @@ function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Transparent Lingerie', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'trans_ling';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'trans_ling';
     if (((s as any).modelfoto ?? 0)?.['trans_ling'] + ((s as any).modelfoto ?? 0)?.['transparent'] >= 5  &&  ((s as any).modelfoto ?? 0)?.['topless'] < 1  &&  ((s as any).modelfoto ?? 0)?.['nude'] < 1) {
-      if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'trans_ling';
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'topless_persuasion'] }]);
+      ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'trans_ling';
+      qspGoto(s, 'foto_events', 'topless_persuasion');
     }
     if (((s as any).pcs_inhib ?? 0) >= 45) {
       scene.actions([
@@ -288,7 +292,8 @@ function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'trans_ling'] },
+    qspGoto(s, 'foto_shoot', 'trans_ling');
+  } },
         ]);
       }
     }
@@ -298,9 +303,9 @@ function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Exposed breasts', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'topless';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'topless';
     if (((s as any).modelfoto ?? 0)?.['topless'] >= 5  &&  ((s as any).modelfoto ?? 0)?.['nude'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'nude_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'nude_persuasion');
     }
     if (((s as any).pcs_inhib ?? 0) >= 50) {
       scene.actions([
@@ -322,7 +327,8 @@ function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'topless'] },
+    qspGoto(s, 'foto_shoot', 'topless');
+  } },
         ]);
       }
     }
@@ -342,9 +348,9 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Limited nude', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'taste_nude';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'taste_nude';
     if (((s as any).modelfoto ?? 0)?.['tastenude'] >= 5  &&  (((s as any).modelfoto ?? 0)?.['topless'] + ((s as any).modelfoto ?? 0)?.['toplessnude'] + ((s as any).modelfoto ?? 0)?.['fullnude']) < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'nude_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'nude_persuasion');
     }
     if (((s as any).pcs_inhib ?? 0) >= 40) {
       scene.actions([
@@ -366,7 +372,8 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'tasteful'] },
+    qspGoto(s, 'foto_shoot', 'tasteful');
+  } },
         ]);
       }
     }
@@ -376,9 +383,9 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Exposed breasts nude', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'top_nude';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'top_nude';
     if (((s as any).modelfoto ?? 0)?.['toplessnude'] >= 3  &&  ((s as any).modelfoto ?? 0)?.['pussy'] < 1) {
-      scene.actions([{ label: 'Continue', goto: ['foto_events', 'nude_persuasion'] }]);
+      qspGoto(s, 'foto_events', 'nude_persuasion');
     }
     if (((s as any).pcs_inhib ?? 0) >= 55) {
       scene.actions([
@@ -400,7 +407,8 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'topless_nude'] },
+    qspGoto(s, 'foto_shoot', 'topless_nude');
+  } },
         ]);
       }
     }
@@ -410,12 +418,12 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Full exposure', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'full_nude';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'full_nude';
     if (((s as any).modelfoto ?? 0)?.['fullnude'] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['foto_nude_debut', 'nude_debut_pre'] }]);
+      qspGoto(s, 'foto_nude_debut', 'nude_debut_pre');
     } else {
       if (((s as any).modelfoto ?? 0)?.['fullnude'] > 0  &&  ((s as any).modelfoto ?? 0)?.['first_nude_pre'] === '') {
-        scene.actions([{ label: 'Continue', goto: ['foto_nude_debut', 'nude_debut_memory'] }]);
+        qspGoto(s, 'foto_nude_debut', 'nude_debut_memory');
       }
     }
     if (((s as any).pcs_inhib ?? 0) >= 60) {
@@ -442,7 +450,8 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'nude'] },
+    qspGoto(s, 'foto_shoot', 'nude');
+  } },
         ]);
       }
     }
@@ -452,7 +461,7 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Erotic', handler: (st: GameState) => {
-    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoot_type'] = 'erotic';
+    ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoot_type'] = 'erotic';
     if (((s as any).pcs_inhib ?? 0) >= 65) {
       scene.actions([
         { label: 'Agree (2:00)', goto: ['foto_shoot', 'erotic'] },
@@ -477,7 +486,8 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'erotic'] },
+    qspGoto(s, 'foto_shoot', 'erotic');
+  } },
         ]);
       }
     }
@@ -518,7 +528,8 @@ function enterFitnessShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'sports_underwear'] },
+    qspGoto(s, 'foto_shoot', 'sports_underwear');
+  } },
         ]);
       }
     }
@@ -543,7 +554,8 @@ function enterFitnessShoot(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree (2:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['foto_shoot', 'fitness_artistic_nude'] },
+    qspGoto(s, 'foto_shoot', 'fitness_artistic_nude');
+  } },
         ]);
       }
     }
@@ -559,7 +571,7 @@ function enterFitnessShoot(s: GameState, scene: SceneBuilder): void {
 function enterFashion(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 300 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['fashion'] = ((s as any).modelfoto['fashion'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['fashion'] = ((s as any).modelfoto['fashion'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 5);
   qspCall(s, 'fame', 'city', 'modelling', 'small');
   if (((s as any).fame ?? 0)?.['city_modelling'] > 200) {
@@ -591,7 +603,7 @@ function enterFashion(s: GameState, scene: SceneBuilder): void {
 function enterBikini(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 325 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['bikini'] = ((s as any).modelfoto['bikini'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['bikini'] = ((s as any).modelfoto['bikini'] ?? 0) + (1);
   if (((s as any).pcs_inhib ?? 0) < 20) {
     qspCall(s, 'willpower', 'pay', 'self');
   }
@@ -624,7 +636,7 @@ function enterBikini(s: GameState, scene: SceneBuilder): void {
 function enterLingerie(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 350 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['lingerie'] = ((s as any).modelfoto['lingerie'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['lingerie'] = ((s as any).modelfoto['lingerie'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 5) + 6);
   qspCall(s, 'fame', 'city', 'modelling', 'small');
   if (((s as any).fame ?? 0)?.['city_modelling'] > 200) {
@@ -657,8 +669,8 @@ function enterLingerie(s: GameState, scene: SceneBuilder): void {
 function enterSexy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 500 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['sexy'] = ((s as any).modelfoto['sexy'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['sexy'] = ((s as any).modelfoto['sexy'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 6) + 5);
   qspCall(s, 'fame', 'city', 'modelling', 'small');
   if (((s as any).fame ?? 0)?.['city_modelling'] > 200) {
@@ -686,10 +698,10 @@ function enterSexy(s: GameState, scene: SceneBuilder): void {
 function enterTransparent(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0)) + (((s as any).pcs_apprnc ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0));
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['sexy'] = ((s as any).modelfoto['sexy'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['transparent'] = ((s as any).modelfoto['transparent'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['sexy'] = ((s as any).modelfoto['sexy'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['transparent'] = ((s as any).modelfoto['transparent'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 5) + 6);
   qspCall(s, 'fame', 'city', 'modelling', 'small');
   if (((s as any).fame ?? 0)?.['city_modelling'] > 200) {
@@ -717,10 +729,10 @@ function enterTransparent(s: GameState, scene: SceneBuilder): void {
 function enterTransLing(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 650 + (((s as any).modelpay ?? 0) * 2) + (((s as any).pcs_apprnc ?? 0)) + (15*(Math.floor(Math.random() * 8) + 0));
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['trans_ling'] = ((s as any).modelfoto['trans_ling'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['lingerie'] = ((s as any).modelfoto['lingerie'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['trans_ling'] = ((s as any).modelfoto['trans_ling'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['lingerie'] = ((s as any).modelfoto['lingerie'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 8);
   if (((s as any).pcs_inhib ?? 0) < 45) {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
@@ -754,9 +766,9 @@ function enterTransLing(s: GameState, scene: SceneBuilder): void {
 function enterTopless(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 700 + (((s as any).modelpay ?? 0)) + (((s as any).pcs_apprnc ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0));
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 5) + 6);
   if (((s as any).pcs_inhib ?? 0) < 50) {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
@@ -787,8 +799,8 @@ function enterTasteful(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['tastenude'] = ((s as any).modelfoto['tastenude'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['tastenude'] = ((s as any).modelfoto['tastenude'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 9);
   if (((s as any).pcs_inhib ?? 0) < 40) {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
@@ -818,8 +830,8 @@ function enterToplessNude(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['toplessnude'] = ((s as any).modelfoto['toplessnude'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['toplessnude'] = ((s as any).modelfoto['toplessnude'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 9);
   if (((s as any).pcs_inhib ?? 0) < 55) {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 4) + 1);
@@ -853,10 +865,10 @@ function enterNude(s: GameState, scene: SceneBuilder): void {
     (s as any).modelpayfin = ((s as any).modelpayfin ?? 0) * 2;
     (s as any).foto_persuade = 0;
   }
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['fullnude'] = ((s as any).modelfoto['fullnude'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['fullnude'] = ((s as any).modelfoto['fullnude'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 9);
   if (((s as any).pcs_inhib ?? 0) < 60) {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 4) + 1);
@@ -873,14 +885,14 @@ function enterNude(s: GameState, scene: SceneBuilder): void {
       scene.text(`You spend two hours posing for a photographer taking pictures of you that fully expose your breasts and pussy. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
     } else {
       scene.img(`images/locations/city/citycenter/photo/bnude/${Math.floor(Math.random() * 20) + 1}.jpg`);
-      if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['bush'] = ((s as any).modelfoto['bush'] ?? 0) + (1);
+      ((s as any).modelfoto = (s as any).modelfoto ?? {})['bush'] = ((s as any).modelfoto['bush'] ?? 0) + (1);
       scene.text('Already naked, you step onto the set and begin the shoot immediately.');
       // TODO-QSP: dynamic text: You spend two hours posing confidently for a photographer taking pictures of you...
       scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, your ${((s as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy providing a nice contrast to the rest of your smooth body. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
     }
   } else {
     if (((s as any).pcs_pubes ?? 0) < 16) {
-      if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
+      ((s as any).modelfoto = (s as any).modelfoto ?? {})['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
       scene.img(`images/locations/city/citycenter/photo/nude/${Math.floor(Math.random() * 17) + 1}.jpg`);
       scene.text('The photographer sends you on a quick trip to the dressing room to change into some clothes before the shoot.');
       scene.text('Once you\'re back, you spend two hours posing in the selected outfit and stripping or removing each piece as required. You never completely lose the clothes, but at one point or another, your breasts or pussy or both are put on display for the camera.');
@@ -918,11 +930,11 @@ function enterErotic(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + (((s as any).pcs_apprnc ?? 0) * 3);
   (s as any).modelpayfin = 1000 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['erotic'] = ((s as any).modelfoto['erotic'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['asshole'] = ((s as any).modelfoto['asshole'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['erotic'] = ((s as any).modelfoto['erotic'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['asshole'] = ((s as any).modelfoto['asshole'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 1);
   qspCall(s, 'fame', 'city', 'modelling', 'small');
   qspCall(s, 'fame', 'city', 'porn', 'small');
@@ -952,7 +964,7 @@ function enterErotic(s: GameState, scene: SceneBuilder): void {
 function enterSportswear(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 300 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + ((((s as any).fame ?? {})?.['city_modelling'] ?? 0)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10) + ((((s as any).fame ?? {})?.['city_sport'] ?? 0)/2);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['fitness'] = ((s as any).modelfoto['fitness'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['fitness'] = ((s as any).modelfoto['fitness'] ?? 0) + (1);
   (s as any).pcs_sweat = 60;
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 2);
   qspCall(s, 'fame', 'city', 'modelling', 'small');
@@ -984,7 +996,7 @@ function enterSportswear(s: GameState, scene: SceneBuilder): void {
 function enterSportsUnderwear(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpayfin = 325 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + ((((s as any).fame ?? {})?.['city_modelling'] ?? 0)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10) + ((((s as any).fame ?? {})?.['city_sport'] ?? 0)/2);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['fitness'] = ((s as any).modelfoto['fitness'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['fitness'] = ((s as any).modelfoto['fitness'] ?? 0) + (1);
   (s as any).pcs_sweat = 60;
   qspCall(s, 'fame', 'city', 'modelling', 'small');
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 3);
@@ -1014,8 +1026,8 @@ function enterFitnessArtisticNude(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + (((s as any).fame ?? {})?.['city_modelling'] ?? 0) + ((s as any).pcs_apprnc ?? 0) + (((s as any).fame ?? {})?.['city_sport'] ?? 0);
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['fitness'] = ((s as any).modelfoto['fitness'] ?? 0) + (1);
-  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['fitness'] = ((s as any).modelfoto['fitness'] ?? 0) + (1);
+  ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
   (s as any).pcs_sweat = 60;
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 4);
   qspCall(s, 'fame', 'city', 'modelling', 'small');

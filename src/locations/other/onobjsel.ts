@@ -12,6 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).selobj ?? 0) === '<center>Console</center>') {
+    (s as any).dynamicCommand = 0;
     if (((s as any).dynamicCommand ?? 0) === '') {
       // TODO-QSP: exit
     }
@@ -25,12 +26,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
   }
   if (((s as any).selobj ?? 0) === '<center>Add Debug Variable</center>') {
+    (s as any).tmpVar = 0;
     if (((s as any).tmpVar ?? 0) !== '') {
       qspCall(s, 'obj_din', 'AddDebugVar', ((s as any).tmpVar ?? 0));
       qspCall(s, 'stat', '');
     }
   }
   if (((s as any).selobj ?? 0) === '<center>Delete Debug Variable</center>') {
+    (s as any).tmpVar = 0;
     if (((s as any).tmpVar ?? 0) !== '') {
       qspCall(s, 'obj_din', 'DeleteDebugVar', ((s as any).tmpVar ?? 0));
       qspCall(s, 'stat', '');
@@ -39,10 +42,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).selobj ?? 0) === '<center>Switch HTML</center>') {
     (s as any).usehtml = ((((s as any).usehtml ?? 0)) ? (0) : (1));
   }
-  if ((String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1 > 0) {
-    (s as any).tmpPos = (String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1 - 1;
+  if (((String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1) > 0) {
+    (s as any).tmpPos = ((String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1) - 1;
+    (s as any).tmpVar = (String(((s as any).selobj ?? 0)).slice((1)-1, ((1)-1)+(((s as any).tmpPos ?? 0))));
+    (s as any).tmpVal = 0;
     if (((s as any).tmpVal ?? 0) !== '') {
-      if ((String(((s as any).tmpVar ?? 0)).indexOf(String('$'))) + 1 === 1) {
+      if (((String(((s as any).tmpVar ?? 0)).indexOf(String('$'))) + 1) === 1) {
         // TODO-QSP: dyneval('<<$tmpVar>> = "<<$tmpVal>>"')
       } else {
         // TODO-QSP: dyneval('<<$tmpVar>> = <<VAL($tmpVal)>>')
@@ -61,16 +66,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).selobj ?? 0) === '<center>Remove debug info</center>') {
     (s as any).debug_warning_closed = 1;
-    if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['debug'] = 0;
+    ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['debug'] = 0;
     // TODO-QSP: showobjs cfg_vars['debug']
     qspCall(s, 'stat', '');
   }
   if (((s as any).selobj ?? 0) === '<center>Toggle Call Trace</center>') {
     if (((s as any).debug ?? 0)?.['trace_shown'] === 0) {
-      if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_shown'] = 1;
+      ((s as any).debug = (s as any).debug ?? {})['trace_shown'] = 1;
       qspCall(s, 'stat_display', '');
     } else {
-      if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_shown'] = 0;
+      ((s as any).debug = (s as any).debug ?? {})['trace_shown'] = 0;
       qspCall(s, 'stat', '');
     }
   }

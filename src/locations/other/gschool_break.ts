@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterWatercooler(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_break', 'watercooler');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   if ((Math.floor(Math.random() * 4) + 1) === 1) {
     scene.img('images/locations/pavlovsk/school/building/watercoolergossip.jpg');
@@ -24,12 +25,12 @@ function enterWatercooler(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).breaktype ?? 0) === 'long') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'break'] }]);
+      qspGoto(s, 'gschool_lunch', 'break');
     } else {
       if (((s as any).breaktype ?? 0) === 'first') {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'morning'] }]);
+        qspGoto(s, 'gschool_lessons', 'morning');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+        qspGoto(s, 'gschool_lessons', 'short_break');
       }
     }
   } },
@@ -39,12 +40,12 @@ function enterWatercooler(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).breaktype ?? 0) === 'long') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'break'] }]);
+      qspGoto(s, 'gschool_lunch', 'break');
     } else {
       if (((s as any).breaktype ?? 0) === 'first') {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'morning'] }]);
+        qspGoto(s, 'gschool_lessons', 'morning');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+        qspGoto(s, 'gschool_lessons', 'short_break');
       }
     }
   } },
@@ -56,12 +57,13 @@ function enterWatercooler(s: GameState, scene: SceneBuilder): void {
 
 function enterBoysRestroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_break', 'boys_restroom');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
   scene.text('The restroom is empty.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((Math.floor(Math.random() * 3) + 0) === 2) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_break', 'boys_restroom_events'] }]);
+    qspGoto(s, 'gschool_break', 'boys_restroom_events');
   }
   // TODO-QSP: end
   scene.build();
@@ -69,12 +71,14 @@ function enterBoysRestroom(s: GameState, scene: SceneBuilder): void {
 
 function enterGirlsRestroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_break', 'girls_restroom');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'school_bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/bathroom/girlsbathroom.jpg');
   scene.text('The restroom is empty.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((Math.floor(Math.random() * 3) + 0) === 2) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_break', 'girls_restroom_events'] }]);
+    qspGoto(s, 'gschool_break', 'girls_restroom_events');
   }
   // TODO-QSP: end
   scene.build();
@@ -86,9 +90,9 @@ function enterRestroomActions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Smoke', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 5) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_break', 'smoke2'] }]);
+      qspGoto(s, 'gschool_break', 'smoke2');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_break', 'smoke1'] }]);
+      qspGoto(s, 'gschool_break', 'smoke1');
     }
   } },
     ]);
@@ -102,12 +106,12 @@ function enterRestroomActions(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave the restroom', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).breaktype ?? 0) === 'long') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'break'] }]);
+      qspGoto(s, 'gschool_lunch', 'break');
     } else {
       if (((s as any).breaktype ?? 0) === 'first') {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'morning'] }]);
+        qspGoto(s, 'gschool_lessons', 'morning');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+        qspGoto(s, 'gschool_lessons', 'short_break');
       }
     }
   } },
@@ -118,6 +122,7 @@ function enterRestroomActions(s: GameState, scene: SceneBuilder): void {
 
 function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_break', 'girls_restroom');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   (s as any).girls_event_rand = Math.floor(Math.random() * 22) + 1;
   if (((s as any).girls_event_rand ?? 0) === 1) {
@@ -138,7 +143,8 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave before you\'re caught', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons', 'short_break'] },
+    qspGoto(s, 'gschool_lessons', 'short_break');
+  } },
       { label: 'Continue to watch', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/lunch/sex/teacher3.mp4');
     scene.text('Several minutes pass before he lifts her off and they switch positions again. She stands on one side of the toilet slightly bent over, her face and hands pressed against the side of the stall as he lines up his dick and slowly pushes it into her ass, eliciting a moan from both of them.');
@@ -528,7 +534,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
                           ]);
                         }
                       } else {
-                        scene.actions([{ label: 'Continue', goto: ['gschool_break', 'girls_restroom'] }]);
+                        qspGoto(s, 'gschool_break', 'girls_restroom');
                       }
                     }
                   }
@@ -546,6 +552,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_break', 'boys_restroom');
+  (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   (s as any).boys_event_rand = 0;
@@ -581,17 +588,17 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).soniaQW ?? 0)?.['sextime'] >= 3  &&  ((s as any).soniaQW ?? 0)?.['slut'] === 3) {
-        if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 4;
-        if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sextime'] = 0;
+        ((s as any).soniaQW = (s as any).soniaQW ?? {})['slut'] = 4;
+        ((s as any).soniaQW = (s as any).soniaQW ?? {})['sextime'] = 0;
       } else {
         if (((s as any).soniaQW ?? 0)?.['sextime'] >= 5  &&  ((s as any).soniaQW ?? 0)?.['slut'] === 4) {
-          if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 5;
-          if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sextime'] = 0;
+          ((s as any).soniaQW = (s as any).soniaQW ?? {})['slut'] = 5;
+          ((s as any).soniaQW = (s as any).soniaQW ?? {})['sextime'] = 0;
         }
       }
       if (((s as any).soniasexrand ?? 0) === 1) {
         if (((s as any).soniaQW ?? 0)?.['slut'] < 5) {
-          if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sextime'] = ((s as any).soniaQW['sextime'] ?? 0) + (1);
+          ((s as any).soniaQW = (s as any).soniaQW ?? {})['sextime'] = ((s as any).soniaQW['sextime'] ?? 0) + (1);
         }
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/school/bathroom/sex/soniabj.mp4');
@@ -660,7 +667,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
         if (((s as any).soniasexrand ?? 0) === 2) {
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
           if (((s as any).soniaQW ?? 0)?.['slut'] < 5) {
-            if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sextime'] = ((s as any).soniaQW['sextime'] ?? 0) + (1);
+            ((s as any).soniaQW = (s as any).soniaQW ?? {})['sextime'] = ((s as any).soniaQW['sextime'] ?? 0) + (1);
           }
           qspCall(s, 'stat', '');
           scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,\'+rand(0, 3)+\'.jpg');
@@ -802,7 +809,8 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse and leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['gschool_lessons', 'short_break'] },
+    qspGoto(s, 'gschool_lessons', 'short_break');
+  } },
       ]);
     }
     scene.actions([
@@ -1029,7 +1037,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'I just want to watch', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/alylav2.jpg');
     scene.text('You smile at them. "Oh, don\'t mind me. Just pretend I\'m not here. I thought I might be able to learn a thing or two."');
     scene.text('Lavrenti laughs a little. "Sure, whatever." He then turns his attention back to Alyona as she keeps sucking his dick.');
@@ -1179,7 +1187,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1202,7 +1210,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         qspCall(s, 'fame', 'pav', 'sex', 1);
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
         scene.text('You push the stall door open to get a better look. Lavrenti glances over and seems surprised to see you. Alyona also glances up and flips you off, but doesn\'t stop sucking Lavrenti\'s dick.');
         scene.text('Lavrenti gives you a dirty look. "What the fuck? Get lost, loser!" he shouts before he slams the stall door closed in your face.');
         scene.text('Knowing better than to try and spy again, you leave before things get worse.');
@@ -1224,7 +1232,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            scene.actions([{ label: 'Continue', goto: ['gschool_break', 'boys_restroom'] }]);
+            qspGoto(s, 'gschool_break', 'boys_restroom');
           }
         }
       }
@@ -1256,7 +1264,7 @@ function enterAndreyCum(s: GameState, scene: SceneBuilder): void {
 function enterJoinAlylav(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A155', 2);
   qspCall(s, 'npc_relationship', 'modify', 'A143', 2);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   qspCall(s, 'stat', '');
   qspCall(s, 'npcStat', 'A155');
   qspCall(s, 'npcStat', 'A143', 'a');
@@ -1323,7 +1331,7 @@ function enterSmoke1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue your break', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -1609,7 +1617,7 @@ function enterLenaGop(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Continue your break', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1650,7 +1658,7 @@ function enterLenaGop(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Continue your break', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1688,7 +1696,7 @@ function enterLenaDom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Continue your break', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1736,7 +1744,7 @@ function enterNakedBathroom(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Tell her what happened', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (20);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (20);
     qspCall(s, 'npc_relationship', 'modify', 'A20', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A24', (-5));
@@ -1789,9 +1797,9 @@ function enterNakedBathroomEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave her office', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) >= 14) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
+      qspGoto(s, 'gschool_grounds', 'main');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     }
   } },
   ]);

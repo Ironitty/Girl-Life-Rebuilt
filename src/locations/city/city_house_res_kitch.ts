@@ -11,6 +11,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterKitch(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'core_library', 'setloc', 'city_house_res_kitch', 'kitch');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'kitr';
   qspCall(s, 'kit_din', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kitchen</b></center>');
@@ -24,7 +26,7 @@ function enterKitch(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
     // TODO-QSP: dynamic text: There are <b><<dirttarelka>></b> dirty dishes in the sink. <a href="exec:gs 'kit...
-    scene.text(`There are <b>${((s as any).dirttarelka || '')}</b> dirty dishes in the sink. <a href="exec:gs 'kit_din', 'dirtarm'">Wash the dishes</a>.`);
+    scene.text(`There are <b>${((s as any).dirttarelka || '')}</b> dirty dishes in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027dirtarm\\u0027); return false;">Wash the dishes</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
     // TODO-QSP: 'Under the sink is some dishwashing detergent, which is enough for <b><<mc_inventory[''dish_soap'']>...
@@ -33,8 +35,10 @@ function enterKitch(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] === 0  ||  ((s as any).edahot ?? 0) > 0) {
+      (s as any).edagot = '';
     }
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
+      (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027edagotd\\u0027); return false;">Cook a meal</a>';
     }
     // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
     scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot || '')}`);

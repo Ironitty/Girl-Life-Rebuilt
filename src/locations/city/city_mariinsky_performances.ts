@@ -1,3 +1,5 @@
+import { qspGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -8,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).balletqw ?? 0)?.['performances'] === 0) {
-    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['performances'] = 1;
-    scene.actions([{ label: 'Continue', goto: ['city_mariinsky_performances', 'first_performance'] }]);
+    ((s as any).balletqw = (s as any).balletqw ?? {})['performances'] = 1;
+    qspGoto(s, 'city_mariinsky_performances', 'first_performance');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['city_mariinsky_performances', 'performances'] }]);
+    qspGoto(s, 'city_mariinsky_performances', 'performances');
   }
   // TODO-QSP: end
   scene.build();

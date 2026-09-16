@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -69,7 +69,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
         ]);
       }
       scene.actions([
@@ -98,13 +99,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
       { label: 'Get into the truck', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['furisex', '', '0'] },
+    qspGoto(s, 'furisex', '', '0');
+  } },
     ]);
   } },
       ]);
@@ -128,7 +131,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
@@ -158,7 +162,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
@@ -185,7 +190,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).furibj ?? 0) < 150) {
               scene.text('"Oh, it\'s road head girl," he says as he blows out a waft of cigarette smoke from his nose. "Need another ride?"');
               if (((s as any).furi ?? 0)?.['road_head_girl'] === 0) {
-                if (!(s as any).furi) (s as any).furi = {}; (s as any).furi['road_head_girl'] = 1;
+                ((s as any).furi = (s as any).furi ?? {})['road_head_girl'] = 1;
                 scene.text('"Road head girl?" you say in confusion.');
                 scene.text('"Yeah, it\'s what we call you out here."');
                 scene.text('"We?"');
@@ -288,7 +293,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
@@ -313,7 +319,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
@@ -343,7 +350,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
@@ -368,7 +376,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
@@ -400,7 +409,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
                   ]);
                 }
                 scene.actions([
@@ -426,7 +436,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
@@ -451,7 +462,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
       ]);
     }
     scene.actions([
@@ -477,7 +489,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['furi', ''] },
+    qspGoto(s, 'furi', '');
+  } },
                 ]);
               }
               scene.actions([

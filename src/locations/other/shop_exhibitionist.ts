@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'start');
+  (s as any).location_type = 'public_indoors';
   if (((s as any).exhibitionQW ?? 0) === 3) {
     (s as any).exhibitionQW = 4;
   }
@@ -21,7 +22,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).exhibitionQW ?? 0) === 5  &&  ((s as any).daystart ?? 0) >= ((s as any).exhibitionQW ?? 0)?.['daystart'] + 3  &&  ((s as any).KsenyaQW ?? 0) >= 3) {
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['shop_exhibitionist', 'ksenya_date'] }]);
+      qspGoto(s, 'shop_exhibitionist', 'ksenya_date');
     }
   }
   if (((s as any).exhibitionQW ?? 0) === 5  &&  ((s as any).exhibitionQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)) {
@@ -65,6 +66,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterOutfits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'outfits');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Salacious outfits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -78,13 +80,15 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_exhibitionist', 'start'] },
+    qspGoto(s, 'shop_exhibitionist', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterDresses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'dresses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Salacious dresses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -99,13 +103,15 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_exhibitionist', 'start'] },
+    qspGoto(s, 'shop_exhibitionist', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'panties');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Salacious panties</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -119,13 +125,15 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_exhibitionist', 'start'] },
+    qspGoto(s, 'shop_exhibitionist', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterBras(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'bras');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Salacious bras</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -139,13 +147,15 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_exhibitionist', 'start'] },
+    qspGoto(s, 'shop_exhibitionist', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterBodysuit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'bodysuit');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Salacious bodysuits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -159,14 +169,15 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_exhibitionist', 'start'] },
+    qspGoto(s, 'shop_exhibitionist', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
   (s as any).exhibitionQW = 5;
-  if (!(s as any).exhibitionQW) (s as any).exhibitionQW = {}; (s as any).exhibitionQW['daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).exhibitionQW = (s as any).exhibitionQW ?? {})['daystart'] = ((s as any).daystart ?? 0);
   qspCall(s, 'willpower', 'misc', 'force', 'hard');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -219,7 +230,7 @@ function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKsenyaChat(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).exhibitionQW) (s as any).exhibitionQW = {}; (s as any).exhibitionQW['daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).exhibitionQW = (s as any).exhibitionQW ?? {})['daystart'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A263', 1);
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');
@@ -252,6 +263,7 @@ function enterKsenyaDate(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A263');
     qspCall(s, 'npc_relationship', 'modify', 'A263', 2);
     scene.text('The two of you get into her Ferrari and drive to the local cinema, where you spend a few minutes in her car kissing before you head into the theatre.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -281,6 +293,8 @@ function enterKsenyaDate(s: GameState, scene: SceneBuilder): void {
       scene.text('"Mmm, you have milk? It\'s tasty!" she says and spends a moment on your nipples, drinking your sweet milk. "I may partake in this more often," she says and goes back to your nipples.');
     }
     scene.text('She spends a few more minutes on your nipples before pulling back and moving her leg between yours and one of yours between hers as you start to grind on each other.');
+    (s as any).orgasm_txt = 'This only lasts a few minutes before you orgasm from all her teasing back in the theatre. She doesn\'t stop and rides your leg until she orgasms herself.';
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -311,7 +325,8 @@ function enterKsenyaDate(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Run', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A263', (-5));
-  }, goto: ['pushkin_sq', ''] },
+    qspGoto(s, 'pushkin_sq', '');
+  } },
     ]);
   } },
     { label: 'Leave', goto: ['pushkin_sq', ''] },

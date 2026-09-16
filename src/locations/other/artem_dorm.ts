@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'artem_dorm', 'start');
+  (s as any).locclass = 'livingr';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'artem_chebotarev_schedule', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Artem\'s Dorm Room</b></center>');
@@ -17,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('The dorm room has two beds. The one on the left belongs to Artem\'s roommate while the one on the right is Artem\'s.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A2'] === 'dormroom_studying_or_relaxing') {
-    scene.text('Above his bed is a small <a href="exec:gt \'artem_dorm\',\'bookshelf\'">bookshelf</a> full of books, and the wall is plastered with sci-fi, fantasy, anime and super hero posters. Next to the bed is a small <a href="exec:gt \'artem_dorm\',\'night_stand\'">night stand.</a> At the foot of his bed is a small desk with a <a href="exec:gt \'artem_dorm\',\'computer\'">laptop</a> on it. Artem is sitting on a couch facing a TV sitting against the wall.');
+    scene.text('Above his bed is a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027artem_dorm\\u0027, \\u0027bookshelf\\u0027); return false;">bookshelf</a> full of books, and the wall is plastered with sci-fi, fantasy, anime and super hero posters. Next to the bed is a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027artem_dorm\\u0027, \\u0027night_stand\\u0027); return false;">night stand.</a> At the foot of his bed is a small desk with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027artem_dorm\\u0027, \\u0027computer\\u0027); return false;">laptop</a> on it. Artem is sitting on a couch facing a TV sitting against the wall.');
   } else {
     if (((s as any).locat ?? 0)?.['A2'] === 'dormroom_asleep') {
       scene.text('Artem is getting ready to go to sleep, so you better leave.');
@@ -55,6 +57,7 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
 function enterBookshelf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
   qspCall(s, 'core_library', 'setloc', 'artem_dorm', 'bookshelf');
+  (s as any).locclass = 'livingr';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/bookshelf.jpg');
@@ -64,9 +67,9 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask to borrow a book', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
     (s as any).artem_borrowed_book = 1;
-    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = Math.floor(Math.random() * 201) + 400;
+    ((s as any).BookVars = (s as any).BookVars ?? {})['artem_pages'] = Math.floor(Math.random() * 201) + 400;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/bookshelf.jpg');
     scene.text('You look through the books until you find one you like. "Do you mind if I borrow this to read?"');
@@ -84,7 +87,7 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
       { label: 'Return a book', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).artem_borrowed_book = 0;
-    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = 0;
+    ((s as any).BookVars = (s as any).BookVars ?? {})['artem_pages'] = 0;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/bookshelf.jpg');
     scene.text('"I brought your book back," you tell him as you take it out of your purse and put it back in place on the shelf, right where you got it from.');
@@ -177,7 +180,7 @@ function enterSitCouch(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk to Artem', goto: ['artem_dorm', 'chat'] },
       { label: 'No', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) - (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/livingroom/watchplay.jpg');
     scene.text('You shake your head. "No, I need to get going. Maybe next time."');
@@ -192,7 +195,7 @@ function enterSitCouch(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
     if (((s as any).artfalling ?? 0) !== ((s as any).daystart ?? 0)) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
       (s as any).artfalling = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'exp_gain', 'gaming', 1);
@@ -261,7 +264,7 @@ function enterSitCouch(s: GameState, scene: SceneBuilder): void {
 function enterWatchMore(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
   if (((s as any).artfalling ?? 0) !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
     (s as any).artfalling = ((s as any).daystart ?? 0);
   }
   qspCall(s, 'stat', '');
@@ -309,7 +312,7 @@ function enterWatchMore(s: GameState, scene: SceneBuilder): void {
 function enterChat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   if (((s as any).artfalling ?? 0) !== ((s as any).daystart ?? 0)) {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
     (s as any).artfalling = ((s as any).daystart ?? 0);
   }
   qspCall(s, 'stat', '');
@@ -369,7 +372,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
     if (((s as any).artkissing ?? 0) !== ((s as any).daystart ?? 0)) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
+      ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
       (s as any).artkissing = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'willpower', 'pay', 'self');
@@ -511,13 +514,13 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWalk(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dateask'] = ((s as any).daystart ?? 0);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('Artem smiles at you. "Do you want to go for a walk on the quad?"');
   // TODO-QSP: end
   scene.actions([
     { label: 'Stay here', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) - (4);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artfall'] = ((s as any).artemQW['artfall'] ?? 0) - (4);
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'hate');
     qspCall(s, 'stat', '');
     scene.text('You shake your head. "No thanks, but thank you for asking."');
@@ -529,7 +532,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Agree to go for a walk', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('You give him a cute smile. "Sure. That sounds like fun!"');
     scene.text('You quickly pack up your things and leave the dorm room with him, heading for the quad.');
@@ -542,7 +545,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDate(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dateask'] = ((s as any).daystart ?? 0);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('Artem smiles at you. "Would you like to go out on a date?"');
   // TODO-QSP: end
@@ -559,7 +562,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Agree to go on a date', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('You give him a cute smile. "Sure. That sounds like fun!"');
     scene.text('You quickly pack up your things and leave his dorm room with him.');
@@ -572,7 +575,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStrip(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dateask'] = ((s as any).daystart ?? 0);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
   scene.text('Artem has an embarrassed look on his face.');
   if (((s as any).artemQW ?? 0)?.['stripsee'] === 0) {
@@ -586,13 +589,14 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFlowers(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dateask'] = ((s as any).daystart ?? 0);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/school/boy/artem/flowers.jpg');
   scene.text('As you sit down to talk, Artem suddenly produces a bouquet of flowers and offers it to you. "I got these for you. I hope you like them."');
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept the flowers', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
+    (s as any).giftedflowers = 'Artem';
+    ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'adore');
     scene.img('images/characters/pavlovsk/school/boy/artem/makeout.jpg');
     scene.text('You smile at him. "Awww, they\'re beautiful! You shouldn\'t have!"');
@@ -657,7 +661,7 @@ function enterFlowers(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Reject the flowers', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['date'] = (-1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = (-1);
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'loathe');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -674,7 +678,7 @@ function enterFlowers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnotherDate(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dateask'] = ((s as any).daystart ?? 0);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('Artem smiles at you as he walks over and hugs you. "Would you like to go out on another date?"');
   // TODO-QSP: end
@@ -691,7 +695,7 @@ function enterAnotherDate(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Agree to go on a date', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('You give him a cute smile. "Sure. That sounds like fun!"');
     scene.text('You quickly pack up your things and leave his dorm room with him.');
@@ -704,8 +708,8 @@ function enterAnotherDate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterProposal(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dateask'] = ((s as any).daystart ?? 0);
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/artem/wine.jpg');
   scene.text('When you enter the room, you immediately notice the small folding table with chairs set up. It has several lighted candles on it, and a bottle of wine with two glasses.');
   scene.text('You look at Artem, slightly confused. "What\'s the meaning of this, Artem?"');
@@ -729,7 +733,7 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artembrokenheart'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artembrokenheart'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/artem/artemcry.jpg');
     scene.text('You shake your head. "I\'m sorry if you got the wrong impression, Artem. I like you, I really do, but I don\'t want to be your girlfriend."');
     scene.text('He looks so heartbroken that he might cry. "Is there someone else?"');
@@ -741,7 +745,7 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Yes', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['bf'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['bf'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'adore');
     scene.img('images/characters/pavlovsk/school/boy/artem/hugging.jpg');
     // TODO-QSP: dynamic text: A huge grin appears on his face as he gets up and rushes around the table, almos...
@@ -749,7 +753,7 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell him you love him too', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'adore');
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artemlove'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artemlove'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/artem/hugging.jpg');
     scene.text('You kiss him. "I love you too, Artem."');
     scene.text('You\'ve never seen him look so happy as he starts kissing you and roaming his hands all over your body.');
@@ -768,7 +772,7 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOneMoreDate(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dateask'] = ((s as any).daystart ?? 0);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   // TODO-QSP: dynamic text: Artem smiles at you as he walks over and hugs you. "<<$pcs_nickname>>, would you...
   scene.text(`Artem smiles at you as he walks over and hugs you. "${((s as any).pcs_nickname || '')}, would you like to go out on another date?"`);
@@ -786,7 +790,7 @@ function enterOneMoreDate(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Agree to go on a date', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('You give him a cute smile. "Sure, we can go out on a date. That sounds like fun!"');
     scene.text('You quickly pack up your things and leave his dorm room with him.');
@@ -813,7 +817,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     scene.text('His eyes start to water up. "Okay… About what?" He\'s trying to put on a brave face and salvage this.');
     scene.text('You sigh. "I think we should have an open relationship." You can tell that\'s not what he expected and you hurry on before he can say something. "I think we should keep dating, I love you, but we\'re both young and have a lot to experience, so I think we should see other people as well. We\'ll stay boyfriend and girlfriend, though."');
     if (((s as any).artemQW ?? 0)?.['confidence'] + Math.max(5 * (((s as any).artemQW ?? 0)?.['nush3some'] + ((s as any).artemQW ?? 0)?.['katja_threesome'] - 3), Math.min(5, ((s as any).artemQW ?? 0)?.['artem_dom'] / 4)) >= 20) {
-      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_open_relationship'] = 1;
+      ((s as any).artemQW = (s as any).artemQW ?? {})['artem_open_relationship'] = 1;
       scene.text('He\'s already nodding in agreement before you even finish. "I think that\'s a great idea! You\'re right, we are young and should sow our wild oats while we can. This won\'t mean we\'ll love each other any less, it just means we get to explore things."');
       scene.text('He seems to like the idea more than you expected, so you talk about how this will make things better for both of you before changing the subject.');
     } else {
@@ -823,9 +827,9 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
           scene.text('You try to convince him, but he shuts you down. "No. If you love me, then you\'ll drop this. If you don\'t, then maybe we shouldn\'t be together at all."');
           scene.text('You stop talking and the two of you sit quietly as you think about his words. Maybe he\'s right. Maybe you should break up.');
         } else {
-          if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_sub'] = 1;
-          if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_open_relationship'] = 1;
-          if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_dom'] = (-1);
+          ((s as any).artemQW = (s as any).artemQW ?? {})['artem_sub'] = 1;
+          ((s as any).artemQW = (s as any).artemQW ?? {})['artem_open_relationship'] = 1;
+          ((s as any).artemQW = (s as any).artemQW ?? {})['artem_dom'] = (-1);
           scene.text('He looks at you sadly before he slowly nods. "If it makes you happy, then you know I\'ll do anything for you. I love you that much," he says in a submissive, somewhat deflated tone.');
           scene.text('You can tell he really would agree to just about anything for you, maybe even to being cucked if you wanted.');
           scene.text('You quickly give him a hug as you smile. "Don\'t worry, I won\'t leave you and I still love you. Trust me, we\'ll have fun."');
@@ -844,7 +848,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Convince him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_open_relationship'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artem_open_relationship'] = 1;
     qspCall(s, 'stat', '');
     scene.text('You use all your tricks to convince him to agree to it and he sighs. He\'s obviously not happy about it, but he gives in. "Okay, we can try it… for a while. If either of us change our mind then we\'ll end it, okay?"');
     scene.text('You nod in agreement, knowing you\'ll just be able to convince him again if you needed. He doesn\'t seem to want to really talk about it, so you quickly change the topic.');
@@ -925,8 +929,8 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Break up with him', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['bf'] = 0;
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artembrokenheart'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['bf'] = 0;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['artembrokenheart'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-30));
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
@@ -954,7 +958,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).artemQW ?? 0)?.['nush3some_ask'] === 1) {
     scene.actions([
       { label: 'Bring up threesome with Anushka', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_ask'] = ((s as any).artemQW['nush3some_ask'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some_ask'] = ((s as any).artemQW['nush3some_ask'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
@@ -999,7 +1003,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['A144'] > 0  &&  ((s as any).locat ?? 0)?.['A144'] < 8) {
       scene.actions([
         { label: 'Ready for threesome with Anushka', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some'] = ((s as any).artemQW['nush3some'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some'] = ((s as any).artemQW['nush3some'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk2.jpg');
@@ -1026,7 +1030,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['A144'] > 0  &&  ((s as any).locat ?? 0)?.['A144'] < 8) {
       scene.actions([
         { label: 'Invite Anushka again', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 2;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some_again'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -1049,7 +1053,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['A144'] > 0  &&  ((s as any).locat ?? 0)?.['A144'] < 8) {
       scene.actions([
         { label: 'Ready for a second threesome with Anushka', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some'] = ((s as any).artemQW['nush3some'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some'] = ((s as any).artemQW['nush3some'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk2.jpg');
@@ -1085,7 +1089,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['A144'] > 0  &&  ((s as any).locat ?? 0)?.['A144'] < 8) {
       scene.actions([
         { label: 'Ready for more fun with Anushka', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some'] = ((s as any).artemQW['nush3some'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['nush3some'] = ((s as any).artemQW['nush3some'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk2.jpg');
@@ -1109,7 +1113,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Artem has a question', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['alb3some_ask'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['alb3some_ask'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk2.jpg');
     if (((s as any).artemQW ?? 0)?.['nush3some_again'] === 7  &&  ((s as any).artemQW ?? 0)?.['katja_threesome'] === 2) {
@@ -1187,7 +1191,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell him Albina said yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['artem_invite'] = 2;
+    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['artem_invite'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk2.jpg');
     scene.text('"So…" you start. "I spoke with Albina…"');
@@ -1258,7 +1262,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).artemQW ?? 0)?.['albina_threesome'] === 1  &&  ((s as any).artemQW ?? 0)?.['alb3some_again'] === 0) {
     scene.actions([
       { label: 'Ask if he wants another threesome with Albina', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['alb3some_again'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['alb3some_again'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk2.jpg');
@@ -1282,7 +1286,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).artemQW ?? 0)?.['alb3some_again'] === 2) {
     scene.actions([
       { label: 'Tell him Albina said yes', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['alb3some_again'] = 3;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['alb3some_again'] = 3;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk2.jpg');
@@ -1311,7 +1315,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
       if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
         scene.actions([
           { label: 'Keep him in check', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['albina_warning'] = 1;
+    ((s as any).artemQW = (s as any).artemQW ?? {})['albina_warning'] = 1;
     scene.text('"Don\'t get too carried away," you quickly tell him. "I know you want to have some fun, but she… Just don\'t go too far with her, okay?"');
     scene.text('He nods. "Oh… Okay, I won\'t be too rough. I just want her to know that, in that moment, I\'ll own her ass."');
     scene.text('You smile. "I know you do. I just don\'t want to see my friend getting hurt is all. She\'s been through some… things."');
@@ -1457,7 +1461,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Show him the strapon', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'boyStat', 'D<<strapNumber>>');
+    qspCall(s, 'boyStat', 'D' + ((s as any).strapNumber ?? 0) + '');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/strapon/first_strapon2.jpg');
     if (((s as any).strapNumber ?? 0) < 4) {
@@ -1504,7 +1508,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Bring up strapon sex again', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'boyStat', 'D<<strapNumber>>');
+    qspCall(s, 'boyStat', 'D' + ((s as any).strapNumber ?? 0) + '');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/strapon/first_strapon2.jpg');
     scene.text('You wonder if he might let you fuck him in the butt again. "Artem, you remember when you let me fuck you with a strapon?"');
@@ -1548,7 +1552,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Bring up strapon sex yet again', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'boyStat', 'D<<strapNumber>>');
+    qspCall(s, 'boyStat', 'D' + ((s as any).strapNumber ?? 0) + '');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/strapon/first_strapon2.jpg');
     scene.text('You wonder if he might let you fuck him in the butt again. "Artem, I was thinking tonight I can fuck you again, what do you think?"');
@@ -1702,8 +1706,8 @@ function enterAskedstrip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripagree(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/pavlovsk/school/boy/artem/strip1.jpg');
   if ((!((s as any).locArgs?.[1] ?? 0))) {

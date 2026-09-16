@@ -36,7 +36,7 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     scene.text('He points at the fridge. "You can also drink anything that\'s in the fridge. After all you are the one responsible for refilling it." He winks at you.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
     ]);
   } },
@@ -89,7 +89,7 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     scene.text('"Of course not. It\'s not my place to question anything Master Nicholas, his family, his staff or his guests do. And of course I wouldn\'t disclose anything he doesn\'t disclose himself. As far as I am concerned everything that happens in this apartment is \'usual\'."');
   } },
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
     ]);
   } },
@@ -98,12 +98,12 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     scene.text('He grins at you. "You are a nice girl and I really appreciate the effort. But you\'re wasting your time here."');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
     ]);
   } },
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
     ]);
   }

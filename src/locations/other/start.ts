@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -21,17 +21,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: showacts 1
   (s as any).disablescroll = 1;
+  (s as any).ongload = 'loadg';
+  (s as any).ongsave = 'saveg';
+  (s as any).onnewloc = 'LOCA';
+  (s as any).onobjsel = 'onobjsel';
+  (s as any).counter = 'counter';
+  (s as any).usercom = 'inputProcessing';
+  (s as any).map_overlay_visible = 0;
+  (s as any).fname = 'Tahoma';
   (s as any).fsize = 12;
   (s as any).daystart = (-1);
   (s as any).totminut = (-1);
   qspCall(s, 'saveg', '');
   qspCall(s, 'addbuilddate', '');
-  scene.actions([{ label: 'Continue', goto: ['start', 'start'] }]);
+  qspGoto(s, 'start', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).version = '<b>' + ((s as any).version_major ?? 0) + '.' + ((s as any).version_minor ?? 0) + '.' + ((s as any).version_revision ?? 0) + '.' + ((s as any).version_patch ?? 0) + ((((s as any).git_hash ?? 0) !== "") ? ('<br>' + ((s as any).git_hash ?? 0) + ' (dev build)') : ('')) + '</b><br>built on <b>' + ((s as any).builddate ?? 0) + '</b>';
   (s as any).opPRE = 1;
   // TODO-QSP: dynamic text: <center>Version <<$version>></center>
   scene.text(`<center>Version ${((s as any).version || '')}</center>`);
@@ -43,33 +52,39 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('There are many choices to make in this game, from chaste nun to slutty porn star. Will you be a saint or a sinner?');
   scene.text('All characters in this game are fictional and any similarities to any persons living or dead are purely coincidental.');
   scene.text('All explicit images are performed by consenting adults aged 18 or older. Images are for illustrative purposes only.');
-  scene.text('<b><a href="exec:gt \'start\', \'version\'">Change log</a> and <a href="exec:gt \'history\'">Game history</a></b>');
+  scene.text('<b><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027start\\u0027, \\u0027version\\u0027); return false;">Change log</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027history\\u0027, \\u0027\\u0027); return false;">Game history</a></b>');
   scene.text('<b>* Wiki hosted by Google sites available <a href="https://sites.google.com/view/girllifewiki/home">here</a> (External link) *</center></b>');
   scene.text('<center>Feel free to contribute.</center>');
   qspCall(s, 'themes', 'indoors');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
     scene.actions([
       { label: '<center>Mute music</center>', handler: (st: GameState) => {
-    if (!(s as any).sound_settings) (s as any).sound_settings = {}; (s as any).sound_settings['music_off'] = 1;
+    ((s as any).sound_settings = (s as any).sound_settings ?? {})['music_off'] = 1;
     (s as any).music_loop = 0;
-  }, goto: ['start', 'start'] },
+    (s as any).track_loop = '';
+    qspGoto(s, 'start', 'start');
+  } },
     ]);
   } else {
     scene.actions([
       { label: '<center>Unmute music</center>', handler: (st: GameState) => {
-    if (!(s as any).sound_settings) (s as any).sound_settings = {}; (s as any).sound_settings['music_off'] = 0;
+    ((s as any).sound_settings = (s as any).sound_settings ?? {})['music_off'] = 0;
     (s as any).music_loop = 1;
-  }, goto: ['start', 'start'] },
+    qspGoto(s, 'start', 'start');
+  } },
     ]);
   }
+  (s as any).ImageNeededPlacholder = '<center><img src="images/system/image_needed.png"></center>';
   // TODO-QSP: end
   scene.actions([
     { label: '<center><b>Start</b></center>', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (s as any).track_loop = 'sound/suki.mp3';
       (s as any).volume = 100;
       (s as any).music_loop = 1;
     }
-  }, goto: ['begin', 'warning'] },
+    qspGoto(s, 'begin', 'warning');
+  } },
     { label: '<center><b>LOAD</b></center>', handler: (st: GameState) => {
     // TODO-QSP: opengame
   } },
@@ -84,7 +99,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: '<center>Change log</center>', goto: ['start', 'version'] },
-    { label: '<center>New Features</center>', goto: ['feature_updates', 'show', '\'start\''] },
+    { label: '<center>New Features</center>', goto: ['feature_updates', 'show', 'start'] },
     { label: '<center>Manage mods</center>', handler: (st: GameState) => {
     (st as any).settingmode = 2;
   }, goto: ['$menu_settings', 'mods'] },

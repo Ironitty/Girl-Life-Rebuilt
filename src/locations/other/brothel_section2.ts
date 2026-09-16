@@ -1,3 +1,5 @@
+import { qspGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -9,39 +11,39 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSection2Party(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).stage ?? 0))) {
     (s as any).stage = ((s as any).stage ?? 0) + (1);
-    scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_start'] }]);
+    qspGoto(s, 'brothel_section2', 'section2_party_start');
   } else {
     if (((s as any).stage ?? 0) === 1) {
       (s as any).stage = ((s as any).stage ?? 0) + (1);
-      scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_bound'] }]);
+      qspGoto(s, 'brothel_section2', 'section2_party_bound');
     } else {
       if (((s as any).stage ?? 0) === 2) {
         (s as any).stage = ((s as any).stage ?? 0) + (1);
-        scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_drugs'] }]);
+        qspGoto(s, 'brothel_section2', 'section2_party_drugs');
       } else {
         if (((s as any).stage ?? 0) === 3) {
           (s as any).stage = ((s as any).stage ?? 0) + (1);
-          scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_effect'] }]);
+          qspGoto(s, 'brothel_section2', 'section2_party_effect');
         } else {
           if (((s as any).stage ?? 0) === 4) {
             (s as any).stage = ((s as any).stage ?? 0) + (1);
-            scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_fuck'] }]);
+            qspGoto(s, 'brothel_section2', 'section2_party_fuck');
           } else {
             if (((s as any).stage ?? 0) === 5) {
               (s as any).stage = ((s as any).stage ?? 0) + (1);
-              scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_fuck2'] }]);
+              qspGoto(s, 'brothel_section2', 'section2_party_fuck2');
             } else {
               if (((s as any).stage ?? 0) === 6) {
                 (s as any).stage = ((s as any).stage ?? 0) + (1);
-                scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_cum'] }]);
+                qspGoto(s, 'brothel_section2', 'section2_party_cum');
               } else {
                 if (((s as any).stage ?? 0) === 7) {
                   (s as any).stage = ((s as any).stage ?? 0) + (1);
-                  scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_release'] }]);
+                  qspGoto(s, 'brothel_section2', 'section2_party_release');
                 } else {
                   if (((s as any).stage ?? 0) === 8) {
                     (s as any).stage = ((s as any).stage ?? 0) + (1);
-                    scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_recover'] }]);
+                    qspGoto(s, 'brothel_section2', 'section2_party_recover');
                   }
                 }
               }
@@ -58,35 +60,35 @@ function enterSection2Party(s: GameState, scene: SceneBuilder): void {
 function enterSection2Bender(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).stage ?? 0))) {
     (s as any).stage = ((s as any).stage ?? 0) + (1);
-    scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_bender_start'] }]);
+    qspGoto(s, 'brothel_section2', 'section2_bender_start');
   } else {
     if (((s as any).stage ?? 0) === 1) {
       (s as any).stage = ((s as any).stage ?? 0) + (1);
-      scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_bender_drink'] }]);
+      qspGoto(s, 'brothel_section2', 'section2_bender_drink');
     } else {
       if (((s as any).stage ?? 0) === 2) {
         (s as any).stage = ((s as any).stage ?? 0) + (1);
-        scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_bender_drink_finish'] }]);
+        qspGoto(s, 'brothel_section2', 'section2_bender_drink_finish');
       } else {
         if (((s as any).stage ?? 0) === 3) {
           (s as any).stage = ((s as any).stage ?? 0) + (1);
-          scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_bender_effect'] }]);
+          qspGoto(s, 'brothel_section2', 'section2_bender_effect');
         } else {
           if (((s as any).stage ?? 0) === 4) {
             (s as any).stage = ((s as any).stage ?? 0) + (1);
-            scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_bender_fuck'] }]);
+            qspGoto(s, 'brothel_section2', 'section2_bender_fuck');
           } else {
             if (((s as any).stage ?? 0) === 5) {
               (s as any).stage = ((s as any).stage ?? 0) + (1);
-              scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_bender_fuck2'] }]);
+              qspGoto(s, 'brothel_section2', 'section2_bender_fuck2');
             } else {
               if (((s as any).stage ?? 0) === 6) {
                 (s as any).stage = ((s as any).stage ?? 0) + (1);
-                scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_bender_cum'] }]);
+                qspGoto(s, 'brothel_section2', 'section2_bender_cum');
               } else {
                 if (((s as any).stage ?? 0) === 7) {
                   (s as any).stage = ((s as any).stage ?? 0) + (1);
-                  scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_bender_leave'] }]);
+                  qspGoto(s, 'brothel_section2', 'section2_bender_leave');
                 }
               }
             }

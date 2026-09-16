@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -39,7 +39,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'voyeur', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['bordelv', 'sex'] },
+    qspGoto(s, 'bordelv', 'sex');
+  } },
       ]);
     }
     scene.actions([
@@ -73,7 +74,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'voyeur', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['bordelv', 'sex'] },
+    qspGoto(s, 'bordelv', 'sex');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -89,6 +91,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/sauna/sex/bvika8.jpg');
   scene.text('When the men are satisfied, Vika gets down on her knees and lets them cum over her face and chest. Watching them causes your body tremble with excitement and you close your eyes as a pleasant orgasm washes over you.');
   scene.text('When you re-open them, the men are already gone, and Vika is sitting on the floor covered in cum. She\'s trying to avoid your eyes as she forces herself to get up and leave the room.');
+  (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -151,7 +154,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'set', 'A220', 0);
     (s as any).vikaend = 1;
-  }, goto: ['city_redlight', 'start'] },
+    qspGoto(s, 'city_redlight', 'start');
+  } },
     ]);
   } },
       ]);
@@ -237,7 +241,8 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'set', 'A220', 0);
     (s as any).vikaend = 1;
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_redlight', 'start'] },
+    qspGoto(s, 'city_redlight', 'start');
+  } },
   ]);
   scene.build();
 }

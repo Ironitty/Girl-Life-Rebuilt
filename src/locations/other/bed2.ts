@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,24 +9,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBed2(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'bed2';
+  (s as any).menu_arg = 'start';
   if (((s as any).clo_flag ?? 0)?.['bed'] === 1) {
-    if (!(s as any).clo_flag) (s as any).clo_flag = {}; (s as any).clo_flag['bed'] = 0;
+    ((s as any).clo_flag = (s as any).clo_flag ?? {})['bed'] = 0;
     qspCall(s, 'outfit', 'restore', 'bed');
   }
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', goto: ['bed2', 'mod_sleeptriggers'] }]);
+  qspGoto(s, 'bed2', 'mod_sleeptriggers');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed2', 'mod_sleeptriggers');
-  scene.actions([{ label: 'Continue', goto: ['bed2', 'main'] }]);
+  qspGoto(s, 'bed2', 'main');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'bed2';
+  (s as any).menu_arg = 'main';
   if (((s as any).pcs_makeup ?? 0) !== 1  &&  (!((s as any).cosmetic_tattoo ?? 0))) {
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -60,7 +64,8 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Masturbate', handler: (st: GameState) => {
     (s as any).inSleep = 0;
-  }, goto: ['selfplay', 'start'] },
+    qspGoto(s, 'selfplay', 'start');
+  } },
       ]);
     }
   }
@@ -77,13 +82,13 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 function enterWearPantiesDecider(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hypnoPanty ?? 0) <= 0) {
     if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 0) {
-      scene.text('Will you always wear your underwear to bed? Currently - <a href="exec:sleepVars[\'bedPanty\'] = 1 & gs \'stat\' & gt \'bed2\', \'main\'">AS IS</a>.');
+      scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\\u0027bedPanty\\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;">AS IS</a>.');
     } else {
       if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 1) {
-        scene.text('Will you always wear your underwear to bed? Currently - <a href="exec:sleepVars[\'bedPanty\'] = 2 & gs \'stat\' & gt \'bed2\', \'main\'">YES</a>.');
+        scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\\u0027bedPanty\\u0027 = s.2; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;">YES</a>.');
       } else {
         if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 2) {
-          scene.text('Will you always wear your underwear to bed? Currently - <a href="exec:sleepVars[\'bedPanty\'] = 0 & gs \'stat\' & gt \'bed2\', \'main\'">NO</a>.');
+          scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\\u0027bedPanty\\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;">NO</a>.');
         }
       }
     }
@@ -95,10 +100,10 @@ function enterWearPantiesDecider(s: GameState, scene: SceneBuilder): void {
 function enterWearButtplugDecider(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1) {
     if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 0) {
-      scene.text('Should you always remove your anal plug before bed? Currently - <a href="exec:sleepVars[\'bedAnal\'] = 1 & gs \'stat\' & gt \'bed2\', \'main\'">NO</a>.');
+      scene.text('Should you always remove your anal plug before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\\u0027bedAnal\\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;">NO</a>.');
     } else {
       if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 1) {
-        scene.text('Should you always remove your anal plug before bed? Currently - <a href="exec:sleepVars[\'bedAnal\'] = 0 & gs \'stat\' & gt \'bed2\', \'main\'">YES</a>.');
+        scene.text('Should you always remove your anal plug before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\\u0027bedAnal\\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;">YES</a>.');
       }
     }
   }
@@ -109,10 +114,10 @@ function enterWearButtplugDecider(s: GameState, scene: SceneBuilder): void {
 function enterWearVibeDecider(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['vibe'] === 1  &&  ((s as any).cheatVars ?? 0)?.['sleep_vib'] === 1) {
     if (((s as any).sleepVars ?? 0)?.['bedVibrator'] === 0) {
-      scene.text('Should you always remove your vibrator before bed? Currently - <a href="exec:sleepVars[\'bedVibrator\'] = 1 & gs \'stat\' & gt \'bed2\', \'main\'">NO</a>.');
+      scene.text('Should you always remove your vibrator before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\\u0027bedVibrator\\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;">NO</a>.');
     } else {
       if (((s as any).sleepVars ?? 0)?.['bedVibrator'] === 1) {
-        scene.text('Should you always remove your vibrator before bed? Currently - <a href="exec:sleepVars[\'bedVibrator\'] = 0 & gs \'stat\' & gt \'bed2\', \'main\'">YES</a>.');
+        scene.text('Should you always remove your vibrator before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\\u0027bedVibrator\\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;">YES</a>.');
       }
     }
   }
@@ -121,17 +126,17 @@ function enterWearVibeDecider(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFin(s: GameState, scene: SceneBuilder): void {
-  if ((String('bedr;korr').indexOf(String(((s as any).loc ?? 0)))) + 1) {
-    scene.actions([{ label: 'Continue', goto: ['bedr', ''] }]);
+  if (((String('bedr;korr').indexOf(String(((s as any).loc ?? 0)))) + 1)) {
+    qspGoto(s, 'bedr', '');
   }
-  if ((String('bedr2x;korr2x').indexOf(String(((s as any).loc ?? 0)))) + 1) {
-    scene.actions([{ label: 'Continue', goto: ['bedr2x', ''] }]);
+  if (((String('bedr2x;korr2x').indexOf(String(((s as any).loc ?? 0)))) + 1)) {
+    qspGoto(s, 'bedr2x', '');
   }
   if (((s as any).loc ?? 0) === 'uni_dorm') {
-    scene.actions([{ label: 'Continue', goto: ['uni_dorm', 'dorm_room'] }]);
+    qspGoto(s, 'uni_dorm', 'dorm_room');
   }
   if (((s as any).loc ?? 0) === 'nichBedroomServant') {
-    scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', ''] }]);
+    qspGoto(s, 'nichBedroomServant', '');
   }
   // TODO-QSP: end
   scene.build();

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -40,36 +40,36 @@ function enterClearPCSArrayPlayer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandomOpp(s: GameState, scene: SceneBuilder): void {
-  (s as any).OppDiffBonus = qspUntranslated(s, "ARGS[1]", { location: "fight" });
+  (s as any).OppDiffBonus = ((s as any).locArgs?.[1] ?? 0);
   (s as any).i = 0;
   // TODO-QSP: $opp_name[i] = 'Opponent 1'
   // TODO-QSP: $opp_image[i] = 'images/locations/shared/street/mugger.jpg'
-  if (!(s as any).opp_def) (s as any).opp_def = {}; (s as any).opp_def[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_run) (s as any).opp_run = {}; (s as any).opp_run[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_wrstlng) (s as any).opp_wrstlng = {}; (s as any).opp_wrstlng[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_kick) (s as any).opp_kick = {}; (s as any).opp_kick[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_punch) (s as any).opp_punch = {}; (s as any).opp_punch[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_jab) (s as any).opp_jab = {}; (s as any).opp_jab[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_stren) (s as any).opp_stren = {}; (s as any).opp_stren[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_agil) (s as any).opp_agil = {}; (s as any).opp_agil[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_vital) (s as any).opp_vital = {}; (s as any).opp_vital[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_health) (s as any).opp_health = {}; (s as any).opp_health[String((s as any).i ?? 0)] = (((s as any).opp_vital ?? 0) * 10 + ((s as any).opp_stren ?? 0) * 5);
-  if (!(s as any).opp_react) (s as any).opp_react = {}; (s as any).opp_react[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_willpwr) (s as any).opp_willpwr = {}; (s as any).opp_willpwr[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
-  if (!(s as any).opp_shoot) (s as any).opp_shoot = {}; (s as any).opp_shoot[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_def = (s as any).opp_def ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_run = (s as any).opp_run ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_wrstlng = (s as any).opp_wrstlng ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_kick = (s as any).opp_kick ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_punch = (s as any).opp_punch ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_jab = (s as any).opp_jab ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_stren = (s as any).opp_stren ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_agil = (s as any).opp_agil ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_vital = (s as any).opp_vital ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_health = (s as any).opp_health ?? {})[String((s as any).i ?? 0)] = (((s as any).opp_vital ?? 0) * 10 + ((s as any).opp_stren ?? 0) * 5);
+  ((s as any).opp_react = (s as any).opp_react ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_willpwr = (s as any).opp_willpwr ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_shoot = (s as any).opp_shoot ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterApplyDamage(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightAppDam) (s as any).fightAppDam = {}; (s as any).fightAppDam['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
-  if (!(s as any).fightAppDam) (s as any).fightAppDam = {}; (s as any).fightAppDam['TargetNumber'] = qspUntranslated(s, "ARGS[2]", { location: "fight" });
-  if (!(s as any).fightAppDam) (s as any).fightAppDam = {}; (s as any).fightAppDam['Damage'] = qspUntranslated(s, "ARGS[3]", { location: "fight" });
-  if (!(s as any).fightAppDam) (s as any).fightAppDam = {}; (s as any).fightAppDam['TargetName'] = 0;
-  if (!(s as any).fightAppDam) (s as any).fightAppDam = {}; (s as any).fightAppDam['Shield'] = 0;
-  if (!(s as any).fightAppDam) (s as any).fightAppDam = {}; (s as any).fightAppDam['OverShieldDamage'] = 0;
+  ((s as any).fightAppDam = (s as any).fightAppDam ?? {})['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).fightAppDam = (s as any).fightAppDam ?? {})['TargetNumber'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).fightAppDam = (s as any).fightAppDam ?? {})['Damage'] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).fightAppDam = (s as any).fightAppDam ?? {})['TargetName'] = 0;
+  ((s as any).fightAppDam = (s as any).fightAppDam ?? {})['Shield'] = 0;
+  ((s as any).fightAppDam = (s as any).fightAppDam ?? {})['OverShieldDamage'] = 0;
   // TODO-QSP: dynamic "
-  if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._clone ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > 0) {
+  if (((s as any)[((s as any).fightAppDam ?? {})['TargetType'] + '_clone'] ?? 0)?.[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > 0) {
     // TODO-QSP: <<$fightAppDam['TargetType']>>_clone[<<fightAppDam['TargetNumber']>>] -= 1
     if (((s as any).fightAppDam ?? 0)?.['TargetName'] === 'you') {
       // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose a clone.""
@@ -77,7 +77,7 @@ function enterApplyDamage(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: ""<<$fightAppDam['TargetName']>> loses a clone.""
     }
   } else {
-    if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._shield ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] >= ((s as any).fightAppDam ?? 0)?.['Damage']) {
+    if (((s as any)[((s as any).fightAppDam ?? {})['TargetType'] + '_shield'] ?? 0)?.[((s as any).fightAppDam ?? 0)?.['TargetNumber']] >= ((s as any).fightAppDam ?? 0)?.['Damage']) {
       // TODO-QSP: <<$fightAppDam['TargetType']>>_shield[<<fightAppDam['TargetNumber']>>] -= <<fightAppDam['Damage']>>
       if (((s as any).fightAppDam ?? 0)?.['TargetName'] === 'you') {
         // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose <<fightAppDam['Damage']>> defense.""
@@ -85,7 +85,7 @@ function enterApplyDamage(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: ""<<$fightAppDam['TargetName']>> loses <<fightAppDam['Damage']>> defense.""
       }
     } else {
-      if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._shield ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > 0) {
+      if (((s as any)[((s as any).fightAppDam ?? {})['TargetType'] + '_shield'] ?? 0)?.[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > 0) {
         // TODO-QSP: <<$fightAppDam['TargetType']>>_shield[<<fightAppDam['TargetNumber']>>] = 0
         if (((s as any).fightAppDam ?? 0)?.['TargetName'] === 'you') {
           // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose <<fightAppDam['Shield']>> defense.""
@@ -93,7 +93,7 @@ function enterApplyDamage(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: ""<<$fightAppDam['TargetName']>> losses <<fightAppDam['Shield']>> defense.""
         }
       }
-      if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._health ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > ((s as any).fightAppDam ?? 0)?.['OverShieldDamage']) {
+      if (((s as any)[((s as any).fightAppDam ?? {})['TargetType'] + '_health'] ?? 0)?.[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > ((s as any).fightAppDam ?? 0)?.['OverShieldDamage']) {
         // TODO-QSP: <<$fightAppDam['TargetType']>>_health[<<fightAppDam['TargetNumber']>>] -= <<fightAppDam['OverShieldD...
       } else {
         // TODO-QSP: <<$fightAppDam['TargetType']>>_health[<<fightAppDam['TargetNumber']>>] = 0
@@ -118,10 +118,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).tableSize = 0;
   }
-  // TODO-QSP: <tr>
-  // TODO-QSP: <th align="left"><b><font size=18>Allies</font></b></td>
-  // TODO-QSP: <th align="center" valign="center" rowspan=<<tableSize * 2 + 1>> ><b><font size=18>vs.</font></b></c...
-  // TODO-QSP: <th align="right"><b><font size=18>Opponents</font></b></td>
   // TODO-QSP: </tr>'
   (s as any).i = 0;
   // TODO-QSP: :FightPoster
@@ -142,14 +138,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :PCSTimerInit
   if (((s as any).i ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
-    if (!(s as any).pcs_timer) (s as any).pcs_timer = {}; (s as any).pcs_timer[String((s as any).i ?? 0)] = 60 - (((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)]/2);
+    ((s as any).pcs_timer = (s as any).pcs_timer ?? {})[String((s as any).i ?? 0)] = 60 - (((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)]/2);
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'PCSTimerInit'
   }
   (s as any).i = 0;
   // TODO-QSP: :OppTimerInit
   if (((s as any).i ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
-    if (!(s as any).opp_timer) (s as any).opp_timer = {}; (s as any).opp_timer[String((s as any).i ?? 0)] = 60 - (((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)]/2);
+    ((s as any).opp_timer = (s as any).opp_timer ?? {})[String((s as any).i ?? 0)] = 60 - (((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)]/2);
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'OppTimerInit'
   }
@@ -162,13 +158,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
+  (s as any).fightTimType = 'player';
   (s as any).fightTimNum = 0;
   (s as any).fightTimLow = 99999;
   (s as any).i = 0;
   // TODO-QSP: :LowTimerLoop1
   if (((s as any).i ?? 0) < Object.keys((s as any).pcs_timer ?? {}).length) {
     if (((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-      if (!(s as any).pcs_stun) (s as any).pcs_stun = {}; (s as any).pcs_stun[String((s as any).i ?? 0)] = ((s as any).pcs_stun[String((s as any).i ?? 0)] ?? 0) - (1);
+      ((s as any).pcs_stun = (s as any).pcs_stun ?? {})[String((s as any).i ?? 0)] = ((s as any).pcs_stun[String((s as any).i ?? 0)] ?? 0) - (1);
     } else {
       if (((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
         if (((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
@@ -184,12 +181,13 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :LowTimerLoop2
   if (((s as any).i ?? 0) < Object.keys((s as any).opp_timer ?? {}).length) {
     if (((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-      if (!(s as any).opp_stun) (s as any).opp_stun = {}; (s as any).opp_stun[String((s as any).i ?? 0)] = ((s as any).opp_stun[String((s as any).i ?? 0)] ?? 0) - (1);
+      ((s as any).opp_stun = (s as any).opp_stun ?? {})[String((s as any).i ?? 0)] = ((s as any).opp_stun[String((s as any).i ?? 0)] ?? 0) - (1);
     } else {
       if (((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
         if (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
           (s as any).fightTimLow = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
           (s as any).fightTimNum = ((s as any).i ?? 0);
+          (s as any).fightTimType = 'opponent';
         }
       }
     }
@@ -204,10 +202,10 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fight_start ?? 0) === 1) {
     (s as any).fight_start = 0;
     if (((s as any).spellavtoklon ?? 0) === 1) {
-      if (!(s as any).pcs_clone) (s as any).pcs_clone = {}; (s as any).pcs_clone[0] = 3;
+      ((s as any).pcs_clone = (s as any).pcs_clone ?? {})[0] = 3;
     }
     if (((s as any).spellbefshild ?? 0) === 1) {
-      if (!(s as any).pcs_shield) (s as any).pcs_shield = {}; (s as any).pcs_shield[0] = 500;
+      ((s as any).pcs_shield = (s as any).pcs_shield ?? {})[0] = 500;
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResultCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -218,38 +216,31 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrintStats(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['CharType'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).i = qspUntranslated(s, "ARGS[2]", { location: "fight" });
+  ((s as any).fightPStats = (s as any).fightPStats ?? {})['CharType'] = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).i = ((s as any).locArgs?.[2] ?? 0);
   if (((s as any).fightPStats ?? 0)?.['CharType'] === 'opp') {
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Name'] = ((s as any).opp_name ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Health'] = ((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Mana'] = ((s as any).opp_mana ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Willpower'] = ((s as any).opp_willpwr ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Shield'] = ((s as any).opp_shield ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Fog'] = ((s as any).opp_fog ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Clone'] = ((s as any).opp_clone ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Stun'] = ((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Timer'] = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Image'] = ((s as any).opp_image ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Name'] = ((s as any).opp_name ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Health'] = ((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Mana'] = ((s as any).opp_mana ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Willpower'] = ((s as any).opp_willpwr ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Shield'] = ((s as any).opp_shield ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Fog'] = ((s as any).opp_fog ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Clone'] = ((s as any).opp_clone ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Stun'] = ((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Timer'] = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Image'] = ((s as any).opp_image ?? 0)?.[String((s as any).i ?? 0)];
   } else {
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Name'] = ((s as any).pcs_name ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Health'] = ((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Mana'] = ((s as any).pcs_mana ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Willpower'] = ((s as any).pcs_willpwr ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Shield'] = ((s as any).pcs_shield ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Fog'] = ((s as any).pcs_fog ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Clone'] = ((s as any).pcs_clone ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Stun'] = ((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Timer'] = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).fightPStats) (s as any).fightPStats = {}; (s as any).fightPStats['Image'] = ((s as any).pcs_image ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Name'] = ((s as any).pcs_name ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Health'] = ((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Mana'] = ((s as any).pcs_mana ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Willpower'] = ((s as any).pcs_willpwr ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Shield'] = ((s as any).pcs_shield ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Fog'] = ((s as any).pcs_fog ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Clone'] = ((s as any).pcs_clone ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Stun'] = ((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Timer'] = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Image'] = ((s as any).pcs_image ?? 0)?.[String((s as any).i ?? 0)];
   }
-  // TODO-QSP: <tr>
-  // TODO-QSP: <td rowspan=4 align=right valign=center>
-  // TODO-QSP: <img HEIGHT=70 src='<<$fightPStats['Image']>>'>
-  // TODO-QSP: <br> <b><<$fightPStats['Name']>></b>
-  // TODO-QSP: </td>
-  // TODO-QSP: <td align=right> Life </td>
-  // TODO-QSP: <td align=right> <b><font color = red><<fightPStats['Health']>></font></b> </td>
   // TODO-QSP: <td rowspan=4 align=left valign=center>"
   if (((s as any).fightPStats ?? 0)?.['Shield'] > 0) {
     // TODO-QSP: $fightStatRowText += "<b><font color = purple>Protection <<fightPStats['Shield']>> units</font></b><...
@@ -278,12 +269,12 @@ function enterPrintStats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <td align=right> Initiative </td>
   // TODO-QSP: <td align=right> <b><font color = orange><<fightPStats['Timer']>></font></b> </td>
   // TODO-QSP: </tr><tr><td colspan=4 bgcolor=grey></td></tr>"
+  (s as any).result = ((s as any).fightStatRowText ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: <table border=1><th colspan=4><b><font size=12>Opponents</font></b></th>
   // TODO-QSP: "
   (s as any).j = 0;
   // TODO-QSP: :OppLoopRC1
@@ -293,7 +284,6 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'OppLoopRC1'
   }
   // TODO-QSP: $fightStatText += "</table>"
-  // TODO-QSP: <table border=1><th colspan=4><b><font size=12>Opponents</font></b></th>
   // TODO-QSP: "
   (s as any).j = 0;
   // TODO-QSP: :PCSLoopRC1
@@ -309,65 +299,70 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
 
 function enterResultCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['win_fights'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['ender', 'win'] }]);
+    qspGoto(s, 'ender', 'win');
   }
   if (qspFunc(s, 'fight', 'AvailableTargets', 'pcs') === 0) {
     scene.text('<b><font color = red> You lost!</font></b>');
-    scene.actions([{ label: 'Continue', goto: ['ender', 'loss'] }]);
+    qspGoto(s, 'ender', 'loss');
   } else {
     if (qspFunc(s, 'fight', 'AvailableTargets', 'opp') === 0) {
       scene.text('<b><font color = green> You won!</font></b>');
-      scene.actions([{ label: 'Continue', goto: ['ender', 'win'] }]);
+      qspGoto(s, 'ender', 'win');
     } else {
       if (((s as any).pcs_willpwr ?? 0) <= 0) {
         scene.text('<b><font color = red> You cannot summon the will to fight!</font></b>');
-        scene.actions([{ label: 'Continue', goto: ['ender', 'loss'] }]);
+        qspGoto(s, 'ender', 'loss');
       }
     }
   }
   // TODO-QSP: end
   // TODO-QSP: $AttackType[0] = 'Kick'
   // TODO-QSP: $AttackSkill[0] = 'kick'
-  if (!(s as any).AttackMin) (s as any).AttackMin = {}; (s as any).AttackMin[0] = 5;
-  if (!(s as any).AttackMax) (s as any).AttackMax = {}; (s as any).AttackMax[0] = 8;
-  if (!(s as any).AttackTime) (s as any).AttackTime = {}; (s as any).AttackTime[0] = 40;
+  ((s as any).AttackMin = (s as any).AttackMin ?? {})[0] = 5;
+  ((s as any).AttackMax = (s as any).AttackMax ?? {})[0] = 8;
+  ((s as any).AttackTime = (s as any).AttackTime ?? {})[0] = 40;
   // TODO-QSP: $AttackType[1] = 'Hard Punch'
   // TODO-QSP: $AttackSkill[1] = 'punch'
-  if (!(s as any).AttackMin) (s as any).AttackMin = {}; (s as any).AttackMin[1] = 4;
-  if (!(s as any).AttackMax) (s as any).AttackMax = {}; (s as any).AttackMax[1] = 6;
-  if (!(s as any).AttackTime) (s as any).AttackTime = {}; (s as any).AttackTime[1] = 30;
+  ((s as any).AttackMin = (s as any).AttackMin ?? {})[1] = 4;
+  ((s as any).AttackMax = (s as any).AttackMax ?? {})[1] = 6;
+  ((s as any).AttackTime = (s as any).AttackTime ?? {})[1] = 30;
   // TODO-QSP: $AttackType[2] = 'Jab'
   // TODO-QSP: $AttackSkill[2] = 'jab'
-  if (!(s as any).AttackMin) (s as any).AttackMin = {}; (s as any).AttackMin[2] = 2;
-  if (!(s as any).AttackMax) (s as any).AttackMax = {}; (s as any).AttackMax[2] = 3;
-  if (!(s as any).AttackTime) (s as any).AttackTime = {}; (s as any).AttackTime[2] = 15;
+  ((s as any).AttackMin = (s as any).AttackMin ?? {})[2] = 2;
+  ((s as any).AttackMax = (s as any).AttackMax ?? {})[2] = 3;
+  ((s as any).AttackTime = (s as any).AttackTime ?? {})[2] = 15;
   scene.build();
 }
 
 function enterAttack(s: GameState, scene: SceneBuilder): void {
+  (s as any).fightAtk_Type_str = ((s as any).locArgs?.[1] ?? 0);
   (s as any).fightAtk_Type = qspUntranslated(s, "arrpos('AttackType', fightAtk_Type_str)", { location: "fight" });
-  (s as any).fightAtk_TargetNumber = qspUntranslated(s, "ARGS[3]", { location: "fight" });
-  (s as any).fightAtk_AttackerNumber = qspUntranslated(s, "ARGS[4]", { location: "fight" });
+  (s as any).fightAtk_TargetType = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).fightAtk_TargetNumber = ((s as any).locArgs?.[3] ?? 0);
+  (s as any).fightAtk_AttackerNumber = ((s as any).locArgs?.[4] ?? 0);
   if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
-    if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
-    if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['AttackerName'] = 'You';
+    (s as any).fightAtk_AttackerType = 'pcs';
+    ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+    ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = 'You';
     // TODO-QSP: gs 'exp_gain', $AttackSkill[fightAtk_Type], rand(1, 3)
     qspCall(s, 'exp_gain', 'def', Math.floor(Math.random() * 3) + 0);
   } else {
     if (((s as any).fightAtk_TargetType ?? 0) === 'opp') {
-      if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['AttackerName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
-      if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+      (s as any).fightAtk_AttackerType = 'pcs';
     } else {
-      if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['AttackerName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
-      if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['DefenderName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+      (s as any).fightAtk_AttackerType = 'opp';
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
     }
   }
-  if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['AttackerSkillValue'] = 0;
-  if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['TargetReactValue'] = 0;
-  if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['TargetAgilValue'] = 0;
-  if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['TargetHealthBefore'] = 0;
-  if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['MinDamage'] = ((s as any).AttackMin ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
-  if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['MaxDamage'] = ((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerSkillValue'] = 0;
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['TargetReactValue'] = 0;
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['TargetAgilValue'] = 0;
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['TargetHealthBefore'] = 0;
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['MinDamage'] = ((s as any).AttackMin ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = ((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
   if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
     // TODO-QSP: dynamic text: You attempt to <<$fightAtk_Type_str>> <<$fightAtk["DefenderName"]>>!
     scene.text(`You attempt to ${((s as any).fightAtk_Type_str || '')} ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''}!`);
@@ -378,11 +373,11 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
   if ((0 as any) > 0) {
     (s as any).rand_fogRedDmgMax = (Math.floor(Math.random() * ((((s as any).fightAtk ?? {})?.['MaxDamage'] ?? 0)-(((s as any).fightAtk ?? {})?.['MinDamage'] ?? 0) - 0 + 1)) + (0)) + (((s as any).fightAtk ?? {})?.['MinDamage'] ?? 0);
     (s as any).rand_fogRedDmgMin = qspUntranslated(s, "rand(0, fightAtk['MinDamage'])", { location: "fight" });
-    if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['MaxDamage'] = ((s as any).fightAtk['MaxDamage'] ?? 0) - (((s as any).rand_fogRedDmgMax ?? 0));
-    if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['MinDamage'] = ((s as any).fightAtk['MinDamage'] ?? 0) - (((s as any).rand_fogRedDmgMin ?? 0));
-    if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['Damage'] = qspUntranslated(s, "rand(fightAtk['MinDamage'], fightAtk['MaxDamage'])", { location: "fight" });
+    ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = ((s as any).fightAtk['MaxDamage'] ?? 0) - (((s as any).rand_fogRedDmgMax ?? 0));
+    ((s as any).fightAtk = (s as any).fightAtk ?? {})['MinDamage'] = ((s as any).fightAtk['MinDamage'] ?? 0) - (((s as any).rand_fogRedDmgMin ?? 0));
+    ((s as any).fightAtk = (s as any).fightAtk ?? {})['Damage'] = qspUntranslated(s, "rand(fightAtk['MinDamage'], fightAtk['MaxDamage'])", { location: "fight" });
     if (((s as any).fightAtk ?? 0)?.['MaxDamage'] < ((s as any).fightAtk ?? 0)?.['MinDamage']) {
-      if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['MaxDamage'] = ((s as any).fightAtk ?? 0)?.['MinDamage'];
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = ((s as any).fightAtk ?? 0)?.['MinDamage'];
     }
     // TODO-QSP: dynamic "<<$fightAtk_TargetType>>_fog[<<fightAtk_TargetNumber>>] -= rand(1, 5)"
   }
@@ -404,7 +399,7 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'fight', 'applyDamage', $fightAtk_TargetType, fightAtk_TargetNumber, fightAtk['Damage']
     }
   }
-  if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['TargetHealthLoss'] = 0;
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['TargetHealthLoss'] = 0;
   if (((s as any).fightAtk ?? 0)?.['TargetHealthLoss']*2 > ((s as any).fightAtk ?? 0)?.['TargetHealthBefore']) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDevastating(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -433,6 +428,9 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
 function enterDevastating(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).fightAtk_Type ?? 0))) {
     if ((!(Math.floor(Math.random() * 3) + 0))) {
+      (s as any).bodypart = 'head';
+    } else {
+      (s as any).bodypart = 'stomach';
     }
     if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
       // TODO-QSP: dynamic text: They land a devastating kick to your <<$bodypart>>. You are stunned.
@@ -449,10 +447,15 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).fightAtk_Type ?? 0) === 1) {
       if ((!(Math.floor(Math.random() * 4) + 0))) {
+        (s as any).bodypart = 'head';
       } else {
         if ((!(Math.floor(Math.random() * 3) + 0))) {
+          (s as any).bodypart = 'chest';
         } else {
           if ((!(Math.floor(Math.random() * 2) + 0))) {
+            (s as any).bodypart = 'ribs';
+          } else {
+            (s as any).bodypart = 'stomach';
           }
         }
       }
@@ -480,10 +483,15 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).fightAtk_Type ?? 0) === 2) {
         if ((!(Math.floor(Math.random() * 4) + 0))) {
+          (s as any).bodypart = 'head';
         } else {
           if ((!(Math.floor(Math.random() * 3) + 0))) {
+            (s as any).bodypart = 'chest';
           } else {
             if ((!(Math.floor(Math.random() * 2) + 0))) {
+              (s as any).bodypart = 'ribs';
+            } else {
+              (s as any).bodypart = 'stomach';
             }
           }
         }
@@ -520,6 +528,9 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
 function enterHard(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).fightAtk_Type ?? 0))) {
     if ((!(Math.floor(Math.random() * 3) + 0))) {
+      (s as any).bodypart = 'head';
+    } else {
+      (s as any).bodypart = 'stomach';
     }
     if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
       // TODO-QSP: dynamic text: They land a hard kick to your <<$bodypart>>. You are stunned.
@@ -536,16 +547,24 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).fightAtk_Type ?? 0) === 1) {
       if ((!(Math.floor(Math.random() * 6) + 0))) {
+        (s as any).bodypart = 'head';
       } else {
         if ((!(Math.floor(Math.random() * 6) + 0))) {
+          (s as any).bodypart = 'cheeks';
         } else {
           if ((!(Math.floor(Math.random() * 6) + 0))) {
+            (s as any).bodypart = 'nose';
           } else {
             if ((!(Math.floor(Math.random() * 6) + 0))) {
+              (s as any).bodypart = 'mouth';
             } else {
               if ((!(Math.floor(Math.random() * 3) + 0))) {
+                (s as any).bodypart = 'chest';
               } else {
                 if ((!(Math.floor(Math.random() * 2) + 0))) {
+                  (s as any).bodypart = 'ribs';
+                } else {
+                  (s as any).bodypart = 'stomach';
                 }
               }
             }
@@ -592,16 +611,24 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).fightAtk_Type ?? 0) === 2) {
         if ((!(Math.floor(Math.random() * 6) + 0))) {
+          (s as any).bodypart = 'head';
         } else {
           if ((!(Math.floor(Math.random() * 6) + 0))) {
+            (s as any).bodypart = 'cheeks';
           } else {
             if ((!(Math.floor(Math.random() * 6) + 0))) {
+              (s as any).bodypart = 'nose';
             } else {
               if ((!(Math.floor(Math.random() * 6) + 0))) {
+                (s as any).bodypart = 'mouth';
               } else {
                 if ((!(Math.floor(Math.random() * 3) + 0))) {
+                  (s as any).bodypart = 'chest';
                 } else {
                   if ((!(Math.floor(Math.random() * 2) + 0))) {
+                    (s as any).bodypart = 'ribs';
+                  } else {
+                    (s as any).bodypart = 'stomach';
                   }
                 }
               }
@@ -655,6 +682,9 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
 function enterLight(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).fightAtk_Type ?? 0))) {
     if ((!(Math.floor(Math.random() * 3) + 0))) {
+      (s as any).bodypart = 'leg';
+    } else {
+      (s as any).bodypart = 'arm';
     }
     if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
       // TODO-QSP: dynamic text: They only manage a glancing kick to your <<$bodypart>>.
@@ -679,14 +709,21 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).fightAtk_Type ?? 0) === 1) {
       if ((!(Math.floor(Math.random() * 6) + 0))) {
+        (s as any).bodypart = 'leg';
       } else {
         if ((!(Math.floor(Math.random() * 6) + 0))) {
+          (s as any).bodypart = 'arm';
         } else {
           if ((!(Math.floor(Math.random() * 6) + 0))) {
+            (s as any).bodypart = 'nose';
           } else {
             if ((!(Math.floor(Math.random() * 6) + 0))) {
+              (s as any).bodypart = 'mouth';
             } else {
               if ((!(Math.floor(Math.random() * 3) + 0))) {
+                (s as any).bodypart = 'chest';
+              } else {
+                (s as any).bodypart = 'stomach';
               }
             }
           }
@@ -732,16 +769,24 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).fightAtk_Type ?? 0) === 2) {
         if ((!(Math.floor(Math.random() * 6) + 0))) {
+          (s as any).bodypart = 'head';
         } else {
           if ((!(Math.floor(Math.random() * 6) + 0))) {
+            (s as any).bodypart = 'cheeks';
           } else {
             if ((!(Math.floor(Math.random() * 6) + 0))) {
+              (s as any).bodypart = 'nose';
             } else {
               if ((!(Math.floor(Math.random() * 6) + 0))) {
+                (s as any).bodypart = 'mouth';
               } else {
                 if ((!(Math.floor(Math.random() * 3) + 0))) {
+                  (s as any).bodypart = 'chest';
                 } else {
                   if ((!(Math.floor(Math.random() * 2) + 0))) {
+                    (s as any).bodypart = 'ribs';
+                  } else {
+                    (s as any).bodypart = 'stomach';
                   }
                 }
               }
@@ -791,7 +836,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
 function enterAvailableTargets(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :AvailTargetLoop
-  if (((s as any).i ?? 0) < Object.keys((s as any)[((s as any).locArgs?.[1] ?? 0)+'_health'] ?? {}).length) {
+  if (((s as any).i ?? 0) < Object.keys((s as any)[((s as any).locArgs?.[1] ?? 0) + '_health'] ?? {}).length) {
     if ((0 as any) > 0) {
       // TODO-QSP: fightAvailTarg[] = i
     }
@@ -816,8 +861,12 @@ function enterRandomTarget(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFightAlgorithm(s: GameState, scene: SceneBuilder): void {
-  (s as any).AttackerNumber = qspUntranslated(s, "ARGS[2]", { location: "fight" });
+  (s as any).AttackerType = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).AttackerNumber = ((s as any).locArgs?.[2] ?? 0);
   if (((s as any).AttackerType ?? 0) === 'pcs') {
+    (s as any).TargetType = 'opp';
+  } else {
+    (s as any).TargetType = 'pcs';
   }
   (s as any).TargetNumber = qspFunc(s, 'fight', 'RandomTarget', ((s as any).TargetType ?? 0));
   if (((s as any).TargetNumber ?? 0)>= 0) {
@@ -857,7 +906,7 @@ function enterFightAlgorithm(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic "<<$AttackerType>>_timer[<<AttackerNumber>>] += 50"
     }
   } else {
-    scene.actions([{ label: 'Continue', goto: ['fight', 'main'] }]);
+    qspGoto(s, 'fight', 'main');
   }
   // TODO-QSP: end
   scene.build();
@@ -884,18 +933,19 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 0;
       // TODO-QSP: :loop000000
       if (((s as any).i ?? 0) < Object.keys((s as any).fightAvailTarg ?? {}).length) {
+        (s as any).op_name_000000 = qspUntranslated(s, "opp_name[fightAvailTarg[i]]", { location: "fight" });
         // TODO-QSP: dynamic "
         // TODO-QSP: "
         (s as any).i = ((s as any).i ?? 0) + (1);
         // TODO-QSP: jump 'loop000000'
         scene.actions([
-          { label: 'Kick <<$op_name_000000>>', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Kick ' + String(((s as any).op_name_000000 || '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: gs 'fight', 'Attack', 'Kick', 'opp', <<fightAvailTarg[i]>>, 0
   } },
-          { label: 'Punch <<$op_name_000000>> hard', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Punch ' + String(((s as any).op_name_000000 || '') ?? '') + ' hard', handler: (st: GameState) => {
     // TODO-QSP: gs 'fight', 'Attack', 'Hard Punch', 'opp', <<fightAvailTarg[i]>>, 0
   } },
-          { label: 'Jab <<$op_name_000000>>', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Jab ' + String(((s as any).op_name_000000 || '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: gs 'fight', 'Attack', 'Jab', 'opp', <<fightAvailTarg[i]>>, 0
   } },
         ]);
@@ -912,10 +962,12 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBuildCasterSpellList(s: GameState, scene: SceneBuilder): void {
+  (s as any).tmpStr = qspUntranslated(s, "trim(ARGS[1])", { location: "fight" });
   // TODO-QSP: :loop000001
-  (s as any).i = qspUntranslated(s, "instr(tmpStr, ',')", { location: "fight" });
+  (s as any).i = ((String(((s as any).tmpStr ?? 0)).indexOf(String(','))) + 1);
   if (((s as any).i ?? 0) > 0) {
     // TODO-QSP: $casterSpellList[] = $trim($mid($tmpStr, 1, i-1))
+    (s as any).tmpStr = (String((String(((s as any).tmpStr ?? 0)).slice((((s as any).i ?? 0)+1)-1))).trim());
     // TODO-QSP: jump 'loop000001'
   } else {
     // TODO-QSP: $casterSpellList[] = $trim($tmpStr)
@@ -926,12 +978,12 @@ function enterBuildCasterSpellList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpellCheck(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).spellCheckVar) (s as any).spellCheckVar = {}; (s as any).spellCheckVar['SpellName'] = ((s as any).locArgs?.[1] ?? 0);
-  if (!(s as any).spellCheckVar) (s as any).spellCheckVar = {}; (s as any).spellCheckVar['TargetType'] = ((s as any).locArgs?.[2] ?? 0);
-  if (!(s as any).spellCheckVar) (s as any).spellCheckVar = {}; (s as any).spellCheckVar['TargetNumber'] = qspUntranslated(s, "ARGS[3]", { location: "fight" });
-  if (!(s as any).spellCheckVar) (s as any).spellCheckVar = {}; (s as any).spellCheckVar['CasterType'] = ((s as any).locArgs?.[4] ?? 0);
-  if (!(s as any).spellCheckVar) (s as any).spellCheckVar = {}; (s as any).spellCheckVar['CasterNumber'] = qspUntranslated(s, "ARGS[5]", { location: "fight" });
-  if (!(s as any).spellCheckVar) (s as any).spellCheckVar = {}; (s as any).spellCheckVar['CasterMana'] = 0;
+  ((s as any).spellCheckVar = (s as any).spellCheckVar ?? {})['SpellName'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).spellCheckVar = (s as any).spellCheckVar ?? {})['TargetType'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).spellCheckVar = (s as any).spellCheckVar ?? {})['TargetNumber'] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).spellCheckVar = (s as any).spellCheckVar ?? {})['CasterType'] = ((s as any).locArgs?.[4] ?? 0);
+  ((s as any).spellCheckVar = (s as any).spellCheckVar ?? {})['CasterNumber'] = ((s as any).locArgs?.[5] ?? 0);
+  ((s as any).spellCheckVar = (s as any).spellCheckVar ?? {})['CasterMana'] = 0;
   if ((Array.isArray((s as any).casterSpellList) ? ((s as any).casterSpellList as any[]).indexOf(((s as any).spellCheckVar ?? 0)?.['SpellName']) : -1)>=0  &&  ((s as any).spellCheckVar ?? 0)?.['CasterMana'] >= ((s as any).spellMana ?? 0)[((s as any).spellCheckVar ?? 0)?.['SpellName']]) {
     if (((s as any).spellTarget ?? 0)[((s as any).spellCheckVar ?? 0)?.['SpellName']] === 'self') {
       // TODO-QSP: gs 'castSpellNPC', $spellCheckVar['SpellName'], $spellCheckVar['CasterType'], spellCheckVar['CasterN...
@@ -952,7 +1004,7 @@ function enterSpellListCheck(s: GameState, scene: SceneBuilder): void {
   (s as any).ActionMade1 = 0;
   // TODO-QSP: :loop000002
   if (((s as any).i ?? 0) < Object.keys((s as any)[((s as any).locArgs?.[1] ?? 0)] ?? {}).length  &&  ((s as any).ActionMade1 ?? 0)===0) {
-    // TODO-QSP: ActionMade1 = func('fight', 'spellCheck', '<<$ARGS[1]>>[<<i>>]', $ARGS[2], ARGS[3], $ARGS[4], ARGS[5])
+    (s as any).ActionMade1 = qspFunc(s, 'fight', 'spellCheck', '' + ((s as any).locArgs?.[1] ?? 0) + '[' + ((s as any).i ?? 0) + ']', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0));
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'loop000002'
   }

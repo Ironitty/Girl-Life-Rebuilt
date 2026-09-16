@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).tobiQW = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   scene.img('images/system/1_openings/shared/npc_reinhold.jpg');
@@ -163,7 +164,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Try to sleep', goto: ['bed2', ''] },
   ]);

@@ -7,6 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter0(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Predatory flower';
   (s as any).KGOLstrenV = 10;
   (s as any).KGOLspeedV = 10;
   (s as any).KGOLvitalV = 10;
@@ -23,6 +24,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Iridescent beetle';
   (s as any).KGOLstrenV = 20;
   (s as any).KGOLspeedV = 10;
   (s as any).KGOLvitalV = 10;
@@ -39,6 +41,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Sundew';
   (s as any).KGOLstrenV = 20;
   (s as any).KGOLspeedV = 20;
   (s as any).KGOLvitalV = 10;
@@ -55,6 +58,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter3(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Toothless dog';
   (s as any).KGOLstrenV = 25;
   (s as any).KGOLspeedV = 20;
   (s as any).KGOLvitalV = 20;
@@ -71,6 +75,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter4(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Young cactus';
   (s as any).KGOLstrenV = 25;
   (s as any).KGOLspeedV = 25;
   (s as any).KGOLvitalV = 20;
@@ -87,6 +92,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter5(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Toad';
   (s as any).KGOLstrenV = 25;
   (s as any).KGOLspeedV = 30;
   (s as any).KGOLvitalV = 25;
@@ -103,6 +109,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter6(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Royal beetle';
   (s as any).KGOLstrenV = 25;
   (s as any).KGOLspeedV = 30;
   (s as any).KGOLvitalV = 35;
@@ -119,6 +126,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter7(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Spotted mantis';
   (s as any).KGOLstrenV = 35;
   (s as any).KGOLspeedV = 30;
   (s as any).KGOLvitalV = 35;
@@ -135,6 +143,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter8(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Plague Rat';
   (s as any).KGOLstrenV = 40;
   (s as any).KGOLspeedV = 30;
   (s as any).KGOLvitalV = 40;
@@ -151,6 +160,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter9(s: GameState, scene: SceneBuilder): void {
+  (s as any).KGname = 'Prickly cactus';
   (s as any).KGOLstrenV = 40;
   (s as any).KGOLspeedV = 40;
   (s as any).KGOLvitalV = 40;

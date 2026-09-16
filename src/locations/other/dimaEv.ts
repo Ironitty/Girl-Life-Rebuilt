@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,14 +10,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimarudorient ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['dimaHome', 'dimkaroom'] }]);
+    qspGoto(s, 'dimaHome', 'dimkaroom');
   }
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   scene.text('Dimka seeing you, walks up and says quietly, "Come here slut, we\'re going to go have some fun at my place." Your cheeks redden at the gross nickname');
   if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).FedorvsDimka ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15) {
-    scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Vs Dimka'] }]);
+    qspGoto(s, 'FedorMisc', 'Fedor Vs Dimka');
   } else {
     if (((s as any).fedorKozlovQW ?? 0) >= 10  ||  ((s as any).fedorKozlovQW ?? 0) === -15) {
       // TODO-QSP: dynamic text: Fedor walks up to you. "Hey <<$pcs_nickname>>, shall we go?" Dimka turns to Fedo...
@@ -487,7 +487,7 @@ function enterDimkaplays2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boystat', 'A1');
   (s as any).dimasexday = ((s as any).daystart ?? 0);
   (s as any).dimadalrand = Math.floor(Math.random() * 13) + 0;
-  scene.actions([{ label: 'Continue', goto: ['dimaEv', 'dimkaabuse<<dimadalrand>>'] }]);
+  qspGoto(s, 'dimaEv', 'dimkaabuse' + ((s as any).dimadalrand ?? 0) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -758,7 +758,7 @@ function enterDimkaabuse10(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDimkaabuse11(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina0'] }]);
+  qspGoto(s, 'dimalina', 'dimkalina0');
   // TODO-QSP: end
   scene.build();
 }
@@ -885,7 +885,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const dimaEv: LocationDef = {
   name: 'dimaEv',
-  title: '<<$npc_firstname[\'A1\']>> <<$npc_lastname[\'A1\']>>',
   region: 'other',
   enter: enter,
 };

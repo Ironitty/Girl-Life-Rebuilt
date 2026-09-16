@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NikoEv ?? 0) === 21  &&  ((s as any).locArgs?.[0] ?? 0) !== 'Niko Search') {
-    scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Niko Search'] }]);
+    qspGoto(s, 'NikoEv2', 'Niko Search');
   }
   scene.build();
 }
@@ -347,7 +347,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell them', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoEv2" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     scene.text('"I\'m Niko\'s whore…" you say and Petia smiles.');
     scene.text('"Good. I always knew that you were a dirty girl. Now let\'s do this."');
     scene.text('You know what he wants, but you ask Niko anyway. "What do I need to do?"');
@@ -447,7 +447,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
 
 function enterVickyTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoEv2" }) + '');
+  scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoEv2" }) + '');
   scene.text('As you\'re leaving the cafeteria, you suddenly hear someone calling out to you.');
   scene.text('"I saw what you did in the locker room!"');
   // TODO-QSP: end
@@ -464,7 +464,7 @@ function enterVickyTalk(s: GameState, scene: SceneBuilder): void {
     (s as any).NikoEv = 15;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoEv2" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoEv2" }) + '');
     scene.text('"A whore?" you say as you slowly raise your head.');
     scene.text('Vicky slowly nods. "Then you accept it, huh?"');
     scene.text('You take a second to think about it. "Maybe I am. I… Just love the way he looks at me and all I can think of is pleasing him. It excites me and makes me feel alive and I don\'t even care what others think of me. I only care about what Niko thinks."');
@@ -677,19 +677,19 @@ function enterNataliaTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).DimaRudeBlock ?? 0) === 0  &&  (!((s as any).NikoVsDimka ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['NikoEv', 'dimka'] }]);
+    qspGoto(s, 'NikoEv', 'dimka');
   } else {
     if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 17) {
-      scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner 1'] }]);
+      qspGoto(s, 'NikoEv2', 'Diner 1');
     } else {
       if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 18) {
-        scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward 2'] }]);
+        qspGoto(s, 'NikoEv2', 'Reward 2');
       } else {
         if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 19) {
-          scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner 2'] }]);
+          qspGoto(s, 'NikoEv2', 'Diner 2');
         } else {
           if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 20  ||  ((s as any).NikoSlut ?? 0) > 0) {
-            scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner Slut'] }]);
+            qspGoto(s, 'NikoEv2', 'Diner Slut');
           }
         }
       }
@@ -1013,6 +1013,7 @@ function enterReward2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/cuni.mp4');
     scene.text('Niko spreads your legs and starts firmly but gently licking your pussy. You lay back, enjoying Niko\'s soft tongue on your clitoris before looking down at him. "Your tongue is so soft… Please keep doing that."');
     scene.text('Niko gives you a wink as he continues, causing the pleasure inside you to build up quickly. After a few minutes, it reaches its climax and your body suddenly erupts into pleasure, causing your muscles to tighten up as you spasm, unable to focus on anything but the pleasure. You take a few seconds to catch your breath before looking down at Niko, who has a loving smile on his face.');
+    (s as any).orgasm_or = 'yes';
     scene.actions([
       { label: 'Lick his dick', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 5);
@@ -1193,9 +1194,10 @@ function enterDiner2(s: GameState, scene: SceneBuilder): void {
     scene.text('Niko guides you to the corner of the room and sits down with you as a few men line up nearby. "What\'s your name, girl?" one of them asks.');
     scene.actions([
       { label: 'Give them your real name', handler: (st: GameState) => {
+    (s as any).NikoSlutName = ((s as any).pcs_firstname ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoEv2" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoEv2" }) + '');
     // TODO-QSP: dynamic text: "My name is <<$pcs_firstname>>," you say. "It's nice to meet you."
     scene.text(`"My name is ${((s as any).pcs_firstname || '')}," you say. "It's nice to meet you."`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>. Very cute name," he says. "It really suits you."
@@ -1206,11 +1208,13 @@ function enterDiner2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Choose a name', handler: (st: GameState) => {
+    (s as any).NikoSlutName = 0;
     if (((s as any).NikoSlutName ?? 0) === '') {
+      (s as any).NikoSlutName = 'Violet';
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoEv2" }) + '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoEv2" }) + '');
     // TODO-QSP: dynamic text: "My name is <<$NikoSlutName>>," you say. "It's nice to meet you."
     scene.text(`"My name is ${((s as any).NikoSlutName || '')}," you say. "It's nice to meet you."`);
     // TODO-QSP: dynamic text: "<<$NikoSlutName>> huh?" he replies. "That is is a pretty name."
@@ -1436,13 +1440,13 @@ function enterNikoSearch2(s: GameState, scene: SceneBuilder): void {
       { label: 'Carefully leave the stall', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoEv2" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     scene.text('');
     scene.actions([
       { label: 'Carefully leave the stall', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoEv2" }) + '');
+    scene.img('' + qspFunc(s, '$face_image', '') + '');
     scene.text('');
     scene.actions([
       { label: '', handler: (st: GameState) => {

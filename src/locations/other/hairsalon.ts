@@ -11,6 +11,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'hairsalon';
+  (s as any).menu_arg = 'start';
   scene.text('<center><b>The Golden Curl Salon</b></center>');
   scene.img('images/locations/city/citycenter/mall/golden curl/golden curl.jpg');
   scene.text('Established several years back, The Golden Curl is known to offer high-quality services ranging from hairstyles, dimensional hair shading, to updos, expansions, and fixing.');
@@ -57,7 +59,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 100);
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) + (10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) + (10);
       qspCall(s, 'stat', '');
       scene.text('"Only scrunchies today please!" you tell the cashier.');
       // TODO-QSP: dynamic text: "That'll be ' + $func('money', 'string_price', 100) + '!" the receptionist repli...
@@ -73,7 +75,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 120);
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['kirbygrips'] = ((s as any).mc_inventory['kirbygrips'] ?? 0) + (10);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['kirbygrips'] = ((s as any).mc_inventory['kirbygrips'] ?? 0) + (10);
       qspCall(s, 'stat', '');
       scene.text('"Only hair pins today please!" you tell the cashier.');
       // TODO-QSP: dynamic text: "That'll be ' + $func('money', 'string_price', 120) + '!" the receptionist repli...

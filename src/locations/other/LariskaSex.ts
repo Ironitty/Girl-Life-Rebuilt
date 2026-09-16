@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -57,7 +57,8 @@ function enterUndressed2(s: GameState, scene: SceneBuilder): void {
       (s as any).vibratorOUT = 0;
     }
     qspCall(s, 'arousal', 'end');
-  }, goto: ['LariskaHome', 'lariska_bedroom'] },
+    qspGoto(s, 'LariskaHome', 'lariska_bedroom');
+  } },
   ]);
   scene.build();
 }
@@ -68,6 +69,8 @@ function enterLick1(s: GameState, scene: SceneBuilder): void {
   scene.text('She starts grinding into your face as you start fucking her with your tongue, begging for you to keep going. She grabs your head with one hand and reaches behind her to grab one of your tits to keep herself stable, but the pleasure is too much for her to sit still for long.');
   scene.text('As her juices begin to coat your face, you stop licking and just keep your tongue out, letting her decide her own pace. She humps your tongue in glee, loving it, as you reach between your own legs and start rubbing your wet pussy.');
   scene.text('You decide to step it up and start licking her clit directly, before closing your lips around it and gently sucking. This sends her into a frenzy, moaning her way into pure bliss. As the orgasm breaks over her, her hips begin to jerk, her back arches, and her head swings around wildly.');
+  (s as any).orgasm_txt = 'You are so aroused by the sight of Lariska riding your tongue that your fingers manage to trigger a massive orgasm. Your hips start bucking, and your feet flail in the air, as you try and keep yourself focused enough to continue eating Lariska out.';
+  (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'clit_finger', (-5), 'lesbian');
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
@@ -84,6 +87,8 @@ function enterLick2(s: GameState, scene: SceneBuilder): void {
   scene.text('You lay on your back and spread your legs. Lariska crawls between them and rubs your outer lips for a moment before spreading them with her fingers. She gives you a few long, slow licks, up and down, before moving up to your clitoris and attacking it with her tongue.');
   scene.text('You start moaning loudly, and grip your ankles to keep your legs in the air while you descend into bliss. She stays focused on your clit, alternating between licking it and sucking on it, making your mind go blank, all you can think is pleasure.');
   scene.text('You feel your eyes start to roll back into your head, and know you are on the edge of a beautiful orgasm.');
+  (s as any).orgasm_txt = 'Your legs start shaking and your stomach muscles contract repeatedly, as waves of pleasure wash over you. Lariska keeps sucking on your clit, slowly increasing pressure as your orgasm peaks, then slowly fades.';
+  (s as any).orgasm_or = 'custom';
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
   qspCall(s, 'stat', '');
@@ -112,7 +117,7 @@ function enterDildo1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     if (((s as any).LariskaQW ?? 0)?.['tellvirg'] === 0) {
       scene.text('I\'m a virgin, you tell her softly.');
-      if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['tellvirg'] = 1;
+      ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['tellvirg'] = 1;
     } else {
       scene.text('I\'m still a virgin, you say softly.');
     }
@@ -120,6 +125,8 @@ function enterDildo1(s: GameState, scene: SceneBuilder): void {
       { label: 'Let her pop your cherry', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/dildo_1.mp4');
     scene.text('You gasp as she works the dildo in, feeling something break inside you. You know you aren\'t a virgin anymore. Trying to push the pain aside, you focus on your own end as you work the tip deeper inside her honeypot. Before long the both of you are fucking each other with the dildos, the sounds of moans and gasps filling the air. Lariska doesn\'t seem to have any issues taking a dildo this big, so you begin to pump it in and out, faster and deeper each time.');
+    (s as any).orgasm_txt = 'As the waves of your impending orgasm builds, you gasp out "More! Harder!" Lariska, taking the hint, starts slamming the dildo deeper into your muff. The wave breaks over you, forcing your head back and your body to buck, held only in one place by Lariska\'s light frame on top of you. Feeling your orgasm beneath her overwhelms her own senses and soon you are both hanging on to each other, bodies jerking around while trying not to stop pleasing the other.';
+    (s as any).orgasm_or = 'custom';
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'lesbian');
     qspCall(s, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
@@ -132,6 +139,8 @@ function enterDildo1(s: GameState, scene: SceneBuilder): void {
       { label: 'Stay a virgin', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/dildo_1.mp4');
     scene.text('She smiles sweetly and says "Don\'t worry, I won\'t take that from you." Instead of sliding it in, she rubs the tip around your labia while licking your clit gently. You work the tip deeper inside her honeypot trying hard to concentrate with the heavenly feeling she is producing between your legs. The sounds of moans and gasps fill the air as you grind against each other, lost in your passions. Lariska doesn\'t seem to have any issues taking a dildo this big, so you begin to pump it in and out, faster and deeper each time.');
+    (s as any).orgasm_txt = 'As the waves of your impending orgasm builds, you gasp out "More!" Lariska, taking the hint, starts licking your clit faster. The wave breaks over you, forcing your head back and your body to buck, held only in one place by Lariska\'s light frame on top of you. Feeling your orgasm beneath her overwhelms her own senses and soon you are both hanging on to each other, bodies jerking around while trying not to stop pleasing the other.';
+    (s as any).orgasm_or = 'custom';
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
     qspCall(s, 'arousal', 'vaginal_vibe', 10, 'lesbian');
     qspCall(s, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
@@ -144,6 +153,8 @@ function enterDildo1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('You gasp as she works the dildo in, then try to focus back on your own end as you work the tip deeper inside her honeypot. Before long the both of you are fucking each other with the dildos, the sounds of moans and gasps filling the air. Lariska doesn\'t seem to have any issues taking a dildo this big, so you begin to pump it in and out, faster and deeper each time.');
+    (s as any).orgasm_txt = 'As the waves of your impending orgasm builds, you gasp out "More! Harder!" Lariska, taking the hint, starts slamming the dildo deeper into your muff. The wave breaks over you, forcing your head back and your body to buck, held only in one place by Lariska\'s light frame on top of you. Feeling your orgasm beneath her overwhelms her own senses and soon you are both hanging on to each other, bodies jerking around while trying not to stop pleasing the other.';
+    (s as any).orgasm_or = 'custom';
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'lesbian');
     qspCall(s, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
@@ -384,7 +395,9 @@ function enterMiss_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'yes';
   }
+  (s as any).orgasm_txt = 'As Lariska pounds away, the rush of pleasure shooting through your body sets off an orgasm, and the room quickly fills with the sounds of you screaming her name.';
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -444,7 +457,9 @@ function enterCow_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'yes';
   }
+  (s as any).orgasm_txt = 'The multiple sensations start to overwhelm you, causing an orgasm to sweep through you like lightning. Throwing your head back, you ride the waves as they wash through you.';
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -504,7 +519,9 @@ function enterDog_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'yes';
   }
+  (s as any).orgasm_txt = 'The pleasure builds into a crescendo, threatening to overwhelm your senses as an orgasm rips through you.';
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -567,7 +584,9 @@ function enterAnalMiss_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'yes';
   }
+  (s as any).orgasm_txt = 'The sensation of having your ass pounded by Lariska overwhelms you, sending waves of pleasure screaming through your body.';
   qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -629,7 +648,9 @@ function enterAnalCow_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'yes';
   }
+  (s as any).orgasm_txt = 'The sensation of having your ass pounded by Lariska overwhelms you, sending waves of pleasure screaming through your body.';
   qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -693,7 +714,9 @@ function enterAnalDog_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'yes';
   }
+  (s as any).orgasm_txt = 'The sensation of having your ass pounded by Lariska overwhelms you, sending waves of pleasure screaming through your body.';
   qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -805,12 +828,16 @@ function enterBoyfriendSex(s: GameState, scene: SceneBuilder): void {
       scene.text('Deciding to switch things up, or maybe because he was winded, Lev pulls out and sits down, stretching out and pulling you down on top. Feeling more in control now, you slide his dick back into your ass and start grinding your hips against his.');
       scene.text('Lariska wastes no time and climbs onto his face, leaning in to keep rubbing your clitoris while Lev spreads her cheeks and licks her pussy. The sounds of moaning fills the room, and you know your going to cum soon from the dual sensations of Lev\'s cock in your butt and Lariska\'s rubbing.');
       qspCall(s, 'mood', 'raise', 'small');
+      (s as any).orgasm_or = 'yes';
+      (s as any).orgasm_txt = 'A wave of pleasure overwhelms your senses, leaving you shaking out of control. Lariska holding you is the only thing keeping you upright, doing her best to keep you stable while Lev continues to eat her pussy.';
       qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
       qspCall(s, 'stat', '');
     } else {
       scene.text('Deciding to switch things up, or maybe because he was winded, Lev pulls out and sits down, stretching out and pulling you down on top. Feeling more in control now, you slide his dick back into your pussy and start grinding your hips against his.');
       scene.text('Lariska wastes no time and climbs onto his face, leaning in to keep rubbing your clitoris while Lev spreads her cheeks and licks her pussy. The sounds of moaning fills the room, and you know your going to cum soon from the dual sensations of Lev\'s cock inside you and Lariska\'s rubbing.');
       qspCall(s, 'mood', 'raise', 'small');
+      (s as any).orgasm_or = 'yes';
+      (s as any).orgasm_txt = 'A wave of pleasure overwhelms your senses, leaving you shaking out of control. Lariska holding you is the only thing keeping you upright, doing her best to keep you stable while Lev continues to eat her pussy.';
       qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
       qspCall(s, 'stat', '');
     }
@@ -839,7 +866,8 @@ function enterBoyfriendSex(s: GameState, scene: SceneBuilder): void {
       (s as any).vibratorOUT = 0;
     }
     qspCall(s, 'arousal', 'end');
-  }, goto: ['LariskaHome', 'lariska_bedroom'] },
+    qspGoto(s, 'LariskaHome', 'lariska_bedroom');
+  } },
     ]);
   } },
     ]);

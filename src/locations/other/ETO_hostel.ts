@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterTownHostel(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'private';
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Town Hostel</b></center>');
@@ -44,6 +45,7 @@ function enterTownHostel(s: GameState, scene: SceneBuilder): void {
 
 function enterSharedBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'bathroom';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Shared Bathroom</b></center>');
@@ -65,7 +67,7 @@ function enterSharedBathroom(s: GameState, scene: SceneBuilder): void {
 function enterRustyPipes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 2;
+  ((s as any).hostel = (s as any).hostel ?? {})['status'] = 2;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Rusty Pipes</b></center>');
   scene.img('images/locations/pavlovsk/hostel/comm_tru.jpg');
@@ -81,7 +83,7 @@ function enterShed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (((s as any).hostel ?? 0)?.['status'] === 3) {
-    if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 4;
+    ((s as any).hostel = (s as any).hostel ?? {})['status'] = 4;
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hostel Shed</b></center>');
@@ -97,6 +99,7 @@ function enterShed(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Shared Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/hostel/vann_gor.jpg');

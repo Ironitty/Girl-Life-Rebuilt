@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -56,6 +54,7 @@ function enterShowTits(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowBody(s: GameState, scene: SceneBuilder): void {
+  (s as any).img_temp = qspFunc(s, '$body_image', 'body');
   // TODO-QSP: view '<<$img_temp>>'
   // TODO-QSP: end
   scene.build();
@@ -90,7 +89,7 @@ function enterShowMissingTeeth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRecords(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['journal', 'records'] }]);
+  qspGoto(s, 'journal', 'records');
   scene.build();
 }
 
@@ -110,7 +109,7 @@ function enterEmergency(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) !== '') {
     scene.actions([
       { label: 'Cancel', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -137,7 +136,7 @@ function enterEmergency(s: GameState, scene: SceneBuilder): void {
 function enter_1Hour(s: GameState, scene: SceneBuilder): void {
   (s as any).hour = ((s as any).hour ?? 0) - (1);
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }
@@ -145,7 +144,7 @@ function enter_1Hour(s: GameState, scene: SceneBuilder): void {
 function enter_1Hour2(s: GameState, scene: SceneBuilder): void {
   (s as any).hour = ((s as any).hour ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }
@@ -184,7 +183,7 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 0;
       // TODO-QSP: :AddDebugVarLoop
       if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
-        if ((String(((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)]).indexOf(String('$'))) + 1 === 1) {
+        if (((String(((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)]).indexOf(String('$'))) + 1) === 1) {
           // TODO-QSP: dynamic '$tmp = <<$ObjDebugVars[i]>>'
           // TODO-QSP: addobj '<<$ObjDebugVars[i]>>: <<$tmp>>'
         } else {
@@ -223,6 +222,7 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWait(s: GameState, scene: SceneBuilder): void {
+  (s as any).waitStr = 0;
   (s as any).waiting = 0;
   if (((s as any).waitStr ?? 0) === '') {
     (s as any).waiting = 15;
@@ -230,20 +230,20 @@ function enterWait(s: GameState, scene: SceneBuilder): void {
     if (!isNaN(((s as any).waitStr ?? 0)) && ((s as any).waitStr ?? 0) !== '' === 0) {
       (s as any).waiting = parseFloat((String(((s as any).waitStr ?? 0)).slice((1)-1, ((1)-1)+(2)))) * 60 + parseFloat((String(((s as any).waitStr ?? 0)).slice((4)-1, ((4)-1)+(2)))) - ((s as any).minut ?? 0) - ((s as any).hour ?? 0) * 60;
     } else {
-      (s as any).waiting = qspUntranslated(s, "val(waitStr)", { location: "obj_din" });
+      (s as any).waiting = parseFloat(((s as any).waitStr ?? 0));
     }
   }
   if (((s as any).waiting ?? 0) > 0  &&  ((s as any).waiting ?? 0) <= 120) {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).waiting ?? 0));
   }
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterRest(s: GameState, scene: SceneBuilder): void {
-  (s as any).waiting = qspUntranslated(s, "val(input(\"How long would you like to rest?<br>(Default 15 minutes, maximum 120 minutes)\"))", { location: "obj_din" });
+  (s as any).waiting = parseFloat(0);
   if ((!((s as any).waiting ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
   } else {
@@ -256,7 +256,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }

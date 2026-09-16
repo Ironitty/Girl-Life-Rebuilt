@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,12 +13,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterBrodila(s: GameState, scene: SceneBuilder): void {
   (s as any).sexpartkno = 0;
   if (((s as any).accessible_property ?? 0)?.['city_apartment'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['korr', ''] }]);
+    qspGoto(s, 'korr', '');
   } else {
     if (((s as any).accessible_property ?? 0)?.['old_town_apartment'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['korr2x', ''] }]);
+      qspGoto(s, 'korr2x', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+      qspGoto(s, 'city_residential', '');
     }
   }
   // TODO-QSP: end
@@ -27,12 +27,12 @@ function enterBrodila(s: GameState, scene: SceneBuilder): void {
 
 function enterBrodilr(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).accessible_property ?? 0)?.['parents_home'] === 4) {
-    scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+    qspGoto(s, 'pav_residential', '');
   } else {
     if (((s as any).accessible_property ?? 0)?.['old_town_apartment'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pushkin_sq', ''] }]);
+      qspGoto(s, 'pushkin_sq', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+      qspGoto(s, 'city_residential', '');
     }
   }
   // TODO-QSP: end
@@ -41,12 +41,12 @@ function enterBrodilr(s: GameState, scene: SceneBuilder): void {
 
 function enterBrodilk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)?.['city_apartment'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['kuhr', ''] }]);
+    qspGoto(s, 'kuhr', '');
   } else {
     if (((s as any).accessible_property ?? 0)?.['old_town_apartment']=== 1) {
-      scene.actions([{ label: 'Continue', goto: ['kuhr2x', ''] }]);
+      qspGoto(s, 'kuhr2x', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+      qspGoto(s, 'city_residential', '');
     }
   }
   // TODO-QSP: end
@@ -55,15 +55,15 @@ function enterBrodilk(s: GameState, scene: SceneBuilder): void {
 
 function enterBrodils(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)?.['city_apartment'] > 0) {
-    scene.actions([{ label: 'Continue', goto: ['sitr', ''] }]);
+    qspGoto(s, 'sitr', '');
   } else {
     if (((s as any).accessible_property ?? 0)?.['old_town_apartment'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['sitr2x', ''] }]);
+      qspGoto(s, 'sitr2x', '');
     } else {
       if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).accessible_property ?? 0)?.['parents_home'] === 4) {
-        scene.actions([{ label: 'Continue', goto: ['sitrPar', ''] }]);
+        qspGoto(s, 'sitrPar', '');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+        qspGoto(s, 'city_residential', '');
       }
     }
   }
@@ -152,16 +152,16 @@ function enterPrezik(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['bad_condoms'] > 0) {
       if ((Math.floor(Math.random() * (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] - 1 + 1)) + (1)) <= ((s as any).mc_inventory ?? 0)?.['bad_condoms']) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['bad_condoms'] = ((s as any).mc_inventory['bad_condoms'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['bad_condoms'] = ((s as any).mc_inventory['bad_condoms'] ?? 0) - (1);
         (s as any).noprotect = 1;
       }
     } else {
       (s as any).noprotect = 0;
     }
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] < 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = 0;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
     }
   }
   // TODO-QSP: end
@@ -175,14 +175,14 @@ function enterFerteggfather(s: GameState, scene: SceneBuilder): void {
         if (((s as any).arrcomp ?? 0)('cumfthname', ((s as any).boy ?? 0)) === -1) {
           (s as any).i = 0;
           // TODO-QSP: $cumfthname[i] = $boy
-          if (!(s as any).cumtime) (s as any).cumtime = {}; (s as any).cumtime[String((s as any).i ?? 0)] = 1;
+          ((s as any).cumtime = (s as any).cumtime ?? {})[String((s as any).i ?? 0)] = 1;
         } else {
           (s as any).i = qspUntranslated(s, "arrpos('cumfthname', boy)", { location: "dina" });
-          if (!(s as any).cumtime) (s as any).cumtime = {}; (s as any).cumtime[String((s as any).i ?? 0)] = ((s as any).cumtime[String((s as any).i ?? 0)] ?? 0) + (1);
+          ((s as any).cumtime = (s as any).cumtime ?? {})[String((s as any).i ?? 0)] = ((s as any).cumtime[String((s as any).i ?? 0)] ?? 0) + (1);
         }
       } else {
         if (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 0) {
-          if (!(s as any).cumtime) (s as any).cumtime = {}; (s as any).cumtime[0] = ((s as any).cumtime[0] ?? 0) + (1);
+          ((s as any).cumtime = (s as any).cumtime ?? {})[0] = ((s as any).cumtime[0] ?? 0) + (1);
         }
       }
     }

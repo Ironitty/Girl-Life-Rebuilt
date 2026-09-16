@@ -1,23 +1,30 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).sexloc = 'katspalnya';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'start';
+  (s as any).loc = 'katspalnya';
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
+  (s as any).menu_loc = 'katspalnya';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Katja\'s apartment</b></center>');
   scene.img('images/characters/city/katja/bedroom.jpg');
   scene.text('Katja\'s apartment. It\'s mostly just one large room, with a huge bed in it. There\'s a small couch to the side.');
   if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 23) {
-    scene.text('<a href="exec:gt \'katspalnya\', \'kat\'">Kat</a> is sitting on the couch. She\'s watching TV.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027katspalnya\\u0027, \\u0027kat\\u0027); return false;">Kat</a> is sitting on the couch. She\'s watching TV.');
   }
   if (((s as any).hour ?? 0) >= 23  ||  ((s as any).hour ?? 0) < 6) {
-    scene.text('<a href="exec:gt \'katspalnya\', \'katslip\'">Kat</a> is sound asleep in her huge bed.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027katspalnya\\u0027, \\u0027katslip\\u0027); return false;">Kat</a> is sound asleep in her huge bed.');
   }
   // TODO-QSP: end
   scene.actions([
@@ -29,7 +36,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterKatslip(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   if (((s as any).katjob ?? 0) === 0  &&  ((s as any).npc_rel ?? 0)?.['A219'] > 60) {
-    scene.actions([{ label: 'Continue', goto: ['katspalnya', 'katjobs'] }]);
+    qspGoto(s, 'katspalnya', 'katjobs');
   }
   scene.img('images/characters/city/katja/kat.jpg');
   // TODO-QSP: dynamic text: When you awaken Kat, she rubs her eyes tiredly: "Hey, <<$pcs_nickname>>… what's ...
@@ -49,7 +56,7 @@ function enterKatslip(s: GameState, scene: SceneBuilder): void {
 function enterKat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   if (((s as any).katjob ?? 0) === 0  &&  ((s as any).npc_rel ?? 0)?.['A219'] > 60) {
-    scene.actions([{ label: 'Continue', goto: ['katspalnya', 'katjobs'] }]);
+    qspGoto(s, 'katspalnya', 'katjobs');
   }
   scene.img('images/characters/city/katja/kat.jpg');
   // TODO-QSP: dynamic text: Kat smiles when she sees you approach and says cheerfully: "<<$pcs_nickname>>, h...
@@ -80,7 +87,7 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
 
 function enterKatjobs(s: GameState, scene: SceneBuilder): void {
   (s as any).katjob = 1;
-  if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_hospital_nurse'] = 1;
+  ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['city_hospital_nurse'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   scene.img('images/characters/city/katja/kat.jpg');
   scene.text('Kat talks about her job for a while, and then suggests: "By the way… if you want, I can put in a good word for you! Maybe you could work at the clinic as well!"');

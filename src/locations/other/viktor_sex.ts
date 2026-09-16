@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -39,7 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_sex'] = 1;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['guard_sex'] = 1;
     scene.text('He soon pulls up to a red light and glances over at you. "Fuck it. I\'m not waiting any longer."');
     scene.text('As soon as the light turns green, he quickly turns down a side street and parks up behind one of the many abandoned factories in the area. He switches off the engine and looks over at you. "Well?"');
     // TODO-QSP: dynamic text: You smile at him as you unbuckle your seatbelt and shift into position. You bite...
@@ -71,6 +71,8 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     scene.text('"Fuck, such a tight pussy! I\'m going to have fun with this," he says as he grips your ass in his hands.');
     scene.text('You let out a lewd squeal as he thrusts up into you, bottoming out inside you as he starts fucking you.');
     scene.text('After a few minutes, the car is filled with your loud moans of pleasure and the sound of flesh slapping against flesh as Viktor pounds your pussy, overwhelming you with a wave of pleasure.');
+    (s as any).orgasm_txt = 'The pleasure is overwhelming and you eventually scream out in ecstasy as a powerful orgasm washes over you, your legs going weak as a result.';
+    (s as any).orgasm_or = 'custom';
     scene.text('Viktor keeps pounding you before his breathing intensifies and he starts fucking you even harder. "I\'m gonna cum, baby girl!"');
     scene.actions([
       { label: 'Creampie', goto: ['viktor_sex', 'first_creampie'] },
@@ -208,7 +210,8 @@ function enterSetHomeActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk into the station', handler: (st: GameState) => {
     qspCall(s, 'core_library', 'setloc', 'city_industrial', '');
-  }, goto: ['metro', 'start'] },
+    qspGoto(s, 'metro', 'start');
+  } },
     ]);
   } },
     ]);
@@ -298,6 +301,8 @@ function enterViktorSex1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes, he suddenly pulls out and drops you down on the bed on all fours. You straddle a pillow and spread your legs before Viktor moves in behind you, pinning you down with a single hand before he slides his dick back inside you and starts roughly fucking you doggystyle while continuing to spank your stinging ass cheeks.');
     scene.text('"Who\'s your daddy?!" he grunts as he suddenly pulls your hair while slamming himself balls deep into you. "Who\'s your fucking daddy, slut?!"');
     scene.text('You\'re too overwhelmed to do anything but scream in pleasure and beg him to go faster as you feel your orgasm approaching.');
+    (s as any).orgasm_txt = 'A powerful wave of pleasure soon washes over you and leaves you quivering under Viktor as he continues fucking you throughout your orgasm.';
+    (s as any).orgasm_or = 'custom';
     scene.actions([
       { label: 'Ride it out', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', 3);
@@ -525,9 +530,9 @@ function enterViktorPostsex(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sleep_simple', 'sleep');
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).university ?? 0)?.['student'] === 1  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).university ?? 0)?.['break'] === 0) {
-      scene.actions([{ label: 'Continue', goto: ['viktor_sex', 'wakeup_uni'] }]);
+      qspGoto(s, 'viktor_sex', 'wakeup_uni');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['viktor_sex', 'wakeup'] }]);
+      qspGoto(s, 'viktor_sex', 'wakeup');
     }
   }
   // TODO-QSP: end
@@ -542,7 +547,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
     scene.text('You check your phone. It reads:');
     scene.text('You lazily roll over and spend a few minutes just relaxing in the comfort of Viktor\'s bed.');
   } else {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['viktor_present'] = 1;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['viktor_present'] = 1;
     scene.text('You glance over and see him still snoozing away before checking your phone.');
     scene.text('It reads:');
     scene.text('You lazily roll over and spend a few minutes just relaxing in the comfort of Viktor\'s bed.');
@@ -815,14 +820,14 @@ function enterWakeupCleanupAlone(s: GameState, scene: SceneBuilder): void {
     scene.text('You make your way back into the bedroom, where you toss the towel aside and get dressed before giving your hair a quick brush. Feeling clean and refreshed, you grab your belongings and prepare to leave.');
     scene.actions([
       { label: 'Leave Viktor a note', handler: (st: GameState) => {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['viktor_present'] = 0;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['viktor_present'] = 0;
     scene.text('You quickly write a note for Viktor, thanking him for a good time last night and for letting you stay over. Placing it on the bedside table, you give yourself a quick check over in the mirror before leaving his apartment.');
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['viktor_present'] = 0;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['viktor_present'] = 0;
     scene.text('You give yourself a quick check over in the mirror before leaving his apartment.');
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },

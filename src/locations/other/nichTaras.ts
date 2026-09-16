@@ -1,18 +1,20 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['time_hidden'] = 0;
+  ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['time_hidden'] = 0;
   scene.build();
 }
 
 function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichKatinkaName = 'the other girl';
+  (s as any).nichKatinkaNameUC = 'The other girl';
   if ((!((s as any).nichAbdStage ?? 0))) {
     (s as any).inSleep = 0;
-    if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['time_hidden'] = 1;
+    ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['time_hidden'] = 1;
     qspCall(s, 'outfit', 'strip_all');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/taras/intro1.jpg');
@@ -28,7 +30,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichAbdStage = 10;
-  }, goto: ['nichTaras', 'abdIntro'] },
+    qspGoto(s, 'nichTaras', 'abdIntro');
+  } },
     ]);
   } else {
     if (((s as any).nichAbdStage ?? 0) === 10) {
@@ -43,7 +46,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Try to sleep', handler: (st: GameState) => {
     (s as any).nichAbdStage = 20;
-  }, goto: ['nichTaras', 'abdIntro'] },
+    qspGoto(s, 'nichTaras', 'abdIntro');
+  } },
         ]);
       }
       scene.actions([
@@ -52,7 +56,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Wait', handler: (st: GameState) => {
     (s as any).nichAbdStage = 21;
-  }, goto: ['nichTaras', 'abdIntro'] },
+    qspGoto(s, 'nichTaras', 'abdIntro');
+  } },
       ]);
     } else {
       if (((s as any).nichAbdStage ?? 0) === 20) {
@@ -76,7 +81,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'Listen', handler: (st: GameState) => {
     (s as any).nichAbdStage = 30;
-  }, goto: ['nichTaras', 'abdIntro'] },
+    qspGoto(s, 'nichTaras', 'abdIntro');
+  } },
         ]);
       } else {
         if (((s as any).nichAbdStage ?? 0) === 21) {
@@ -103,7 +109,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
   } },
             { label: 'Listen', handler: (st: GameState) => {
     (s as any).nichAbdStage = 30;
-  }, goto: ['nichTaras', 'abdIntro'] },
+    qspGoto(s, 'nichTaras', 'abdIntro');
+  } },
           ]);
         } else {
           if (((s as any).nichAbdStage ?? 0) === 30) {
@@ -123,7 +130,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Yes sir', handler: (st: GameState) => {
     (s as any).nichAbdStage = 40;
-  }, goto: ['nichTaras', 'abdIntro'] },
+    qspGoto(s, 'nichTaras', 'abdIntro');
+  } },
               { label: 'No way!', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 6, 'nipples', 'twist');
     qspCall(s, 'stat', '');
@@ -147,7 +155,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Further', handler: (st: GameState) => {
     (s as any).nichAbdStage = 50;
-  }, goto: ['nichTaras', 'abdIntro'] },
+    qspGoto(s, 'nichTaras', 'abdIntro');
+  } },
               ]);
             } else {
               if (((s as any).nichAbdStage ?? 0) === 50) {
@@ -164,7 +173,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Further', handler: (st: GameState) => {
     (s as any).nichAbdStage = 60;
-  }, goto: ['nichTaras', 'abdIntro'] },
+    qspGoto(s, 'nichTaras', 'abdIntro');
+  } },
                 ]);
               } else {
                 if (((s as any).nichAbdStage ?? 0) === 60) {
@@ -184,7 +194,7 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
     (s as any).nichAbdStage = 100;
     (s as any).nichTarasLeave = ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0) + 20;
     (s as any).nichTarasReturn = Math.floor(Math.random() * 5) + 19;
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'wash\''] }]);
+    qspGoto(s, 'nichTaras', 'katinka', 'wash');
   } },
                   ]);
                 }
@@ -207,18 +217,20 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Who are you?', handler: (st: GameState) => {
     (s as any).nichKatinkaTopics = ((s as any).nichKatinkaTopics ?? 0) + (1);
-    if (!(s as any).nichKatinkaTopic) (s as any).nichKatinkaTopic = {}; (s as any).nichKatinkaTopic[1] = 1;
+    ((s as any).nichKatinkaTopic = (s as any).nichKatinkaTopic ?? {})[1] = 1;
     scene.text('"Excuse me?"');
     scene.text('"Psssst. Please talk quietly. Master will be mad when he finds out you were talking to me." she looks and sounds terrified.');
     scene.text('"Who are you? Why are you here?"');
     scene.text('"I… I… I am nothing but my Masters little slut. I am here to serve him." a tear rolls down her cheek as she says these lines which are obviously not her own thoughts.');
     scene.text('<i>She doesn\'t seem to be ready to talk about this topic. Maybe you should ask her again at another time.</i>');
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'talkEnd\''] }]);
+    qspGoto(s, 'nichTaras', 'katinka', 'talkEnd');
   } },
       ]);
     }
   } },
-      { label: 'Back', goto: ['nichTaras', 'dungeon'] },
+      { label: 'Back', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'talkEnd') {
@@ -227,7 +239,9 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName || '')} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
       (s as any).nichKatinkaPresent = 0;
       scene.actions([
-        { label: 'Alone', goto: ['nichTaras', 'dungeon'] },
+        { label: 'Alone', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'wash') {
@@ -243,7 +257,9 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_hairbsh = 1;
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Finished', goto: ['nichTaras', 'dungeon'] },
+          { label: 'Finished', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
         ]);
       }
     }
@@ -265,27 +281,30 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
       scene.text('"There is my slut, just where I left her. Good."');
       scene.text('He comes over to you and grabs you by the hair.');
       scene.actions([
-        { label: 'Get dragged', goto: ['nichTaras', 'session'] },
+        { label: 'Get dragged', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'session');
+  } },
       ]);
     } else {
       scene.text('<center><b>Basement</b></center>');
       scene.img('images/characters/city/taras/dungeon.jpg');
       scene.text('You are in a basement. There are several metal objects bolted to the ground and to the walls. They are used for chaining up prisoners. There is also a hose for cleaning.');
       // TODO-QSP: dynamic text: In one corner of the room stands an <a href="exec:minut += 10&gt 'nichTaras', 'd...
-      scene.text('In one corner of the room stands an <a href="exec:minut += 10&gt \'nichTaras\', \'dungeon\', \'bed\'">old bed</a> with a dirty mattress on it.');
-      scene.text('There is also a bucket with water and another one with some kind of bad tasting food. You could <a href="exec:gt \'nichTaras\', \'dungeon\', \'eat\'">eat and drink</a> from them.');
+      scene.text('In one corner of the room stands an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\\u0027nichTaras\\u0027, \\u0027dungeon\\u0027, \\u0027bed\\u0027); return false;">old bed</a> with a dirty mattress on it.');
+      scene.text('There is also a bucket with water and another one with some kind of bad tasting food. You could <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichTaras\\u0027, \\u0027dungeon\\u0027, \\u0027eat\\u0027); return false;">eat and drink</a> from them.');
       if ((!((s as any).nichTarasMirror ?? 0))) {
-        scene.text('In another corner of the room is an <a href="exec:gt \'nichTaras\', \'dungeon\', \'mirror\'">old mirror</a>.');
+        scene.text('In another corner of the room is an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichTaras\\u0027, \\u0027dungeon\\u0027, \\u0027mirror\\u0027); return false;">old mirror</a>.');
       } else {
         scene.text('The mirror you threw over lies in one corner of the room.');
       }
       if (((s as any).nichKatinkaPresent ?? 0) === 1) {
-        scene.text('<a href="exec:gt \'nichTaras\', \'katinka\', \'desc\'">The other girl</a> Taras owns is also here cleaning the floor and refilling your food.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichTaras\\u0027, \\u0027katinka\\u0027, \\u0027desc\\u0027); return false;">The other girl</a> Taras owns is also here cleaning the floor and refilling your food.');
       }
       scene.actions([
         { label: 'Wait', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-  }, goto: ['nichTaras', 'dungeon'] },
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
       ]);
     }
   } else {
@@ -302,7 +321,9 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         scene.actions([
-          { label: 'Return', goto: ['nichTaras', 'dungeon'] },
+          { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
         ]);
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'sleep') {
@@ -314,7 +335,9 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
             scene.text('"Enough lazing, slut."');
             scene.text('He grabs your hair and pulls you up.');
             scene.actions([
-              { label: 'Get dragged', goto: ['nichTaras', 'session'] },
+              { label: 'Get dragged', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'session');
+  } },
             ]);
           } else {
             scene.text('You wake up after a few hour. Apparently you are still alone in the basement.');
@@ -327,7 +350,9 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
               ]);
             }
             scene.actions([
-              { label: 'Return', goto: ['nichTaras', 'dungeon'] },
+              { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
             ]);
           }
         }
@@ -335,13 +360,15 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'eat') {
         (s as any).minut = ((s as any).minut ?? 0) + 10;
-        (s as any).pcs_hydra = 0;
-        (s as any).pcs_energy = 0;
+        (s as any).pcs_hydra = Math.max(((s as any).pcs_hydra ?? 0), 80);
+        (s as any).pcs_energy = Math.max(((s as any).pcs_energy ?? 0), 80);
         qspCall(s, 'stat', '');
         scene.img('images/characters/city/taras/eat.jpg');
         scene.text('You force yourself to eat a little bit of the distgusting tasting food in the bucket. At least the water is tastless.');
         scene.actions([
-          { label: 'Return', goto: ['nichTaras', 'dungeon'] },
+          { label: 'Return', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
         ]);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'mirror') {
@@ -354,7 +381,9 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
     (s as any).nichTarasMirrorCount = ((s as any).nichTarasMirrorCount ?? 0) + (1);
     scene.text('It takes quit some effort by finally you manage to use your shoulder to throw the mirror over. The frame took some damage but the glass seems to be still intact.');
     scene.actions([
-      { label: 'Back', goto: ['nichTaras', 'dungeon'] },
+      { label: 'Back', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
     ]);
   } },
             ]);
@@ -364,7 +393,9 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/taras/hogtie1.jpg');
     scene.text('You see the reflection of your bound self in the mirror.');
   } },
-            { label: 'Back', goto: ['nichTaras', 'dungeon'] },
+            { label: 'Back', handler: (st: GameState) => {
+    qspGoto(s, 'nichTaras', 'dungeon');
+  } },
           ]);
         }
       }
@@ -421,17 +452,20 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Close eyes', handler: (st: GameState) => {
     (s as any).nichTarasSessionStage = 10;
-  }, goto: ['nichTaras', 'session'] },
+    qspGoto(s, 'nichTaras', 'session');
+  } },
       { label: 'Focus', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/mirrorEvent1e.jpg');
     scene.text('Taras has spared your most sensitive parts for the finish. Your pussy feels like being on fire as the whip hits it mercilessly several times.');
     scene.actions([
       { label: 'Close eyes', handler: (st: GameState) => {
     (s as any).nichTarasSessionStage = 10;
-  }, goto: ['nichTaras', 'session'] },
+    qspGoto(s, 'nichTaras', 'session');
+  } },
       { label: 'Focus', handler: (st: GameState) => {
     (s as any).nichTarasSessionStage = 20;
-  }, goto: ['nichTaras', 'session'] },
+    qspGoto(s, 'nichTaras', 'session');
+  } },
     ]);
   } },
     ]);
@@ -456,7 +490,8 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Sleep', handler: (st: GameState) => {
     (s as any).nichTarasSessionStage = 11;
-  }, goto: ['nichTaras', 'session'] },
+    qspGoto(s, 'nichTaras', 'session');
+  } },
           ]);
         }
         scene.actions([
@@ -470,7 +505,8 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Fall asleep', handler: (st: GameState) => {
     (s as any).nichTarasSessionStage = 11;
-  }, goto: ['nichTaras', 'session'] },
+    qspGoto(s, 'nichTaras', 'session');
+  } },
       ]);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -489,7 +525,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
           (s as any).nichKatinkaPresent = 1;
           scene.actions([
             { label: 'Get washed', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'wash\''] }]);
+    qspGoto(s, 'nichTaras', 'katinka', 'wash');
   } },
           ]);
         } else {
@@ -517,7 +553,8 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Sleep', handler: (st: GameState) => {
     (s as any).nichTarasSessionStage = 21;
-  }, goto: ['nichTaras', 'session'] },
+    qspGoto(s, 'nichTaras', 'session');
+  } },
       ]);
     }
     scene.actions([
@@ -531,7 +568,8 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Fall asleep', handler: (st: GameState) => {
     (s as any).nichTarasSessionStage = 21;
-  }, goto: ['nichTaras', 'session'] },
+    qspGoto(s, 'nichTaras', 'session');
+  } },
       ]);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -554,7 +592,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
               (s as any).nichKatinkaPresent = 1;
               scene.actions([
                 { label: 'Get washed', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'wash\''] }]);
+    qspGoto(s, 'nichTaras', 'katinka', 'wash');
   } },
               ]);
             }
@@ -667,7 +705,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       (s as any).nichKatinkaPresent = 1;
       scene.actions([
         { label: 'Get washed', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'wash\''] }]);
+    qspGoto(s, 'nichTaras', 'katinka', 'wash');
   } },
       ]);
     }
@@ -700,13 +738,13 @@ function enterVan(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Walk past it', handler: (st: GameState) => {
     if (((s as any).nichGalaTarasPlan ?? 0) >= 113) {
-      scene.actions([{ label: 'Continue', goto: ['nichTaras', 'vanAbduct'] }]);
+      qspGoto(s, 'nichTaras', 'vanAbduct');
     }
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
     { label: 'Avoid it (10 minutes)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();

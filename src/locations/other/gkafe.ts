@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gkafe', '');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'family_schedule', '');
   qspCall(s, 'themes', 'indoors');
@@ -24,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk around back to try and figure out why the cafe is closed and hear voices through the wall. It sounds like a woman screaming! You quickly look around and notice a stack of old crates. If you stand on them, you could reach a small window and see what\'s happening.');
     scene.actions([
       { label: 'Peek through the window', handler: (st: GameState) => {
-    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['slava_fuck'] = 1;
+    ((s as any).mother = (s as any).mother ?? {})['slava_fuck'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/event/momslut.jpg');
@@ -39,7 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Keep looking', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Mom_cafe_sex'] = 0;
+    ((s as any).locat = (s as any).locat ?? {})['Mom_cafe_sex'] = 0;
     if (((s as any).slavatalk ?? 0) === 1  &&  ((s as any).pcafejob ?? 0) > 0) {
       (s as any).slavatalk = 2;
     }
@@ -85,9 +86,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).week ?? 0) < 6) {
         if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 16) {
-          scene.text('Your <a href="exec: gt \'mother\'">mother</a> is currently working at the cafe, taking orders behind the counter.');
+          scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mother\\u0027, \\u0027\\u0027); return false;">mother</a> is currently working at the cafe, taking orders behind the counter.');
         } else {
-          scene.text('The bar owner <a href="exec: gt \'gkafe\', \'boris\'">Borislav</a> is currently taking orders at the counter. Most people call him Slava.');
+          scene.text('The bar owner <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gkafe\\u0027, \\u0027boris\\u0027); return false;">Borislav</a> is currently taking orders at the counter. Most people call him Slava.');
         }
       }
       (s as any).razvrand = Math.floor(Math.random() * 10) + 1;
@@ -121,7 +122,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
       if ((((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) <= 0)  &&  (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).week ?? 0) < 6)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20)) {
         // TODO-QSP: dynamic text: <a href="exec: minut += 3 & gt 'gopskver'">Vitek, Dan and Vasily</a> are sitting...
-        scene.text('<a href="exec: minut += 3 & gt \'gopskver\'">Vitek, Dan and Vasily</a> are sitting at a table in the far corner.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027gopskver\\u0027, \\u0027\\u0027); return false;">Vitek, Dan and Vasily</a> are sitting at a table in the far corner.');
       }
     }
   }
@@ -133,6 +134,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMenu(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gkafe';
+  (s as any).loc_arg = '';
   // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu', handler: (st: GameState) => {
@@ -143,7 +146,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 350);
-      scene.actions([{ label: 'Continue', goto: ['food', 'fast_food'] }]);
+      qspGoto(s, 'food', 'fast_food');
     }
   } },
   ]);

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,14 +8,14 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 1;
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 1;
   }
   scene.build();
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
   // TODO-QSP: gt $ARGS[1], $ARGS[2]
   // TODO-QSP: end
@@ -114,6 +114,8 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWardrobe(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'therapist_home';
+  (s as any).loc_arg = 'wardrobe';
   if (((s as any).locArgs?.[1] ?? 0) === 'start') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wardrobe', 'start']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -173,14 +175,14 @@ function enterCook(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPreSleep(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_sleep_flag'] = 1;
-  scene.actions([{ label: 'Continue', goto: ['therapist_home', 'pre_sleep2'] }]);
+  ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_sleep_flag'] = 1;
+  qspGoto(s, 'therapist_home', 'pre_sleep2');
   scene.build();
 }
 
 function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).therapistQW ?? 0)?.['hotel_firstnight'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['therapist_home', 'first_night'] }]);
+    qspGoto(s, 'therapist_home', 'first_night');
   }
   scene.img('images/shared/sex/sleep/fondle1.jpg');
   scene.text('You lay on your back under the covers trying to get some sleep.');
@@ -189,7 +191,7 @@ function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
     }
     qspCall(s, 'pre_sleep_events', 'event_end');
   } },
@@ -199,9 +201,9 @@ function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
 
 function enterWakeup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).therapistQW ?? 0)?.['hotel_firstnight'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['therapist_home', 'first_morning'] }]);
+    qspGoto(s, 'therapist_home', 'first_morning');
   }
-  scene.actions([{ label: 'Continue', goto: ['therapist_home', 'wakeup1'] }]);
+  qspGoto(s, 'therapist_home', 'wakeup1');
   scene.build();
 }
 
@@ -244,16 +246,18 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     scene.img('images/shared/sex/cum/vagcreampie/after1.jpg');
     scene.text('He groans and you feel his seed enter your womb and then he lays his head on your breasts and starts to snore a little.');
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
     }
     qspCall(s, 'shortgs', 'autosave');
-  }, goto: ['pre_sleep', 'start'] },
+    qspGoto(s, 'pre_sleep', 'start');
+  } },
     ]);
   } },
     ]);
@@ -265,7 +269,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstNight(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_firstnight'] = 1;
+  ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_firstnight'] = 1;
   scene.img('images/characters/pavlovsk/resident/therapist/naked1.jpg');
   scene.text('You lay down on the bed, as you have done all your life, ready to sleep the night away, when your husband joins you.');
   // TODO-QSP: end
@@ -294,7 +298,7 @@ function enterFirstNight(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
     }
     qspCall(s, 'pre_sleep_events', 'event_end');
   } },
@@ -309,7 +313,7 @@ function enterFirstNight(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstMorning(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_firstnight'] = 2;
+  ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_firstnight'] = 2;
   (s as any).pcs_energy = 100;
   (s as any).pcs_hydra = 100;
   scene.img('images/characters/pavlovsk/resident/therapist/naked1.jpg');

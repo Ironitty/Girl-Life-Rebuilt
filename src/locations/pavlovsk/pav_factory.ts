@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterTailor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_factory', 'tailor');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('There is a small wooden counter and a sign that says, "If you can\'t wear it, we\'ll adjust it."');
   scene.text('Behind the counter, an elderly man inspects some repaired clothes. He stops and smiles gently, greeting you.');
@@ -25,15 +26,16 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
 
 function enterEnter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_factory', 'enter');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   if (((s as any).job_status ?? 0)?.['pav_factory'] === 'fired') {
-    scene.actions([{ label: 'Continue', goto: ['pav_factory', 'fired'] }]);
+    qspGoto(s, 'pav_factory', 'fired');
   }
   if (((s as any).job_status ?? 0)?.['pav_factory'] === 'employed'  &&  ((s as any).job_missed_total ?? 0)?.['pav_factory'] > ((s as any).job_miss_acknowledged ?? 0)?.['pav_factory']) {
-    scene.actions([{ label: 'Continue', goto: ['pav_factory', 'scolding'] }]);
+    qspGoto(s, 'pav_factory', 'scolding');
   }
   if (((s as any).job_status ?? 0)?.['pav_factory'] === 'employed'  &&  ((s as any).age ?? 0) >= 18  &&  ((s as any).job_active_schedule ?? 0)?.['pav_factory'] === '0'  &&  (!((s as any).pav_factory_schedule_change_pending ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['pav_factory', 'schedule_change'] }]);
+    qspGoto(s, 'pav_factory', 'schedule_change');
   }
   scene.text('<center><b>TEXTILE FACTORY, PARIS COMMUNE</b></center>');
   scene.img('images/locations/pavlovsk/factory/pav_factory.jpg');
@@ -46,7 +48,7 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['pav_factory'] === ''  &&  ((s as any).age ?? 0) < 18) {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 0) === 1) {
       // TODO-QSP: dynamic text: You can apply for a <a href="exec:minut += 15 & gt 'pav_factory', 'job_start'">p...
-      scene.text('You can apply for a <a href="exec:minut += 15 & gt \'pav_factory\', \'job_start\'">part-time job</a> here.');
+      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_factory\\u0027, \\u0027job_start\\u0027); return false;">part-time job</a> here.');
     } else {
       scene.text('You see they\'re hiring, but the shift times conflict with your existing schedule.');
     }
@@ -54,7 +56,7 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['pav_factory'] === ''  &&  ((s as any).age ?? 0) >= 18) {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 1) === 1) {
       // TODO-QSP: dynamic text: You can apply for a <a href="exec:minut += 15 & gt 'pav_factory', 'job_start'">f...
-      scene.text('You can apply for a <a href="exec:minut += 15 & gt \'pav_factory\', \'job_start\'">full-time job</a> here.');
+      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_factory\\u0027, \\u0027job_start\\u0027); return false;">full-time job</a> here.');
     } else {
       scene.text('You see they\'re hiring, but the shift times conflict with your existing schedule.');
     }
@@ -72,14 +74,15 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'get_shift_for_day', 'pav_factory', ((s as any).daystart ?? 0));
     (s as any).temp_dock = ((s as any).result_duration ?? 0);
     if (((s as any).job_worked_count ?? 0)?.['pav_factory'] > ((s as any).temp_dock ?? 0)) {
-      if (!(s as any).job_worked_count) (s as any).job_worked_count = {}; (s as any).job_worked_count['pav_factory'] = ((s as any).job_worked_count['pav_factory'] ?? 0) - (((s as any).temp_dock ?? 0));
+      ((s as any).job_worked_count = (s as any).job_worked_count ?? {})['pav_factory'] = ((s as any).job_worked_count['pav_factory'] ?? 0) - (((s as any).temp_dock ?? 0));
     } else {
-      if (!(s as any).job_worked_count) (s as any).job_worked_count = {}; (s as any).job_worked_count['pav_factory'] = 0;
+      ((s as any).job_worked_count = (s as any).job_worked_count ?? {})['pav_factory'] = 0;
     }
     qspCall(s, 'jobs', 'paycheck', 'pav_factory', 'bank');
     qspCall(s, 'jobs', 'set_terminated', 'pav_factory');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['pav_factory', 'enter'] },
+    qspGoto(s, 'pav_factory', 'enter');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -93,6 +96,7 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
 
 function enterScolding(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_factory', 'scolding');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>FOREMAN\'S OFFICE</b></center>');
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
@@ -108,7 +112,7 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
       scene.text('He taps his pen on the desk, staring at you intently. "Do I make myself clear?"');
     }
   }
-  if (!(s as any).job_miss_acknowledged) (s as any).job_miss_acknowledged = {}; (s as any).job_miss_acknowledged['pav_factory'] = ((s as any).job_missed_total ?? 0)?.['pav_factory'];
+  ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['pav_factory'] = ((s as any).job_missed_total ?? 0)?.['pav_factory'];
   // TODO-QSP: end
   scene.actions([
     { label: 'Apologize', goto: ['pav_factory', 'enter'] },
@@ -118,6 +122,7 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
 
 function enterFired(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_factory', 'scolding');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>FOREMAN\'S OFFICE</b></center>');
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
@@ -143,6 +148,7 @@ function enterFired(s: GameState, scene: SceneBuilder): void {
 
 function enterScheduleChange(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_factory', 'scolding');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>FOREMAN\'S OFFICE</b></center>');
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
@@ -168,6 +174,7 @@ function enterScheduleChange(s: GameState, scene: SceneBuilder): void {
 
 function enterJobStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_factory', 'job_start');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>FOREMAN\'S OFFICE</b></center>');
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
@@ -268,7 +275,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const pav_factory: LocationDef = {
   name: 'pav_factory',
-  title: 'Unfortunately, the shift times conflict with your existing schedule.',
+  title: 'Unfortunately, the shift times conflict with your existing s',
   region: 'pavlovsk',
   locationType: 'public_indoors',
   enter: enter,

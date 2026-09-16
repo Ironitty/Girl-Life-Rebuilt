@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -27,7 +27,8 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_park', 'start'] },
+    qspGoto(s, 'pav_park', 'start');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -53,6 +54,7 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel a little hornier.');
   } else {
     scene.text('You enjoy the experience so much that your body convulses in orgasm. It takes a lot of control, but you keep his cum in your mouth throughout.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'stat', '');
   }
   scene.text('Getting up, you swallow his sperm and wink at him as you walk away.');
@@ -60,7 +62,8 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'finish', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_park', 'start'] },
+    qspGoto(s, 'pav_park', 'start');
+  } },
   ]);
   scene.build();
 }

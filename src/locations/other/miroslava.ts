@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'miroslava';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'npcStat', 'A60');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Mira is a sociable girl the same age as you. She lives with her father, who recently moved in here because of his considerable debts to some disreputable men in the city. He had to sell all the family\'s property, including an apartment in the city center. With the money left over, they could only afford to buy a house in a rundown village like this one.');
@@ -69,10 +71,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             { label: 'Show her your secret place', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'npc_relationship', 'modify', 'A60', 2);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['meadow'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['meadow'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
@@ -97,8 +99,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You ask Mira if she has already met everyone in the village. When she says no, you offer to introduce her to some local guys, and she readily agrees, asking you to wait a few minutes while she changes and freshens up. When she comes out, you go drinking with the group of boys near your house…');
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 24 - ((s as any).hour ?? 0);
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 24 - ((s as any).hour ?? 0);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -133,7 +135,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               { label: 'Offer to walk naked', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'outfit', 'strip_all', 'forest_edge');
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['strip_loc'] = 'forest_edge';
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['strip_loc'] = 'forest_edge';
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/miraforest6.jpg');
     scene.text('You offered Mira to walk through the woods naked, and she immediately agreed.');
@@ -188,12 +190,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             scene.text(`"${((s as any).pcs_nickname || '')}, it's so boring here," Mira pouts, "I know! Let's go to your place." Mira suggests brightly.`);
             scene.actions([
               { label: 'Agree', handler: (st: GameState) => {
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 1;
     if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
-      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+      qspGoto(s, 'gad_gphouse', 'main');
     } else {
       qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       if (((s as any).npc_rel ?? 0)?.['A60'] < 30) {
@@ -263,8 +265,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A60'] < 50) {
       qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     }
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 2;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 2;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
@@ -297,8 +299,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A60'] < 30) {
       qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     }
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 2;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 2;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
@@ -321,7 +323,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).temp_rand ?? 0) === 8  ||  ((s as any).temp_rand ?? 0) === 9) {
                     (s as any).minut = ((s as any).minut ?? 0) + 1;
-                    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 1;
+                    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
                     qspCall(s, 'stat', '');
                     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
                     scene.text('Mira wants to chat with you.');
@@ -343,8 +345,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).temp_rand ?? 0) > 10  &&  ((s as any).locat ?? 0)?.['A60_loc'] !== 'gad_forest'  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0  &&  ((s as any).MiraVars ?? 0)?.['QW'] > 0) {
                       (s as any).minut = ((s as any).minut ?? 0) + 1;
-                      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-                      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 2;
+                      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+                      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 2;
                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
                       qspCall(s, 'stat', '');
                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -354,9 +356,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                         { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).MiraVars ?? 0)?.['QW'] >= 16  &&  ((s as any).GadBoy ?? 0)?.['river_gang'] === 2) {
-      scene.actions([{ label: 'Continue', goto: ['mitkabuh_group', ''] }]);
+      qspGoto(s, 'mitkabuh_group', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['mitkabuh', ''] }]);
+      qspGoto(s, 'mitkabuh', '');
     }
   } },
                         { label: 'Refuse', handler: (st: GameState) => {
@@ -568,7 +570,7 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A60'] < 15) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'stat', '');
       scene.img('images/characters/gadukino/mira/girls_walking\'+rand(1, 3)+\'.jpg');
@@ -578,25 +580,25 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_rand ?? 0) <= 4) {
           if (((s as any).temp_rand ?? 0) === 4) {
             if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-              scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_3boys'] }]);
+              qspGoto(s, 'gadukino_event', 'mira_3boys');
             } else {
               if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)) {
-                scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '\'1\''] }]);
+                qspGoto(s, 'gadukino_event', 'mira_2boys', '1');
               } else {
                 if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                  scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '\'2\''] }]);
+                  qspGoto(s, 'gadukino_event', 'mira_2boys', '2');
                 } else {
                   if (((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                    scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '\'3\''] }]);
+                    qspGoto(s, 'gadukino_event', 'mira_2boys', '3');
                   } else {
                     if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)) {
-                      scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_mitka'] }]);
+                      qspGoto(s, 'gadukino_event', 'mira_mitka');
                     } else {
                       if (((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)) {
-                        scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_kolyamba'] }]);
+                        qspGoto(s, 'gadukino_event', 'mira_kolyamba');
                       } else {
                         if (((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                          scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_vasyan'] }]);
+                          qspGoto(s, 'gadukino_event', 'mira_vasyan');
                         }
                       }
                     }
@@ -606,13 +608,13 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)) {
-              scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_mitka'] }]);
+              qspGoto(s, 'gadukino_event', 'mira_mitka');
             } else {
               if (((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)) {
-                scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_kolyamba'] }]);
+                qspGoto(s, 'gadukino_event', 'mira_kolyamba');
               } else {
                 if (((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                  scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_vasyan'] }]);
+                  qspGoto(s, 'gadukino_event', 'mira_vasyan');
                 }
               }
             }
@@ -650,9 +652,9 @@ function enterOfferGoMeadow(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A60'] < 50) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
       if (((s as any).minut ?? 0) > 30) {
-        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 2;
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 2;
       }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'stat', '');
@@ -689,15 +691,15 @@ function enterOfferDrinkBoys(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You suggest drinking with the village boys, and Mira readily agrees, then asks you to wait a few minutes while she changes. When she comes out, you go to drink with the group of boys near your house…');
     }
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).MiraVars ?? 0)?.['QW'] >= 16  &&  ((s as any).GadBoy ?? 0)?.['river_gang'] === 2) {
-      scene.actions([{ label: 'Continue', goto: ['mitkabuh_group', ''] }]);
+      qspGoto(s, 'mitkabuh_group', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['mitkabuh', ''] }]);
+      qspGoto(s, 'mitkabuh', '');
     }
   } },
     ]);
@@ -729,7 +731,7 @@ function enterOfferSteamBath(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A60'] < 50) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 1;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 1;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_forest') {
         (s as any).minut = ((s as any).minut ?? 0) + 85;
@@ -771,7 +773,7 @@ function enterOfferGoRiver(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A60'] < 30) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_forest') {
         (s as any).minut = ((s as any).minut ?? 0) + (30);
@@ -779,8 +781,8 @@ function enterOfferGoRiver(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.text('You suggest going to the river to swim or sunbathe, and Mira readily agrees.');
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 2;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 2;
       scene.actions([
         { label: 'Go to the river', goto: ['gad_beach', 'start', '1'] },
       ]);
@@ -813,13 +815,13 @@ function enterOfferGoForest(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A60'] < 30) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'stat', '');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.text('You offer her to go to the forest to look for mushrooms and berries, and she willingly agrees.');
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 1;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 1;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
       scene.actions([
         { label: 'Go into the woods', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 45;
@@ -839,7 +841,7 @@ function enterWearStrippedClothes(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
   }
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['strip_loc'] = '';
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['strip_loc'] = '';
   // TODO-QSP: end
   scene.build();
 }
@@ -849,7 +851,7 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Invite to your grandparent\'s', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 1;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 1;
     if (((s as any).npc_rel ?? 0)?.['A60'] < 30) {
       qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     }
@@ -860,7 +862,7 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', handler: (st: GameState) => {
     if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
       (s as any).minut = ((s as any).minut ?? 0) + (15);
-      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+      qspGoto(s, 'gad_gphouse', 'main');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'outfit', 'wear_last_worn');
@@ -922,11 +924,11 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You say goodbye to Mira, and she goes home.');
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 0;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
     if (((s as any).MiraVars ?? 0)?.['guestday'] <= ((s as any).daystart ?? 0)) {
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guestday'] = ((s as any).daystart ?? 0) + 1;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0) + 1;
     }
     scene.actions([
       { label: 'Walk back home', goto: ['gad_gphouse', 'main'] },
@@ -940,7 +942,7 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
 
 function enterThirdWish(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -982,9 +984,9 @@ function enterThirdWish(s: GameState, scene: SceneBuilder): void {
       { label: 'Look further', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['emb_day'] = ((s as any).daystart ?? 0) + 7;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 21;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['emb_day'] = ((s as any).daystart ?? 0) + 7;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 21;
     qspCall(s, 'npc_relationship', 'set', 'A60', 1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/mira_nude3.jpg');
@@ -992,9 +994,9 @@ function enterThirdWish(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, we're even!" Mira states and looks at you imploringly.
     scene.text(`"${((s as any).pcs_nickname || '')}, we're even!" Mira states and looks at you imploringly.`);
     scene.text('You nod your head while handing her clothes back. After watching a few more minutes as Mira dresses, several of the village men are hooting as she sprints to her house. Slowly the men settle down and go about their business.');
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 0;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 0;
     scene.actions([
       { label: 'Finish', goto: ['gadukino', ''] },
     ]);
@@ -1006,8 +1008,8 @@ function enterThirdWish(s: GameState, scene: SceneBuilder): void {
       { label: 'Forgive her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A60', 5);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 22;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 22;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/mira_leaves.jpg');
     scene.text('"Well, Mira, fuck you. I had a good day planned," You pause. "You can consider yourself forgiven,"');
@@ -1068,7 +1070,7 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 2;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 2;
     scene.img('images/characters/gadukino/mira/mira3.jpg');
     scene.text('You ask Mira if there is something between her and Mitka. She looks at you a little timidly but responds yes, there is. However, she refuses to go into further detail, so you decide to leave the subject until a more appropriate time comes up…');
     qspCall(s, 'stat', '');
@@ -1126,8 +1128,8 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (50);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 4;
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 4;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/mirawish1_1.jpg');
     scene.text('Taking off her panties, Mira turns her ass to you and lifts up her skirt as she bends low. You smile broadly and, in an indifferent voice, order her to pull her ass cheeks apart. Mira reluctantly fulfils your requirement. You then ask her what she felt as she fucked with Mitka in the meadow. Mira tries to straighten, but you place a restraining hand on her back and tell her that your wishes will be humiliating punishments for her. Over the next five minutes, you rub Mira\'s buttocks as she tells you in detail what she felt when she fucked Mitka…');
@@ -1148,7 +1150,7 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell her that you want to watch as Mitka fucks her in the ass', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 5;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 5;
     qspCall(s, 'npc_relationship', 'modify', 'A60', (-1));
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/mira3.jpg');
@@ -1175,7 +1177,7 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell her that you want to watch as Mitka fucks her in the ass', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 5;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/mira3.jpg');
     scene.text('You tell her that what you want to see is Mitka fucking her in the ass. Mira jumps to her feet in shock and looks at you with disbelief. But you don\'t give her time to recover and continue to speak, emphasizing the deal she made with you, and if she can\'t uphold her end, then your friendship is at an end. Miroslava deeply blushes and hesitantly shifts from foot to foot, watching you. Finally, after a few seconds of silence, you nod your head, turn around, and start to leave…');
@@ -1202,7 +1204,7 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
               { label: 'Tell her that the first wish has been completed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 7;
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 7;
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/mira3.jpg');
     scene.text('You tell Mira that you have now seen Mitka fuck her in the ass. Maliciously you ask, does she like having her ass fucked? To your surprise, Mira responds that she does like it a bit. You are slightly disappointed because this was supposed to be a punishment. Remind her that she still has two wishes to fulfil. Once they are all fulfilled, she will have satisfied her debt to you. Mira nods and says she is ready to redeem your wishes upon demand. You think it over for several moments before walking away…');
@@ -1219,8 +1221,8 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
             }
             if (((s as any).daystart ?? 0) < ((s as any).MiraVars ?? 0)?.['emb_day']  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
-              if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
-              if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['emb_day'] = ((s as any).MiraVars['emb_day'] ?? 0) - (1);
+              ((s as any).MiraVars = (s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
+              ((s as any).MiraVars = (s as any).MiraVars ?? {})['emb_day'] = ((s as any).MiraVars['emb_day'] ?? 0) - (1);
             }
             if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_beach') {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraRiver(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1304,7 +1306,7 @@ function enterMiraRiver(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }

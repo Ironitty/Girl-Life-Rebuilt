@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -29,7 +29,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Follow the girl', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-  }, goto: ['pav_lake_nude_events', 'pav_lake_nude_forest_piss'] },
+    qspGoto(s, 'pav_lake_nude_events', 'pav_lake_nude_forest_piss');
+  } },
         ]);
       }
     } else {

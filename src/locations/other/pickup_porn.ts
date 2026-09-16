@@ -32,7 +32,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Sexy name for a sexy girl," he grins. "So here's the deal. I'm an art student and I'm looking for a model to do a… private shoot with me. I'll pay you ${qspFunc(s, 'money', 'string_profit', 3000)} for your time."`);
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    if (!(s as any).porn_studio) (s as any).porn_studio = {}; (s as any).porn_studio['pickup_porn'] = (-1);
+    ((s as any).porn_studio = (s as any).porn_studio ?? {})['pickup_porn'] = (-1);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/island/university/ignat.jpg');
@@ -101,7 +101,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Give in', handler: (st: GameState) => {
-    if (!(s as any).porn_studio) (s as any).porn_studio = {}; (s as any).porn_studio['pickup_porn'] = 1;
+    ((s as any).porn_studio = (s as any).porn_studio ?? {})['pickup_porn'] = 1;
     qspCall(s, 'stat', '');
     if (((s as any).DjibrilQW ?? 0)?.['african_gangbang'] === 1) {
       scene.text('You can\'t be sure if he actually knows about what you\'ve been doing with Djibril and his friends or if he\'s just bluffing, but you also have a feeling he\'ll actually carry out his threat and expose you, so you resign yourself to his demands.');
@@ -117,7 +117,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Let\'s do it then', handler: (st: GameState) => {
-    if (!(s as any).porn_studio) (s as any).porn_studio = {}; (s as any).porn_studio['pickup_porn'] = 1;
+    ((s as any).porn_studio = (s as any).porn_studio ?? {})['pickup_porn'] = 1;
     qspCall(s, 'stat', '');
     scene.text('You smile. "Then you should have just said that! I like getting freaky and doing it on camera sounds hot…"');
     scene.text('He looks taken aback by your response. "Oh, okay. Get undressed and we can start…"');
@@ -162,7 +162,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Do it', handler: (st: GameState) => {
-    if (!(s as any).porn_studio) (s as any).porn_studio = {}; (s as any).porn_studio['pickup_porn'] = 1;
+    ((s as any).porn_studio = (s as any).porn_studio ?? {})['pickup_porn'] = 1;
     qspCall(s, 'stat', '');
     scene.text('You\'re not sure if you can trust him, but something manages to tempt you into doing what he wants. You\'re not sure if it\'s because of the money or if the idea itself is appealing to you.');
     scene.actions([
@@ -823,7 +823,7 @@ function enterDiscoverVideo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWatchCastingCall(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['porn_scout_pickup'] = 3;
+  ((s as any).strip_club = (s as any).strip_club ?? {})['porn_scout_pickup'] = 3;
   scene.img('images/pc/items/accesories/computer/porno.jpg');
   scene.text('As you browse through the selection of videos, your attention is suddenly drawn to one titled "Casting Corner #44", the thumbnail of which looks familiar...');
   scene.text('Curious, you click on it and discover that it\'s the video of you and the porn talent scout who wanted to "test run" you.');

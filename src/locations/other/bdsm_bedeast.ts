@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,6 +11,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_bedeast', 'start');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/bedb.jpg');
   scene.text('Guest bedroom 2');
@@ -26,7 +28,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 70) {
     // TODO-QSP: exit
   }
-  scene.actions([{ label: 'Continue', goto: ['bdsm_bedeast', 'event_<<rand(1, 10)>>'] }]);
+  qspGoto(s, 'bdsm_bedeast', 'event_' + Math.floor(Math.random() * 10) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -98,6 +100,7 @@ function enterEvent_4(s: GameState, scene: SceneBuilder): void {
     scene.text('As you watch the man notices you and motions you over. Obeying you walk over to him. While he keeps fucking the woman on the bed he says. "Straddle her face and look at me."');
     scene.text('You do as you are told and the woman\'s tongue plunges into your pussy at once as she starts tongue fucking you. The man pulls you forward and kisses you as he keeps fucking the other woman.');
     scene.text('You orgasm before he does and when he does, he does deep inside or her. Once finished they get dressed.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 5, 'sub', 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -168,6 +171,7 @@ function enterEvent_8(s: GameState, scene: SceneBuilder): void {
     scene.text('You undress and walk over to her while she unties her sub. As you get to the bed she grabs you and pushes you down face first on the bed. She crawls up on top of you and rubs the strap-on against your asshole.');
     scene.text('With only the lube from her subs pussy juices she shoves it in your ass, sliding it balls deep in you. Then she starts to furiously fuck you as she tells her sub this is how she should take it.');
     scene.text('After a long time she beings to pant and sweat from her efforts in fucking you. Finally rolling off you to take a break, she looks at you. "You may go." You get up and get dressed leaving them in the room.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal_strap', 5, 'sub', 'lesbian', 'rough');
     qspCall(s, 'arousal', 'end');
     scene.actions([

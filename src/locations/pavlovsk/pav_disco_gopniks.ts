@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'vitek'  ||  ((s as any).locArgs?.[0] ?? 0) === 'dan'  ||  ((s as any).locArgs?.[0] ?? 0) === 'shulga') {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_gopniks', 'vitek_dan_vasily'] }]);
+    qspGoto(s, 'pav_disco_gopniks', 'vitek_dan_vasily');
   }
   scene.build();
 }
@@ -84,7 +84,7 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike', 1, 'pav_disco2');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike', 1, 'pav_disco2');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike', 1, 'pav_disco2');
@@ -103,7 +103,7 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
               { label: 'Sure', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'beer', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     scene.text('You grab the bottle and take a swig. "Thanks."');
@@ -119,7 +119,7 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike', 1, 'pav_disco2');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike', 1, 'pav_disco2');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike', 1, 'pav_disco2');
@@ -138,14 +138,14 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
       { label: 'Take another beer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'beer', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     scene.text('You grab the bottle and take a swig. "Thanks."');
     scene.text('They go back to telling stories and you start listening. Once you\'ve finished the bottle, they hand you another and start staring at you again, waiting to see if you take it.');
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/school_kids/vitek_dan_vasily.jpg');
     scene.text('You shake your head. "No thanks. Maybe later."');
@@ -195,7 +195,7 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike', 1, 'pav_disco2');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike', 1, 'pav_disco2');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike', 1, 'pav_disco2');
@@ -214,7 +214,7 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
                 { label: 'Sure', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'beer', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     scene.text('You grab the bottle and take a swig. "Thanks."');
@@ -230,7 +230,7 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike', 1, 'pav_disco2');
     qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike', 1, 'pav_disco2');
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike', 1, 'pav_disco2');
@@ -249,14 +249,14 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
       { label: 'Take another beer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'beer', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     scene.text('You grab the bottle and take a swig. "Thanks."');
     scene.text('They go back to telling stories and you start listening. Once you\'ve finished the bottle, they hand you another and start staring at you again, waiting to see if you take it.');
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/school_kids/vitek_dan_vasily.jpg');
     scene.text('You shake your head. "No thanks. Maybe later."');
@@ -981,7 +981,7 @@ function enterRoman(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A157', 'loathe', 1, 'pav_disco2');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big157.jpg');
@@ -1000,7 +1000,7 @@ function enterRoman(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'beer', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     scene.text('You take the offered bottle and take a swig. "Thanks."');
@@ -1114,7 +1114,7 @@ function enterValentin(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     scene.text('You shake your head. "No thanks. Maybe later."');
@@ -1129,7 +1129,7 @@ function enterValentin(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'beer', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     if (((s as any).alko ?? 0) < 4) {
@@ -1153,7 +1153,7 @@ function enterValentin(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     scene.text('You shake your head. "No thanks. Maybe later."');
@@ -1261,7 +1261,7 @@ function enterArkadi(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('You shake your head. "No thanks. Maybe later."');
@@ -1276,7 +1276,7 @@ function enterArkadi(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'beer', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     scene.text('You take the offered bottle and take a swig. "Thanks."');
@@ -1444,7 +1444,7 @@ function enterLavrenti(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big155.jpg');
     scene.text('You shake your head. "No thanks. Maybe later."');
@@ -1470,7 +1470,7 @@ function enterLavrenti(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'cocaine', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/school_kids/cocaine.jpg');
     scene.text('You nod your head and smile. "Sure, thanks."');
@@ -1534,7 +1534,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
   scene.text('Pauline is hanging out in the dark corner of the hall with the other gopniks. It\'s dim and hard to make out details, but she seems to be talking to several of the other gopniks while sharing some beers they\'ve smuggled in.');
   // TODO-QSP: end
   if (((s as any).locArgs?.[0] ?? 0) === 'lena'  ||  ((s as any).locArgs?.[0] ?? 0) === 'lera') {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_gopniks', 'lena_lera'] }]);
+    qspGoto(s, 'pav_disco_gopniks', 'lena_lera');
   }
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
@@ -1631,7 +1631,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big24.jpg');
     scene.text('You shake your head. "No thanks. Maybe later."');
@@ -1646,7 +1646,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'beer', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     scene.text('You take the offered bottle and take a swig. "Thanks."');
@@ -2126,7 +2126,8 @@ function enterAnushkaDance(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back to just dancing', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_disco_gopniks', 'anushka_dance'] },
+    qspGoto(s, 'pav_disco_gopniks', 'anushka_dance');
+  } },
       { label: 'Grind against her', handler: (st: GameState) => {
     if (((s as any).pcs_hotcat ?? 0) >= 6) {
       scene.img('images/locations/pavlovsk/community/disco/school_kids/anushka_dance3.jpg');
@@ -2138,7 +2139,8 @@ function enterAnushkaDance(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Go back to just dancing', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_disco_gopniks', 'anushka_dance'] },
+    qspGoto(s, 'pav_disco_gopniks', 'anushka_dance');
+  } },
           { label: 'Dry hump her', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).npc_rel ?? 0)?.['A144'] >= 50  &&  ((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).anushkaQW ?? 0)?.['kiss'] > 5) {
@@ -2209,7 +2211,8 @@ function enterAnushkaDance(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go back to just dancing', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_disco_gopniks', 'anushka_dance'] },
+    qspGoto(s, 'pav_disco_gopniks', 'anushka_dance');
+  } },
         { label: 'Want to go fuck?', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/school_kids/anushka_dance4.jpg');
     scene.text('She starts giggling as you hump her, obviously finding the whole situation amusing. The boys on the other hand seem to be fascinated by what they\'re watching.');
@@ -2252,7 +2255,8 @@ function enterAnushkaDance(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Do something else', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_disco_classmates', 'classmates'] },
+    qspGoto(s, 'pav_disco_classmates', 'classmates');
+  } },
       ]);
     } else {
       scene.img('images/locations/pavlovsk/community/disco/school_kids/anushka_dance2.jpg');
@@ -2264,13 +2268,15 @@ function enterAnushkaDance(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Go back to just dancing', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_disco_gopniks', 'anushka_dance'] },
+    qspGoto(s, 'pav_disco_gopniks', 'anushka_dance');
+  } },
         ]);
       }
       scene.actions([
         { label: 'Do something else', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['pav_disco_classmates', 'classmates'] },
+    qspGoto(s, 'pav_disco_classmates', 'classmates');
+  } },
       ]);
     }
   } },
@@ -2428,7 +2434,7 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big143.jpg');
     scene.text('You shake your head. "No thanks. Maybe later."');
@@ -2443,7 +2449,7 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/drink_beer.jpg');
     scene.text('You take the offered bottle and take a swig. "Thanks."');

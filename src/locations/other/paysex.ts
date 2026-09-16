@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,9 +8,9 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 0) {
-    (s as any).knwn = qspUntranslated(s, "ARGS[1]", { location: "paysex" });
+    (s as any).knwn = ((s as any).locArgs?.[1] ?? 0);
     // TODO-QSP: :knownloop
-    if (!(s as any).knownboy) (s as any).knownboy = {}; (s as any).knownboy[String((s as any).knwn ?? 0)] = 1;
+    ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
     (s as any).knwn = ((s as any).knwn ?? 0) - (1);
     if (((s as any).knwn ?? 0) > 0) {
       // TODO-QSP: jump 'knownloop'
@@ -20,10 +20,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'sweat', 'add', 10);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
-  scene.actions([{ label: 'Continue', goto: ['paysex', 'var'] }]);
+  qspGoto(s, 'paysex', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -33,13 +33,17 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex2', 'stamina_npc');
   (s as any).temp_randpicture = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).temp_randpicture ?? 0))) {
+    (s as any).randpicture = 'vag';
   }
   if (((s as any).temp_randpicture ?? 0) === 1) {
+    (s as any).randpicture = 'anal';
   }
   if (((s as any).temp_randpicture ?? 0) === 2) {
+    (s as any).randpicture = 'dp';
   }
   scene.img(`images/locations/shared/sex/${((s as any).randpicture || '')}${((s as any).picrand || '')}.jpg`);
   // TODO-QSP: copyarr '$temp1', '$boy'
+  (s as any).boyP = qspUntranslated(s, "boy[0]", { location: "paysex" });
   (s as any).x = 0;
   // TODO-QSP: :randomorder
   (s as any).paysexrand = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp1') - 1);
@@ -307,12 +311,12 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     (s as any).paysxhj = 0;
     (s as any).firstact = 0;
     if (((s as any).picrand ?? 0) === 16  ||  ((s as any).picrand ?? 0) === 17) {
-      scene.actions([{ label: 'Continue', goto: ['office', 'work'] }]);
+      qspGoto(s, 'office', 'work');
     } else {
       if (((s as any).picrand ?? 0) === 18) {
-        scene.actions([{ label: 'Continue', goto: ['husbSex', 'dolgend'] }]);
+        qspGoto(s, 'husbSex', 'dolgend');
       } else {
-        scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'sexloc'); } }]);
+        dynamicGoto(s, 'sexloc');
       }
     }
   } },

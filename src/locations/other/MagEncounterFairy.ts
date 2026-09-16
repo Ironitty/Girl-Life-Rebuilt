@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Look for the fairy to chat', goto: ['MagEncounterFairy', 'fairy_chat'] },
         { label: 'Just be on your way', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -23,7 +23,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_mana ?? 0) >= ((((s as any).pcs_intel ?? 0) * ((s as any).pcs_magik ?? 0) + ((s as any).pcs_magik ?? 0) * 100 + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0)) / 4)) {
         scene.actions([
           { label: 'Just ignore the fairy', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       }
@@ -39,7 +39,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'Shoo the pesky firefly away', goto: ['MagEncounterFairy', 'fairy_shoo'] },
         { label: 'Ignore the firefly', handler: (st: GameState) => {
     (st as any).fairyskip = ((st as any).daystart ?? 0);
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
@@ -49,7 +49,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Shake off the feeling and move on', handler: (st: GameState) => {
     (st as any).fairyskip = ((st as any).daystart ?? 0);
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -80,7 +80,7 @@ function enterFairyChatNo1(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).pcs_skin = 1000;
       }
-      if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['skin_increase'] = ((s as any).fairyQW['skin_increase'] ?? 0) + (1);
+      ((s as any).fairyQW = (s as any).fairyQW ?? {})['skin_increase'] = ((s as any).fairyQW['skin_increase'] ?? 0) + (1);
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       qspCall(s, 'stat', '');
       scene.text('The fairy bids you farewell. Just as she flies off, she returns fluttering in front of your face.');
@@ -92,7 +92,7 @@ function enterFairyChatNo1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wave goodbye', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -105,7 +105,7 @@ function enterFairyShoo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowsfairy ?? 0) < 1) {
     (s as any).knowsfairy = 1;
     (s as any).fairyshoo = 1;
-    (s as any).pcs_horny = 0;
+    (s as any).pcs_horny = Math.max(90, ((s as any).pcs_horny ?? 0));
     qspCall(s, 'stat', '');
     scene.text('Not paying much attention you wave your hands to chase away the (very large!?) firefly. She easily dodges your halfhearted moves.');
     scene.text('"You are a big meanie!", suddenly squeals a high pitched voice.');
@@ -114,18 +114,18 @@ function enterFairyShoo(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe this will teach you." she says with a pout and flies off.');
     scene.actions([
       { label: 'Move along', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
     (s as any).fairyshoo = ((s as any).fairyshoo ?? 0) + (1);
-    (s as any).pcs_horny = 0;
+    (s as any).pcs_horny = Math.max(90, ((s as any).pcs_horny ?? 0));
     (s as any).fairycurse = ((s as any).daystart ?? 0) + (((s as any).fairyshoo ?? 0) - 1) * 2;
     qspCall(s, 'stat', '');
     scene.text('"Still a meanie, I see!", squeals the fairy "Well, have it your way."');
     scene.actions([
       { label: 'Get away from the fairy', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -158,8 +158,8 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).pcs_skin = 1000;
       }
-      if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['skin_increase'] = ((s as any).fairyQW['skin_increase'] ?? 0) + (1);
-      if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['day'] = ((s as any).daystart ?? 0);
+      ((s as any).fairyQW = (s as any).fairyQW ?? {})['skin_increase'] = ((s as any).fairyQW['skin_increase'] ?? 0) + (1);
+      ((s as any).fairyQW = (s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
       scene.text('The fairy bids you farewell.');
       qspCall(s, 'stat', '');
@@ -168,14 +168,14 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
       scene.text('Remembering the last time you hold your breath and close your eyes. Just a moment later you feel your skin start tingling, again, as if brushed by a feather.');
       scene.actions([
         { label: 'Go on your way', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     } else {
       if (((s as any).fairyQW ?? 0)?.['skin_increase'] > 10  &&  ((s as any).fairyQW ?? 0)?.['day'] < ((s as any).daystart ?? 0)  &&  ((s as any).fairyshoo ?? 0) === 0  &&  ((s as any).pcs_magik ?? 0) >= 8  &&  ((s as any).fairychat ?? 0) > 9  &&  ((s as any).succubusQW ?? 0) < 1) {
         (s as any).succubusQW = 1;
-        (s as any).pcs_horny = 0;
-        if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['day'] = ((s as any).daystart ?? 0);
+        (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
+        ((s as any).fairyQW = (s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
         qspCall(s, 'stat', '');
         scene.text('The fairy bids you farewell.');
         qspCall(s, 'stat', '');
@@ -184,19 +184,19 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
         scene.text('Remembering the last time you hold your breath and close your eyes. Just a moment later you feel a much more intense tingling, this time seeming to go all the way through you.');
         scene.actions([
           { label: 'Go on your way', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       } else {
         if (((s as any).fairyQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  (((s as any).pcs_nips ?? 0) < 80  ||  ((s as any).clit_size ?? 0) < 80)) {
-          if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['day'] = ((s as any).daystart ?? 0);
+          ((s as any).fairyQW = (s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
           scene.text('The fairy takes another quick look at you, rubs her chin, and says "Hmm, since you\'ve been a little nice to me, maybe I could be a little nice to you."');
           scene.actions([
             { label: 'Huh?', handler: (st: GameState) => {
     scene.text('You look at her, puzzled, wondering if you heard her right. She just shrugs her shoulders and says "Okay, if you\'re not interested"');
     scene.actions([
       { label: 'Go on your way', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -247,7 +247,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Go on your way', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -308,7 +308,7 @@ function enterFairychattopic(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).frandchat ?? 0) === 15) {
                                 scene.text('Today the fairy introduces you to fairy knock-knock jokes. She spends almost half an hour telling joke after joke, but you failed to understand a single one. By the time you\'re ready to leave, she\'s complaining about how humans have no sense of humor.');
                               } else {
-                                scene.actions([{ label: 'Continue', goto: ['MagEncounterFairy', 'teleport'] }]);
+                                qspGoto(s, 'MagEncounterFairy', 'teleport');
                               }
                             }
                           }
@@ -327,7 +327,7 @@ function enterFairychattopic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go on your way', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -346,8 +346,8 @@ function enterTeleport(s: GameState, scene: SceneBuilder): void {
     scene.text('The view outside the circle seems blurry and a little indistinct. The Fairy\'s face scrunches up in concentration as she incants "inla", and the world outside seems to shimmer a little. You feel like you understand how she did that. Though you can\'t tell exactly where you are now in the blurriness, it does look different.');
     scene.text('The Fairy says, "It\'s important to take the time to feel each Fairy Ring, that\'s how you can find your way back." She flies off.');
     scene.text('You decide it would be wise to memorize your surroundings.');
-    if (!(s as any).spellKnown) (s as any).spellKnown = {}; (s as any).spellKnown['teleport'] = 1;
-    if (!(s as any).tpKnown) (s as any).tpKnown = {}; (s as any).tpKnown['gad_forest'] = 1;
+    ((s as any).spellKnown = (s as any).spellKnown ?? {})['teleport'] = 1;
+    ((s as any).tpKnown = (s as any).tpKnown ?? {})['gad_forest'] = 1;
     scene.actions([
       { label: 'You step out of the circle…', goto: ['gad_forest', 'forest_edge'] },
     ]);

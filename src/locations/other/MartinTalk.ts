@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/city/industrial/bar/martintalk.jpg');
@@ -190,6 +191,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_stren ?? 0) > 60  ||  ((s as any).pcs_agil ?? 0) > 60) {
                     scene.actions([
                       { label: 'Fitness training', handler: (st: GameState) => {
+    (s as any).MartinHobby = 'fitness regime';
     scene.text('"I enjoy working out," you say with a grin and flex some muscles. "Doesn\'t it show?"');
     scene.text('Martin laughs. "Oh no, it does. You are a woman after my own heart."');
     scene.text('"That\'s good to know," you smile.');
@@ -204,6 +206,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0) {
                     scene.actions([
                       { label: 'Dancing', handler: (st: GameState) => {
+    (s as any).MartinHobby = 'dance troupe';
     scene.text('"I\'m with a dance troupe. We do some shows every now and then, but it\'s not that big of a deal."');
     scene.text('"Sounds like a lot of work." Martin gives you an approving nod. "Takes a lot of discipline."');
     scene.text('"It is, and it does," you agree, "but it\'s really fulfilling to go on stage, do a routine and earn people\'s applause."');
@@ -218,6 +221,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).runnerQW ?? 0)?.['pav_wins2'] > 0) {
                     scene.actions([
                       { label: 'Athletics', handler: (st: GameState) => {
+    (s as any).MartinHobby = 'athletics training';
     scene.text('"I do some track and field. Something about running just speaks to me, I guess."');
     scene.text('"I know what you mean. I used to do some athletics too, when I was young. We used to call it \'running away\' back then, though," he chuckles.');
     scene.text('You roll your eyes at his awful joke. "Riiight, thank you for your support. And here I thought you\'d approve of anything sportive."');
@@ -232,6 +236,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
                     scene.actions([
                       { label: 'Volleyball', handler: (st: GameState) => {
+    (s as any).MartinHobby = 'latest volleyball game';
     scene.text('"I play volleyball in a team. It\'s a lot of fun, actually."');
     scene.text('Martin raises an eyebrow. "Volleyball? I thought that was only played on beaches, on holidays."');
     scene.text('"Oh no, it\'s actually kind of a big deal here in St. Petersburg. And in Russia, I guess. When you do it professionally, anyway."');
@@ -246,6 +251,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_sewng ?? 0) > 40) {
                     scene.actions([
                       { label: 'Sewing', handler: (st: GameState) => {
+    (s as any).MartinHobby = 'best needlework';
     scene.text('"I\'ve picked up sewing as a hobby."');
     scene.text('Martin raises an eyebrow. "Sewing? Seriously?"');
     scene.text('"Yeah, I did. What\'s wrong with that?" You ask, irritated.');
@@ -260,6 +266,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).chess_rank ?? 0) > 0) {
                     scene.actions([
                       { label: 'Chess', handler: (st: GameState) => {
+    (s as any).MartinHobby = 'latest chess game';
     scene.text('"I like playing chess."');
     scene.text('"Ah, so you are a strategist at heart." Martin smiles. "It\'s a good game. Teaches you a lot about life."');
     scene.text('"Does it, now?" You give him a wry smile. "What part of it? The one where a horse tears down a tower?"');
@@ -275,6 +282,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     scene.actions([
                       { label: 'Making Music', handler: (st: GameState) => {
     if (((s as any).pcs_vokal ?? 0) >= ((s as any).pcs_instrmusic ?? 0)) {
+      (s as any).MartinHobby = 'singing exercises';
+    } else {
+      (s as any).MartinHobby = 'finger exercises';
     }
     // TODO-QSP: dynamic text: "I '+iif(pcs_vokal >= pcs_instrmusic, 'sing', 'play an instrument')+'."
     scene.text('"I \'+iif(pcs_vokal >= pcs_instrmusic, \'sing\', \'play an instrument\')+\'."');
@@ -292,6 +302,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).kickbox ?? 0)?.['sash'] > 0) {
                     scene.actions([
                       { label: 'Kickboxing', handler: (st: GameState) => {
+    (s as any).MartinHobby = 'kickboxing training';
     scene.text('"I\'ve taken up martial arts. Kickboxing."');
     scene.text('Martin nods approvingly. "Good. A woman should know how to defend herself."');
     scene.text('"Yeah, that\'s part of the reason why I started with that," you agree.');
@@ -307,6 +318,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     scene.actions([
                       { label: 'Art', handler: (st: GameState) => {
     if (((s as any).pcs_artskls ?? 0) >= ((s as any).pcs_photoskl ?? 0)) {
+      (s as any).MartinHobby = 'drawings and paintings';
+    } else {
+      (s as any).MartinHobby = 'photography';
     }
     // TODO-QSP: dynamic text: "I ' + iif(pcs_artskls >= pcs_photoskl, 'started drawing and painting', 'picked ...
     scene.text('"I \' + iif(pcs_artskls >= pcs_photoskl, \'started drawing and painting\', \'picked up photography\') + \' some time ago."');
@@ -322,6 +336,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   }
                   scene.actions([
                     { label: 'A lot of things', handler: (st: GameState) => {
+    (s as any).MartinHobby = 'dark secret hobbies';
     scene.text('"Oh, you know, a little bit of everything. Sometimes I work out, sometimes I do some dancing or running or play football, but there\'s nothing that I pursue zealously enough to call it a hobby."');
     scene.text('"Can\'t decide which one suits you best, huh?"');
     scene.text('"I guess? Maybe everything suits me just fine. Or perhaps I\'m just not interested in one thing in particular." You shrug. "I don\'t know."');

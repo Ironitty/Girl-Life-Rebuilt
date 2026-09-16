@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'sitrPar', '');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'livingr';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'family_schedule', '');
@@ -21,25 +23,25 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.text('');
-  scene.text('The living room has a <a href="exec:gt \'TV\',\'pav\'">TV</a> near the window. In front of the TV is a <a href="exec:gt \'sitrPar\',\'sofa\'">sofa bed</a> on which your brother sleeps at night. A large tapestry covers one wall, while the other wall has several shelves on it, stocked with books and other things.');
+  scene.text('The living room has a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027pav\\u0027); return false;">TV</a> near the window. In front of the TV is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027sitrPar\\u0027, \\u0027sofa\\u0027); return false;">sofa bed</a> on which your brother sleeps at night. A large tapestry covers one wall, while the other wall has several shelves on it, stocked with books and other things.');
   if (((s as any).locat ?? 0)?.['Fam_livingroom'] === 0  &&  ((s as any).locat ?? 0)?.['Mother'] !== 24  &&  ((s as any).locat ?? 0)?.['Mother'] !== 19) {
     scene.text('No one else is here right now, so you\'re free to use the room how you like.');
     qspCall(s, 'exercise', 'start');
   }
   if (((s as any).locat ?? 0)?.['Kolka'] === 2  &&  ((s as any).brotherQW ?? 0)?.['last_sex_day_morning'] === ((s as any).daystart ?? 0)) {
-    scene.text('<a href="exec:gt \'brother\', \'start\'">Kolka</a> is getting ready for school.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> is getting ready for school.');
   } else {
     if (((s as any).locat ?? 0)?.['Kolka'] === 1) {
-      scene.text('<a href="exec:gt \'brother\', \'start\'">Kolka</a> is sleeping on the sofa.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> is sleeping on the sofa.');
     } else {
       if (((s as any).locat ?? 0)?.['Kolka'] === 7) {
-        scene.text('<a href="exec:gt \'brother\', \'start\'">Kolka</a> is sitting by the table doing his homework.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> is sitting by the table doing his homework.');
       } else {
         if (((s as any).locat ?? 0)?.['Kolka'] === 11) {
           if (((s as any).locat ?? 0)?.['Mother'] === 19  ||  ((s as any).locat ?? 0)?.['Stepdad'] === 10) {
-            scene.text('<a href="exec: gs \'npc_relationship\', \'modify\', \'A34\', \'like\', 1 & gt \'brother\', \'start\'">Kolka</a> is sitting in the armchair playing on his phone.');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify\\u0027, \\u0027A34\\u0027); return false;">Kolka</a> is sitting in the armchair playing on his phone.');
           } else {
-            scene.text('<a href="exec:gt \'brother\', \'start\'">Kolka</a> is sitting on the sofa playing video games.');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> is sitting on the sofa playing video games.');
           }
         }
       }
@@ -101,13 +103,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).locat ?? 0)?.['Mother'] === 24) {
-        scene.actions([{ label: 'Continue', goto: ['sitrPar', 'mom_floor_sweeping'] }]);
+        qspGoto(s, 'sitrPar', 'mom_floor_sweeping');
       } else {
         if (((s as any).locat ?? 0)?.['Mother'] === 19  &&  ((s as any).locat ?? 0)?.['Stepdad'] === 10) {
           // TODO-QSP: dynamic text: As you walk into the living room, you see your <<$npc_nickname['A29']>> and Vlad...
           scene.text(`As you walk into the living room, you see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and Vladimir sitting on the couch watching TV.`);
           if (((s as any).clothingworntype ?? 0) === 'nude') {
-            scene.actions([{ label: 'Continue', goto: ['sitrPar', 'naked_mom_present'] }]);
+            qspGoto(s, 'sitrPar', 'naked_mom_present');
           }
           scene.actions([
             { label: 'Join them', handler: (st: GameState) => {
@@ -141,13 +143,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).locat ?? 0)?.['Mother'] === 19) {
             // TODO-QSP: dynamic text: As you walk into the living room, you see your <a href="exec:gt'mother'"><<$npc_...
-            scene.text(`As you walk into the living room, you see your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> sitting on the couch watching TV.`);
+            scene.text(`As you walk into the living room, you see your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mother\\u0027, \\u0027\\u0027); return false;">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> sitting on the couch watching TV.`);
             if (((s as any).clothingworntype ?? 0) === 'nude') {
-              scene.actions([{ label: 'Continue', goto: ['sitrPar', 'naked_mom_present'] }]);
+              qspGoto(s, 'sitrPar', 'naked_mom_present');
             }
           } else {
             if (((s as any).locat ?? 0)?.['Stepdad'] === 10) {
-              scene.text('Your <a href="exec:gt \'father\'">stepfather</a> is sitting on the sofa, watching TV.');
+              scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027father\\u0027, \\u0027\\u0027); return false;">stepfather</a> is sitting on the sofa, watching TV.');
             }
           }
         }
@@ -158,19 +160,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'subkid', '');
     if (((s as any).kid ?? 0) >= 1) {
       if (((s as any).mc_inventory ?? 0)?.['breast_pump'] === 1  &&  ((s as any).bp_unbox ?? 0) === 1  &&  ((s as any).pcs_inhib ?? 0) > 30) {
-        scene.text('<a href="exec: gt \'lact_bp\', \'bp_unbox_event\'">Try out</a> your breast pump');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027bp_unbox_event\\u0027); return false;">Try out</a> your breast pump');
       } else {
         if (((s as any).mc_inventory ?? 0)?.['breast_pump'] === 1  &&  ((s as any).bp_unbox ?? 0) <= 0) {
-          scene.text('<a href="exec: gt \'lact_bp\', \'bp_unbox_event\'">Unbox</a> your breast pump');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027bp_unbox_event\\u0027); return false;">Unbox</a> your breast pump');
         }
       }
     } else {
       if (((s as any).locat ?? 0)?.['Fam_livingroom'] === 0) {
         if (((s as any).mc_inventory ?? 0)?.['breast_pump'] === 1  &&  ((s as any).bp_unbox ?? 0) === 1) {
-          scene.text('<a href="exec: gt \'lact_bp\', \'bp_unbox_event\'">Try out</a> your breast pump');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027bp_unbox_event\\u0027); return false;">Try out</a> your breast pump');
         } else {
           if (((s as any).mc_inventory ?? 0)?.['breast_pump'] === 1  &&  ((s as any).bp_unbox ?? 0) <= 0) {
-            scene.text('<a href="exec: gt \'lact_bp\', \'bp_unbox_event\'">Unbox</a> your breast pump');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lact_bp\\u0027, \\u0027bp_unbox_event\\u0027); return false;">Unbox</a> your breast pump');
           }
         }
       }
@@ -200,7 +202,7 @@ function enterMomFloorSweeping(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
-        scene.actions([{ label: 'Continue', goto: ['sitrPar', 'naked_mom_present'] }]);
+        qspGoto(s, 'sitrPar', 'naked_mom_present');
       } else {
         qspCall(s, 'wardrobe', 'school_outfit');
         // TODO-QSP: dynamic text: You see your <<$npc_nickname['A29']>> sweeping the floor.
@@ -248,10 +250,10 @@ function enterSofa(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/home/sofa.jpg');
   scene.text('<center>A small sofa bed, when not folded out into a bed, is just big enough for you to curl up on and take a nap.</center>');
   if (((s as any).locat ?? 0)?.['Mother'] === 24) {
-    scene.actions([{ label: 'Continue', goto: ['sitrPar', 'mom_floor_sweeping'] }]);
+    qspGoto(s, 'sitrPar', 'mom_floor_sweeping');
   } else {
     if (((s as any).locat ?? 0)?.['Kolka'] === 1) {
-      scene.text('<a href="exec:gt \'brother\', \'start\'">Kolka</a> is sleeping on the sofa. I should leave now.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> is sleeping on the sofa. I should leave now.');
     } else {
       qspCall(s, 'library_functions', 'set_home_read_acts');
       if (((s as any).locat ?? 0)?.['Fam_livingroom'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['mag_porn'] > 0) {

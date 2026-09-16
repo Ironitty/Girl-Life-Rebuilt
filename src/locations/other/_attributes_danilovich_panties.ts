@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).PanStrength = 80000;
     (s as any).PanThinness = 3;
     (s as any).PanPrice = 1150;
-    if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 1;
+    ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 1;
   } else {
     if (((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).PanType = 1;
@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).PanStrength = 60000;
       (s as any).PanThinness = 2;
       (s as any).PanPrice = 1100;
-      if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 2;
+      ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 2;
     } else {
       if (((s as any).locArgs?.[0] ?? 0) === 3) {
         (s as any).PanType = 1;
@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).PanStrength = 80000;
         (s as any).PanThinness = 3;
         (s as any).PanPrice = 1150;
-        if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 3;
+        ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 3;
       } else {
         if (((s as any).locArgs?.[0] ?? 0) === 4) {
           (s as any).PanType = 1;
@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).PanStrength = 80000;
           (s as any).PanThinness = 3;
           (s as any).PanPrice = 1150;
-          if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 4;
+          ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 4;
         } else {
           if (((s as any).locArgs?.[0] ?? 0) === 5) {
             (s as any).PanType = 2;
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).PanStrength = 80000;
             (s as any).PanThinness = 3;
             (s as any).PanPrice = 1150;
-            if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 5;
+            ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 5;
           } else {
             if (((s as any).locArgs?.[0] ?? 0) === 6) {
               (s as any).PanType = 1;
@@ -61,7 +61,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).PanStrength = 60000;
               (s as any).PanThinness = 4;
               (s as any).PanPrice = 1100;
-              if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 6;
+              ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 6;
             } else {
               if (((s as any).locArgs?.[0] ?? 0) === 7) {
                 (s as any).PanType = 1;
@@ -71,7 +71,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).PanStrength = 80000;
                 (s as any).PanThinness = 2;
                 (s as any).PanPrice = 1150;
-                if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 7;
+                ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 7;
               } else {
                 if (((s as any).locArgs?.[0] ?? 0) === 8) {
                   (s as any).PanType = 2;
@@ -81,7 +81,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).PanStrength = 60000;
                   (s as any).PanThinness = 2;
                   (s as any).PanPrice = 1100;
-                  if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 8;
+                  ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 8;
                 }
               }
             }

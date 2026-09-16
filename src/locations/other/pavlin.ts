@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -44,7 +44,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).custangry ?? 0) === 1  &&  (!((s as any).custleft ?? 0))) {
         scene.actions([
-          { label: 'Go to <<$npc_nickname[\'A217\']>>', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npc_nickname ?? 0)?.['A217'] ?? '' ?? ''), handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
@@ -76,7 +76,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).custangry ?? 0) === 1  &&  ((s as any).custleft ?? 0) === 1) {
           scene.actions([
-            { label: 'Go to <<$npc_nickname[\'A217\']>>', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npc_nickname ?? 0)?.['A217'] ?? '' ?? ''), handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
@@ -108,7 +108,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).custangry ?? 0) === 0  &&  ((s as any).custleft ?? 0) === 1) {
             scene.actions([
-              { label: 'Go to <<$npc_nickname[\'A217\']>>', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npc_nickname ?? 0)?.['A217'] ?? '' ?? ''), handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly. His hands are clenched into fists on the table.');
@@ -508,7 +508,7 @@ function enterPavgenprosmf(s: GameState, scene: SceneBuilder): void {
   (s as any).customerrand = Math.floor(Math.random() * 10) + 0;
   if (((s as any).customerrand ?? 0) < 3) {
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
       // TODO-QSP: dynamic text: <<$npcdesc>> holds your head and pulls his dick out of your mouth. "Put one of t...
       scene.text(`${((s as any).npcdesc || '')} holds your head and pulls his dick out of your mouth. "Put one of those condoms on me. It's time to test that pussy of yours."`);
       qspCall(s, 'dinsex', 'pc_puts_condom');
@@ -553,7 +553,7 @@ function enterPavgenprosmf(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).customerrand ?? 0) < 7) {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
         scene.text('You pull his dick out of your mouth and tell him to put a condom on before he fucks you.');
         qspCall(s, 'dinsex', 'boy_puts_condom');
         scene.actions([
@@ -1018,13 +1018,13 @@ function enterPavgenprosmmf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'prostitution', 'self');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Ask for <<$func(\'money\', \'string_profit\', 1000)>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Ask for ' + String(qspFunc(s, 'money', 'string_profit', 1000) ?? ''), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Ask for <<$func(\'money\', \'string_profit\', 1000)>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Ask for ' + String(qspFunc(s, 'money', 'string_profit', 1000) ?? ''), handler: (st: GameState) => {
     (s as any).mmfextrapay = 1;
     (s as any).mmfcond = 0;
     qspCall(s, 'willpower', 'prostitution', 'self');
@@ -1075,9 +1075,9 @@ function enterSexmmf(s: GameState, scene: SceneBuilder): void {
     scene.text(`It doesn't take long before ${qspUntranslated(s, "npcdesc[1]", { location: "pavlin" })} pulls you to your feet and guides you onto the bed. "Time to fuck that pussy of yours."`);
     if (((s as any).mmfcond ?? 0) === 1) {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-        qspCall(s, 'dinsex', 'boy_puts_condom', '' + qspUntranslated(s, "npcdesc[1]>", { location: "pavlin" }) + ' takes your \'+iif(preziktype = 2, \'sabotaged \', \')+ \'condom and puts it on his <<dick_length[1]>>cm <<$dick_girth[1]>> dick.');
+        qspCall(s, 'dinsex', 'boy_puts_condom', '' + qspUntranslated(s, "npcdesc[1]", { location: "pavlin" }) + ' takes your \'+iif(preziktype = 2, \'sabotaged \', \')+ \'condom and puts it on his ' + qspUntranslated(s, "dick_length[1]", { location: "pavlin" }) + 'cm ' + qspUntranslated(s, "dick_girth[1]", { location: "pavlin" }) + ' dick.');
       } else {
-        qspCall(s, 'dinsex', 'boy_puts_his_condom', '' + qspUntranslated(s, "npcdesc[1]>", { location: "pavlin" }) + '');
+        qspCall(s, 'dinsex', 'boy_puts_his_condom', '' + qspUntranslated(s, "npcdesc[1]", { location: "pavlin" }) + '');
       }
     }
     // TODO-QSP: dynamic text: The three of you position yourselves on the bed before <<$npcdesc[1]>> grabs you...
@@ -1289,6 +1289,7 @@ function enterPavgenprosff(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "P-Please fuck my pussy..." you beg again and <<$npcdesc>> starts building up th...
     scene.text(`"P-Please fuck my pussy..." you beg again and ${((s as any).npcdesc || '')} starts building up the pace. Within a minute, her fingers are rapidly plunging in and out of your pussy and the room is filled with the sound of it, at least when your moans don't drown it out.`);
     scene.text('You feel your orgasm rapidly approach as her fingers keep hitting just the right spot. You grab her wrist and hold her wriggling fingers as deep inside you as you can, grinding them as you let it wash over you.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 10, 'prostitution', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1430,6 +1431,7 @@ function enterFfshower(s: GameState, scene: SceneBuilder): void {
     scene.text('"That <i>was</i> pretty incredible. I\'ll make sure to ask for you when I\'m in town again," she replies as she puts her clothes back on.');
     scene.text('"I\'d love that. My... My clients usually aren\'t as gentle with me as you were. I-I liked it. A lot..." you say, a little abashed.');
     scene.text('"See you next time then, sweetie," she smiles as she heads for the door. "And remember to keep this our little secret."');
+    (s as any).orgasm_or = 'yes';
     (s as any).noshampoo = 1;
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'arousal', 'kiss', 5, 'prostitution', 'no_orgasm_msg');
@@ -1690,6 +1692,7 @@ function enterTwins(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/anya/sex/twins11.jpg');
     scene.text('The pleasure quickly builds to a crescendo before exploding. Being stimulated in 3 erogenous zones at once, you feel an earth-shattering orgasm like you\'ve never experienced before.');
     scene.text('Your whole body starts shaking uncontrollably as you cum and, if your sister hadn\'t jumped up to hold you, you would have fallen off the couch.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal', 10, 'prostitution');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <<$boydesc>> laughs. "Okay girl, you had your release. Now it's my turn."
@@ -2036,7 +2039,7 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'I can\'t do this', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) - (1);
+    ((s as any).stat = (s as any).stat ?? {})['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) - (1);
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'pain', '', 9, 'head', 'hit');
     qspCall(s, 'pain', '', 9, 'tummy', 'kick');
@@ -2102,7 +2105,7 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     (s as any).unintendedabort = 1;
     (s as any).knowpregloss = 2;
     if (((s as any).broodcurse ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['gameover', 'force', '13'] }]);
+      qspGoto(s, 'gameover', 'force', '13');
     }
     qspCall(s, 'stat', '');
     scene.actions([
@@ -2139,13 +2142,13 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>');
     scene.text('When you wake up hours later, the nurse hands you some painkillers and tells you that you\'re being discharged from the hospital.');
     scene.text('You slowly get dressed and leave the building. As you head back out into the streets, you feel numb; hollowed out inside like a long dead tree stump. You\'re utterly broken as you wander the streets aimlessly, hoping for a way to move on from all this.');
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) + (10);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) + (10);
     qspCall(s, 'mood', 'raise_trauma', 10);
     (s as any).Surgeryday = ((s as any).daystart ?? 0);
     (s as any).pcs_health = 50;
     (s as any).recuperation = 1;
     qspCall(s, 'stat', '');
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A217'] = (-1);
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A217'] = (-1);
     (s as any).PavlinQW = 9;
     scene.actions([
       { label: 'Leave', goto: ['pav_clinic', ''] },

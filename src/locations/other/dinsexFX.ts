@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -5,6 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).vagstart = qspUntranslated(s, "{", { location: "dinsexFX" });
   // TODO-QSP: !condom check, to skip just use 2
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
     qspCall(s, 'dina', 'prezik');
@@ -18,6 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You give the guy a condom and he puts it on in silence.');
     }
   }
+  (s as any).vagstart2 = qspUntranslated(s, "{", { location: "dinsexFX" });
   // TODO-QSP: !need $boy, dick and silavag
   (s as any).frost = 0;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -27,6 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
     scene.text('Menstrual blood slowly flows from your vagina, somewhat ruining the mood.');
   }
+  (s as any).vagend = qspUntranslated(s, "{", { location: "dinsexFX" });
   if (((s as any).pcs_horny ?? 0) >= 80) {
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
       (s as any).pcs_horny = 0;
@@ -135,7 +140,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_vag ?? 0) < ((s as any).dick ?? 0)) {
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   }
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
   if (((s as any).protect ?? 0) < 2) {
     if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).pose ?? 0) === 3) {
       qspCall(s, 'cum_manage', '');
@@ -174,6 +179,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 0;
   (s as any).sexcontra = 0;
   (s as any).pose = 0;
+  (s as any).veneracheck = qspUntranslated(s, "{", { location: "dinsexFX" });
   qspCall(s, 'dinSex', 'std_trigger');
   scene.build();
 }

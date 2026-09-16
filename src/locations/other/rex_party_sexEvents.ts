@@ -65,7 +65,7 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Continue cuddling', handler: (st: GameState) => {
     scene.text('<center><b>Ira and Lena</b></center>');
@@ -81,7 +81,7 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Drag the girls in another room', handler: (st: GameState) => {
     scene.text('<center><b>Ira and Lena</b></center>');
@@ -121,6 +121,7 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_7_10.mp4');
     scene.text('Laying side by side with you in the middle, your hands on each other\'s clits, rubbing and caressing them until an incredibly strong orgasm overtakes you all, and the three of you wither in sweet release. "Uhh, who says we need men anyways?" All of your answers with satisfied giggles.');
     scene.text('Continuing to be in ecstasy, you slowly come down on your sexual high, as you do you slowly fall asleep.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 3, ((s as any).npcID ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'vaginal_finger', 2, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'vaginal_finger_give', (-5), ((s as any).npcID ?? 0), 'lesbian', 'group');
@@ -244,7 +245,7 @@ function enterIraLenaRexCum(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -282,6 +283,7 @@ function enterIraBoysFuck(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Ira and Lena</b></center>');
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_iralena_6_${Math.floor(Math.random() * 2) + 3}.jpg`);
   scene.text('Two of the guys, you, Ira, and Lena all take it into the bedroom. The two boys start off fucking Ira and Lena, while you fondled the girls. Eventually they switch and one of them bends you over and starts fucking your pussy, while another fucks Ira, leaving Lena to take turns kissing you and Ira. In time the boys keep switching until both of them have fucked all three of you several times. After several orgasms each, Ira, Lena and you lay back on the bed.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'group', 'unknown');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -318,11 +320,11 @@ function enterRexSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_rex_party_gost_14_7.mp4');
   }
   if (((s as any).rex_love ?? 0) === 1) {
-    // TODO-QSP: 'Rex gently grabbed you by the hair and began to move his penis to your mouth.
+    scene.text('Rex gently grabbed you by the hair and began to move his penis to your mouth.\ncaress it, my love, he asked with a smile.');
   }
   // TODO-QSP: caress it, my love, he asked with a smile.'
   if ((!((s as any).rex_love ?? 0))) {
-    // TODO-QSP: 'Entering the room, Rex grabbed you by the hair and began to move his penis to your mouth.
+    scene.text('Entering the room, Rex grabbed you by the hair and began to move his penis to your mouth.\nstroke it, bitch, he asked with a vicious smile.');
   }
   // TODO-QSP: stroke it, bitch, he asked with a vicious smile.'
   scene.text('You took his head into your mouth and started sucking, after a few moments Rex started pushing his penis forcing you to swallow it even deeper. You were almost choking on his dick.');
@@ -531,7 +533,7 @@ function enterSisterFun(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Kiss', handler: (st: GameState) => {
     scene.text('<center><b>Anya</b></center>');
@@ -672,6 +674,7 @@ function enterSisterCum(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>, if you weren't my sister, I would marry you," your sister...
   scene.text(`"Oh ${((s as any).pcs_nickname || '')}, if you weren't my sister, I would marry you," your sister mumbles.`);
   scene.text('Your warm, wet and limp bodies lie entangled in a moment of pure bliss before you fall asleep in each other\'s arms.');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_finger', 5);
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -691,7 +694,7 @@ function enterDjBoobs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Take off your top', goto: ['rex_party_sexEvents', 'dj_cock'] },
   ]);
@@ -707,7 +710,7 @@ function enterDjCock(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Give his dick a try', goto: ['rex_party_sexEvents', 'dj_suck'] },
   ]);
@@ -748,7 +751,7 @@ function enterDjSuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cuminsidereact', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -759,7 +762,7 @@ function enterDjSuck(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -778,7 +781,7 @@ function enterToiletBoysBj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID ?? 0), 'group', 'gangbang');
     qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'group', 'gangbang');
     (s as any).guy = ((s as any).guy ?? 0) + (3);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_11.jpg');
     scene.text('You try to service them both awkwardly, stroking them both while trying to lick the heads of their dick, in your drunken state you can\'t keep up any kind of rhythm with your hands. One of the guys tells you to just use your mouth.');
@@ -889,7 +892,7 @@ function enterOrgy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -1597,6 +1600,7 @@ function enterToiletSexEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_7_6.mp4');
     scene.text('You feel incredible pleasure from the gentle carresses of the girls. Completely trusting them, you feel totally relaxed. Ira takes Lena\'s place licking your pussy, while Lena slides her tongue to your asshole and begins to lick it.');
     scene.text('You don\'t last long from this dual tobgue lashing. You start moaning loudly and your body spasms hard with an orgasm, coating Ira\'s face from the wetness of your pussy. Once your orgasm passes, both girls stand up and Lena starts licking Ira\'s face, licking your wetness off her. You quickly join in, licking Ira\'s juices off of Lena\'s face while Ira kisses you both in turns.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'group');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1673,7 +1677,9 @@ function enterToiletMast(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_1_${((s as any).i || '')}.mp4"></video></center>`);
   }
   scene.text('With your arousal overpowering your senses, you can\'t take it anymore. You pull your panties down and rigorously begin rubbing your clit. Once you are good and wet, you slide your fingers inside your pussy and start finger fucking yourself, switching back and forth between rubbing your clit and fucking your fingers until you bring yourself to an orgasm.');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'vaginal_finger', 5, 'masturbate');
+  (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end

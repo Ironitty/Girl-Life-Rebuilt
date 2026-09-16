@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterConfession(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  (s as any).confstring = 'kneel together next to the analogion holding a richly decorated Gospel Book with a blessing cross upon its cover';
   if (((s as any).confK ?? 0) !== 0) {
     (s as any).lastconf = ((s as any).daystart ?? 0) - ((s as any).confess ?? 0);
   }
@@ -1124,6 +1125,8 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
       { label: 'Orgasm', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/mast4.jpg');
     scene.text('You feel yourself getting close to orgasm. The Father can either tell or guessed. "Yes, you must purge this lust from your body. Let it all out before God!"');
+    (s as any).orgasm_or = 'yes';
+    (s as any).orgasm_txt = 'You cry out as you\'re wracked by a powerful orgasm, your whole body shaking from the spasms.';
     qspCall(s, 'arousal', 'clit_finger', 5, 'exhibitionism', 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -1244,6 +1247,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/church/sex/foreplay2.jpg');
   scene.text('He stands up and gently pushes you against the wall before his hands start roaming over your body, slowly removing your clothes until your breasts are exposed and his hand is rubbing your clit. "We must purge the lust from your body and banish your sexual desires." You feel one of his fingers slide inside your wet pussy and he slowly fucks you with one finger before adding a second.');
+  (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'vaginal_finger', 5);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1251,12 +1255,14 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     { label: 'Open to purging', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/foreplay3.jpg');
     scene.text('Once you\'re nice and wet, he drops down to his knees and places his face between your legs as you lean back against the wall. He begins to eagerly lick at your clit and pussy, causing you to moan in pleasure. After several minutes he stops and stands back up. "Kneel my child."');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'cuni', 5);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Kneel', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/foreplay4.jpg');
     scene.text('As you kneel down, he pulls his dick out of his pants. It\'s already hard, but he strokes it several times as he says "Open your mouth my child."');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 5);
     qspCall(s, 'stat', '');
     scene.actions([

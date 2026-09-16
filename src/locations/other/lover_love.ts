@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -18,7 +18,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$npcdesc>> examins you and decides that you are ready to meet <<$xyr>> friends...
           scene.text(`${((s as any).npcdesc || '')} examins you and decides that you are ready to meet ${((s as any).xyr || '')} friends.`);
           scene.actions([
-            { label: 'Meet <<$xyr>> friends', goto: ['love', 'frends'] },
+            { label: '', labelFn: (s: GameState) => 'Meet ' + String(((s as any).xyr || '') ?? '') + ' friends', goto: ['love', 'frends'] },
           ]);
         }
       }
@@ -30,11 +30,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npcdesc>> says "<<$pcs_nickname>>. I offer you my hand and heart. Would you m...
       scene.text(`${((s as any).npcdesc || '')} says "${((s as any).pcs_nickname || '')}. I offer you my hand and heart. Would you marry me?"`);
       scene.actions([
-        { label: 'No (turn <<$xem>> down)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'No (turn ' + String(((s as any).xem || '') ?? '') + ' down)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     (s as any).pregtalk = 0;
     // TODO-QSP: gs 'lover', 'remove_' + $npc_rel_type[$npcID], $npcID
-  }, goto: ['homes_properties', 'go_home'] },
+    qspGoto(s, 'homes_properties', 'go_home');
+  } },
         { label: 'Yes', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You agree and put the ring on your finger. <<$npcdesc>> rejoices and happily hug...
     scene.text(`You agree and put the ring on your finger. ${((s as any).npcdesc || '')} rejoices and happily hugs and kisses you.`);
@@ -43,7 +44,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go looking for the dress', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).npc_love) (s as any).npc_love = {}; (s as any).npc_love[String((s as any).npcID ?? 0)] = 3;
+    ((s as any).npc_love = (s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 3;
     if ((!((s as any).npcGender ?? 0))) {
       // TODO-QSP: dynamic text: You get into a taxi with your soon to be husband and go to the store to choose a...
       scene.text(`You get into a taxi with your soon to be husband and go to the store to choose a dress. You choose an expensive and luxurious dress. ${((s as any).npcdesc || '')} pays for the purchase.`);
@@ -107,19 +108,19 @@ function enterMarry(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 3) {
       qspCall(s, 'lover', 'add_husband', ((s as any).locArgs?.[1] ?? 0));
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['boyfriends_current'] = ((s as any).stat['boyfriends_current'] ?? 0) - (1);
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
+      ((s as any).stat = (s as any).stat ?? {})['boyfriends_current'] = ((s as any).stat['boyfriends_current'] ?? 0) - (1);
+      ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
     } else {
       qspCall(s, 'lover', 'add_wife', ((s as any).locArgs?.[1] ?? 0));
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['girlfriends_current'] = ((s as any).stat['girlfriends_current'] ?? 0) - (1);
-      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
+      ((s as any).stat = (s as any).stat ?? {})['girlfriends_current'] = ((s as any).stat['girlfriends_current'] ?? 0) - (1);
+      ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
     }
-    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['marry_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['eat_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['clean_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['men_fucked_before'] = ((s as any).stat ?? 0)?.['men_fucked'];
-    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['women_fucked_before'] = ((s as any).stat ?? 0)?.['women_fucked'];
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['marry_day'] = ((s as any).daystart ?? 0);
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['eat_day'] = ((s as any).daystart ?? 0);
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['clean_day'] = ((s as any).daystart ?? 0);
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['men_fucked_before'] = ((s as any).stat ?? 0)?.['men_fucked'];
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['women_fucked_before'] = ((s as any).stat ?? 0)?.['women_fucked'];
     (s as any).PRinStyle = 1;
     (s as any).PRinStyle2 = 1;
   }

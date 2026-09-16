@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNotSpying(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sofiaQW) (s as any).sofiaQW = {}; (s as any).sofiaQW['spying_day'] = ((s as any).daystart ?? 0);
+  ((s as any).sofiaQW = (s as any).sofiaQW ?? {})['spying_day'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
   scene.text('As you\'re about to open the door, the noises get louder and leave no question in your mind that somebody is having sex in the room.');
   // TODO-QSP: end
@@ -21,14 +21,18 @@ function enterNotSpying(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpying(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sofiaQW) (s as any).sofiaQW = {}; (s as any).sofiaQW['spying_day'] = ((s as any).daystart ?? 0);
+  ((s as any).sofiaQW = (s as any).sofiaQW ?? {})['spying_day'] = ((s as any).daystart ?? 0);
   if (((s as any).sofiaQW ?? 0)?.['maxim_know'] === 1) {
+    (s as any).sexpartner = 'Maxim';
   } else {
     if (((s as any).sofiaQW ?? 0)?.['spying_times'] === 0) {
+      (s as any).sexpartner = 'the boy';
+    } else {
+      (s as any).sexpartner = 'her boyfriend';
     }
   }
-  if (!(s as any).sofiaQW) (s as any).sofiaQW = {}; (s as any).sofiaQW['spying_times'] = ((s as any).sofiaQW['spying_times'] ?? 0) + (1);
-  scene.actions([{ label: 'Continue', goto: ['sofia', 'spying_sex<<rand(1,6)>>'] }]);
+  ((s as any).sofiaQW = (s as any).sofiaQW ?? {})['spying_times'] = ((s as any).sofiaQW['spying_times'] ?? 0) + (1);
+  qspGoto(s, 'sofia', 'spying_sex' + Math.floor(Math.random() * 6) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -60,7 +64,8 @@ function enterSpyingSex1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['uni_dorm', 'second_floor'] },
+    qspGoto(s, 'uni_dorm', 'second_floor');
+  } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
@@ -70,7 +75,7 @@ function enterSpyingSex1(s: GameState, scene: SceneBuilder): void {
         { label: 'Take the elevator', goto: ['uni_dorm', 'elevator'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sofia', 'spying_sex2'] }]);
+      qspGoto(s, 'sofia', 'spying_sex2');
     }
   } },
   ]);
@@ -90,7 +95,8 @@ function enterSpyingSex2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['uni_dorm', 'second_floor'] },
+    qspGoto(s, 'uni_dorm', 'second_floor');
+  } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
@@ -101,7 +107,7 @@ function enterSpyingSex2(s: GameState, scene: SceneBuilder): void {
         { label: 'Take the elevator', goto: ['uni_dorm', 'elevator'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sofia', 'spying_sex3'] }]);
+      qspGoto(s, 'sofia', 'spying_sex3');
     }
   } },
   ]);
@@ -119,7 +125,9 @@ function enterSpyingSex3(s: GameState, scene: SceneBuilder): void {
   scene.text(`Sofia gets on her back and props herself up with her arms, biting her lip as ${((s as any).sexpartner || '')} moves in between her legs. He gropes her perky breasts as he slides his '+iif( npc_dick['A261'] < pcs_vag, 'not so impressive', 'average')+' cock into her pussy and starts fucking her hard.`);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave before you get caught', goto: ['uni_dorm', 'second_floor'] },
+    { label: 'Leave before you get caught', handler: (st: GameState) => {
+    qspGoto(s, 'uni_dorm', 'second_floor');
+  } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
@@ -130,7 +138,7 @@ function enterSpyingSex3(s: GameState, scene: SceneBuilder): void {
         { label: 'Take the elevator', goto: ['uni_dorm', 'elevator'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sofia', 'spying_sex4'] }]);
+      qspGoto(s, 'sofia', 'spying_sex4');
     }
   } },
   ]);
@@ -150,7 +158,8 @@ function enterSpyingSex4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['uni_dorm', 'second_floor'] },
+    qspGoto(s, 'uni_dorm', 'second_floor');
+  } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
@@ -161,7 +170,7 @@ function enterSpyingSex4(s: GameState, scene: SceneBuilder): void {
         { label: 'Take the elevator', goto: ['uni_dorm', 'elevator'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sofia', 'spying_sex5'] }]);
+      qspGoto(s, 'sofia', 'spying_sex5');
     }
   } },
   ]);
@@ -181,7 +190,8 @@ function enterSpyingSex5(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['uni_dorm', 'second_floor'] },
+    qspGoto(s, 'uni_dorm', 'second_floor');
+  } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
@@ -191,7 +201,7 @@ function enterSpyingSex5(s: GameState, scene: SceneBuilder): void {
         { label: 'Take the elevator', goto: ['uni_dorm', 'elevator'] },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sofia', 'spying_sex6'] }]);
+      qspGoto(s, 'sofia', 'spying_sex6');
     }
   } },
   ]);
@@ -213,7 +223,8 @@ function enterSpyingSex6(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['uni_dorm', 'second_floor'] },
+    qspGoto(s, 'uni_dorm', 'second_floor');
+  } },
   ]);
   scene.build();
 }

@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_cafe', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Liamel Cafe</b></center>');
   scene.img('images/locations/pushkin/cafe/larek.jpg');

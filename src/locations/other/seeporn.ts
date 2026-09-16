@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,7 +16,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((((s as any).seepornofut ?? 0) + (((s as any).stat ?? {})?.['mast'] ?? 0)) * 2);
     qspCall(s, 'stat', '');
     if (((s as any).evgenQW ?? 0) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
-      scene.actions([{ label: 'Continue', goto: ['seeporn', 'SeePornPalevo'] }]);
+      qspGoto(s, 'seeporn', 'SeePornPalevo');
     }
     if (((s as any).seepornofut ?? 0) < 3) {
       scene.text('The boys are looking at what is going on on the screen, but they are clearly uneasy and embarrassed with you here.');
@@ -85,7 +85,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A34');
     (s as any).sexpartkno = 1;
     (s as any).pose = 1;
-    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['sex_count_today'] = ((s as any).brotherQW['sex_count_today'] ?? 0) - (1);
+    ((s as any).brotherQW = (s as any).brotherQW ?? {})['sex_count_today'] = ((s as any).brotherQW['sex_count_today'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.text('Kolka tells the guys that he should take you home.');
     scene.text('As soon as you leave the school building, your brother whispers, "Let\'s look for a quiet place, I\'m still horny."');
@@ -187,7 +187,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'face', ((s as any).npcID2 ?? 0), 1);
     qspCall(s, 'arousal', 'end');
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
+      ((s as any).brotherQW = (s as any).brotherQW ?? {})['Sex'] = 6;
     }
     scene.img('images/shared/sex/cum/facial/facial22.jpg');
     scene.text('Suddenly, your brother takes his dick out of your mouth, and a jet of hot cum splatters across your face.');
@@ -400,7 +400,7 @@ function enterSeePornPalevo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'hj', (-10), ((s as any).npcID1 ?? 0), 'group', 'incest', 'sub');
     qspCall(s, 'arousal', 'hj', (-10), ((s as any).npcID2 ?? 0), 'group', 'incest', 'sub');
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
+      ((s as any).brotherQW = (s as any).brotherQW ?? {})['Sex'] = 6;
     }
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/pavlovsk/school/grounds/seeporn/sex/seepornbbcum.jpg');
@@ -412,7 +412,7 @@ function enterSeePornPalevo(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Call his bluff', handler: (st: GameState) => {
-    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['refused_seeporn_bj'] = 1;
+    ((s as any).brotherQW = (s as any).brotherQW ?? {})['refused_seeporn_bj'] = 1;
     scene.img('images/pc/reactions/fuckoff2.jpg');
     scene.text('"Fuck off, who would believe you." Your brother looks at you then says to Zhendos, "Better luck next time."');
     scene.actions([
@@ -438,7 +438,7 @@ function enterSeePornPalevo(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'I don\'t think so!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['refused_seeporn_bj'] = 1;
+    ((s as any).brotherQW = (s as any).brotherQW ?? {})['refused_seeporn_bj'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/disgust.jpg');
     scene.text('You indignantly reject the kids. Your brother looks at you and announces, "Probably for the best, your tiny peckers would only count as one cock."');
@@ -458,7 +458,7 @@ function enterSeePornPalevo(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
+      ((s as any).brotherQW = (s as any).brotherQW ?? {})['Sex'] = 6;
     }
     scene.img('images/locations/pavlovsk/school/grounds/seeporn/sex/seeporndouble2.jpg');
     scene.text('You diligently continue to suck two dicks at the same time, the guys moaning and moving their hips trying to shove them into you deeper.');

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,14 +11,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).ArtemBeInHome = 1;
   if (((s as any).artemQW ?? 0)?.['katja_threesome'] === 1  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
-    scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'going_home_together'] }]);
+    qspGoto(s, 'artem_katja_sex', 'going_home_together');
   }
   if (((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
     if (((s as any).katjaQW ?? 0)?.['horny'] >= (Math.floor(Math.random() * 101) + 100)) {
-      scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'home_work_ask_katja'] }]);
+      qspGoto(s, 'artem_katja_sex', 'home_work_ask_katja');
     }
     if ((Math.floor(Math.random() * 5) + 0) === 0  &&  (Math.floor(Math.random() * 11) + 5) <= ((s as any).artemQW ?? 0)?.['confidence']) {
-      scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'home_work_ask_artem'] }]);
+      qspGoto(s, 'artem_katja_sex', 'home_work_ask_artem');
     }
   }
   scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A2'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A2'] ?? ''}</b></center>`);
@@ -57,7 +57,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go with Artem', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
     ]);
   } },
       ]);
@@ -95,7 +96,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go with Artem', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
       ]);
     } else {
       scene.text('You walk across the school courtyard to meet up with Artem. He gives you a friendly nod as you approach. "You ready to go?"');
@@ -109,7 +111,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to Artem\'s home', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
     ]);
   } },
         ]);
@@ -119,7 +122,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Go to Artem\'s home', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
+    qspGoto(s, 'artemhome', 'artemroom');
+  } },
         ]);
       }
     }
@@ -370,7 +374,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse', goto: ['artem_events', 'finalrefuse'] },
       { label: 'Agree to strip', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -389,7 +393,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Agree to strip', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/boy/artem/strip1.jpg');
@@ -452,7 +456,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFinalrefuse(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artemblok'] = 1;
+  ((s as any).artemQW = (s as any).artemQW ?? {})['artemblok'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/artem/talk3.jpg');
   scene.text('You shake your head. "Fine, if that\'s the way you want it to be."');
   scene.text('You get up and grab your stuff before heading for the door. "I never want to see you again!" he says as you head out.');
@@ -503,7 +507,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemdryhump(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobc.jpg');
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks, and you can feel him hesitating for a second before he starts squeezing your ass and rubbing it with his hands. After a few minutes of this, he places one of his hands on your shoulder and pushes you forward, bending you over. He then grabs onto you and you feel something hard pressing between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock against your clothes.');
   qspCall(s, 'arousal', 'foreplay', 3);
@@ -529,7 +533,7 @@ function enterArtemdryhump(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemdryhump1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobp.jpg');
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re wearing only your panties from the waist down. You bend over for him and feel his hard cock pressed against your ass. When you glance back over your shoulder, you see him rubbing his erect cock against your panties.');
   qspCall(s, 'arousal', 'foreplay', 3);
@@ -555,7 +559,7 @@ function enterArtemdryhump1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemdryhump2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  ((s as any).artemQW = (s as any).artemQW ?? {})['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobn.jpg');
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re naked from the waist down. You bend over for him and feel his hard cock pressed between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock between your ass cheeks as he pushes them together.');
   qspCall(s, 'arousal', 'foreplay', 3);
@@ -612,7 +616,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const artem_events: LocationDef = {
   name: 'artem_events',
-  title: '<<$npc_firstname[\'A2\']>> <<$npc_lastname[\'A2\']>>',
   region: 'other',
   enter: enter,
 };

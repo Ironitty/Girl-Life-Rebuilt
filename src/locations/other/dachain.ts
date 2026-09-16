@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dachain', 'start');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'music_actions', 'clear_restrictions');
@@ -20,27 +21,29 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/suburban/cottage/dacharoom1.jpg');
   }
   scene.text('Your favorite summer residence.');
-  scene.text('There is a <a href="exec:gt \'bed\', \'start\'">bed</a> against one wall. Next to it is a <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a> (where you can choose outfits and organize your clothing). On the other side of the bed is a table and a <a href="exec:gt \'mirror\', \'start\'">mirror</a>');
+  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">bed</a> against one wall. Next to it is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a> (where you can choose outfits and organize your clothing). On the other side of the bed is a table and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>');
   scene.text('There is a sofa in front of the fireplace, a kitchen alcove opposite the bed and the door to the bathroom next to that.');
   if (((s as any).mc_inventory ?? 0)?.['desk'] === 0) {
+    (s as any).stol = 'an old wooden <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">table</a>';
   }
   if (((s as any).mc_inventory ?? 0)?.['desk'] === 1) {
+    (s as any).stol = 'a new <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">table</a>';
   }
   // TODO-QSP: dynamic text: In front of the window there is <<$stol>>.
   scene.text(`In front of the window there is ${((s as any).stol || '')}.`);
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access');
-    scene.text('Your <a href="exec: gt \'komp\',\'start\'">computer</a> is on the table. Unfortunately, there is no internet service in the village.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> is on the table. Unfortunately, there is no internet service in the village.');
   }
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
     if (((s as any).exhib ?? 0)?.['status'] === 11) {
-      scene.text('Kopashatsya working in the garden, hmm… maybe sometime <a href="exec: gt \'ETO_village\', \'garden_check\'">motivate</a> for them to work quicker and smarter.');
+      scene.text('Kopashatsya working in the garden, hmm… maybe sometime <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ETO_village\\u0027, \\u0027garden_check\\u0027); return false;">motivate</a> for them to work quicker and smarter.');
     } else {
       if (((s as any).exhib ?? 0)?.['status'] === 12) {
-        scene.text('Leave in <a href="exec: gt \'ETO_village\', \'hanging_clothes\'">garden in lingerie and robe</a>.');
+        scene.text('Leave in <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ETO_village\\u0027, \\u0027hanging_clothes\\u0027); return false;">garden in lingerie and robe</a>.');
       } else {
         if (((s as any).exhib ?? 0)?.['status'] === 13  &&  ((s as any).temp ?? 0) !== ((s as any).daystart ?? 0)) {
-          scene.text('I wonder how to <a href="exec: gt \'ETO_village\', \'worker_conversation\'">garden</a>');
+          scene.text('I wonder how to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ETO_village\\u0027, \\u0027worker_conversation\\u0027); return false;">garden</a>');
         }
       }
     }
@@ -53,9 +56,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Go outside', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).minut = ((s as any).minut ?? 0) + (5);
-      scene.actions([{ label: 'Continue', goto: ['dachamy', ''] }]);
+      qspGoto(s, 'dachamy', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['dachain', 'start'] }]);
+      qspGoto(s, 'dachain', 'start');
     }
   } },
     { label: 'Go to the Bathroom', goto: ['dachain', 'dachabath'] },
@@ -68,6 +71,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterDachakit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dachain', 'dachakit');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'kitr';
   qspCall(s, 'kit_din', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cottage Kitchen</b></center>');
@@ -84,7 +89,7 @@ function enterDachakit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><<dirttarelka>></b> dirty dishes are lying in the sink. <a href="exec:gs 'kit...
-    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="exec:gs 'kit_din', 'dirtarm'">Wash the dishes</a>.`);
+    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027dirtarm\\u0027); return false;">Wash the dishes</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
     // TODO-QSP: dynamic text: Next to the sink is dishwashing liquid, enough for <b><<mc_inventory['dish_soap'...
@@ -94,8 +99,10 @@ function enterDachakit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] === 0  ||  ((s as any).edahot ?? 0) > 0) {
+      (s as any).edagot = '';
     }
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
+      (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027edagotd\\u0027); return false;">Cook a meal</a>';
     }
     // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
     scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot || '')}`);
@@ -116,6 +123,8 @@ function enterDachakit(s: GameState, scene: SceneBuilder): void {
 
 function enterDachabath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dachain', 'dachabath');
+  (s as any).location_type = 'bathroom';
+  (s as any).bathtype = 'bathtub shower';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cottage Bathroom</b></center>');
   if (qspFunc(s, 'homes_properties', 'is_property_renovated')) {

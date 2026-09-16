@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,6 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'start';
+  (s as any).loc = 'lesbisubhouse';
+  (s as any).menu_loc = 'lesbisubhouse';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   (s as any).lesbiday = ((s as any).day ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -35,6 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).mistendbound ?? 0) > 50  &&  (!(Math.floor(Math.random() * 4) + 0))) {
+          (s as any).location_type = 'public_indoors';
           scene.img('images/characters/city/natalya/sex/dom26.jpg');
           scene.text('You ring the bell. Nobody answers, but you can definitely hear somebody inside. You try the handle and to your surprise, the door isn\'t locked. You\'ve barely crossed the threshold when you see your slave sitting on a chair. She seems to have bound herself in anticipation of your arrival. You help her off the chair and bend her over…');
           scene.actions([
@@ -42,6 +47,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).mistendspank ?? 0) > 50) {
+            (s as any).location_type = 'public_indoors';
             scene.img('images/characters/city/natalya/sex/dom25.jpg');
             scene.text('You ring the bell and the door swings open a few seconds later. You\'re greeted by your slave kneeling in front of you, a whip in her mouth and her eyes as big as a puppy\'s: She\'s practically begging you to punish her.');
             scene.actions([
@@ -49,9 +55,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).hour ?? 0) >= 8) {
+              (s as any).location_type = 'public_indoors';
               scene.img('images/characters/city/natalya/dooropen.jpg');
               scene.text('You ring the bell and within seconds, the door opens.');
             } else {
+              (s as any).location_type = 'public_indoors';
               scene.img('images/characters/city/natalya/dooropen1.jpg');
               scene.text('You ring the bell. Once. Twice. Thrice. After a minute or so, your slave opens the door, mumbling curses under her breath and rubbing the sleep out of her eyes. Once she sees that it\'s you, she immediately falls silent and steps aside to let you in.');
             }
@@ -68,6 +76,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   if (((s as any).lesbiQW ?? 0) === 2) {
     qspCall(s, 'arousal', 'erotic', 5, 'dom', 'lesbian', 'exhibitionism');
     qspCall(s, 'stat', '');
@@ -89,13 +98,13 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).lesbiQW ?? 0) === 3) {
-      scene.actions([{ label: 'Continue', goto: ['lesbisubhouse', 'event2'] }]);
+      qspGoto(s, 'lesbisubhouse', 'event2');
     } else {
       if (((s as any).lesbiQW ?? 0) === 4) {
-        scene.actions([{ label: 'Continue', goto: ['lesbisubhouse', 'event3'] }]);
+        qspGoto(s, 'lesbisubhouse', 'event3');
       } else {
         if (((s as any).lesbiQW ?? 0) === 5) {
-          scene.actions([{ label: 'Continue', goto: ['lesbisubhouse', 'event4'] }]);
+          qspGoto(s, 'lesbisubhouse', 'event4');
         }
       }
     }
@@ -149,6 +158,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/natalya/sex/dom5.jpg');
     scene.text('You put on the strapon and, paying absolutely no attention to any discomfort she might suffer, drive it straight into her pussy and start fucking her. Even though the dick isn\'t actually yours, fucking with this strapon is pleasureable due to how the strap stimulates your clitoris.');
     scene.text('The thrill of practically owning this woman and being free to do whatever you want to her is almost physically palpable. Soon, you are so entranced by your own pleasure that you don\'t even hear your slave\'s moans anymore and a powerful orgasm shakes you like a leaf in the wind. When you regain your senses, you notice how exhausted your slave looks. Judging by her demeanor and copious juices covering your strapon, she came long before you.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_strap_give', 30, 'dom', 'lesbian', 'rough');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -206,6 +216,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/natalya/sex/dom8.jpg');
     scene.text('Hot and bothered by her show, you sit on the sofa and order your slave to bring you to orgasm. Pulling out the toy out of her ass, she quickly crawls over to you. You lower yourself slightly and immediately feel her tongue going to work on your pussy. It feels like only seconds pass before you reach your own powerful climax.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 15, 'dom', 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -250,6 +261,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Shut your mouth and never speak like that again! Do you understand me, slave?!" you ask imperiously.');
     scene.text('Her voice is compliant. "Yes… I\'m sorry, Mistress. I don\'t know what came over me. I won\'t do that again."');
     scene.text('You continue fucking for quite a while, trying to reach an orgasm, but her talking and your annoyance about it has robbed you of most of your excitement.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'anal_strap_give', 15, 'dom', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -274,6 +286,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to let her continue as she pumps your strap harder and hard desperate to reach her peak.');
     scene.text('You give her butt a few slaps to help her on her way as she screams: "Oh God! Fuck... I\'m so close... I fucking love you Mistress! I\'m cumming,,, Fuck! I\'m cumming!"');
     scene.text('Finally she sinks down on the strapon, spent. Her whole body quivering as she comes down from her violent anal orgasm on your lap.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal_strap_give', 10, 'dom', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -288,7 +301,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
 
 function enterEvent4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bdsmclub ?? 0)?.['unlocked'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['lesbisubhouse', 'BDSM_unlock'] }]);
+    qspGoto(s, 'lesbisubhouse', 'BDSM_unlock');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -410,6 +423,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/natalya/sex/dom43.jpg');
     scene.text('You can\'t stand your horniness any longer. You put a hand on your slave\'s head and push her down. She immediately understands what you want and squats down. You close your eyes as you feel her warm tongue stroke your clit and dip into your pussy. Your subsequent orgasm is so powerful you have to hold on to your slave to keep yourself from falling.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10, 'dom', 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -647,7 +661,7 @@ function enterEvent5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBDSMUnlock(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['unlocked'] = 1;
+  ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['unlocked'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/sex/sub199.jpg');
   scene.text('There\'s a BDSM club near the city, where people with interest in our lifestyle can go to explore their interests. I think you would enjoy going there."');
@@ -712,16 +726,19 @@ function enterBound(s: GameState, scene: SceneBuilder): void {
         scene.text('Your slave just won\'t stop talking. In an attempt to shut her up, you give her the most violent thrusts you can manage, hoping that she\'ll be too busy moaning to speak. Despite all the moaning, groaning and screams, she keeps talking.');
         scene.text('"Oh, Mistress… You are so… so… Oh god, harder, Mistress! Fuck my womb! Fuck your whore! I am your slave… Your cheap slut… Oh, my pussy…"');
         scene.text('Thankfully, it doesn\'t take much longer for her to finish, her orgasm robbing her of all coherence. These precious moments of silence allow you to focus all the excitement over her self-demeaning monologue and the sensations of the strapon rubbing against your pussy. Speeding up the pace, you send her plummeting over the edge again and cum yourself only moments later.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'vaginal_strap_give', 30, 'dom', 'rough', 'lesbian', 'bound');
         qspCall(s, 'arousal', 'end');
       }
     } else {
       if (((s as any).mistressfist ?? 0) === 4) {
         scene.text('At some point, you feel a bit of resistance, as if your slave is gripping the strapon with her pussy - quite a surprise considering you fisted her earlier - and she\'s furiously rubbing her clit, trying to reach her climax, but you don\'t pay attention to her: The belt rubs against you just the way you like and you find yourself orgasming moments later.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'vaginal_strap_give', 30, 'dom', 'rough', 'lesbian', 'bound');
         qspCall(s, 'arousal', 'end');
       } else {
         scene.text('Her sweet cries of pleasure make you almost as wet as her; it\'s thrilling beyond imagination to fuck this woman, your slave, bound and at your mercy. Even without the dildo\'s straps rubbing against your clit, you\'d be just about ready to cum. With it, however, every thrust brings you closer and closer to climax. A particularly violent one is all it takes: You cum so hard that you almost faint, darkness shrouding the edge of your view for a minute. You hold onto the body under you for dear life, her convulsions telling you that she\'s not faring any better.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'vaginal_strap_give', 30, 'dom', 'rough', 'lesbian', 'bound');
         qspCall(s, 'arousal', 'end');
       }
@@ -809,6 +826,7 @@ function enterBound(s: GameState, scene: SceneBuilder): void {
       if (((s as any).mistressfist ?? 0) === 5) {
         scene.text('Your slave groans in frustration as you start moving in and out of her previously fisted anus. "It\'s too small… Fuck me deep, Mistress. Shove your dick all the way into my destroyed ass. Fuck your slave, make me feel it!"');
         scene.text('Ignoring your slave as well as you can, you fuck her ass at your leisure. She proves distracting enough to keep you from cumming, though.');
+        (s as any).orgasm_or = 'no';
         qspCall(s, 'arousal', 'anal_strap_give', 30, 'dom', 'lesbian', 'bound');
         qspCall(s, 'arousal', 'end');
       } else {
@@ -816,16 +834,19 @@ function enterBound(s: GameState, scene: SceneBuilder): void {
         scene.text('Your slave keeps talking, only pausing when she is overtaken by moans of pleasure. Somehow, she managed to free one hand from her bindings and immediately puts it between her legs, frantically rubbing her clit and talking, talking, talking…');
         scene.text('"I can feel you moving in my gut, Mistress… Fuck me! Fuck my ass… Oh god… I want more inside me! Fingers, cucumbers, bottles, dicks… Once I… I… Ohh… Ohh!"');
         scene.text('You accelerate the pace, her incoherent mumbling distracting and even angering you, each thrust a tiny punishment in its own right. Once she\'s silenced, you have no trouble bringing yourself to orgasm. Meanwhile, your slave enjoys herself thoroughly and cums several times more, helping herself with her fingers.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'anal_strap_give', 30, 'dom', 'lesbian', 'rough', 'bound');
         qspCall(s, 'arousal', 'end');
       }
     } else {
       if (((s as any).mistressfist ?? 0) === 5) {
         scene.text('You pull out all the way the way again, torturously slowly, until her wide anus releases your strapon with a pop. You can hear her heavy breathing and see her impatience, her hips moving towards you, looking for your fake cock. She finds it, as if her hole had been drawn to it, and you drive it back in one powerful thrust, entering her without resistance, eliciting guttural sounds of satisfaction from her. Once you\'ve pushed the strapon all the way in to the hilt, you start fuck her roughly, slapping against her perfect ass with loud slaps. Soon, you sense that familiar tingling in your stomach and an orgasm shakes both of you.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'anal_strap_give', 30, 'dom', 'lesbian', 'rough', 'bound');
         qspCall(s, 'arousal', 'end');
       } else {
         scene.text('You start moving your hips, moving whichever way you have to to rub the strapon against your pussy. Your slave manages to free one of her hands from her bindings and immediately puts it between her legs, furiously rubbing her clit - the final push to send her into a screaming orgasm. You keep driving the dildo into her ass, feeling the resistance as her contracting muscles try to push the invader from her anus, but it only spurs you on and you drive the cock into her with even more force, the excitement of the situation soon causing you to cum with your slave, who is already enjoying her second climax.');
+        (s as any).orgasm_or = 'yes';
         qspCall(s, 'arousal', 'anal_strap_give', 30, 'dom', 'lesbian', 'rough', 'bound');
         qspCall(s, 'arousal', 'end');
       }
@@ -915,6 +936,7 @@ function enterBound(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/natalya/sex/dom28.jpg');
     scene.text('You strap your dildo to your willing slave\'s mouth and lay her on the bed, her eyes filled with anticipation. Without a word, you climb on top of her, your crotch completely exposed to her and slowly lower your pussy onto the dildo. As soon as it is inside you, you feel your juices running down its length and dripping onto your slave\'s face and you start riding it in earnest, going out of your way to rub your labia on your helpless pet\'s face. Sometimes, you even feel her nose brushing against your anus.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_dildo', 30, 'lesbian', 'dom', 'humiliation', 'bound');
     qspCall(s, 'arousal', 'end');
     if (((s as any).mistpiss ?? 0) >= 20) {
@@ -1145,6 +1167,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
     scene.text('Forgetting everything around you, you keep driving your fake cock into your submissive slave\'s cunt until both of you are shaken by orgasms.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     if (((s as any).mistpiss ?? 0) >= 20) {
       scene.actions([
@@ -1235,6 +1258,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
     scene.text('You soon have enough of going slow. You place your hands on her back and start to really drive it into her, practically feeling her orgasm when you see her sphincter tighten around the strapon. Soon, you feel that tingling in your stomach and, driving all the way into her one last time, cum yourself.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'end');
     if (((s as any).mistpiss ?? 0) >= 20) {
       scene.actions([
@@ -1321,6 +1345,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/natalya/sex/dom29.jpg');
     scene.text('You strap your dildo to your willing slave\'s mouth and order her to fuck your ass. You lay down on your back, preparing your back passage with your fingers before you signal her. Your slave gently probes your ass with the dildo and begins to work it inside, moving her head to please you as you are overcome by an urge to rub your pussy. It doesn\'t take you long to bring yourself to an orgasm, your hips shakily moving to meet your slave\'s thrusts, occasionally dipping her nose into your pussy.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'anal_dildo', 30, 'lesbian', 'dom', 'humiliation', 'bound');
     qspCall(s, 'arousal', 'end');
     if (((s as any).mistpiss ?? 0) >= 20) {

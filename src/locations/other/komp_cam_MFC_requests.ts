@@ -1,3 +1,5 @@
+import { qspGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -31,62 +33,62 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).clientask ?? 0) >= 74  &&  ((s as any).clientask ?? 0) <= 76) {
-    scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_oral', ''] }]);
+    qspGoto(s, 'komp_cam_MFC_requests_oral', '');
   } else {
     if (((s as any).clientask ?? 0) >= 77  &&  ((s as any).clientask ?? 0) <= 79) {
       if (((s as any).pantyworntype ?? 0) === 'none') {
-        scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_anal', ''] }]);
+        qspGoto(s, 'komp_cam_MFC_requests_anal', '');
       }
     } else {
       if (((s as any).clientask ?? 0) === 80) {
         if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).pcs_ass ?? 0) >= 30  &&  ((s as any).camGirl ?? 0)?.['MFC_fame'] >= 50) {
-          scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_asshole'] }]);
+          qspGoto(s, 'komp_cam_MFC_requests_three', 'show_asshole');
         }
       } else {
         if (((s as any).clientask ?? 0) >= 81  &&  ((s as any).clientask ?? 0) <= 90) {
           if (((s as any).clientask ?? 0) === 81) {
             if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).camGirl ?? 0)?.['MFC_fame'] >= 50  &&  ((s as any).pcs_ass ?? 0) > 25) {
-              scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '81'] }]);
+              qspGoto(s, 'komp_cam_MFC_requests_two', '', '81');
             }
           } else {
             if (((s as any).clientask ?? 0) === 82) {
               if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 26  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).sub ?? 0) > 25  &&  ((s as any).pcs_vag ?? 0) > 10  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-                scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '82'] }]);
+                qspGoto(s, 'komp_cam_MFC_requests_two', '', '82');
               }
             } else {
               if (((s as any).clientask ?? 0) === 83) {
                 if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).pcs_vag ?? 0) > 20) {
-                  scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '83'] }]);
+                  qspGoto(s, 'komp_cam_MFC_requests_two', '', '83');
                 }
               } else {
                 if (((s as any).clientask ?? 0) === 84) {
                   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).camGirl ?? 0)?.['MFC_fame'] >= 25  &&  ((s as any).pcs_vag ?? 0) + ((s as any).pcs_ass ?? 0) >= 30  &&  ((s as any).alko ?? 0) >= 4) {
-                    scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '84'] }]);
+                    qspGoto(s, 'komp_cam_MFC_requests_two', '', '84');
                   }
                 } else {
                   if (((s as any).clientask ?? 0) === 85) {
                     if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 50  &&  ((s as any).pcs_vag ?? 0) + ((s as any).pcs_ass ?? 0) > 0  &&  ((s as any).alko ?? 0) >= 4) {
-                      scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '85'] }]);
+                      qspGoto(s, 'komp_cam_MFC_requests_two', '', '85');
                     }
                   } else {
                     if (((s as any).clientask ?? 0) === 86) {
                       if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 35  &&  ((s as any).pcs_vag ?? 0) >= 25  &&  ((s as any).alko ?? 0) >= 4) {
-                        scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '86'] }]);
+                        qspGoto(s, 'komp_cam_MFC_requests_two', '', '86');
                       }
                     } else {
                       if (((s as any).clientask ?? 0) === 87) {
                         if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 50  &&  ((s as any).pcs_vag ?? 0) >= 35) {
-                          scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '87'] }]);
+                          qspGoto(s, 'komp_cam_MFC_requests_two', '', '87');
                         }
                       } else {
                         if (((s as any).clientask ?? 0) === 88) {
                           if (((s as any).camGirl ?? 0)?.['MFC_fame'] < 50) {
-                            scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '88'] }]);
+                            qspGoto(s, 'komp_cam_MFC_requests_two', '', '88');
                           }
                         } else {
                           if (((s as any).clientask ?? 0) === 89) {
                             if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 15  &&  ((s as any).pcs_ass ?? 0) >= 15) {
-                              scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '89'] }]);
+                              qspGoto(s, 'komp_cam_MFC_requests_two', '', '89');
                             }
                           }
                         }
@@ -98,36 +100,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           }
           if (((s as any).pantyworntype ?? 0) !== 'none') {
-            scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_pussy'] }]);
+            qspGoto(s, 'komp_cam_MFC_requests_three', 'show_pussy');
           }
         } else {
           if (((s as any).clientask ?? 0) >= 91) {
             if (((s as any).clientask ?? 0) >= 90  &&  ((s as any).clientask ?? 0) <= 94) {
               if (((s as any).pantyworntype ?? 0) === 'none') {
                 scene.text('One of the viewers asks: "Do you have a vibrator or dildo? I want you to put up a little show…"');
-                scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_one', ''] }]);
+                qspGoto(s, 'komp_cam_MFC_requests_one', '');
               }
             } else {
               if (((s as any).clientask ?? 0) >= 95  &&  ((s as any).clientask ?? 0) <= 98) {
                 if (((s as any).braworntype ?? 0) === 'none') {
-                  scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'play_tits'] }]);
+                  qspGoto(s, 'komp_cam_MFC_requests_three', 'play_tits');
                 }
               } else {
                 if (((s as any).clientask ?? 0) === 99) {
                   if (((s as any).pantyworntype ?? 0) === 'none') {
-                    scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_cunt'] }]);
+                    qspGoto(s, 'komp_cam_MFC_requests_three', 'show_cunt');
                   }
                 } else {
                   if (((s as any).clientask ?? 0) === 100) {
                     if (((s as any).pantyworntype ?? 0) === 'none') {
-                      scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_vagina'] }]);
+                      qspGoto(s, 'komp_cam_MFC_requests_three', 'show_vagina');
                     }
                   }
                 }
               }
             }
             if (((s as any).braworntype ?? 0) !== 'none') {
-              scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_tits'] }]);
+              qspGoto(s, 'komp_cam_MFC_requests_three', 'show_tits');
             }
           }
         }

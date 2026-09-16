@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,9 +13,9 @@ function enterSetLeaveAct(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'city_coffee_hole') {
-      scene.actions([{ label: 'Continue', goto: ['city_coffee_hole', 'inner'] }]);
+      qspGoto(s, 'city_coffee_hole', 'inner');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pav_commcenter', ''] }]);
+      qspGoto(s, 'pav_commcenter', '');
     }
   } },
   ]);
@@ -91,7 +91,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
             scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
           } else {
             if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 0) {
-              if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['knows_dorm_room_number'] = 1;
+              ((s as any).artemQW = (s as any).artemQW ?? {})['knows_dorm_room_number'] = 1;
               scene.text('You greet Artem with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself. Just before he leaves, he tells you he\'s living on the second floor of the university dorm building and that you should come and visit him sometime.');
             } else {
               scene.text('You greet Artem with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
@@ -108,7 +108,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
             scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
           } else {
             if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 0) {
-              if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['knows_dorm_room_number'] = 1;
+              ((s as any).artemQW = (s as any).artemQW ?? {})['knows_dorm_room_number'] = 1;
               // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
               scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went. Just before he leaves, he tells you he's living on the second floor of the university dorm building and that you should come and visit him sometime.`);
             } else {

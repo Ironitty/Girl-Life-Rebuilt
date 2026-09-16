@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,25 +6,28 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_hotel', 'skip_resepevent');
+  (s as any).region = 'pav';
+  (s as any).location_type = 'public_indoors';
   if (((s as any).temp ?? 0) !== 0) {
     // TODO-QSP: killvar 'temp'
   }
+  (s as any).receptionName = 'Elisabet';
   if (((s as any).daystart ?? 0) === ((s as any).hotelRoomDays ?? 0)?.['pav']  &&  ((s as any).hour ?? 0) > 11) {
-    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = 0;
+    ((s as any).HotelRoom = (s as any).HotelRoom ?? {})['pav'] = 0;
   }
   if (((s as any).daystart ?? 0) > ((s as any).hotelRoomDays ?? 0)?.['pav']) {
-    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = 0;
+    ((s as any).HotelRoom = (s as any).HotelRoom ?? {})['pav'] = 0;
   }
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[0] ?? 0) !== 'skip_resepevent') {
     if (((s as any).hour ?? 0) === 0  &&  ((s as any).hotresepQW_day ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).hotresepQW ?? 0) < 3  ||  (((s as any).hotresepQW ?? 0) === 3  &&  (Math.floor(Math.random() * 10) + 1) === 10))) {
       if (((s as any).HotelRoom ?? 0)?.['pav'] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
-        scene.actions([{ label: 'Continue', goto: ['pav_hotel', 'resep_event1'] }]);
+        qspGoto(s, 'pav_hotel', 'resep_event1');
       } else {
         if ((!((s as any).resepseen ?? 0))) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResepEvent2(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          scene.actions([{ label: 'Continue', goto: ['pav_hotel', 'resep_event3'] }]);
+          qspGoto(s, 'pav_hotel', 'resep_event3');
         }
       }
     }
@@ -35,17 +38,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/hotel/hotel.hole.jpg');
     if ((!((s as any).pavHotelMaid ?? 0))) {
       // TODO-QSP: dynamic text: You're always surprised by how fancy the hotel looks on the inside given the sha...
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="exec:minut += 1 & gt \'pav_hotelReception\'">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_hotelReception\\u0027, \\u0027\\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     } else {
       // TODO-QSP: dynamic text: You're always surprised by how fancy the hotel looks on the inside given the sha...
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="exec:minut += 1 & gt \'pav_hotelReception\'">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_hotelReception\\u0027, \\u0027\\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     }
   }
   qspCall(s, 'schedule', 'A186');
   if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 2  &&  ((s as any).locat ?? 0)?.['A186'] === 2  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).therapistQW ?? 0)?.['hotel_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).therapistQW ?? 0)?.['escaped'] === 0) {
-    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_day'] = ((s as any).daystart ?? 0);
+    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -57,7 +60,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Don\'t visit the therapist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'medium');
-  }, goto: ['pav_hotel', ''] },
+    qspGoto(s, 'pav_hotel', '');
+  } },
       ]);
     }
     return;
@@ -66,11 +70,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).proshotelopen ?? 0) === 1) {
-    scene.text('<a href="exec:gt \'pav_hotel\',\'Pavlin\'">Pavlin</a> is sitting in the lobby, looking for fresh prey.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_hotel\\u0027, \\u0027Pavlin\\u0027); return false;">Pavlin</a> is sitting in the lobby, looking for fresh prey.');
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 13  &&  ((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] >= 2) {
     // TODO-QSP: dynamic text: Next to the reception desk is a door labeled <a href="exec:minut += 1 & gt 'pav_...
-    scene.text('Next to the reception desk is a door labeled <a href="exec:minut += 1 & gt \'pav_hotelAdmin\'">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
+    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_hotelAdmin\\u0027, \\u0027\\u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
   }
   if (((s as any).hotwait ?? 0) === 1) {
     scene.text('You sit in one of the comfortable chairs in the lobby and watch the guests checking in and out.');
@@ -78,7 +82,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] <= 1) {
     // TODO-QSP: dynamic text: You see a <a href="exec:minut += 1 & gt 'pav_hotel', 'poster'">"recruitment post...
-    scene.text('You see a <a href="exec:minut += 1 & gt \'pav_hotel\', \'poster\'">"recruitment poster"</a> in a corner of the room.');
+    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_hotel\\u0027, \\u0027poster\\u0027); return false;">"recruitment poster"</a> in a corner of the room.');
   }
   qspCall(s, 'pav_hotelWork', 'set_hotel_acts');
   if (((s as any).hotelcouple ?? 0) === 2  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).hcday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -97,13 +101,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to your room', handler: (st: GameState) => {
     if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
-      scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'therapist'] }]);
+      qspGoto(s, 'HotelRoom', 'therapist');
     } else {
       if (((s as any).HotelRoom ?? 0)?.['pav'] === 1) {
-        scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'normal'] }]);
+        qspGoto(s, 'HotelRoom', 'normal');
       } else {
         if (((s as any).HotelRoom ?? 0)?.['pav'] === 2) {
-          scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'better'] }]);
+          qspGoto(s, 'HotelRoom', 'better');
         }
       }
     }
@@ -119,7 +123,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Kill some time in the hotel lobby', handler: (st: GameState) => {
     qspCall(s, 'obj_din', 'wait');
     (s as any).hotwait = 1;
-  }, goto: ['pav_hotel', ''] },
+    qspGoto(s, 'pav_hotel', '');
+  } },
   ]);
   scene.build();
 }
@@ -130,7 +135,7 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
   scene.text('Stepping closer to the poster, you see the hotel is looking to recruit cleaning staff.');
   scene.text('"<b>Maid Wanted!</b> The Pavlovsk Hotel is looking for a hardworking maid. No experience necessary. Flexible hours. Apply in person at the hotel reception."');
   scene.text('<i>It doesn\'t look like a glamorous job, but at least it\'s honest work.</i>');
-  if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 1;
+  ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
   return;
   // TODO-QSP: end
   scene.actions([
@@ -151,7 +156,8 @@ function enterResepEvent1(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait until they\'re finished', handler: (st: GameState) => {
     (s as any).hotresepQW_day = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * (60 - ((s as any).minut ?? 0) - 1 + 1)) + (1)));
-  }, goto: ['pav_hotel', ''] },
+    qspGoto(s, 'pav_hotel', '');
+  } },
     ]);
   } else {
     if ((!((s as any).resepseen ?? 0))) {
@@ -168,7 +174,8 @@ function enterResepEvent1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go back to the market', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-  }, goto: ['pav_market', ''] },
+    qspGoto(s, 'pav_market', '');
+  } },
   ]);
   scene.build();
 }
@@ -238,16 +245,16 @@ function enterResepEvent3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
-      scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'therapist'] }]);
+      qspGoto(s, 'HotelRoom', 'therapist');
     } else {
       if (((s as any).HotelRoom ?? 0)?.['pav'] === 1) {
-        scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'normal'] }]);
+        qspGoto(s, 'HotelRoom', 'normal');
       } else {
         if (((s as any).HotelRoom ?? 0)?.['pav'] === 2) {
-          scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'better'] }]);
+          qspGoto(s, 'HotelRoom', 'better');
         } else {
           if (((s as any).HotelRoom ?? 0)?.['pav'] === 3) {
-            scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'best'] }]);
+            qspGoto(s, 'HotelRoom', 'best');
           }
         }
       }
@@ -626,7 +633,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const pav_hotel: LocationDef = {
   name: 'pav_hotel',
-  title: '<a href="exec:gt \'pav_hotel\',\'Pavlin\'">Pavlin</a> is sitting',
+  title: '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u',
   region: 'pavlovsk',
   locationType: 'public_indoors',
   description: ['You sit in one of the comfortable chairs in the lobby and watch the guests checking in and out.'],

@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_library', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).location_type = 'public_indoors';
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -16,7 +17,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The library is closed.');
     return;
   }
-  scene.text('There is a large IT section with <a href="exec: gs \'internet_mobile\', \'get_access\', \'free\', \'noporn\',\'nocamshow\' & gs \'internet_mobile\', \'add_limitation\', \'general\', \'On this public computer all adult content sites are blocked\' & gt \'komp\',\'start\'">computers</a> available for public use.');
+  scene.text('There is a large IT section with <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027internet_mobile\\u0027, \\u0027get_access\\u0027, \\u0027free\\u0027); return false;">computers</a> available for public use.');
   if (((s as any).MagicLibrary ?? 0) === 1) {
     qspCall(s, 'spellList', 'teacherActions', '$librarySpells', 'city_library', '');
     scene.actions([
@@ -39,7 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'spellList', 'teacherActions', '$librarySpells', 'city_library', '');
     scene.actions([
       { label: 'Put the book down', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

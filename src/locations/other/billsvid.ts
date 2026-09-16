@@ -1,10 +1,11 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   (s as any).bilrand = 0;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -23,17 +24,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).alla ?? 0) >= 20) {
         (s as any).bilrand = Math.floor(Math.random() * 11) + 0;
         if (((s as any).bilrand ?? 0) > 0  &&  ((s as any).bilrand ?? 0) < 3) {
-          scene.actions([{ label: 'Continue', goto: ['billsvid', '1'] }]);
+          qspGoto(s, 'billsvid', '1');
         }
         if (((s as any).bilrand ?? 0) > 2  &&  ((s as any).bilrand ?? 0) < 5) {
-          scene.actions([{ label: 'Continue', goto: ['billsvid', '2'] }]);
+          qspGoto(s, 'billsvid', '2');
         }
         if (((s as any).bilrand ?? 0) === 0  ||  ((s as any).bilrand ?? 0) > 4) {
-          scene.actions([{ label: 'Continue', goto: ['billsvid', '3'] }]);
+          qspGoto(s, 'billsvid', '3');
         }
       } else {
         if (((s as any).alla ?? 0) < 20) {
-          scene.actions([{ label: 'Continue', goto: ['billsvid', '3'] }]);
+          qspGoto(s, 'billsvid', '3');
         }
       }
     } else {
@@ -42,17 +43,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).masha ?? 0) >= 20) {
           (s as any).bilrand = Math.floor(Math.random() * 11) + 0;
           if (((s as any).bilrand ?? 0) > 0  &&  ((s as any).bilrand ?? 0) < 3) {
-            scene.actions([{ label: 'Continue', goto: ['billsvid', '1'] }]);
+            qspGoto(s, 'billsvid', '1');
           }
           if (((s as any).bilrand ?? 0) > 2  &&  ((s as any).bilrand ?? 0) < 5) {
-            scene.actions([{ label: 'Continue', goto: ['billsvid', '2'] }]);
+            qspGoto(s, 'billsvid', '2');
           }
           if (((s as any).bilrand ?? 0) === 0  ||  ((s as any).bilrand ?? 0) > 4) {
-            scene.actions([{ label: 'Continue', goto: ['billsvid', '3'] }]);
+            qspGoto(s, 'billsvid', '3');
           }
         } else {
           if (((s as any).masha ?? 0) < 20) {
-            scene.actions([{ label: 'Continue', goto: ['billsvid', '3'] }]);
+            qspGoto(s, 'billsvid', '3');
           }
         }
       } else {
@@ -61,16 +62,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_rel ?? 0)?.['A219'] >= 20) {
             (s as any).bilrand = Math.floor(Math.random() * 11) + 0;
             if (((s as any).bilrand ?? 0) > 0  &&  ((s as any).bilrand ?? 0) < 3) {
-              scene.actions([{ label: 'Continue', goto: ['billsvid', '1'] }]);
+              qspGoto(s, 'billsvid', '1');
             }
             if (((s as any).bilrand ?? 0) > 2  &&  ((s as any).bilrand ?? 0) < 5) {
-              scene.actions([{ label: 'Continue', goto: ['billsvid', '2'] }]);
+              qspGoto(s, 'billsvid', '2');
             }
             if (((s as any).bilrand ?? 0) === 0  ||  ((s as any).bilrand ?? 0) > 4) {
-              scene.actions([{ label: 'Continue', goto: ['billsvid', '3'] }]);
+              qspGoto(s, 'billsvid', '3');
             }
           } else {
-            scene.actions([{ label: 'Continue', goto: ['billsvid', '3'] }]);
+            qspGoto(s, 'billsvid', '3');
           }
         } else {
           if (((s as any).telsob ?? 0) === ((s as any).npcdesc ?? 0)) {
@@ -78,16 +79,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] >= 60) {
               (s as any).bilrand = Math.floor(Math.random() * 11) + 0;
               if (((s as any).bilrand ?? 0) > 0  &&  ((s as any).bilrand ?? 0) < 3) {
-                scene.actions([{ label: 'Continue', goto: ['billsvid', '1'] }]);
+                qspGoto(s, 'billsvid', '1');
               }
               if (((s as any).bilrand ?? 0) > 2  &&  ((s as any).bilrand ?? 0) < 5) {
-                scene.actions([{ label: 'Continue', goto: ['billsvid', '2'] }]);
+                qspGoto(s, 'billsvid', '2');
               }
               if (((s as any).bilrand ?? 0) === 0  ||  ((s as any).bilrand ?? 0) > 4) {
-                scene.actions([{ label: 'Continue', goto: ['billsvid', '3'] }]);
+                qspGoto(s, 'billsvid', '3');
               }
             } else {
-              scene.actions([{ label: 'Continue', goto: ['billsvid', '3'] }]);
+              qspGoto(s, 'billsvid', '3');
             }
           }
         }
@@ -107,23 +108,24 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cuni', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Not now <<$telsob>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Not now ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Not now <<$telsob>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Not now ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cuni', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['billsvid', '3'] },
+    qspGoto(s, 'billsvid', '3');
+  } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/mall/pool/sex/2.jpg');
     // TODO-QSP: dynamic text: You turn around and kiss her, in response <<$telsob>> quickly takes off her clot...
     scene.text(`You turn around and kiss her, in response ${((s as any).telsob || '')} quickly takes off her clothes, helps you strip and throws you against the table, you jump on it, and continue to kiss.`);
@@ -142,7 +144,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'cuni', 'force');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['billsvid', '11'] },
+    qspGoto(s, 'billsvid', '11');
+  } },
       ]);
     }
     scene.actions([
@@ -171,7 +174,8 @@ function enter10(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'cuni', 'force');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['billsvid', '11'] },
+    qspGoto(s, 'billsvid', '11');
+  } },
     ]);
   }
   if ((!((s as any).bilsvidkiy ?? 0))) {
@@ -213,7 +217,8 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'force');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['billsvid', '13'] },
+    qspGoto(s, 'billsvid', '13');
+  } },
       ]);
     }
   }
@@ -245,7 +250,8 @@ function enter12(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'force');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-  }, goto: ['billsvid', '13'] },
+    qspGoto(s, 'billsvid', '13');
+  } },
       ]);
     }
   }
@@ -262,6 +268,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/pool/sex/5.jpg');
   // TODO-QSP: dynamic text: You sit on the edge of the table, throwing one leg on the table. "How's my cuein...
   scene.text(`You sit on the edge of the table, throwing one leg on the table. "How's my cueing action?" ${((s as any).telsob || '')} jokes as she dramatically uses her tongue to moisten her cue, before quickly inserting it into your pussy. You squeal in surprise. She diligently fucks you with the cue, turning it in different directions, you're massaging your clitoris with a finger. After a few minutes of pleasant sensations spread through your body and you float into a world of orgasm.`);
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'lesbian');
   qspCall(s, 'stat', '');
   if ((!((s as any).bilsvidkiy ?? 0))) {
@@ -285,17 +292,18 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cuni', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Continue to play <<$telsob>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Continue to play ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Continue to play <<$telsob>>', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Continue to play ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cuni', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['billsvid', '3'] },
+    qspGoto(s, 'billsvid', '3');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -337,6 +345,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/pool/sex/16.jpg');
     // TODO-QSP: dynamic text: You turn around so that your face is above her pussy, and start licking her. Aft...
     scene.text(`You turn around so that your face is above her pussy, and start licking her. After a few minutes, you feel her body shake and ${((s as any).telsob || '')} groans strongly pressing against your pussy, and then you are shrouded in pleasant waves of orgasm.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([

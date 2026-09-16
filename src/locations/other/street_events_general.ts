@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -17,7 +17,7 @@ function enterRandomRape(s: GameState, scene: SceneBuilder): void {
     scene.text('You notice a hooded man standing in a darkened alleyway up ahead. Feeling he is up to no good you cross the street to the other side before you get to him. You see him look your direction before fading back into the darkness of the alleyway.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } else {
@@ -53,7 +53,7 @@ function enterRandomRape(s: GameState, scene: SceneBuilder): void {
       scene.text('You manage to lose him and get to a safer well lit area.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -77,7 +77,7 @@ function enterRandomRobbery(s: GameState, scene: SceneBuilder): void {
     scene.text('You notice a hooded man standing in a darkened doorway up ahead. Feeling he is up to no good you cross the street to the other side before you get to him. You see him look your direction before fading back into the darkness of the doorway.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } else {
@@ -97,14 +97,14 @@ function enterRandomRobbery(s: GameState, scene: SceneBuilder): void {
       scene.text('You try to run away, but you\'re not quick enough, and he catches you. He grabs your purse and rummages in it, knocking most of the contents out on the ground. Once he has your money, he throws the purse back at you and then takes off running. You try to calm yourself down as you squat to gather your stuff back up and put them back in your purse.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
       scene.text('You manage to lose him and get to a safer well lit area.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -115,7 +115,7 @@ function enterRandomRobbery(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly open your purse. As you do, he grabs it from you and rummages in it. Knocking most of the contents out on the ground. Once he has your money, he throws the purse back at you and then takes off running. You try to calm yourself down as you squat to gather your stuff back up and put them back in your purse.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -127,7 +127,8 @@ function enterRandomRobbery(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'robber');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
     ]);
   } },
     ]);
@@ -146,7 +147,7 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
     scene.text('As you are walking down the street minding your own business, you are suddenly jerked sideways and nearly pulled off your feet. You quickly regain your balance, and instinctively, your fingers hold your purse tighter as you feel something tugging on it. A man is trying to snatch your purse, but he runs away when you don\'t let go of it immediately.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } else {
@@ -156,7 +157,7 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'dispose');
     qspCall(s, 'money', 'set', 0, 'cash');
     qspCall(s, 'stat', '');
-    dynamicGoto(st, 'loc');
+    dynamicGoto(s, 'prevLoc');
   } },
       { label: 'Chase him', handler: (st: GameState) => {
     if ((((s as any).pcs_run ?? 0) + ((s as any).pcs_stam ?? 0)) < (Math.floor(Math.random() * 131) + 120)) {
@@ -168,7 +169,7 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
       scene.text('You chase after him, screaming at him to stop or for someone to stop him, but he quickly out paces you, and soon, you lose sight of him. After a couple of blocks of not seeing him anymore, you stop and lean against the wall to catch your breath.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
@@ -192,7 +193,7 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMistmeet(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'mistmeet'] }]);
+  qspGoto(s, 'lesbimistress', 'mistmeet');
   // TODO-QSP: end
   scene.build();
 }
@@ -205,7 +206,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 360;
   (s as any).fingal = ((s as any).fingal ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (2);
+  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (2);
   (s as any).shantpopala = ((s as any).shantpopala ?? 0) - (1);
   scene.img('images/locations/shared/street/kidnap.jpg');
   scene.text('As you walk down the sidewalk, you hear the screeching of tires. You quickly move to the far side of the sidewalk, afraid a car is about to hit you. As you turn your head to the noise, you see a black jeep sliding to a stop next to you. Before the jeep even comes to a complete stop, two large men jump out and start running towards you. You are stunned for a moment, unsure what\'s going on, then you turn to run, but before you make it five steps, one of them grabs you, calling out to the other man to help out as well. They quickly drag you over to the jeep and throw you in the back.');
@@ -236,7 +237,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -245,7 +246,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNichTarasAbduct(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['nichTaras', 'van'] }]);
+  qspGoto(s, 'nichTaras', 'van');
   // TODO-QSP: end
   scene.build();
 }
@@ -298,7 +299,7 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'arousal', 'end');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -347,6 +348,7 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
       { label: 'Sit on his face', handler: (st: GameState) => {
     scene.img('images/locations/shared/divorcee/d6.jpg');
     scene.text('"Want to put that mouth to better use?" you tease with a smile as you present your dripping wet pussy to Yefim. Licking his lips, he pulls you over and helps you straddle his face. He grips your thighs and holds you in place as his tongue delves between your swollen pussy lips. You tremble and gasp, his tongue expertly flicking and massaging your clit when he isn\'t playing with your labia. You grind your hips down as the pleasure builds, crying out as you cum on his tongue. Your pussy clenches, and your body tenses as you ride out the bliss.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 15);
     scene.text('"Alright, that\'s enough," you hear Marta say. She watches you slide off his face with a smirk, taking a moment to admire how wet his lips are with your juices before turning her attention to Eva. "I don\'t think he can hold out much longer, so why don\'t we end this with a <i>bang</i>!" You don\'t know when Alla finished, but she\'s here pulling Eva aside to undress her. When they\'re done, Yefim switches spots with Eva, with her now on her back. "Now keep those legs spread, babe," Marta says as Yefim positions himself between her legs.');
     qspCall(s, 'arousal', 'end');
@@ -369,7 +371,7 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and say your thanks and goodbyes to Yefim before heading back to the limo. The ride back is a lot quieter than earlier, with Eva and Marta sleeping against each other while Alla makes small talk with you until you arrive back home. With a small, tired smile, Alla hugs you goodbye, and you take one last look at Marta and Eva before getting out.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -392,7 +394,7 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Keep walking', handler: (st: GameState) => {
     (s as any).divorce_party = ((s as any).divorce_party ?? 0) + (1);
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -402,9 +404,9 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
 
 function enterRandomLover(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 40 - (20 / (((s as any).stat ?? 0)?.['lesbian_count'] + 1))) {
-    scene.actions([{ label: 'Continue', goto: ['dateF', 'start'] }]);
+    qspGoto(s, 'dateF', 'start');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['dateM', 'start'] }]);
+    qspGoto(s, 'dateM', 'start');
   }
   return;
   // TODO-QSP: end
@@ -421,7 +423,7 @@ function enterMinorGuitarMan(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -431,7 +433,7 @@ function enterMinorGuitarMan(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop and listen to him play several songs. He really is pretty good. You wonder why he is playing on the street. Perhaps the old adage about starving artists applies to musicians as well.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -444,7 +446,7 @@ function enterMinorGuitarMan(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach into your purse and pull out some money. You drop it into his case. He looks up at you and smiles and nods his head, but keeps playing. With your good deed done, you go on your way.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -465,7 +467,7 @@ function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -476,7 +478,7 @@ function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop and listen to her play several songs. She really is pretty good. You wonder why she is playing on the street. Perhaps the old adage about starving artists applies to musicians as well.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -491,7 +493,7 @@ function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach into your purse and pull out some money. You drop it into her case. She looks up at you and smiles and nods her head, but keeps playing. With your good deed done you go on your way.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -512,7 +514,7 @@ function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -523,7 +525,7 @@ function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop and listen to him play several songs. He really is pretty good. You wonder why he is playing on the street. Perhaps the old adage about starving artists applies to musicians as well.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -538,7 +540,7 @@ function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach into your purse and pull out some money. You drop it into his case. He looks up at you and smiles and nods his head, but keeps playing. With your good deed done, you go on your way.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -559,7 +561,7 @@ function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Listen', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -570,7 +572,7 @@ function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop and listen to her play several songs. She really is pretty good. You wonder why she is playing on the street. Perhaps the old adage about starving artists applies to musicians as well.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -585,7 +587,7 @@ function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach into your purse and pull out some money. You drop it into her case. She looks up at you and smiles and nods her head, but keeps playing. With your good deed done, you go on your way.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -606,7 +608,7 @@ function enterMinorPortraits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Get your portrait done', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -621,7 +623,7 @@ function enterMinorPortraits(s: GameState, scene: SceneBuilder): void {
       scene.text('You stop next to her and smile. "I would like you to draw me please." She gives you a friendly smile in return, pointing towards the other chair. "Please take a seat," she says, following this with a glance to the can sitting next to the chair. You understand and pull out the money and put it in the can. You sit for a while as she draws your portrait. After some time, she is finished and shows it to you. It is really very good and might make a good gift to give someone. You thank her for it and go on your way.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -645,7 +647,7 @@ function enterMinorGroping_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Slap him', handler: (st: GameState) => {
     // TODO-QSP: $streetev_title
@@ -653,7 +655,7 @@ function enterMinorGroping_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn around. and as you do, you swing your hand, palm open, and deliver a hard smack to his face. The pop is loud enough to draw attention, and the guy recoils from it rubbing his face, seemingly surprised you smacked him. "Don\'t touch me asshole." With that, you turn and continue on your way.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -685,7 +687,7 @@ function enterMinorGroping_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -706,7 +708,7 @@ function enterMinorUnconscious(s: GameState, scene: SceneBuilder): void {
     scene.text('Not being sure what you could do to help, you continue on your way and wonder what happened to him.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -719,7 +721,7 @@ function enterMinorUnconscious(s: GameState, scene: SceneBuilder): void {
     scene.text('You call the police and are told to wait for the officers, it takes some time before the do. When a car finally pulls the officers get out and ask you a few questions then tell you to be on your way. You look back and they call in and start talking to the man, you continue on your way finally.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -751,7 +753,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } else {
@@ -777,7 +779,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
@@ -804,7 +806,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
         ]);
       } else {
@@ -830,7 +832,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
         ]);
       }
@@ -865,7 +867,7 @@ function enterMinorWindSkirt(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } else {
@@ -892,11 +894,11 @@ function enterMinorWindSkirt(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+      dynamicGoto(s, 'prevLoc');
     }
   }
   return;
@@ -927,7 +929,7 @@ function enterMinorNoBra(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } else {
@@ -953,11 +955,11 @@ function enterMinorNoBra(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
-      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+      dynamicGoto(s, 'prevLoc');
     }
   }
   return;
@@ -976,7 +978,7 @@ function enterMinorHeteroCouple(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -993,7 +995,7 @@ function enterMinorLesbianCouple(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -1011,7 +1013,7 @@ function enterMinorWomanWindow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -1027,7 +1029,7 @@ function enterMinorGuysFighting(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Stop and watch', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1037,7 +1039,7 @@ function enterMinorGuysFighting(s: GameState, scene: SceneBuilder): void {
     scene.text('You love a good fight, so you like many others stop and watch them duke it out. It goes on for a while as they trade blows. One of them finally gets the upper hand and gets the other one down and starts beating him. He doesn\'t stop until one of his friends pulls him off. With the fight over, everyone leaves. You can hear police sirens and decide it is time to leave yourself.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -1059,7 +1061,7 @@ function enterMinorGirlsFighting(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Stop and watch', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1072,14 +1074,14 @@ function enterMinorGirlsFighting(s: GameState, scene: SceneBuilder): void {
     scene.text('You love a good fight, so you like many others stop and watch them duke it out. It goes on for a while as they trade blows. One of them finally gets the upper hand and gets the other one down and starts beating her. Once the girl on bottom stops fighting back, the winner starts ripping her clothes off. Once she has the bottom girl completely naked, she gets up and hurls a few more insults before walking away. With the fight over, everyone leaves. The girl that lost tries to gather up her torn clothes and put them back on as she loudly weeps.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Help her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('You help her up and try to help her the best you can to get her clothes back in place. She wipes her eyes thanking you, then gives you a quick hug before she hurries away.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -1114,7 +1116,7 @@ function enterMinorWomanFlashing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -1124,7 +1126,7 @@ function enterMinorWomanFlashing(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -1142,7 +1144,7 @@ function enterMinorGirlFlashing(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -1162,7 +1164,7 @@ function enterMinorGirlsGossiping(s: GameState, scene: SceneBuilder): void {
     scene.text('They keep talking about you until they are out of earshot. You can\'t help but smile and feel great after that.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } else {
@@ -1173,7 +1175,7 @@ function enterMinorGirlsGossiping(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel your cheeks burning as they continue to make fun of you.');
     scene.actions([
       { label: 'Ignore them', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Tell them off', handler: (st: GameState) => {
     // TODO-QSP: $streetev_title
@@ -1181,15 +1183,17 @@ function enterMinorGirlsGossiping(s: GameState, scene: SceneBuilder): void {
     scene.text('You spin around to face them. "Just what\'s your problem bitches?" One of the girls steps up to you. "You best back yourself up bitch before I smack the shit out of you."');
     scene.actions([
       { label: 'Hurry away in shame', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Bring it Bitch!', handler: (st: GameState) => {
     // TODO-QSP: $streetev_title
+    (s as any).boydesc = 'The group of girls';
     scene.img('images/locations/shared/street/girlgang.jpg');
     scene.text('You give her a small shove to force her to step back. "Bring it on then, bitch." The words barely leave your mouth before she jumps you. Soon all of her friends join in, leaving you to fight them all.');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'girls');
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
     ]);
   } },
     ]);
@@ -1210,7 +1214,7 @@ function enterMinorHandoutFlyers(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Distribute flyers to earn money ( [+$func(\'money\', \'string_profit\', 75) + \')...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -1241,12 +1245,12 @@ function enterMinorHandoutFlyers(s: GameState, scene: SceneBuilder): void {
     scene.text('For thirty minutes, you stand on the street, chatting up random people, trying to give them one of your flyers. After that, you are paid \' + $func(\'money\', \'string_profit\', 75) + \' for your effort by the man, and he offers you the same deal to hand out more.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -1264,7 +1268,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -1278,7 +1282,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -1295,7 +1299,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -1312,7 +1316,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -1329,7 +1333,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -1345,7 +1349,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -1370,7 +1374,7 @@ function enterMinorNakedWoman(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -1388,7 +1392,7 @@ function enterMinorMotorcycleNaked(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -1404,7 +1408,7 @@ function enterMinorGirlSplit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -1425,7 +1429,7 @@ function enterMinorBoysBeer(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head no and mumble thanks but no thanks and continue on your way.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -1438,7 +1442,7 @@ function enterMinorBoysBeer(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop a moment and consider it then walk over and take the offered beer. You sit and talk with them for a while and drink the beer. After a bit, you decide you should be on your way. You thank them for the beer and say goodbye as you head out.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -1450,7 +1454,7 @@ function enterFightRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'fight', 'initFight');
   qspCall(s, 'fight_npcdata', 'rapist');
-  scene.actions([{ label: 'Continue', goto: ['fight', 'start'] }]);
+  qspGoto(s, 'fight', 'start');
   // TODO-QSP: end
   scene.build();
 }

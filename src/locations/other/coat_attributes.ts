@@ -15,9 +15,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   (s as any).CoatMaxStrength = ((s as any).CoatStrength ?? 0);
-  if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "coat_attributes" }))) {
+  if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "
-    (s as any).CoatStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_coats_h[qspUntranslated(s, \"ARGS[2]\", { location: \"coat_attributes\" })]", { location: "coat_attributes" });
+    (s as any).CoatStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_coats_h[((s as any).locArgs?.[2] ?? 0)]", { location: "coat_attributes" });
     // TODO-QSP: "
   }
   scene.build();

@@ -12,6 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterShort(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
+  (s as any).pfilmhistory = '';
   // TODO-QSP: :pornhistloop
   if (((s as any).pornfilmMonth ?? 0)?.[String((s as any).i ?? 0)] >= 10  &&  ((s as any).pornfilmDay ?? 0)?.[String((s as any).i ?? 0)] >= 10) {
     // TODO-QSP: $pornfilmDate[i] = '<<pornfilmYear[i]>>-<<pornfilmMonth[i]>>-<<pornfilmDay[i]>>'
@@ -56,7 +57,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
       (s as any).fvvalue = ((s as any).i ?? 0);
     }
     // TODO-QSP: dynamic text: <b><a href="exec:$porntitle[fvvalue] = input('<font color=#FF0000>WARNING!</font...
-    scene.text(`<b><a href="exec:$porntitle[fvvalue] = input('<font color=#FF0000>WARNING!</font> No matter where you clicked, it will name the <b>first</b> unnamed movie! This action can be done only once!') & gs 'pornhist', 'pdetail'">${((s as any).i || '')}. Movie</a></b>`);
+    scene.text(`<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $porntitle[fvvalue] = input(\\u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, it will name the <b>first</b> unnamed movie! This action can be done only once!\\u0027) */ return s; }); window.__gameStore.getState().doGoto(\\u0027pornhist\\u0027, \\u0027pdetail\\u0027); return false;">${((s as any).i || '')}. Movie</a></b>`);
   } else {
     if (((s as any).i ?? 0) === 1) {
       // TODO-QSP: dynamic text: <b><font color="brown"><<$porntitle[i]>><<$pfname>></font></b>
@@ -134,7 +135,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
       (s as any).firstvariable2 = 1;
       (s as any).fvvalue2 = ((s as any).i ?? 0);
     }
-    scene.text(' <b>Story:</b> <font size=2><a href="exec:$pornfilmstory[fvvalue2] = input(\'<font color=#FF0000>WARNING!</font> No matter where you clicked, you will enter the story of the <b>first</b> movie missing it! This action can be done only once!\') & gs \'pornhist\', \'pdetail\'">Missing story</a></font>');
+    scene.text(' <b>Story:</b> <font size=2><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $pornfilmstory[fvvalue2] = input(\\u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, you will enter the story of the <b>first</b> movie missing it! This action can be done only once!\\u0027) */ return s; }); window.__gameStore.getState().doGoto(\\u0027pornhist\\u0027, \\u0027pdetail\\u0027); return false;">Missing story</a></font>');
   } else {
     // TODO-QSP: dynamic text:  <b>Story:</b> <font color=#1B4532 size=2><<$pornfilmstory[i]>></font>
     scene.text(` <b>Story:</b> <font color=#1B4532 size=2>${((s as any).pornfilmstory ?? 0)?.[String((s as any).i ?? 0)] ?? ''}</font>`);
@@ -151,7 +152,8 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('</td></tr></table></center>');
   // TODO-QSP: end
-  (s as any).film_type = qspUntranslated(s, "ARGS[0]", { location: "pornhist" });
+  (s as any).pornfilmdesc = qspUntranslated(s, "{", { location: "pornhist" });
+  (s as any).film_type = ((s as any).locArgs?.[0] ?? 0);
   if (((s as any).tits ?? 0) >= 4) {
     // TODO-QSP: $porndesc[1] = 'Titfuck'
   } else {
@@ -182,6 +184,11 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     (s as any).pfactor = 1;
     (s as any).actbonus = 1;
     if (((s as any).tits ?? 0) >= 4) {
+      (s as any).tags = 'titjob, handjob, cumshot';
+      (s as any).pfilmtext = 'You gave a guy a titfuck and he came on your tits.';
+    } else {
+      (s as any).tags = 'handjob, cumshot';
+      (s as any).pfilmtext = 'You jerked off a guy and he came on your tits.';
     }
   } else {
     if (((s as any).film_type ?? 0) === 2) {
@@ -189,102 +196,137 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
       (s as any).pcash = 30;
       (s as any).pfactor = 1;
       (s as any).actbonus = 1;
+      (s as any).tags = 'blowjob, facial';
+      (s as any).pfilmtext = 'You gave a guy a blowjob and got a facial.';
     } else {
       if (((s as any).film_type ?? 0) === 3) {
         (s as any).pfType = 0;
         (s as any).pcash = 50;
         (s as any).pfactor = 1;
         (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+        (s as any).tags = 'blowjob, vaginal, facial';
+        (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked you before giving you a facial.';
       } else {
         if (((s as any).film_type ?? 0) === 4) {
           (s as any).pfType = 0;
           (s as any).pcash = 60;
           (s as any).pfactor = 1;
           (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+          (s as any).tags = 'blowjob, facial, vaginal, anal';
+          (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked your pussy and ass before giving you a facial.';
         } else {
           if (((s as any).film_type ?? 0) === 5) {
             (s as any).pfType = 0;
             (s as any).pcash = 70;
             (s as any).pfactor = 2;
             (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+            (s as any).tags = 'facial, vaginal, anal, blowjob, anal creampie';
+            (s as any).pfilmtext = 'A guy fucked your pussy and ass and came in your ass while you sucked off another guy who gave you a facial.';
           } else {
             if (((s as any).film_type ?? 0) === 6) {
               (s as any).pfType = 0;
               (s as any).pcash = 90;
               (s as any).pfactor = 2;
               (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+              (s as any).tags = 'DP, vaginal, anal, blowjob, facial, swallowing';
+              (s as any).pfilmtext = 'A guy fucked your pussy and ass while you sucked off another guy. They then double penetrated you before cumming on your face. You swallowed their loads.';
             } else {
               if (((s as any).film_type ?? 0) === 7) {
                 (s as any).pfType = 1;
                 (s as any).pcash = 80;
                 (s as any).pfactor = 1;
                 (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                (s as any).tags = 'vaginal';
+                (s as any).pfilmtext = 'You gave a guy a blowjob before he fucked you and gave you a creampie.';
               } else {
                 if (((s as any).film_type ?? 0) === 8) {
                   (s as any).pfType = 1;
                   (s as any).pcash = 100;
                   (s as any).pfactor = 2;
                   (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                  (s as any).tags = 'DP, vaginal, anal';
+                  (s as any).pfilmtext = 'Two guys fucked you in double penetration before giving you a double creampie.';
                 } else {
                   if (((s as any).film_type ?? 0) === 9) {
                     (s as any).pfType = 1;
                     (s as any).pcash = 90;
                     (s as any).pfactor = 2;
                     (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+                    (s as any).tags = 'blowjob, vaginal, swallowing';
+                    (s as any).pfilmtext = 'Two guys fucked your pussy and mouth. One gave you a creampie and the other came in your mouth and you swallowed.';
                   } else {
                     if (((s as any).film_type ?? 0) === 10) {
                       (s as any).pfType = 1;
                       (s as any).pcash = 120;
                       (s as any).pfactor = 4;
                       (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                      (s as any).tags = 'vaginal, cumshot';
+                      (s as any).pfilmtext = 'Four guys fucked your pussy and they all ejaculated on your body and face.';
                     } else {
                       if (((s as any).film_type ?? 0) === 11) {
                         (s as any).pfType = 1;
                         (s as any).pcash = 150;
                         (s as any).pfactor = 4;
                         (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                        (s as any).tags = 'vaginal';
+                        (s as any).pfilmtext = 'Four guys fucked your pussy, giving you four creampies.';
                       } else {
                         if (((s as any).film_type ?? 0) === 12) {
                           (s as any).pfType = 0;
                           (s as any).pcash = 150;
                           (s as any).pfactor = 4;
                           (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                          (s as any).tags = 'anal, anal creampie';
+                          (s as any).pfilmtext = 'Four guys fucked your ass, giving you four anal creampies.';
                         } else {
                           if (((s as any).film_type ?? 0) === 13) {
                             (s as any).pfType = 1;
                             (s as any).pcash = 150;
                             (s as any).pfactor = 4;
                             (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                            (s as any).tags = 'DP, vaginal, anal';
+                            (s as any).pfilmtext = 'Four guys fucked you in double penetration in pairs. You got two double creampies.';
                           } else {
                             if (((s as any).film_type ?? 0) === 14) {
                               (s as any).pfType = 1;
                               (s as any).pcash = 300;
                               (s as any).pfactor = 50;
                               (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                              (s as any).tags = 'vaginal, anal, blowjob, cumshot, facial, swallowing';
+                              (s as any).pfilmtext = 'Fifty of your fans fucked you however they could. Almost all of them came in your pussy.';
+                              (s as any).pstory = 'You called out to your fans on the internet, giving them an opportunity to fuck you however they like.';
                             } else {
                               if (((s as any).film_type ?? 0) === 15) {
                                 (s as any).pfType = 0;
                                 (s as any).pcash = 50;
                                 (s as any).pfactor = 1;
                                 (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                (s as any).tags = 'blowjob, anal, anal creampie';
+                                (s as any).pfilmtext = 'You gave a guy a blowjob before he fucked your ass and gave you an anal creampie.';
                               } else {
                                 if (((s as any).film_type ?? 0) === 16) {
                                   (s as any).pfType = 0;
                                   (s as any).pcash = 50;
                                   (s as any).pfactor = 1;
                                   (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                  (s as any).tags = 'blowjob, anal, cumshot';
+                                  (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked your ass. He came over your ass.';
                                 } else {
                                   if (((s as any).film_type ?? 0) === 17) {
                                     (s as any).pfType = 0;
                                     (s as any).pcash = 50;
                                     (s as any).pfactress = 1;
                                     (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                    (s as any).tags = 'tribbing, double dildo, vaginal';
+                                    (s as any).pfilmtext = 'You had sex with a girl using a double dildo.';
                                   } else {
                                     if (((s as any).film_type ?? 0) === 18) {
                                       (s as any).pfType = 0;
                                       (s as any).pcash = 50;
                                       (s as any).pfactress = 1;
                                       (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                      (s as any).tags = 'strapon, vaginal, anal';
+                                      (s as any).pfilmtext = 'You had sex with a girl using a strapon.';
                                     } else {
                                       if (((s as any).film_type ?? 0) === 19) {
                                         (s as any).pfType = 0;
@@ -292,6 +334,8 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                                         (s as any).pfactor = 1;
                                         (s as any).pfactress = 1;
                                         (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                                        (s as any).tags = 'mff, blowjob, anal, cumshare';
+                                        (s as any).pfilmtext = 'You took part in an MFF threesome, sucking a guy off before he fucked your ass while the girl licked your pussy. You got an anal creampie and shared it with the girl.';
                                       } else {
                                         if (((s as any).film_type ?? 0) === 20) {
                                           (s as any).pfType = 0;
@@ -299,6 +343,8 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                                           (s as any).pfactor = 1;
                                           (s as any).pfactress = 1;
                                           (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                                          (s as any).tags = 'mff, blowjob, anal, creampie, cumshare, cuni';
+                                          (s as any).pfilmtext = 'You took part in an MFF threesome, sucking him off before he fucked her ass while you licked her pussy. She shared her anal creampie with you.';
                                         }
                                       }
                                     }
@@ -319,44 +365,63 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).porntag = qspUntranslated(s, "{", { location: "pornhist" });
   if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] < 20) {
+    (s as any).pfilmtags = 'teen';
   } else {
     if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] >= 40) {
+      (s as any).pfilmtags = 'mature';
+    } else {
+      (s as any).pfilmtags = '';
     }
   }
   if (((s as any).pornfilmpreg ?? 0)?.[String((s as any).i ?? 0)] === 1) {
     if (((s as any).pfilmtags ?? 0) !== '') {
       // TODO-QSP: $pfilmtags+=', pregnant'
+    } else {
+      (s as any).pfilmtags = 'pregnant';
     }
   }
   if (((s as any).pfactor ?? 0) === 0  &&  ((s as any).pfactress ?? 0) > 0) {
     if (((s as any).pfilmtags ?? 0) !== '') {
       // TODO-QSP: $pfilmtags += ', lesbian'
+    } else {
+      (s as any).pfilmtags = 'lesbian';
     }
   }
   if (((s as any).pfactor ?? 0) > 2  &&  (!((s as any).pfactress ?? 0))) {
     if (((s as any).pfilmtags ?? 0) !== '') {
       // TODO-QSP: $pfilmtags += ', gangbang'
+    } else {
+      (s as any).pfilmtags = 'gangbang';
     }
   } else {
     if (((s as any).pfactor ?? 0) > 2  &&  ((s as any).pfactress ?? 0) > 1) {
       if (((s as any).pfilmtags ?? 0) !== '') {
         // TODO-QSP: $pfilmtags += ', orgy'
+      } else {
+        (s as any).pfilmtags = 'orgy';
       }
     } else {
       if (((s as any).pfactor ?? 0) === 2  &&  (!((s as any).pfactress ?? 0))) {
         if (((s as any).pfilmtags ?? 0) !== '') {
           // TODO-QSP: $pfilmtags += ', threesome'
+        } else {
+          (s as any).pfilmtags = 'threesome';
         }
       } else {
         if (((s as any).pfactor ?? 0) === 1  &&  ((s as any).pfactress ?? 0) === 1) {
           if (((s as any).pfilmtags ?? 0) !== '') {
             // TODO-QSP: $pfilmtags += ', threesome'
+          } else {
+            (s as any).pfilmtags = 'threesome';
           }
         } else {
           if (((s as any).pfactor ?? 0) === 0  &&  ((s as any).pfactress ?? 0) === 2) {
             if (((s as any).pfilmtags ?? 0) !== '') {
               // TODO-QSP: $pfilmtags += ', threesome'
+            } else {
+              (s as any).pfilmtags = 'threesome';
             }
           }
         }
@@ -366,20 +431,28 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pfType ?? 0) === 1) {
     if (((s as any).pfilmtags ?? 0) !== '') {
       // TODO-QSP: $pfilmtags += ', creampie'
+    } else {
+      (s as any).pfilmtags = 'creampie';
     }
   }
   if (((s as any).tits ?? 0) >= 4) {
     if (((s as any).pfilmtags ?? 0) !== '') {
       // TODO-QSP: $pfilmtags += ', big tits'
+    } else {
+      (s as any).pfilmtags = 'big tits';
     }
   }
   if (qspFunc(s, 'pcs_has_attr', 'body_ass_bubble')) {
     if (((s as any).pfilmtags ?? 0) !== '') {
       // TODO-QSP: $pfilmtags += ', big ass'
+    } else {
+      (s as any).pfilmtags = 'big ass';
     }
   }
   if (((s as any).pfilmtags ?? 0) !== '') {
     // TODO-QSP: $pfilmtags += ', '+$tags
+  } else {
+    (s as any).pfilmtags = ((s as any).tags ?? 0);
   }
   scene.actions([
     { label: 'Return to Reputation', handler: (st: GameState) => {

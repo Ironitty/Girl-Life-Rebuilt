@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -111,12 +111,12 @@ function enter3Way(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 3) + 1;
     if (((s as any).VK ?? 0) <= 1) {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', '3way1'] }]);
+      qspGoto(s, 'FedorEv4_sex', '3way1');
     } else {
       if (((s as any).VK ?? 0) <= 2) {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', '3way2'] }]);
+        qspGoto(s, 'FedorEv4_sex', '3way2');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', '3way3'] }]);
+        qspGoto(s, 'FedorEv4_sex', '3way3');
       }
     }
   } },
@@ -1505,6 +1505,7 @@ function enterBedroom1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I'm always ready to cum with you." Fedor immediately returns to licking your cl...
     scene.text(`"I'm always ready to cum with you." Fedor immediately returns to licking your clit as you continue sucking his dick, feeling the pleasure build up quickly and then feeling your clitoris heat up as your body begins squirming as waves of pleasure hit your whole body. You moan loudly as you feel Fedor's hands tighten around your hips and his penis begins throbbing in your mouth filling it with his cum which you can't seem to keep from leaking out of your mouth as you climax. After you both finish, you roll off of Fedor and catch your breath as he says, "${((s as any).pcs_nickname || '')} You're the best. You know that right?" You reply, "Only the best deserves the best." Fedor give you a very passionate kiss before getting dressed then walking out of the bedroom.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/vagkiss.mp4');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'dom');
     qspCall(s, 'arousal', 'end');
@@ -1769,6 +1770,7 @@ function enterBedroom3(s: GameState, scene: SceneBuilder): void {
       { label: 'Cuni', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/cuni.mp4');
     scene.text('Fedor then gives you one more kiss before lowering his mouth to your vagina as he begins licking your clitoris. You let out a loud moan as his tongue his your clitoris, pushing your pleasure to a new level. You can\'t help but let out continuous moans as Fedor brings you to the brink of pleasure. Unable to take it anymore your body spasms as waves of pleasure flow though your body, filling you with pure Ecstasy. Moaning and spasming while you lay back enjoying the pure bliss you are feeling. After you finish riding out your orgasm, Fedor kisses your forehead and says, "I\'m so happy that I can give you the release you deserve." as he then gets dressed and leaves the room.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', (-5), 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -2012,7 +2014,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const FedorEv4_sex: LocationDef = {
   name: 'FedorEv4_sex',
-  title: '<<"Ivan Prokhorov">>',
   region: 'other',
   enter: enter,
 };

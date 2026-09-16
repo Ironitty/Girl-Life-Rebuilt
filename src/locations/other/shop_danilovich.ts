@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,9 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'start');
+  (s as any).loc_s = 'shop_danilovich';
+  (s as any).args_s = 'start';
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Danilovich sporting goods</b></center>');
@@ -49,11 +52,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterBuyRefillBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 1000);
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['refill_bottle'] = 1;
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['refill_bottle'] = 1;
   if (((s as any).intro_custom_shop_return ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo'] }]);
+    qspGoto(s, 'intro_character_custom', 'modclo');
   } else {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
+    dynamicGoto(s, 'loc_s', 'args_s');
   }
   // TODO-QSP: end
   scene.build();
@@ -61,6 +64,7 @@ function enterBuyRefillBottle(s: GameState, scene: SceneBuilder): void {
 
 function enterClo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'clo');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Sportswear - one size fits all</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -75,13 +79,15 @@ function enterClo(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_danilovich', 'start'] },
+    qspGoto(s, 'shop_danilovich', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterShoes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'shoes');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Sport shoes</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -95,13 +101,15 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_danilovich', 'start'] },
+    qspGoto(s, 'shop_danilovich', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterSwim(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'swim');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Swimwear - one size fits all</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -117,13 +125,15 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_danilovich', 'start'] },
+    qspGoto(s, 'shop_danilovich', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'panties');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Sport panties</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -137,13 +147,15 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_danilovich', 'start'] },
+    qspGoto(s, 'shop_danilovich', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterBras(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'bras');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Sport bras</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -157,13 +169,15 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_danilovich', 'start'] },
+    qspGoto(s, 'shop_danilovich', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterPurses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'purses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Sport purses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -178,13 +192,15 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_danilovich', 'start'] },
+    qspGoto(s, 'shop_danilovich', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterCoats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'coats');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Sport coats</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -198,7 +214,8 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_danilovich', 'start'] },
+    qspGoto(s, 'shop_danilovich', 'start');
+  } },
   ]);
   scene.build();
 }

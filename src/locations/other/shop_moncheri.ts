@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'start');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -18,14 +19,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('Everything here is extremely high-end and definitely not for the average shopper.');
   if (((s as any).RimmaSex ?? 0) > 0) {
     if (((s as any).rimmaday ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.text('<a href="exec:gt \'RimmaSexQW\'">Rima</a> bites her lip and looks longingly in your direction when she sees you.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027RimmaSexQW\\u0027, \\u0027\\u0027); return false;">Rima</a> bites her lip and looks longingly in your direction when she sees you.');
     } else {
       scene.text('Rima smiles at you and continues to do her business.');
     }
   }
   if (((s as any).locat ?? 0)?.['A23'] === 32  &&  ((s as any).AlbinaQW ?? 0)?.['boutique'] < ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] <> 'sg' an...
-    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] <> \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="exec:gt \'albina_events\', \'moncheri\'">Albina</a>\')+\' browsing through the various clothes that the store has to offer.');
+    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] <> \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027albina_events\\u0027, \\u0027moncheri\\u0027); return false;">Albina</a>\')+\' browsing through the various clothes that the store has to offer.');
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     scene.actions([
@@ -68,6 +69,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'changingroom');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.text('As you walk through the store you notice that there\'s nobody in the changing rooms. Feeling a bit bored, you go look at some clothes and grab several items to try on before heading into one of the changing rooms.');
@@ -80,14 +82,16 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Put on underwear', handler: (st: GameState) => {
     qspCall(s, 'underwear', 'wear');
-  }, goto: ['shop_moncheri', 'changingroom'] },
+    qspGoto(s, 'shop_moncheri', 'changingroom');
+  } },
     ]);
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     scene.actions([
       { label: 'Get naked', handler: (st: GameState) => {
     qspCall(s, 'underwear', 'strip');
-  }, goto: ['shop_moncheri', 'changingroom'] },
+    qspGoto(s, 'shop_moncheri', 'changingroom');
+  } },
     ]);
   }
   // TODO-QSP: end
@@ -109,13 +113,14 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
 function enterChangingend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'restore', 'moncheri');
   qspCall(s, 'outfit', 'remove_backup', 'moncheri');
-  scene.actions([{ label: 'Continue', goto: ['shop_moncheri', 'start'] }]);
+  qspGoto(s, 'shop_moncheri', 'start');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGowns(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'gowns');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Mon Chéri outfits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -130,13 +135,15 @@ function enterGowns(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_moncheri', 'changingroom'] },
+    qspGoto(s, 'shop_moncheri', 'changingroom');
+  } },
   ]);
   scene.build();
 }
 
 function enterDresses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'dresses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Mon Chéri outfits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -151,13 +158,15 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_moncheri', 'changingroom'] },
+    qspGoto(s, 'shop_moncheri', 'changingroom');
+  } },
   ]);
   scene.build();
 }
 
 function enterBodysuit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'bodysuit');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Mon Chéri bodysuits</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -171,13 +180,15 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_moncheri', 'changingroom'] },
+    qspGoto(s, 'shop_moncheri', 'changingroom');
+  } },
   ]);
   scene.build();
 }
 
 function enterShoes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'shoes');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Mon Chéri shoes</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -192,13 +203,15 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_moncheri', 'start'] },
+    qspGoto(s, 'shop_moncheri', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterPurses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'purses');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Mon Chéri purses</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -212,13 +225,15 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_moncheri', 'start'] },
+    qspGoto(s, 'shop_moncheri', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterCoats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'coats');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Viewing Mon Chéri coats</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -232,7 +247,8 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_moncheri', 'start'] },
+    qspGoto(s, 'shop_moncheri', 'start');
+  } },
   ]);
   scene.build();
 }

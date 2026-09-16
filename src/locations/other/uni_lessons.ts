@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,32 +10,32 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['semester_week'] === 0  &&  (((s as any).month ?? 0) === 8  ||  ((s as any).month ?? 0) === 1)  &&  (((s as any).day ?? 0) - ((s as any).week ?? 0)) >= 20) {
-    if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_week'] = (-1);
+    ((s as any).university = (s as any).university ?? {})['semester_week'] = (-1);
   } else {
     if (((s as any).week ?? 0) === 1) {
       if (((s as any).university ?? 0)?.['semester_week'] === -1) {
-        if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_week'] = 1;
+        ((s as any).university = (s as any).university ?? {})['semester_week'] = 1;
       } else {
         if (((s as any).university ?? 0)?.['semester_week'] > 0  &&  ((s as any).university ?? 0)?.['semester_week'] < 15) {
-          if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_week'] = ((s as any).university['semester_week'] ?? 0) + (1);
+          ((s as any).university = (s as any).university ?? {})['semester_week'] = ((s as any).university['semester_week'] ?? 0) + (1);
           if (((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
-            qspCall(s, 'grades', 'calculate_grade', 'uni_' + qspUntranslated(s, "university['enrolled_in']>", { location: "uni_lessons" }) + '_semester_<<university[\'enrolled_in_semester\']>>');
-            qspCall(s, 'grades', 'assign_grade_description', 'uni_' + qspUntranslated(s, "university['enrolled_in']>", { location: "uni_lessons" }) + '_semester_<<university[\'enrolled_in_semester\']>>');
+            qspCall(s, 'grades', 'calculate_grade', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
+            qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
           }
         } else {
           if (((s as any).university ?? 0)?.['semester_week'] === 15) {
-            if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_week'] = 0;
-            if (!(s as any).university) (s as any).university = {}; (s as any).university['exam_week'] = 1;
+            ((s as any).university = (s as any).university ?? {})['semester_week'] = 0;
+            ((s as any).university = (s as any).university ?? {})['exam_week'] = 1;
             if (((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
-              qspCall(s, 'grades', 'calculate_grade', 'uni_' + qspUntranslated(s, "university['enrolled_in']>", { location: "uni_lessons" }) + '_semester_<<university[\'enrolled_in_semester\']>>');
-              qspCall(s, 'grades', 'assign_grade_description', 'uni_' + qspUntranslated(s, "university['enrolled_in']>", { location: "uni_lessons" }) + '_semester_<<university[\'enrolled_in_semester\']>>');
+              qspCall(s, 'grades', 'calculate_grade', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
+              qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
             }
           } else {
             if (((s as any).university ?? 0)?.['exam_week'] === 1) {
-              if (!(s as any).university) (s as any).university = {}; (s as any).university['exam_week'] = 2;
+              ((s as any).university = (s as any).university ?? {})['exam_week'] = 2;
             } else {
               if (((s as any).university ?? 0)?.['exam_week'] === 2) {
-                if (!(s as any).university) (s as any).university = {}; (s as any).university['exam_week'] = 0;
+                ((s as any).university = (s as any).university ?? {})['exam_week'] = 0;
                 if (((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
                   (s as any).i = 0;
                   (s as any).passed_count = 0;
@@ -50,7 +48,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if ((!(0 as any))) {
                         // TODO-QSP: dynamic 'class[''<<$class_list_institution[i]>>_<<$class_list_name[i]>>_grade''] = 0'
-                        if (!(s as any).university) (s as any).university = {}; (s as any).university['expelled_for_missing_exam'] = 1;
+                        ((s as any).university = (s as any).university ?? {})['expelled_for_missing_exam'] = 1;
                       }
                     }
                   }
@@ -59,14 +57,14 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: jump 'passed_exams_loop'
                   }
                   if (((s as any).passed_count ?? 0) === ((s as any).class_count ?? 0)) {
-                    if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_passed'] = ((s as any).university ?? 0)?.['enrolled_in_semester'];
+                    ((s as any).university = (s as any).university ?? {})['semester_passed'] = ((s as any).university ?? 0)?.['enrolled_in_semester'];
                   } else {
-                    if (!(s as any).university) (s as any).university = {}; (s as any).university['expelled'] = 1;
-                    if (!(s as any).university) (s as any).university = {}; (s as any).university['student'] = 0;
+                    ((s as any).university = (s as any).university ?? {})['expelled'] = 1;
+                    ((s as any).university = (s as any).university ?? {})['student'] = 0;
                   }
                   if (((s as any).university ?? 0)?.['semester_passed'] === 8) {
-                    if (!(s as any).university) (s as any).university = {}; (s as any).university['diploma'] = 1;
-                    if (!(s as any).university) (s as any).university = {}; (s as any).university['student'] = 0;
+                    ((s as any).university = (s as any).university ?? {})['diploma'] = 1;
+                    ((s as any).university = (s as any).university ?? {})['student'] = 0;
                   }
                 }
               }
@@ -77,9 +75,9 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).university ?? 0)?.['exam_week'] > 0  ||  ((s as any).university ?? 0)?.['semester_week'] > 0) {
-    if (!(s as any).university) (s as any).university = {}; (s as any).university['break'] = 0;
+    ((s as any).university = (s as any).university ?? {})['break'] = 0;
   } else {
-    if (!(s as any).university) (s as any).university = {}; (s as any).university['break'] = 1;
+    ((s as any).university = (s as any).university ?? {})['break'] = 1;
   }
   return;
   // TODO-QSP: end
@@ -87,6 +85,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShortBreak(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   if (((s as any).hour ?? 0) === 9) {
     (s as any).minut = ((s as any).minut ?? 0) + (90 - ((s as any).minut ?? 0));
   }
@@ -107,13 +106,13 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).katjaQW ?? 0)?.['QWstage'] < 2  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).npc_rel ?? 0)?.['A14'] >= 70  &&  ((s as any).fame ?? 0)?.['city_slut'] < 150  &&  ((s as any).pcs_makupskl ?? 0) >= 40  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
-    scene.actions([{ label: 'Continue', goto: ['katja_uni', 'dorm_room_invite'] }]);
+    qspGoto(s, 'katja_uni', 'dorm_room_invite');
   }
   if (((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) > 14  &&  ((s as any).nerd_game ?? 0)?.['fixed_uni_day'] === 0  &&  (((s as any).npc_rel ?? 0)?.['A153'] >= 50  ||  ((s as any).nerd_game ?? 0)?.['stage'] > 0)  &&  ((s as any).nerd_game ?? 0)?.['invite_day'] !== 2147483647) {
-    scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite_uni'] }]);
+    qspGoto(s, 'nerd_game_night', 'invite_uni');
   }
   if ((Math.floor(Math.random() * 20) + 0)=== 0) {
-    scene.actions([{ label: 'Continue', goto: ['uni_events', 'lecture_hall_events'] }]);
+    qspGoto(s, 'uni_events', 'lecture_hall_events');
   }
   scene.text('<center><b>Lecture Building Hallway</b></center>');
   scene.img('images/locations/city/island/university/lecture_hall/lecture_hall.jpg');
@@ -159,25 +158,25 @@ function enterExamSchedule(s: GameState, scene: SceneBuilder): void {
 function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['student'] === 1) {
     if (((s as any).university ?? 0)?.['semester_week'] === -1) {
-      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'Your next semester at the university starts next week. Classes will be Monday to Thursday starting at ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'Your next semester at the university starts next week. Classes will be Monday to Thursday starting at ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_3', 4);
     } else {
       if (((s as any).university ?? 0)?.['semester_week'] > 0) {
         if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) < 9  &&  ((s as any).uni_period ?? 0)?.['first'] !== ((s as any).daystart ?? 0)) {
-          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'You have classes at the university today. Your first class starts at ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'You have classes at the university today. Your first class starts at ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
           qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_1', 4);
         } else {
           if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) < 11  &&  ((s as any).uni_period ?? 0)?.['second'] !== ((s as any).daystart ?? 0)) {
-            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'You have classes at the university today. Your next class starts at ' + qspUntranslated(s, "func('time', 'get_time_string', 11, 0)>", { location: "uni_lessons" }) + '.';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'You have classes at the university today. Your next class starts at ' + qspFunc(s, 'time', 'get_time_string', 11, 0) + '.';
             qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_1', 4);
           } else {
             if ((((s as any).hour ?? 0) < 13  ||  (((s as any).hour ?? 0) === 13  &&  ((s as any).minut ?? 0) < 15))  &&  ((s as any).uni_period ?? 0)?.['third'] !== ((s as any).daystart ?? 0)) {
               if ((((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective1'] !== '')  ||  (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['elective2'] !== '')  ||  (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective3'] !== '')) {
-                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'You have an elective class at the university today. It starts at ' + qspUntranslated(s, "func('time', 'get_time_string', 13, 15)>", { location: "uni_lessons" }) + '.';
+                ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'You have an elective class at the university today. It starts at ' + qspFunc(s, 'time', 'get_time_string', 13, 15) + '.';
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_1', 4);
               } else {
                 if (((s as any).week ?? 0) === 3) {
-                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'You have classes at the university today. Your last class starts at ' + qspUntranslated(s, "func('time', 'get_time_string', 13, 15)>", { location: "uni_lessons" }) + '.';
+                  ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'You have classes at the university today. Your last class starts at ' + qspFunc(s, 'time', 'get_time_string', 13, 15) + '.';
                   qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_1', 4);
                 }
               }
@@ -187,39 +186,39 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).university ?? 0)?.['exam_week'] === 1) {
           if (((s as any).week ?? 0) < 4) {
-            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'You have exams at the university this week and the next. Your first exam is Thursday this week at ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'You have exams at the university this week and the next. Your first exam is Thursday this week at ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
             qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_2', 4);
           } else {
             if (((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) < 9) {
-              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'You have exams at the university this week and the next. Your first exam is today ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+              ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'You have exams at the university this week and the next. Your first exam is today ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
               qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_2', 4);
               qspCall(s, 'stat_display_compute', 'queue_alert', 'You have a university exam today.', 'neg');
             } else {
-              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'You have no more exams this week. Your next exam will be Tuesday next week at ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+              ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'You have no more exams this week. Your next exam will be Tuesday next week at ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
               qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_2', 4);
             }
           }
         } else {
           if (((s as any).university ?? 0)?.['exam_week'] === 2) {
             if (((s as any).week ?? 0) < 2) {
-              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'This is the last week of exams at the university this semester. Your next exam will be Tuesday this week at ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+              ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'This is the last week of exams at the university this semester. Your next exam will be Tuesday this week at ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
               qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_2', 4);
             } else {
               if (((s as any).week ?? 0) === 2  &&  ((s as any).hour ?? 0) < 9) {
-                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'This is the last week of exams at the university this semester. Your next exam will be today at ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+                ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'This is the last week of exams at the university this semester. Your next exam will be today at ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_2', 4);
                 qspCall(s, 'stat_display_compute', 'queue_alert', 'You have a university exam today.', 'neg');
               } else {
                 if (((s as any).week ?? 0) < 4) {
-                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'This is the last week of exams at the university this semester. Your last exam will be Thursday this week at ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+                  ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'This is the last week of exams at the university this semester. Your last exam will be Thursday this week at ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
                   qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_2', 4);
                 } else {
                   if (((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) < 9) {
-                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'This is the last week of exams at the university this semester. Your last exam will be today at ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "uni_lessons" }) + '.';
+                    ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'This is the last week of exams at the university this semester. Your last exam will be today at ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.';
                     qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_2', 4);
                     qspCall(s, 'stat_display_compute', 'queue_alert', 'You have a university exam today.', 'neg');
                   } else {
-                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'This is the last week of exams at the university this semester. All your exams are over. You will receive your results on Monday.';
+                    ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'This is the last week of exams at the university this semester. All your exams are over. You will receive your results on Monday.';
                     qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_2', 4);
                   }
                 }
@@ -227,7 +226,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).university ?? 0)?.['enrolled_in_semester'] === ((s as any).university ?? 0)?.['semester_passed']  &&  ((s as any).university ?? 0)?.['semester_passed'] < 8) {
-              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['uni'] = 'You need to register for your next semester before it starts at the university administration.';
+              ((s as any).stat_texts = (s as any).stat_texts ?? {})['uni'] = 'You need to register for your next semester before it starts at the university administration.';
               qspCall(s, 'stat_display_compute', 'queue_msg', 'uni', '', 'status/uni_class_3', 4);
               qspCall(s, 'stat_display_compute', 'queue_alert', 'You must register for your next university semester.', 'neg');
             }

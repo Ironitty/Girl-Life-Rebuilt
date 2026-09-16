@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -14,43 +12,43 @@ function enterSelect(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).temp ?? 0))) {
     if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
-      if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['activity'] = 'kickboxing';
-      if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['noun'] = 'kickboxer';
+      ((s as any).fame = (s as any).fame ?? {})['activity'] = 'kickboxing';
+      ((s as any).fame = (s as any).fame ?? {})['noun'] = 'kickboxer';
       // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
     }
   } else {
     if (((s as any).temp ?? 0) === 1) {
       if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
-        if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['activity'] = 'running';
-        if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['noun'] = 'runner';
+        ((s as any).fame = (s as any).fame ?? {})['activity'] = 'running';
+        ((s as any).fame = (s as any).fame ?? {})['noun'] = 'runner';
         // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
       }
     } else {
       if (((s as any).temp ?? 0) === 2) {
         if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
-          if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['activity'] = 'singing';
-          if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['noun'] = 'singer';
+          ((s as any).fame = (s as any).fame ?? {})['activity'] = 'singing';
+          ((s as any).fame = (s as any).fame ?? {})['noun'] = 'singer';
           // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
         }
       } else {
         if (((s as any).temp ?? 0) === 3) {
           if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
-            if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['activity'] = 'kickboxing';
-            if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['noun'] = 'kickboxer';
+            ((s as any).fame = (s as any).fame ?? {})['activity'] = 'kickboxing';
+            ((s as any).fame = (s as any).fame ?? {})['noun'] = 'kickboxer';
             // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]
           }
         } else {
           if (((s as any).temp ?? 0) === 4) {
             if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
-              if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['activity'] = 'running';
-              if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['noun'] = 'runner';
+              ((s as any).fame = (s as any).fame ?? {})['activity'] = 'running';
+              ((s as any).fame = (s as any).fame ?? {})['noun'] = 'runner';
               // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]
             }
           } else {
             if (((s as any).temp ?? 0) === 5) {
               if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
-                if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['activity'] = 'singing';
-                if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['noun'] = 'singer';
+                ((s as any).fame = (s as any).fame ?? {})['activity'] = 'singing';
+                ((s as any).fame = (s as any).fame ?? {})['noun'] = 'singer';
                 // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]
               }
             }
@@ -64,7 +62,7 @@ function enterSelect(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoy(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['event_day'] = ((s as any).daystart ?? 0);
+  ((s as any).fame = (s as any).fame ?? {})['event_day'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/fame/boyapproaching1.jpg');
@@ -122,7 +120,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
       qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'music', 'medium');
     } else {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + qspUntranslated(s, "fame['activity']>", { location: "fame_events" }) + '', 'medium');
+      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).fame ?? 0)?.['activity'] + '', 'medium');
     }
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/fame/boyselfie1.jpg');
@@ -152,7 +150,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Thank you! Thank you! Thank you so much!" he says elatedly. "You are the best! I will be cheering for you whenever you are ${((s as any).fame ?? 0)?.['activity'] ?? ''}" looking like he's just gotten his greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -160,7 +158,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
       qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'music', (-50));
     } else {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + qspUntranslated(s, "fame['activity']>", { location: "fame_events" }) + '', (-50));
+      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).fame ?? 0)?.['activity'] + '', (-50));
     }
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
@@ -169,7 +167,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wait! But-!" You don\'t wait for him and walk off, not listening to another word.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -184,7 +182,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('"But I\'m not her. You\'ve mistaken me for someone else," you say as you turn around leaving the very puzzled looking boy.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -193,7 +191,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGirl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['event_day'] = ((s as any).daystart ?? 0);
+  ((s as any).fame = (s as any).fame ?? {})['event_day'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   if (((s as any).stat_visible_cum ?? 0) === 1) {
@@ -249,7 +247,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
       qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'music', 'medium');
     } else {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + qspUntranslated(s, "fame['activity']>", { location: "fame_events" }) + '', 'medium');
+      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).fame ?? 0)?.['activity'] + '', 'medium');
     }
     qspCall(s, 'stat', '');
     scene.text('"Of course!" you say, scooching over towards her.');
@@ -278,7 +276,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Thank you! Thank you! Thank you so much!" she says elatedly. "You are the best! I will be cheering for you whenever you are ${((s as any).fame ?? 0)?.['activity'] ?? ''}" looking like she's just gotten her greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -286,7 +284,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
       qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'music', (-50));
     } else {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + qspUntranslated(s, "fame['activity']>", { location: "fame_events" }) + '', (-50));
+      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).fame ?? 0)?.['activity'] + '', (-50));
     }
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
@@ -294,7 +292,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wait! But-!" You don\'t wait for her and walk off, not listening to another word.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -308,7 +306,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     scene.text('"But I\'m not her. You\'ve mistaken me for someone else," you say as you turn around leaving the very puzzled looking girl.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

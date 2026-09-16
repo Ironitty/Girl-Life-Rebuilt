@@ -1,14 +1,21 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).bobkabj = qspUntranslated(s, "{", { location: "city_bobka" });
   scene.img('images/characters/city/bobka/sex/bj.jpg');
+  (s as any).tempval = 'You';
+  (s as any).tempval2 = '';
   if (((s as any).HaveMetBobka ?? 0) === 1) {
+    (s as any).tempval = 'You desperately need a fix, so you';
   }
   if ((!((s as any).bobrand ?? 0))) {
+    (s as any).tempval2 = ' He tucks his spent cock back into his pants and tosses you a syringe.';
   }
   // TODO-QSP: dynamic text: <<$tempval>> drop to your knees automatically and quickly pull his pants down wi...
   scene.text(`${((s as any).tempval || '')} drop to your knees automatically and quickly pull his pants down without even thinking about it. His cock is still flaccid, but you close your lips around it anyway, doing the best you can to arouse him. You slowly feel his cock grow hard inside your mouth and obediently suck him off until you feel several warm jets of sperm land on the back of your throat.${((s as any).tempval2 || '')}`);
@@ -69,7 +76,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 3) {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
+    (s as any).tempval = 'You';
+    (s as any).tempval2 = '';
     if (((s as any).HaveMetBobka ?? 0) === 1) {
+      (s as any).tempval = 'You desperately need a fix, so you';
     }
     scene.img('images/characters/city/bobka/sex/rimming.jpg');
     // TODO-QSP: dynamic text: <<$tempval>> drop to your knees before Bobka and look at him questioningly, soft...
@@ -88,7 +98,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_bobka', 'rimming2'] },
+    qspGoto(s, 'city_bobka', 'rimming2');
+  } },
       ]);
     }
     scene.actions([
@@ -98,7 +109,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 4) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
+    (s as any).tempval = 'You';
+    (s as any).tempval2 = '';
     if (((s as any).HaveMetBobka ?? 0) === 1) {
+      (s as any).tempval = 'You desperately need a fix, so you';
     }
     scene.img('images/characters/city/bobka/sex/knees.jpg');
     // TODO-QSP: dynamic text: <<$tempval>> drop to your knees before Bobka and look at him questioningly, soft...
@@ -119,7 +133,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'swallow', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['city_bobka', 'peeface'] },
+    qspGoto(s, 'city_bobka', 'peeface');
+  } },
       ]);
     }
     scene.actions([
@@ -131,9 +146,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterInject(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['heroin_whore'] = ((s as any).drugVars['heroin_whore'] ?? 0) + (1);
+  ((s as any).drugVars = (s as any).drugVars ?? {})['heroin_whore'] = ((s as any).drugVars['heroin_whore'] ?? 0) + (1);
   qspCall(s, 'drugs', 'heroin');
+  (s as any).tempval = '';
   if (((s as any).drugVars ?? 0)?.['cocaine_addict'] !== 0) {
+    (s as any).tempval = ' with trembling hands';
   }
   scene.img('images/locations/city/residential/den/crackwhore.jpg');
   // TODO-QSP: dynamic text: You desperately grab the syringe and inject yourself<<$tempval>>.
@@ -148,7 +165,8 @@ function enterInject(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
   ]);
   scene.build();
 }
@@ -325,7 +343,7 @@ function enterPeeswallow4(s: GameState, scene: SceneBuilder): void {
 function enterPeewhore(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['heroin_whore'] = ((s as any).drugVars['heroin_whore'] ?? 0) + (1);
+  ((s as any).drugVars = (s as any).drugVars ?? {})['heroin_whore'] = ((s as any).drugVars['heroin_whore'] ?? 0) + (1);
   qspCall(s, 'drugs', 'heroin');
   scene.img('images/characters/city/bobka/sex/peewhore.jpg');
   scene.text('You don\'t even bother washing yourself as you quickly grab the syringe and inject yourself with it.');

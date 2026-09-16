@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -25,23 +25,28 @@ function enterStartloverhome(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Kiss her back and take her to the bedroom', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-  }, goto: ['lezbsex', 'start'] },
+    qspGoto(s, 'lezbsex', 'start');
+  } },
     { label: 'Stop her and say goodbye', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-2));
-  }, goto: ['homes_properties', 'go_straight_home'] },
+    qspGoto(s, 'homes_properties', 'go_straight_home');
+  } },
   ]);
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).girl = ((s as any).girl ?? 0) + (1);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
   if (((s as any).lezbsexhome ?? 0) === 1) {
+    (s as any).lezbsexname = ((s as any).npcdesc ?? 0);
+  } else {
+    (s as any).lezbsexname = 'the girl';
   }
   scene.img('images/shared/sex/lesbian/lezbsexstart.jpg');
-  scene.actions([{ label: 'Continue', goto: ['lezbsex', 'var'] }]);
+  qspGoto(s, 'lezbsex', 'var');
   // TODO-QSP: end
   scene.build();
 }
@@ -295,27 +300,27 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt 'dateF', $dateFType
     }
     if (((s as any).lezbsexhome ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['homes_properties', 'go_straight_home'] }]);
+      qspGoto(s, 'homes_properties', 'go_straight_home');
     }
     if (((s as any).sexloc ?? 0) === 'stwork') {
-      scene.actions([{ label: 'Continue', goto: ['stwork', 'start'] }]);
+      qspGoto(s, 'stwork', 'start');
     }
     if (((s as any).sexloc ?? 0) === 'uni_dorm') {
-      scene.actions([{ label: 'Continue', goto: ['uni_dorm', 'dorm_room'] }]);
+      qspGoto(s, 'uni_dorm', 'dorm_room');
     }
     if (((s as any).sexloc ?? 0) === 'city_nightclub') {
-      scene.actions([{ label: 'Continue', goto: ['city_nightclub', 'private_rooms'] }]);
+      qspGoto(s, 'city_nightclub', 'private_rooms');
     }
     if (((s as any).picrand ?? 0) === 22) {
-      scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+      qspGoto(s, 'city_center', '');
     }
     if (((s as any).picrand ?? 0) === 21) {
-      scene.actions([{ label: 'Continue', goto: ['vann', 'start'] }]);
+      qspGoto(s, 'vann', 'start');
     }
     if (((s as any).picrand ?? 0) === 19  ||  ((s as any).picrand ?? 0) === 20) {
-      scene.actions([{ label: 'Continue', goto: ['office', 'work'] }]);
+      qspGoto(s, 'office', 'work');
     }
-    dynamicGoto(st, 'sexloc');
+    dynamicGoto(s, 'sexloc');
   } },
   ]);
   scene.build();

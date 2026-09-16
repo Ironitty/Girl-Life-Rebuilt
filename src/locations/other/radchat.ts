@@ -45,7 +45,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'So she caught you cheating?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] < 2) {
-      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['rad_date'] = 2;
+      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['rad_date'] = 2;
     }
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
@@ -98,7 +98,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about him still hooking up with Anushka', handler: (st: GameState) => {
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['rad_date'] = 1;
+      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['rad_date'] = 1;
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
@@ -138,7 +138,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['marspy'] === 1) {
     scene.actions([
       { label: 'Ask if he knows about Anushka and Marcus hooking up', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['marspyknow'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['marspyknow'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
@@ -193,7 +193,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ask about the band', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
+    ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
     qspCall(s, 'calendar', 'add', 'band_practice_event');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Radomir\'s Room</b></center>');
@@ -273,7 +273,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['nush_sex'] = 1;
+    ((s as any).radomirQW = (s as any).radomirQW ?? {})['nush_sex'] = 1;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
@@ -352,7 +352,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about the future', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['Gerasim'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['Gerasim'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
@@ -369,32 +369,33 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rex_love ?? 0) === 1  ||  ((s as any).artemQW ?? 0)?.['bf'] === 1  ||  ((s as any).kotovLoveQW ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0)  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  ||  ((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
       if (((s as any).rex_love ?? 0) === 1) {
         scene.actions([
-          { label: 'Get married to Rex', goto: ['radchat', 'telling_marrige_dreams', '\'Rex\''] },
+          { label: 'Get married to Rex', goto: ['radchat', 'telling_marrige_dreams', 'Rex'] },
         ]);
       }
       if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
         scene.actions([
-          { label: 'Get married to Artem', goto: ['radchat', 'telling_marrige_dreams', '\'Artem\''] },
+          { label: 'Get married to Artem', goto: ['radchat', 'telling_marrige_dreams', 'Artem'] },
         ]);
       }
       if (((s as any).kotovLoveQW ?? 0) === 1) {
         scene.actions([
-          { label: 'Get married to Vitek', goto: ['radchat', 'telling_marrige_dreams', '\'Vitek\''] },
+          { label: 'Get married to Vitek', goto: ['radchat', 'telling_marrige_dreams', 'Vitek'] },
         ]);
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 5) {
         scene.actions([
-          { label: 'Get married to Fedor', goto: ['radchat', 'telling_marrige_dreams', '\'Fedor\''] },
+          { label: 'Get married to Fedor', goto: ['radchat', 'telling_marrige_dreams', 'Fedor'] },
         ]);
       }
       if (((s as any).NikoVolkovQW ?? 0) >= 5) {
         scene.actions([
-          { label: 'Get married to Niko', goto: ['radchat', 'telling_marrige_dreams', '\'Niko\''] },
+          { label: 'Get married to Niko', goto: ['radchat', 'telling_marrige_dreams', 'Niko'] },
         ]);
       }
       (s as any).i = 0;
       // TODO-QSP: :marrid_looop
       if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+        (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic 'act ''Get married to <<npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''telling_marri...
         }
@@ -661,6 +662,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :lover_looop
   if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+    (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
       // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''tell_about_generic_boyfrien...
     }

@@ -1,3 +1,5 @@
+import { qspGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -8,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGoHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['current'] === 'hunters_lodge') {
-    scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
+    qspGoto(s, 'gad_swamp_yard', 'start');
   } else {
     if (((s as any).home ?? 0)?.['location'] === 'pav_complex') {
-      scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+      qspGoto(s, 'pav_complex', 'start');
     } else {
       // TODO-QSP: gt $home['location']
     }
@@ -22,10 +24,10 @@ function enterGoHome(s: GameState, scene: SceneBuilder): void {
 
 function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['current'] === 'lyceum_dorm') {
-    scene.actions([{ label: 'Continue', goto: ['ETO_hostel', 'town_hostel'] }]);
+    qspGoto(s, 'ETO_hostel', 'town_hostel');
   } else {
     if (((s as any).home ?? 0)?.['current'] === 'university_dorm') {
-      scene.actions([{ label: 'Continue', goto: ['uni_dorm', 'dorm_room'] }]);
+      qspGoto(s, 'uni_dorm', 'dorm_room');
     } else {
       // TODO-QSP: gt $home['entrance'], 'start'
     }

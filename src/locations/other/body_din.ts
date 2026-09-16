@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -12,8 +10,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterPregnancyVisibility(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 0;
-  (s as any).pregchemTemp = (((!((s as any).locArgs?.[1] ?? 0))) ? (((s as any).pregChem ?? 0)) : (qspUntranslated(s, "ARGS[1]", { location: "body_din" })));
-  (s as any).clothingwornnumberTemp = (((!((s as any).locArgs?.[3] ?? 0))) ? (((s as any).clothingwornnumber ?? 0)) : (qspUntranslated(s, "ARGS[3]", { location: "body_din" })));
+  (s as any).pregchemTemp = (((!((s as any).locArgs?.[1] ?? 0))) ? (((s as any).pregChem ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
+  (s as any).clothingworntypeTemp = ((((s as any).locArgs?.[2] ?? 0) === '') ? (((s as any).clothingworntype ?? 0)) : (((s as any).locArgs?.[2] ?? 0)));
+  (s as any).clothingwornnumberTemp = (((!((s as any).locArgs?.[3] ?? 0))) ? (((s as any).clothingwornnumber ?? 0)) : (((s as any).locArgs?.[3] ?? 0)));
   qspCall(s, 'clothing_attributes', '', ((s as any).clothingworntypeTemp ?? 0), ((s as any).clothingwornnumberTemp ?? 0));
   if ((((s as any).CloThinness ?? 0) >= 5  ||  ((s as any).clothingworntypeTemp ?? 0) === 'nude')  &&  ((s as any).pregchemTemp ?? 0) > 2688) {
     (s as any).RESULT = 1;

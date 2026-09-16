@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -76,10 +74,11 @@ function enterDFbdStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Drink some more', handler: (st: GameState) => {
     (s as any).dormrape = 0;
-    if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 12) + 5;
-    if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_someone'] = 'guys';
+    ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 12) + 5;
+    ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_someone'] = 'guys';
     qspCall(s, 'drugs', 'alcohol', 'vodka', 4);
-  }, goto: ['placer_sex', 'meet'] },
+    qspGoto(s, 'placer_sex', 'meet');
+  } },
     ]);
   } },
               ]);
@@ -298,16 +297,16 @@ function enterDFbdAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterDFbdEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ppbj ?? 0) > 0) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
   }
   if (((s as any).pphj ?? 0) > 0) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hj'] = ((s as any).stat['hj'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['hj'] = ((s as any).stat['hj'] ?? 0) + (1);
   }
   if (((s as any).ppsex ?? 0) > 0) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
   }
   if (((s as any).ppanal ?? 0) > 0) {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -324,7 +323,7 @@ function enterDFbdEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterDFbdMass(s: GameState, scene: SceneBuilder): void {
   (s as any).boy = ((s as any).boy ?? 0) + (2);
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).parkfuckboy = ((s as any).parkfuckboy ?? 0) + (1);
   (s as any).fbdormtimes = ((s as any).fbdormtimes ?? 0) + (1);
   (s as any).pphj = 0;
@@ -337,7 +336,7 @@ function enterDFbdMass(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'vodka', 2);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
   qspCall(s, 'stat', '');
-  qspCall(s, 'npcgeneratec', '', 0, '' + qspUntranslated(s, "npcdesc>", { location: "fbDormD" }) + '\'s friend', Math.floor(Math.random() * 27) + 19);
+  qspCall(s, 'npcgeneratec', '', 0, '' + ((s as any).npcdesc ?? 0) + '\'s friend', Math.floor(Math.random() * 27) + 19);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'a');
   // TODO-QSP: dynamic text: You quietly drink the booze while you're leaning against <<$npcdesc1>>. He begin...

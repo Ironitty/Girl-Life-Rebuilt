@@ -59,9 +59,13 @@ function enterUpdateDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).daystart ?? 0)]; enterToDate(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).day = ((s as any).dateVars ?? 0)?.['day'];
   (s as any).month = ((s as any).dateVars ?? 0)?.['month'];
+  (s as any).monthName = ((s as any).dateVars ?? 0)?.['monthName'];
+  (s as any).season = ((s as any).dateVars ?? 0)?.['season'];
   (s as any).year = ((s as any).dateVars ?? 0)?.['year'];
   (s as any).week = ((s as any).dateVars ?? 0)?.['week'];
+  (s as any).weekName = ((s as any).dateVars ?? 0)?.['weekName'];
   (s as any).odd_week = ((s as any).dateVars ?? 0)?.['odd_week'];
+  (s as any).day_suffix = ((s as any).dateVars ?? 0)?.['suffix'];
   (s as any).day_of_year = ((s as any).dateVars ?? 0)?.['day_of_year'];
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).year ?? 0)]; enterInitMonthends(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
@@ -71,97 +75,97 @@ function enterUpdateDate(s: GameState, scene: SceneBuilder): void {
 
 function enterToDate(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).daystart ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).daystart ?? 0);
   }
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['daystart'] = qspUntranslated(s, "ARGS[1]", { location: "time" });
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = (((s as any).dateVars ?? {})?.['daystart'] ?? 0) + 151574;
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['week_drift'] = 6;
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['odd_week'] = (((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) + 6 - (((s as any).temp_timeVars ?? {})?.['week_drift'] ?? 0)) / 7) % 2;
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['week'] = ((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) + 7 - (((s as any).temp_timeVars ?? {})?.['week_drift'] ?? 0)) % 7;
+  ((s as any).dateVars = (s as any).dateVars ?? {})['daystart'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = (((s as any).dateVars ?? {})?.['daystart'] ?? 0) + 151574;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['week_drift'] = 6;
+  ((s as any).dateVars = (s as any).dateVars ?? {})['odd_week'] = (((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) + 6 - (((s as any).temp_timeVars ?? {})?.['week_drift'] ?? 0)) / 7) % 2;
+  ((s as any).dateVars = (s as any).dateVars ?? {})['week'] = ((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) + 7 - (((s as any).temp_timeVars ?? {})?.['week_drift'] ?? 0)) % 7;
   if (((s as any).dateVars ?? 0)?.['week'] === 0) {
-    if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['week'] = 7;
+    ((s as any).dateVars = (s as any).dateVars ?? {})['week'] = 7;
   }
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['weekName'] = qspUntranslated(s, "weekName[dateVars['week']]", { location: "time" });
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars ?? 0)?.['mod_daystart'];
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['year'] = 1601;
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['400cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 146097;
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['year'] = ((s as any).dateVars['year'] ?? 0) + (400 * (((s as any).temp_timeVars ?? {})?.['400cycles'] ?? 0));
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (146097 * (((s as any).temp_timeVars ?? {})?.['400cycles'] ?? 0));
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['100cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 36524;
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['year'] = ((s as any).dateVars['year'] ?? 0) + (100 * (((s as any).temp_timeVars ?? {})?.['100cycles'] ?? 0));
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (36524 * (((s as any).temp_timeVars ?? {})?.['100cycles'] ?? 0));
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['4cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 1461;
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['year'] = ((s as any).dateVars['year'] ?? 0) + (4 * (((s as any).temp_timeVars ?? {})?.['4cycles'] ?? 0));
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (1461 * (((s as any).temp_timeVars ?? {})?.['4cycles'] ?? 0));
+  ((s as any).dateVars = (s as any).dateVars ?? {})['weekName'] = qspUntranslated(s, "weekName[dateVars['week']]", { location: "time" });
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars ?? 0)?.['mod_daystart'];
+  ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = 1601;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['400cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 146097;
+  ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (400 * (((s as any).temp_timeVars ?? {})?.['400cycles'] ?? 0));
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (146097 * (((s as any).temp_timeVars ?? {})?.['400cycles'] ?? 0));
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['100cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 36524;
+  ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (100 * (((s as any).temp_timeVars ?? {})?.['100cycles'] ?? 0));
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (36524 * (((s as any).temp_timeVars ?? {})?.['100cycles'] ?? 0));
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['4cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 1461;
+  ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (4 * (((s as any).temp_timeVars ?? {})?.['4cycles'] ?? 0));
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (1461 * (((s as any).temp_timeVars ?? {})?.['4cycles'] ?? 0));
   if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] >= 1095) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_years'] = 3;
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_years'] = 3;
   } else {
     if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] >= 730) {
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_years'] = 2;
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_years'] = 2;
     } else {
       if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] >= 365) {
-        if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_years'] = 1;
+        ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_years'] = 1;
       } else {
-        if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_years'] = 0;
+        ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_years'] = 0;
       }
     }
   }
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['year'] = ((s as any).dateVars['year'] ?? 0) + (((s as any).temp_timeVars ?? 0)?.['inner_years']);
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (365 * (((s as any).temp_timeVars ?? {})?.['inner_years'] ?? 0));
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['leapyear'] = 0;
+  ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (((s as any).temp_timeVars ?? 0)?.['inner_years']);
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (365 * (((s as any).temp_timeVars ?? {})?.['inner_years'] ?? 0));
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['leapyear'] = 0;
   if (((((s as any).dateVars ?? 0)?.['year'] % 4) === 0  &&  (((s as any).dateVars ?? 0)?.['year'] % 100) !== 0)  ||  (((s as any).dateVars ?? 0)?.['year'] % 400 === 0)) {
     if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] >= 59) {
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['leapyear'] = 1;
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (1);
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['leapyear'] = 1;
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (1);
     }
   }
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['day_of_year'] = 1 + (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0);
+  ((s as any).dateVars = (s as any).dateVars ?? {})['day_of_year'] = 1 + (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0);
   if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 31) {
-    if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 1;
+    ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 1;
   } else {
     if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 59) {
-      if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 2;
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) + (((s as any).temp_timeVars ?? 0)?.['leapyear']);
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (31);
+      ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 2;
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) + (((s as any).temp_timeVars ?? 0)?.['leapyear']);
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (31);
     } else {
       if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 90) {
-        if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 3;
-        if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (59);
+        ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 3;
+        ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (59);
       } else {
         if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 120) {
-          if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 4;
-          if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (90);
+          ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 4;
+          ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (90);
         } else {
           if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 151) {
-            if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 5;
-            if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (120);
+            ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 5;
+            ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (120);
           } else {
             if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 181) {
-              if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 6;
-              if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (151);
+              ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 6;
+              ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (151);
             } else {
               if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 212) {
-                if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 7;
-                if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (181);
+                ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 7;
+                ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (181);
               } else {
                 if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 243) {
-                  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 8;
-                  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (212);
+                  ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 8;
+                  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (212);
                 } else {
                   if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 273) {
-                    if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 9;
-                    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (243);
+                    ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 9;
+                    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (243);
                   } else {
                     if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 304) {
-                      if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 10;
-                      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (273);
+                      ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 10;
+                      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (273);
                     } else {
                       if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 334) {
-                        if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 11;
-                        if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (304);
+                        ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 11;
+                        ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (304);
                       } else {
-                        if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 12;
-                        if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (334);
+                        ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 12;
+                        ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (334);
                       }
                     }
                   }
@@ -173,25 +177,25 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['monthName'] = qspUntranslated(s, "monthName[dateVars['month']]", { location: "time" });
+  ((s as any).dateVars = (s as any).dateVars ?? {})['monthName'] = qspUntranslated(s, "monthName[dateVars['month']]", { location: "time" });
   if (((s as any).dateVars ?? 0)?.['month'] >= 12  ||  ((s as any).dateVars ?? 0)?.['month'] < 3) {
-    if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['season'] = 'winter';
+    ((s as any).dateVars = (s as any).dateVars ?? {})['season'] = 'winter';
   } else {
     if (((s as any).dateVars ?? 0)?.['month'] < 6) {
-      if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['season'] = 'spring';
+      ((s as any).dateVars = (s as any).dateVars ?? {})['season'] = 'spring';
     } else {
       if (((s as any).dateVars ?? 0)?.['month'] < 9) {
-        if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['season'] = 'summer';
+        ((s as any).dateVars = (s as any).dateVars ?? {})['season'] = 'summer';
       } else {
-        if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['season'] = 'fall';
+        ((s as any).dateVars = (s as any).dateVars ?? {})['season'] = 'fall';
       }
     }
   }
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['day'] = 1 + (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0);
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['suffix'] = qspFunc(s, 'time', 'get_number_suffix', ((s as any).dateVars ?? 0)?.['day']);
+  ((s as any).dateVars = (s as any).dateVars ?? {})['day'] = 1 + (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0);
+  ((s as any).dateVars = (s as any).dateVars ?? {})['suffix'] = qspFunc(s, 'time', 'get_number_suffix', ((s as any).dateVars ?? 0)?.['day']);
   if (((s as any).locArgs?.[2] ?? 0) === 'test') {
     // TODO-QSP: dynamic text: new_daystart: <<ARGS[1]>> | old_daystart: <<daystart>>
-    scene.text(`new_daystart: ${qspUntranslated(s, "ARGS[1]", { location: "time" })} | old_daystart: ${((s as any).daystart || '')}`);
+    scene.text(`new_daystart: ${((s as any).locArgs?.[1] ?? '')} | old_daystart: ${((s as any).daystart || '')}`);
     // TODO-QSP: dynamic text: new_day: <<dateVars['day']>> | old_day: <<day>>
     scene.text(`new_day: ${((s as any).dateVars ?? 0)?.['day'] ?? ''} | old_day: ${((s as any).day || '')}`);
     // TODO-QSP: dynamic text: new_month: <<dateVars['month']>> | old_month: <<month>>
@@ -224,7 +228,7 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetWeekFromDaystart(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).ARGS ?? 0)[1] + 4) % 7;
+  (s as any).result = (((s as any).locArgs?.[1] ?? 0) + 4) % 7;
   if (((s as any).result ?? 0) <= 0) {
     (s as any).result = ((s as any).result ?? 0) + (7);
   }
@@ -234,7 +238,7 @@ function enterGetWeekFromDaystart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetOddWeekFromDaystart(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = ((((s as any).ARGS ?? 0)[1] + 4) / 7) % 2;
+  (s as any).result = ((((s as any).locArgs?.[1] ?? 0) + 4) / 7) % 2;
   if (((s as any).result ?? 0) < 0) {
     (s as any).result = 1;
   }
@@ -245,12 +249,18 @@ function enterGetOddWeekFromDaystart(s: GameState, scene: SceneBuilder): void {
 
 function enterGetNumberSuffix(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).locArgs?.[1] ?? 0) >= 4  &&  ((s as any).locArgs?.[1] ?? 0) <= 20)) {
+    (s as any).result = 'th';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) % 10 === 1) {
+      (s as any).result = 'st';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) % 10 === 2) {
+        (s as any).result = 'nd';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) % 10 === 3) {
+          (s as any).result = 'rd';
+        } else {
+          (s as any).result = 'th';
         }
       }
     }
@@ -261,63 +271,63 @@ function enterGetNumberSuffix(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToDaystart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['year'] = qspUntranslated(s, "ARGS[1]", { location: "time" });
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = qspUntranslated(s, "ARGS[2]", { location: "time" });
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['day'] = qspUntranslated(s, "ARGS[3]", { location: "time" });
+  ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).dateVars = (s as any).dateVars ?? {})['day'] = ((s as any).locArgs?.[3] ?? 0);
   if (((s as any).dateVars ?? 0)?.['year'] < 1601) {
-    if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['year'] = 1601;
+    ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = 1601;
   }
   if (((s as any).dateVars ?? 0)?.['month'] < 1) {
-    if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['month'] = 1;
+    ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 1;
   }
   if (((s as any).dateVars ?? 0)?.['day'] < 1) {
-    if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['day'] = 1;
+    ((s as any).dateVars = (s as any).dateVars ?? {})['day'] = 1;
   }
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['year_diff'] = (((s as any).dateVars ?? {})?.['year'] ?? 0) - 1601;
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['daystart_offset'] = 151575;
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = (((s as any).temp_timeVars ?? {})?.['year_diff'] ?? 0) * 365;
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + ((((s as any).temp_timeVars ?? {})?.['year_diff'] ?? 0) / 4);
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) - ((((s as any).temp_timeVars ?? {})?.['year_diff'] ?? 0) / 100);
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + ((((s as any).temp_timeVars ?? {})?.['year_diff'] ?? 0) / 400);
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['year_diff'] = (((s as any).dateVars ?? {})?.['year'] ?? 0) - 1601;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['daystart_offset'] = 151575;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = (((s as any).temp_timeVars ?? {})?.['year_diff'] ?? 0) * 365;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + ((((s as any).temp_timeVars ?? {})?.['year_diff'] ?? 0) / 4);
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) - ((((s as any).temp_timeVars ?? {})?.['year_diff'] ?? 0) / 100);
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + ((((s as any).temp_timeVars ?? {})?.['year_diff'] ?? 0) / 400);
   if (((s as any).dateVars ?? 0)?.['month'] > 1) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 2) {
     if (((((s as any).dateVars ?? 0)?.['year'] % 4 === 0)  &&  (((s as any).dateVars ?? 0)?.['year'] % 100 !== 0))  ||  (((s as any).dateVars ?? 0)?.['year'] % 400 === 0)) {
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (29);
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (29);
     } else {
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (28);
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (28);
     }
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 3) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 4) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 5) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 6) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 7) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 8) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 9) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 10) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (31);
   }
   if (((s as any).dateVars ?? 0)?.['month'] > 11) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
   }
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (((s as any).dateVars ?? 0)?.['day']);
-  if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['daystart'] = ((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) - (((s as any).temp_timeVars ?? {})?.['daystart_offset'] ?? 0));
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (((s as any).dateVars ?? 0)?.['day']);
+  ((s as any).dateVars = (s as any).dateVars ?? {})['daystart'] = ((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) - (((s as any).temp_timeVars ?? {})?.['daystart_offset'] ?? 0));
   if (((s as any).locArgs?.[4] ?? 0) === 'test') {
     // TODO-QSP: dynamic text: new_daystart <<dateVars['daystart']>> | old_daystart <<daystart>>
     scene.text(`new_daystart ${((s as any).dateVars ?? 0)?.['daystart'] ?? ''} | old_daystart ${((s as any).daystart || '')}`);
@@ -335,7 +345,7 @@ function enterToDaystart(s: GameState, scene: SceneBuilder): void {
 
 function enterUpdateDaystage(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).totminut ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).totminut ?? 0);
   }
   (s as any).DayLength = qspFunc(s, 'time', 'get_DayLength', ((s as any).totminut ?? 0) / 1440);
   (s as any).CurTimeSun = qspFunc(s, 'time', 'get_CurTimeSun', ((s as any).totminut ?? 0));
@@ -378,25 +388,25 @@ function enterUpdateDaystage(s: GameState, scene: SceneBuilder): void {
 
 function enterGet_DayLength(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).daystart ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).daystart ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).daystart ?? 0)) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['day_of_year'] = ((s as any).day_of_year ?? 0);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['day_of_year'] = ((s as any).day_of_year ?? 0);
   } else {
     if (((s as any).dateVars ?? 0)?.['daystart'] !== ((s as any).locArgs?.[1] ?? 0)) {
       // TODO-QSP: gs 'time', 'to_date', ARGS[1]
     }
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['day_of_year'] = ((s as any).dateVars ?? 0)?.['day_of_year'];
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['day_of_year'] = ((s as any).dateVars ?? 0)?.['day_of_year'];
   }
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['DayLengthMin'] = 177;
-  if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['DayLengthMax'] = 563;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['DayLengthMin'] = 177;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['DayLengthMax'] = 563;
   if (((s as any).temp_timeVars ?? 0)?.['day_of_year'] < 172) {
-    if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['DayInYear2'] = 172 - (((s as any).temp_timeVars ?? {})?.['day_of_year'] ?? 0);
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['DayInYear2'] = 172 - (((s as any).temp_timeVars ?? {})?.['day_of_year'] ?? 0);
   } else {
     if (((s as any).temp_timeVars ?? 0)?.['day_of_year'] < 355) {
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['DayInYear2'] = (((s as any).temp_timeVars ?? {})?.['day_of_year'] ?? 0) - 172;
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['DayInYear2'] = (((s as any).temp_timeVars ?? {})?.['day_of_year'] ?? 0) - 172;
     } else {
-      if (!(s as any).temp_timeVars) (s as any).temp_timeVars = {}; (s as any).temp_timeVars['DayInYear2'] = 536 - (((s as any).temp_timeVars ?? {})?.['day_of_year'] ?? 0);
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['DayInYear2'] = 536 - (((s as any).temp_timeVars ?? {})?.['day_of_year'] ?? 0);
     }
   }
   (s as any).result = (((s as any).temp_timeVars ?? {})?.['DayLengthMax'] ?? 0) - (((((s as any).temp_timeVars ?? {})?.['DayLengthMax'] ?? 0) - (((s as any).temp_timeVars ?? {})?.['DayLengthMin'] ?? 0)) * (((s as any).temp_timeVars ?? {})?.['DayInYear2'] ?? 0)) / 182;
@@ -407,34 +417,38 @@ function enterGet_DayLength(s: GameState, scene: SceneBuilder): void {
 
 function enterGet_CurTimeSun(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).totminut ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).totminut ?? 0);
   }
-  (s as any).result = (((s as any).ARGS ?? 0)[1] % 1440) - 780;
+  (s as any).result = (((s as any).locArgs?.[1] ?? 0) % 1440) - 780;
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGetDurationString(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).temp_dur) (s as any).temp_dur = {}; (s as any).temp_dur['days'] = ((s as any).ARGS ?? 0)[1] / 1440;
-  if (!(s as any).temp_dur) (s as any).temp_dur = {}; (s as any).temp_dur['hours'] = (((s as any).ARGS ?? 0)[1] % 1440) / 60;
-  if (!(s as any).temp_dur) (s as any).temp_dur = {}; (s as any).temp_dur['mins'] = ((s as any).ARGS ?? 0)[1] % 60;
-  if (!(s as any).temp_dur) (s as any).temp_dur = {}; (s as any).temp_dur['n'] = 0;
+  ((s as any).temp_dur = (s as any).temp_dur ?? {})['days'] = ((s as any).locArgs?.[1] ?? 0) / 1440;
+  ((s as any).temp_dur = (s as any).temp_dur ?? {})['hours'] = (((s as any).locArgs?.[1] ?? 0) % 1440) / 60;
+  ((s as any).temp_dur = (s as any).temp_dur ?? {})['mins'] = ((s as any).locArgs?.[1] ?? 0) % 60;
+  ((s as any).temp_dur = (s as any).temp_dur ?? {})['n'] = 0;
   if (((s as any).temp_dur ?? 0)?.['days'] > 0) {
     // TODO-QSP: $temp_dur_part[temp_dur['n']] = "<<temp_dur['days']>> " + iif(temp_dur['days'] = 1, 'day', 'days')
-    if (!(s as any).temp_dur) (s as any).temp_dur = {}; (s as any).temp_dur['n'] = ((s as any).temp_dur['n'] ?? 0) + (1);
+    ((s as any).temp_dur = (s as any).temp_dur ?? {})['n'] = ((s as any).temp_dur['n'] ?? 0) + (1);
   }
   if (((s as any).temp_dur ?? 0)?.['hours'] > 0) {
     // TODO-QSP: $temp_dur_part[temp_dur['n']] = "<<temp_dur['hours']>> " + iif(temp_dur['hours'] = 1, 'hour', 'hours...
-    if (!(s as any).temp_dur) (s as any).temp_dur = {}; (s as any).temp_dur['n'] = ((s as any).temp_dur['n'] ?? 0) + (1);
+    ((s as any).temp_dur = (s as any).temp_dur ?? {})['n'] = ((s as any).temp_dur['n'] ?? 0) + (1);
   }
   if (((s as any).temp_dur ?? 0)?.['mins'] > 0  ||  ((s as any).temp_dur ?? 0)?.['n'] === 0) {
     // TODO-QSP: $temp_dur_part[temp_dur['n']] = "<<temp_dur['mins']>> " + iif(temp_dur['mins'] = 1, 'minute', 'minut...
-    if (!(s as any).temp_dur) (s as any).temp_dur = {}; (s as any).temp_dur['n'] = ((s as any).temp_dur['n'] ?? 0) + (1);
+    ((s as any).temp_dur = (s as any).temp_dur ?? {})['n'] = ((s as any).temp_dur['n'] ?? 0) + (1);
   }
   if (((s as any).temp_dur ?? 0)?.['n'] === 1) {
+    (s as any).result = qspUntranslated(s, "temp_dur_part[0]", { location: "time" });
   } else {
     if (((s as any).temp_dur ?? 0)?.['n'] === 2) {
+      (s as any).result = qspUntranslated(s, "temp_dur_part[0]", { location: "time" }) + ' and ' + qspUntranslated(s, "temp_dur_part[1]", { location: "time" });
+    } else {
+      (s as any).result = qspUntranslated(s, "temp_dur_part[0]", { location: "time" }) + ', ' + qspUntranslated(s, "temp_dur_part[1]", { location: "time" }) + ' and ' + qspUntranslated(s, "temp_dur_part[2]", { location: "time" });
     }
   }
   return;
@@ -444,28 +458,32 @@ function enterGetDurationString(s: GameState, scene: SceneBuilder): void {
 
 function enterGetTimeString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length <= 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).hour ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).hour ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).minut ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).minut ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 3) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).cheatVars ?? 0)?.['time_format'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).cheatVars ?? 0)?.['time_format'];
   }
   if (((s as any).locArgs?.[3] ?? 0) === 0  &&  ((s as any).locArgs?.[3] ?? 0) === '') {
+    (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '';
   } else {
-    if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['period'] = 'AM';
+    ((s as any).dateVars = (s as any).dateVars ?? {})['period'] = 'AM';
     if (((s as any).locArgs?.[1] ?? 0) >= 12) {
-      if (!(s as any).dateVars) (s as any).dateVars = {}; (s as any).dateVars['period'] = 'PM';
+      ((s as any).dateVars = (s as any).dateVars ?? {})['period'] = 'PM';
       if (((s as any).locArgs?.[1] ?? 0) > 12) {
-        if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).ARGS[1] ?? 0) - (12);
+        ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).ARGS[1] ?? 0) - (12);
       }
     } else {
       if ((!((s as any).locArgs?.[1] ?? 0))) {
-        if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 12;
+        ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 12;
       }
     }
     if ((!((s as any).locArgs?.[2] ?? 0))) {
+      (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '&nbsp;' + ((s as any).dateVars ?? 0)?.['period'] + '';
+    } else {
+      (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '&nbsp;' + ((s as any).dateVars ?? 0)?.['period'] + '';
     }
   }
   return;
@@ -475,21 +493,28 @@ function enterGetTimeString(s: GameState, scene: SceneBuilder): void {
 
 function enterGetDateString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length <= 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).year ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).year ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).month ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).month ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 3) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).day ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).day ?? 0);
   }
+  (s as any).temp_date_suffix = qspFunc(s, 'time', 'get_number_suffix', ((s as any).locArgs?.[3] ?? 0));
   if (((s as any).locArgs?.[4] ?? 0) === 1) {
+    (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[1] ?? 0)) + '-' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '-' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2)));
   } else {
     if (((s as any).locArgs?.[4] ?? 0) === 2) {
+      (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + String(((s as any).locArgs?.[1] ?? 0));
     } else {
       if (((s as any).locArgs?.[4] ?? 0) === 3) {
+        (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + qspUntranslated(s, "monthName[ARGS[2]]", { location: "time" }) + '&nbsp;' + String(((s as any).locArgs?.[3] ?? 0)) + ((s as any).temp_date_suffix ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[1] ?? 0));
       } else {
         if (((s as any).locArgs?.[4] ?? 0) === 4) {
+          (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + String(((s as any).locArgs?.[1] ?? 0));
+        } else {
+          (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[3] ?? 0)) + ((s as any).temp_date_suffix ?? 0) + '&nbsp;' + qspUntranslated(s, "monthName[ARGS[2]]", { location: "time" }) + '&nbsp;' + String(((s as any).locArgs?.[1] ?? 0));
         }
       }
     }
@@ -501,24 +526,24 @@ function enterGetDateString(s: GameState, scene: SceneBuilder): void {
 
 function enterGetAge(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length <= 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).birthyear ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).birthyear ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 2) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).birthmonth ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).birthmonth ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 3) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).birthday ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).birthday ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 4) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[4] = ((s as any).year ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[4] = ((s as any).year ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 5) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[5] = ((s as any).month ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[5] = ((s as any).month ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 6) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[6] = ((s as any).day ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[6] = ((s as any).day ?? 0);
   }
-  (s as any).result = ((s as any).ARGS ?? 0)[4] - ((s as any).ARGS ?? 0)[1];
+  (s as any).result = ((s as any).locArgs?.[4] ?? 0) - ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).locArgs?.[5] ?? 0) < ((s as any).locArgs?.[2] ?? 0)  ||  ((s as any).locArgs?.[5] ?? 0) === ((s as any).locArgs?.[2] ?? 0)  &&  ((s as any).locArgs?.[6] ?? 0) < ((s as any).locArgs?.[3] ?? 0)) {
     (s as any).result = ((s as any).result ?? 0) - (1);
   }
@@ -560,23 +585,23 @@ function enterInitWeeknames(s: GameState, scene: SceneBuilder): void {
 
 function enterInitMonthends(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).year ?? 0);
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).year ?? 0);
   }
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[1] = 31;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[2] = 28;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[1] = 31;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[2] = 28;
   if (((((s as any).locArgs?.[1] ?? 0) % 4 === 0)  &&  (((s as any).locArgs?.[1] ?? 0) % 100 !== 0))  ||  (((s as any).locArgs?.[1] ?? 0) % 400 === 0)) {
-    if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[2] = ((s as any).monthsend[2] ?? 0) + (1);
+    ((s as any).monthsend = (s as any).monthsend ?? {})[2] = ((s as any).monthsend[2] ?? 0) + (1);
   }
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[3] = 31;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[4] = 30;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[5] = 31;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[6] = 30;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[7] = 31;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[8] = 31;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[9] = 30;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[10] = 31;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[11] = 30;
-  if (!(s as any).monthsend) (s as any).monthsend = {}; (s as any).monthsend[12] = 31;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[3] = 31;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[4] = 30;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[5] = 31;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[6] = 30;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[7] = 31;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[8] = 31;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[9] = 30;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[10] = 31;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[11] = 30;
+  ((s as any).monthsend = (s as any).monthsend ?? {})[12] = 31;
   return;
   // TODO-QSP: end
   scene.build();

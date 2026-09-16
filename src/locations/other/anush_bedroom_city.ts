@@ -1,25 +1,28 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).returnLoc = '_city';
   scene.build();
 }
 
 function enterAnushroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).track_loop = '';
   (s as any).music_loop = 1;
   qspCall(s, 'core_library', 'setloc', 'anush_bedroom_city', 'anushroom');
+  (s as any).locclass = 'bedr';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom.jpg');
-  scene.text('The room is clean, even more so than her room back in Pavlovsk, it reminds you a lot of her old room, a few new posters, slightly bigger and looks a little more adult but otherwise pretty much the same. The walls are covered with pictures and posters of <a href="exec:gt \'anush_bedroom_city\',\'the_pretty_reckless\'">bands</a> or famous models, girls and guys, while the room is skillfully decorated with various strings of coloured lights. In the center of the room, beneath the window, is a <a href="exec:gt \'anush_bedroom_city\',\'bed\'">bed</a> with a small <a href="exec:gt \'anush_bedroom_city\',\'night_stand\'">nightstand</a> beside it.');
-  scene.text('Against the opposite wall are a small computer desk, a <a href="exec:gt \'anush_bedroom_city\',\'computer\'">laptop</a> and a chair. Next to the desk is a <a href="exec:gt \'anush_bedroom_city\',\'nushdresser\'">dresser</a> with a decent sized flatscreen TV sitting on top of it. On the other side of the desk is a bookshelf with a relatively large collection of books. Hanging on the wall next to the shelves is an <a href="exec:gt \'anush_bedroom_city\',\'guitar\'">acoustic guitar</a> with an electric guitar right beside it. A skateboard is also leaning against one of the other walls next to the <a href="exec:gt \'anush_bedroom_city\',\'nushcloset\'">closet door</a>, along with some rollerblades in the corner.');
+  scene.text('The room is clean, even more so than her room back in Pavlovsk, it reminds you a lot of her old room, a few new posters, slightly bigger and looks a little more adult but otherwise pretty much the same. The walls are covered with pictures and posters of <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027the_pretty_reckless\\u0027); return false;">bands</a> or famous models, girls and guys, while the room is skillfully decorated with various strings of coloured lights. In the center of the room, beneath the window, is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027bed\\u0027); return false;">bed</a> with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027night_stand\\u0027); return false;">nightstand</a> beside it.');
+  scene.text('Against the opposite wall are a small computer desk, a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027computer\\u0027); return false;">laptop</a> and a chair. Next to the desk is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027nushdresser\\u0027); return false;">dresser</a> with a decent sized flatscreen TV sitting on top of it. On the other side of the desk is a bookshelf with a relatively large collection of books. Hanging on the wall next to the shelves is an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027guitar\\u0027); return false;">acoustic guitar</a> with an electric guitar right beside it. A skateboard is also leaning against one of the other walls next to the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027nushcloset\\u0027); return false;">closet door</a>, along with some rollerblades in the corner.');
   if (((s as any).locat ?? 0)?.['A144'] === 2) {
     if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 1) {
-      if (!(s as any).anushkaCityQW) (s as any).anushkaCityQW = {}; (s as any).anushkaCityQW['first_visit'] = 2;
+      ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 2;
     }
     scene.text('<br>Anushka is lying on the bed, a mysterious smirk playing around her lips as she looks at you.');
     scene.actions([
@@ -37,9 +40,10 @@ function enterAnushroom(s: GameState, scene: SceneBuilder): void {
 
 function enterThePrettyReckless(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'anush_bedroom_city', 'the_pretty_reckless');
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/the_pretty_reckless_poster.jpg');
-  scene.text('You look over the bands\' posters; most posters are of bands with a few models, and the only band with more than one poster is The Pretty Reckless. The poster that seems to be most prominently displayed in her room is one of the lead singers for The Pretty Reckless, lying naked on a stone coffin. The poster right next to it is similar, but without the band name and <a href="exec:gt \'anush_bedroom_city\',\'taylor_momsen\'">Taylor\'s</a> breasts on full display.');
+  scene.text('You look over the bands\' posters; most posters are of bands with a few models, and the only band with more than one poster is The Pretty Reckless. The poster that seems to be most prominently displayed in her room is one of the lead singers for The Pretty Reckless, lying naked on a stone coffin. The poster right next to it is similar, but without the band name and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027taylor_momsen\\u0027); return false;">Taylor\'s</a> breasts on full display.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Find something else to look at', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -49,6 +53,7 @@ function enterThePrettyReckless(s: GameState, scene: SceneBuilder): void {
 
 function enterTaylorMomsen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'anush_bedroom_city', 'taylor_momsen');
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/taylor_poster.jpg');
   scene.text('There\'s a crease in the middle of the poster like it came folded up inside something. It looks like Anushka made a lot of effort to get rid of the crease, but you can still see it. Perhaps she really loves the band or has a crush on the lead singer? Knowing Anushka, it\'s likely both.');
@@ -61,6 +66,7 @@ function enterTaylorMomsen(s: GameState, scene: SceneBuilder): void {
 
 function enterNushdresser(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'anush_bedroom_city', 'nushdresser');
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushdresser.jpg');
   if (((s as any).locat ?? 0)?.['A144'] === 2) {
@@ -81,6 +87,7 @@ function enterNushdresser(s: GameState, scene: SceneBuilder): void {
 
 function enterNushcloset(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'anush_bedroom_city', 'nushcloset');
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom.jpg');
   if (((s as any).locat ?? 0)?.['A144'] === 2) {
@@ -258,7 +265,7 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
       { label: 'Close the drawer', goto: ['anush_bedroom_city', 'anushroom'] },
       { label: 'Take joint', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/take_joint.jpg');
     scene.text('You decide to take one of the joints. Surely she won\'t mind that you took just one? You take it out and look at it before placing it in your purse for later and closing the drawer.');
@@ -275,7 +282,7 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
 function enterComputer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).locat ?? 0)?.['A144'] === 2  &&  ((s as any).anushkaQW ?? 0)?.['computer_use'] === 0) {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['computer_use'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['computer_use'] = 1;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/laptop.jpg');
     scene.text('You point towards her laptop. "You\'re so lucky to have your own computer."');
@@ -286,7 +293,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anushkaQW ?? 0)?.['model'] === 0) {
       scene.actions([
         { label: 'Ask about modeling', handler: (st: GameState) => {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 1;
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 1;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
@@ -296,7 +303,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
         { label: 'Do something else', goto: ['anush_bedroom_city', 'anushroom'] },
       ]);
     } else {
-      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model_referral'] = 1;
+      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model_referral'] = 1;
       scene.text('You perk up at the mention of modeling to earn money towards a lovely laptop like she has. "Does modeling really pay that well?"');
       scene.text('She nods. "Sort of… If you\'re willing to do nude modeling, you can make a lot in a short amount of time. Are you interested?" she asks while arching a shapely eyebrow.');
       scene.text('"Nude?" you silently ask yourself. Still, it might be worth considering if it pays that much. "I don\'t know… Maybe… How would I get started? Is there a modeling agency or something?"');
@@ -334,7 +341,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
         { label: 'Agree to watch porn', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['anush_bedroom_city', 'agreeporn'] },
+    qspGoto(s, 'anush_bedroom_city', 'agreeporn');
+  } },
       ]);
     }
     scene.actions([
@@ -367,7 +375,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
         { label: 'Agree to watch porn', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['anush_bedroom_city', 'agreeporn'] },
+    qspGoto(s, 'anush_bedroom_city', 'agreeporn');
+  } },
       ]);
     }
     scene.actions([
@@ -409,6 +418,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushcmast.mp4');
     scene.text('You keep rubbing your clit… you can feel your climax building… building… You can feel yourself going higher and higher while riding the orgasmic wave of pleasure.');
     scene.text('You lean back in the chair and spread your legs wider apart as you feel your climax approaching. You turn and bury your mouth into your shoulder to stop yourself from screaming as your orgasm rocks your body. It takes you a few seconds to recover once it\'s over before you straighten everything up and wonder what you can do next to kill some time.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -463,6 +473,7 @@ function enterAgreeporn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/dualmast.mp4');
     scene.text('"Fuck it," you think to yourself. The video has turned you on, and she clearly doesn\'t think it\'s a big deal to masturbate in front of you. With that thought, you start masturbating as well. You find it hard to get into it, knowing she\'s right next to you, but after a while, you start to relax and get more comfortable with the situation. You glance over at Anushka, who\'s looking at you with a massive grin on her face, clearly enjoying that the two of you are playing with yourselves together. At this point, neither of you is really watching the porno anymore. Instead, you just lay back on the bed side by side while looking at each other as you masturbate.');
     scene.text('Sometime later, you feel Anushka speed up next to you. Her soft moans suddenly get louder before she starts shuddering in orgasm. This is just enough to get you right to the edge, and you quicken your own pace as a result. Within seconds, a huge orgasm rocks your body that completely overwhelms your senses. By the time you fully recover, Anushka has already turned off the porno and is smiling at you with her pants back up. She nods towards the door. "I don\'t know about you, but I could use a snack. Come on, let\'s go raid the kitchen." She heads out of her room, waving for you to follow and acting like everything is completely normal. You get up to follow her out.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate', 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -632,6 +643,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
 
 function enterBed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'anush_bedroom_city', 'bed');
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   if (((s as any).locat ?? 0)?.['A144'] === 2) {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
@@ -663,6 +675,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
 
 function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'anush_bedroom_city', 'nush_guitar');
+  (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   if (((s as any).anushkaQW ?? 0)?.['guitar_day'] === ((s as any).daystart ?? 0)) {
     scene.text('She shakes her head slightly. "I already played you a song. Let\'s do something else." She then sees your disappointment. "Don\'t worry, I\'ll play for you again, just not right now. I love that you\'re such a fan though. Want me to sign your tits?" she asks in a snarky tone.');
@@ -671,14 +684,14 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
       { label: 'Find something else to do', goto: ['anush_bedroom_city', 'anushroom'] },
     ]);
   } else {
-    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_day'] = ((s as any).daystart ?? 0);
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_day'] = ((s as any).daystart ?? 0);
     (s as any).music_loop = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 0) {
       if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
       }
-      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushplay.jpg');
       scene.text('Anushka\'s eyes brighten up as you ask her. She reaches over and grabs the acoustic guitar, strumming a few bars to check it\'s still in tune. "I\'ll play you the very first song I ever learned. It\'s one of my dad\'s favorites." She starts playing and then singing the song. It takes you a moment to recognize that she\'s playing and singing \'Wanted Dead or Alive\' by Bon Jovi.');
@@ -693,7 +706,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
       if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 1) {
         if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
         }
-        if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+        ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushplay.jpg');
         scene.text('She reaches over and grabs the acoustic guitar. "Sure, I\'ll play you something else." She strums the guitar and checks to ensure it\'s still in tune. "This is another song my dad taught me. It\'s \'Behind Blue Eyes\' by The Who."');
@@ -706,7 +719,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
         if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 2) {
           if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
           }
-          if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+          ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
           qspCall(s, 'stat', '');
           scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushplay.jpg');
           scene.text('She reaches over and grabs the acoustic guitar. "Sure, I\'ll play you something else. This is a lot more our generation." She strums the guitar and checks to ensure it\'s still in tune. "This is the first song Rad and I worked on learning together. It\'s \'Make Me Wanna Die\' by The Pretty Reckless. It\'s also when my obsession, and girl crush, with Taylor started."');
@@ -739,7 +752,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
           if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 3) {
             if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
             }
-            if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+            ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
             qspCall(s, 'stat', '');
             scene.text('She reaches over and grabs the acoustic guitar. "Sure, I\'ll play you something else. This is the second song Rad and I worked on together." She strums the guitar and checks to ensure it\'s still in tune. "This is also the song I played for the band that got me in. Val loved it and wanted me in right away. It\'s \'Going to Hell\' by The Pretty Reckless."');
             scene.text('She starts playing and singing the new song, playing and singing just as well as before. When she ends her piece, you clap your hands and praise her. "Another great song. You really are good at this."');
@@ -752,7 +765,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
             if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 4) {
               if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
               }
-              if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+              ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
               qspCall(s, 'stat', '');
               scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushplay.jpg');
               scene.text('She reaches over and grabs the acoustic guitar. "Sure, I\'ll play you something else. This one I learned shortly after seeing the uncensored music video for it." She strums the guitar and checks to ensure it\'s still in tune. "It\'s \'Heaven Knows\' by The Pretty Reckless."');
@@ -766,7 +779,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
               if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 5) {
                 if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
                 }
-                if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+                ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
                 qspCall(s, 'stat', '');
                 scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushplay.jpg');
                 scene.text('She reaches over and grabs the acoustic guitar. "Sure, I\'ll play you something else. This is another one I learned shortly after we started secondary school and how things started to change with how everyone saw each other." She strums the guitar and checks to ensure it\'s still in tune. "It\'s \'What\'s Up\' by the 4 Non Blondes."');
@@ -780,7 +793,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 6) {
                   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
                   }
-                  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+                  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
                   qspCall(s, 'stat', '');
                   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushplay.jpg');
                   scene.text('She reaches over and grabs the acoustic guitar. "Sure, I\'ll play you something else. This is another one I learned shortly after we started going to secondary school, with how the boys started treating us differently and how the girls started acting in response to what the boys did." She strums the guitar and checks to ensure it\'s still in tune. "It\'s \'Try\' by Colbie Caillat."');
@@ -794,7 +807,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 7) {
                     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
                     }
-                    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+                    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
                     qspCall(s, 'stat', '');
                     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushplay.jpg');
                     scene.text('She reaches over and grabs the acoustic guitar. "Sure, I\'ll play you something else." She strums the guitar and checks to ensure it\'s still in tune. "It\'s \'Numb\' by Linkin Park."');
@@ -825,7 +838,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).anushkaQW ?? 0)?.['guitar_play'] === 8) {
                       if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
                       }
-                      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
+                      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['guitar_play'] = ((s as any).anushkaQW['guitar_play'] ?? 0) + (1);
                       qspCall(s, 'stat', '');
                       scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushplay.jpg');
                       scene.text('She reaches over and grabs the acoustic guitar. "Sure, I\'ll play you something else. This is one I\'ve been working on recently. Ever since Dimka approached us about playing at the end-of-school party he plans to throw, we\'ve been working on a playlist for it. This got me thinking, I should do a song dedicated to most of my fellow classmates, the judgmental hypocrite assholes they are." She strums the guitar and checks to ensure it\'s still in tune. "It\'s \'Whore\' by In This Moment."');
@@ -865,6 +878,8 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNushGuitarTeach(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'anush_bedroom_city';
+  (s as any).menu_arg = 'nush_guitar_teach';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
   scene.text('You sit down on the bed next to Anushka and look at her. "Can you teach me how to play the guitar?"');
@@ -968,9 +983,11 @@ function enterNushGuitarTeach(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'anush_bedroom_city';
+  (s as any).menu_arg = 'guitar_lesson';
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['knows_guitar'] = 1;
-  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sveta_love'] = ((s as any).anushkaQW['sveta_love'] ?? 0) + (1);
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['knows_guitar'] = 1;
+  ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['sveta_love'] = ((s as any).anushkaQW['sveta_love'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/teach_guitar1.jpg');
   scene.text('She hands you the guitar and scoots around behind you. You sit with her legs on each side of your hips, and you can feel her inner thighs pressing against your hips. She leans close behind you, and you can feel her breasts against your back as she reaches around you to place her hands on yours. Leaning forward, her face is right next to yours, and you realize this is a very intimate feeling. You can feel the heat from her body against yours, and can smell lavender from the shampoo she uses on her hair.');
@@ -1006,6 +1023,8 @@ function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'anush_bedroom_city';
+  (s as any).menu_arg = 'nush_guitar_play_together';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/teach_guitar2.jpg');
   scene.text('"Hey, want to play together?" you ask.');

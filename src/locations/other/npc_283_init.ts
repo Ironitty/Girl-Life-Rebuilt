@@ -46,7 +46,7 @@ function enterExamInterview(s: GameState, scene: SceneBuilder): void {
     scene.text('“Get out. Now.” He commands, as he steps around the table grabbing your arm to drag you out of the room and slamming the door behind him.');
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -57,17 +57,17 @@ function enterExamInterview(s: GameState, scene: SceneBuilder): void {
     scene.text('“Whatever I decided, and whenever I decide. That is all you need to know.”');
   } },
     { label: 'Buy time to think', handler: (st: GameState) => {
-    if (!(s as any).rudolphqw) (s as any).rudolphqw = {}; (s as any).rudolphqw['counter'] = ((s as any).daystart ?? 0) + 7;
+    ((s as any).rudolphqw = (s as any).rudolphqw ?? {})['counter'] = ((s as any).daystart ?? 0) + 7;
     scene.text('“Can I have some time to think on this?”, Rudolph glares at you for a moment and then his expression changes to being more fatherly, “Despite my best judgement I will give you seven days to decide. You will report back to me here to give your choice otherwise I will assume you have chosen to disregard my generous offer. ”');
     scene.text('You can\'t help but notice that his fatherly smile and expression fail to reach his eyes leaving you with an uneasy feeling.');
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
     { label: 'Accept his offer', handler: (st: GameState) => {
-    if (!(s as any).rudolphqw) (s as any).rudolphqw = {}; (s as any).rudolphqw['path'] = 1;
+    ((s as any).rudolphqw = (s as any).rudolphqw ?? {})['path'] = 1;
     scene.text('You pause for a moment before replying, “I will not prostitute myself to be a ballerina if that\'s what you are asking.”');
     // TODO-QSP: dynamic text: Rudolph glares at you for a moment and then his expression changes to being more...
     scene.text(`Rudolph glares at you for a moment and then his expression changes to being more fatherly, “Do not worry ${((s as any).pcs_nickname || '')}, I will not lay a finger on you. I do not rape my pupils, and all my relationships have been consensual. However I still get to decide what you owe me and how you pay me back. Understand?” Something in his voice feels slightly threatening but you can't see what that could be.`);
@@ -76,7 +76,7 @@ function enterExamInterview(s: GameState, scene: SceneBuilder): void {
     scene.text(`“I am glad you see it my way. You may attend the classes and rehearsals but I will withhold the privilege to perform at the winter performance.”, you start to speak, “Do not try me ${((s as any).pcs_nickname || '')}, you have already pushed my patience and you are walking on thin ice already. Now leave, I have other matters to attend to and you have wasted too much of my time. Remember I will be watching your training and your actions from now on.” His voice makes it clear that he owns you now as you leave the room with each heavy step.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

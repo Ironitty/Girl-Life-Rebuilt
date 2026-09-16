@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -22,100 +22,117 @@ function enterWashSheets(s: GameState, scene: SceneBuilder): void {
 function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_at_a_home')) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVomitingImages(s, scene); (s as any).locArgs = __savedLocArgs; }
-    scene.actions([{ label: 'Continue', goto: ['home_activity', 'morning_vomit'] }]);
+    qspGoto(s, 'home_activity', 'morning_vomit');
   } else {
-    if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['morning_sick'] = 0;
-    if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['hangover'] = 0;
-    if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['unlucky'] = 0;
+    ((s as any).vomit = (s as any).vomit ?? {})['morning_sick'] = 0;
+    ((s as any).vomit = (s as any).vomit ?? {})['hangover'] = 0;
+    ((s as any).vomit = (s as any).vomit ?? {})['unlucky'] = 0;
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterVomitingImages(s: GameState, scene: SceneBuilder): void {
+  (s as any).at_home_txt = qspFunc(s, 'homes_properties', 'get_property_code', ((s as any).loc ?? 0));
   if (((s as any).at_home_txt ?? 0) === 'city_apartment') {
     if ((!((s as any).rembedr ?? 0))) {
-      if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/residential/apartment/bedr.jpg"></center>';
+      ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/residential/apartment/bedr.jpg"></center>';
     } else {
-      if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/residential/apartment/bedr2.jpg"></center>';
+      ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/residential/apartment/bedr2.jpg"></center>';
     }
     if ((!((s as any).remvanr ?? 0))) {
-      if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/residential/apartment/vanr.jpg"></center>';
+      ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/residential/apartment/vanr.jpg"></center>';
     } else {
       if (((s as any).remvanr ?? 0) === 1) {
-        if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/shared/bathroom/vanr2.jpg"></center>';
+        ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/shared/bathroom/vanr2.jpg"></center>';
       }
     }
+    (s as any).loc = 'vanr';
+    (s as any).loc_arg = '';
   } else {
     if (((s as any).at_home_txt ?? 0) === 'parents_home') {
-      if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg"></center>';
-      if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg"></center>';
+      ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg"></center>';
+      ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg"></center>';
+      (s as any).loc = 'vanrPar';
     } else {
       if (((s as any).at_home_txt ?? 0) === 'village_cottage') {
         if (qspFunc(s, 'homes_properties', 'is_property_renovated', 'village_cottage')) {
-          if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/suburban/cottage/dacharoom2.jpg"></center>';
-          if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/suburban/cottage/dacharoom2.jpg"></center>';
+          ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/suburban/cottage/dacharoom2.jpg"></center>';
+          ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/suburban/cottage/dacharoom2.jpg"></center>';
         } else {
-          if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/suburban/cottage/dacharoom1.jpg"></center>';
-          if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/suburban/cottage/dacharoom1.jpg"></center>';
+          ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/suburban/cottage/dacharoom1.jpg"></center>';
+          ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/suburban/cottage/dacharoom1.jpg"></center>';
         }
+        (s as any).loc = 'dachain';
+        (s as any).loc_arg = 'dachabath';
       } else {
         if (((s as any).at_home_txt ?? 0) === 'old_town_apartment') {
-          if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/residential/apartment/bedr2.jpg"></center>';
-          if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pushkin/apartment/vanr2x.jpg"></center>';
+          ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/residential/apartment/bedr2.jpg"></center>';
+          ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pushkin/apartment/vanr2x.jpg"></center>';
+          (s as any).loc = 'vanr2x';
         } else {
           if (((s as any).at_home_txt ?? 0) === 'matryona_mansion') {
             if (((s as any).ymanrem ?? 0)[4] === 2) {
-              if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/suburb/mansion/y_bedroom.jpg"></center>';
+              ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/suburb/mansion/y_bedroom.jpg"></center>';
             } else {
               if (((s as any).ymanrem ?? 0)[4] === 1) {
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/suburb/mansion/i_finished.jpg"></center>';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/suburb/mansion/i_finished.jpg"></center>';
               } else {
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/suburb/mansion/i_unfinished.jpg"></center>';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/suburb/mansion/i_unfinished.jpg"></center>';
               }
             }
             if (((s as any).ymanrem ?? 0)[5] === 2) {
-              if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/suburb/mansion/y_bathroom.jpg"></center>';
+              ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/suburb/mansion/y_bathroom.jpg"></center>';
             } else {
               if (((s as any).ymanrem ?? 0)[5] === 1) {
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/suburb/mansion/i_finished.jpg"></center>';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/suburb/mansion/i_finished.jpg"></center>';
               } else {
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/suburb/mansion/i_unfinished.jpg"></center>';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/suburb/mansion/i_unfinished.jpg"></center>';
               }
             }
+            (s as any).loc = 'city_mansion_residence_1';
+            (s as any).loc_arg = 'ybathroom';
           } else {
             if (((s as any).at_home_txt ?? 0) === 'pavlovsk_hotel') {
               if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 1) {
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal.jpg"></center>';
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal1.jpg"></center>';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal.jpg"></center>';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal1.jpg"></center>';
               } else {
                 if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 2  ||  ((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
-                  if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/hotel/hotel.room.better.jpg"></center>';
-                  if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/hotel/hotel.room.better1.jpg"></center>';
+                  ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.better.jpg"></center>';
+                  ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.better1.jpg"></center>';
                 } else {
                   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 3) {
-                    if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/hotel/hotel.room.best.jpg"></center>';
-                    if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/hotel/hotel.room.best1.jpg"></center>';
+                    ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best.jpg"></center>';
+                    ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best1.jpg"></center>';
                   }
                 }
               }
-              if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '';
-              if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '';
+              (s as any).loc = 'HotelRoom';
+              (s as any).loc_arg = 'shower1';
+              ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '';
+              ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '';
               // TODO-QSP: 'vasilyhome', 'bathroom' !}
             } else {
               if (((s as any).at_home_txt ?? 0) === 'shared_apartment') {
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/shared/home/bedroom/sofabed.jpg"></center>';
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg"></center>';
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '';
-                if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = qspUntranslated(s, "'' !}", { location: "home_activity" });
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/home/bedroom/sofabed.jpg"></center>';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg"></center>';
+                (s as any).loc = 'pav_shared_apt';
+                (s as any).loc_arg = 'bathroom';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '';
+                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = qspUntranslated(s, "'' !}", { location: "home_activity" });
               } else {
                 if (((s as any).at_home_txt ?? 0) === 'city_house') {
-                  if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/residential/house/crh_bedroom.jpg"></center>';
-                  if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/city/residential/house/crh_bathroom.jpg"></center>';
+                  ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/residential/house/crh_bedroom.jpg"></center>';
+                  ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/residential/house/crh_bathroom.jpg"></center>';
+                  (s as any).loc = 'city_house_res_bathr';
+                  (s as any).loc_arg = 'bathr';
                 } else {
                   if (((s as any).at_home_txt ?? 0) === 'meynold_household') {
-                    if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bedroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/resident/meynolds/guestroom.jpg"></center>';
-                    if (!(s as any).home_activity) (s as any).home_activity = {}; (s as any).home_activity['vomit_bathroom'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "home_activity" }) + ' src="images/locations/pavlovsk/hotel/hotel.room.best1.jpg"></center>';
+                    ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/meynolds/guestroom.jpg"></center>';
+                    ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best1.jpg"></center>';
+                    (s as any).loc = 'mey_home';
+                    (s as any).loc_arg = 'bathroom';
                   }
                 }
               }
@@ -132,12 +149,12 @@ function enterVomitingImages(s: GameState, scene: SceneBuilder): void {
 function enterMorningVomit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 3, 'head', 'ache');
   if (((s as any).region ?? 0) === 'gad') {
-    if (!(s as any).lastwornclothingtype) (s as any).lastwornclothingtype = {}; (s as any).lastwornclothingtype['swim'] = ((s as any).clothingworntype ?? 0);
-    if (!(s as any).lastwornclothingnumber) (s as any).lastwornclothingnumber = {}; (s as any).lastwornclothingnumber['swim'] = ((s as any).clothingwornnumber ?? 0);
-    if (!(s as any).lastwornpantytype) (s as any).lastwornpantytype = {}; (s as any).lastwornpantytype['swim'] = ((s as any).pantyworntype ?? 0);
-    if (!(s as any).lastwornpantynumber) (s as any).lastwornpantynumber = {}; (s as any).lastwornpantynumber['swim'] = ((s as any).pantywornnumber ?? 0);
-    if (!(s as any).lastwornbratype) (s as any).lastwornbratype = {}; (s as any).lastwornbratype['swim'] = ((s as any).braworntype ?? 0);
-    if (!(s as any).lastwornbranumber) (s as any).lastwornbranumber = {}; (s as any).lastwornbranumber['swim'] = ((s as any).brawornnumber ?? 0);
+    ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['swim'] = ((s as any).clothingworntype ?? 0);
+    ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['swim'] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})['swim'] = ((s as any).pantyworntype ?? 0);
+    ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})['swim'] = ((s as any).pantywornnumber ?? 0);
+    ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})['swim'] = ((s as any).braworntype ?? 0);
+    ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})['swim'] = ((s as any).brawornnumber ?? 0);
   }
   if (((s as any).loc ?? 0) !== 'uni_dorm') {
     qspCall(s, 'outfit', 'strip_all');
@@ -371,9 +388,9 @@ function enterPregScareReact(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVomitingExit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['morning_sick'] = 0;
-  if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['hangover'] = 0;
-  if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['unlucky'] = 0;
+  ((s as any).vomit = (s as any).vomit ?? {})['morning_sick'] = 0;
+  ((s as any).vomit = (s as any).vomit ?? {})['hangover'] = 0;
+  ((s as any).vomit = (s as any).vomit ?? {})['unlucky'] = 0;
   qspCall(s, 'homes_properties', 'go_bathroom');
   // TODO-QSP: end
   scene.build();

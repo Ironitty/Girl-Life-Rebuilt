@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,9 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 1;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).vibratorIN ?? 0) === 1) {
       if (((s as any).pcs_horny ?? 0) >= 100) {
         // TODO-QSP: $sleep_events[] = 'gs ''sleep_events'', ''vibr_orgasm'' '
@@ -73,10 +73,10 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 1) {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
-      scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_handler2', '\'priority\''] }]);
+      qspGoto(s, 'sleep_events', 'event_handler2', 'priority');
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
-        scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_handler2'] }]);
+        qspGoto(s, 'sleep_events', 'event_handler2');
       }
     }
   }
@@ -86,32 +86,34 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
+    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
+    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   }
-  scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', '\'sleep\''] }]);
+  qspGoto(s, 'sleep_events', 'event_end', 'sleep');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'dream') {
-    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'continue', '\'dream\''] }]);
+    qspGoto(s, 'sleep_events', 'continue', 'dream');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'wake') {
       // TODO-QSP: gs 'sleep_events', 'exit', ARGS[2]
-      scene.actions([{ label: 'Continue', goto: ['wakeup', 'start'] }]);
+      qspGoto(s, 'wakeup', 'start');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'no_interrupt') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'no_interrupt']; enterContinue(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'sleep') {
-          scene.actions([{ label: 'Continue', goto: ['sleep_events', 'continue', '\'sleep\''] }]);
+          qspGoto(s, 'sleep_events', 'continue', 'sleep');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['sleep_events', 'continue', '\'sleep\''] }]);
+          qspGoto(s, 'sleep_events', 'continue', 'sleep');
         }
       }
     }
@@ -121,8 +123,8 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
   qspCall(s, 'wakeup', 'wear_bed_clothes');
   if (((s as any).locArgs?.[1] ?? 0) !== 0) {
@@ -133,13 +135,13 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
   if (((s as any).locArgs?.[1] ?? 0) === 'sleep') {
-    scene.actions([{ label: 'Continue', goto: ['sleep', 'sleep_handler'] }]);
+    qspGoto(s, 'sleep', 'sleep_handler');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'dream') {
-      scene.actions([{ label: 'Continue', goto: ['sleep', 'start'] }]);
+      qspGoto(s, 'sleep', 'start');
     }
   }
   // TODO-QSP: end
@@ -147,18 +149,19 @@ function enterContinue(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVibrOrgasm(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['sleep_events', 'vibr_orgasm2'] }]);
+  qspGoto(s, 'sleep_events', 'vibr_orgasm2');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterWakeHorny(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['sleep_events', 'wake_horny2'] }]);
+  qspGoto(s, 'sleep_events', 'wake_horny2');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterVibrOrgasm2(s: GameState, scene: SceneBuilder): void {
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_vibe', 5, 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
@@ -168,7 +171,7 @@ function enterVibrOrgasm2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', '\'dream\''] }]);
+    qspGoto(s, 'sleep_events', 'event_end', 'dream');
   } },
     { label: 'Give up trying to sleep', handler: (st: GameState) => {
     scene.img('images/shared/sex/oface/kotovfirst1.jpg');
@@ -180,13 +183,13 @@ function enterVibrOrgasm2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMaleDream(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['sleep_events', 'male_dream1'] }]);
+  qspGoto(s, 'sleep_events', 'male_dream1');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterMaleDream1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).tgQWtemp) (s as any).tgQWtemp = {}; (s as any).tgQWtemp['chosen_dream'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('tgQWtemp')-1);
+  ((s as any).tgQWtemp = (s as any).tgQWtemp ?? {})['chosen_dream'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('tgQWtemp')-1);
   // TODO-QSP: gt 'sleep_events_magic', $tgQWtemp[tgQWtemp['chosen_dream']]
   // TODO-QSP: end
   scene.build();
@@ -209,7 +212,7 @@ function enterMaleDreamEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', '\'dream\''] }]);
+    qspGoto(s, 'sleep_events', 'event_end', 'dream');
   } },
     { label: 'Get up', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wake']; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -219,14 +222,14 @@ function enterMaleDreamEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIvannaDream(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['sleep_events', 'ivanna_dream1'] }]);
+  qspGoto(s, 'sleep_events', 'ivanna_dream1');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterIvannaDream1(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_horny = 0;
-  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['ivanna_dream'] = 2;
+  (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
+  ((s as any).strip_club = (s as any).strip_club ?? {})['ivanna_dream'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/ivanna3.jpg');
   scene.text('You dream about working a shift at the bar in the strip club when a naked Ivanna suddenly appears in front of you.');
@@ -252,6 +255,7 @@ function enterIvannaDream1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIvannaDreamOrgasm(s: GameState, scene: SceneBuilder): void {
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'erotic', 5, 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
@@ -264,7 +268,7 @@ function enterIvannaDreamOrgasm(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', '\'dream\''] }]);
+    qspGoto(s, 'sleep_events', 'event_end', 'dream');
   } },
     { label: 'Get up', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wake']; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -340,13 +344,15 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['selfplay', 'start'] },
+    qspGoto(s, 'selfplay', 'start');
+  } },
     ]);
   } else {
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['selfplay', 'start'] },
+    qspGoto(s, 'selfplay', 'start');
+  } },
     ]);
   }
   if (((s as any).strip_here ?? 0) === 1) {
@@ -367,7 +373,8 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
       { label: 'Wake Anya up', handler: (st: GameState) => {
     (s as any).strip_here = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['sistersleep', 'sister_sleep'] },
+    qspGoto(s, 'sistersleep', 'sister_sleep');
+  } },
     ]);
   } else {
     if (((s as any).loc ?? 0) === 'FedorEv4') {
@@ -375,15 +382,17 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
         { label: 'Wake Fedor up', handler: (st: GameState) => {
     (s as any).strip_here = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['FedorEv4_sex', 'Bedroom 2'] },
+    qspGoto(s, 'FedorEv4_sex', 'Bedroom 2');
+  } },
       ]);
     } else {
       if ((((s as any).loc ?? 0) === 'bedr'  ||  ((s as any).loc ?? 0) === 'bedr2x')  &&  ((s as any).husID ?? 0) !== '') {
         scene.actions([
-          { label: 'Wake <<$npc_usedname[$husID]>> up', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Wake ' + String(((s as any).npc_usedname ?? 0)?.[String((s as any).husID ?? 0)] ?? '' ?? '') + ' up', handler: (st: GameState) => {
     (s as any).strip_here = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }, goto: ['husbSex', 'variant'] },
+    qspGoto(s, 'husbSex', 'variant');
+  } },
         ]);
       }
     }
@@ -393,7 +402,7 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
     { label: 'Try and go back to sleep', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
     (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (5);
-    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', '\'dream\''] }]);
+    qspGoto(s, 'sleep_events', 'event_end', 'dream');
   } },
   ]);
   scene.build();

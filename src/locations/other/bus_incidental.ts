@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'event<<rand(1, 1)>>'] }]);
+  qspGoto(s, 'bus_incidental', 'event' + Math.floor(Math.random() * 1) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -21,7 +21,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -29,7 +29,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'end<<rand(1, 1)>>'] }]);
+  qspGoto(s, 'bus_incidental', 'end' + Math.floor(Math.random() * 1) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -40,7 +40,7 @@ function enterEnd1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

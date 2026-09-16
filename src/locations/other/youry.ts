@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).menu_loc = 'youry';
+  (s as any).menu_arg = 'start';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Yuri\'s Flat</b></center>');
@@ -18,7 +20,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_industrial', ''] },
+    qspGoto(s, 'city_industrial', '');
+  } },
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) > 16) {
       // TODO-QSP: dynamic text: You ring the doorbell, and it doesn't take long for Yuri to open the door as he ...

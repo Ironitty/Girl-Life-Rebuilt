@@ -13,36 +13,36 @@ function enterForce(s: GameState, scene: SceneBuilder): void {
   (s as any).artemLoc = 0;
   if (((s as any).locArgs?.[1] ?? 0) === 'home_hallway') {
     (s as any).artemLoc = 1;
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_rand1'] = ((s as any).daystart ?? 0);
-    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_save1'] = 'home_hallway';
+    ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_hallway';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'home_bedroom') {
       (s as any).artemLoc = 2;
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_rand1'] = ((s as any).daystart ?? 0);
-      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_save1'] = 'home_bedroom';
+      ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
+      ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_bedroom';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'home_bathroom') {
         (s as any).artemLoc = 3;
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_rand1'] = ((s as any).daystart ?? 0);
-        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_save1'] = 'home_bathroom';
+        ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
+        ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_bathroom';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'home_kitchen') {
           (s as any).artemLoc = 4;
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_rand1'] = ((s as any).daystart ?? 0);
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_save1'] = 'home_kitchen';
+          ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
+          ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_kitchen';
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 'home_livingroom') {
             (s as any).artemLoc = 5;
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_rand1'] = ((s as any).daystart ?? 0);
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_save1'] = 'home_livingroom';
+            ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
+            ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_livingroom';
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 'home_parents') {
               (s as any).artemLoc = 6;
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_rand1'] = ((s as any).daystart ?? 0);
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_save1'] = 'home_parents';
+              ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
+              ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_parents';
             } else {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_rand1'] = ((s as any).daystart ?? 0);
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2_save1'] = ((s as any).locArgs?.[1] ?? 0);
+              ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
+              ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = ((s as any).locArgs?.[1] ?? 0);
             }
           }
         }
@@ -56,7 +56,7 @@ function enterForce(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = '';
+  ((s as any).locat = (s as any).locat ?? {})['A2'] = '';
   (s as any).artemLoc = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
@@ -70,69 +70,69 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
       if (((s as any).week ?? 0) < 6) {
         if (((s as any).hour ?? 0) <  6  ||  (((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) < 30)) {
           (s as any).artemLoc = 2;
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home_asleep';
+          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home_asleep';
         } else {
           if (((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) < 45) {
             (s as any).artemLoc = 3;
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home_bathroom';
+            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home_bathroom';
           } else {
             if (((s as any).hour ?? 0) < 7  ||  (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 15)) {
               (s as any).artemLoc = 4;
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home_breakfast';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home_breakfast';
             } else {
               if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 45) {
                 (s as any).artemLoc = 5;
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home:preparing_for_school';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home:preparing_for_school';
               } else {
                 if (((s as any).hour ?? 0) < 8) {
-                  if (!(s as any).loact) (s as any).loact = {}; (s as any).loact['A2'] = 'walking_to_school';
+                  ((s as any).loact = (s as any).loact ?? {})['A2'] = 'walking_to_school';
                 } else {
                   if (((s as any).hour ?? 0) < 14) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'school';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'school';
                   } else {
                     if (((s as any).hour ?? 0) < 15) {
                       if (((s as any).locat ?? 0)?.['A2_rand1'] !== ((s as any).daystart ?? 0)) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'Haninginout_outside_school';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'Haninginout_outside_school';
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = ((s as any).locat ?? 0)?.['A2_save1'];
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = ((s as any).locat ?? 0)?.['A2_save1'];
                       }
                     } else {
                       if (((s as any).hour ?? 0) < 18) {
                         if (((s as any).locat ?? 0)?.['A2_rand1'] !== ((s as any).daystart ?? 0)) {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'library_nerd_study_group';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'library_nerd_study_group';
                         } else {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = ((s as any).locat ?? 0)?.['A2_save1'];
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = ((s as any).locat ?? 0)?.['A2_save1'];
                         }
                       } else {
                         if (((s as any).hour ?? 0) < 20) {
                           if (((s as any).week ?? 0) !== 3) {
                             (s as any).artemLoc = 2;
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home';
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'out';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'out';
                           }
                         } else {
                           if (((s as any).hour ?? 0) < 22) {
                             if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  ||  (((s as any).grupTipe ?? 0) !== 3  &&  ((s as any).week ?? 0) === 3)) {
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'library_nerd_game_night';
+                              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'library_nerd_game_night';
                             } else {
                               if (((s as any).week ?? 0) === 3) {
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'out';
+                                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'out';
                               } else {
                                 (s as any).artemLoc = 2;
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home';
+                                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home';
                               }
                             }
                           } else {
                             if (((s as any).hour ?? 0) < 23) {
                               if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  ||  (((s as any).grupTipe ?? 0) !== 3  &&  ((s as any).week ?? 0) === 3)) {
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'library_nerd_game_night';
+                                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'library_nerd_game_night';
                               } else {
                                 (s as any).artemLoc = 2;
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home';
+                                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home';
                               }
                             } else {
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home_asleep';
+                              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home_asleep';
                             }
                           }
                         }
@@ -147,22 +147,22 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).hour ?? 0) <  7  ||  (((s as any).hore ?? 0) === 7  &&  ((s as any).minut ?? 0) < 30)) {
           (s as any).artemLoc = 2;
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home_asleep';
+          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home_asleep';
         } else {
           if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 45) {
             (s as any).artemLoc = 3;
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home_bathroom';
+            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home_bathroom';
           } else {
             if (((s as any).hour ?? 0) < 8  ||  (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) < 15)) {
               (s as any).artemLoc = 4;
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home_breakfast';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home_breakfast';
             } else {
               if (((s as any).hour ?? 0) < 23) {
                 (s as any).artemLoc = 2;
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home';
               } else {
                 (s as any).artemLoc = 2;
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'home_asleep';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'home_asleep';
               }
             }
           }
@@ -173,87 +173,87 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
     if (((s as any).university ?? 0)?.['semester_week'] > 0) {
       if (((s as any).week ?? 0) < 6) {
         if (((s as any).hour ?? 0) < 7) {
-          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
         } else {
           if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 15) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_shower';
+            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_shower';
           } else {
             if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 30) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_kitchen_breakfast';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_kitchen_breakfast';
             } else {
               if (((s as any).hour ?? 0) < 9) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
               } else {
                 if (((s as any).hour ?? 0) < 12) {
                   if (((s as any).week ?? 0) === 5) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                   } else {
                     if (((s as any).hour ?? 0) === 11  &&  ((s as any).minut ?? 0) >= 30) {
                       if (((s as any).sunWeather ?? 0) === 1  &&  ((s as any).temper ?? 0) > 15) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_grounds_waiting_for_class';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_grounds_waiting_for_class';
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_student_center_waiting_for_class';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_student_center_waiting_for_class';
                       }
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_attending_class';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_attending_class';
                     }
                   }
                 } else {
                   if (((s as any).hour ?? 0) < 13) {
                     if (((s as any).minut ?? 0) < 30) {
                       if (((s as any).week ?? 0) < 5) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_attending_class';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_attending_class';
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                       }
                     } else {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_cafe_lunch';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_cafe_lunch';
                     }
                   } else {
                     if (((s as any).hour ?? 0) < 14) {
                       if (((s as any).week ?? 0) < 5) {
                         if (((s as any).minut ?? 0) < 15) {
                           if (((s as any).sunWeather ?? 0) === 1  &&  ((s as any).temper ?? 0) > 15) {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_grounds_waiting_for_class';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_grounds_waiting_for_class';
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_student_center_waiting_for_class';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_student_center_waiting_for_class';
                           }
                         } else {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_attending_class';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_attending_class';
                         }
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                       }
                     } else {
                       if (((s as any).hour ?? 0) < 15) {
                         if (((s as any).week ?? 0) < 5) {
                           if (((s as any).minut ?? 0) > 45) {
                             if (((s as any).sunWeather ?? 0) === 1  &&  ((s as any).temper ?? 0) > 15) {
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_grounds_waiting_for_class';
+                              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_grounds_waiting_for_class';
                             } else {
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_student_center_waiting_for_class';
+                              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_student_center_waiting_for_class';
                             }
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_attending_class';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_attending_class';
                           }
                         } else {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                         }
                       } else {
                         if (((s as any).hour ?? 0) < 17) {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'library_studying';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'library_studying';
                         } else {
                           if (((s as any).hour ?? 0) < 18) {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'shared_kitchen_dinner';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'shared_kitchen_dinner';
                           } else {
                             if (((s as any).hour ?? 0) < 22) {
                               if (((s as any).week ?? 0) % 2 === 0) {
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'playing_games_at_coffee_hole_or_friends_places';
+                                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'playing_games_at_coffee_hole_or_friends_places';
                               } else {
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                               }
                             } else {
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+                              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
                             }
                           }
                         }
@@ -268,30 +268,30 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).week ?? 0) === 6) {
           if (((s as any).hour ?? 0) < 7) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
           } else {
             if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 15) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_shower';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_shower';
             } else {
               if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 30) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_kitchen_breakfast';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_kitchen_breakfast';
               } else {
                 if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 45) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_in_city_dorm_to_train_station';
+                  ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_in_city_dorm_to_train_station';
                 } else {
                   if (((s as any).hour ?? 0) < 9) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'train_city_to_pav';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'train_city_to_pav';
                   } else {
                     if (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 15) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'walking_in_pav_station_to_five_eight';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'walking_in_pav_station_to_five_eight';
                     } else {
                       if (((s as any).hour ?? 0) < 22) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment';
                       } else {
                         if (((s as any).hour ?? 0) < 23) {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment_getting_ready_for_bed';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment_getting_ready_for_bed';
                         } else {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_asleep';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_asleep';
                         }
                       }
                     }
@@ -302,27 +302,27 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).hour ?? 0) < 7) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_asleep';
+            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_asleep';
           } else {
             if (((s as any).hour ?? 0) < 8) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_getting_out_of_bed';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_getting_out_of_bed';
             } else {
               if (((s as any).hour ?? 0) < 17) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment';
               } else {
                 if (((s as any).hour ?? 0) === 17  &&  ((s as any).minut ?? 0) < 15) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_pav_five_eight_to_train_station';
+                  ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_pav_five_eight_to_train_station';
                 } else {
                   if (((s as any).hour ?? 0) === 17) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'train_pav_to_city';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'train_pav_to_city';
                   } else {
                     if (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) < 30) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_in_city_train_station_to_dorm';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_in_city_train_station_to_dorm';
                     } else {
                       if (((s as any).hour ?? 0) < 22) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
                       }
                     }
                   }
@@ -336,57 +336,57 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
       if (((s as any).university ?? 0)?.['exam_week'] > 0) {
         if (((s as any).week ?? 0) < 6) {
           if (((s as any).hour ?? 0) < 7) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
           } else {
             if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 15) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_shower';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_shower';
             } else {
               if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 30) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_kitchen_breakfast';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_kitchen_breakfast';
               } else {
                 if (((s as any).hour ?? 0) < 9) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                  ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                 } else {
                   if (((s as any).hour ?? 0) < 12) {
                     if (((s as any).week ?? 0) === 4  ||  (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['exam_week'] === 2)) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'taking_uni_exam';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'taking_uni_exam';
                     } else {
                       if ((((s as any).university ?? 0)?.['exam_week'] === 2  &&  ((s as any).week ?? 0) === 5)) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'celebrating_exam_is_over';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'celebrating_exam_is_over';
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'library_studying';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'library_studying';
                       }
                     }
                   } else {
                     if (((s as any).hour ?? 0) < 13) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_cafe_lunch';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_cafe_lunch';
                     } else {
                       if (((s as any).hour ?? 0) < 17) {
                         if (((s as any).university ?? 0)?.['exam_week'] === 2  &&  ((s as any).week ?? 0) > 3) {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'celebrating_exam_is_over';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'celebrating_exam_is_over';
                         } else {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                         }
                       } else {
                         if (((s as any).hour ?? 0) < 18) {
                           if (((s as any).university ?? 0)?.['exam_week'] === 2  &&  ((s as any).week ?? 0) > 3) {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'celebrating_exam_is_over';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'celebrating_exam_is_over';
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'shared_kitchen_dinner';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'shared_kitchen_dinner';
                           }
                         } else {
                           if (((s as any).hour ?? 0) < 22) {
                             if (((s as any).week ?? 0) % 2 === 0) {
-                              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'playing_games_at_coffee_hole_or_friends_places';
+                              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'playing_games_at_coffee_hole_or_friends_places';
                             } else {
                               if (((s as any).university ?? 0)?.['exam_week'] === 2  &&  ((s as any).week ?? 0) === 5) {
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'celebrating_exam_is_over';
+                                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'celebrating_exam_is_over';
                               } else {
-                                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                               }
                             }
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
                           }
                         }
                       }
@@ -399,30 +399,30 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).week ?? 0) === 6) {
             if (((s as any).hour ?? 0) < 7) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
             } else {
               if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 15) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_shower';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_shower';
               } else {
                 if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 30) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_kitchen_breakfast';
+                  ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_kitchen_breakfast';
                 } else {
                   if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 45) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_in_city_dorm_to_train_station';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_in_city_dorm_to_train_station';
                   } else {
                     if (((s as any).hour ?? 0) < 9) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'train_city_to_pav';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'train_city_to_pav';
                     } else {
                       if (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 15) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'walking_in_pav_station_to_five_eight';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'walking_in_pav_station_to_five_eight';
                       } else {
                         if (((s as any).hour ?? 0) < 22) {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment';
                         } else {
                           if (((s as any).hour ?? 0) < 23) {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment_getting_ready_for_bed';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment_getting_ready_for_bed';
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_asleep';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_asleep';
                           }
                         }
                       }
@@ -433,24 +433,24 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).hour ?? 0) < 7) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_asleep';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_asleep';
             } else {
               if (((s as any).hour ?? 0) < 8) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_getting_out_of_bed';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_getting_out_of_bed';
               } else {
                 if (((s as any).hour ?? 0) < 21) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment';
+                  ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment';
                 } else {
                   if (((s as any).hour ?? 0) === 21  &&  ((s as any).minut ?? 0) < 45) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_pav_five_eight_to_train_station';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_pav_five_eight_to_train_station';
                   } else {
                     if (((s as any).hour ?? 0) === 21  ||  (((s as any).hour ?? 0) === 22  &&  ((s as any).minut ?? 0) < 15)) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'train_pav_to_city';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'train_pav_to_city';
                     } else {
                       if (((s as any).hour ?? 0) === 22  &&  ((s as any).minut ?? 0) < 20) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_in_city_train_station_to_dorm';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_in_city_train_station_to_dorm';
                       } else {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
                       }
                     }
                   }
@@ -462,34 +462,34 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).week ?? 0) < 6) {
           if (((s as any).hour ?? 0) < 7) {
-            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
           } else {
             if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 15) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_shower';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_shower';
             } else {
               if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 30) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_kitchen_breakfast';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_kitchen_breakfast';
               } else {
                 if (((s as any).hour ?? 0) < 12) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                  ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                 } else {
                   if (((s as any).hour ?? 0) < 13) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'uni_cafe_lunch';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'uni_cafe_lunch';
                   } else {
                     if (((s as any).hour ?? 0) < 17) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                     } else {
                       if (((s as any).hour ?? 0) < 18) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'shared_kitchen_dinner';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'shared_kitchen_dinner';
                       } else {
                         if (((s as any).hour ?? 0) < 22) {
                           if (((s as any).week ?? 0) % 2 === 0) {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'playing_games_at_coffee_hole_or_friends_places';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'playing_games_at_coffee_hole_or_friends_places';
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                           }
                         } else {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
                         }
                       }
                     }
@@ -501,30 +501,30 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).week ?? 0) === 6) {
             if (((s as any).hour ?? 0) < 7) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
             } else {
               if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 15) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_shower';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_shower';
               } else {
                 if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 30) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dorm_shared_kitchen_breakfast';
+                  ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dorm_shared_kitchen_breakfast';
                 } else {
                   if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 45) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_in_city_dorm_to_train_station';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_in_city_dorm_to_train_station';
                   } else {
                     if (((s as any).hour ?? 0) < 9) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'train_city_to_pav';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'train_city_to_pav';
                     } else {
                       if (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 15) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'walking_in_pav_station_to_five_eight';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'walking_in_pav_station_to_five_eight';
                       } else {
                         if (((s as any).hour ?? 0) < 22) {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment';
                         } else {
                           if (((s as any).hour ?? 0) < 23) {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment_getting_ready_for_bed';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment_getting_ready_for_bed';
                           } else {
-                            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_asleep';
+                            ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_asleep';
                           }
                         }
                       }
@@ -535,27 +535,27 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).hour ?? 0) < 7) {
-              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_asleep';
+              ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_asleep';
             } else {
               if (((s as any).hour ?? 0) < 8) {
-                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_getting_out_of_bed';
+                ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_getting_out_of_bed';
               } else {
                 if (((s as any).hour ?? 0) < 17) {
-                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'parents_apartment';
+                  ((s as any).locat = (s as any).locat ?? {})['A2'] = 'parents_apartment';
                 } else {
                   if (((s as any).hour ?? 0) === 17  &&  ((s as any).minut ?? 0) < 15) {
-                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_pav_five_eight_to_train_station';
+                    ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_pav_five_eight_to_train_station';
                   } else {
                     if (((s as any).hour ?? 0) === 17) {
-                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'train_pav_to_city';
+                      ((s as any).locat = (s as any).locat ?? {})['A2'] = 'train_pav_to_city';
                     } else {
                       if (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) < 30) {
-                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'traveling_in_city_train_station_to_dorm';
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = 'traveling_in_city_train_station_to_dorm';
                       } else {
                         if (((s as any).hour ?? 0) < 22) {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_studying_or_relaxing';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_studying_or_relaxing';
                         } else {
-                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = 'dormroom_asleep';
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = 'dormroom_asleep';
                         }
                       }
                     }

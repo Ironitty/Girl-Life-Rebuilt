@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -21,10 +21,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('The guy shifts his position a few times, watching you intently. You can tell he\'s enjoying your little show a lot.');
     scene.actions([
       { label: 'Invite him over', handler: (st: GameState) => {
+    (s as any).sexloc = 'katspalnya';
     qspCall(s, 'npcgeneratec', '', 0, 'Kat\'s lover', Math.floor(Math.random() * 27) + 19);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).picrand = Math.floor(Math.random() * 41) + 0;
-  }, goto: ['sex', 'start'] },
+    qspGoto(s, 'sex', 'start');
+  } },
     ]);
   } },
   ]);

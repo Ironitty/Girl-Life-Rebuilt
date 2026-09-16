@@ -12,12 +12,16 @@ function enterSort(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) < 4) {
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) === 1) {
+      (s as any).text = 'Spades';
     } else {
       if (((s as any).i ?? 0) === 2) {
+        (s as any).text = 'Hearts';
       } else {
         if (((s as any).i ?? 0) === 3) {
+          (s as any).text = 'Clubs';
         } else {
           if (((s as any).i ?? 0) === 4) {
+            (s as any).text = 'Diamonds';
           }
         }
       }
@@ -42,8 +46,9 @@ function enterShuffle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) < 52) {
     (s as any).j = Math.floor(Math.random() * 52) + 0;
     (s as any).temp = ((s as any).deckFace ?? 0)?.[String((s as any).i ?? 0)];
-    if (!(s as any).deckFace) (s as any).deckFace = {}; (s as any).deckFace[String((s as any).i ?? 0)] = ((s as any).deckFace ?? 0)?.[String((s as any).j ?? 0)];
-    if (!(s as any).deckFace) (s as any).deckFace = {}; (s as any).deckFace[String((s as any).j ?? 0)] = ((s as any).temp ?? 0);
+    ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).i ?? 0)] = ((s as any).deckFace ?? 0)?.[String((s as any).j ?? 0)];
+    ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).j ?? 0)] = ((s as any).temp ?? 0);
+    (s as any).text = ((s as any).deckImg ?? 0)?.[String((s as any).i ?? 0)];
     // TODO-QSP: $deckImg[i] = $deckImg[j]
     // TODO-QSP: $deckImg[j] = $text
     (s as any).i = ((s as any).i ?? 0) + (1);

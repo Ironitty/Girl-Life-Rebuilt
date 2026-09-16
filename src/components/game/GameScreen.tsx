@@ -44,10 +44,11 @@ export default function GameScreen() {
   };
 
   const goMap = () => {
-    const isArea = loc in AREAS;
-    const locDef = getLocation(loc);
-    const region = locDef?.region ?? inferLegacyLocationType(loc) ?? 'world';
-    doGoto('map_view', isArea ? loc : region === 'pav' ? 'pav_commercial' : region === 'city' ? 'city_center' : 'world');
+    const locStr = typeof loc === 'string' ? loc : '';
+    const isArea = locStr in AREAS;
+    const locDef = getLocation(locStr);
+    const region = locDef?.region ?? inferLegacyLocationType(locStr) ?? 'world';
+    doGoto('map_view', isArea ? locStr : region === 'pav' ? 'pav_commercial' : region === 'city' ? 'city_center' : 'world');
   };
 
   return (
@@ -77,7 +78,7 @@ export default function GameScreen() {
           {prevLoc && (
             <button
               onClick={() => {
-                if (isMenuLoc(prevLoc)) {
+                if (typeof prevLoc === 'string' && isMenuLoc(prevLoc)) {
                   goMap();
                 } else {
                   doGoto(prevLoc, prevArg);

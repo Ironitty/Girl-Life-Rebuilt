@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -65,7 +65,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
 
 function enterArtemDate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
-  scene.actions([{ label: 'Continue', goto: ['artem_date_events_uni', 'firstdate'] }]);
+  qspGoto(s, 'artem_date_events_uni', 'firstdate');
   // TODO-QSP: end
   scene.build();
 }

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_allure', 'start');
+  (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>shop_allure</b></center>');
@@ -20,10 +21,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).region ?? 0) === 'pav') {
       (s as any).minut = ((s as any).minut ?? 0) + 6;
-      scene.actions([{ label: 'Continue', goto: ['pav_commercial', ''] }]);
+      qspGoto(s, 'pav_commercial', '');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 3;
-      scene.actions([{ label: 'Continue', goto: ['city_lake', 'start'] }]);
+      qspGoto(s, 'city_lake', 'start');
     }
   } },
     { label: 'View swimsuits', handler: (st: GameState) => {
@@ -38,6 +39,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSwim(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_allure', 'swim');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Swimsuits - one size fits all</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -52,13 +54,15 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_allure', 'start'] },
+    qspGoto(s, 'shop_allure', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterBikinis(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_allure', 'bikinis');
+  (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bikinis - one size fits all</b></center>');
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -73,7 +77,8 @@ function enterBikinis(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['shop_allure', 'start'] },
+    qspGoto(s, 'shop_allure', 'start');
+  } },
   ]);
   scene.build();
 }

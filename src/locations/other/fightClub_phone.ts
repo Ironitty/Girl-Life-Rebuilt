@@ -16,7 +16,7 @@ function enterSultan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDial(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['sultancall'] = ((s as any).daystart ?? 0);
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['sultancall'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'telefon', 'phone_ring');
   scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
@@ -35,7 +35,7 @@ function enterDial(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Hang up (no reply)', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -45,7 +45,7 @@ function enterDial(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInvitation(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).fightClubQW) (s as any).fightClubQW = {}; (s as any).fightClubQW['story'] = 3;
+  ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['story'] = 3;
   scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
   scene.text('After a short time, a male voice answers: "Who is this?"');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you spoke to me at the Havana Gym."
@@ -60,7 +60,7 @@ function enterInvitation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hang up, you should visit him soon', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -74,7 +74,7 @@ function enterOutofoffice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hang up, maybe try at another time?', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

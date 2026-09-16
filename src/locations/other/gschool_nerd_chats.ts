@@ -473,9 +473,9 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big12.jpg');
   if (((s as any).grupTipe ?? 0) === 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 175  &&  ((s as any).juliaQW ?? 0)?.['slut_chat'] === 0  &&  ((s as any).npc_rel ?? 0)?.['A12'] >= 40) {
     if (((s as any).juliaQW ?? 0)?.['study_unlocked'] === 0) {
-      if (!(s as any).juliaQW) (s as any).juliaQW = {}; (s as any).juliaQW['study_unlocked'] = 1;
+      ((s as any).juliaQW = (s as any).juliaQW ?? {})['study_unlocked'] = 1;
     }
-    if (!(s as any).juliaQW) (s as any).juliaQW = {}; (s as any).juliaQW['slut_chat'] = 1;
+    ((s as any).juliaQW = (s as any).juliaQW ?? {})['slut_chat'] = 1;
     scene.img('images/characters/shared/headshots_main/12.jpg');
     // TODO-QSP: dynamic text: As you approach the nerds, Julia takes hold of your elbow and leans in close to ...
     scene.text(`As you approach the nerds, Julia takes hold of your elbow and leans in close to you. "${((s as any).pcs_nickname || '')}, I want to have a quick chat with you - in private please."`);
@@ -500,7 +500,7 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).juliaQW ?? 0)?.['study_unlocked'] === 0  &&  ((s as any).npc_rel ?? 0)?.['A12'] >= 60) {
-      if (!(s as any).juliaQW) (s as any).juliaQW = {}; (s as any).juliaQW['study_unlocked'] = 1;
+      ((s as any).juliaQW = (s as any).juliaQW ?? {})['study_unlocked'] = 1;
       if (((s as any).fame ?? 0)?.['pav_slut'] >= 175) {
         scene.text('You approach Julia and explain how you\'re struggling in school and could really use her help studying. She obliquely comments on your damaged reputation at school, but agrees to help you anyway.');
         scene.text('She doesn\'t seem to care much either way as long as you don\'t tell anyone.');
@@ -587,14 +587,14 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
                   scene.text('"Right. So, I dislike photoshop. Not only do they lazily cut shapes out, but you can see a glaring difference in lighting, a lack of care, as evidenced by warped floorboards, overdone ratios…" she huffs. "It\'s almost like bad textures being implemented, both rely on care. Zin showed me one of those very cheap Unity games… They just took random assets from the store and threw them in. There\'s nothing artistic about it! Same with bad photoshops. You want care to create art. But with photography, sometimes natural is superior."');
                   scene.text('She smiles shyly. "I mean, why change something that already looks good and potentially mess it up?"');
                   if (((s as any).nerd_game ?? 0)?.['stage'] >= 1  &&  ((s as any).nerd_game ?? 0)?.['julia_talk_1'] === 0) {
-                    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['julia_talk_1'] = 1;
+                    ((s as any).nerd_game = (s as any).nerd_game ?? {})['julia_talk_1'] = 1;
                     // TODO-QSP: dynamic text: Julia smiles. "Hey <<$pcs_nickname>>! So, what did you think of Feofan's game? I...
                     scene.text(`Julia smiles. "Hey ${((s as any).pcs_nickname || '')}! So, what did you think of Feofan's game? I think it has potential, but I wonder how to progress…"`);
                   }
                 } else {
                   scene.text('As you listen to Julia, you recall a time when she would just let others dominate the conversation. But with you, she speaks with an easy confidence, contributing more than usual. Today, you discuss lessons, game night with Zina and… photography. "Right. So, I dislike photoshop. Not only do they lazily cut shapes out, but you can see a glaring difference in lighting, a lack of care, as evidenced by warped floorboards, overdone ratios…" she huffs. "It\'s almost like bad textures being implemented, both rely on care. Zin showed me one of those very cheap Unity games… They just took random assets from the store and threw them in. There\'s nothing artistic about it! Same with bad photoshops. You want care to create art. But with photography, sometimes natural is superior."');
                   if (((s as any).nerd_game ?? 0)?.['stage'] >= 1  &&  ((s as any).nerd_game ?? 0)?.['julia_talk_1'] === 0) {
-                    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['julia_talk_1'] = 1;
+                    ((s as any).nerd_game = (s as any).nerd_game ?? {})['julia_talk_1'] = 1;
                     // TODO-QSP: dynamic text: Julia smiles. "Hey <<$pcs_nickname>>! So, what did you think of Feofan's game? I...
                     scene.text(`Julia smiles. "Hey ${((s as any).pcs_nickname || '')}! So, what did you think of Feofan's game? I think it has potential, but I wonder how to progress…"`);
                   }
@@ -676,14 +676,14 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Julia," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    ((s as any).temp = (s as any).temp ?? {})['tampon_ask'] = '"Julia," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJuliaTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Julia," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    ((s as any).temp = (s as any).temp ?? {})['tampon_ask'] = '"Julia," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJuliaTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -692,14 +692,14 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Julia," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    ((s as any).temp = (s as any).temp ?? {})['tampon_ask'] = '"Julia," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJuliaTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Julia," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    ((s as any).temp = (s as any).temp ?? {})['tampon_ask'] = '"Julia," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJuliaTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -835,7 +835,7 @@ function enterNatasha(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 0  &&  ((s as any).npc_rel ?? 0)?.['A16'] >= 60  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 200) {
     scene.actions([
       { label: 'Ask for help studying', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['QWstage'] = 1;
     scene.img('images/characters/shared/headshots_main/big16.jpg');
     scene.text('You approach Natasha and explain how you\'re struggling in school and could really use her help studying.');
     // TODO-QSP: dynamic text: She thinks it over for a second, but happily agrees. "Sure thing, <<$pcs_nicknam...
@@ -857,10 +857,11 @@ function enterNatasha(s: GameState, scene: SceneBuilder): void {
     scene.text('She looks a little shocked at first, but gets down on her knees and lowers her face to your crotch.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
     qspCall(s, 'npcStat', 'A16');
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A16'] = 1;
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['lesbian'] = ((s as any).NatbelQW['lesbian'] ?? 0) + (1);
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A16'] = 1;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['lesbian'] = ((s as any).NatbelQW['lesbian'] ?? 0) + (1);
+    (s as any).orgasm_or = 'yes';
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/school/Natschoolowe.jpg');
     scene.text('She immediately starts licking your clit and you bite your lip to try and stop yourself from moaning too loudly as you lean back and relax, letting Natasha pleasure you with her tongue.');
     scene.text('She\'s getting a lot better at this and if you\'re not mistaken, she\'s starting to like it.');

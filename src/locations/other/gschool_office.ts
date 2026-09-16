@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -87,13 +87,13 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
   if (((s as any).principal_spank ?? 0) <= 5  &&  ((s as any).detention_set ?? 0) !== 2) {
     (s as any).principal_spank = ((s as any).principal_spank ?? 0) + (1);
     if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).analPlugIn ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_office', 'no_plugin_nude'] }]);
+      qspGoto(s, 'gschool_office', 'no_plugin_nude');
     } else {
       if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_panties'] }]);
+        qspGoto(s, 'gschool_office', 'plugin_panties');
       } else {
         if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_nude'] }]);
+          qspGoto(s, 'gschool_office', 'plugin_nude');
         } else {
           scene.actions([
             { label: 'Take punishment', handler: (st: GameState) => {
@@ -140,13 +140,13 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
     if (((s as any).principal_spank ?? 0) <= 10  &&  ((s as any).detention_set ?? 0) !== 2) {
       (s as any).principal_spank = ((s as any).principal_spank ?? 0) + (1);
       if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).analPlugIn ?? 0))) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_office', 'no_plugin_nude'] }]);
+        qspGoto(s, 'gschool_office', 'no_plugin_nude');
       } else {
         if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_panties'] }]);
+          qspGoto(s, 'gschool_office', 'plugin_panties');
         } else {
           if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_nude'] }]);
+            qspGoto(s, 'gschool_office', 'plugin_nude');
           } else {
             scene.actions([
               { label: 'Take punishment', handler: (st: GameState) => {
@@ -194,13 +194,13 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
       if (((s as any).principal_spank ?? 0) <= 15  &&  ((s as any).detention_set ?? 0) !== 2) {
         (s as any).principal_spank = ((s as any).principal_spank ?? 0) + (1);
         if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).analPlugIn ?? 0))) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_office', 'no_plugin_nude'] }]);
+          qspGoto(s, 'gschool_office', 'no_plugin_nude');
         } else {
           if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_panties'] }]);
+            qspGoto(s, 'gschool_office', 'plugin_panties');
           } else {
             if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_nude'] }]);
+              qspGoto(s, 'gschool_office', 'plugin_nude');
             } else {
               scene.actions([
                 { label: 'Take punishment', handler: (st: GameState) => {
@@ -252,13 +252,13 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
             (s as any).detention_set = 0;
           }
           if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).analPlugIn ?? 0))) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_office', 'no_plugin_nude'] }]);
+            qspGoto(s, 'gschool_office', 'no_plugin_nude');
           } else {
             if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_panties'] }]);
+              qspGoto(s, 'gschool_office', 'plugin_panties');
             } else {
               if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-                scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_nude'] }]);
+                qspGoto(s, 'gschool_office', 'plugin_nude');
               } else {
                 scene.actions([
                   { label: 'Take punishment', handler: (st: GameState) => {
@@ -307,13 +307,13 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
           scene.text('She looks at you for a long minute to see if you will dispute it. She\'s right, and it\'s just as funny now as it was the first time you did it, despite her best efforts.');
           scene.text('"You leave me no choice. If you\'re going to act like a whore, then I\'ll treat you like a whore. Come over here."');
           if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).analPlugIn ?? 0))) {
-            scene.actions([{ label: 'Continue', goto: ['gschool_office', 'no_plugin_nude'] }]);
+            qspGoto(s, 'gschool_office', 'no_plugin_nude');
           } else {
             if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_panties'] }]);
+              qspGoto(s, 'gschool_office', 'plugin_panties');
             } else {
               if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
-                scene.actions([{ label: 'Continue', goto: ['gschool_office', 'plugin_nude'] }]);
+                qspGoto(s, 'gschool_office', 'plugin_nude');
               } else {
                 scene.actions([
                   { label: 'Continue', goto: ['gschool_office', 'whore'] },
@@ -839,8 +839,8 @@ function enterIvanovRevenge(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuspended(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).suspended) (s as any).suspended = {}; (s as any).suspended['day'] = ((s as any).daystart ?? 0) + 7;
-  if (!(s as any).suspended) (s as any).suspended = {}; (s as any).suspended['on'] = 1;
+  ((s as any).suspended = (s as any).suspended ?? {})['day'] = ((s as any).daystart ?? 0) + 7;
+  ((s as any).suspended = (s as any).suspended ?? {})['on'] = 1;
   qspCall(s, 'archetypes', 'gain', 'punk', 'medium', 'Suspended from school', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npc_relationship', 'modify', 'A29', (-25));

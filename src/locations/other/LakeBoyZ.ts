@@ -1,17 +1,18 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).gL_boy_z = 'gt \'LakeBoyZ\', \'gL_boy_z\'';
   scene.build();
 }
 
 function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
-    { label: '<<$pcs_nickname>>', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname || '') ?? ''), handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.img('images/locations/pavlovsk/lake/event/sunbathe_nudelake.jpg');
@@ -33,7 +34,8 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Smile and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_lake', ''] },
+    qspGoto(s, 'pav_lake', '');
+  } },
         ]);
       }
       scene.actions([
@@ -43,7 +45,7 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'lover', 'add_boyfriend', ((s as any).boy ?? 0));
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).bmFrend) (s as any).bmFrend = {}; (s as any).bmFrend[String((s as any).Tboynum ?? 0)] = 1;
+    ((s as any).bmFrend = (s as any).bmFrend ?? {})[String((s as any).Tboynum ?? 0)] = 1;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You give <<$boydesc>> your phone number and he adds it to his contact list.
     scene.text(`You give ${((s as any).boydesc || '')} your phone number and he adds it to his contact list.`);
@@ -67,7 +69,8 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Smile and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-  }, goto: ['pav_lake', ''] },
+    qspGoto(s, 'pav_lake', '');
+  } },
         ]);
       }
       scene.actions([
@@ -150,7 +153,8 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
-  }, goto: ['LBZhouse', ''] },
+    qspGoto(s, 'LBZhouse', '');
+  } },
     ]);
   } },
       ]);

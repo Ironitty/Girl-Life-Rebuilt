@@ -1,10 +1,11 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   scene.build();
 }
 
@@ -31,7 +32,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/market/rinok.jpg');
   }
   scene.text('This small open-air market is located near the train station. None of the stall owners accept card payments, so you\'ll need cash on hand to buy anything here.');
-  scene.text('A sign on one of the stalls says, "Cash paid for secondhand clothes"; you can sell <a href="exec:gs \'portnoi\'">all your unwanted clothes here</a>.');
+  scene.text('A sign on one of the stalls says, "Cash paid for secondhand clothes"; you can sell <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027portnoi\\u0027, \\u0027\\u0027); return false;">all your unwanted clothes here</a>.');
   if ((!((s as any).pavtrain_book ?? 0))) {
     scene.text('Perhaps you will find some books when you stroll through the market.');
   }
@@ -39,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('Rumor has it that you can find some spicy toys around here somewhere.');
   }
   if (((s as any).arturQW ?? 0) === 1  &&  (((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7)  &&  ((s as any).hour ?? 0) < 12) {
-    scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+    qspGoto(s, 'pav_train_market', 'start');
     scene.actions([
       { label: 'Wait for Arthur to arrive', handler: (st: GameState) => {
     (st as any).hour = 12;
@@ -64,7 +65,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pavtrain_book ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pav_train_market', '', '3'] }]);
+      qspGoto(s, 'pav_train_market', '', '3');
       scene.actions([
         { label: 'Go to the book stall', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -72,7 +73,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pavmarket_porn ?? 0) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pav_train_market', '', '4'] }]);
+      qspGoto(s, 'pav_train_market', '', '4');
       scene.actions([
         { label: 'Go to the porn stall', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -147,7 +148,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You show Roman your tapestries, and he gives you '+$func('money', 'string_profit...
     scene.text('You show Roman your tapestries, and he gives you \'+$func(\'money\', \'string_profit\', mc_inventory[\'tapestry\'] * 1000)+\'. You take the money and give him the tapestries.');
     // TODO-QSP: gs 'money', 'earn', mc_inventory['tapestry'] * 1000
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tapestry'] = 0;
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tapestry'] = 0;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
@@ -158,7 +159,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
       { label: 'Show your tapestry', handler: (st: GameState) => {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tapestry'] = ((s as any).mc_inventory['tapestry'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tapestry'] = ((s as any).mc_inventory['tapestry'] ?? 0) - (1);
     qspCall(s, 'money', 'earn', 1000);
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You show your tapestry to Roman, and he gives you '+$func('money', 'string_profi...
@@ -327,7 +328,8 @@ function enterClo(s: GameState, scene: SceneBuilder): void {
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'shop_utils', 'cleanup');
-  }, goto: ['pav_train_market', 'start'] },
+    qspGoto(s, 'pav_train_market', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -438,7 +440,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 700, 'cash');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['card'] = 2;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['card'] = 2;
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/market/pornmag.jpg');
@@ -501,7 +503,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 400, 'cash');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_porn'] = 40;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mag_porn'] = 40;
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/market/pornmag.jpg');
@@ -534,7 +536,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 400, 'cash');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_porn'] = 40;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mag_porn'] = 40;
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/market/pornmag.jpg');
@@ -564,7 +566,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 400, 'cash');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_porn'] = 40;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mag_porn'] = 40;
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/market/pornmag.jpg');
@@ -604,7 +606,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_normal'] = 1;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_normal'] = 1;
       qspCall(s, 'money', 'pay', 700, 'cash');
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
@@ -629,7 +631,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
       qspCall(s, 'money', 'pay', 1000, 'cash');
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
@@ -653,7 +655,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
       qspCall(s, 'money', 'pay', 1000, 'cash');
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
@@ -678,7 +680,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vibe'] = 1;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vibe'] = 1;
       qspCall(s, 'money', 'pay', 700, 'cash');
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
@@ -703,7 +705,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 700, 'cash');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['buttplug'] = 1;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['buttplug'] = 1;
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
       scene.img('images/pc/items/sextoys/bp_small.jpg');
@@ -728,7 +730,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['strapon'] = 1;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['strapon'] = 1;
       (s as any).strapNumber = 2;
       qspCall(s, 'money', 'pay', 500, 'cash');
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -755,8 +757,8 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['strapon'] = 1;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_normal'] = 1;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['strapon'] = 1;
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_normal'] = 1;
       (s as any).strapNumber = 2;
       qspCall(s, 'money', 'pay', 1200, 'cash');
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -849,8 +851,8 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       qspCall(s, 'money', 'pay', 800, 'cash');
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
-      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
+      qspGoto(s, 'pav_train_market', 'start');
     }
   } },
     ]);
@@ -873,9 +875,9 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
       qspCall(s, 'money', 'pay', 100, 'cash');
-      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+      qspGoto(s, 'pav_train_market', 'start');
     }
   } },
     ]);
@@ -898,18 +900,18 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (5);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (5);
       (s as any).i = 5;
       // TODO-QSP: :cndmlp
       if ((!(Math.floor(Math.random() * 26) + 0))) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['bad_condoms'] = ((s as any).mc_inventory['bad_condoms'] ?? 0) + (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['bad_condoms'] = ((s as any).mc_inventory['bad_condoms'] ?? 0) + (1);
       }
       if (((s as any).i ?? 0) > 0) {
         (s as any).i = ((s as any).i ?? 0) - (1);
         // TODO-QSP: jump 'cndmlp'
       }
       qspCall(s, 'money', 'pay', 80, 'cash');
-      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+      qspGoto(s, 'pav_train_market', 'start');
     }
   } },
     ]);
@@ -932,9 +934,9 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (30);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (30);
       qspCall(s, 'money', 'pay', 100, 'cash');
-      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+      qspGoto(s, 'pav_train_market', 'start');
     }
   } },
     ]);
@@ -1169,7 +1171,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) + (1);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) + (1);
       (s as any).temp = Math.floor(Math.random() * 4) + 0;
       if ((!((s as any).temp ?? 0))) {
         (s as any).tabletkiold = ((s as any).tabletkiold ?? 0) + (1);
@@ -1189,7 +1191,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
         }
       }
       qspCall(s, 'money', 'pay', 1500, 'cash');
-      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+      qspGoto(s, 'pav_train_market', 'start');
     }
   } },
       ]);

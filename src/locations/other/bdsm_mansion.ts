@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,11 +10,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterTaxi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_mansion', 'taxi');
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/club.jpg');
   if (((s as any).hour ?? 0) < 16  &&  ((s as any).hour ?? 0) > 2) {
-    if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['unlocked'] = 1;
+    ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['unlocked'] = 1;
     // TODO-QSP: dynamic text: The taxi brings you in a gated community outside of town and drops you off at th...
     scene.text('The taxi brings you in a gated community outside of town and drops you off at the closed wrought iron gate. You attempt to enter the secret club but the guard tells you it is closed. You show your card and he tells you to come back after 16:00.');
     scene.actions([
@@ -38,6 +39,7 @@ function enterTaxi(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_mansion', 'start');
+  (s as any).location_type = 'public_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/club.jpg');
@@ -89,8 +91,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['intro'] = 1;
-  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['intro'] = 1;
+  ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/1_1.jpg');
@@ -116,7 +118,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Hesitate', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['intro'] = 1;
+    ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['intro'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/suburb/bdsm_club/r1_2.jpg');
     scene.text('The woman\'s eyes light up. She stands up behind the desk and orders you.');
@@ -173,10 +175,10 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 10000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['payday'] = ((s as any).daystart ?? 0);
-      if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+      ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['payday'] = ((s as any).daystart ?? 0);
+      ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
       qspCall(s, 'money', 'pay', 10000);
-      scene.actions([{ label: 'Continue', goto: ['bdsm_dressing', ''] }]);
+      qspGoto(s, 'bdsm_dressing', '');
     }
   } },
   ]);

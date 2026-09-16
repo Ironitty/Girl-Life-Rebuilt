@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -71,6 +72,8 @@ function enterA(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterB(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'b';
+  (s as any).loc = 'restoranM';
   qspCall(s, 'food', 'medium_meal');
   qspCall(s, 'drugs', 'alcohol', 'wine');
   qspCall(s, 'stat', '');

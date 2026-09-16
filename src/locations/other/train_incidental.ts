@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.actions([{ label: 'Continue', goto: ['train_incidental', 'event<<rand(1,27)>>'] }]);
+  qspGoto(s, 'train_incidental', 'event' + Math.floor(Math.random() * 27) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -23,7 +23,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   scene.text('When you finally arrive, you rush out of the train car to the fresh air outside.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -37,7 +37,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   scene.text('He looks over at you with a huge grin and leans back, clearly proud of his actions, while she does everything she can to hide.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -50,7 +50,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   scene.text('You blush bright red and lower your head while he gets a good laugh.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -63,7 +63,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
   scene.text('You spend the rest of the journey hoping nobody notices while stifling any unintentional moans.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -75,7 +75,7 @@ function enterEvent5(s: GameState, scene: SceneBuilder): void {
   scene.text('She stands up and walks toward you, stopping right in front of you and asking what you\'re looking at. It takes you a while, but you manage to deescalate the situation. Luckily, she gets off the train at the next station.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -87,7 +87,7 @@ function enterEvent6(s: GameState, scene: SceneBuilder): void {
   scene.text('He simply looks outside, not reading like the others. He seems so exhausted. You wonder what turns his life has taken to reach this point.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -99,7 +99,7 @@ function enterEvent7(s: GameState, scene: SceneBuilder): void {
   scene.text('You get very bored staring at the same farm for twenty minutes, wishing you had a magazine before the train finally starts moving again.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -111,7 +111,7 @@ function enterEvent8(s: GameState, scene: SceneBuilder): void {
   scene.text('You briefly wonder if you should be paying attention, but you doubt you have the money needed to invest, even if you wanted.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -123,7 +123,7 @@ function enterEvent9(s: GameState, scene: SceneBuilder): void {
   scene.text('You finally manage to get it out and the other people in the carriage jokingly applaud. Your face turns red as you return to your seat.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -135,7 +135,7 @@ function enterEvent10(s: GameState, scene: SceneBuilder): void {
   scene.text('You can\'t help but watch it, thinking it will slide off and fall on someone, but thankfully, it never does.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -147,7 +147,7 @@ function enterEvent11(s: GameState, scene: SceneBuilder): void {
   scene.text('You don\'t manage to find any, but it still beats just sitting there daydreaming.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -159,7 +159,7 @@ function enterEvent12(s: GameState, scene: SceneBuilder): void {
   scene.text('Sometimes those things are thrown back. Sometimes they hit you, by accident or perhaps deliberately, given how amusing they find it.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -171,7 +171,7 @@ function enterEvent13(s: GameState, scene: SceneBuilder): void {
   scene.text('It looks like a wild animal, but it\'s not bothering you, so you ignore it and get off at your stop.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -183,7 +183,7 @@ function enterEvent14(s: GameState, scene: SceneBuilder): void {
   scene.text('Either way, she sure looks like she\'s loving the attention.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -195,7 +195,7 @@ function enterEvent15(s: GameState, scene: SceneBuilder): void {
   scene.text('Either way, she sure looks like she\'s loving the attention.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -208,7 +208,7 @@ function enterEvent16(s: GameState, scene: SceneBuilder): void {
   scene.text('You start blushing and try looking away, trying to find anything else to look at for the rest of the trip.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -220,7 +220,7 @@ function enterEvent17(s: GameState, scene: SceneBuilder): void {
   scene.text('She smiles and waves as the train races by.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -232,7 +232,7 @@ function enterEvent18(s: GameState, scene: SceneBuilder): void {
   scene.text('When your eyes meet, she smiles at you before turning her attention to her phone. She doesn\'t look back over at you the rest of the trip.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -244,7 +244,7 @@ function enterEvent19(s: GameState, scene: SceneBuilder): void {
   scene.text('Before you can figure out why he\'s naked, he gets off at the next stop.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -256,7 +256,7 @@ function enterEvent20(s: GameState, scene: SceneBuilder): void {
   scene.text('She makes no attempt to ever cover herself and just rides the train like any other passenger before she gets off at her stop and heads into the train station.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -269,7 +269,7 @@ function enterEvent21(s: GameState, scene: SceneBuilder): void {
   scene.text('She blushes and quickly tucks her breast back in.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -281,7 +281,7 @@ function enterEvent22(s: GameState, scene: SceneBuilder): void {
   scene.text('You politely smile at her and go about your business, but she manages to catch your attention again as she flashes her panties at you with a smile.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -297,7 +297,7 @@ function enterEvent23(s: GameState, scene: SceneBuilder): void {
   scene.text('You politely smile at her and go about your business, but she manages to catch your attention again as she flashes her bare pussy at you with a smile.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -309,7 +309,7 @@ function enterEvent24(s: GameState, scene: SceneBuilder): void {
   scene.text('She seems surprised before she covers herself up and starts screaming at the man while yanking her top back from him. He only laughs as she screams at him while trying to fix her top.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -323,7 +323,7 @@ function enterEvent25(s: GameState, scene: SceneBuilder): void {
   scene.text('Pulling her off his cock, he puts it away as she uses her fingers to clean up the cum at the corner of her lips.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -336,7 +336,7 @@ function enterEvent26(s: GameState, scene: SceneBuilder): void {
   scene.text('Sometime later, one of them cries out in pleasure before flipping off her friend immediately after, apparently racing to see who could get off first.');
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -350,14 +350,14 @@ function enterEvent27(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Complete your journey', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['train_incidental', 'end<<rand(1,1)>>'] }]);
+  qspGoto(s, 'train_incidental', 'end' + Math.floor(Math.random() * 1) + 1 + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -370,7 +370,7 @@ function enterEnd1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

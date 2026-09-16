@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,9 +6,9 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) === 21) {
-    scene.actions([{ label: 'Continue', goto: ['rasputin_show_var', 'first_half'] }]);
+    qspGoto(s, 'rasputin_show_var', 'first_half');
   } else {
-    scene.actions([{ label: 'Continue', goto: ['rasputin_show_var', 'second_half'] }]);
+    qspGoto(s, 'rasputin_show_var', 'second_half');
   }
   // TODO-QSP: end
   scene.build();
@@ -22,8 +22,9 @@ function enterFirstHalf(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 1;
-  }, goto: ['rasputin_walkway', ''] },
+    ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 1;
+    qspGoto(s, 'rasputin_walkway', '');
+  } },
     { label: 'Wait until show starts', goto: ['rasputin_show_var', 'first_half_start'] },
     { label: 'Ask for a free champagne', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -42,9 +43,10 @@ function enterFirstHalf(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstHalfStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-  if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 2;
+  ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 2;
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/rasputin/music_var_1.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -80,7 +82,8 @@ function enterFirstHalfStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     qspCall(s, 'mood', 'raise', 'small');
-  }, goto: ['rasputin_walkway', ''] },
+    qspGoto(s, 'rasputin_walkway', '');
+  } },
     ]);
   } },
     ]);
@@ -101,8 +104,9 @@ function enterSecondHalf(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 2;
-  }, goto: ['rasputin_walkway', ''] },
+    ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 2;
+    qspGoto(s, 'rasputin_walkway', '');
+  } },
     { label: 'Wait until show starts', goto: ['rasputin_show_var', 'second_half_start'] },
     { label: 'Ask for a free champagne', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -121,8 +125,9 @@ function enterSecondHalf(s: GameState, scene: SceneBuilder): void {
 
 function enterSecondHalfStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-  if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 0;
+  ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 0;
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+    (s as any).track_loop = 'sound/rasputin/music_var_2.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }
@@ -167,7 +172,8 @@ function enterSecondHalfStart(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'erotic', 15);
     qspCall(s, 'arousal', 'end');
-  }, goto: ['rasputin_walkway', ''] },
+    qspGoto(s, 'rasputin_walkway', '');
+  } },
     ]);
   } },
     ]);

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -22,7 +22,7 @@ function enterYgym(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).bassMansion ?? 0) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['city_mansion_residence_3', 'ypool'] }]);
+    qspGoto(s, 'city_mansion_residence_3', 'ypool');
     scene.actions([
       { label: 'Go to your pool area', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -30,7 +30,7 @@ function enterYgym(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).banaMansion ?? 0) >= 1) {
-    scene.actions([{ label: 'Continue', goto: ['city_mansion_residence_3', 'ysauna'] }]);
+    qspGoto(s, 'city_mansion_residence_3', 'ysauna');
     scene.actions([
       { label: 'Go to your sauna', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -53,6 +53,7 @@ function enterYgym(s: GameState, scene: SceneBuilder): void {
 
 function enterYpool(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_mansion_residence_3', 'ypool');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Swimming Pool</b></center>');
   scene.img('images/locations/city/suburb/mansion/y_pool.jpg');
@@ -119,6 +120,7 @@ function enterYpool(s: GameState, scene: SceneBuilder): void {
 
 function enterYsauna(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_mansion_residence_3', 'ysauna');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Sauna</b></center>');

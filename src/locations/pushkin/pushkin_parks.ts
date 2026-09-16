@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,12 +10,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_parks', 'start');
+  (s as any).region = 'pushkin';
+  (s as any).location_type = 'public_outdoors';
+  (s as any).locclass = 'city_park';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pushkin Town Park</b></center>');
   scene.img('images/locations/pushkin/park/parkus.jpg');
   scene.text('The gardens of the old palace have been sculpted over many years into a wonder landscape with a tranquil atmosphere.');
   scene.text('The Pushkin Park is a must-see for tourists and servers as the main attraction of Pushkin.');
-  scene.text('Wander deeper into the <a href="exec:gt \'pushkin_parks\', \'lug\'">park</a>.');
+  scene.text('Wander deeper into the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pushkin_parks\\u0027, \\u0027lug\\u0027); return false;">park</a>.');
   qspCall(s, 'park_walkevents', 'run');
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) < 6) {
     if (qspFunc(s, 'homes_properties', 'has_access', 'old_town_apartment') === 0) {
@@ -32,7 +35,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Smoke a joint', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'joint');
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -48,7 +51,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pushkin', ''] },
     { label: 'Walk around the park (1 hour)', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event1', '1'] }]);
+      qspGoto(s, 'kseniyaQW', 'event1', '1');
     }
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'raise', 'tiny');
@@ -66,7 +69,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLug(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'core_library', 'setloc', 'pushkin_parks', 'lug');
+  (s as any).region = 'pushkin';
+  (s as any).locclass = 'city_park';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/park/lug.jpg');
   scene.text('It\'s a small but well maintained meadow with evergreen grass, perfect for laying down to rest, have a picnic or just sunbathe. Mothers with small children regularly visit this place. Despite that, if you feel like exposing yourself here, there would be less people to see it, making it easier to find the bravery to do so.');
@@ -95,7 +101,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) >= 90) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
       qspCall(s, 'stat', '');
-      scene.text('On the path stands a <a href="exec: gt \'pushkin_parks\', \'pavserjil\'">man</a> looking like he is waiting for someone.');
+      scene.text('On the path stands a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pushkin_parks\\u0027, \\u0027pavserjil\\u0027); return false;">man</a> looking like he is waiting for someone.');
     }
   }
   qspCall(s, 'kseniyaQW', 'events');
@@ -103,7 +109,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Flash your tits', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event1', '1'] }]);
+      qspGoto(s, 'kseniyaQW', 'event1', '1');
     }
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'flash', 'tits', 'outdoors', 5);
@@ -118,7 +124,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Flash your pussy', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event1', '1'] }]);
+      qspGoto(s, 'kseniyaQW', 'event1', '1');
     }
     qspCall(s, 'flash', 'pussy', 'outdoors', 5);
     qspCall(s, 'stat', '');
@@ -134,11 +140,13 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     { label: 'Visit the pond', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['pushkin_parks', 'prut'] },
+    qspGoto(s, 'pushkin_parks', 'prut');
+  } },
     { label: 'Go toward the park entrance', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-  }, goto: ['pushkin_parks', 'start'] },
+    qspGoto(s, 'pushkin_parks', 'start');
+  } },
   ]);
   scene.build();
 }
@@ -158,6 +166,7 @@ function enterPavserjil(s: GameState, scene: SceneBuilder): void {
 function enterPrut(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_parks', 'prut');
   qspCall(s, 'stat', '');
+  (s as any).location_type = 'public_outdoors';
   scene.text('<center><b>Park Pond</b></center>');
   scene.img('images/locations/pushkin/park/prut.jpg');
   scene.text('A large and pretty pond near the end of the park, it continues off in to a wooded area.');
@@ -166,18 +175,22 @@ function enterPrut(s: GameState, scene: SceneBuilder): void {
     { label: 'Explore the wooded area', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['pushkin_parks', 'prut2'] },
+    qspGoto(s, 'pushkin_parks', 'prut2');
+  } },
     { label: 'Return to the small meadow', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['pushkin_parks', 'start'] },
+    qspGoto(s, 'pushkin_parks', 'start');
+  } },
   ]);
   scene.build();
 }
 
 function enterPrut2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_parks', 'prut2');
+  (s as any).region = 'pushkin';
   qspCall(s, 'stat', '');
+  (s as any).location_type = 'public_outdoors';
   scene.text('<center><b>Woodland Pond</b></center>');
   scene.img('images/locations/pushkin/park/prut2.jpg');
   scene.text('The pond is still and beautiful here and the trees offer some privacy, it feels quite magical.');
@@ -193,7 +206,8 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  (Math.floor(Math.random() * 4) + 1) <= ((s as any).pcs_magik ?? 0)  &&  (((s as any).hour ?? 0) <=6  ||  ((s as any).hour ?? 0) >=19)) {
     if (((s as any).knowsfairy ?? 0) < 1  &&  ((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['MagEncounterFairy', ''] }]);
+      (s as any).loc_arg = 'prut2';
+      qspGoto(s, 'MagEncounterFairy', '');
     } else {
       if (((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
         scene.actions([
@@ -251,7 +265,8 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get out and dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['pushkin_parks', 'prut2'] },
+    qspGoto(s, 'pushkin_parks', 'prut2');
+  } },
     ]);
   } },
       ]);
@@ -264,11 +279,13 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
     { label: 'Go to the field', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-  }, goto: ['pushkin_parks', 'luzhayka'] },
+    qspGoto(s, 'pushkin_parks', 'luzhayka');
+  } },
     { label: 'Follow the pond back out of the woods', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-  }, goto: ['pushkin_parks', 'prut'] },
+    qspGoto(s, 'pushkin_parks', 'prut');
+  } },
   ]);
   scene.build();
 }
@@ -283,7 +300,8 @@ function enterLuzhayka(s: GameState, scene: SceneBuilder): void {
     { label: 'Return to the woodland pond', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-  }, goto: ['pushkin_parks', 'prut2'] },
+    qspGoto(s, 'pushkin_parks', 'prut2');
+  } },
   ]);
   scene.build();
 }

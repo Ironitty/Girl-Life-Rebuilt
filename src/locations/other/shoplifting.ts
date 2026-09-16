@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -33,7 +33,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.text('Almost there…');
     scene.text('The exit of the supermarket comes closer and closer with every step, and you try to do whatever you can to control your nerves.');
     if ((Math.floor(Math.random() * 5) + 0) !== 0  ||  ((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 150  ||  ((((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 50)  &&  (((s as any).hour ?? 0) === 12  ||  ((s as any).hour ?? 0) === 17))) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       qspCall(s, 'archetypes', 'gain', 'punk', 'small', 'Shoplifting');
       scene.text('As you walk by the counters and leave the supermarket, you feel a rush of excitement. You\'re almost there now, feeling relieved as well as triumphant. You\'re going to make it for sure!');
       scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
@@ -56,7 +56,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_run ?? 0) > 70) {
       qspCall(s, 'exp_gain', 'observ', 5);
       qspCall(s, 'exp_gain', 'run', 5);
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       qspCall(s, 'archetypes', 'gain', 'punk', 'small', 'Shoplifting');
       scene.text('You keep running while the security guard follows close behind… You turn a corner and then quickly take another corner as you try to shake him off…');
       scene.text('The guard is not easily giving up, but after a few minutes, you\'ve managed to outrun him as you make your escape from the supermarket. You can hear the guard screaming behind you…');
@@ -64,7 +64,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
         { label: 'Catch your breath', goto: ['city_center', ''] },
       ]);
     } else {
-      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['shoplift_caught'] = ((s as any).policeQW['shoplift_caught'] ?? 0) + (1);
+      ((s as any).policeQW = (s as any).policeQW ?? {})['shoplift_caught'] = ((s as any).policeQW['shoplift_caught'] ?? 0) + (1);
       scene.text('You keep running while the security guard follows close behind… You turn a corner and then quickly take another corner as you try to shake him off…');
       scene.text('But the guard is not easily giving up, and as you turn the corner, you reach a dead-end. You quickly try to turn around and run another way but it\'s too late as you\'re tackled.');
       scene.text('Lying on the ground, the security guard quickly lifts you up and leads you toward the security room.');
@@ -93,10 +93,10 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
 
 function enterSecurityroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).policeQW ?? 0)?.['toldonguard'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['shoplifting', 'punish'] }]);
+    qspGoto(s, 'shoplifting', 'punish');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['shoplift_value'] = 1300;
+  ((s as any).policeQW = (s as any).policeQW ?? {})['shoplift_value'] = 1300;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/shoplift/caught.jpg');
   scene.text('"Where are you taking me?" you shout out, "I haven\'t done anything wrong!" You look around trying to catch someone\'s attention. People are staring at you in disgust and turning their heads.');
@@ -129,7 +129,7 @@ function enterSecurityroom(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe'] }]);
+      qspGoto(s, 'shoplifting', 'bribe');
     }
   } },
       { label: 'Keep quiet', goto: ['shoplifting', 'quiet'] },
@@ -153,7 +153,7 @@ function enterSecurityroom(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe'] }]);
+      qspGoto(s, 'shoplifting', 'bribe');
     }
   } },
       { label: 'Keep quiet', goto: ['shoplifting', 'quiet'] },
@@ -174,6 +174,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Comply', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'sub', 'exhibition');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/sex/show/show2.jpg');
@@ -190,6 +191,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('Once again, you comply and remove you clothing piece by piece as he carefully scans your body, "Good, now sit back down again and spread your legs, slide your panties down, I want to see that vulva exposed…"');
     scene.actions([
       { label: 'Remove your panties', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'sub', 'exhibition');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/sex/show/show4.jpg');
@@ -198,6 +200,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('You look madly at him as you use your fingers to rub on your exposed clit, picking up the pace. Just as you\'re feeling excited, he tells you to slow down as he doesn\'t want you to get too much pleasure out of this…');
     scene.actions([
       { label: 'Keep going', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'sub', 'exhibition');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/sex/show/show5.jpg');
@@ -210,6 +213,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'D2');
     qspCall(s, 'stat', '');
     qspCall(s, 'boyStat', 'd3');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_dildo', 3, 'masturbate', 'sub', 'exhibition');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/sex/show/show6.jpg');
@@ -218,6 +222,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('You pick up the pace, not wanting to be outpaced by him, but just as you\'re about to orgasm, the security guard seems to decide that it\'s time for some payback, as he smugly commands you to stop touching yourself right away…');
     scene.actions([
       { label: 'Stop', handler: (st: GameState) => {
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'vaginal_dildo', 3, 'sub', 'exhibition');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/sex/show/show7.jpg');
@@ -248,7 +253,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
       scene.text('The manager nods while the police officer approaches you resolutely, telling you to stand and turn around so he can handcuff you.');
       scene.text('You obediently turn around, and the police officer tightens his cuffs so they sit real tight. As he finishes, he grabs you by the arm and leads you away…');
       scene.actions([
-        { label: 'Go to the police station', goto: ['police_station', 'entrance', '\'shoplift\''] },
+        { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shoplift'] },
       ]);
     } else {
       scene.text('The door opens, and thankfully, there\'s only the security guard standing there holding a video cassette in his hand. "Sorry for the wait, it took me a while to get hold of the cassette."');
@@ -361,14 +366,14 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
     scene.text('You clean yourself up and get dressed as soon you hear the door close. There\'s nothing more to do than patiently sit and wait for the security guard to return.');
     scene.text('You closely pay attention to every little sound happening outside the office, hoping that he\'ll return soon and let you go. All of a sudden you hear footsteps and someone opening the door…');
     if (((s as any).policeCalled ?? 0) <= 3) {
-      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['toldonguard'] = 2;
+      ((s as any).policeQW = (s as any).policeQW ?? {})['toldonguard'] = 2;
       scene.text('To your dismay, the security guard has not only called the manager but there\'s even a police officer standing there with them.');
       scene.text('The security guard smugly proclaims, "Here she is officer I had her locked up the whole time…" He turns to the manager, "Don\'t worry sir, I\'ve already recovered the video evidence…"');
       scene.text('The manager nods while the police officer approaches you resolutely, telling you to stand and turn around so he can handcuff you.');
       scene.text('You obediently turn around, and the police officer tightens his cuffs so they sit real tight. As he finishes, he grabs you by the arm and leads you away…');
       qspCall(s, 'arousal', 'end');
       scene.actions([
-        { label: 'Go to the police station', goto: ['police_station', 'entrance', '\'shplft\''] },
+        { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shplft'] },
       ]);
     } else {
       scene.text('The door opens, and thankfully, there\'s only the security guard standing there holding a video cassette in his hand. "Sorry for the wait, it took me a while to get hold of the cassette."');
@@ -451,7 +456,7 @@ function enterBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('Without uttering a word, you turn around and let the officer cuff you. The cuffs are sitting tight, but you refuse to give the security guard the smallest satisfaction by letting him know that.');
     scene.text('The police officer chats with the security guard before leading you away to the police station…');
     scene.actions([
-      { label: 'Go to the police station', goto: ['police_station', 'entrance', '\'shplft\''] },
+      { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shplft'] },
     ]);
   } },
     ]);
@@ -480,7 +485,7 @@ function enterQuiet(s: GameState, scene: SceneBuilder): void {
     scene.text('Without uttering a word, you turn around and let the officer cuff you. The cuffs are sitting tight, but you refuse to give the security guard the smallest satisfaction by letting him know that.');
     scene.text('The police officer chats with the security guard before leading you away to the police station…');
     scene.actions([
-      { label: 'Go to the police station', goto: ['police_station', 'entrance', '\'shplft\''] },
+      { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shplft'] },
     ]);
   } },
   ]);
@@ -488,7 +493,7 @@ function enterQuiet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPunish(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['toldonguard'] = 0;
+  ((s as any).policeQW = (s as any).policeQW ?? {})['toldonguard'] = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/shoplift/sex/revenge/revenge1.jpg');
@@ -562,7 +567,7 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     scene.text('Some minutes pass by, and you hear several voices approaching the door. As it opens up, you see the security guard standing there with a police officer. "This one?" the officer asks as he points at you. The security guard nods his head, "Yeah she\'s a real pain in the ass."');
     scene.text('The officer walks over to you, cuffs you and begins leading you away. As you\'re being led by the security guard, he flashes you a smile, mocking you.');
     scene.actions([
-      { label: 'Go to the police station', goto: ['police_station', 'entrance', '\'shplft\''] },
+      { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shplft'] },
     ]);
   } },
     ]);
@@ -605,7 +610,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     scene.text('Almost there…');
     scene.text('The exit of the supermarket comes closer and closer with every step, and you try to do whatever you can to control your nerves.');
     if ((Math.floor(Math.random() * 5) + 0) > 0  ||  ((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 150  ||  ((((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 50)  &&  (((s as any).hour ?? 0) === 12  ||  ((s as any).hour ?? 0) === 17))) {
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       scene.text('As you walk by the counters and leave the supermarket, you feel a rush of excitement. You\'re almost there now, feeling relieved as well as triumphant. You\'re going to make it for sure!');
       scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
       scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
@@ -626,7 +631,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     scene.text('Realizing he\'s out after you and not wanting to get caught, you make a dash for it. You can\'t get caught for a small thing like this.');
     if (((s as any).pcs_run ?? 0) > 70) {
       (s as any).run_exp = ((s as any).run_exp ?? 0) + (5);
-      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       scene.text('You keep running while the security guard follows close behind… You turn a corner and then quickly take another corner as you try to shake him off…');
       scene.text('The guard is not easily giving up, but after a few minutes, you\'ve managed to outrun him as you make your escape from the supermarket. You can hear the guard screaming behind you…');
       scene.actions([
@@ -661,8 +666,8 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
 
 function enterSecurityroomPav(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['shoplift_value'] = 1300;
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['shoplift_caught'] = ((s as any).policeQW['shoplift_caught'] ?? 0) + (1);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['shoplift_value'] = 1300;
+  ((s as any).policeQW = (s as any).policeQW ?? {})['shoplift_caught'] = ((s as any).policeQW['shoplift_caught'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/shoplift/caught.jpg');
   if (((s as any).policeQW ?? 0)?.['shoplift_caught'] === 1) {
@@ -706,7 +711,7 @@ function enterSecurityroomPav(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe_pav'] }]);
+      qspGoto(s, 'shoplifting', 'bribe_pav');
     }
   } },
       { label: 'Keep quiet', goto: ['shoplifting', 'quiet_pav'] },
@@ -728,7 +733,7 @@ function enterSecurityroomPav(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe_pav'] }]);
+      qspGoto(s, 'shoplifting', 'bribe_pav');
     }
   } },
       { label: 'Keep quiet', goto: ['shoplifting', 'quiet_pav'] },
@@ -755,7 +760,7 @@ function enterBjPav(s: GameState, scene: SceneBuilder): void {
     scene.text('Not having lot of choice, you look him in the eyes and nod.');
     scene.text('"Good! But before we begin I want a memento to remember you by," he adds as he pulls out his cellphone.');
   }
-  if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['securitybj_pav'] = ((s as any).policeQW['securitybj_pav'] ?? 0) + (1);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['securitybj_pav'] = ((s as any).policeQW['securitybj_pav'] ?? 0) + (1);
   // TODO-QSP: end
   scene.actions([
     { label: 'Take picture', handler: (st: GameState) => {
@@ -907,7 +912,7 @@ function enterBribePav(s: GameState, scene: SceneBuilder): void {
     scene.text('Without uttering a word, you turn around and let the officer cuff you. The cuffs are sitting tight, but you refuse to give the security guard the smallest satisfaction by letting him know that.');
     scene.text('The police officer chats with the security guard before leading you away to the police station…');
     scene.actions([
-      { label: 'Go to the police station', goto: ['pav_station', 'entrance', '\'shplft\''] },
+      { label: 'Go to the police station', goto: ['pav_station', 'entrance', 'shplft'] },
     ]);
   } },
     ]);
@@ -931,7 +936,7 @@ function enterQuietPav(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe_pav'] }]);
+      qspGoto(s, 'shoplifting', 'bribe_pav');
     }
   } },
     { label: 'Wait', handler: (st: GameState) => {
@@ -944,7 +949,7 @@ function enterQuietPav(s: GameState, scene: SceneBuilder): void {
     scene.text('Without uttering a word, you turn around and let the officer cuff you. The cuffs are sitting tight, but you refuse to give the security guard the smallest satisfaction by letting him know that.');
     scene.text('The police officer chats with the security guard before leading you away to the police station…');
     scene.actions([
-      { label: 'Go to the police station', goto: ['pav_station', 'entrance', '\'shplft\''] },
+      { label: 'Go to the police station', goto: ['pav_station', 'entrance', 'shplft'] },
     ]);
   } },
   ]);

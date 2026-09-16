@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'autoservisF', 'start');
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   qspCall(s, 'car_funcs', 'avtonorm');
   scene.text('<center><b>Car Service Center</b></center>');
@@ -37,7 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked just insid...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
     if (qspFunc(s, 'car_funcs', 'has_wreck')) {
       scene.text('The foreman looks at your car, if this wreckage even qualifies as one, with a professional boredom that tells you he\'s seen vehicles in similar or worse states a million times over.');
       // TODO-QSP: dynamic text: He quickly but thoroughly inspects it, murmuring all the while to take mental no...
@@ -49,9 +50,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));
-      if (!(s as any).car) (s as any).car = {}; (s as any).car['new_condition'] = (((s as any).car ?? {})?.['new_condition'] ?? 0) / 2;
-      if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
-      if (!(s as any).car) (s as any).car = {}; (s as any).car['wreck'] = 0;
+      ((s as any).car = (s as any).car ?? {})['new_condition'] = (((s as any).car ?? {})?.['new_condition'] ?? 0) / 2;
+      ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
+      ((s as any).car = (s as any).car ?? {})['wreck'] = 0;
       qspCall(s, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
       scene.text('Since he tells you that it\'s not gonna take long - at first you think he is being sarcastic but then realize that his no-nonsense attitude doesn\'t leave much room for humour - you go into a waiting room with couches and a TV. After about an hour of flipping through channels, you are called back to the garage and can hardly believe your eyes.');
@@ -82,8 +83,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));
-      if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
-      if (!(s as any).car) (s as any).car = {}; (s as any).car['wreck'] = 0;
+      ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
+      ((s as any).car = (s as any).car ?? {})['wreck'] = 0;
       qspCall(s, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
       // TODO-QSP: dynamic text: Since he tells you that it's not gonna take long, you go into a waiting room wit...

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_girls_bathroom', 'start');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'school_bathroom';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Girls bathroom</b></center>');
   scene.img('images/locations/pavlovsk/school/bathroom/girlsbathroom.jpg');
@@ -25,13 +27,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull out a cigarette and light it before taking a long drag and holding it for a while. You immediately feel yourself relaxing, the smoke\'s familiar tingling in your lungs taking the edge off. This feels much better than going to class.');
     (s as any).i = Math.floor(Math.random() * 100) + 1;
     if (((s as any).i ?? 0) <= 25) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'girls'] }]);
+      qspGoto(s, 'gschool_girls_bathroom', 'girls');
     } else {
       if (((s as any).i ?? 0) <= 40) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'caught'] }]);
+        qspGoto(s, 'gschool_girls_bathroom', 'caught');
       } else {
         if (((s as any).i ?? 0) <= 60) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'company'] }]);
+          qspGoto(s, 'gschool_girls_bathroom', 'company');
         } else {
           scene.actions([
             { label: 'Keep smoking', goto: ['gschool_girls_bathroom', 'bathroom2'] },
@@ -52,13 +54,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You sit on the toilet, playing on your phone. With class in session, most people you text with take agonizingly long to respond, and the few games you find to occupy yourself with are pretty terrible, but it still sure as hell beats another boring class.');
     (s as any).i = Math.floor(Math.random() * 100) + 1;
     if (((s as any).i ?? 0) <= 25) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'girls'] }]);
+      qspGoto(s, 'gschool_girls_bathroom', 'girls');
     } else {
       if (((s as any).i ?? 0) <= 40) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'caught'] }]);
+        qspGoto(s, 'gschool_girls_bathroom', 'caught');
       } else {
         if (((s as any).i ?? 0) <= 60) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'company'] }]);
+          qspGoto(s, 'gschool_girls_bathroom', 'company');
         } else {
           scene.actions([
             { label: 'Continue to play on phone', goto: ['gschool_girls_bathroom', 'bathroom2'] },
@@ -160,12 +162,12 @@ function enterBathroom3(s: GameState, scene: SceneBuilder): void {
 function enterGirls(s: GameState, scene: SceneBuilder): void {
   (s as any).i = Math.floor(Math.random() * 100) + 1;
   if (((s as any).i ?? 0) <= 25) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'girl3'] }]);
+    qspGoto(s, 'gschool_girls_bathroom', 'girl3');
   } else {
     if (((s as any).i ?? 0) <= 50  &&  ((s as any).soniaQW ?? 0)?.['slut'] > 0) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'girl2'] }]);
+      qspGoto(s, 'gschool_girls_bathroom', 'girl2');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'girl1'] }]);
+      qspGoto(s, 'gschool_girls_bathroom', 'girl1');
     }
   }
   // TODO-QSP: end
@@ -300,6 +302,7 @@ function enterGirl3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Try to run out', handler: (st: GameState) => {
+    (s as any).location_type = 'public_indoors';
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).runout = Math.floor(Math.random() * 4) + 1;
     if (((s as any).runout ?? 0) === 1) {
@@ -344,7 +347,7 @@ function enterGirl3(s: GameState, scene: SceneBuilder): void {
       { label: 'Maybe later', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A20', 5);
     qspCall(s, 'npc_relationship', 'modify', 'A21', 5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     scene.text('<center><b>Girls bathroom</b></center>');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/nowkiss.mp4');
     scene.text('You step out of the stall and look the two girls up and down. You know the game they\'re playing, but you can play games too. You grab the cigarette from Lera and take a drag off it, blowing smoke in her face as you hand it back. "Maybe I\'m not the one that should be scared." Lera is momentarily stunned by your brazenness while Lena watches on in curiosity and amusement.');
@@ -373,7 +376,8 @@ function enterGirl3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fight_npcdata', 'lena');
     qspCall(s, 'fight_npcdata', 'lera');
     (s as any).fightEnding = 22;
-  }, goto: ['fight', 'start'] },
+    qspGoto(s, 'fight', 'start');
+  } },
       { label: 'Run away', handler: (st: GameState) => {
     (s as any).runout = Math.floor(Math.random() * 4) + 1;
     if (((s as any).runout ?? 0) === 1) {
@@ -417,6 +421,7 @@ function enterGirl3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Try to run out', handler: (st: GameState) => {
+    (s as any).location_type = 'public_indoors';
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).runout = Math.floor(Math.random() * 4) + 1;
     if (((s as any).runout ?? 0) === 1) {
@@ -462,6 +467,7 @@ function enterGirl3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Try to run out', handler: (st: GameState) => {
+    (s as any).location_type = 'public_indoors';
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).runout = Math.floor(Math.random() * 4) + 1;
     if (((s as any).runout ?? 0) === 1) {
@@ -538,6 +544,8 @@ function enterToyBunny(s: GameState, scene: SceneBuilder): void {
     scene.text('Lera wastes no time: She grabs you by your hair, drags you closer to Lena and forces you to lie down on your back, then straddles your face, putting her pussy right over your mouth. The order is clear, even without her command: "Finish me off."');
     scene.text('Without hesitation, you continue where you left off. When you glance up, you see that Lera is licking Lena\'s pussy from behind. She seems to really know what she\'s doing and turns Lena into a moaning mess in no time by alternating between licking Lena\'s pussy and her asshole, tongue-fucking one, then the other, exploring the girl\'s orifices with gusto. You can\'t help but smirk when you understand that Lera is Lena\'s bitch, but then you realize that this makes you Lera\'s bitch and thus the bottom bitch in this trio.');
     qspCall(s, 'arousal', 'cuni_give', 10, ((s as any).npcID ?? 0), 'lesbian', 'group', 'sub');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'Even though they forced you into this, you can\'t help but feel turned on, not only by the erotic display in front of you but also by the fact itself that somebody took control of you. Slowly, as if it had a will of its own, your hand creeps down to your sopping pussy and your fingers work their magic, dipping into your nether hole and playing with your engorged clit. Soon enough, all three of you are moaning in pleasure, Lera\'s and yours muffled by your respective mouthfuls of pussy. You\'re not sure who came first, but soon all three of you are shivering in orgasmic delight.';
     qspCall(s, 'arousal', 'clit_finger', (-5), 'masturbate');
     qspCall(s, 'arousal', 'vaginal_finger', (-5), 'masturbate');
     qspCall(s, 'arousal', 'end');
@@ -580,18 +588,19 @@ function enterCompany(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_randperson', 'couple_generator');
   (s as any).gtoilet_rand = Math.floor(Math.random() * 100) + 1;
   if (((s as any).gtoilet_rand ?? 0) <= 30) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'company1'] }]);
+    (s as any).rand_boy = 'a boy you don\'t know';
+    qspGoto(s, 'gschool_girls_bathroom', 'company1');
   } else {
     if (((s as any).gtoilet_rand ?? 0) <= 60) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'company2'] }]);
+      qspGoto(s, 'gschool_girls_bathroom', 'company2');
     } else {
       if (((s as any).gtoilet_rand ?? 0) <= 70) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'company4'] }]);
+        qspGoto(s, 'gschool_girls_bathroom', 'company4');
       } else {
         if (((s as any).anushkaQW ?? 0)?.['toilet'] === -1) {
-          scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'company1'] }]);
+          qspGoto(s, 'gschool_girls_bathroom', 'company1');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'company3'] }]);
+          qspGoto(s, 'gschool_girls_bathroom', 'company3');
         }
       }
     }
@@ -642,6 +651,8 @@ function enterCompany1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You rub your sensitive little nub carefully to ease yourself into the pleasure; ...
       scene.text(`You rub your sensitive little nub carefully to ease yourself into the pleasure; if you don't stay in control, you're going to make sounds and you don't want them to notice you. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck ${((s as any).rand_boy || '')} is giving a girl you don't know. You add your other hand to the mix, rubbing your clit while you're finger fucking yourself, faster and faster as they get louder and louder, and even play with your asshole a little bit, encouraged by the girl's audible pleasure.`);
     }
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You have to bite your lip to keep from crying out as an orgasm shoots through your body and causes you to convulse on the toilet seat.';
     qspCall(s, 'arousal', 'masturbate', 10);
     qspCall(s, 'arousal', 'end');
     scene.text('By the sound of it, you came in perfect unison with her and only a few seconds later, you hear him grunt as well. You then hear the water running and they talk in low voices before you hear the door open and close, and all is quiet once more.');
@@ -695,7 +706,10 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You rub your sensitive little nub carefully to ease yourself into the pleasure; ...
       scene.text(`You rub your sensitive little nub carefully to ease yourself into the pleasure; if you don't stay in control, you're going to make sounds and you don't want them to notice you. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck ${((s as any).rand_boy || '')} is giving ${((s as any).rand_girl || '')}. You add your other hand to the mix, rubbing your clit while you're fingerfucking yourself, faster and faster as they get louder and louder, and even play with your asshole a little bit, encouraged by the girl's audible pleasure.`);
     }
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', (-10), 'masturbate');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You have to bite your lip to keep from crying out as an orgasm shoots through your body and causes you to convulse on the toilet seat.';
     qspCall(s, 'arousal', 'vaginal_finger', (-10), 'masturbate');
     qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate');
     qspCall(s, 'arousal', 'end');
@@ -772,6 +786,8 @@ function enterCompany3(s: GameState, scene: SceneBuilder): void {
       scene.text('Listening to Anushka getting pounded, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn\'t, you know it\'s risky, but you just can\'t resist: You pull your panties off, hike up your skirt and spread your legs. Your hand slides down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.');
       scene.text('You rub your sensitive little nub carefully to ease yourself into the pleasure; if you don\'t stay in control, you\'re going to make sounds and you don\'t want them to notice you. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck Arkadi is giving Anushka. You add your other hand to the mix, rubbing your clit while you\'re fingerfucking yourself, faster and faster as they get louder and louder.');
     }
+    (s as any).orgasm_txt = 'You have to bite your lip to keep from crying out as an orgasm shoots through your body and causes you to convulse on the toilet seat.';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'clit_finger', 20, 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.text('By the sound of it, you came in perfect unison with her and only a few seconds later, you hear him grunt as well. You then hear the water running and they talk in low voices before you hear the door open and close, and all is quiet once more.');
@@ -846,6 +862,7 @@ function enterCompany4(s: GameState, scene: SceneBuilder): void {
       scene.text('Listening to Miss Orlov getting pounded, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn\'t, you know it\'s risky, but you just can\'t resist: You hike up your skirt and spread your legs. Your hands slide down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.');
       scene.text('You rub your sensitive little nub carefully to ease yourself into the pleasure; if you don\'t stay in control, you\'re going to make sounds and you don\'t want them to notice you. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck Mr. Kuznetsov is giving Miss Orlov. You add your other hand to the mix, rubbing your clit while you\'re fingerfucking yourself, faster and faster as they get louder and louder.');
     }
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'masturbate', 10);
     qspCall(s, 'arousal', 'end');
     scene.text('By the sound of it, you came in perfect unison with her and only a few seconds later, you hear him grunt as well. You then hear the water running and they talk in low voices before you hear the door open and close, and all is quiet once more.');
@@ -860,15 +877,15 @@ function enterCompany4(s: GameState, scene: SceneBuilder): void {
 function enterCaught(s: GameState, scene: SceneBuilder): void {
   (s as any).gtoilet_rand = Math.floor(Math.random() * 75) + 1;
   if (((s as any).gtoilet_rand ?? 0) <= 25) {
-    scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'caught1'] }]);
+    qspGoto(s, 'gschool_girls_bathroom', 'caught1');
   } else {
     if (((s as any).gtoilet_rand ?? 0) <= 50) {
-      scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'caught2'] }]);
+      qspGoto(s, 'gschool_girls_bathroom', 'caught2');
     } else {
       if ((!((s as any).school_bunk ?? 0))) {
-        scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'caught'] }]);
+        qspGoto(s, 'gschool_girls_bathroom', 'caught');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'caught3'] }]);
+        qspGoto(s, 'gschool_girls_bathroom', 'caught3');
       }
     }
   }
@@ -895,7 +912,8 @@ function enterCaught1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_bunk ?? 0) === 1) {
       (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     }
-  }, goto: ['gschool_office', 'principal'] },
+    qspGoto(s, 'gschool_office', 'principal');
+  } },
     { label: 'Sweet talk her', handler: (st: GameState) => {
     qspCall(s, 'gschool_events', 'sweet');
     if ((Math.floor(Math.random() * 100) + 1) < ((s as any).sweet_talk ?? 0)) {
@@ -917,7 +935,8 @@ function enterCaught1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_bunk ?? 0) === 1) {
       (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     }
-  }, goto: ['gschool_office', 'principal'] },
+    qspGoto(s, 'gschool_office', 'principal');
+  } },
         ]);
       }
     } else {
@@ -952,7 +971,8 @@ function enterCaught1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_bunk ?? 0) === 1) {
       (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     }
-  }, goto: ['gschool_office', 'principal'] },
+    qspGoto(s, 'gschool_office', 'principal');
+  } },
       ]);
     } else {
       if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
@@ -1021,12 +1041,14 @@ function enterCaught1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_bunk ?? 0) === 1) {
       (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     }
-  }, goto: ['gschool_office', 'principal'] },
+    qspGoto(s, 'gschool_office', 'principal');
+  } },
       ]);
     } else {
       scene.img('images/characters/pavlovsk/school/teacher/raven/sex/school/caughtffinger.jpg');
       scene.text('Ms. Braakman stares at you for a long time, seemingly considering her options, before the hardness in her eyes gives way to lust. She seems to be struggling with herself, but her words leave no doubt as to which side came out on top: "Take off your skirt and panties." Suppressing a smile, you do as she tells you and get naked from the waist down. Once you are, she bends you over the sink, sucking on two of her fingers as she goes. With her other hand, she gives your bare ass several hard swats that make you yelp and leaves your ass red and stinging, but you almost immediately forget about that when she slides her wet fingers inside your pussy and starts finger-banging you with one hand. She doesn\'t ease up on the spanking, but the pain adds to the pleasure.');
       scene.text('Moans start to escape you; her fingers seem to touch all the right spots inside you with unerring ease and you can feel the heat in your pussy build up - it looks like this woman is going to make you cum in record time!');
+      (s as any).orgasm_or = 'no';
       qspCall(s, 'arousal', 'vaginal_finger', 10, 'lesbian');
       qspCall(s, 'stat', '');
       scene.text('Just as you\'re approaching the edge, she stops, pulls her fingers out of you and steps away. You want to protest, but her order preempts it: "Take off the rest of your clothes."');
@@ -1078,6 +1100,7 @@ function enterCaught1SlutPunishment(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/teacher/raven/sex/school/caughtffinger.jpg');
     scene.text('"Take off your skirt and panties!" she demands, your ass still stinging. You do as she tells you and get naked from the waist down. Once you are, she bends you over the sink, sucking on two of her fingers as she goes. With her other hand, she gives your bare ass several hard swats that make you yelp and leaves your ass red and stinging, but you almost immediately forget about that when she slides her wet fingers inside your pussy and starts finger-banging you with one hand. She doesn\'t ease up on the spanking, but the pain adds to the pleasure.');
     scene.text('Moans start to escape you; her fingers seem to touch all the right spots inside you with unerring ease and you can feel the heat in your pussy build up - it looks like this woman is going to make you cum in record time!');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'lesbian');
     qspCall(s, 'stat', '');
     scene.text('Just as you\'re approaching the edge, she stops, pulls her fingers out of you and steps away. You want to protest, but her order preempts it: "Spread your legs."');
@@ -1198,7 +1221,8 @@ function enterCaught2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_bunk ?? 0) === 1) {
       (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     }
-  }, goto: ['gschool_office', 'principal'] },
+    qspGoto(s, 'gschool_office', 'principal');
+  } },
     { label: 'Sweet talk him', handler: (st: GameState) => {
     qspCall(s, 'gschool_events', 'sweet', 'normal');
     if ((Math.floor(Math.random() * 100) + 1) < ((s as any).sweet_talk ?? 0)) {
@@ -1212,7 +1236,8 @@ function enterCaught2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_bunk ?? 0) === 1) {
       (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     }
-  }, goto: ['gschool_office', 'principal'] },
+    qspGoto(s, 'gschool_office', 'principal');
+  } },
       ]);
     } else {
       scene.img('images/locations/pavlovsk/school/bathroom/sweettalk\' + rand(1, 2) + \'.jpg');
@@ -1246,7 +1271,8 @@ function enterCaught2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_bunk ?? 0) === 1) {
       (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     }
-  }, goto: ['gschool_office', 'principal'] },
+    qspGoto(s, 'gschool_office', 'principal');
+  } },
       ]);
     } else {
       qspCall(s, 'boyStat', 'A128');
@@ -1299,7 +1325,8 @@ function enterCaught2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).school_bunk ?? 0) === 1) {
       (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     }
-  }, goto: ['gschool_office', 'principal'] },
+    qspGoto(s, 'gschool_office', 'principal');
+  } },
       ]);
     } else {
       scene.img('images/locations/pavlovsk/school/bathroom/seduction.jpg');
@@ -1365,6 +1392,8 @@ function enterCaught2(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep getting fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/makar/sex/school/caughtvag3.jpg');
     scene.text('He keeps fucking you, not too hard or fast, but at a nice steady pace. It seems he wants you to enjoy this as much as he is. He fucks you like this for several more minutes until he starts moaning loudly.');
+    (s as any).orgasm_txt = 'With an unexpectedly considerate lover like this, it doesn\'t take long until you orgasm and scream out in ecstasy, your wet folds twitching around your teacher\'s hard cock. He doesn\'t let up though, and his stamina seems to know no limit, violating your pussy in all the right ways. A second orgasm and even a third shake you before he finally starts to grunt.';
+    (s as any).orgasm_or = 'custom';
     qspCall(s, 'arousal', 'vaginal', 10, 'dom');
     qspCall(s, 'stat', '');
     scene.actions([

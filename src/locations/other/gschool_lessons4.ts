@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -135,11 +135,11 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'math', ((s as any).pcs_intel ?? 0));
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/attention.jpg');
     scene.text('You carefully follow today\'s lesson, trying to take in as much as possible.');
@@ -164,7 +164,7 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
       { label: 'Daydream', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 20) + 1;
     if (((s as any).VK ?? 0) > 18  &&  ((s as any).VKHappyHome ?? 0) < 2  &&  (!((s as any).VKPuppetDream ?? 0))) {
-      scene.actions([{ label: 'Continue', goto: ['NikoDreams', 'Puppeteer'] }]);
+      qspGoto(s, 'NikoDreams', 'Puppeteer');
     } else {
       if (((s as any).VK ?? 0) > 12) {
         (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (Math.floor(Math.random() * 3) + 1);
@@ -243,9 +243,9 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
               { label: 'Give him attitude', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/kickedout.jpg');
     scene.text('"Of course. Please continue your super-fascinating lesson. Just keep it a bit upbeat please. If you talk any slower, I might fall asleep!" you answer boldly.');
@@ -264,8 +264,8 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/bitchflip.jpg');
     scene.text('"What good would that do? I\'m not interrupting your class, so just leave me alone. I\'m having some… girl problems," you answer brashly, not having any intentions of getting up.');
@@ -352,8 +352,8 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Keep using your phone', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/caughtonphone.jpg');
@@ -417,8 +417,8 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/takephone.jpg');
     scene.text('He extends his hand. "What\'s so important on there that you need to disrupt my lesson? Hand it over."');
@@ -435,8 +435,8 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Put your phone away', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/caughtonphone.jpg');
     scene.text('You turn off your phone and put it away. Mr. Tsarev give you an approving nod before continuing with his lesson.');
@@ -527,17 +527,17 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'eng', ((s as any).pcs_intel ?? 0));
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/literature/work2.jpg');
     scene.text('You actively take part in the lesson, raising your hand to answer questions, following along in your textbook and working quietly on the worksheets when given them.');
     scene.actions([
       { label: 'Keep working', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'eng', ((s as any).pcs_chrsm ?? 0));
     qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
     scene.img('images/locations/pavlovsk/school/classroom/ask.jpg');
@@ -684,9 +684,9 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/pc/reactions/eyeroll.mp4');
     scene.text('You roll your eyes and sigh heavily. "I can\'t help it, you just keep talking and talking…" Your unexpected response causes the room to go quiet. "Everything you say is just so pointless. When am I ever going to need to know this stuff?" you ask rhetorically. "Never. Never is the answer."');
     scene.text('The whole class starts to \'ooh\' in disbelief at your bold response. Arkadi, Roman and Anushka\'s laughter can probably be heard all the way down the hall.');
@@ -706,9 +706,9 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Apologize', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big137.jpg');
     scene.text('"Sorry, Ms. Braakman…" you mumble quietly as you sit up straight and refocus on the lesson. Satisfied, Ms. Braakman returns to teaching with a small smile.');
     scene.actions([
@@ -774,8 +774,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
           { label: 'Keep using your phone', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/characters/pavlovsk/school/teacher/raven/angry.jpg');
     scene.text('You shrug your shoulders dismissively, which only serves to anger her more.');
@@ -853,8 +853,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('Realizing it isn\'t worth it, you hand over your phone without argument.');
     scene.text('"You can have this back after class," she says as she walks back to the blackboard.');
@@ -868,9 +868,9 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Put your phone away', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide not to aggravate the situation and put your phone away. You can see Ms. Braakman isn\'t happy, but she\'s willing to let it go for now and goes back to teaching the class without reprimanding you.');
     scene.actions([
@@ -899,14 +899,14 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
   scene.text('You arrive in the gym and head straight to the girls locker room. Once inside, you quickly change into your athletic clothes before heading back out into the hall. Once everyone is ready, Coach Pavlovich conducts a roll call to ensure everyone is present.');
   if (((s as any).week ?? 0) === 5  &&  ((s as any).runnerQW ?? 0)?.['pav_stage'] === 0) {
     if (((s as any).runnerQW ?? 0)?.['pav_racetype'] === 0) {
-      if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_racetype'] = 1;
+      ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_racetype'] = 1;
     }
     // TODO-QSP: dynamic text: Coach Pavlovich announces that the inter-school running competition will be held...
     scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at 11:00. If you want to participate, you should come to school between 10:00 and 11:00.');
   } else {
     if (((s as any).week ?? 0) === 5  &&  ((s as any).runnerQW ?? 0)?.['pav_stage'] === 1) {
       if (((s as any).runnerQW ?? 0)?.['pav_racetype'] === 0) {
-        if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_racetype'] = 2;
+        ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_racetype'] = 2;
       }
       // TODO-QSP: dynamic text: Coach Pavlovich announces that the inter-school running competition will be held...
       scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at 11:00. If you want to participate, you should come to school between 10:00 and 11:00.');
@@ -919,10 +919,10 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fizrarand ?? 0) === 1) {
       qspCall(s, 'mood', 'lower', 'tiny');
       if (((s as any).pcs_run ?? 0) >= 60) {
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
       } else {
         if (((s as any).pcs_run ?? 0) >= 40) {
-          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+          ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
         }
       }
       qspCall(s, 'sweat', 'add', 30);
@@ -1050,10 +1050,10 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'grades', 'class_activity_attributes', 'school', 'pe', ((s as any).pcs_agil ?? 0));
         qspCall(s, 'exercise', 'tier2', 15, 'agil');
         if (((s as any).pcs_agil ?? 0) >= 60) {
-          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+          ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
         } else {
           if (((s as any).pcs_agil ?? 0) >= 40) {
-            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+            ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
           }
         }
         scene.img('images/locations/pavlovsk/school/gym/fizra4.jpg');
@@ -1099,7 +1099,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
               scene.text('Some of the boys stop what they\'re doing when it\'s your turn, coming over to shout some words of support.');
             }
             if (((s as any).pcs_stren ?? 0) <= 20) {
-              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+              ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
               scene.text('Unfortunately, pull-ups aren\'t your strong point and you\'re unable to do as many as any of the girls. You did the fewest in the class and most of the jocks snicker or make snide remarks.');
             } else {
               if (((s as any).pcs_stren ?? 0) <= 30) {
@@ -1109,10 +1109,10 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                   scene.text('In the end, you wind up doing a perfectly respectable amount of pull-ups. You do better than most of the girls, other than a few of the jocks.');
                 } else {
                   if (((s as any).pcs_stren ?? 0) <= 70) {
-                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+                    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                     scene.text('In the end, you wind up doing great. You do more pull-ups than some of the boys and better than all of the girls except Christina.');
                   } else {
-                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                     scene.text('You\'ve done plenty of pull-ups in the past, so this isn\'t too much of a challenge for you. When you finally stop, you\'ve done more than all the other girls and about half the boys as well.');
                   }
                 }
@@ -1138,7 +1138,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
               scene.text('Some of the boys stop what they\'re doing when it\'s your turn, coming over to shout some words of support.');
             }
             if (((s as any).pcs_stren ?? 0) <= 20) {
-              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+              ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
               scene.text('Unfortunately, sit-ups aren\'t your strong point and you\'re unable to do as many as any of the girls. You did the fewest in the class and most of the jocks snicker or make snide remarks.');
             } else {
               if (((s as any).pcs_stren ?? 0) <= 30) {
@@ -1148,10 +1148,10 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                   scene.text('In the end, you wind up doing a perfectly respectable amount of sit-ups. You do better than most of the girls, other than a few of the jocks.');
                 } else {
                   if (((s as any).pcs_stren ?? 0) <= 70) {
-                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+                    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                     scene.text('In the end, you wind up doing great. You do more sit-ups than some of the boys and better than all the girls except Christina.');
                   } else {
-                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                     scene.text('You\'ve done plenty of sit-ups in the past, so this isn\'t too much of a challenge for you. When you finally stop, you\'ve done more than all the other girls and about half the boys as well.');
                   }
                 }
@@ -1172,7 +1172,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
               scene.text('Coach Nikolaevich breaks everyone into small groups and has you compete to see who can jump rope the longest. Many of the boys pay special attention to the girls during their turns.');
               if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_small', 'body_tits_average')) {
                 if (((s as any).pcs_vital ?? 0) <= 30) {
-                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+                  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
                   scene.text('You\'re barely able to do more than a few before you get tripped up on the rope. You did the fewest in the class and most of the jocks snicker or make snide remarks. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few more tries.');
                 } else {
                   if (((s as any).pcs_vital ?? 0) <= 40) {
@@ -1180,10 +1180,10 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                     scene.text('You do about average among the girls before you get tripped up on the rope. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few more tries.');
                   } else {
                     if (((s as any).pcs_vital ?? 0) <= 60) {
-                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+                      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                       scene.text('Jumping rope is a surprisingly good workout. You do very well and beat most of your classmates. While you never win any of the competitions, you don\'t embarrass yourself either. You\'re tired by the time you\'re done.');
                     } else {
-                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                       scene.text('The other girls are surprised at just how long you can jump rope without messing up. You manage to go the longest in a few of the rounds.');
                     }
                   }
@@ -1192,7 +1192,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                 if (qspFunc(s, 'pcs_has_attr', 'body_tits_big')) {
                   scene.img('images/locations/pavlovsk/school/gym/jumprb.mp4');
                   if (((s as any).pcs_vital ?? 0) <= 30) {
-                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+                    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
                     scene.text('You\'re barely able to do more than a few before you get tripped up on the rope. You did the fewest in the class and most of the jocks snicker or make snide remarks. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few tries. A number of the boys grumble each time you fail to go for more than a few seconds.');
                   } else {
                     if (((s as any).pcs_vital ?? 0) <= 40) {
@@ -1200,10 +1200,10 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                       scene.text('You do about average among the girls before you get tripped up on the rope. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few more tries. A number of the boys grumble each time you fail to go for more than a couple of seconds.');
                     } else {
                       if (((s as any).pcs_vital ?? 0) <= 60) {
-                        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+                        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                         scene.text('Jumping rope is a surprisingly good workout. You do very well and beat most of your classmates. While you never win any of the competitions, you don\'t embarrass yourself either. You\'re tired by the time you\'re done. You have no doubt why the boys are watching - you can feel your breasts bouncing with every jump, despite the help of the sports bra.');
                       } else {
-                        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                         scene.text('The other girls in your group are surprised at just how long you can jump rope without messing up. You manage to go the longest in a few of the rounds and could actually jump rope for quite a bit longer, but notice that the longer the class goes on, the more boys have found their way over to watch you. Some of the girls you were competing with make snide remarks about just which particular parts of you they are so keen on watching.');
                       }
                     }
@@ -1211,7 +1211,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.img('images/locations/pavlovsk/school/gym/jumph.mp4');
                   if (((s as any).pcs_vital ?? 0) <= 30) {
-                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+                    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
                     scene.text('You\'re barely able to do more than a few before you get tripped up on the rope. You did the fewest in the class and most of the jocks snicker or make snide remarks. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few more tries. There\'s outright jeering from some of the boys whenever you screw up. "Come on already! We want to see them bounce!" Vasily shouts.');
                   } else {
                     if (((s as any).pcs_vital ?? 0) <= 40) {
@@ -1219,10 +1219,10 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                       scene.text('You do about average among the girls before you get tripped up on the rope. The teacher wants to make sure you get enough exercise though, so you\'re made to give it a couple tries. There\'s outright jeering from some of the boys whenever you screw up. "Come on, get those titties bouncing!" Dan shouts.');
                     } else {
                       if (((s as any).pcs_vital ?? 0) <= 60) {
-                        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+                        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                         scene.text('Jumping rope is a complete misery. You can\'t manage it for very long; although your coordination and endurance are there, the pain from your breasts slapping around builds up fast, despite the help of the sports bra. The girls you\'re competing with are sympathetic at first, but that slowly changes as some of the boys wander over to cheer you on. It\'s entirely apparent what their eyes are focused on each time a round begins.');
                       } else {
-                        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                         scene.text('You\'re easily in good enough shape that this should be a snap, but each time you jump, your breasts slap up and down pretty hard despite the help of your sports bra and they\'re painfully sore in no time. Fitness means enduring a little pain though, so you try to press on for as long as you can bear it. What ultimately stops you is the hooting and hollering from the boys. By the end of the class, almost all of them have come over to gawk at you.');
                       }
                     }
@@ -1245,7 +1245,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).pcs_horny ?? 0) < 50) {
                   scene.img('images/locations/pavlovsk/school/gym/rope.jpg');
                   if (((s as any).pcs_stren ?? 0) <= 30) {
-                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+                    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
                     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
                     scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns climbing the ropes today.');
                     scene.text('You climb as instructed, but can\'t help but feel the rough robe rubbing against your pussy through your clothes. You don\'t even make it half way up the rope before you have to give up and slide back down, which causes the rope to rub against your clit and turn you on even more.');
@@ -1256,12 +1256,12 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                       scene.text('You climb as instructed, but can\'t help but feel the rough robe rubbing against your pussy through your clothes. You almost make it to the top of the rope before you have to give up and slide back down, which causes the rope to rub against your clit and turn you on even more.');
                     } else {
                       if (((s as any).pcs_stren ?? 0) <= 60) {
-                        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+                        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
                         scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns climbing the ropes today.');
                         scene.text('You climb as instructed, but can\'t help but feel the rough robe rubbing against your pussy through your clothes. Despite the distraction, you manage to make it to the top, even though you almost slipped once or twice due to the pleasurable stimulation. Once at the top you slide back down, which causes the rope to rub against your clit and turn you on even more.');
                       } else {
-                        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
                         scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns climbing the ropes today.');
                         scene.text('You climb as instructed, but can\'t help but feel the rough robe rubbing against your pussy through your clothes. Even with the rubbing of the rope distracting you, you easily and quickly make it to the top. Once there, you slide back down, which causes the rope to rub against your clit and turn you on even more.');
@@ -1272,7 +1272,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_horny ?? 0) < 100) {
                     scene.img('images/locations/pavlovsk/school/gym/rope.jpg');
                     if (((s as any).pcs_stren ?? 0) <= 30) {
-                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+                      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
                       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
                       scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns climbing the ropes today.');
                       scene.text('You climb as instructed, but can\'t help but feel the rough rope rubbing against your pussy through your clothes. You do your best to climb up, but the rubbing of the rope against your pussy gets more intense. You don\'t even make it half way up the rope before you have to give up and slide back down, which causes the rope to rub against your clit and turn you on even more.');
@@ -1283,12 +1283,12 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                         scene.text('You climb as instructed, but can\'t help but feel the rough rope rubbing against your pussy through your clothes. You do your best to climb up, but the rubbing of the rope against your pussy gets more intense. You almost make it to the top before you have to give up and slide back down, which causes the rope to rub against your clit and turn you on even more.');
                       } else {
                         if (((s as any).pcs_stren ?? 0) <= 60) {
-                          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+                          ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
                           scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns climbing the ropes today.');
                           scene.text('You climb as instructed, but can\'t help but feel the rough rope rubbing against your pussy through your clothes. Despite the distraction, you manage to make it to the top, even though you almost slipped once or twice due to the pleasurable stimulation. You slide back down, which causes the rope to rub against your clit and turn you on even more.');
                         } else {
-                          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                          ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
                           scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns climbing the ropes today.');
                           scene.text('You climb as instructed, but can\'t help but feel the rough rope rubbing against your pussy through your clothes. Even with the rubbing of the rope distracting you, you easily and quickly make it to the top. Once there, you slide back down, which causes the rope to rub against your clit and turn you on even more.');
@@ -1296,6 +1296,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                       }
                     }
                   } else {
+                    (s as any).orgasm_or = 'yes';
                     qspCall(s, 'arousal', 'foreplay', (-5), 'no_orgasm_msg');
                     qspCall(s, 'arousal', 'end');
                     qspCall(s, 'stat', '');
@@ -1360,7 +1361,7 @@ function enterJumpingJacks(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_small', 'body_tits_average')) {
     if (((s as any).pcs_vital ?? 0) <= 30) {
-      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
       scene.text('You\'re barely able to do more than a few before you are just too tired. You did the fewest in the class and most of the jocks snicker or make snide remarks. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few more tries.');
     } else {
       if (((s as any).pcs_vital ?? 0) <= 40) {
@@ -1368,10 +1369,10 @@ function enterJumpingJacks(s: GameState, scene: SceneBuilder): void {
         scene.text('You do about average among the girls before you stop. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few more tries.');
       } else {
         if (((s as any).pcs_vital ?? 0) <= 60) {
-          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+          ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
           scene.text('Jumping jacks is a surprisingly good workout. You do very well and beat most of your classmates. While you never win any of the competitions, you don\'t embarrass yourself either. You\'re tired by the time you\'re done.');
         } else {
-          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+          ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
           scene.text('The other girls in your group are surprised at just how many jumping jacks you can do. You manage to go the longest in a few of the rounds.');
         }
       }
@@ -1388,7 +1389,7 @@ function enterJumpingJacks(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'pcs_has_attr', 'body_tits_big')) {
       scene.img('images/locations/pavlovsk/school/gym/jumprb.mp4');
       if (((s as any).pcs_vital ?? 0) <= 30) {
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
         scene.text('You\'re barely able to do more than a few before you\'re too tired to continue. You did the fewest in the class and most of the jocks snicker or make snide remarks. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few tries. A number of the boys grumble each time you fail to go for more than a few seconds.');
       } else {
         if (((s as any).pcs_vital ?? 0) <= 40) {
@@ -1396,10 +1397,10 @@ function enterJumpingJacks(s: GameState, scene: SceneBuilder): void {
           scene.text('You do about average among the girls before you stop. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few tries. A number of the boys grumble each time you fail to go for more than a few seconds.');
         } else {
           if (((s as any).pcs_vital ?? 0) <= 60) {
-            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+            ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
             scene.text('Jumping jacks is a surprisingly good workout. You do very well and beat most of your classmates. While you never win any of the competitions, you don\'t embarrass yourself either. You\'re tired by the time you\'re done. You have no doubt why the boys are watching - you can feel your breasts bouncing with every jump, despite the help of the sports bra.');
           } else {
-            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+            ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
             scene.text('The other girls in your group are surprised at just how many jumping jacks you can do. You manage to go the longest in a few of the rounds and could actually go for quite a bit longer. However, you notice that the longer the class goes on, the more boys walk over to watch you. Some of the girls you were competing with make snide remarks about just which particular parts of you they are so keen on watching.');
           }
         }
@@ -1415,7 +1416,7 @@ function enterJumpingJacks(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/school/gym/jumph.mp4');
       if (((s as any).pcs_vital ?? 0) <= 30) {
-        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+        ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
         scene.text('You\'re barely able to do more than a few before you\'re too tired to continue. You did the fewest in your class and most of the jocks snicker or make snide remarks. The teacher wants to make sure you get enough exercise though, so you\'re made to give it a few more tries. There\'s outright jeering from some of the boys whenever you screw up. "Come on already! We want to see them bounce!" Vasily shouts.');
       } else {
         if (((s as any).pcs_vital ?? 0) <= 40) {
@@ -1423,10 +1424,10 @@ function enterJumpingJacks(s: GameState, scene: SceneBuilder): void {
           scene.text('You do about average among the girls before stopping. The coach wants to make sure you get enough exercise though, so you\'re made to give it a few tries. There\'s outright jeering from some of the boys whenever you screw up. Vasily starts shouting "Come on, get those titties bouncing!"');
         } else {
           if (((s as any).pcs_vital ?? 0) <= 60) {
-            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+            ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
             scene.text('Jumping jacks is a complete misery. You can\'t manage it for very long; although your coordination and endurance are there, the pain from your breasts slapping around builds up fast, despite the help of the sports bra. The girls you\'re competing with are sympathetic at first, but that slowly changes as some of the boys wander over to cheer you on. It\'s completely apparent what their eyes are focused on each time a round begins.');
           } else {
-            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+            ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
             scene.text('You\'re easily in good enough shape that this should be a snap, but each time you jump, your breasts slap up and down pretty hard despite the help of the sports bra and they\'re painfully sore in no time. Fitness means enduring a little pain though, so you try to press on for as long as you can bear it. What ultimately stops you is the hooting and hollering from the boys. By the end of the class, almost all of them have come over to gawk at you.');
           }
         }
@@ -1451,7 +1452,7 @@ function enterPushups(s: GameState, scene: SceneBuilder): void {
     scene.text('Some of the boys stop what they\'re doing when it\'s your turn, coming over to shout some words of support.');
   }
   if (((s as any).pcs_stren ?? 0) <= 20) {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
     scene.text('Unfortunately, push-ups aren\'t your strong point and you\'re unable to do as many as any of the girls. You did the fewest in the class and most of the jocks snicker or make snide remarks.');
   } else {
     if (((s as any).pcs_stren ?? 0) <= 30) {
@@ -1461,10 +1462,10 @@ function enterPushups(s: GameState, scene: SceneBuilder): void {
         scene.text('In the end, you wind up doing a perfectly respectable amount of push-ups. You did better than most of the other girls, other than a few of the jocks.');
       } else {
         if (((s as any).pcs_stren ?? 0) <= 70) {
-          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+          ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
           scene.text('In the end, you wind up doing great. You do more push-ups than some of the boys and better than all the girls except Christina.');
         } else {
-          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+          ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
           scene.text('You\'ve done enough push-ups in the past that this isn\'t too much of a challenge for you. When you finally stop, you\'ve done more than all the other girls and about half the boys as well.');
         }
       }
@@ -1497,8 +1498,8 @@ function enterPostphys(s: GameState, scene: SceneBuilder): void {
     scene.text('What you see is like a dream come true; Christina, naked and on her knees in front of Pavlovich, sucking his cock for all she\'s worth.');
     // TODO-QSP: $OpenInnerThought + '"This is exactly what I was looking for!"' + $CloseInnerThought
     scene.text('Pulling out your phone, you make sure the flash is turned off and start taking pictures.');
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['blackmail'] = 1;
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['pre_bm'] = 0;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['blackmail'] = 1;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['pre_bm'] = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1513,14 +1514,15 @@ function enterPostphys(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the showers', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons4', 'postphys2'] },
+    qspGoto(s, 'gschool_lessons4', 'postphys2');
+  } },
     ]);
   } },
     ]);
   } },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'postphys2'] }]);
+    qspGoto(s, 'gschool_lessons4', 'postphys2');
   }
   // TODO-QSP: end
   scene.build();
@@ -1529,7 +1531,7 @@ function enterPostphys(s: GameState, scene: SceneBuilder): void {
 function enterPostphys2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).christinaQW ?? 0)?.['subpath'] >= 2  &&  ((s as any).postphys_event ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).postphys_event = ((s as any).daystart ?? 0);
-    scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', 'showers'] }]);
+    qspGoto(s, 'Zvereva_sub_1', 'showers');
   }
   qspCall(s, 'core_library', 'setloc', 'gschool_lessons4', 'postphys2');
   qspCall(s, 'stat', '');
@@ -1558,7 +1560,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShower2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
   qspCall(s, 'din_van', 'showerdin');
   qspCall(s, 'stat', '');
   // TODO-QSP: :gymshower_loop
@@ -1619,7 +1621,8 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
       { label: 'Flee the locker room', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
     ]);
@@ -1656,7 +1659,8 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
       { label: 'Flee in shame', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_grounds', 'main'] },
+    qspGoto(s, 'gschool_grounds', 'main');
+  } },
     ]);
   } },
     ]);
@@ -1673,7 +1677,8 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish dressing', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons4', 'post_dress'] },
+    qspGoto(s, 'gschool_lessons4', 'post_dress');
+  } },
     ]);
   } },
                 { label: 'Stay', handler: (st: GameState) => {
@@ -1691,7 +1696,8 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish dressing', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons4', 'post_dress'] },
+    qspGoto(s, 'gschool_lessons4', 'post_dress');
+  } },
     ]);
   } },
       { label: 'Wait your turn', handler: (st: GameState) => {
@@ -1699,6 +1705,8 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re getting incredibly aroused watching this show and know where it\'s going. You follow the other girls in masturbating as you watch and wait your turn, Christina soon reaching her explosive orgasm and drenching Sonia in a shower of pussy juice as she moans loudly. The other girls express their amazement while Sonia looks to be greatly enjoying herself.');
     scene.text('Pauline, Lina and a few other girls take their turns squirting over Sonia as you continue to rub your clit and finger yourself. Eventually, you feel your orgasm building and step up to Sonia as another girl finishes.');
     scene.text('You\'re surprised when she suddenly starts licking your pussy as you stand above her. She\'s <i>really</i> good at this and you quickly feel yourself about to cum, so you pull her face out of your crotch and rub your engorged clit to bring yourself to orgasm.');
+    (s as any).orgasm_txt = 'You moan loudly as your pussy explodes and you squirt your juice all over Sonia\'s already drenched face and into her mouth, Sonia happily taking it all and swallowing it.';
+    (s as any).orgasm_or = 'custom';
     scene.text('When you finish cumming, Sonia buries herself back in your pussy and starts licking you again. The pleasure is too good to stop her and for a few seconds you weakly stand there, having had one of the best orgasms in your life. You then somewhat reluctantly step off of her and let another girl have a go with her.');
     scene.text('Once the last few girls have had their turn, you all look down on Sonia, who is covered from head to breasts in girl cum, her cheeks bright red from all the slaps she received. She ignores the crude insults being thrown down at her and instead focuses all her attention on vigorously fingering herself. The group insults her even more upon seeing this and a few even spit on her face and in her mouth, but she doesn\'t seem to care and makes no effort to resist.');
     scene.text('You then all leave her sitting there and head to the lockers to get changed, where the girls all continue to laugh at and mock Sonia while showing videos to each other. You finish getting dressed and head out.');
@@ -1707,7 +1715,8 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish dressing', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons4', 'post_dress'] },
+    qspGoto(s, 'gschool_lessons4', 'post_dress');
+  } },
     ]);
   } },
     ]);
@@ -1718,13 +1727,13 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).gymshower ?? 0) >= 5  &&  ((s as any).gymshower ?? 0) <= 7) {
             if (((s as any).pcs_pubes ?? 0) >= 40) {
-              scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'pube_bully'] }]);
+              qspGoto(s, 'gschool_lessons4', 'pube_bully');
             } else {
               if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
-                scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'pube_compliment'] }]);
+                qspGoto(s, 'gschool_lessons4', 'pube_compliment');
               } else {
                 if (((s as any).pcs_pubes ?? 0) > 25) {
-                  scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'pube_bully'] }]);
+                  qspGoto(s, 'gschool_lessons4', 'pube_bully');
                 } else {
                   // TODO-QSP: jump 'gymshower_loop'
                 }
@@ -1748,9 +1757,9 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubeBully(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-  if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_shower_bully_pubes'] = ((s as any).daystart ?? 0);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+  ((s as any).pcs_memory = (s as any).pcs_memory ?? {})['school_shower_bully_pubes'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/pavlovsk/school/gym/shower/postphyssho2.jpg');
   scene.text('As you step into the shower, some girls turn to look at you and start laughing.');
   if (((s as any).grupTipe ?? 0) === 3) {
@@ -1778,8 +1787,8 @@ function enterPubeBully(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Ignore them', handler: (st: GameState) => {
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (4);
-    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (4);
+    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You ignore them completely, paying no heed as you turn on the faucet and start rinsing off. In turn, they continue to sling insults at you.');
     // TODO-QSP: dynamic text: "Tell me <<$pcs_nickname>>, do you need a vacuum cleaner to wash that rug?" Irin...
@@ -1900,7 +1909,7 @@ function enterPubeCompliment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWhoreBully(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_shower_bully_whore'] = ((s as any).daystart ?? 0);
+  ((s as any).pcs_memory = (s as any).pcs_memory ?? {})['school_shower_bully_whore'] = ((s as any).daystart ?? 0);
   (s as any).school_shower_bully_whore = ((s as any).school_shower_bully_whore ?? 0) + (1);
   scene.img('images/locations/pavlovsk/school/gym/shower/bully_slap1.jpg');
   scene.text('You pick one of the empty shower heads which is near the other end of the shower.');
@@ -2390,6 +2399,8 @@ function enterShowerWatchEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDress(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'dress';
+  (s as any).loc = 'gschool_lessons4';
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   (s as any).gymdress = Math.floor(Math.random() * 20) + 1;
@@ -2432,9 +2443,12 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/pavlovsk/school/gym/sex/mast${Math.floor(Math.random() * 2) + 1}.mp4`);
     scene.text('As you watch them, you feel yourself getting horny, <b>really</b> horny, and before you know it, you have slipped your hand under your clothes and start masturbating, they oblivious to their aroused observer. You pull some of your clothes away to make it easier to fondle yourself. You stifle your moans as best you can, but you don\'t think they can possibly hear them over their own, too absorbed in kissing and caressing each other to notice anything around them.');
     scene.text('Your fingers make their rounds around your clit in smaller, harder circles, your eyes glued to the lovers and you feel yourself getting closer to climax.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'voyeur_sex', 10);
+    (s as any).orgasm_txt = 'About a second later, you feel like a small explosive went off inside you and you have to clamp one of your hands over your mouth to keep yourself from shouting as the other continues to rub your clit. The climax hits you hard and your legs nearly give out, your whole body shaking and shuddering like an actual shockwave is passing through it. You are momentarily blinded by the pleasure, but after a few seconds, you get yourself back under control.';
     qspCall(s, 'arousal', 'clit_finger', (-10), 'masturbate');
     scene.text('As you do, you hear their joined moans of pleasure grow to a crescendo that fills the room. Then, all goes quiet. You peek around the corner again and watch them talk softly for a moment, exchanging final kisses before they get up to get dressed. You quickly straighten out your clothes as well and head for the exit as quietly as you can - you don\'t want them to know you were spying on them.');
+    (s as any).orgasm_txt = '';
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Return', goto: ['gschool_lessons4', 'post_dress'] },
@@ -2537,7 +2551,8 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
                           scene.actions([
                             { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-  }, goto: ['gschool_lessons4', 'post_dress'] },
+    qspGoto(s, 'gschool_lessons4', 'post_dress');
+  } },
                           ]);
                         } else {
                           if (((s as any).gymdress ?? 0) <= 16) {
@@ -2566,7 +2581,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                                   { label: 'Avoid eye contact', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/gym/locker/nerdoutcast.jpg');
     scene.text('Keeping your eyes on the floor, you spend a few moments pulling your panties out of your ass crack and getting them back in place before finishing getting dressed. She cracks a few jokes at you before heading out with Lariska and Lina in tow.');
     scene.actions([
@@ -2574,7 +2589,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                                   { label: 'Yell at Christina', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
     scene.img('images/characters/shared/headshots_main/big18.jpg');
     scene.text('You turn around and ball your fists. "You fucking bitch! I\'m going to make you eat your panties before I\'m done with you!"');
     scene.text('She curls her hands into fists, but before she can respond, there\'s a pounding on the locker room door. "What\'s going on in there?! Settle down right now or I\'m coming in!"');
@@ -2591,7 +2606,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
                                   scene.actions([
                                     { label: 'Ignore it', goto: ['gschool_lessons4', 'post_dress'] },
                                     { label: 'Avoid eye contact', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (1);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/gym/locker/change.jpg');
     scene.text('Keeping your eyes on the floor, you spend a few minutes getting dressed. She cracks a few jokes about it before heading out with Lariska and Lina in tow.');
     scene.actions([
@@ -2599,7 +2614,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                                     { label: 'Stand up for Natasha', handler: (st: GameState) => {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
     qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
     scene.img('images/characters/shared/headshots_main/big18.jpg');
     scene.text('You head straight at her. "You fucking bitch! How would you like it if I did that to you?!"');
@@ -2611,12 +2626,12 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
   } },
                                   ]);
                                 } else {
-                                  scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'dress2'] }]);
+                                  qspGoto(s, 'gschool_lessons4', 'dress2');
                                 }
                               }
                             }
                           } else {
-                            scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'dress2'] }]);
+                            qspGoto(s, 'gschool_lessons4', 'dress2');
                           }
                         }
                       }
@@ -2646,11 +2661,14 @@ function enterDress2(s: GameState, scene: SceneBuilder): void {
 
 function enterPostDress(s: GameState, scene: SceneBuilder): void {
   if (((s as any).wloc ?? 0) === '') {
+    (s as any).wloc = 'default1';
   }
   qspCall(s, 'core_library', 'setloc', 'gschool_lessons4', 'post_dress');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'locker';
   qspCall(s, 'stat', '');
   scene.img(`images/locations/pavlovsk/school/gym/locker/postphys${Math.floor(Math.random() * 4) + 1}.jpg`);
-  scene.text('You can access your <a href="exec:postphys_event = daystart & gt \'wardrobe\', $wloc">default clothing</a> options directly.');
+  scene.text('You can access your <a href="#" onclick="window.__gameStore.setState((s) => { s.postphys_event = s.daystart; return s; }); window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, String(window.__gameStore.getState().wloc ?? \\u0027\\u0027)); return false;">default clothing</a> options directly.');
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] >= 1) {
     scene.actions([
       { label: 'Smoke a cigarette', handler: (st: GameState) => {
@@ -2688,7 +2706,7 @@ function enterPostDress(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -2705,9 +2723,9 @@ function enterPostDress(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave school', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'post_dress'] }]);
+      qspGoto(s, 'gschool_lessons4', 'post_dress');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
+      qspGoto(s, 'gschool_lessons', 'short_break');
     }
   } },
     { label: 'Choose a different outfit', handler: (st: GameState) => {

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,13 +8,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', '');
+  (s as any).region = 'pav';
+  (s as any).location_type = 'public_indoors';
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><h2>Pavlovsk Train Station</h2></center>');
   scene.img('images/locations/pavlovsk/trainstation/vokzal.jpg');
   // TODO-QSP: dynamic text: Stepping into the station building, you're greeted by a large waiting room where...
-  scene.text('Stepping into the station building, you\'re greeted by a large waiting room where passengers await the trains. In one of the corners is the <a href="exec: gt \'pav_train_hall_events\', \'manager\'">station manager\'s office</a>. The <a href="exec:minut += 1 & gt \'pav_train_hall\', \'toilet\'">toilets</a> are located at the back of the building.');
+  scene.text('Stepping into the station building, you\'re greeted by a large waiting room where passengers await the trains. In one of the corners is the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_train_hall_events\\u0027, \\u0027manager\\u0027); return false;">station manager\'s office</a>. The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_train_hall\\u0027, \\u0027toilet\\u0027); return false;">toilets</a> are located at the back of the building.');
   // TODO-QSP: dynamic text: The long-distance trains are at the station platforms between '+func('time', 'ge...
   scene.text('The long-distance trains are at the station platforms between 11:00-11:30 and 18:00-18:30.');
   if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
@@ -23,15 +25,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).week ?? 0) !== 1  ||  (Math.floor(Math.random() * 5) + 0) !== 0) {
         // TODO-QSP: dynamic text: You see your aunt's boyfriend <a href="exec:minut += 1 & gt 'olutaxi', 'station'...
-        scene.text('You see your aunt\'s boyfriend <a href="exec:minut += 1 & gt \'olutaxi\', \'station\'">Olu</a> sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
+        scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027olutaxi\\u0027, \\u0027station\\u0027); return false;">Olu</a> sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
       } else {
-        if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['taxi'] = 1;
+        ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['taxi'] = 1;
         if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
           // TODO-QSP: dynamic text: You see your aunt's boyfriend <a href="exec:minut += 1 & gt 'olutaxi', 'station'...
-          scene.text('You see your aunt\'s boyfriend <a href="exec:minut += 1 & gt \'olutaxi\', \'station\'">Olu</a> sitting on one of the benches. His nephew Djibril is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
+          scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027olutaxi\\u0027, \\u0027station\\u0027); return false;">Olu</a> sitting on one of the benches. His nephew Djibril is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
         } else {
           // TODO-QSP: dynamic text: You see your aunt's boyfriend <a href="exec:minut += 1 & gt 'olutaxi', 'station'...
-          scene.text('You see your aunt\'s boyfriend <a href="exec:minut += 1 & gt \'olutaxi\', \'station\'">Olu</a> sitting on one of the benches. A younger man that looks similar enough to him that they might be related is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
+          scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027olutaxi\\u0027, \\u0027station\\u0027); return false;">Olu</a> sitting on one of the benches. A younger man that looks similar enough to him that they might be related is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
         }
       }
     }
@@ -39,11 +41,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).week ?? 0) < 6) {
     if (((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) <= 0) {
       // TODO-QSP: dynamic text: You see your classmates <a href="exec: minut += 3 & gt 'gopskver'">Vitek, Dan an...
-      scene.text('You see your classmates <a href="exec: minut += 3 & gt \'gopskver\'">Vitek, Dan and Vasily</a> hanging around.');
+      scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027gopskver\\u0027, \\u0027\\u0027); return false;">Vitek, Dan and Vasily</a> hanging around.');
     }
   }
   if (((s as any).podbros ?? 0) === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21  &&  (!(Math.floor(Math.random() * 2) + 0))) {
-    scene.text('As you walk through the station building, you notice a man\'s <a href="exec: gt \'pav_train_hall_events\', \'wallet1\'">wallet</a> fall out of his pocket.');
+    scene.text('As you walk through the station building, you notice a man\'s <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_train_hall_events\\u0027, \\u0027wallet1\\u0027); return false;">wallet</a> fall out of his pocket.');
   }
   if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['trainpass_day']) {
     scene.actions([
@@ -84,7 +86,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The \' + func(\'time\', \'get_time_string\', hour, 30) + \' long-distance train is currently \' + iif(minut = 0, \'approaching\', iif(minut < 30, \'waiting at\', \'leaving\')) + \' the platform.');
     scene.text('The platform is bustling with passengers entering or leaving the currently waiting train, carrying their heavy bags with them. Several police officers are patrolling the platforms, keeping an eye out for any unruly activities.');
     if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] > 0) {
-      scene.text('You could <a href="exec:gt \'pav_train_hall_events\', \'trinkets\'">try to sell some trinkets</a> to some of the passengers.');
+      scene.text('You could <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_train_hall_events\\u0027, \\u0027trinkets\\u0027); return false;">try to sell some trinkets</a> to some of the passengers.');
     }
   }
   // TODO-QSP: end
@@ -128,6 +130,7 @@ function enterPlatform(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', 'platform');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.text('<center><h2>Pavlovsk station platforms</h2></center>');
   scene.img('images/locations/shared/train/pavplat.jpg');
@@ -136,14 +139,14 @@ function enterPlatform(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
   // TODO-QSP: 'The next train to St. Petersburg ' + iif(transportVars['train_wait_center'] = 0, 'is leaving now!',...
   if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 10) {
-    scene.text('You notice <a href="exec:gt \'gschool_socialchg1\', \'tBella\'">Bella</a> standing at the train station platform, looking at the time table.');
+    scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_socialchg1\\u0027, \\u0027tBella\\u0027); return false;">Bella</a> standing at the train station platform, looking at the time table.');
   }
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['trainpass_day']) {
     scene.actions([
-      { label: 'Take the train to the village of Gadukino (<<func(\'transport_functions\', \'display_train_timecost\', \'pavlovsk\', \'gadukino\', \'center\')>>)', goto: ['train', 'pavlovsk_gadukino'] },
-      { label: 'Take the train to the communal village (<<func(\'transport_functions\', \'display_train_timecost\', \'pavlovsk\', \'communal\', \'center\')>>)', goto: ['train', 'pavlovsk_communal'] },
-      { label: 'Take the train to the city industrial area (<<func(\'transport_functions\', \'display_train_timecost\', \'pavlovsk\', \'industrial\', \'center\')>>)', goto: ['train', 'pavlovsk_industrial'] },
-      { label: 'Take the train to the city center (<<func(\'transport_functions\', \'display_train_timecost\', \'pavlovsk\', \'center\', \'center\')>>)', goto: ['train', 'pavlovsk_center'] },
+      { label: '', labelFn: (s: GameState) => 'Take the train to the village of Gadukino (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'pavlovsk', 'gadukino', 'center') ?? '') + ')', goto: ['train', 'pavlovsk_gadukino'] },
+      { label: '', labelFn: (s: GameState) => 'Take the train to the communal village (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'pavlovsk', 'communal', 'center') ?? '') + ')', goto: ['train', 'pavlovsk_communal'] },
+      { label: '', labelFn: (s: GameState) => 'Take the train to the city industrial area (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'pavlovsk', 'industrial', 'center') ?? '') + ')', goto: ['train', 'pavlovsk_industrial'] },
+      { label: '', labelFn: (s: GameState) => 'Take the train to the city center (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'pavlovsk', 'center', 'center') ?? '') + ')', goto: ['train', 'pavlovsk_center'] },
     ]);
   }
   // TODO-QSP: end
@@ -165,7 +168,7 @@ function enterPlatform(s: GameState, scene: SceneBuilder): void {
 
 function enterTicket(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['trainpass_day']) {
-    scene.actions([{ label: 'Continue', goto: ['pav_train_hall', ''] }]);
+    qspGoto(s, 'pav_train_hall', '');
   }
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', 'ticket');
   qspCall(s, 'stat', '');
@@ -265,7 +268,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Pavlovsk train station interior</h2></center>');
   scene.img('images/locations/pavlovsk/trainstation/vokzal.jpg');
   // TODO-QSP: dynamic text: You stand by the station's restrooms. You see the <a href="exec:minut += 1 & gt ...
-  scene.text('You stand by the station\'s restrooms. You see the <a href="exec:minut += 1 & gt \'pav_train_hall\', \'female\'">ladies\' restroom</a> to the right and <a href="exec:minut += 1 & gt \'pav_train_hall\', \'male\'">men\'s restroom</a> to the left, clearly marked by signs on the door.');
+  scene.text('You stand by the station\'s restrooms. You see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_train_hall\\u0027, \\u0027female\\u0027); return false;">ladies\' restroom</a> to the right and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_train_hall\\u0027, \\u0027male\\u0027); return false;">men\'s restroom</a> to the left, clearly marked by signs on the door.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the train station', handler: (st: GameState) => {
@@ -277,6 +280,8 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
 
 function enterFemale(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', 'female');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/bathroom/publictoilet.jpg');
   scene.text('You open the door to the ladies\' restroom and head inside.');
@@ -296,6 +301,8 @@ function enterFemale(s: GameState, scene: SceneBuilder): void {
 
 function enterMale(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_train_hall', 'male');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'restroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/bathroom/publictoilet.jpg');
   scene.text('You open the door to the men\'s restroom and head inside.');

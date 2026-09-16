@@ -1,11 +1,11 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).camGirl) (s as any).camGirl = {}; (s as any).camGirl['MFC_lastrequest'] = ((s as any).totminut ?? 0);
+  ((s as any).camGirl = (s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   scene.text('One of the viewers asks, "Do you have a dildo or something? I\'d love to see your throat skills…"');
   qspCall(s, 'komp_cam_functions', 'check_available_oral_dildo');
@@ -36,7 +36,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetGiganticAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
-      { label: 'Can\'t find a suitable toy or you changed your mind', goto: ['komp_cam_MFC_main', 'waitclients'] },
+      { label: 'Can\'t find a suitable toy or you changed your mind', handler: (st: GameState) => {
+    qspGoto(s, 'komp_cam_MFC_main', 'waitclients');
+  } },
     ]);
   } },
     ]);

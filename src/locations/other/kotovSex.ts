@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -64,7 +64,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'Keep Refusing', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).kotovLoveQW = (-1);
-    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel[String((s as any).boy ?? 0)] = 0;
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})[String((s as any).boy ?? 0)] = 0;
     scene.text('When you keep refusing, he pushes you away and shouts: "Fine, go to your mother! Just leave me the fuck alone, we are done for! I\'m so fucking done with this!"');
     scene.text('Nothing you say can change his mind. Vitek feels like you\'ve been leading him on for too long, and now he wants nothing to do with you.');
     scene.actions([
@@ -117,7 +117,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).ekQW ?? 0)?.['piercing_tongue'] === 0) {
-      if (!(s as any).ekQW) (s as any).ekQW = {}; (s as any).ekQW['piercing_tongue'] = 1;
+      ((s as any).ekQW = (s as any).ekQW ?? {})['piercing_tongue'] = 1;
       scene.text('Vitek notices a glimmer in your mouth when you talk, and asks: "Wait, what\'s that in your mouth?"');
       scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice… aren\'t those supposed to make it feel better when you suck a dick? Is that why you got it?"');
       scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
@@ -125,7 +125,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry, ${((s as any).pcs_nickname || '')}. I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
     }
   } else {
-    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).i = Math.floor(Math.random() * 6) + 1;
     if (((s as any).i ?? 0) <= 2) {
       scene.img('images/shared/sex/sequence/kotovpre\'+rand(0, 4)+\'.mp4');
@@ -142,7 +142,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Let him slip his cock inside you', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
+      { label: 'Let him slip his cock inside you', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
       { label: 'Kneel down before him', goto: ['kotovSex', 'bj'] },
     ]);
   } },
@@ -153,8 +153,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-      { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
+      { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+      { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
       { label: 'Kneel down before him', goto: ['kotovSex', 'bj'] },
       { label: 'Do whatever he wants', goto: ['kotovSex', 'sub'] },
     ]);
@@ -173,7 +173,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'kiss', 5);
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Spread your legs for him', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
+          { label: 'Spread your legs for him', goto: ['kotovSex', 'misionary' + 0 + ''] },
         ]);
       } else {
         if (((s as any).i ?? 0) === 4) {
@@ -212,7 +212,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'foreplay', 5);
               qspCall(s, 'stat', '');
               scene.actions([
-                { label: 'Stay on your hands and knees for him', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
+                { label: 'Stay on your hands and knees for him', goto: ['kotovSex', 'dog' + 0 + ''] },
               ]);
             }
           }
@@ -220,7 +220,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).ekQW ?? 0)?.['piercing_tongue'] === 0) {
-      if (!(s as any).ekQW) (s as any).ekQW = {}; (s as any).ekQW['piercing_tongue'] = 1;
+      ((s as any).ekQW = (s as any).ekQW ?? {})['piercing_tongue'] = 1;
       scene.text('Vitek notices a glimmer in your mouth when you talk, and asks: "Wait, what\'s that in your mouth?"');
       scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice! Aren\'t those supposed to make it feel better for the guy when you suck his dick? Is that why you got it?"');
       scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
@@ -233,10 +233,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBj(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   (s as any).bjrand = Math.floor(Math.random() * 7) + 0;
   (s as any).kotovBJtimes = ((s as any).kotovBJtimes ?? 0) + (1);
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
+    (s as any).textsexkotov = 'caressing his cock with your tongue piercing as much as you can, knowing how much he loves it';
+  } else {
+    (s as any).textsexkotov = 'caressing his cock with the tip of your tongue as much as you can';
   }
   scene.img(`images/shared/sex/blowjob/kotovbj${((s as any).bjrand || '')}.jpg`);
   scene.text('You lightly pat his crotch while you give him a teasing grin: "Oooo, feels like someone is happy to see me!" when his cock becomes more and more erect.');
@@ -317,7 +320,8 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/gop8.jpg');
     scene.text('You smile at him and quickly go to the bathroom, discretely spitting his load into the sink.');
     qspCall(s, 'arousal', 'end');
-  }, goto: ['kotovdom', 'vann'] },
+    qspGoto(s, 'kotovdom', 'vann');
+  } },
       { label: 'Swallow it', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'cum_call', 'mouth_swallow', 'A9', 1);
@@ -347,7 +351,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnal(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.img('images/shared/sex/anal/doggy/anal31.jpg');
   qspCall(s, 'dinSex', 'boy_wants_anal');
   (s as any).anala = ((s as any).anala ?? 0) + (1);
@@ -376,7 +380,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSex(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.img('images/shared/sex/vag/miss/sex.jpg');
   qspCall(s, 'dinsex', 'boy_puts_condom');
   scene.text('You lie down on your back and willingly spread your legs for Vitek, inviting him to fuck you.');
@@ -398,10 +402,10 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
       { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
       { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-      { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-      { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-      { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-      { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+      { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+      { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+      { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+      { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     ]);
   } },
     { label: 'Relax for a while', handler: (st: GameState) => {
@@ -920,14 +924,14 @@ function enterAnalNo(s: GameState, scene: SceneBuilder): void {
   scene.text('He looks disappointed for just a second, but rebounds quickly: "I understand. Make sure you\'re clean next time, okay? I want your ass, kitten." He then suggests you…');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -938,26 +942,29 @@ function enter69(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek licks your pussy skillfully, and you have to take a moment to catch your breath and recover before you continue to suck on his dick. For someone who pretends to not be into this, he\'s awfully good at it…');
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'You bite your lips to keep yourself from screaming while you have an orgasm, barely holding yourself back from grinding your pussy against his face like a wanton whore.';
   } else {
     scene.text('Even though it feels nice, you realize you won\'t get an orgasm out of this. After a few minutes you pull away from him, and kiss him on the lips before he can object. Mmm… you taste good.');
+    (s as any).orgasm_or = 'no';
   }
   qspCall(s, 'arousal', 'cuni', 5, 'sub');
   qspCall(s, 'arousal', 'bj', (-5), 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -972,17 +979,17 @@ function enterHand2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum11'] },
   ]);
   scene.build();
@@ -998,17 +1005,17 @@ function enterHand1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum11'] },
   ]);
   scene.build();
@@ -1027,17 +1034,17 @@ function enterBell3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum9'] },
   ]);
   scene.build();
@@ -1054,17 +1061,17 @@ function enterBell2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum9'] },
   ]);
   scene.build();
@@ -1080,17 +1087,17 @@ function enterBell1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum9'] },
   ]);
   scene.build();
@@ -1106,17 +1113,17 @@ function enterSexCow5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum8'] },
   ]);
   scene.build();
@@ -1136,17 +1143,17 @@ function enterSexCow4(s: GameState, scene: SceneBuilder): void {
   scene.text('When he lets go of your boob for a second, you quickly put your hand on his chin and kiss him when he looks up.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum8'] },
   ]);
   scene.build();
@@ -1163,17 +1170,17 @@ function enterSexCow3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum8'] },
   ]);
   scene.build();
@@ -1192,17 +1199,17 @@ function enterSexCow2(s: GameState, scene: SceneBuilder): void {
   scene.text('You pause for a second and slowly turn your back to him, making sure his cock doesn\'t slip out while you do.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum8'] },
   ]);
   scene.build();
@@ -1218,17 +1225,17 @@ function enterSexCow1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum8'] },
   ]);
   scene.build();
@@ -1246,17 +1253,17 @@ function enterDog4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum7'] },
   ]);
   scene.build();
@@ -1272,17 +1279,17 @@ function enterDog3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum7'] },
   ]);
   scene.build();
@@ -1298,17 +1305,17 @@ function enterDog2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum7'] },
   ]);
   scene.build();
@@ -1333,11 +1340,11 @@ function enterDog1(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck without using your hands', goto: ['kotovSex', 'bj12'] },
     { label: 'Rub his cock against your nipple', goto: ['kotovSex', 'bj13'] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum7'] },
   ]);
   scene.build();
@@ -1354,17 +1361,17 @@ function enterMisionary4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum6'] },
   ]);
   scene.build();
@@ -1384,17 +1391,17 @@ function enterMisionary3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum6'] },
   ]);
   scene.build();
@@ -1411,17 +1418,17 @@ function enterMisionary2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum6'] },
   ]);
   scene.build();
@@ -1436,7 +1443,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Vitek flat out refuses to lick your pussy: "Don't be ridiculous, <<$pcs_nickname...
       scene.text(`Vitek flat out refuses to lick your pussy: "Don't be ridiculous, ${((s as any).pcs_nickname || '')}. I'm a man, not some kid! Come on, spread your legs and let's fuck."`);
       scene.actions([
-        { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
+        { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
       ]);
     } else {
       scene.text('He\'s not very enthusiastic about it, but reluctantly agrees: "Well… okay babe, but only because it\'s you. But don\'t tell any of my friends that I did this! I\'d never hear the end of it…"');
@@ -1448,22 +1455,25 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'cuni', 5, 'dom');
     if (((s as any).pcs_horny ?? 0) >= 90) {
       qspCall(s, 'mood', 'raise', 'small');
+      (s as any).orgasm_or = 'custom';
+      (s as any).orgasm_txt = 'Wow, he\'s good! You bite your lips to keep yourself from screaming while you have an orgasm, barely holding yourself back from grinding your pussy against his face like a wanton whore.';
     } else {
       scene.text('Even though it feels nice, you realize you won\'t get an orgasm out of this. After a few minutes you pull away from him, and kiss him on the lips before he can object. Mmm… you taste good.');
+      (s as any).orgasm_or = 'no';
     }
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+      { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
       { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-      { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-      { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-      { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-      { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+      { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+      { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+      { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+      { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
       { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
       { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
       { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
       { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-      { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+      { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
       { label: 'Make him cum', goto: ['kotovSex', 'cum10'] },
     ]);
   } },
@@ -1474,23 +1484,26 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     scene.text('Vitek smiles and gets between your legs without protest, spreading them slightly further with his hands. He does his best to make you feel good, enthusiastically rubbing his tongue over and between your wet pussy lips.');
     if (((s as any).pcs_horny ?? 0) >= 90) {
       qspCall(s, 'mood', 'raise', 'small');
+      (s as any).orgasm_or = 'custom';
+      (s as any).orgasm_txt = 'Wow, he\'s good! You bite your lips to keep yourself from screaming while you have an orgasm, barely holding yourself back from grinding your pussy against his face like a wanton whore.';
     } else {
       scene.text('Even though it feels nice, you realize you won\'t get an orgasm out of this. After a few minutes you pull away from him, and kiss him on the lips before he can object. Mmm… you taste good.');
+      (s as any).orgasm_or = 'no';
     }
     qspCall(s, 'arousal', 'cuni', 5, 'dom');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+      { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
       { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-      { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-      { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-      { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-      { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+      { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+      { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+      { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+      { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
       { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
       { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
       { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
       { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-      { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+      { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
       { label: 'Make him cum', goto: ['kotovSex', 'cum10'] },
     ]);
   }
@@ -1508,17 +1521,17 @@ function enterMisionary1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum6'] },
   ]);
   scene.build();
@@ -1538,17 +1551,17 @@ function enterTitjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
     { label: 'Make him cum', goto: ['kotovSex', 'cum10'] },
   ]);
   scene.build();
@@ -1562,18 +1575,18 @@ function enterBj13(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1587,18 +1600,18 @@ function enterBj12(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1612,18 +1625,18 @@ function enterBj11(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1639,18 +1652,18 @@ function enterBj10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1665,18 +1678,18 @@ function enterBj9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1692,18 +1705,18 @@ function enterBj8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1716,18 +1729,18 @@ function enterBj7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1742,18 +1755,18 @@ function enterBj6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1766,18 +1779,18 @@ function enterBj5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1790,18 +1803,18 @@ function enterBj4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1815,18 +1828,18 @@ function enterBj3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1834,6 +1847,9 @@ function enterBj3(s: GameState, scene: SceneBuilder): void {
 function enterBj2(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
+    (s as any).textsexkotov = 'close your ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lips lips around the head of his cock and suck him off eagerly, making sure you rub the barbell piercing in your tongue against his dick as often as you can';
+  } else {
+    (s as any).textsexkotov = 'close your ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lips lips around the head of his cock and suck him off eagerly';
   }
   scene.img('images/shared/sex/blowjob/kotovbj2\'+rand(0, 6)+\'.mp4');
   // TODO-QSP: dynamic text: You <<$textsexkotov>>. You clench your <<$pc_desc['lips']>> lips lips around his...
@@ -1843,18 +1859,18 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1862,6 +1878,9 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
 function enterBj1(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
+    (s as any).textsexkotov = 'lick the head of his dick with your tongue. Since he\'s so infatuated with your tongue piercing, you make an extra effort in making sure he feels the barbell rubbing against his cock';
+  } else {
+    (s as any).textsexkotov = 'lick the head of his cock with your tongue';
   }
   scene.img('images/shared/sex/blowjob/kotovbj1\'+rand(0, 3)+\'.mp4');
   // TODO-QSP: dynamic text: You gently <<$textsexkotov>>.
@@ -1871,18 +1890,18 @@ function enterBj1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }
@@ -1896,18 +1915,18 @@ function enterSub(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'blowjob', goto: ['kotovSex', 'bj<<rand(1,13)>>'] },
+    { label: 'blowjob', goto: ['kotovSex', 'bj' + Math.floor(Math.random() * 13) + 1 + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
-    { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-    { label: 'Ride him', goto: ['kotovSex', 'sex_cow<<rand (1,5)>>'] },
-    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
-    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell<<rand (1,3)>>'] },
+    { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
+    { label: 'Ride him', goto: ['kotovSex', 'sex_cow' + 0 + ''] },
+    { label: 'Get on your hands and knees', goto: ['kotovSex', 'dog' + 0 + ''] },
+    { label: 'Lie down on your stomach', goto: ['kotovSex', 'bell' + 0 + ''] },
     { label: 'Lie down on your stomach anal', goto: ['kotovSex', 'bell_anal'] },
     { label: 'Get on your hands and knees anal', goto: ['kotovSex', 'dog_anal'] },
     { label: 'Ride him anal', goto: ['kotovSex', 'cow_anal1'] },
     { label: 'Missionary anal', goto: ['kotovSex', 'misionary_anal'] },
-    { label: 'Ride him standing up', goto: ['kotovSex', 'hand<<rand (1,2)>>'] },
-    { label: 'Make him cum', goto: ['kotovSex', 'cumface<<rand(1,7)>>'] },
+    { label: 'Ride him standing up', goto: ['kotovSex', 'hand' + 0 + ''] },
+    { label: 'Make him cum', goto: ['kotovSex', 'cumface' + Math.floor(Math.random() * 7) + 1 + ''] },
   ]);
   scene.build();
 }

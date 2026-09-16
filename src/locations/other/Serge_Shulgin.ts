@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -36,6 +36,8 @@ function enterRep(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTv(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'Serge_Shulgin';
+  (s as any).menu_arg = 'tv';
   qspCall(s, 'boyStat', 'A112');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -47,7 +49,7 @@ function enterTv(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRep(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_rel ?? 0)?.['A112'] > 30) {
     scene.actions([
-      { label: 'Lie down next to him and watch TV together', goto: ['Serge_Shulgin', 'hide', '\'serge_tv\''] },
+      { label: 'Lie down next to him and watch TV together', goto: ['Serge_Shulgin', 'hide', 'serge_tv'] },
     ]);
   }
   // TODO-QSP: end
@@ -112,7 +114,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
       scene.text('He sighs and wordlessly moves over to one side of the bed, offering you the other half while he clutches his pillow.');
       if (((s as any).pcs_horny ?? 0) > 30  &&  ((s as any).mesec ?? 0) <= 0) {
         scene.actions([
-          { label: 'Try to seduce Sergey', goto: ['Serge_Shulgin', 'hide', '\'sleep_prstsex\''] },
+          { label: 'Try to seduce Sergey', goto: ['Serge_Shulgin', 'hide', 'sleep_prstsex'] },
         ]);
       }
       scene.actions([
@@ -159,7 +161,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     if (((s as any).pcs_horny ?? 0) > 30  &&  ((s as any).mesec ?? 0) <= 0) {
       scene.actions([
-        { label: 'Try to seduce Sergey', goto: ['Serge_Shulgin', 'hide', '\'sleep_prstsex\''] },
+        { label: 'Try to seduce Sergey', goto: ['Serge_Shulgin', 'hide', 'sleep_prstsex'] },
       ]);
     }
     qspCall(s, 'stat', '');
@@ -171,7 +173,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Get out of bed', goto: ['vasilyhome', 'sergey_room'] },
-        { label: 'Change the channel', goto: ['Serge_Shulgin', 'hide', '\'serge_tv\''] },
+        { label: 'Change the channel', goto: ['Serge_Shulgin', 'hide', 'serge_tv'] },
       ]);
     }
     // TODO-QSP: end & !! --- serge_tv ---
@@ -196,16 +198,16 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).pcs_horny ?? 0) < 50) {
             scene.actions([
-              { label: 'Suggest you could make him feel good', goto: ['Serge_Shulgin', 'hide', '\'sleep_nameksex_oral\''] },
+              { label: 'Suggest you could make him feel good', goto: ['Serge_Shulgin', 'hide', 'sleep_nameksex_oral'] },
             ]);
           } else {
             if (((s as any).pcs_horny ?? 0) < 75) {
               scene.actions([
-                { label: 'Suggest you could make him feel good', goto: ['Serge_Shulgin', 'hide', '\'sleep_nameksex_rought\''] },
+                { label: 'Suggest you could make him feel good', goto: ['Serge_Shulgin', 'hide', 'sleep_nameksex_rought'] },
               ]);
             } else {
               scene.actions([
-                { label: 'Beg him to make you feel good', goto: ['Serge_Shulgin', 'hide', '\'sleep_nameksex_lick\''] },
+                { label: 'Beg him to make you feel good', goto: ['Serge_Shulgin', 'hide', 'sleep_nameksex_lick'] },
               ]);
             }
           }
@@ -229,7 +231,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
             (s as any).serge_sleep_sex_count = ((s as any).serge_sleep_sex_count ?? 0) - (1);
             (s as any).minut = ((s as any).minut ?? 0) + 2;
             (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-            if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+            ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
             qspCall(s, 'stat', '');
             scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/vert/pr1.mp4');
             scene.text('"I bet I could make you feel good, uncle Sergey… would you like that?" you whisper in his ear, with a devious smile on your face.');
@@ -240,7 +242,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
               (s as any).serge_sleep_sex_count = ((s as any).serge_sleep_sex_count ?? 0) - (1);
               (s as any).minut = ((s as any).minut ?? 0) + 2;
               (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-              if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+              ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
               qspCall(s, 'stat', '');
               scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/vert/pr1.mp4');
               scene.text('"I bet I could make you feel good, uncle Sergey… would you like that?" you whisper in his ear, with a devious smile on your face.');
@@ -251,7 +253,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                 (s as any).serge_sleep_sex_count = ((s as any).serge_sleep_sex_count ?? 0) - (1);
                 (s as any).minut = ((s as any).minut ?? 0) + 2;
                 (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-                if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
+                ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A112'] = 1;
                 qspCall(s, 'stat', '');
                 scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/vert/pr2.mp4');
                 scene.text('"I bet you could make me feel good, uncle Sergey… I\'m so horny! Could you help me out, pretty please?" you whisper in his ear, with a devious smile on your face.');
@@ -324,18 +326,25 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).locArgs?.[1] ?? 0) === 'serge_textb') {
                               (s as any).serge_textb = Math.floor(Math.random() * 7) + 0;
                               if ((!((s as any).serge_textb ?? 0))) {
+                                (s as any).temp_txt = 'When you ask about Vasily\'s mother, Sergey shrugs: "It\'s a short story, really. I met Vasily\'s mother at my graduation party. We all got drunk and she and I had some fun. When she turned out to be pregnant, we got married. We didn\'t have much of a say in the matter, that\'s just how it worked back then. Shulga was born a few months after that. We tried to make it work, but she got bored and left me a year later when she got offered a job abroad, leaving Shulga with me. I haven\'t heard from her since. It\'s fine, though… me and him managed just fine, without her."';
                               }
                               if (((s as any).serge_textb ?? 0) === 1) {
+                                (s as any).temp_txt = 'You spend fifteen minutes talking to Sergey about everyday things.';
                               }
                               if (((s as any).serge_textb ?? 0) === 2) {
+                                (s as any).temp_txt = 'When you ask Sergey what he does for a living, he smiles and says: "I work in a factory where we produce bricks. I work the day shift, from ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + ' to ' + qspFunc(s, 'time', 'get_time_string', 15, 0) + ', five days a week. I\'m a foreman there, managing the laborers and keeping an eye on the machinery. Of course I pitch in as well, when the men need help. It\'s dusty, hard work, and it doesn\'t pay well, but it\'s work worth doing!"';
                               }
                               if (((s as any).serge_textb ?? 0) === 3) {
+                                (s as any).temp_txt = 'When you ask about his relationship with his son, Sergey shrugs and says in a tired voice: "Eh. We do okay, given the circumstances. He\'s… changed, though. He\'s rather difficult to handle nowadays. For the last year or so, he has shown no interest in school and he stays out until late every day, doing God knows what. I\'m just not sure how to get through to him any more."';
                               }
                               if (((s as any).serge_textb ?? 0) === 4) {
+                                (s as any).temp_txt = 'Sergey tells you a funny story.';
                               }
                               if (((s as any).serge_textb ?? 0) === 5) {
+                                (s as any).temp_txt = 'Sergey is actually a pretty smart guy, and you listen to him for fifteen minutes while he tells you anecdotes about his past.';
                               }
                               if (((s as any).serge_textb ?? 0) === 6) {
+                                (s as any).temp_txt = 'You try to talk to Sergey about clothes, but he\'s not all that interested. The only thing he can contribute is that there is a tailor at the garment factory, who adjusted some ill-fitting jeans for him a while ago.';
                               }
                               // TODO-QSP: dynamic text: <<$temp_txt>>
                               scene.text(`${((s as any).temp_txt || '')}`);
@@ -343,16 +352,22 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).locArgs?.[1] ?? 0) === 'serge_textb2') {
                                 (s as any).serge_textb2 = Math.floor(Math.random() * 6) + 0;
                                 if ((!((s as any).serge_textb2 ?? 0))) {
+                                  (s as any).temp_txt2 = 'Sergey tells you a dirty joke.';
                                 }
                                 if (((s as any).serge_textb2 ?? 0) === 1) {
+                                  (s as any).temp_txt2 = 'Sergey tells you a dirty story.';
                                 }
                                 if (((s as any).serge_textb2 ?? 0) === 2) {
+                                  (s as any).temp_txt2 = 'Sergey tells you a funny story. It\'s loaded with sexual innuendos and double entendres.';
                                 }
                                 if (((s as any).serge_textb2 ?? 0) === 3) {
+                                  (s as any).temp_txt2 = 'Sergey tells you a dirty joke: A businessman needs to do a large investment, buying a new fax machine for the office. He calls in his secretary and says: "Maria, I have ' + qspFunc(s, 'money', 'format', 10000) + ', minus taxes… what do you think I can get for that?" The secretary blushes as she begins to unbutton her shirt, and replies: "For ' + qspFunc(s, 'money', 'format', 10000) + '? Everything but my earrings!"';
                                 }
                                 if (((s as any).serge_textb2 ?? 0) === 4) {
+                                  (s as any).temp_txt2 = 'You\'re lying on Sergey\'s bed relaxing, while he tells you another vulgar anecdote.';
                                 }
                                 if (((s as any).serge_textb2 ?? 0) === 5) {
+                                  (s as any).temp_txt2 = 'You have a nice chat with Sergey for fifteen minutes.';
                                 }
                                 // TODO-QSP: dynamic text: <<$temp_txt2>>
                                 scene.text(`${((s as any).temp_txt2 || '')}`);
@@ -360,28 +375,40 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                 if (((s as any).locArgs?.[1] ?? 0) === 'serge_tv_rand') {
                                   (s as any).temp_rand = Math.floor(Math.random() * 12) + 0;
                                   if ((!((s as any).temp_rand ?? 0))) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvdance.mp4"></video></center>The TV currently shows a new music video, where mostly undressed girls shake their butts lewdly.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 1) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="750" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo1.mp4"></video></center>The TV currently shows a documentary about animals.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 2) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="746" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo2.mp4"></video></center>The TV currently shows a documentary about the world.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 3) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="746" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo3.mp4"></video></center>The TV currently shows a documentary about nature.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 4) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo4.mp4"></video></center>The TV currently shows a documentary film about the ocean.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 5) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="750" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino1.mp4"></video></center>The TV currently shows a popular Soviet comedy show.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 6) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="746" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino2.mp4"></video></center>The TV currently shows an imported blockbuster movie.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 7) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="772" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino3.mp4"></video></center>The TV currently shows an old western movie.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 8) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult1.mp4"></video></center>The TV currently shows a new foreign cartoon. Luckily the audio is still in Russian!';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 9) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="746" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult2.mp4"></video></center>The TV currently shows an old cartoon.';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 10) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport1.mp4"></video></center>The TV currently shows reruns of the latest UFC fight. How barbaric…';
                                   }
                                   if (((s as any).temp_rand ?? 0) === 11) {
+                                    (s as any).serge_tv_rand = '<center><video autoplay loop width="746" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport2.mp4"></video></center>The TV currently shows a football match. You\'re fairly sure it\'s not live.';
                                   }
                                   // TODO-QSP: dynamic text: <<$serge_tv_rand>>
                                   scene.text(`${((s as any).serge_tv_rand || '')}`);
@@ -506,6 +533,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel like you\'re slowly losing your mind when Sergey softly kisses and bites your neck. He\'s tender with you on the one hand, but at the same time fucking your wet cunt mercilessly from behind, sometimes slapping your ass cheeks.');
     // TODO-QSP: dynamic text: With one hand wrapped around your throat, he grunts: "<<$pcs_nickname>>, you're ...
     scene.text(`With one hand wrapped around your throat, he grunts: "${((s as any).pcs_nickname || '')}, you're wonderful…" and gently kisses your neck again.`);
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -577,6 +605,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.text('You eagerly nod and mount him, quickly guiding his cock back to the entrance of your pussy. It feels quite slick from your juices already. Slowly grinding your hips against his pelvis, you begin to ride Sergey. Slowly and gently… you\'re going to savor this moment, you tell yourself.');
     scene.text('Your breasts dangle in front of Sergey\'s face as you ride him, and he puts an arm around your body to pull you towards him. He takes one of your nipples in his mouth and softly bites it while you ride him. Meanwhile, his hands found their way to your buttocks, and slowly but surely Sergey demands more control again, guiding your buttocks up and down while you ride him.');
     scene.text('You were already quite close to orgasming, and his sudden thrusts push you over the edge, making your whole body tremble. You cry out loud and feel your body go limp, resting on his chest while you try to catch your breath.');
+    (s as any).orgasm_or = 'custom';
+    (s as any).orgasm_txt = 'Your pussy convulsing around his cock, paired with your trembling body, makes Sergey realize perfectly well you\'re orgasming. He simply embraces you while he lets you ride it out, planting a gentle kiss on your forehead.';
     qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -684,7 +714,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                   ]);
                 }
                 scene.actions([
-                  { label: 'Continue', goto: ['Serge_Shulgin', 'hide', '\'sleep_sex_lick_event1\''] },
+                  { label: 'Continue', goto: ['Serge_Shulgin', 'hide', 'sleep_sex_lick_event1'] },
                 ]);
               }
               scene.actions([

@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -5,6 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).batch_sell = qspUntranslated(s, "{", { location: "portnoi" });
   (s as any).poshvalldrop = ((s as any).poshvalldrop ?? 0) + (1);
   // TODO-QSP: dynamic 'temp_cloStrength = <<$ARGS[0]>>_h[<<ARGS[1]>>]'
   if (((s as any).temp_cloStrength ?? 0) > 100) {

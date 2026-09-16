@@ -5,9 +5,12 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'igorhunter';
+  (s as any).menu_arg = '';
   qspCall(s, 'npcStat', 'A173');
   (s as any).lover_picture_number = 31;
-  if (!(s as any).npc_pervert) (s as any).npc_pervert = {}; (s as any).npc_pervert[String((s as any).boy ?? 0)] = 0;
+  (s as any).npcClo = 'jeans and a sweater';
+  ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 0;
   (s as any).boyage = ((s as any).year ?? 0) - ((((s as any).npc_dob ?? {})?.['A173'] ?? 0) / 10000);
   (s as any).boy_birth_month = ((((s as any).npc_dob ?? {})?.['A173'] ?? 0) / 100) % 100;
   (s as any).boy_birth_date = (((s as any).npc_dob ?? {})?.['A173'] ?? 0) % 100;
@@ -18,15 +21,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((s as any).pcs_nickname || '')}, I realized that our love wasn't real, and we need to break up," he says. As you try to find words to answer, he turns and resolutely walks away.`);
     scene.text('"This may well be for the best," you think as you leave in the other direction.');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorLove'] = 0;
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorLove'] = 0;
     if (((s as any).hunterVars ?? 0)?.['IgorLove'] === 2) {
       (s as any).bfA = 0;
     }
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (10);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
@@ -35,14 +38,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You walk up to Igor to spend time together, but he suddenly kisses you and whispers,');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let's make love."
       scene.text(`"${((s as any).pcs_nickname || '')}, let's make love."`);
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['Igorsex'] = ((s as any).hunterVars['Igorsex'] ?? 0) + (Math.floor(Math.random() * 25) + 12);
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['Igorsex'] = ((s as any).hunterVars['Igorsex'] ?? 0) + (Math.floor(Math.random() * 25) + 12);
       qspCall(s, 'arousal', 'foreplay', 5);
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterflirt2.\'+rand(4, 6)+\'.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Go', goto: ['hunterLoveSex', 'Igor'] },
@@ -53,11 +56,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"I can\'t right now, Igor," you say');
     scene.text('You see a look of regret on his face as you leave.');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (1);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -75,7 +78,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/hanterkiss2.jpg');
     scene.text('You move closer to him and begin kissing him again. Igor gently kisses you back.');
     scene.text('<center><b>Be aware! Igor is not in the Boyfriend system yet!</b></center>');
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorLove'] = 2;
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorLove'] = 2;
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'stat', '');
@@ -98,7 +101,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -108,11 +111,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'No', handler: (st: GameState) => {
     scene.img('images/pc/reactions/speak_to_the_hand.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (50);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (50);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -170,13 +173,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] <= 35  &&  ((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
     }
     if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['AndreiQw'] = ((s as any).hunterVars['AndreiQw'] ?? 0) - (1);
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['AndreiQw'] = ((s as any).hunterVars['AndreiQw'] ?? 0) - (1);
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (1);
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (1);
     }
     qspCall(s, 'stat', '');
     if (((s as any).hunterVars ?? 0)?.['IgorLove'] === 0  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] >= 35  &&  ((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0  &&  ((s as any).bfA ?? 0) === 1  &&  ((s as any).pcs_apprnc ?? 0) >= 60) {
@@ -189,8 +192,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Answer kiss', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterkiss2.jpg');
     qspCall(s, 'mood', 'raise', 'small');
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorLove'] = 1;
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorLove'] = 1;
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'stat', '');
     if (((s as any).pcs_horny ?? 0) >= 40) {
@@ -212,7 +215,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -222,11 +225,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'To remove the face', handler: (st: GameState) => {
     scene.img('images/pc/reactions/speak_to_the_hand.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (50);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (50);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -236,7 +239,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -246,8 +249,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Have sex', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterflirt2.\'+rand(1, 6)+\'.jpg');
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['Igorsex'] = ((s as any).hunterVars['Igorsex'] ?? 0) + (Math.floor(Math.random() * 25) + 12);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['Igorsex'] = ((s as any).hunterVars['Igorsex'] ?? 0) + (Math.floor(Math.random() * 25) + 12);
     qspCall(s, 'arousal', 'foreplay', 10);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -261,15 +264,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 { label: 'Break up with Igor', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/brosila.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorLove'] = 0;
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorLove'] = 0;
     if (((s as any).hunterVars ?? 0)?.['IgorLove'] === 2) {
       (s as any).bfA = 0;
     }
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (100);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (100);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -281,12 +284,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     qspCall(s, 'mood', 'raise', 'small');
-    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
+    ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
     if (((s as any).hunterVars ?? 0)?.['SergeiLove'] > 0  ||  ((s as any).hunterVars ?? 0)?.['AndreiLove'] > 0) {
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['slut'] = ((s as any).hunterVars['slut'] ?? 0) + (1);
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['slut'] = ((s as any).hunterVars['slut'] ?? 0) + (1);
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 0  &&  ((s as any).hunterVars ?? 0)?.['AndreiLove'] === 0) {
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['slut'] = ((s as any).hunterVars['slut'] ?? 0) - (1);
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['slut'] = ((s as any).hunterVars['slut'] ?? 0) - (1);
     }
     if (((s as any).hunterVars ?? 0)?.['IgorLove'] === 2) {
       (s as any).bfA = ((s as any).bfA ?? 0) + (1);
@@ -294,7 +297,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -308,17 +311,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] < 10) {
-      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
+      ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) + (1);
     }
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
           { label: 'Depart', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
       }

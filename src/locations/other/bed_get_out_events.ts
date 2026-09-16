@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,22 +9,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 1;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).vomit ?? 0)?.['morning_sick'] === 1  ||  ((s as any).vomit ?? 0)?.['hangover'] === 1  ||  ((s as any).vomit ?? 0)?.['unlucky'] === 1) {
       // TODO-QSP: $sleep_events[] = 'gs ''bed_get_out_events'', ''vomit'' '
     }
-    scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'mod_sleepevents'] }]);
+    qspGoto(s, 'bed_get_out_events', 'mod_sleepevents');
   }
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'continue'] }]);
+  qspGoto(s, 'bed_get_out_events', 'continue');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_get_out_events', 'mod_sleepevents');
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_handler'] }]);
+  qspGoto(s, 'bed_get_out_events', 'event_handler');
   // TODO-QSP: end
   scene.build();
 }
@@ -32,55 +32,57 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 1) {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
-      scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_handler2', '\'priority\''] }]);
+      qspGoto(s, 'bed_get_out_events', 'event_handler2', 'priority');
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
-        scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_handler2'] }]);
+        qspGoto(s, 'bed_get_out_events', 'event_handler2');
       }
     }
   }
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'continue'] }]);
+  qspGoto(s, 'bed_get_out_events', 'continue');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
+    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
+    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   }
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_end'] }]);
+  qspGoto(s, 'bed_get_out_events', 'event_end');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_handler'] }]);
+  qspGoto(s, 'bed_get_out_events', 'event_handler');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
-  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
-  scene.actions([{ label: 'Continue', goto: ['bed_get_out', 'end'] }]);
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
+  qspGoto(s, 'bed_get_out', 'end');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterVomit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.actions([{ label: 'Continue', goto: ['home_activity', 'vomiting_exit'] }]);
+  qspGoto(s, 'home_activity', 'vomiting_exit');
   // TODO-QSP: end
   scene.build();
 }

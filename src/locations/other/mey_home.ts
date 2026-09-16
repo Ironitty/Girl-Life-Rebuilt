@@ -1,12 +1,13 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   if (((s as any).day ?? 0) <= 25  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] > 40) {
-    if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['mey_vika_qw'] = 40;
+    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 40;
   }
   scene.build();
 }
@@ -29,7 +30,7 @@ function enterDoor(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).hour ?? 0) < 20  &&  ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 15)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) > 10))  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 27) {
       if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 27) {
-        scene.actions([{ label: 'Continue', goto: ['mey_tamara_events', 'next_meet'] }]);
+        qspGoto(s, 'mey_tamara_events', 'next_meet');
       } else {
         scene.img('images/locations/pavlovsk/resident/meynolds/tamara_tea1.jpg');
         scene.text('You walk up to the Meynolds\' residence and ring the doorbell…');
@@ -54,7 +55,8 @@ function enterDoor(s: GameState, scene: SceneBuilder): void {
     if (((s as any).frost ?? 0) > 0) {
       (s as any).frost = 0;
     }
-  }, goto: ['KatjaHomeTalk', ''] },
+    qspGoto(s, 'KatjaHomeTalk', '');
+  } },
         ]);
       } else {
         scene.img('images/locations/pavlovsk/resident/meynolds/tamara_tea0.jpg');
@@ -75,6 +77,7 @@ function enterDoor(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'start');
+  (s as any).location_type = 'private';
   qspCall(s, 'schedule', 'A14', 'A15');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -96,20 +99,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 32) {
     if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).day ?? 0) > 25  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 40  &&  ((s as any).mey_tamara ?? 0)?.['qw_end'] === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150) {
-      scene.actions([{ label: 'Continue', goto: ['mey_tamara_events', 'party0'] }]);
+      qspGoto(s, 'mey_tamara_events', 'party0');
     }
     if (((s as any).week ?? 0) === 7  &&  (((s as any).hour ?? 0) === 17  ||  ((s as any).hour ?? 0) === 18)  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 41) {
-      scene.text('<br><a href="exec: gt\'mey_tamara_events\',\'check_look\'">Tamara Meynold.</a> is waiting for you in the lobby.');
+      scene.text('<br><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mey_tamara_events\\u0027, \\u0027check_look\\u0027); return false;">Tamara Meynold.</a> is waiting for you in the lobby.');
       return;
     }
     if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((s as any).mey_vika ?? 0)?.['bath_qw'] === 1  &&  ((s as any).mey_vika ?? 0)?.['bath_qw_day'] !== ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).locat ?? 0)?.['Vicky'] === 9) {
-      scene.actions([{ label: 'Continue', goto: ['mey_vika_events', 'bath_qw1'] }]);
+      qspGoto(s, 'mey_vika_events', 'bath_qw1');
     }
     if (((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).mey_tamara ?? 0)?.['help_day'] !== ((s as any).daystart ?? 0)) {
       scene.actions([
         { label: 'Clean the house', handler: (st: GameState) => {
-    if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_count'] = ((s as any).mey_tamara['help_count'] ?? 0) + (1);
+    ((s as any).mey_tamara = (s as any).mey_tamara ?? {})['help_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mey_tamara = (s as any).mey_tamara ?? {})['help_count'] = ((s as any).mey_tamara['help_count'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 21) + 50);
     qspCall(s, 'sweat', 'add', 3);
     qspCall(s, 'mood', 'lower', 'small');
@@ -127,7 +130,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 30) {
-    scene.actions([{ label: 'Continue', goto: ['mey_home', 'guest_bedroom'] }]);
+    qspGoto(s, 'mey_home', 'guest_bedroom');
     scene.actions([
       { label: 'Guest room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -146,9 +149,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave the house', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) !== 1  ||  ((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+      qspGoto(s, 'pav_residential', '');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['mey_home', 'start'] }]);
+      qspGoto(s, 'mey_home', 'start');
     }
   } },
     { label: 'Kitchen', handler: (st: GameState) => {
@@ -163,9 +166,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Katja\'s room', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) !== 1  ||  ((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      scene.actions([{ label: 'Continue', goto: ['mey_home', 'katja_bedroom'] }]);
+      qspGoto(s, 'mey_home', 'katja_bedroom');
     } else {
-      scene.actions([{ label: 'Continue', goto: ['mey_home', 'start'] }]);
+      qspGoto(s, 'mey_home', 'start');
     }
   } },
     { label: 'Vicky\'s room', handler: (st: GameState) => {
@@ -183,19 +186,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'kitchen');
+  (s as any).location_type = 'kitchen';
+  (s as any).locclass = 'kitchen';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Kitchen</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/kitchen.jpg');
   scene.text('The kitchen is vast and luxurious. It is decorated in a minimalist high-tech style. An oval dining room table stands in the middle of the room. The appliances are all hidden. As a result, the kitchen is sparkling clean.');
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 31) {
-    scene.text('Sitting on the counter is a note and a <a href="exec:gs \'mey_home\', \'key\'">key</a>');
+    scene.text('Sitting on the counter is a note and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mey_home\\u0027, \\u0027key\\u0027); return false;">key</a>');
   }
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 32  &&  ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).mey_tamara ?? 0)?.['help_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Cook for the whole family', handler: (st: GameState) => {
-    if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_day'] = ((s as any).daystart ?? 0);
-    if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_count'] = ((s as any).mey_tamara['help_count'] ?? 0) + (1);
+    ((s as any).mey_tamara = (s as any).mey_tamara ?? {})['help_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mey_tamara = (s as any).mey_tamara ?? {})['help_count'] = ((s as any).mey_tamara['help_count'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 21) + 50);
     qspCall(s, 'stat', '');
     scene.text('<br>You take out the food from the refrigerator and start cooking for the whole family. It takes you about an hour to finish.');
@@ -227,8 +232,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterKey(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/meynolds/key.jpg');
-  if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['key'] = 1;
-  if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['mey_vika_qw'] = 32;
+  ((s as any).mey_vika = (s as any).mey_vika ?? {})['key'] = 1;
+  ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 32;
   // TODO-QSP: dynamic text: <<$pcs_nickname>>,
   scene.text(`${((s as any).pcs_nickname || '')},`);
   scene.text('  Here is the key to the house, Our home is your home. You can also clean out what remains in the guest bedroom and make it all yours. just put all of Roma\'s things in some boxes and I\'ll put them in storage.');
@@ -242,12 +247,15 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'bathroom');
+  (s as any).location_type = 'bathroom';
+  (s as any).locclass = 'bathroom';
+  (s as any).bathtype = 'glass shower and tub';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/hotel/hotel.room.best1.jpg');
   scene.text('A luxurious bathroom looks like the five-star hotel bathrooms you read about in magazines.');
-  scene.text('Above the beautiful vanity and sink there is a huge <a href="exec:gt \'mirror\',\'start\'">mirror</a>.');
+  scene.text('Above the beautiful vanity and sink there is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>.');
   qspCall(s, 'selfplay', 'suction_dildo');
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
@@ -262,20 +270,22 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterGuestBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'guest_bedroom');
+  (s as any).location_type = 'bedroom';
+  (s as any).locclass = 'bedroom';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Guest room</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/guestroom.jpg');
   scene.text('It feels and looks like a standard room in a hotel.');
-  scene.text('There is a <a href="exec:gt \'bed\', \'start\'">bed</a>, a small <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a> (where you can choose outfits and organize your clothing), and a <a href="exec:gt \'stol\' ,\'start\'">desk</a>.');
-  scene.text('A <a href="exec:gt \'mirror\', \'start\'">mirror</a> hangs on the wall near the front door.');
+  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">bed</a>, a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a> (where you can choose outfits and organize your clothing), and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">desk</a>.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> hangs on the wall near the front door.');
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access', 'free');
-    scene.text('Your <a href="exec:gt \'komp\',\'start\'">computer</a> is on the desk.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> is on the desk.');
   }
   qspCall(s, 'exercise', 'start');
   qspCall(s, 'music_actions', 'start');
@@ -308,7 +318,8 @@ function enterGuestBedroom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['mey_home', 'start'] },
+    qspGoto(s, 'mey_home', 'start');
+  } },
     { label: 'Relax on your bed', goto: ['bed', 'start'] },
   ]);
   scene.build();
@@ -316,11 +327,13 @@ function enterGuestBedroom(s: GameState, scene: SceneBuilder): void {
 
 function enterLounge(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'lounge');
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'livingroom';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Lounge</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/hall.jpg');
-  scene.text('Spacious room with a sofa and armchairs, on the wall, hangs a large <a href="exec:gt \'TV\',\'meyhome\'">Plasma TV</a>, located next to the bookcase, and on the opposite side is the fireplace. From the hall, there is access to a bright garden overgrown with grapes.');
+  scene.text('Spacious room with a sofa and armchairs, on the wall, hangs a large <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027meyhome\\u0027); return false;">Plasma TV</a>, located next to the bookcase, and on the opposite side is the fireplace. From the hall, there is access to a bright garden overgrown with grapes.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to hallway', handler: (st: GameState) => {
@@ -335,6 +348,8 @@ function enterLounge(s: GameState, scene: SceneBuilder): void {
 
 function enterKatjaBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'katja_bedroom');
+  (s as any).location_type = 'bedroom';
+  (s as any).locclass = 'bedroom';
   qspCall(s, 'schedule', 'A14');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -365,6 +380,8 @@ function enterKatjaBedroom(s: GameState, scene: SceneBuilder): void {
 
 function enterVickyBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'vicky_bedroom');
+  (s as any).location_type = 'bedroom';
+  (s as any).locclass = 'bedroom';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Vicky\'s room</b></center>');
@@ -382,6 +399,8 @@ function enterVickyBedroom(s: GameState, scene: SceneBuilder): void {
 
 function enterTamaraBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'tamara_bedroom');
+  (s as any).location_type = 'bedroom';
+  (s as any).locclass = 'bedroom';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Tamara\'s room</b></center>');
@@ -398,6 +417,7 @@ function enterTamaraBedroom(s: GameState, scene: SceneBuilder): void {
 
 function enterGarden(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mey_home', 'garden');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'outdoors');
   scene.text('<center><b>Garden</b></center>');
@@ -405,7 +425,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
   scene.text('The garden is relatively small for the house and overgrown. Most of the space is taken up by a small pool.');
   scene.text('A car belonging to Tamara Meynold is parked on the drive next to the garden.');
   if (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) >= 30  &&  ((s as any).week ?? 0) < 6) {
-    scene.text('<a href="exec:gs\'mey_tamara_events\',\'tamara\'">Miss Tamara</a> is here talking on her phone.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mey_tamara_events\\u0027, \\u0027tamara\\u0027); return false;">Miss Tamara</a> is here talking on her phone.');
   }
   if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
@@ -450,7 +470,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
       scene.text('You strip out of your clothes until you are naked, then lie down next to the pool to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You strip out of your clothes until you are naked, then put sunblock on your body and lie down next to the pool to sunbathe.');
       }
@@ -477,7 +497,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
       scene.text('You lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You put sunblock on your body and lie down next to the pool to sunbathe.');
       }
@@ -544,10 +564,12 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to hallway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['mey_home', 'start'] },
+    qspGoto(s, 'mey_home', 'start');
+  } },
     { label: 'Return to lounge', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['mey_home', 'lounge'] },
+    qspGoto(s, 'mey_home', 'lounge');
+  } },
   ]);
   scene.build();
 }

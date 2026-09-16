@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'Nudelake', '');
+  (s as any).location_type = 'secluded';
+  (s as any).locclass = 'beach';
   qspCall(s, 'stat', '');
   scene.text('<center><b>nudist beach</b></center>');
   scene.img('images/locations/city/residential/lake/nudelake.jpg');
@@ -85,13 +87,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).clothingworntype ?? 0) === 'nude') {
-        scene.text('Here you can <a href="exec:gt \'Nudelake\', \'zagarat\'">sunbathe</a> and <a href="exec:gt \'Nudelake\', \'swim\'">swim</a>');
+        scene.text('Here you can <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Nudelake\\u0027, \\u0027zagarat\\u0027); return false;">sunbathe</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Nudelake\\u0027, \\u0027swim\\u0027); return false;">swim</a>');
         if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
           scene.actions([
             { label: 'Go swimming', goto: ['Nudelake', 'swim'] },
           ]);
         }
-        scene.text('You can play <a href="exec:gt \'Nudelake\', \'voleybol\'">beach volleyball</a>.');
+        scene.text('You can play <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Nudelake\\u0027, \\u0027voleybol\\u0027); return false;">beach volleyball</a>.');
         scene.actions([
           { label: 'Sunbathe', goto: ['Nudelake', 'zagarat'] },
         ]);
@@ -108,7 +110,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
-  }, goto: ['Nudelake', ''] },
+    qspGoto(s, 'Nudelake', '');
+  } },
     ]);
   } else {
     scene.actions([
@@ -120,6 +123,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVoleybol(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
+  (s as any).menu_loc = 'Nudelake';
+  (s as any).menu_arg = 'voleybol';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   scene.img('images/locations/city/residential/lake/volleyball.jpg');
   scene.text('You go to the volleyball court.');
@@ -144,6 +150,7 @@ function enterVoleybol(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterZagarat(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   if (((s as any).pcs_sweat ?? 0) < 35) {
     qspCall(s, 'sweat', 'add', 5);
@@ -156,7 +163,7 @@ function enterZagarat(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
     scene.text('You go to the beach and sunbathe.');
   } else {
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
     scene.text('You smear sunblock on your body and sunbathe.');
   }
@@ -165,18 +172,18 @@ function enterZagarat(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).nzagrand ?? 0) < 70) {
       if (((s as any).npc_rel ?? 0)?.['A219'] > 30  &&  (!((s as any).katkey ?? 0))) {
-        scene.actions([{ label: 'Continue', goto: ['Katlake', 'key'] }]);
+        qspGoto(s, 'Katlake', 'key');
       }
     } else {
       if (((s as any).nzagrand ?? 0) < 80) {
         if (((s as any).kat ?? 0) === 0  &&  ((s as any).katday ?? 0) !== ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['Katlake', ''] }]);
+          qspGoto(s, 'Katlake', '');
         }
       } else {
         if (((s as any).nzagrand ?? 0) < 90) {
-          scene.actions([{ label: 'Continue', goto: ['Vnlake1', ''] }]);
+          qspGoto(s, 'Vnlake1', '');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['Vnlake2', ''] }]);
+          qspGoto(s, 'Vnlake2', '');
         }
       }
     }
@@ -189,6 +196,7 @@ function enterZagarat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSwim(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   (s as any).pcs_makeup = 1;
   (s as any).cumspclnt = 4;
   qspCall(s, 'cum_cleanup', '');
@@ -216,6 +224,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSmotr(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/volleyball.jpg');

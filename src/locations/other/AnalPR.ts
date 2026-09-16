@@ -9,16 +9,21 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'AnalPR';
+  (s as any).location_type = 'event';
   (s as any).prosti = 0;
   // TODO-QSP: gs 'money', 'earn', ProsMoney*100
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'auto_lube', 'anal');
   if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
+    (s as any).analsex = 'Your anus stretches painfully as he fills your ass with his meaty shaft. You wince and beg him to take it easy for a little while. Fortunately, he listens to your request. You feel your anus muscles relax, which signals that he can go faster. Slowly at first, he gains momentum as he pushes closer to his orgasm.';
     qspCall(s, 'arousal', 'anal', 5, 'rough', 'sub', 'unknown', 'prostitution');
     qspCall(s, 'stat', '');
   }
   if (((s as any).pcs_ass ?? 0) >= ((s as any).dick ?? 0)) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).pcs_ass ?? 0));
+    (s as any).analsex = 'Your anus has no difficulty adjusting to the size of his member. It actually feels fairly pleasant when he shoves his full length in. Your anus grips his cock from time to time in response to your building orgasm. The man begins to thrust his hips against your ass enthusiastically when he notices you are enjoying your ass being reamed.';
     qspCall(s, 'arousal', 'anal', 5, 'sub', 'unknown', 'prostitution');
     qspCall(s, 'stat', '');
   }
@@ -44,15 +49,20 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'AnalPR';
+  (s as any).location_type = 'event';
   (s as any).prosti = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'auto_lube', 'anal');
   if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
+    (s as any).analsex = 'You feel a sharp pain and wince when the man pushes the tip of his ' + ((s as any).dick ?? 0) + ' centimeter member past your sphincter. He continues to work most of his length inside you. Fortunately, he listens when you beg him to go slow.<br>The man holds still for a moment so your ass can get used to how far it\'s being stretched out. After a little while, you don\'t think it\'s going to get any better, so you tell the man he can start to fuck you with a forced, fake smile on your face.<br>He\'s still careful at first, but soon forgets about your suffering and accelerates more and more. The man groans loudly while he hammers his cock inside your ass. He ignores your crying and mewling coming from underneath him.';
     qspCall(s, 'arousal', 'anal', (-5), 'rough', 'sub', 'unknown', 'prostitution');
     qspCall(s, 'stat', '');
   }
   if (((s as any).pcs_ass ?? 0) >= ((s as any).dick ?? 0)) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).pcs_ass ?? 0));
+    (s as any).analsex = 'Your anus has no difficulty adjusting to the size of his member. It actually feels fairly pleasant when he shoves his length in. Your anus grips the full length of his cock from time to time in response to your moaning. He begins to thrust his hips against your ass enthusiastically when he notices you are enjoying being fucked in the ass.';
     qspCall(s, 'arousal', 'anal', (-5), 'sub', 'unknown', 'prostitution');
     qspCall(s, 'stat', '');
   }

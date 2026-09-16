@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -35,7 +35,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_station', 'station_inside'] },
+    qspGoto(s, 'pav_station', 'station_inside');
+  } },
       ]);
     }
     scene.actions([
@@ -134,7 +135,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Accept his offer', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['katalkinSex', 'sex'] },
+    qspGoto(s, 'katalkinSex', 'sex');
+  } },
       ]);
     }
   } },
@@ -312,7 +314,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_station', 'station_inside'] },
+    qspGoto(s, 'pav_station', 'station_inside');
+  } },
       ]);
     }
     scene.actions([
@@ -372,7 +375,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 { label: 'Accept his offer', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-  }, goto: ['katalkinSex', 'sex'] },
+    qspGoto(s, 'katalkinSex', 'sex');
+  } },
               ]);
             }
           }
@@ -381,7 +385,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((!((s as any).katalkinNoexit ?? 0))) {
-    scene.actions([{ label: 'Continue', goto: ['pav_station', 'station_inside'] }]);
+    qspGoto(s, 'pav_station', 'station_inside');
     scene.actions([
       { label: 'Leave his office', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

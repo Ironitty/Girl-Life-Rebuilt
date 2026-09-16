@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,18 +11,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Dance', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     // TODO-QSP: gs 'boystat', $bmNane[Tboynum]
+    (s as any).hookupboy = ((s as any).bmNane ?? 0)?.[String((s as any).Tboynum ?? 0)];
     // TODO-QSP: $npc_usedname[$npclastcalled] = $npc_nickname[$npclastcalled]
     if (((s as any).bmFrend ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
       if (((s as any).bmHJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmBJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmSEX ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmANAL ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmGANG ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
         if (((s as any).bmHJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
+          (s as any).text2 = 'you gave me a hand job.';
         }
         if (((s as any).bmBJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
+          (s as any).text2 = 'you gave me a blowjob.';
         }
         if (((s as any).bmSEX ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
+          (s as any).text2 = 'you let me fuck you.';
         }
         if (((s as any).bmANAL ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
+          (s as any).text2 = 'you let me fuck you in the ass.';
         }
         if (((s as any).bmGANG ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
+          (s as any).text2 = 'you let me and my friend fuck you.';
         }
         // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, <<$text2>>. I'm <<$boydesc>>."
         scene.text(`${((s as any).niknameboy || '')} tells you "Remember me, ${((s as any).text2 || '')}. I'm ${((s as any).boydesc || '')}."`);
@@ -62,7 +68,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay');
     qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
+    qspGoto(s, 'pav_disco', '');
+  } },
       ]);
     }
     scene.actions([
@@ -70,14 +77,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).boynumBlock = 1;
     if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
       (s as any).gdk_nice_guy = 1;
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'outside'] }]);
+      qspGoto(s, 'pav_disco_sex', 'outside');
     }
     if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'outside'] }]);
+      qspGoto(s, 'pav_disco_sex', 'outside');
     }
     if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 2) {
       (s as any).DPtipe = 2;
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'hotel'] }]);
+      qspGoto(s, 'pav_disco_sex', 'hotel');
     }
   } },
     ]);

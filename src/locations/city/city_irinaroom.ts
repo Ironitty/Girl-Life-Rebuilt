@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -22,7 +22,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
     { label: 'Ring Ira\'s doorbell', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).IrinaQW ?? 0) !== 2) {
       scene.text('You ring the doorbell, and hear light footsteps coming towards the door. Irina opens up the door and tells you to enter, delighted to see you.');
@@ -34,7 +35,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
       ]);
     }
   } },
@@ -56,6 +58,7 @@ function enterFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirst1(s: GameState, scene: SceneBuilder): void {
+  (s as any).locclass = 'kitr';
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'small');
   (s as any).alko = ((s as any).alko ?? 0) + (4);
@@ -102,6 +105,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/ira/sex/irinasex.jpg');
   if (((s as any).pcs_horny ?? 0) < 50) {
     scene.text('Her eyes are saying everything, and before you know it you\'ve ended up in her bed. Once in bed, you quickly get undressed, and explore each other\'s bodies for a long moment. The anticipation is unbearable as you start playing with her clit and slide a finger inside her as she starts moaning profoundly, shortly thereafter orgasming. With her wanting to return the favor, she excitedly starts eating you out, but she\'s being sloppy and isn\'t able to make you orgasm…');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'cuni', 60, 'lesbian');
     qspCall(s, 'arousal', 'cuni_give', (-60), 'lesbian');
     qspCall(s, 'mood', 'raise', 'tiny');
@@ -109,6 +113,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_horny ?? 0) >= 50) {
     scene.text('Her eyes are saying everything, and before you know it you\'ve ended up in her bed. Once in bed, she undresses you, and starts exploring your body, turning you on even more. The anticipation is unbearable as she starts playing with your clit and it doesn\'t take long before she slides a finger inside you as you start moaning profoundly. Playing off your reactions, she picks up the pace and it doesn\'t take long before you orgasm. As you calm down, you excitedly return the favor and start eating her out, returning the favor.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 60, 'lesbian');
     qspCall(s, 'arousal', 'cuni_give', (-60), 'lesbian');
     qspCall(s, 'mood', 'raise', 'large');
@@ -119,7 +124,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
   ]);
   scene.build();
 }
@@ -163,7 +169,8 @@ function enterFirst4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
   ]);
   scene.build();
 }
@@ -237,6 +244,7 @@ function enterFirst9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/ira/sex/irinaqw7.jpg');
   scene.text('You\'re just as excited as she was and it doesn\'t take long before Irina\'s tongue has the same effect as you had on her, "Don\'t you dare to stop, I\'m so near." panting you reach the climax and bury her head inside you.');
   scene.text('Your knees are weak, but you have her rise up and lick your juices from her lips. "This is only the start, I\'m so going to have fun with you," you tell her as she starts blushing…');
+  (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -244,7 +252,8 @@ function enterFirst9(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
-  }, goto: ['city_residential', ''] },
+    qspGoto(s, 'city_residential', '');
+  } },
   ]);
   scene.build();
 }

@@ -5,6 +5,11 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'gad_swampspring';
+  (s as any).loc_arg = '';
+  (s as any).menu_loc = 'gad_swamp_yard';
+  (s as any).menu_arg = '';
+  (s as any).location_type = 'secluded';
   qspCall(s, 'gadukino_event', 'sound');
   scene.text('<center><b>Spring</b></center>');
   if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {

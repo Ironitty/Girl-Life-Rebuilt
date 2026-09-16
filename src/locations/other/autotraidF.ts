@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,6 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'autotraidF', 'start');
+  (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Car Dealership</b></center>');
   scene.img('images/locations/city/industrial/UsedCar/autotraid.jpg');
@@ -20,7 +21,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('- New State law: No sale if you already own a car.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked just insid...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
   }
   if (qspFunc(s, 'autotraidF', 'is_open')) {
     if (qspFunc(s, 'car_funcs', 'has_car')) {
@@ -124,7 +125,9 @@ function enterCar(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).used_car ?? 0)?.['wrek_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['wrek_price'] !== -1) {
       scene.actions([
-        { label: 'Inspect another 2107 (Broken Engine)', goto: ['autotraidF', 'inspect_wreck'] },
+        { label: 'Inspect another 2107 (Broken Engine)', handler: (st: GameState) => {
+    qspGoto(s, 'autotraidF', 'inspect_wreck');
+  } },
       ]);
     }
     if (((s as any).used_car ?? 0)?.['2_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['2_price'] !== -1) {
@@ -181,13 +184,13 @@ function enterCar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInspect(s: GameState, scene: SceneBuilder): void {
-  (s as any).autotraidF_carnum = qspUntranslated(s, "ARGS[1]", { location: "autotraidF" });
-  (s as any).autotraidF_benz = qspUntranslated(s, "ARGS[3]", { location: "autotraidF" });
+  (s as any).autotraidF_carnum = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).autotraidF_benz = ((s as any).locArgs?.[3] ?? 0);
   // TODO-QSP: dynamic text: <center><b><<$autotraidF_carname>></b></center>
   scene.text(`<center><b>${((s as any).autotraidF_carname || '')}</b></center>`);
   scene.img(`images/pc/items/accessories/car/car${((s as any).autotraidF_carnum || '')}.jpg`);
   if (((s as any).used_car ?? 0)[((s as any).autotraidF_carnum ?? 0) + '_condition'] === 0  &&  ((s as any).used_car ?? 0)[((s as any).autotraidF_carnum ?? 0) + '_price'] === 0) {
-    (s as any).carT = qspUntranslated(s, "ARGS[2]", { location: "autotraidF" });
+    (s as any).carT = ((s as any).locArgs?.[2] ?? 0);
     qspCall(s, 'car_funcs', 'avt');
   }
   // TODO-QSP: dynamic text: <<$used_car['<<autotraidF_carnum>>_condition_desc']>> The car salesman wants ' +...
@@ -199,30 +202,32 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: gs 'money', 'pay', used_car['<<autotraidF_carnum>>_price']
-      scene.actions([{ label: 'Continue', goto: ['autotraidF', 'buy_car'] }]);
+      qspGoto(s, 'autotraidF', 'buy_car');
     }
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Look around some more', goto: ['autotraidF', 'car'] },
+    { label: 'Look around some more', handler: (st: GameState) => {
+    qspGoto(s, 'autotraidF', 'car');
+  } },
   ]);
   scene.build();
 }
 
 function enterBuyCar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'car_funcs', 'add_car', ((s as any).autotraidF_carnum ?? 0));
-  if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).autotraidF_benz ?? 0);
+  ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).autotraidF_benz ?? 0);
   qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
-  if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).used_car ?? 0)?.[String(((s as any).autotraidF_carnum ?? 0)) + '_condition'];
+  ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).used_car ?? 0)?.[String(((s as any).autotraidF_carnum ?? 0)) + '_condition'];
   // TODO-QSP: dynamic text: You agree and before you know it, the car salesman and you have signed all the n...
   scene.text(`You agree and before you know it, the car salesman and you have signed all the necessary documents. You pay the ' + $func('money', 'string_price', used_car['${((s as any).autotraidF_carnum || '')}_price']) + ', and the car is yours.`);
   scene.text('Since it\'s crammed in between about a million other vehicles, the car salesman moves it outside near the yard\'s entrance for you and warns you that there is very little gas in the tank.');
-  if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['' + String((s as any).autotraidF_carnum || '') + '_condition'] = (-1);
-  if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['' + String((s as any).autotraidF_carnum || '') + '_price'] = (-1);
+  ((s as any).used_car = (s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_condition'] = (-1);
+  ((s as any).used_car = (s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_price'] = (-1);
   qspCall(s, 'array', 'remove_element', 'car', 'potential_new_condition');
-  qspCall(s, 'array', 'remove_element', '$used_car', '' + qspUntranslated(s, "autotraidF_carnum>", { location: "autotraidF" }) + '_condition');
+  qspCall(s, 'array', 'remove_element', '$used_car', '' + ((s as any).autotraidF_carnum ?? 0) + '_condition');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['autotraidF', 'start'] },
@@ -235,8 +240,8 @@ function enterInspectWreck(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>2107 (Broken engine)</b></center>');
   scene.img('images/pc/items/accessories/car/car1.jpg');
   if (((s as any).used_car ?? 0)?.['wrek_condition'] === 0  &&  ((s as any).used_car ?? 0)?.['wrek_price'] === 0) {
-    if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['wrek_condition'] = (Math.floor(Math.random() * (((s as any).CarCondition ?? 0) - ((s as any).CarCondition ?? 0) / 20 + 1)) + (((s as any).CarCondition ?? 0) / 20));
-    if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['wrek_price'] = (Math.floor(Math.random() * (((s as any).CarPrice ?? 0) / 200 - ((s as any).CarPrice ?? 0) / 1000 + 1)) + (((s as any).CarPrice ?? 0) / 1000)) * 100;
+    ((s as any).used_car = (s as any).used_car ?? {})['wrek_condition'] = (Math.floor(Math.random() * (((s as any).CarCondition ?? 0) - ((s as any).CarCondition ?? 0) / 20 + 1)) + (((s as any).CarCondition ?? 0) / 20));
+    ((s as any).used_car = (s as any).used_car ?? {})['wrek_price'] = (Math.floor(Math.random() * (((s as any).CarPrice ?? 0) / 200 - ((s as any).CarPrice ?? 0) / 1000 + 1)) + (((s as any).CarPrice ?? 0) / 1000)) * 100;
   }
   // TODO-QSP: dynamic text: The car is basically a wreck. It doesn't even start. When you ask the salesman h...
   scene.text('The car is basically a wreck. It doesn\'t even start. When you ask the salesman how much it costs, he tells you "\' + $func(\'money\', \'string_price\', used_car[\'wrek_price\']) + \'" without hesitation.');
@@ -247,7 +252,7 @@ function enterInspectWreck(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: gs 'money', 'pay', used_car['wrek_price']
-      scene.actions([{ label: 'Continue', goto: ['autotraidF', 'buy_wreck'] }]);
+      qspGoto(s, 'autotraidF', 'buy_wreck');
     }
   } },
     ]);
@@ -262,15 +267,15 @@ function enterInspectWreck(s: GameState, scene: SceneBuilder): void {
 function enterBuyWreck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'car_funcs', 'add_car', 1);
   qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
-  if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = 3;
-  if (!(s as any).car) (s as any).car = {}; (s as any).car['wreck'] = 1;
-  if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).used_car ?? 0)?.['wrek_condition'];
+  ((s as any).car = (s as any).car ?? {})['fuel'] = 3;
+  ((s as any).car = (s as any).car ?? {})['wreck'] = 1;
+  ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).used_car ?? 0)?.['wrek_condition'];
   // TODO-QSP: dynamic text: You agree and before you know it, the car salesman and you have signed all the n...
   scene.text('You agree and before you know it, the car salesman and you have signed all the necessary documents. You pay \' + $func(\'money\', \'string_price\', used_car[\'wrek_price\']) + \', and the car is yours.');
   scene.text('Since it\'s crammed in between about a million other vehicles, the car salesman moves it outside near the yard\'s entrance for you… and that\'s it.');
   scene.text('If you want to get the car to a repair shop, you\'ll have to go there and have it towed.');
-  if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['wrek_condition'] = (-1);
-  if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['wrek_price'] = (-1);
+  ((s as any).used_car = (s as any).used_car ?? {})['wrek_condition'] = (-1);
+  ((s as any).used_car = (s as any).used_car ?? {})['wrek_price'] = (-1);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {

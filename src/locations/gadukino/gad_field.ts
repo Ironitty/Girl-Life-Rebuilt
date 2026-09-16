@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterField(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_field', 'field');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
@@ -33,13 +34,13 @@ function enterField(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A field outside the village.');
   if (((s as any).grigory_flower ?? 0) > 0  &&  ((s as any).grigory_flower ?? 0) < 10) {
-    scene.actions([{ label: 'Continue', goto: ['grigory', 'flower5'] }]);
+    qspGoto(s, 'grigory', 'flower5');
   }
   if (((s as any).flowerday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).grigory_flower ?? 0) === 10) {
-    scene.actions([{ label: 'Continue', goto: ['grigory', 'flower6'] }]);
+    qspGoto(s, 'grigory', 'flower6');
   }
   if (((s as any).flowerday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).grigory_flower ?? 0) > 10) {
-    scene.actions([{ label: 'Continue', goto: ['grigory', 'flower8'] }]);
+    qspGoto(s, 'grigory', 'flower8');
   }
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'field');
   // TODO-QSP: end
@@ -53,6 +54,7 @@ function enterField(s: GameState, scene: SceneBuilder): void {
 
 function enterHorse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_field', 'horse');
+  (s as any).location_type = 'public_outdoors';
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/horse.jpg');
@@ -67,20 +69,21 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
 
 function enterCow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_field', 'cow');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/cow.jpg');
   scene.text('The cattle herd is standing in the middle of the field. Some cows are munching on grass, and others just stare idly around.');
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
-    scene.text('<a href="exec: gt \'miroslava\', \'start\'">Mira</a> is standing next to you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027miroslava\\u0027, \\u0027start\\u0027); return false;">Mira</a> is standing next to you.');
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 0) {
     if (((s as any).hour ?? 0) === 19) {
       scene.actions([
         { label: 'Lead the cows home (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (1);
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/village/cow_field.jpg');
@@ -133,8 +136,8 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 5);
       (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
     }
-    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_herd_cattle_experience'] = 1;
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_herd_cattle_experience'] = 1;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/village/graze_cow\'+rand(1, 4)+\'.jpg');
@@ -155,7 +158,7 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
           qspCall(s, 'sweat', 'add', 5);
         }
-        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (1);
+        ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (1);
         qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
         qspCall(s, 'stat', '');
         scene.img('images/locations/gadukino/village/cow_go.jpg');
@@ -163,7 +166,8 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Herd the cows nearer to the river (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-  }, goto: ['gad_field', 'cow2'] },
+    qspGoto(s, 'gad_field', 'cow2');
+  } },
         ]);
       }
     }
@@ -174,6 +178,7 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
 
 function enterCow2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_field', 'cow2');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
@@ -181,7 +186,7 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/cow_river.jpg');
   scene.text('The cattle herd is near the river. Some cows are munching on grass, some drink from the river, and some just stand or lie around.');
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
-    scene.text('<a href="exec: gt \'miroslava\', \'start\'">Mira</a> is sitting next to you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027miroslava\\u0027, \\u0027start\\u0027); return false;">Mira</a> is sitting next to you.');
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
     // TODO-QSP: dynamic text: "You can go for a swim if you want, <<$pcs_nickname>>. I'll keep an eye on the h...
@@ -202,8 +207,8 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 5);
       (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
     }
-    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_herd_cattle_experience'] = 1;
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_herd_cattle_experience'] = 1;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/village/graze_cow\'+rand(1, 4)+\'.jpg');
@@ -224,7 +229,7 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'sweat', 'add', 5);
         (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
       }
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
       qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
       qspCall(s, 'stat', '');
       scene.img('images/locations/gadukino/village/cow_go.jpg');
@@ -232,7 +237,8 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Herd the cows nearer to the forest (0:30)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-  }, goto: ['gad_field', 'cow3'] },
+    qspGoto(s, 'gad_field', 'cow3');
+  } },
       ]);
     }
   }
@@ -242,6 +248,7 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
 
 function enterCow3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_field', 'cow3');
+  (s as any).location_type = 'secluded';
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
@@ -249,7 +256,7 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/cow_forest.jpg');
   scene.text('The cattle herd is grazing in a field near the forest.');
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
-    scene.text('<a href="exec: gt \'miroslava\', \'start\'">Mira</a> is sitting next to you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027miroslava\\u0027, \\u0027start\\u0027); return false;">Mira</a> is sitting next to you.');
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1) {
     if (((s as any).hour ?? 0) < 19) {
@@ -266,8 +273,8 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
       qspCall(s, 'sweat', 'add', 5);
     }
-    if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_herd_cattle_experience'] = 1;
-    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_herd_cattle_experience'] = 1;
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/village/graze_cow\'+rand(1, 4)+\'.jpg');
@@ -288,12 +295,12 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
         qspCall(s, 'sweat', 'add', 5);
       }
-      if (!(s as any).grandpaQW) (s as any).grandpaQW = {}; (s as any).grandpaQW['chore_herd_cattle'] = 0;
-      if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (2);
+      ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_herd_cattle'] = 0;
+      ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (2);
       qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
       qspCall(s, 'stat', '');
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 0;
-      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 0;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 0;
       scene.img('images/locations/gadukino/village/cow_go_home.jpg');
       scene.text('As sunset approaches, Grandpa says that it is late and time to drive the herd home. So you hurry, gather the cows, and guide them back towards the village.');
       scene.actions([
@@ -310,18 +317,18 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     qspCall(s, 'stat', '');
-    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 20 - ((s as any).hour ?? 0);
+    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 20 - ((s as any).hour ?? 0);
     return;
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
     if (((s as any).hour ?? 0) < 13) {
-      scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow'] }]);
+      qspGoto(s, 'gad_field', 'cow');
     } else {
       if (((s as any).hour ?? 0) < 16) {
-        scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow2'] }]);
+        qspGoto(s, 'gad_field', 'cow2');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow3'] }]);
+        qspGoto(s, 'gad_field', 'cow3');
       }
     }
   } },
@@ -345,7 +352,7 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sleep_simple', 'nap', 1);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -368,7 +375,7 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -387,7 +394,7 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -434,7 +441,7 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -460,7 +467,7 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Close the book', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },

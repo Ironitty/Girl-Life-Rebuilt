@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChrisSub(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).socialchg) (s as any).socialchg = {}; (s as any).socialchg['tChristina_day'] = ((s as any).daystart ?? 0);
+  ((s as any).socialchg = (s as any).socialchg ?? {})['tChristina_day'] = ((s as any).daystart ?? 0);
   if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       scene.img('images/characters/shared/headshots_main/big18.jpg');
@@ -36,11 +36,11 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
-    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
+    ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 4;
     (s as any).sauna_stripped = 0;
     qspCall(s, 'outfit', 'strip_all');
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['submit'] = 1;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 2;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['submit'] = 1;
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -64,7 +64,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You cry out when Christina suddenly kicks you hard in the crotch. Tears start running down your cheeks as you grab your crotch and roll onto your side with your legs squeezed closed. "Then say it! Say you\'re a little cunt and will do anything I say, anytime I say it!" she demands as she towers over you.');
     scene.text('"I\'m a little cunt… that will do anything you say… anytime you say it…" you croak out and Christina laughs mockingly. She seems to be enjoying herself a lot. She and Lina then walk off, leaving you lying on the beach, naked and in pain. Once they\'re gone, you dry your tears as best as you can before get up and get dressed.');
     if (((s as any).cheatVars ?? 0)?.['doormat_disabled'] === 0) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['doormat'] < 1) {
         qspCall(s, 'traits', 'level', 'doormat', 1);
       }
@@ -72,7 +72,8 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['pav_lake', ''] },
+    qspGoto(s, 'pav_lake', '');
+  } },
     ]);
   } },
     ]);
@@ -103,9 +104,9 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel the blood drain from your face as you realize she\'s serious, and will likely torment you for the rest of the school year. It will save your reputation though.');
     scene.text('"Will you tell Lariska she can hang out with me outside of school if I do?"');
     scene.text('"Sure, she can help train you…" she says evilly.');
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['submit'] = 1;
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
-    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['submit'] = 1;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 2;
+    ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 4;
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
@@ -118,7 +119,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You cry out when Christina suddenly kicks you hard in the crotch. Tears start running down your cheeks as you grab your crotch and roll onto your side with your legs squeezed closed. "Then say it! Say you\'re a little cunt and will do anything I say, anytime I say it!" she demands as she towers over you.');
     scene.text('"I\'m a little cunt… that will do anything you say… anytime you say it…" you croak out and Christina laughs mockingly. She seems to be enjoying herself a lot. She and Lina then walk off, leaving you lying on the beach, naked and in pain. Once they\'re gone, you dry your tears as best as you can before get up and get dressed.');
     if (((s as any).cheatVars ?? 0)?.['doormat_disabled'] === 0) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['doormat'] < 1) {
         qspCall(s, 'traits', 'level', 'doormat', 1);
       }
@@ -160,8 +161,8 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sauna_stripped = 0;
     qspCall(s, 'outfit', 'strip_all');
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['submit'] = 1;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 2;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['submit'] = 1;
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -186,7 +187,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m a little cunt… that will do anything you say… anytime you say it…" you croak out and Christina laughs mockingly. She seems to be enjoying herself a lot.');
     scene.text('"Oh, I\'m going to train you, but not to be a runner. You\'re going to be my new pet instead." She laughs before her and Lina walk off, leaving you lying on the beach, naked and in pain. Once they\'re gone, you dry your tears as best as you can, get up and get dressed.');
     if (((s as any).cheatVars ?? 0)?.['doormat_disabled'] === 0) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['doormat'] < 1) {
         qspCall(s, 'traits', 'level', 'doormat', 1);
       }
@@ -194,7 +195,8 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
-  }, goto: ['pav_lake', ''] },
+    qspGoto(s, 'pav_lake', '');
+  } },
     ]);
   } },
     ]);
@@ -225,8 +227,8 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel the blood drain from your face as you realize she\'s serious, and will likely torment you for the rest of the school year. It will save your reputation though.');
     scene.text('"Will you tell Lariska she can hang out with me outside of school if I do?"');
     scene.text('"Sure, she can help train you…" she says evilly.');
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['submit'] = 1;
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['submit'] = 1;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 2;
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
@@ -239,7 +241,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You cry out when Christina suddenly kicks you hard in the crotch. Tears start running down your cheeks as you grab your crotch and roll onto your side with your legs squeezed closed. "Then say it! Say you\'re a little cunt and will do anything I say, anytime I say it!" she demands as she towers over you.');
     scene.text('"I\'m a little cunt… that will do anything you say… anytime you say it…" you croak out and Christina laughs mockingly. She seems to be enjoying herself a lot. She and Lina then walk off, leaving you lying on the beach, naked and in pain. Once they\'re gone, you dry your tears as best as you can before get up and get dressed.');
     if (((s as any).cheatVars ?? 0)?.['doormat_disabled'] === 0) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['doormat'] < 1) {
         qspCall(s, 'traits', 'level', 'doormat', 1);
       }
@@ -273,34 +275,34 @@ function enterShowers(s: GameState, scene: SceneBuilder): void {
       scene.text('Getting right in your face she says, "Want me to fuck you up again? Do as you\'re told from now on, or else!"');
       scene.text('You quickly lay a hand on her arm. "O-Ok," is all you can manage to get out.');
     }
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 3;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 3;
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).christinaQW ?? 0)?.['subpath'] === 3) {
       if ((!((s as any).zverhumiliation ?? 0))) {
-        scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '0'] }]);
+        qspGoto(s, 'Zvereva_sub_1', '0');
       } else {
         if (((s as any).zverhumiliation ?? 0) === 1) {
-          scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '1'] }]);
+          qspGoto(s, 'Zvereva_sub_1', '1');
         } else {
           if (((s as any).zverhumiliation ?? 0) === 2) {
-            scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '2'] }]);
+            qspGoto(s, 'Zvereva_sub_1', '2');
           } else {
             if (((s as any).zverhumiliation ?? 0) === 3) {
-              scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '3'] }]);
+              qspGoto(s, 'Zvereva_sub_1', '3');
             } else {
               if (((s as any).zverhumiliation ?? 0) === 4) {
-                scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '4'] }]);
+                qspGoto(s, 'Zvereva_sub_1', '4');
               } else {
                 if (((s as any).zverhumiliation ?? 0) === 5) {
-                  scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '5'] }]);
+                  qspGoto(s, 'Zvereva_sub_1', '5');
                 } else {
                   if (((s as any).zverhumiliation ?? 0) === 6) {
-                    scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '6'] }]);
+                    qspGoto(s, 'Zvereva_sub_1', '6');
                   } else {
-                    scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', 'default'] }]);
+                    qspGoto(s, 'Zvereva_sub_1', 'default');
                   }
                 }
               }
@@ -315,30 +317,30 @@ function enterShowers(s: GameState, scene: SceneBuilder): void {
         (s as any).gKristinaZvtemp = Math.floor(Math.random() * 9) + 7;
       }
       if (((s as any).gKristinaZvtemp ?? 0) === 7  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-        scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '7'] }]);
+        qspGoto(s, 'Zvereva_sub_1', '7');
       } else {
         if (((s as any).gKristinaZvtemp ?? 0) === 8  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-          scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '8'] }]);
+          qspGoto(s, 'Zvereva_sub_1', '8');
         } else {
           if (((s as any).gKristinaZvtemp ?? 0) === 9  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-            scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '9'] }]);
+            qspGoto(s, 'Zvereva_sub_1', '9');
           } else {
             if (((s as any).gKristinaZvtemp ?? 0) === 10  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-              scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '10'] }]);
+              qspGoto(s, 'Zvereva_sub_1', '10');
             } else {
               if (((s as any).gKristinaZvtemp ?? 0) === 11  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-                scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '11'] }]);
+                qspGoto(s, 'Zvereva_sub_1', '11');
               } else {
                 if (((s as any).gKristinaZvtemp ?? 0) === 12  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-                  scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '12'] }]);
+                  qspGoto(s, 'Zvereva_sub_1', '12');
                 } else {
                   if (((s as any).gKristinaZvtemp ?? 0) === 13  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-                    scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '13'] }]);
+                    qspGoto(s, 'Zvereva_sub_1', '13');
                   } else {
                     if (((s as any).gKristinaZvtemp ?? 0) === 14) {
-                      scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '14'] }]);
+                      qspGoto(s, 'Zvereva_sub_1', '14');
                     } else {
-                      scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', 'default'] }]);
+                      qspGoto(s, 'Zvereva_sub_1', 'default');
                     }
                   }
                 }
@@ -561,6 +563,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
         scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "Bad bitch! Whores don\'t get to cum on my dildo!"');
       }
       scene.text('After a few minutes, Christina tells you to stop and wash the dildo before handing it back to her. With your tongue. You quickly lick your juices off and hand it back, and she then allows you to get changed. Some girls avoid your gaze, the blush on their faces telling you that they definitely enjoyed today\'s show.');
+      (s as any).orgasm_or = 'no';
       qspCall(s, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
       qspCall(s, 'arousal', 'end');
     }
@@ -589,6 +592,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
       scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "Bad bitch! Whores don\'t get to cum on my dildo!"');
     }
     scene.text('After a few minutes, Christina tells you to stop and to wash the dildo before giving it back to her. With your tongue. You quickly lick your juices off and hand it back, and then you\'re allowed to get changed.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(s, 'arousal', 'end');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinished(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -613,6 +617,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You ride the dildo as Christina gets ready for her shower, and you close your eyes and pretend there aren\'t a dozen girls watching while you continue your task. Christina notices and puts a halt to that. "Eyes open, bitch. I want you to look everyone in the eye when you ride it."');
     scene.text('You open your eyes as you\'re told and look all the girls in the eye, one by one. Some avoid your look, while others return it eagerly. One of them is even discretely rubbing her thighs together, clearly turned on by your show. After a while, she finally says you can stop.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(s, 'arousal', 'end');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinished(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -638,6 +643,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
       scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says: "You know the rules, bitch! Whores don\'t get to cum on my dildo!"');
     }
     scene.text('After a while, Christina stops whipping you with her towel and begins to get ready for her shower. As you try to move up she snarks "I didn\'t say you could stop, bitch. Keep going!" You mumble an apology and keep riding it until she finally says you can stop. You gently rub your thighs as you give her the dildo back, after licking it clean as always.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(s, 'arousal', 'end');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinished(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -663,6 +669,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Christina spends some time watching you, and asks the girls if they have any mor...
     scene.text(`Christina spends some time watching you, and asks the girls if they have any more fun ideas for next time. While some of them have grown to like the locker room entertainment, no one really suggests anything. "Hmm, sounds like it's all up to me then. ${((s as any).pcs_nickname || '')}, you can stop," she mutters.`);
     scene.text('When you pull the dildo out, your pussy gapes widely for a moment before slowly closing again.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(s, 'arousal', 'end');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinished(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -686,6 +693,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
       scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "The rules didn\'t change, bitch! Just because you don\'t have a dildo today doesn\'t mean you can cum all over my brush!"');
     }
     scene.text('After a few minutes Christina yanks her brush out of you and, noticing how wet the handle is, wipes it on your clothes leaving several wet strains on them. Then she holds it to your mouth with an expectant look on her face. You obediently open your mouth and take it in, sucking and licking the handle clean. After giving it an affirmatory sniff, she slips it back in her bag and heads into the showers without saying a word.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(s, 'arousal', 'end');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinished(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -711,6 +719,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
     scene.text('As you pick up the tempo your moans grow louder, and you can tell that your show is having an impact on more than a few girls in the room. Christina notices you looking and says "Not today, bitch. Maybe I\'ll allow one of them to play with you some day."');
     // TODO-QSP: dynamic text: After a while, Christina nods. "Alright, that's enough. You're turning into a gr...
     scene.text(`After a while, Christina nods. "Alright, that's enough. You're turning into a great little locker room whore, ${((s as any).pcs_nickname || '')}. Maybe I should take you to the guys' locker room next time."`);
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_finger', 10, 'sub', 'humiliation', 'masturbate');
     qspCall(s, 'arousal', 'end');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinished(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -738,6 +747,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
     scene.text('They disappear, and soon a second set of fingers does the same thing. They stay there, while more fingers run over your stretched pussy lips. One girl even tries to slip a finger in, alongside your wrist. You moan uncontrollably, and after about a minute Christina says: "Okay girls, fun\'s over."');
     scene.text('You feel the hands retreat, and a few seconds later the towel over your head is removed just as you pull your hand out of your vagina. It stays wide open for a while, longing to be filled again.');
     scene.text('"You\'re soaked… you liked that, didn\'t you bitch," she says, smirking. Before you can say anything, she heads into the showers. You look around the locker room to try and figure out who just touched you, but their faces don\'t give anything away as the girls proceed like nothing happened.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'vaginal_fist', 10, 'sub', 'humiliation');
     qspCall(s, 'arousal', 'vaginal_finger', (-10), 'sub', 'humiliation', 'lesbian');
     qspCall(s, 'arousal', 'end');
@@ -762,6 +772,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('As you happily grind your face into Christina\'s pussy, you don\'t even notice the enthusiastic cheers of the other girls anymore. After you find her clit and give it a few good licks, Christina\'s body begins to shiver and a few drops of squirt land on your face as she orgasms, moaning loudly.');
     scene.text('She takes a second to catch her breath, and slaps your hand away when you reach for your face. "No no, bitch. Leave that on there until I\'m gone." You obediently nod and lick your lips while you wait, making sure to not accidentally wipe her juices off your face until after she heads into the showers.');
+    (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'cuni_give', 20, 'sub', 'humiliation', 'lesbian');
     qspCall(s, 'arousal', 'end');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinished(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -773,7 +784,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
 function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   if (((s as any).christinaQW ?? 0)?.['subpath'] === 3) {
-    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 4;
+    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 4;
     scene.text('Christina grins as you walk up to her meekly, expecting your punishment. "Sorry bitch, I\'m busy right now. Meet me after school, we will continue this at my house."');
     scene.text('She quickly heads into the showers, and for a second you feel unsure as to what to do. The other girls in the room smirk at your behaviour; you\'d gotten so used to Christina\'s abuse that you have no idea how to posture yourself when she\'s not here. You\'re deeply embarrassed when you try to imagine what they must think of you, and you do your best to ignore them.');
   } else {
@@ -788,7 +799,9 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
 function enterFinished(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', goto: ['gschool_lessons4', 'postphys2'] },
+    { label: 'Continue', handler: (st: GameState) => {
+    qspGoto(s, 'gschool_lessons4', 'postphys2');
+  } },
   ]);
   scene.build();
 }

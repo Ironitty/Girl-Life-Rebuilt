@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -26,13 +26,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
-    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     (s as any).guy = ((s as any).guy ?? 0) + (((s as any).placerParameter ?? 0)?.['number_of_man']);
     (s as any).ciklkm = ((s as any).placerParameter ?? 0)?.['number_of_man'];
     qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'group');
     qspCall(s, 'stat', '');
-  }, goto: ['gopnik_house', 'rape'] },
+    qspGoto(s, 'gopnik_house', 'rape');
+  } },
   ]);
   scene.build();
 }
@@ -65,7 +66,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gopnik_house', 'rape'] },
     ]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['gopnik_house', 'rape_end'] }]);
+    qspGoto(s, 'gopnik_house', 'rape_end');
   }
   // TODO-QSP: end
   scene.build();

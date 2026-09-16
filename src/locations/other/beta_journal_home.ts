@@ -9,6 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_id = 'beta_journal_home';
+  (s as any).hot_link = ((s as any).loc_id ?? 0);
   qspCall(s, 'beta_journal', 'nav_construct');
   // TODO-QSP: gs $loc_id, 'nav_construct'
   if (((s as any).accessible_property ?? 0)?.['shared_apartment'] === 4) {

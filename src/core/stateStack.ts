@@ -14,6 +14,7 @@ export function popState(s: GameState): void {
   if (frame) {
     s.loc = frame.loc;
     s.locArg = frame.locArg;
+    (s as any).locArgs = [frame.locArg, '', ''];
     if (frame.prevLoc !== undefined) s.prevLoc = frame.prevLoc;
     if (frame.prevArg !== undefined) s.prevArg = frame.prevArg;
   }

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,13 +12,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['phase'] = ((s as any).locArgs?.[1] ?? 0);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['return_loc'] = ((s as any).loc ?? 0);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['return_arg'] = ((s as any).loc_arg ?? 0);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active_slot'] = 0;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['day_anchor'] = qspFunc(s, 'daily_routine', 'logical_day', ((s as any).locArgs?.[1] ?? 0));
-  scene.actions([{ label: 'Continue', goto: ['daily_routine', 'hub'] }]);
+  ((s as any).droutine = (s as any).droutine ?? {})['phase'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).droutine = (s as any).droutine ?? {})['return_loc'] = ((s as any).loc ?? 0);
+  ((s as any).droutine = (s as any).droutine ?? {})['return_arg'] = ((s as any).loc_arg ?? 0);
+  ((s as any).droutine = (s as any).droutine ?? {})['active'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['active_slot'] = 0;
+  ((s as any).droutine = (s as any).droutine ?? {})['day_anchor'] = qspFunc(s, 'daily_routine', 'logical_day', ((s as any).locArgs?.[1] ?? 0));
+  qspGoto(s, 'daily_routine', 'hub');
   // TODO-QSP: end
   scene.build();
 }
@@ -28,8 +28,8 @@ function enterFinishStep(s: GameState, scene: SceneBuilder): void {
     if (((s as any).droutine ?? 0)?.['active_slot'] > 0) {
       // TODO-QSP: droutine_done[droutine['active_slot']] = 1
     }
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active_slot'] = 0;
-    scene.actions([{ label: 'Continue', goto: ['daily_routine', 'hub'] }]);
+    ((s as any).droutine = (s as any).droutine ?? {})['active_slot'] = 0;
+    qspGoto(s, 'daily_routine', 'hub');
   } else {
     // TODO-QSP: gt $ARGS[1], $ARGS[2]
   }
@@ -38,13 +38,13 @@ function enterFinishStep(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHub(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active_slot'] = 0;
+  ((s as any).droutine = (s as any).droutine ?? {})['active_slot'] = 0;
   if (((s as any).droutine ?? 0)?.['phase'] === 'evening') {
     scene.text('<center><b>Evening routine</b></center>');
   } else {
     scene.text('<center><b>Morning routine</b></center>');
   }
-  (s as any).temp_drc = ((s as any).droutine ?? 0)?.['' + qspUntranslated(s, "droutine['phase']>", { location: "daily_routine" }) + '_count'];
+  (s as any).temp_drc = ((s as any).droutine ?? 0)?.['' + ((s as any).droutine ?? 0)?.['phase'] + '_count'];
   if (((s as any).temp_drc ?? 0) <= 0) {
     scene.text('This routine has no steps set up yet.');
     return;
@@ -54,19 +54,20 @@ function enterHub(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_dri = 0;
   (s as any).dr_any = 0;
+  (s as any).dr_unavail = '';
   // TODO-QSP: :droutine_hub_loop
   (s as any).temp_dri = ((s as any).temp_dri ?? 0) + (1);
   if (((s as any).temp_dri ?? 0) <= ((s as any).temp_drc ?? 0)) {
     if (((s as any).droutine_done ?? 0)?.[String((s as any).temp_dri ?? 0)] === 0) {
-      // TODO-QSP: $droutine['current_label'] = $droutine['<<$droutine[''phase'']>>_step_<<temp_dri>>']
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = '';
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = 1;
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 0;
+      ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = ((s as any).droutine ?? 0)?.['' + ((s as any).droutine ?? 0)?.['phase'] + '_step_' + ((s as any).temp_dri ?? 0) + ''];
+      ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = '';
+      ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = '';
+      ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = 1;
+      ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 0;
       // TODO-QSP: gs 'daily_routine', 'resolve', $droutine['<<$droutine[''phase'']>>_step_<<temp_dri>>']
       if (((s as any).droutine ?? 0)?.['can_run'] !== 0  &&  ((s as any).droutine ?? 0)?.['current_runner'] !== '') {
         if (((s as any).dr_any ?? 0) === 0  &&  ((s as any).droutine_settings ?? 0)?.['quick_routine'] === 1  &&  ((s as any).droutine ?? 0)?.['current_quick'] === 1) {
-          if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active_slot'] = ((s as any).temp_dri ?? 0);
+          ((s as any).droutine = (s as any).droutine ?? {})['active_slot'] = ((s as any).temp_dri ?? 0);
           return;
         }
         (s as any).dr_any = 1;
@@ -99,16 +100,16 @@ function enterHub(s: GameState, scene: SceneBuilder): void {
 
 function enterFinish(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: droutine_settings['<<$droutine[''phase'']>>_done_day'] = droutine['day_anchor']
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active'] = 0;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active_slot'] = 0;
+  ((s as any).droutine = (s as any).droutine ?? {})['active'] = 0;
+  ((s as any).droutine = (s as any).droutine ?? {})['active_slot'] = 0;
   // TODO-QSP: gt $droutine['return_loc'], $droutine['return_arg']
   // TODO-QSP: end
   scene.build();
 }
 
 function enterAbort(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active'] = 0;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active_slot'] = 0;
+  ((s as any).droutine = (s as any).droutine ?? {})['active'] = 0;
+  ((s as any).droutine = (s as any).droutine ?? {})['active_slot'] = 0;
   // TODO-QSP: end
   scene.build();
 }
@@ -130,12 +131,12 @@ function enterOfferHere(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).droutine ?? 0)?.['morning_count'] > 0  &&  qspFunc(s, 'daily_routine', 'phase_available', 'morning')) {
     scene.actions([
-      { label: 'Start your morning routine', goto: ['daily_routine', 'start', '\'morning\''] },
+      { label: 'Start your morning routine', goto: ['daily_routine', 'start', 'morning'] },
     ]);
   }
   if (((s as any).droutine ?? 0)?.['evening_count'] > 0  &&  qspFunc(s, 'daily_routine', 'phase_available', 'evening')) {
     scene.actions([
-      { label: 'Start your evening routine', goto: ['daily_routine', 'start', '\'evening\''] },
+      { label: 'Start your evening routine', goto: ['daily_routine', 'start', 'evening'] },
     ]);
   }
   // TODO-QSP: end
@@ -146,17 +147,17 @@ function enterSettingsDefaults(s: GameState, scene: SceneBuilder): void {
   if (((s as any).droutine_settings ?? 0)?.['init'] === 1) {
     // TODO-QSP: exit
   }
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['init'] = 1;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['disabled'] = 1;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['morning_use_wake'] = 1;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['morning_wake_min'] = 120;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['morning_use_abs'] = 0;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['morning_abs_start'] = 5;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['morning_abs_end'] = 11;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['evening_use_abs'] = 1;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['evening_abs_start'] = 20;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['evening_abs_end'] = 1;
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['makeup_level'] = 1;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['init'] = 1;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['disabled'] = 1;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['morning_use_wake'] = 1;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['morning_wake_min'] = 120;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['morning_use_abs'] = 0;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['morning_abs_start'] = 5;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['morning_abs_end'] = 11;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['evening_use_abs'] = 1;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['evening_abs_start'] = 20;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['evening_abs_end'] = 1;
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['makeup_level'] = 1;
   return;
   // TODO-QSP: end
   scene.build();
@@ -183,7 +184,9 @@ function enterInHourWindow(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLogicalDay(s: GameState, scene: SceneBuilder): void {
+  (s as any).dr_ld = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).dr_ld ?? 0) !== 'evening') {
+    (s as any).dr_ld = 'morning';
   }
   (s as any).result = ((s as any).daystart ?? 0);
   if (((s as any).droutine_settings ?? 0)[((s as any).dr_ld ?? 0) + '_use_abs'] === 1  &&  ((s as any).droutine_settings ?? 0)[((s as any).dr_ld ?? 0) + '_abs_end'] < ((s as any).droutine_settings ?? 0)[((s as any).dr_ld ?? 0) + '_abs_start']  &&  ((s as any).hour ?? 0) < ((s as any).droutine_settings ?? 0)[((s as any).dr_ld ?? 0) + '_abs_end']) {
@@ -197,7 +200,9 @@ function enterLogicalDay(s: GameState, scene: SceneBuilder): void {
 function enterPhaseAvailable(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).result = 0;
+  (s as any).dr_pa = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).dr_pa ?? 0) !== 'evening') {
+    (s as any).dr_pa = 'morning';
   }
   if (((s as any).droutine_settings ?? 0)[((s as any).dr_pa ?? 0) + '_done_day'] === qspFunc(s, 'daily_routine', 'logical_day', ((s as any).dr_pa ?? 0))) {
     return;
@@ -223,10 +228,10 @@ function enterVisitItemDone(s: GameState, scene: SceneBuilder): void {
     if (((s as any).droutine ?? 0)?.['active_slot'] > 0) {
       // TODO-QSP: droutine_done[droutine['active_slot']] = 1
     }
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['active_slot'] = 0;
-    scene.actions([{ label: 'Continue', goto: ['daily_routine', 'hub'] }]);
+    ((s as any).droutine = (s as any).droutine ?? {})['active_slot'] = 0;
+    qspGoto(s, 'daily_routine', 'hub');
   } else {
-    scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    dynamicGoto(s, 'prevLoc', 'prevArg');
   }
   // TODO-QSP: end
   scene.build();
@@ -239,474 +244,474 @@ function enterResolve(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStepTeeth(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Brush teeth';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'bteeth_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_bteeth');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'breath already fresh';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Brush teeth';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'bteeth_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_bteeth');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'breath already fresh';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepMouthwash(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Use mouthwash';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_bad\', \'d_mouthwash_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_bad', 'can_mouthwash');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no mouthwash on hand';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Use mouthwash';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_bad\', \'d_mouthwash_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_bad', 'can_mouthwash');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no mouthwash on hand';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepShower(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Take a shower';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'shower_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_shower');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Take a shower';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'shower_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_shower');
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = '';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepBath(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Soak in the bath';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'bath_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_bath');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Soak in the bath';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'bath_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_bath');
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = '';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepQuickwash(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Quick wash';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'quickwash_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_quickwash');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'nothing to wash off';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Quick wash';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'quickwash_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_quickwash');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'nothing to wash off';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepDeodorant(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Apply deodorant';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'deodorant_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_deodorant');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no deodorant or already applied';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Apply deodorant';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'deodorant_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_deodorant');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no deodorant or already applied';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepSkincare(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Skin care';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'skincare_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_skincare');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no skin care products';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Skin care';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'skincare_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_skincare');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no skin care products';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepShave(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Shave';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'brit\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_shave');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'nothing to shave';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Shave';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'brit\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_shave');
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'nothing to shave';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepEnema(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Use an enema';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'enema_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_enema');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no enema kit or already done today';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Use an enema';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'enema_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_enema');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no enema kit or already done today';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepTampon(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Change tampon or pad';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'tampon_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_tampon');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no period product needed';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Change tampon or pad';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'tampon_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_tampon');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no period product needed';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepPeeprivate(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Use the toilet';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'prvt_pee_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_prvt_pee');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no need yet';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Use the toilet';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'prvt_pee_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_prvt_pee');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no need yet';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepRemovemakeup(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Remove makeup';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'removemakeup_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_removemakeup');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'not wearing makeup';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Remove makeup';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'removemakeup_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_removemakeup');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'not wearing makeup';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepRemovelashes(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Remove false lashes';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Hygiene';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'removelashes_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_removelashes');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no false lashes';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Remove false lashes';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Hygiene';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'removelashes_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_removelashes');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no false lashes';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepButtplugIn(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Insert butt plug';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Body';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'buttplug_in_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_buttplug_in');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no plug or already in';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Insert butt plug';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Body';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'buttplug_in_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_buttplug_in');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no plug or already in';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepButtplugOut(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Remove butt plug';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Body';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'buttplug_out_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_buttplug_out');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'not wearing one';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Remove butt plug';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Body';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'buttplug_out_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_buttplug_out');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'not wearing one';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepVibeIn(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Insert vibrator';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Body';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'vibe_in_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_vibe_in');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'unavailable';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Insert vibrator';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Body';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'vibe_in_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_vibe_in');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'unavailable';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepVibeOut(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Remove vibrator';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Body';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_van\', \'vibe_out_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_van', 'can_vibe_out');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'not wearing one';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Remove vibrator';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Body';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_van\', \'vibe_out_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_van', 'can_vibe_out');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'not wearing one';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepApplyMakeup(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Apply makeup';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Appearance';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'mirror\', \'apply_makeup_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = ((((s as any).droutine_settings ?? 0)?.['makeup_level'] === 4) ? ((((s as any).mc_inventory ?? 0)?.['cosmetics'] >= 3  &&  ((s as any).pcs_makeup ?? 0) !== 0)) : ((((s as any).droutine_settings ?? 0)?.['makeup_level'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] >= Math.min(((s as any).droutine_settings ?? 0)?.['makeup_level'], 3)  &&  ((s as any).pcs_makeup ?? 0) < ((s as any).droutine_settings ?? 0)?.['makeup_level'] + 1)));
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no cosmetics or already applied';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Apply makeup';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Appearance';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'mirror\', \'apply_makeup_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = ((((s as any).droutine_settings ?? 0)?.['makeup_level'] === 4) ? ((((s as any).mc_inventory ?? 0)?.['cosmetics'] >= 3  &&  ((s as any).pcs_makeup ?? 0) !== 0)) : ((((s as any).droutine_settings ?? 0)?.['makeup_level'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] >= Math.min(((s as any).droutine_settings ?? 0)?.['makeup_level'], 3)  &&  ((s as any).pcs_makeup ?? 0) < ((s as any).droutine_settings ?? 0)?.['makeup_level'] + 1)));
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no cosmetics or already applied';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepBrushHair(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Brush hair';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Appearance';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'mirror\', \'brush_hair_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Brush hair';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Appearance';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'mirror\', \'brush_hair_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = '';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepLipbalm(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Apply lip balm';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Appearance';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'mirror\', \'lipbalm_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no lip balm or already applied';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Apply lip balm';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Appearance';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'mirror\', \'lipbalm_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0);
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no lip balm or already applied';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepApplyLashes(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Apply false lashes';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Appearance';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'mirror\', \'apply_lashes_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Apply false lashes';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Appearance';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'mirror\', \'apply_lashes_do\'';
   if (((s as any).droutine_settings ?? 0)?.['lashes_type'] === 1) {
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['eyelash_fake'] >= 1  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < 3);
+    ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).mc_inventory ?? 0)?.['eyelash_fake'] >= 1  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < 3);
   } else {
     if (((s as any).droutine_settings ?? 0)?.['lashes_type'] === 2) {
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['eyelash_mink'] >= 1  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < 4);
+      ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).mc_inventory ?? 0)?.['eyelash_mink'] >= 1  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < 4);
     } else {
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = 0;
+      ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = 0;
     }
   }
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no lashes available or already applied';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no lashes available or already applied';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepBirthControl(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Take birth-control pill';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Health';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bathroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'din_bad\', \'quick_takepill_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = qspFunc(s, 'din_bad', 'can_quick_takepill');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no pill due';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Take birth-control pill';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Health';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bathroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'din_bad\', \'quick_takepill_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = qspFunc(s, 'din_bad', 'can_quick_takepill');
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no pill due';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepOutfitSchool(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Put on school uniform';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Clothing';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bedroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'wardrobe\', \'default_school_wear\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Put on school uniform';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Clothing';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bedroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'wardrobe\', \'default_school_wear\'';
   qspCall(s, 'wardrobe', 'is_school');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).default_school_number ?? 0) !== 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).default_school_number ?? 0)[2] < 5);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'not a school day, no uniform set, or already wearing it';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).default_school_number ?? 0) !== 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).default_school_number ?? 0)[2] < 5);
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'not a school day, no uniform set, or already wearing it';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepOutfitSport(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Put on sportswear';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Clothing';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bedroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'wardrobe\', \'default_sport_wear\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Put on sportswear';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Clothing';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bedroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'wardrobe\', \'default_sport_wear\'';
   qspCall(s, 'wardrobe', 'is_sport');
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).default_sport_number ?? 0) !== 0  &&  ((s as any).default_sport_number ?? 0)[2] < 5);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no default sportswear set, or already wearing it';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).default_sport_number ?? 0) !== 0  &&  ((s as any).default_sport_number ?? 0)[2] < 5);
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no default sportswear set, or already wearing it';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepOutfitRestore(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Get dressed';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Clothing';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bedroom';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gs \'outfit\', \'restore\', \'bed\' & gs \'stat\' & gs \'daily_routine\', \'finish_step\', $loc, $loc_arg';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Get dressed';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Clothing';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bedroom';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gs \'outfit\', \'restore\', \'bed\' & gs \'stat\' & gs \'daily_routine\', \'finish_step\', $loc, $loc_arg';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = '';
   // TODO-QSP: end
   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(21))) === 'step_outfit_wardrobe_') {
-    (s as any).temp_wslot = 0;
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = ((((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_wslot ?? 0)] !== '') ? (((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_wslot ?? 0)]) : ('Outfit ' + qspUntranslated(s, "temp_wslot>", { location: "daily_routine" }) + ''));
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Clothing';
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'bedroom';
-    // TODO-QSP: $droutine['current_runner'] = "gt 'wardrobe', 'default_wardrobe_wear', <<temp_wslot>>"
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).defclothingnumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defbranumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defpantynumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defshoenumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] > 0);
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'outfit slot is empty or unavailable';
+    (s as any).temp_wslot = parseFloat(0);
+    ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = ((((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_wslot ?? 0)] !== '') ? (((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_wslot ?? 0)]) : ('Outfit ' + ((s as any).temp_wslot ?? 0) + ''));
+    ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Clothing';
+    ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+    ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'bedroom';
+    ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'wardrobe\', \'default_wardrobe_wear\', ' + ((s as any).temp_wslot ?? 0) + '';
+    ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).defclothingnumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defbranumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defpantynumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defshoenumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] > 0);
+    ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+    ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'outfit slot is empty or unavailable';
   }
   scene.build();
 }
 
 function enterStepWater(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Drink water';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'visit';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'driwater_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Drink water';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'visit';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'driwater_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = '';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepTea(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Have tea';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'visit';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'dritea_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Have tea';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'visit';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'dritea_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = '';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepVitamin(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Take a vitamin';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'visit';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'vitamin_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['vitamins'] > 0  &&  ((s as any).vitaminday ?? 0) !== ((s as any).daystart ?? 0));
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no vitamins or already taken today';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Take a vitamin';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'visit';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'vitamin_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).mc_inventory ?? 0)?.['vitamins'] > 0  &&  ((s as any).vitaminday ?? 0) !== ((s as any).daystart ?? 0));
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no vitamins or already taken today';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepFillBottle(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Refill water bottle';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'visit';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'fill_bottle_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no water bottle';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Refill water bottle';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'visit';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'fill_bottle_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1);
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no water bottle';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepSandwich(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Make a sandwich';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'visit';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'sandwich_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).bag ?? 0) > 0  &&  ((s as any).mc_inventory ?? 0)?.['food_sandwich'] === 0);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no bag or already have a sandwich to go';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Make a sandwich';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'visit';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'sandwich_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).bag ?? 0) > 0  &&  ((s as any).mc_inventory ?? 0)?.['food_sandwich'] === 0);
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no bag or already have a sandwich to go';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepSnack(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Grab a snack';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'visit';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'edasnack_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Grab a snack';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'visit';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'edasnack_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = '';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepLeftovers(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Eat diet meal';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'visit';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'edaD_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no diet meals left';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Eat diet meal';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'visit';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'edaD_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0);
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no diet meals left';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepMedicine(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Take antibiotics';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'visit';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'lekarstvo_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['antibiotics'] > 0  &&  ((s as any).sick ?? 0) > 0  &&  ((s as any).lekarday ?? 0) !== ((s as any).daystart ?? 0));
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no antibiotics, not sick, or already taken today';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Take antibiotics';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'visit';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'lekarstvo_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).mc_inventory ?? 0)?.['antibiotics'] > 0  &&  ((s as any).sick ?? 0) > 0  &&  ((s as any).lekarday ?? 0) !== ((s as any).daystart ?? 0));
+  ((s as any).droutine = (s as any).droutine ?? {})['current_quick'] = 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no antibiotics, not sick, or already taken today';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepCookMeal(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Cook a meal';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'cook_meal_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  (!((s as any).edahot ?? 0)));
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'no food supplies or a meal is already prepared';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Cook a meal';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'cook_meal_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  (!((s as any).edahot ?? 0)));
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'no food supplies or a meal is already prepared';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterStepEatMeal(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = 'Eat a meal';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_style'] = 'chain';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_room'] = 'kitchen';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'eat_meal_do\'';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['can_run'] = (((s as any).edahot ?? 0) > 0  ||  ((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  ||  ((s as any).mc_inventory ?? 0)?.['food_diet'] > 0  ||  qspFunc(s, 'daily_routine', 'home_has_food'));
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = 'nothing to eat';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = 'Eat a meal';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_category'] = 'Kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_style'] = 'chain';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_room'] = 'kitchen';
+  ((s as any).droutine = (s as any).droutine ?? {})['current_runner'] = 'gt \'kit_din\', \'eat_meal_do\'';
+  ((s as any).droutine = (s as any).droutine ?? {})['can_run'] = (((s as any).edahot ?? 0) > 0  ||  ((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  ||  ((s as any).mc_inventory ?? 0)?.['food_diet'] > 0  ||  qspFunc(s, 'daily_routine', 'home_has_food'));
+  ((s as any).droutine = (s as any).droutine ?? {})['skip_reason'] = 'nothing to eat';
   // TODO-QSP: end
   scene.build();
 }
@@ -721,86 +726,86 @@ function enterHomeHasFood(s: GameState, scene: SceneBuilder): void {
 function enterCatalogBuild(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_dci = 0;
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'teeth';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'teeth';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'mouthwash';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'mouthwash';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'shower';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'shower';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'bath';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'bath';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'quickwash';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'quickwash';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'deodorant';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'deodorant';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'skincare';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'skincare';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'shave';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'shave';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'enema';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'enema';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'tampon';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'tampon';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'peeprivate';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'peeprivate';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'removemakeup';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'removemakeup';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'removelashes';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'removelashes';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'buttplug_in';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'buttplug_in';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'buttplug_out';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'buttplug_out';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'vibe_in';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'vibe_in';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'vibe_out';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'vibe_out';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'apply_makeup';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'apply_makeup';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'brush_hair';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'brush_hair';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'lipbalm';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'lipbalm';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'apply_lashes';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'apply_lashes';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'birth_control';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'birth_control';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_school';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_school';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_sport';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_sport';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_restore';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_restore';
   (s as any).temp_dci_ws = 1;
   // TODO-QSP: :droutine_cat_wloop
   if (((s as any).temp_dci_ws ?? 0) <= 60) {
     if (((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] !== ''  &&  (((s as any).defclothingnumber ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] + ((s as any).defbranumber ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] + ((s as any).defpantynumber ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] + ((s as any).defshoenumber ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] > 0)) {
       (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-      if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_wardrobe_' + qspUntranslated(s, "temp_dci_ws>", { location: "daily_routine" }) + '';
+      ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_wardrobe_' + ((s as any).temp_dci_ws ?? 0) + '';
     }
     (s as any).temp_dci_ws = ((s as any).temp_dci_ws ?? 0) + (1);
     // TODO-QSP: jump 'droutine_cat_wloop'
   }
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'cook_meal';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'cook_meal';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'eat_meal';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'eat_meal';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'snack';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'snack';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'leftovers';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'leftovers';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'water';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'water';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'tea';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'tea';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'vitamin';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'vitamin';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'fill_bottle';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'fill_bottle';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'sandwich';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'sandwich';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'medicine';
-  if (!(s as any).droutine_catalog) (s as any).droutine_catalog = {}; (s as any).droutine_catalog['count'] = ((s as any).temp_dci ?? 0);
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['id_' + String((s as any).temp_dci || '') + ''] = 'medicine';
+  ((s as any).droutine_catalog = (s as any).droutine_catalog ?? {})['count'] = ((s as any).temp_dci ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -808,11 +813,11 @@ function enterCatalogBuild(s: GameState, scene: SceneBuilder): void {
 function enterManage(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locArgs?.[1] ?? 0) !== '') {
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['ui_return_loc'] = ((s as any).locArgs?.[1] ?? 0);
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['ui_return_arg'] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).droutine = (s as any).droutine ?? {})['ui_return_loc'] = ((s as any).locArgs?.[1] ?? 0);
+    ((s as any).droutine = (s as any).droutine ?? {})['ui_return_arg'] = ((s as any).locArgs?.[2] ?? 0);
   } else {
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['ui_return_loc'] = '';
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['ui_return_arg'] = '';
+    ((s as any).droutine = (s as any).droutine ?? {})['ui_return_loc'] = '';
+    ((s as any).droutine = (s as any).droutine ?? {})['ui_return_arg'] = '';
   }
   scene.text('<center><b>Daily routine</b></center>');
   scene.text('Set up the steps that play in order each morning and evening. Steps whose conditions are not met that day are skipped automatically.');
@@ -848,14 +853,14 @@ function enterManage(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Done', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Edit morning routine', goto: ['daily_routine', 'manage_phase', '\'morning\''] },
-    { label: 'Edit evening routine', goto: ['daily_routine', 'manage_phase', '\'evening\''] },
+    { label: 'Edit morning routine', goto: ['daily_routine', 'manage_phase', 'morning'] },
+    { label: 'Edit evening routine', goto: ['daily_routine', 'manage_phase', 'evening'] },
     { label: 'Availability and timing', goto: ['daily_routine', 'settings'] },
   ]);
   scene.build();
@@ -980,15 +985,15 @@ function enterStepPos(s: GameState, scene: SceneBuilder): void {
 
 function enterRemoveStepCore(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_drc = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_count'];
-  (s as any).temp_dri = qspUntranslated(s, "ARGS[2]", { location: "daily_routine" });
+  (s as any).temp_dri = ((s as any).locArgs?.[2] ?? 0);
   // TODO-QSP: :droutine_rsc_loop
   if (((s as any).temp_dri ?? 0) < ((s as any).temp_drc ?? 0)) {
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) + 1)];
+    ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) + 1)];
     (s as any).temp_dri = ((s as any).temp_dri ?? 0) + (1);
     // TODO-QSP: jump 'droutine_rsc_loop'
   }
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = '';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0) - 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0) - 1;
   // TODO-QSP: end
   scene.build();
 }
@@ -1008,8 +1013,8 @@ function enterToggleStep(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_tp ?? 0)]; enterRemoveStepCore(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     (s as any).temp_drc = ((s as any).droutine ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_count'] + 1;
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
+    ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
   // TODO-QSP: end
@@ -1030,21 +1035,21 @@ function enterSetBath(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) !== 'none') {
     if (((s as any).temp_sb_pos ?? 0) > 0) {
       (s as any).temp_sb_n = ((s as any).droutine ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_count'] + 1;
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_sb_n ?? 0);
+      ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_sb_n ?? 0);
       (s as any).temp_sb_i = ((s as any).temp_sb_n ?? 0);
       // TODO-QSP: :set_bath_ins_loop
       if (((s as any).temp_sb_i ?? 0) > ((s as any).temp_sb_pos ?? 0)) {
-        if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_sb_i || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_sb_i ?? 0) - 1)];
+        ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_sb_i || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_sb_i ?? 0) - 1)];
         (s as any).temp_sb_i = ((s as any).temp_sb_i ?? 0) - (1);
         // TODO-QSP: jump 'set_bath_ins_loop'
       }
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_sb_pos || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
+      ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_sb_pos || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
       // TODO-QSP: killvar 'temp_sb_n'
       // TODO-QSP: killvar 'temp_sb_i'
     } else {
       (s as any).temp_drc = ((s as any).droutine ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_count'] + 1;
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
+      ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
+      ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
     }
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
@@ -1054,14 +1059,14 @@ function enterSetBath(s: GameState, scene: SceneBuilder): void {
 
 function enterSetMakeupOpt(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['makeup_level'] = qspUntranslated(s, "ARGS[2]", { location: "daily_routine" });
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['makeup_level'] = ((s as any).locArgs?.[2] ?? 0);
   if ((!((s as any).locArgs?.[2] ?? 0))) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'apply_makeup']; enterRemoveStepId(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'apply_makeup') === 0) {
       (s as any).temp_drc = ((s as any).droutine ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_count'] + 1;
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = 'apply_makeup';
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
+      ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = 'apply_makeup';
+      ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
     }
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
@@ -1071,14 +1076,14 @@ function enterSetMakeupOpt(s: GameState, scene: SceneBuilder): void {
 
 function enterSetLashesOpt(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['lashes_type'] = qspUntranslated(s, "ARGS[2]", { location: "daily_routine" });
+  ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['lashes_type'] = ((s as any).locArgs?.[2] ?? 0);
   if ((!((s as any).locArgs?.[2] ?? 0))) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'apply_lashes']; enterRemoveStepId(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'apply_lashes') === 0) {
       (s as any).temp_drc = ((s as any).droutine ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_count'] + 1;
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = 'apply_lashes';
-      if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
+      ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = 'apply_lashes';
+      ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
     }
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
@@ -1087,12 +1092,17 @@ function enterSetLashesOpt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBathPicker(s: GameState, scene: SceneBuilder): void {
+  (s as any).dr_bp = 'none';
   if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'shower') > 0) {
+    (s as any).dr_bp = 'shower';
   }
   if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'bath') > 0) {
+    (s as any).dr_bp = 'bath';
   }
   if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'quickwash') > 0) {
+    (s as any).dr_bp = 'quickwash';
   }
+  (s as any).dr_pick = ((((s as any).dr_bp ?? 0) === 'none') ? ('<b>none</b>') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027set_bath\\u0027, \\u0027' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027); return false;">none</a>'));
   // TODO-QSP: $dr_pick += '&nbsp;&nbsp;' + iif($dr_bp = 'shower', '<b>Shower</b>', '<a href="exec:gt ''daily_routi...
   // TODO-QSP: $dr_pick += '&nbsp;&nbsp;' + iif($dr_bp = 'bath', '<b>Soak in bath</b>', '<a href="exec:gt ''daily_r...
   // TODO-QSP: $dr_pick += '&nbsp;&nbsp;' + iif($dr_bp = 'quickwash', '<b>Quick wash</b>', '<a href="exec:gt ''dail...
@@ -1103,6 +1113,7 @@ function enterBathPicker(s: GameState, scene: SceneBuilder): void {
 function enterMakeupPicker(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).temp_mkl = ((s as any).droutine_settings ?? 0)?.['makeup_level'];
+  (s as any).dr_pick = (((!((s as any).temp_mkl ?? 0))) ? ('<b>none</b>') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027set_makeup_opt\\u0027, \\u0027' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027); return false;">none</a>'));
   // TODO-QSP: $dr_pick += '&nbsp;&nbsp;' + iif(temp_mkl = 1, '<b>light</b>', '<a href="exec:gt ''daily_routine'', ...
   // TODO-QSP: $dr_pick += '&nbsp;&nbsp;' + iif(temp_mkl = 2, '<b>vibrant</b>', '<a href="exec:gt ''daily_routine''...
   // TODO-QSP: $dr_pick += '&nbsp;&nbsp;' + iif(temp_mkl = 3, '<b>thick</b>', '<a href="exec:gt ''daily_routine'', ...
@@ -1116,6 +1127,7 @@ function enterMakeupPicker(s: GameState, scene: SceneBuilder): void {
 function enterLashesPicker(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).temp_lt = ((s as any).droutine_settings ?? 0)?.['lashes_type'];
+  (s as any).dr_pick = (((!((s as any).temp_lt ?? 0))) ? ('<b>none</b>') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027set_lashes_opt\\u0027, \\u0027' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027); return false;">none</a>'));
   // TODO-QSP: $dr_pick += '&nbsp;&nbsp;' + iif(temp_lt = 1, '<b>fake</b>', '<a href="exec:gt ''daily_routine'', ''...
   // TODO-QSP: $dr_pick += '&nbsp;&nbsp;' + iif(temp_lt = 2, '<b>mink</b>', '<a href="exec:gt ''daily_routine'', ''...
   // TODO-QSP: end
@@ -1125,7 +1137,7 @@ function enterLashesPicker(s: GameState, scene: SceneBuilder): void {
 function enterAddMakeup(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).droutine_settings ?? 0)?.['makeup_level'] <= 0) {
-    if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['makeup_level'] = 1;
+    ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['makeup_level'] = 1;
   }
   // TODO-QSP: gt 'daily_routine', 'set_makeup_opt', $ARGS[1], droutine_settings['makeup_level']
   // TODO-QSP: end
@@ -1135,7 +1147,7 @@ function enterAddMakeup(s: GameState, scene: SceneBuilder): void {
 function enterAddLashes(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettingsDefaults(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).droutine_settings ?? 0)?.['lashes_type'] <= 0) {
-    if (!(s as any).droutine_settings) (s as any).droutine_settings = {}; (s as any).droutine_settings['lashes_type'] = 1;
+    ((s as any).droutine_settings = (s as any).droutine_settings ?? {})['lashes_type'] = 1;
   }
   // TODO-QSP: gt 'daily_routine', 'set_lashes_opt', $ARGS[1], droutine_settings['lashes_type']
   // TODO-QSP: end
@@ -1143,7 +1155,9 @@ function enterAddLashes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterManagePhase(s: GameState, scene: SceneBuilder): void {
+  (s as any).dr_ph = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).dr_ph ?? 0) !== 'evening') {
+    (s as any).dr_ph = 'morning';
   }
   if (((s as any).dr_ph ?? 0) === 'evening') {
     scene.text('<center><b>Evening routine</b></center>');
@@ -1161,7 +1175,9 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :droutine_mp_orderloop
     (s as any).temp_dpi = ((s as any).temp_dpi ?? 0) + (1);
     if (((s as any).temp_dpi ?? 0) <= ((s as any).droutine ?? 0)[((s as any).dr_ph ?? 0) + '_count']) {
+      (s as any).dr_sid = ((s as any).droutine ?? 0)?.[String(((s as any).dr_ph ?? 0)) + '_step_' + String(((s as any).temp_dpi ?? 0))];
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).dr_sid ?? 0)]; enterResolve(s, scene); (s as any).locArgs = __savedLocArgs; }
+      (s as any).dr_col2 = '';
       if (((s as any).temp_dpi ?? 0) > 1) {
         // TODO-QSP: $dr_col2 += '<a href="exec:gt ''daily_routine'', ''move_up'', ''<<$dr_ph>>'', <<temp_dpi>>">[↑]</a>&...
       }
@@ -1170,17 +1186,21 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
       }
       // TODO-QSP: $dr_col2 += '&nbsp;&nbsp;'
       if (((s as any).dr_sid ?? 0) === 'shower'  ||  ((s as any).dr_sid ?? 0) === 'bath'  ||  ((s as any).dr_sid ?? 0) === 'quickwash') {
+        (s as any).dr_col1 = '<b>Bathing</b>';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).dr_ph ?? 0)]; enterBathPicker(s, scene); (s as any).locArgs = __savedLocArgs; }
         // TODO-QSP: $dr_col2 += $dr_pick
       } else {
         if (((s as any).dr_sid ?? 0) === 'apply_makeup') {
+          (s as any).dr_col1 = '<b>Apply makeup</b>';
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).dr_ph ?? 0)]; enterMakeupPicker(s, scene); (s as any).locArgs = __savedLocArgs; }
           // TODO-QSP: $dr_col2 += $dr_pick
         } else {
           if (((s as any).dr_sid ?? 0) === 'apply_lashes') {
+            (s as any).dr_col1 = '<b>Apply false lashes</b>';
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).dr_ph ?? 0)]; enterLashesPicker(s, scene); (s as any).locArgs = __savedLocArgs; }
             // TODO-QSP: $dr_col2 += $dr_pick
           } else {
+            (s as any).dr_col1 = '<b>' + ((s as any).droutine ?? 0)?.['current_label'] + '</b>';
             // TODO-QSP: $dr_col2 += '<a href="exec:gt ''daily_routine'', ''toggle_step'', ''<<$dr_ph>>'', ''<<$dr_sid>>''">[...
           }
         }
@@ -1195,16 +1215,20 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<b>Add steps</b>');
   scene.text('<table width=100% cellpadding=4 cellspacing=0>');
+  (s as any).dr_prevcat = '';
   (s as any).dr_bath_shown = 0;
   (s as any).temp_dci = 0;
   // TODO-QSP: :droutine_mp_addloop
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
   if (((s as any).temp_dci ?? 0) <= ((s as any).droutine_catalog ?? 0)?.['count']) {
+    (s as any).dr_sid = ((s as any).droutine_catalog ?? 0)?.['id_' + String(((s as any).temp_dci ?? 0))];
     if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).dr_ph ?? 0), ((s as any).dr_sid ?? 0)) > 0) {
       // TODO-QSP: jump 'droutine_mp_addloop'
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).dr_sid ?? 0)]; enterResolve(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).dr_show = 1;
+    (s as any).dr_col1 = '';
+    (s as any).dr_col2 = '';
     if (((s as any).dr_sid ?? 0) === 'shower'  ||  ((s as any).dr_sid ?? 0) === 'bath'  ||  ((s as any).dr_sid ?? 0) === 'quickwash') {
       if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).dr_ph ?? 0), 'shower') > 0  ||  qspFunc(s, 'daily_routine', 'step_pos', ((s as any).dr_ph ?? 0), 'bath') > 0  ||  qspFunc(s, 'daily_routine', 'step_pos', ((s as any).dr_ph ?? 0), 'quickwash') > 0) {
         (s as any).dr_show = 0;
@@ -1213,17 +1237,27 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
           (s as any).dr_show = 0;
         } else {
           (s as any).dr_bath_shown = 1;
+          (s as any).dr_col1 = 'Bathing';
+          (s as any).dr_col2 = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027set_bath\\u0027, \\u0027' + ((s as any).dr_ph ?? 0) + '\\u0027); return false;">Shower</a>&nbsp;&nbsp;<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027set_bath\\u0027, \\u0027' + ((s as any).dr_ph ?? 0) + '\\u0027); return false;">Soak in bath</a>&nbsp;&nbsp;<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027set_bath\\u0027, \\u0027' + ((s as any).dr_ph ?? 0) + '\\u0027); return false;">Quick wash</a>';
         }
       }
     } else {
       if (((s as any).dr_sid ?? 0) === 'apply_makeup') {
+        (s as any).dr_col1 = 'Apply makeup';
+        (s as any).dr_col2 = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027add_makeup\\u0027, \\u0027' + ((s as any).dr_ph ?? 0) + '\\u0027); return false;">[add]</a>';
       } else {
         if (((s as any).dr_sid ?? 0) === 'apply_lashes') {
+          (s as any).dr_col1 = 'Apply false lashes';
+          (s as any).dr_col2 = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027add_lashes\\u0027, \\u0027' + ((s as any).dr_ph ?? 0) + '\\u0027); return false;">[add]</a>';
+        } else {
+          (s as any).dr_col1 = '' + ((s as any).droutine ?? 0)?.['current_label'] + '';
+          (s as any).dr_col2 = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027daily_routine\\u0027, \\u0027toggle_step\\u0027, \\u0027' + ((s as any).dr_ph ?? 0) + '\\u0027); return false;">[add]</a>';
         }
       }
     }
     if (((s as any).dr_show ?? 0) === 1) {
       if (((s as any).droutine ?? 0)?.['current_category'] !== ((s as any).dr_prevcat ?? 0)) {
+        (s as any).dr_prevcat = ((s as any).droutine ?? 0)?.['current_category'];
         // TODO-QSP: dynamic text: <tr><td colspan=2 style="padding-top:10px;border-bottom:1px solid #555"><b><<$dr...
         scene.text(`<tr><td colspan=2 style="padding-top:10px;border-bottom:1px solid #555"><b>${((s as any).dr_prevcat || '')}</b></td></tr>`);
       }
@@ -1250,8 +1284,8 @@ function enterAddStep(s: GameState, scene: SceneBuilder): void {
 
 function enterAddCommit(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_drc = ((s as any).droutine ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_count'] + 1;
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
+  ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
   // TODO-QSP: end
   scene.build();
@@ -1259,25 +1293,26 @@ function enterAddCommit(s: GameState, scene: SceneBuilder): void {
 
 function enterRemoveStep(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_drc = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_count'];
-  (s as any).temp_dri = qspUntranslated(s, "ARGS[2]", { location: "daily_routine" });
+  (s as any).temp_dri = ((s as any).locArgs?.[2] ?? 0);
   // TODO-QSP: :droutine_remove_loop
   if (((s as any).temp_dri ?? 0) < ((s as any).temp_drc ?? 0)) {
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) + 1)];
+    ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) + 1)];
     (s as any).temp_dri = ((s as any).temp_dri ?? 0) + (1);
     // TODO-QSP: jump 'droutine_remove_loop'
   }
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = '';
-  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0) - 1;
+  ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = '';
+  ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0) - 1;
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
   // TODO-QSP: end
   scene.build();
 }
 
 function enterMoveUp(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_dri = qspUntranslated(s, "ARGS[2]", { location: "daily_routine" });
+  (s as any).temp_dri = ((s as any).locArgs?.[2] ?? 0);
   if (((s as any).temp_dri ?? 0) > 1) {
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) - 1)];
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri - 1 || '') + ''] = ((s as any).dr_tmp ?? 0);
+    (s as any).dr_tmp = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0))];
+    ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) - 1)];
+    ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri - 1 || '') + ''] = ((s as any).dr_tmp ?? 0);
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
   // TODO-QSP: end
@@ -1285,11 +1320,12 @@ function enterMoveUp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveDown(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_dri = qspUntranslated(s, "ARGS[2]", { location: "daily_routine" });
+  (s as any).temp_dri = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_drc = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_count'];
   if (((s as any).temp_dri ?? 0) < ((s as any).temp_drc ?? 0)) {
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) + 1)];
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri + 1 || '') + ''] = ((s as any).dr_tmp ?? 0);
+    (s as any).dr_tmp = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0))];
+    ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) + 1)];
+    ((s as any).droutine = (s as any).droutine ?? {})['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri + 1 || '') + ''] = ((s as any).dr_tmp ?? 0);
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
   // TODO-QSP: end
@@ -1298,11 +1334,12 @@ function enterMoveDown(s: GameState, scene: SceneBuilder): void {
 
 function enterRenderListInline(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_drc = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_count'];
+  (s as any).dr_line = '';
   (s as any).temp_dri = 0;
   // TODO-QSP: :droutine_rli_loop
   (s as any).temp_dri = ((s as any).temp_dri ?? 0) + (1);
   if (((s as any).temp_dri ?? 0) <= ((s as any).temp_drc ?? 0)) {
-    if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0))];
+    ((s as any).droutine = (s as any).droutine ?? {})['current_label'] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0))];
     // TODO-QSP: gs 'daily_routine', 'resolve', $droutine['<<$ARGS[1]>>_step_<<temp_dri>>']
     if (((s as any).dr_line ?? 0) !== '') {
       // TODO-QSP: $dr_line += ', '
@@ -1311,6 +1348,7 @@ function enterRenderListInline(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'droutine_rli_loop'
   }
   if (((s as any).dr_line ?? 0) === '') {
+    (s as any).dr_line = '(none)';
   }
   // TODO-QSP: dynamic text:   <<$dr_line>>
   scene.text(`  ${((s as any).dr_line || '')}`);

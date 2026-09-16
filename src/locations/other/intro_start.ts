@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,33 +14,33 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).start_type ?? 0)?.['magic'] === 'magic') {
-      scene.actions([{ label: 'Continue', goto: ['intro_start', 'magic_shared'] }]);
+      qspGoto(s, 'intro_start', 'magic_shared');
     } else {
       if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
-        scene.actions([{ label: 'Continue', goto: ['intro_start', 'sg_shared'] }]);
+        qspGoto(s, 'intro_start', 'sg_shared');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['intro_start', 'sg_tg'] }]);
+        qspGoto(s, 'intro_start', 'sg_tg');
       }
     }
   } else {
     if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
       if (((s as any).start_type ?? 0)?.['magic'] === 'magic') {
-        scene.actions([{ label: 'Continue', goto: ['intro_start', 'magic_shared'] }]);
+        qspGoto(s, 'intro_start', 'magic_shared');
       } else {
         if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
-          scene.actions([{ label: 'Continue', goto: ['intro_start', 'uni_shared'] }]);
+          qspGoto(s, 'intro_start', 'uni_shared');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['intro_start', 'tg_adult_shared'] }]);
+          qspGoto(s, 'intro_start', 'tg_adult_shared');
         }
       }
     } else {
       if (((s as any).start_type ?? 0)?.['magic'] === 'magic') {
-        scene.actions([{ label: 'Continue', goto: ['intro_start', 'magic_shared'] }]);
+        qspGoto(s, 'intro_start', 'magic_shared');
       } else {
         if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
-          scene.actions([{ label: 'Continue', goto: ['intro_start', 'city_shared'] }]);
+          qspGoto(s, 'intro_start', 'city_shared');
         } else {
-          scene.actions([{ label: 'Continue', goto: ['intro_start', 'tg_adult_shared'] }]);
+          qspGoto(s, 'intro_start', 'tg_adult_shared');
         }
       }
     }
@@ -53,7 +53,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     qspCall(s, 'intro_functions', 'set_default', 'name');
   }
-  scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'quick_start'] }]);
+  qspGoto(s, 'intro_character_creation', 'quick_start');
   // TODO-QSP: end
   scene.build();
 }
@@ -261,12 +261,12 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Done', handler: (st: GameState) => {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      scene.actions([{ label: 'Continue', goto: ['intro_start', 'sg_shared'] }]);
+      qspGoto(s, 'intro_start', 'sg_shared');
     } else {
       if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        scene.actions([{ label: 'Continue', goto: ['intro_start', 'uni_shared'] }]);
+        qspGoto(s, 'intro_start', 'uni_shared');
       } else {
-        scene.actions([{ label: 'Continue', goto: ['intro_start', 'city_shared'] }]);
+        qspGoto(s, 'intro_start', 'city_shared');
       }
     }
   } },
@@ -488,6 +488,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
       { label: 'Prepare to fight', handler: (st: GameState) => {
     scene.img('images/system/1_openings/shared/npc_gustav.jpg');
     scene.text('The man has a large tattoo across the left side of his face and also has red hair.');
+    (s as any).boy = 'Gustav';
     qspCall(s, 'fight', 'initFight', 1);
     qspCall(s, 'fight_npcdata', 'gustav');
     (s as any).fightEnding = 1;
@@ -605,6 +606,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTgAdultSharedSetMikaelStats(s: GameState, scene: SceneBuilder): void {
+  (s as any).pcs_firstname = 'Mikhail\'    & $pcs_lastname = \'Ivanov';
   (s as any).age = qspUntranslated(s, "iif (start_type['loc'] = 'uni', 33, 35)", { location: "intro_start" });
   (s as any).vidage = ((s as any).age ?? 0);
   (s as any).year = 2016;
@@ -693,11 +695,17 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_firstname ?? 0) === '') {
         qspCall(s, 'intro_functions', 'set_default', 'name');
       }
+      (s as any).temp = 0;
       if (((s as any).temp ?? 0) !== '') {
+        (s as any).pcs_firstname = ((s as any).temp ?? 0);
       }
+      (s as any).temp = 0;
       if (((s as any).temp ?? 0) !== '') {
+        (s as any).pcs_lastname = ((s as any).temp ?? 0);
       }
+      (s as any).temp = 0;
       if (((s as any).temp ?? 0) !== '') {
+        (s as any).pcs_nickname = ((s as any).temp ?? 0);
       }
       scene.img('images/system/1_openings/4_csb/17.jpg');
       // TODO-QSP: dynamic text: Her name was <<$pcs_firstname>> <<$pcs_lastname>>, or <<$pcs_nickname>> for shor...
@@ -745,8 +753,8 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: A few minutes later, an excited teenage girl comes rushing down one of the dirt ...
     scene.text(`A few minutes later, an excited teenage girl comes rushing down one of the dirt roads. You double-check a picture of ${((s as any).pcs_nickname || '')} on your phone, as this is the first time you've seen her with your own eyes.`);
     scene.actions([
-      { label: 'Take a look at her picture (skip customization)', goto: ['intro_character_creation', 'start', '\'appearance_hub\''] },
-      { label: 'Customise <<$pcs_firstname>>', goto: ['intro_character_creation', 'start'] },
+      { label: 'Take a look at her picture (skip customization)', goto: ['intro_character_creation', 'start', 'appearance_hub'] },
+      { label: '', labelFn: (s: GameState) => 'Customise ' + String(((s as any).pcs_firstname || '') ?? ''), goto: ['intro_character_creation', 'start'] },
     ]);
   } },
     ]);

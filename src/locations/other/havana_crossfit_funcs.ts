@@ -85,11 +85,14 @@ function enterAddWod(s: GameState, scene: SceneBuilder): void {
 
 function enterRecordstring(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).result = 'No score yet';
   } else {
-    (s as any).wod_score = ((s as any).wod_min_score ?? 0)[((s as any).locArgs?.[1] ?? 0)] + (((s as any).wod_max_score ?? 0)[((s as any).locArgs?.[1] ?? 0)] - ((s as any).wod_min_score ?? 0)[((s as any).locArgs?.[1] ?? 0)]) * ((s as any).ARGS ?? 0)[2] / 100;
+    (s as any).wod_score = ((s as any).wod_min_score ?? 0)[((s as any).locArgs?.[1] ?? 0)] + (((s as any).wod_max_score ?? 0)[((s as any).locArgs?.[1] ?? 0)] - ((s as any).wod_min_score ?? 0)[((s as any).locArgs?.[1] ?? 0)]) * ((s as any).locArgs?.[2] ?? 0) / 100;
     if (((s as any).wod_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'for_time') {
+      (s as any).result = '' + ((s as any).wod_score ?? 0)/60 + ' minutes and ' + ((s as any).wod_score ?? 0) - (((s as any).wod_score ?? 0)/60)*60 + ' seconds';
     }
     if (((s as any).wod_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'for_rounds') {
+      (s as any).result = '' + ((s as any).wod_score ?? 0)/100 + ' rounds and ' + ((s as any).wod_score ?? 0) - (((s as any).wod_score ?? 0)/100)*100 + '% of the last one';
     }
   }
   // TODO-QSP: end
@@ -118,9 +121,10 @@ function enterBoxRecords(s: GameState, scene: SceneBuilder): void {
   (s as any).crossfit_record_it = 0;
   // TODO-QSP: :recordgeneratorloop
   if (((s as any).crossfit_record_it ?? 0) < Object.keys((s as any).crossfit_wods ?? {}).length) {
+    (s as any).crossfit_wod = ((s as any).crossfit_wods ?? 0)?.[String((s as any).crossfit_record_it ?? 0)];
     (s as any).new_record_wod_time = Math.max(1, (100 - (100 * ((Math.floor(Math.random() * 61) + 40) + (Math.floor(Math.random() * 101) + 0) + (Math.floor(Math.random() * 101) + 0) + (Math.floor(Math.random() * 101) + 0)) / 400)));
     if (((s as any).box_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] === 0  ||  ((s as any).box_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] > ((s as any).new_record_wod_time ?? 0)) {
-      if (!(s as any).box_wod_record) (s as any).box_wod_record = {}; (s as any).box_wod_record[String((s as any).crossfit_wod ?? 0)] = ((s as any).new_record_wod_time ?? 0);
+      ((s as any).box_wod_record = (s as any).box_wod_record ?? {})[String((s as any).crossfit_wod ?? 0)] = ((s as any).new_record_wod_time ?? 0);
       if ((Math.floor(Math.random() * 3) + 0) === 0  ||  ((s as any).box_wod_record_holder ?? 0)?.[String((s as any).crossfit_wod ?? 0)] === ''  ||  ((s as any).box_wod_record_holder ?? 0)?.[String((s as any).crossfit_wod ?? 0)] === ((s as any).pcs_nickname ?? 0)) {
         // TODO-QSP: $box_wod_record_holder[$crossfit_wod] = func('npcrnamefile', 'rusFemale')
       }

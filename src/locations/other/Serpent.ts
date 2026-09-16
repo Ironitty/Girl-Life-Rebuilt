@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'Serpent', '');
+  (s as any).location_type = 'secluded';
   if (((s as any).findneck ?? 0) === 1) {
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/serpent/serpentintro.mp4');
@@ -29,7 +30,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).serpent_path = 0;
-  }, goto: ['gad_gpyard', 'start'] },
+    qspGoto(s, 'gad_gpyard', 'start');
+  } },
       ]);
     }
     qspCall(s, 'willpower', 'skill', 'magik', 'self', 'medium');
@@ -45,12 +47,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'skill', 'magik', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).serpent_path = 1;
-  }, goto: ['serpent', ''] },
+    qspGoto(s, 'serpent', '');
+  } },
       ]);
     }
     scene.actions([
       { label: 'You stand frozen as the snake\'s head glides down towards you', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   }

@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_basement', 'start');
+  (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   (s as any).bdsm_basement_rand = Math.floor(Math.random() * 100) + 0;
   if (((s as any).bdsm_basement_rand ?? 0) < 61) {

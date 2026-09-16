@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,8 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterNerdStudyNight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['start_time'] = ((s as any).totminut ?? 0);
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['day'] = ((s as any).daystart ?? 0);
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['start_time'] = ((s as any).totminut ?? 0);
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['day'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study\' + rand(1, 5) + \'.jpg');
   if (((s as any).grupTipe ?? 0) === 3) {
     scene.text('You arrive at the library and see all of your fellow nerds have already gathered around one of the tables. Some are grabbing some books or looking up things on their laptop, while others are sitting and chatting before the study session begins. You sit down with your fellow students and start studying.');
@@ -44,7 +44,7 @@ function enterNerdStudyNight(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerdStudyNight1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (3);
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (3);
   qspCall(s, 'stat', '');
   if (((s as any).totminut ?? 0) < ((s as any).nerdstudynight ?? 0)?.['start_time'] + 25) {
     (s as any).lern = ((s as any).lern ?? 0) + (Math.floor(Math.random() * 5) + 4);
@@ -84,9 +84,14 @@ function enterNerdStudyNight1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = 'nerd_study_night2';
+  (s as any).loc = 'pav_library_nerdstudy';
+  (s as any).location_type = 'public_indoors';
+  (s as any).menu_loc = 'pav_library_nerdstudy';
+  (s as any).menu_arg = 'nerd_study_night2';
   qspCall(s, 'stat', '');
   if (((s as any).totminut ?? 0) >= ((s as any).nerdstudynight ?? 0)?.['start_time'] +60) {
-    scene.actions([{ label: 'Continue', goto: ['pav_library_nerdstudy', 'nerd_study_night_over'] }]);
+    qspGoto(s, 'pav_library_nerdstudy', 'nerd_study_night_over');
   }
   scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study\' + rand(1, 5) + \'.jpg');
   scene.text('You can\'t help but be a little distracted. You\'re not sure why, but you\'re just not feeling the desire to study. Maybe one of your fellow nerds would like to chat instead?');
@@ -94,7 +99,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Feofan', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Feofan'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Feofan'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A152', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
@@ -118,7 +123,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Artem', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Artem'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Artem'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -147,7 +152,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Zinaida', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Zinaida'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Zinaida'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A142', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big142.jpg');
@@ -171,7 +176,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Gerasim', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Gerasim'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Gerasim'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A153', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big153.jpg');
@@ -196,7 +201,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Julia', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Julia'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Julia'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
@@ -220,7 +225,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Petka', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Petka'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Petka'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big6.jpg');
@@ -245,7 +250,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Natasha', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Natasha'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Natasha'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big16.jpg');
@@ -275,7 +280,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Evgeny', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Evgeny'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Evgeny'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A151', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big151.jpg');
@@ -299,7 +304,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Chat to Natalia', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Natalia'] = 1;
+    ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Natalia'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A240', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big240.jpg');
@@ -328,15 +333,15 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerdStudyNightOver(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Feofan'] = 0;
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Artem'] = 0;
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Zinaida'] = 0;
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Gerasim'] = 0;
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Julia'] = 0;
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Petka'] = 0;
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Natasha'] = 0;
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Evgeny'] = 0;
-  if (!(s as any).nerdstudynight) (s as any).nerdstudynight = {}; (s as any).nerdstudynight['Natalia'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Feofan'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Artem'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Zinaida'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Gerasim'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Julia'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Petka'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Natasha'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Evgeny'] = 0;
+  ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Natalia'] = 0;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study\' + rand(1, 5) + \'.jpg');
   scene.text('After an hour, everyone starts packing up and talking about heading home. A few text their parents to let them know they\'re leaving the library. You gather up your stuff and leave with the group.');

@@ -10,8 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['happyslut'] >= 1  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).daystart ?? 0) >= ((s as any).soniaQW ?? 0)?.['happyslut_tickday'] + 7) {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['happyslut'] = ((s as any).soniaQW['happyslut'] ?? 0) + (1);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['happyslut_tickday'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['happyslut'] = ((s as any).soniaQW['happyslut'] ?? 0) + (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['happyslut_tickday'] = ((s as any).daystart ?? 0);
   }
   // TODO-QSP: end
   scene.build();
@@ -26,7 +26,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['cheap_clothes'] === 1) {
     scene.actions([
       { label: 'Ask her why she doesn\'t buy nicer clothes', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['cheap_clothes'] = ((s as any).soniaQW['cheap_clothes'] ?? 0) + (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['cheap_clothes'] = ((s as any).soniaQW['cheap_clothes'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_bed.jpg');
@@ -132,7 +132,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask her about her fashion sense', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['cheap_clothes'] = ((s as any).soniaQW['cheap_clothes'] ?? 0) + (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['cheap_clothes'] = ((s as any).soniaQW['cheap_clothes'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_bed.jpg');
@@ -169,32 +169,33 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rex_love ?? 0) === 1  ||  ((s as any).artemQW ?? 0)?.['bf'] === 1  ||  ((s as any).kotovLoveQW ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) >= 5  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  ||  ((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
       if (((s as any).rex_love ?? 0) === 1) {
         scene.actions([
-          { label: 'Get married to Rex', goto: ['soniachat', 'telling_marrige_dreams', '\'Rex\''] },
+          { label: 'Get married to Rex', goto: ['soniachat', 'telling_marrige_dreams', 'Rex'] },
         ]);
       }
       if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
         scene.actions([
-          { label: 'Get married to Artem', goto: ['soniachat', 'telling_marrige_dreams', '\'Artem\''] },
+          { label: 'Get married to Artem', goto: ['soniachat', 'telling_marrige_dreams', 'Artem'] },
         ]);
       }
       if (((s as any).kotovLoveQW ?? 0) === 1) {
         scene.actions([
-          { label: 'Get married to Vitek', goto: ['soniachat', 'telling_marrige_dreams', '\'Vitek\''] },
+          { label: 'Get married to Vitek', goto: ['soniachat', 'telling_marrige_dreams', 'Vitek'] },
         ]);
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 5) {
         scene.actions([
-          { label: 'Get married to Fedor', goto: ['soniachat', 'telling_marrige_dreams', '\'Fedor\''] },
+          { label: 'Get married to Fedor', goto: ['soniachat', 'telling_marrige_dreams', 'Fedor'] },
         ]);
       }
       if (((s as any).NikoVolkovQW ?? 0) >= 5) {
         scene.actions([
-          { label: 'Get married to Niko', goto: ['soniachat', 'telling_marrige_dreams', '\'Niko\''] },
+          { label: 'Get married to Niko', goto: ['soniachat', 'telling_marrige_dreams', 'Niko'] },
         ]);
       }
       (s as any).i = 0;
       // TODO-QSP: :marrid_looop
       if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+        (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic 'act ''Get married to <<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''telling_ma...
         }
@@ -386,7 +387,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
     scene.actions([
       { label: 'Artem', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['artem_bf'] = 1;
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['artem_bf'] = 1;
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('"Artem," you tell her.');
       scene.text('She grins. "Well, you guys make a cute couple," she says with a giggle.');
@@ -424,6 +425,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :lover_looop
   if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+    (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
       // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''tell_about_generic_boyfri...
     }
@@ -454,7 +456,7 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
 
 function enterSoniaChatSpecial1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['fallenangel'] < 2) {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallenangel'] = 2;
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallenangel'] = 2;
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -506,7 +508,7 @@ function enterSoniaChatSpecial1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t worry about it. I was just joking with you. Look, how about we try and do this together?"');
     scene.actions([
       { label: 'Tell her you\'ll redeem yourselves together', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['redemp'] = 1;
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['redemp'] = 1;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/soniacrying.jpg');
@@ -525,7 +527,7 @@ function enterSoniaChatSpecial1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Tell her you\'ll help', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['redemp'] = 1;
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['redemp'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'adore');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -542,7 +544,7 @@ function enterSoniaChatSpecial1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell her to accept it', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallenangel'] = ((s as any).soniaQW['fallenangel'] ?? 0) + (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallenangel'] = ((s as any).soniaQW['fallenangel'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Sonia\'s Room</b></center>');
@@ -569,7 +571,7 @@ function enterSoniaChatSpecial1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallenangel'] = ((s as any).soniaQW['fallenangel'] ?? 0) + (1);
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallenangel'] = ((s as any).soniaQW['fallenangel'] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -579,7 +581,7 @@ function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['chat_smalltalk_day'] < ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Make small talk', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['chat_smalltalk_day'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['chat_smalltalk_day'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_depressed.jpg');
@@ -594,7 +596,7 @@ function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['chat_howwere_day'] < ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'I wanted to see how you were', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['chat_howwere_day'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['chat_howwere_day'] = ((s as any).daystart ?? 0);
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_depressed.jpg');
     scene.text('"I just wanted to check how you were doing," you say.');
@@ -611,7 +613,7 @@ function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['chat_gopniks_day'] < ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask about the gopniks', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['chat_gopniks_day'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['chat_gopniks_day'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_depressed.jpg');
@@ -673,7 +675,7 @@ function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['fallenangel'] = ((s as any).soniaQW['fallenangel'] ?? 0) + (1);
+  ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallenangel'] = ((s as any).soniaQW['fallenangel'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Sonia\'s Room</b></center>');
@@ -682,7 +684,7 @@ function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['chat_smalltalk_day'] < ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Make small talk', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['chat_smalltalk_day'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['chat_smalltalk_day'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_unhappy.jpg');
@@ -697,7 +699,7 @@ function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['chat_howwere_day'] < ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'I wanted to see how you were', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['chat_howwere_day'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['chat_howwere_day'] = ((s as any).daystart ?? 0);
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_unhappy.jpg');
     scene.text('"I just wanted to check how you were doing," you say.');
@@ -714,7 +716,7 @@ function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['chat_gopniks_day'] < ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask about the gopniks', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['chat_gopniks_day'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['chat_gopniks_day'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_unhappy.jpg');
@@ -777,6 +779,7 @@ function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).locclass = 'livingr';
   (s as any).SoniaLoc = 5;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -856,6 +859,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingroomChat1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).locclass = 'livingr';
   (s as any).SoniaLoc = 5;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
@@ -939,6 +943,7 @@ function enterLivingroomChat1(s: GameState, scene: SceneBuilder): void {
 
 function enterLivingroomChat2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'soniahome', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).locclass = 'livingr';
   (s as any).SoniaLoc = 5;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
@@ -1027,8 +1032,8 @@ function enterLivingroomChat2(s: GameState, scene: SceneBuilder): void {
 
 function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) >= ((s as any).soniaQW ?? 0)?.['happyslut_visitday'] + 7) {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['happyslut'] = ((s as any).soniaQW['happyslut'] ?? 0) + (1);
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['happyslut_visitday'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['happyslut'] = ((s as any).soniaQW['happyslut'] ?? 0) + (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['happyslut_visitday'] = ((s as any).daystart ?? 0);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -1038,7 +1043,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['cheap_clothes'] === 1) {
     scene.actions([
       { label: 'Ask her why she doesn\'t buy nicer clothes', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['cheap_clothes'] = ((s as any).soniaQW['cheap_clothes'] ?? 0) + (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['cheap_clothes'] = ((s as any).soniaQW['cheap_clothes'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_bed.jpg');
@@ -1099,7 +1104,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
       scene.text('You could always tell her about Anushka as well...');
       scene.actions([
         { label: 'Tell her about Anushka', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['sonia3some_ask'] = ((s as any).artemQW['sonia3some_ask'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['sonia3some_ask'] = ((s as any).artemQW['sonia3some_ask'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
@@ -1147,7 +1152,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
       scene.text('You could always tell her about Katja as well...');
       scene.actions([
         { label: 'Tell her about Katja', handler: (st: GameState) => {
-    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['sonia3some_ask'] = ((s as any).artemQW['sonia3some_ask'] ?? 0) + (1);
+    ((s as any).artemQW = (s as any).artemQW ?? {})['sonia3some_ask'] = ((s as any).artemQW['sonia3some_ask'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
@@ -1208,7 +1213,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
         { label: 'Kiss her', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A25');
     qspCall(s, 'willpower', 'pay', 'self');
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['kiss_day'] = ((s as any).daystart ?? 0);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['kiss_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/sonia/home/bed_kiss.jpg');
@@ -1335,7 +1340,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask her about her fashion sense', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['cheap_clothes'] = ((s as any).soniaQW['cheap_clothes'] ?? 0) + (1);
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['cheap_clothes'] = ((s as any).soniaQW['cheap_clothes'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
@@ -1372,32 +1377,33 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rex_love ?? 0) === 1  ||  ((s as any).artemQW ?? 0)?.['bf'] === 1  ||  ((s as any).kotovLoveQW ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) >= 5  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  ||  ((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
       if (((s as any).rex_love ?? 0) === 1) {
         scene.actions([
-          { label: 'Get married to Rex', goto: ['soniachat', 'telling_marrige_dreams1', '\'Rex\''] },
+          { label: 'Get married to Rex', goto: ['soniachat', 'telling_marrige_dreams1', 'Rex'] },
         ]);
       }
       if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
         scene.actions([
-          { label: 'Get married to Artem', goto: ['soniachat', 'telling_marrige_dreams1', '\'Artem\''] },
+          { label: 'Get married to Artem', goto: ['soniachat', 'telling_marrige_dreams1', 'Artem'] },
         ]);
       }
       if (((s as any).kotovLoveQW ?? 0) === 1) {
         scene.actions([
-          { label: 'Get married to Vitek', goto: ['soniachat', 'telling_marrige_dreams1', '\'Vitek\''] },
+          { label: 'Get married to Vitek', goto: ['soniachat', 'telling_marrige_dreams1', 'Vitek'] },
         ]);
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 5) {
         scene.actions([
-          { label: 'Get married to Fedor', goto: ['soniachat', 'telling_marrige_dreams1', '\'Fedor\''] },
+          { label: 'Get married to Fedor', goto: ['soniachat', 'telling_marrige_dreams1', 'Fedor'] },
         ]);
       }
       if (((s as any).NikoVolkovQW ?? 0) >= 5) {
         scene.actions([
-          { label: 'Get married to Niko', goto: ['soniachat', 'telling_marrige_dreams1', '\'Niko\''] },
+          { label: 'Get married to Niko', goto: ['soniachat', 'telling_marrige_dreams1', 'Niko'] },
         ]);
       }
       (s as any).i = 0;
       // TODO-QSP: :marrid_loop_hc
       if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+        (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic "act 'Get married to <<$npc_usedname[$temp_npcid]>>': gt 'soniachat', 'telling_marrige_dream...
         }
@@ -1568,7 +1574,7 @@ function enterBoyfriendChat1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
     scene.actions([
       { label: 'Artem', handler: (st: GameState) => {
-    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['artem_bf'] = 1;
+    ((s as any).soniaQW = (s as any).soniaQW ?? {})['artem_bf'] = 1;
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('"Artem," you tell her.');
       scene.text('She grins. "Well, you guys make a cute couple," she says with a giggle.');
@@ -1606,6 +1612,7 @@ function enterBoyfriendChat1(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :lover_loop_bc1
   if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+    (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
       // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''tell_about_generic_boyfri...
     }

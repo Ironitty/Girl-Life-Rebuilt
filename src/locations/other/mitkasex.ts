@@ -61,7 +61,7 @@ function enterForest2(s: GameState, scene: SceneBuilder): void {
   (s as any).boyAsexa = 0;
   (s as any).boyBsexa = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).temp_ms = Math.floor(Math.random() * 2) + 1;
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     if (((s as any).temp_ms ?? 0) === 1) {
@@ -103,7 +103,7 @@ function enterForest2(s: GameState, scene: SceneBuilder): void {
 
 function enterForest3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).boyAsex = 0;
   (s as any).boyBsex = 0;
   (s as any).boyCsex = 0;
@@ -172,7 +172,7 @@ function enterGad2(s: GameState, scene: SceneBuilder): void {
   (s as any).dirty_dickA = 0;
   (s as any).dirty_dickB = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).temp_ms = Math.floor(Math.random() * 3) + 1;
   (s as any).horny_boyA = Math.floor(Math.random() * 91) + 0;
   (s as any).horny_boyB = Math.floor(Math.random() * 91) + 0;
@@ -410,7 +410,7 @@ function enterGadHandsCum2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).body_write = 1;
-    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
     scene.img('images/locations/gadukino/sex/mitka/mitkagadsexhandscum2.3.jpg');
     scene.text('When the guys finished, they painted on your body "fuck slut" and writing a couple of other obscene words, and went about their business. You are left to clean yourself up.');
     qspCall(s, 'arousal', 'end');
@@ -598,6 +598,7 @@ function enterGadDogCum2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 100) {
     // TODO-QSP: dynamic text: <<$textsexhunter[11]>>
     scene.text(`${qspUntranslated(s, "textsexhunter[11]", { location: "mitkasex" })}`);
+    (s as any).orgasm_or = 'yes';
   }
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "mitkasex" })}`);
@@ -808,6 +809,7 @@ function enterGadCowCum2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 100) {
     // TODO-QSP: dynamic text: <<$textsexhunter[11]>>
     scene.text(`${qspUntranslated(s, "textsexhunter[11]", { location: "mitkasex" })}`);
+    (s as any).orgasm_or = 'yes';
   }
   qspCall(s, 'dinsex', 'sexcum');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
@@ -1016,6 +1018,7 @@ function enterGadStanCum2_2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/mitka/mitkagadsexstancum2_2.jpg');
   // TODO-QSP: dynamic text: You bend over sticking out your ass, and feel <<$boydesc>> starts moving faster…
   scene.text(`You bend over sticking out your ass, and feel ${((s as any).boydesc || '')} starts moving faster…`);
+  (s as any).orgasm_txt = '' + qspUntranslated(s, "textsexhunter[11]", { location: "mitkasex" }) + '';
   qspCall(s, 'dinsex', 'sexcum');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "mitkasex" })}`);
@@ -1030,6 +1033,7 @@ function enterGadStanCum2_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'bj', (-5), 'sub', 'group');
+  (s as any).orgasm_txt = '';
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
@@ -1208,10 +1212,12 @@ function enterGadSideVagCum1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/mitka/mitkagadsexsidevagcum1.jpg');
   // TODO-QSP: dynamic text: You lie on your side, feeling that <<$boydesc>> gradually starts to move faster…
   scene.text(`You lie on your side, feeling that ${((s as any).boydesc || '')} gradually starts to move faster…`);
+  (s as any).orgasm_txt = '' + qspUntranslated(s, "textsexhunter[11]", { location: "mitkasex" }) + '';
   qspCall(s, 'dinsex', 'sexcum');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
+  (s as any).orgasm_txt = '';
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
@@ -1400,6 +1406,7 @@ function enterGadCowVagCum1(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
   scene.img('images/locations/gadukino/sex/mitka/mitkagadsexcowvagcum1.jpg');
   scene.text('You jump on the guy\'s cock gradually speeding up the pace, knowing that he will soon cum…');
+  (s as any).orgasm_txt = '' + qspUntranslated(s, "textsexhunter[11]", { location: "mitkasex" }) + '';
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'dinsex', 'sexcum');
@@ -1484,7 +1491,9 @@ function enterGadDogAnalCum1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/mitka/mitkagadsexdoganalcum1.jpg');
   // TODO-QSP: dynamic text: You bend over, sticking out your ass, and feel <<$boydesc>> starts moving faster...
   scene.text(`You bend over, sticking out your ass, and feel ${((s as any).boydesc || '')} starts moving faster…`);
+  (s as any).orgasm_or = '' + qspUntranslated(s, "textsexhunter[12]", { location: "mitkasex" }) + '';
   qspCall(s, 'arousal', 'anal', 5, 'sub');
+  (s as any).orgasm_or = '';
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: dynamic text: After a while <<$boydesc>> moaned and you feel your ass fill with warm cum.
   scene.text(`After a while ${((s as any).boydesc || '')} moaned and you feel your ass fill with warm cum.`);
@@ -1858,6 +1867,7 @@ function enterForestSideCum1_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/mitka/mitkaforestsexsidecum1_1.jpg');
   // TODO-QSP: dynamic text: You lie on your side, slightly changing the pose as <<$boydesc>> gradually start...
   scene.text(`You lie on your side, slightly changing the pose as ${((s as any).boydesc || '')} gradually starts to move faster…`);
+  (s as any).orgasm_txt = '' + qspUntranslated(s, "textsexhunter[11]", { location: "mitkasex" }) + '';
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough', 'group');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'dinsex', 'sexcum');
@@ -2053,10 +2063,12 @@ function enterForestCow1_2(s: GameState, scene: SceneBuilder): void {
     scene.text(`You sit beside a guy and watch as Mira gaping vagina swallows his whole ${((s as any).dick || '')} cm dick. Simultaneously ${((s as any).boydesc || '')}, puts his hand between your legs, and shoves his fingers in your pussy, gradually arousing you.`);
   }
   if (((s as any).miralesb ?? 0) > 0) {
-    scene.text('You can bend over and kiss <a href="exec:gt \'mitkasex\', \'forestCowKiss1_1\'">Mira</a>.');
+    scene.text('You can bend over and kiss <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCowKiss1_1\\u0027); return false;">Mira</a>.');
   }
+  (s as any).orgasm_txt = '' + qspUntranslated(s, "textsexhunter[11]", { location: "mitkasex" }) + '';
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
-  scene.text('You can take the cock out of Mira and <a href="exec:gt \'mitkasex\', \'forestCowOral1_1\'">suck</a> it.');
+  (s as any).orgasm_txt = '';
+  scene.text('You can take the cock out of Mira and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCowOral1_1\\u0027); return false;">suck</a> it.');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
   qspCall(s, 'stat', '');
@@ -2305,6 +2317,7 @@ function enterForestDogCum1_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 100) {
     // TODO-QSP: dynamic text: <<$textsexhunter[11]>>
     scene.text(`${qspUntranslated(s, "textsexhunter[11]", { location: "mitkasex" })}`);
+    (s as any).orgasm_or = 'yes';
   }
   qspCall(s, 'stat', '');
   qspCall(s, 'dinsex', 'sexcum');
@@ -2486,7 +2499,7 @@ function enterForestOral2_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You kneel in front of a boy. <<$boydesc>> takes his <<dick>> cm dick and brings ...
   scene.text(`You kneel in front of a boy. ${((s as any).boydesc || '')} takes his ${((s as any).dick || '')} cm dick and brings it to your lips…`);
   qspCall(s, 'oral', 'start');
-  scene.text('<a href="exec:gt \'mitkasex\', \'forestOral_mira2_1\'">Mira</a> is squatting nearby.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestOral_mira2_1\\u0027); return false;">Mira</a> is squatting nearby.');
   if (((s as any).MiraVars ?? 0)?.['Mitka_fucks'] < 50) {
     (s as any).horny_boyB = ((s as any).horny_boyB ?? 0) + (5);
   }
@@ -2743,14 +2756,14 @@ function enterForestOralCum2_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyB ?? 0) < 100  &&  (!((s as any).boyB_cum ?? 0))) {
     (s as any).temp_ms = Math.floor(Math.random() * 2) + 1;
     if (((s as any).temp_ms ?? 0) === 1) {
-      scene.text('Near you moaning <a href="exec:gt \'mitkasex\', \'forestDog_mira2_1\'">Mira</a>.');
+      scene.text('Near you moaning <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDog_mira2_1\\u0027); return false;">Mira</a>.');
     }
     if (((s as any).temp_ms ?? 0) === 2) {
-      scene.text('Near you moaning <a href="exec:gt \'mitkasex\', \'forestCow_mira2_1\'">Mira</a>.');
+      scene.text('Near you moaning <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCow_mira2_1\\u0027); return false;">Mira</a>.');
     }
   } else {
     if (((s as any).horny_boyB ?? 0) >= 100  &&  (!((s as any).boyB_cum ?? 0))) {
-      scene.text('Near you is on her knees with her mouth open is <a href="exec:gt \'mitkasex\', \'forestOralCum_mira2_1\'">Mira</a>.');
+      scene.text('Near you is on her knees with her mouth open is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestOralCum_mira2_1\\u0027); return false;">Mira</a>.');
     } else {
       scene.text('Mira is sitting on the ground near you, waiting for you to finish, and occasionally throwing glances in your direction.');
     }
@@ -2817,7 +2830,7 @@ function enterForestSide2_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'boy_puts_condom');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   if (((s as any).horny_boyA ?? 0) < 100  &&  (!((s as any).boyB_cum ?? 0))) {
-    scene.text('Near you on her knees with her mouth open is <a href="exec:gt \'mitkasex\', \'forestOralCum_mira2_1\'">Mira</a>.');
+    scene.text('Near you on her knees with her mouth open is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestOralCum_mira2_1\\u0027); return false;">Mira</a>.');
   }
   if (((s as any).horny_boyA ?? 0) >= 100  &&  (!((s as any).boyB_cum ?? 0))) {
     scene.text('Near you the second guy cums straight into Mira\'s wide open mouth.');
@@ -2870,7 +2883,7 @@ function enterForestSide2_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'boy_puts_condom');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   if (((s as any).horny_boyA ?? 0) < 100  &&  (!((s as any).boyB_cum ?? 0))) {
-    scene.text('Near you on her knees with her mouth open is <a href="exec:gt \'mitkasex\', \'forestOralCum_mira2_1\'">Mira</a>.');
+    scene.text('Near you on her knees with her mouth open is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestOralCum_mira2_1\\u0027); return false;">Mira</a>.');
   }
   if (((s as any).horny_boyA ?? 0) >= 100  &&  (!((s as any).boyB_cum ?? 0))) {
     scene.text('Near you the second guy cums straight into Mira\'s wide open mouth.');
@@ -2923,7 +2936,7 @@ function enterForestCow2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'boy_puts_condom');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   if (((s as any).horny_boyA ?? 0) < 100  &&  (!((s as any).boyB_cum ?? 0))) {
-    scene.text('Near you on her knees with her mouth open is <a href="exec:gt \'mitkasex\', \'forestOralCum_mira2_1\'">Mira</a>.');
+    scene.text('Near you on her knees with her mouth open is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestOralCum_mira2_1\\u0027); return false;">Mira</a>.');
   }
   if (((s as any).horny_boyA ?? 0) >= 100  &&  (!((s as any).boyB_cum ?? 0))) {
     scene.text('Near you the second guy cums straight into Mira\'s wide open mouth.');
@@ -3088,10 +3101,10 @@ function enterForestRelax(s: GameState, scene: SceneBuilder): void {
   scene.text('You sit on the ground, and relax for a moment…');
   (s as any).mirarand = Math.floor(Math.random() * 2) + 1;
   if (((s as any).mirarand ?? 0) === 1  &&  ((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
-    scene.text('Not far from you three guys gangbang <a href="exec:gt \'mitkasex\', \'forestDP_mira3\'">Mira</a>.');
+    scene.text('Not far from you three guys gangbang <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDP_mira3\\u0027); return false;">Mira</a>.');
   }
   if (((s as any).mirarand ?? 0) === 2  &&  ((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
-    scene.text('Not far from you three guys gangbang <a href="exec:gt \'mitkasex\', \'forestCow_mira3\'">Mira</a>.');
+    scene.text('Not far from you three guys gangbang <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCow_mira3\\u0027); return false;">Mira</a>.');
   }
   // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "mitkasex" })}`);
@@ -3138,7 +3151,7 @@ function enterForestOral3_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   qspCall(s, 'boyStat', 'A62');
   qspCall(s, 'oral', 'start');
-  scene.text('Near you sitting on the ground is <a href="exec:gt \'mitkasex\', \'forestRelax_mira\'">Mira</a>.');
+  scene.text('Near you sitting on the ground is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestRelax_mira\\u0027); return false;">Mira</a>.');
   // TODO-QSP: dynamic text: <<$textsexhunter[5]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
@@ -3209,22 +3222,22 @@ function enterForestOral3_2(s: GameState, scene: SceneBuilder): void {
   (s as any).mirarand = Math.floor(Math.random() * 5) + 1;
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).mirarand ?? 0) === 1) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestOral_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestOral_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 2) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestThroat_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestThroat_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 3) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestCow_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCow_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 4) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestDogV_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDogV_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 5) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestDogA_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDogA_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
   } else {
-    scene.text('Near you is <a href="exec:gt \'mitkasex\', \'forestCum_mira1\'">Mira</a>.');
+    scene.text('Near you is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCum_mira1\\u0027); return false;">Mira</a>.');
   }
   // TODO-QSP: dynamic text: <<$textsexhunter[5]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "mitkasex" })}`);
@@ -3288,19 +3301,19 @@ function enterForestOral3_1(s: GameState, scene: SceneBuilder): void {
   (s as any).mirarand = Math.floor(Math.random() * 4) + 1;
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).mirarand ?? 0) === 1) {
-      scene.text('Nearby you hear a loud moan from <a href="exec:gt \'mitkasex\', \'forestCow_mira2\'">Mira</a>.');
+      scene.text('Nearby you hear a loud moan from <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCow_mira2\\u0027); return false;">Mira</a>.');
     }
     if (((s as any).mirarand ?? 0) === 2) {
-      scene.text('Nearby you hear a loud moan from <a href="exec:gt \'mitkasex\', \'forestSide_mira2\'">Mira</a>.');
+      scene.text('Nearby you hear a loud moan from <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestSide_mira2\\u0027); return false;">Mira</a>.');
     }
     if (((s as any).mirarand ?? 0) === 3) {
-      scene.text('Nearby you hear a loud moan from <a href="exec:gt \'mitkasex\', \'forestMis_mira2\'">Mira</a>.');
+      scene.text('Nearby you hear a loud moan from <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestMis_mira2\\u0027); return false;">Mira</a>.');
     }
     if (((s as any).mirarand ?? 0) === 4) {
-      scene.text('Nearby you hear a loud moan from <a href="exec:gt \'mitkasex\', \'forestDog_mira2\'">Mira</a>.');
+      scene.text('Nearby you hear a loud moan from <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDog_mira2\\u0027); return false;">Mira</a>.');
     }
   } else {
-    scene.text('Near you is <a href="exec:gt \'mitkasex\', \'forestCum_mira2\'">Mira</a>.');
+    scene.text('Near you is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCum_mira2\\u0027); return false;">Mira</a>.');
   }
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
@@ -3411,22 +3424,22 @@ function enterForestVag3(s: GameState, scene: SceneBuilder): void {
   (s as any).mirarand = Math.floor(Math.random() * 5) + 1;
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).mirarand ?? 0) === 1) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestOral_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestOral_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 2) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestThroat_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestThroat_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 3) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestCow_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCow_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 4) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestDogV_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDogV_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 5) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestDogA_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDogA_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
   } else {
-    scene.text('Near you is <a href="exec:gt \'mitkasex\', \'forestCum_mira1\'">Mira</a>.');
+    scene.text('Near you is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCum_mira1\\u0027); return false;">Mira</a>.');
   }
   // TODO-QSP: dynamic text: <<$textsexhunter[5]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "mitkasex" })}`);
@@ -3565,7 +3578,7 @@ function enterForestAnal3_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
-  scene.text('Near you sitting on the ground is <a href="exec:gt \'mitkasex\', \'forestRelax_mira\'">Mira</a>.');
+  scene.text('Near you sitting on the ground is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestRelax_mira\\u0027); return false;">Mira</a>.');
   // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "mitkasex" })}`);
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
@@ -3672,22 +3685,22 @@ function enterForestAnal3_2(s: GameState, scene: SceneBuilder): void {
   (s as any).mirarand = Math.floor(Math.random() * 5) + 1;
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).mirarand ?? 0) === 1) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestOral_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestOral_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 2) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestThroat_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestThroat_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 3) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestCow_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCow_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 4) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestDogV_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDogV_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 5) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestDogA_mira1\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDogA_mira1\\u0027); return false;">Mira</a> moaning nearby.');
     }
   } else {
-    scene.text('Near you is <a href="exec:gt \'mitkasex\', \'forestCum_mira1\'">Mira</a>.');
+    scene.text('Near you is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCum_mira1\\u0027); return false;">Mira</a>.');
   }
   // TODO-QSP: dynamic text: <<$textsexhunter[5]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "mitkasex" })}`);
@@ -3761,19 +3774,19 @@ function enterForestAnal3_1(s: GameState, scene: SceneBuilder): void {
   (s as any).mirarand = Math.floor(Math.random() * 4) + 1;
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).mirarand ?? 0) === 1) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestCow_mira2\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCow_mira2\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 2) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestSide_mira2\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestSide_mira2\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 3) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestMis_mira2\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestMis_mira2\\u0027); return false;">Mira</a> moaning nearby.');
     }
     if (((s as any).mirarand ?? 0) === 4) {
-      scene.text('You hear <a href="exec:gt \'mitkasex\', \'forestDog_mira2\'">Mira</a> moaning nearby.');
+      scene.text('You hear <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestDog_mira2\\u0027); return false;">Mira</a> moaning nearby.');
     }
   } else {
-    scene.text('Near you is <a href="exec:gt \'mitkasex\', \'forestCum_mira2\'">Mira</a>.');
+    scene.text('Near you is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mitkasex\\u0027, \\u0027forestCum_mira2\\u0027); return false;">Mira</a>.');
   }
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
@@ -4504,7 +4517,7 @@ function enterForestCumMira3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  dynamicGoto(s, 'prevLoc', 'prevArg');
   // TODO-QSP: end
   scene.build();
 }

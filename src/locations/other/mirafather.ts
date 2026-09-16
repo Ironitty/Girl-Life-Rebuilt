@@ -1,10 +1,12 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_loc = 'mirafather';
+  (s as any).menu_arg = '';
   qspCall(s, 'boystat', 'A64');
   (s as any).boyage = qspFunc(s, 'shortgs', 'dob_to_age', 'A64');
   qspCall(s, 'miroslava_schedule', '');
@@ -41,13 +43,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).MiraFather ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).MiraFather = ((s as any).daystart ?? 0);
       if (((s as any).npc_QW ?? 0)?.['A64'] >= 16  &&  (((s as any).MiraVars ?? 0)?.['meadow'] === 3  ||  ((s as any).MiraVars ?? 0)?.['meadow'] === 4)) {
-        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['meadow'] = 5;
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['meadow'] = 5;
       }
       if (((s as any).npc_QW ?? 0)?.['A64'] < 5) {
         scene.actions([
           { label: 'Ask how he\'s doing', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A64'] < 5) {
-      if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -67,7 +69,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Chat with him', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A64'] < 10) {
-      if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -83,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Flirt with him', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A64'] < 15) {
-      if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'foreplay', 10);
     qspCall(s, 'arousal', 'end');
@@ -98,7 +100,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).npc_QW ?? 0)?.['A64'] === 15) {
               scene.actions([
                 { label: 'Seduce him', handler: (st: GameState) => {
-    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A64'] = 16;
+    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = 16;
     qspCall(s, 'arousal', 'foreplay', 10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
@@ -107,6 +109,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Enjoy his touch', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mira/mirafathersexkuni.jpg');
     scene.text('Afanasiy is a gentle lover. With practised ease, he gently undresses you and crouches before you. His mouth and fingers play across the lips of your pussy, and he skillfully licks you until he brings you a powerful orgasm.');
+    (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'cuni', 10);
     qspCall(s, 'arousal', 'vaginal_finger', 10);
     qspCall(s, 'stat', '');
@@ -138,7 +141,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Wink at him', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A64'] < 20) {
-      if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');
@@ -239,7 +242,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask if Mira is home', handler: (st: GameState) => {
     if (qspFunc(s, 'miroslava_schedule', 'is_here', 'gad_miroslava_home', 'start')) {
-      scene.actions([{ label: 'Continue', goto: ['miroslava', 'start'] }]);
+      qspGoto(s, 'miroslava', 'start');
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 2;
       qspCall(s, 'stat', '');
